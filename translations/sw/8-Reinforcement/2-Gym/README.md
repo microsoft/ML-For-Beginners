@@ -1,14 +1,23 @@
-## Vigezo vya awali
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-05T16:44:35+00:00",
+  "source_file": "8-Reinforcement/2-Gym/README.md",
+  "language_code": "sw"
+}
+-->
+## Mahitaji ya Awali
 
-Katika somo hili, tutatumia maktaba inayoitwa **OpenAI Gym** kusimulia mazingira tofauti. Unaweza kuendesha msimbo wa somo hili kwenye kompyuta yako (mfano kutoka Visual Studio Code), ambapo simulizi itafunguka kwenye dirisha jipya. Unapoendesha msimbo mtandaoni, unaweza kuhitaji kufanya mabadiliko kadhaa kwenye msimbo, kama ilivyoelezwa [hapa](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+Katika somo hili, tutatumia maktaba inayoitwa **OpenAI Gym** kuiga mazingira tofauti. Unaweza kuendesha msimbo wa somo hili kwenye kompyuta yako (mfano, kutoka Visual Studio Code), ambapo simulizi itafunguka kwenye dirisha jipya. Unapokimbia msimbo mtandaoni, huenda ukahitaji kufanya marekebisho fulani kwenye msimbo, kama ilivyoelezwa [hapa](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
-Katika somo lililopita, sheria za mchezo na hali zilitolewa na darasa la `Board` ambalo tulilifafanua wenyewe. Hapa tutatumia mazingira maalum ya **simulizi**, ambayo yatasimulia fizikia ya fimbo inayosawazisha. Mojawapo ya mazingira maarufu ya simulizi kwa mafunzo ya algorithimu za kujifunza kuimarisha inaitwa [Gym](https://gym.openai.com/), ambayo inadumishwa na [OpenAI](https://openai.com/). Kwa kutumia gym hii tunaweza kuunda mazingira tofauti kutoka simulizi ya cartpole hadi michezo ya Atari.
+Katika somo lililopita, sheria za mchezo na hali zilikuwa zimetolewa na darasa la `Board` ambalo tulilifafanua sisi wenyewe. Hapa tutatumia mazingira maalum ya **simulizi**, ambayo yataiga fizikia ya fimbo inayosawazishwa. Mojawapo ya mazingira maarufu ya simulizi kwa mafunzo ya algoriti za kujifunza kwa kuimarisha inaitwa [Gym](https://gym.openai.com/), ambayo inadumishwa na [OpenAI](https://openai.com/). Kwa kutumia Gym hii tunaweza kuunda mazingira tofauti kutoka simulizi ya CartPole hadi michezo ya Atari.
 
-> **Kumbuka**: Unaweza kuona mazingira mengine yanayopatikana kutoka OpenAI Gym [hapa](https://gym.openai.com/envs/#classic_control). 
+> **Note**: Unaweza kuona mazingira mengine yanayopatikana kutoka OpenAI Gym [hapa](https://gym.openai.com/envs/#classic_control). 
 
-Kwanza, wacha tufunge gym na tuagize maktaba zinazohitajika (msimbo wa block 1):
+Kwanza, wacha tusakinishe Gym na kuingiza maktaba zinazohitajika (msimbo wa block 1):
 
 ```python
 import sys
@@ -20,13 +29,13 @@ import numpy as np
 import random
 ```
 
-## Zoezi - anzisha mazingira ya cartpole
+## Zoezi - kuanzisha mazingira ya CartPole
 
-Ili kufanya kazi na tatizo la kusawazisha cartpole, tunahitaji kuanzisha mazingira yanayolingana. Kila mazingira yanaunganishwa na:
+Ili kufanya kazi na tatizo la kusawazisha CartPole, tunahitaji kuanzisha mazingira yanayohusiana. Kila mazingira yanahusishwa na:
 
-- **Nafasi ya uchunguzi** inayofafanua muundo wa taarifa tunazopokea kutoka kwa mazingira. Kwa tatizo la cartpole, tunapokea nafasi ya fimbo, kasi na thamani nyinginezo.
+- **Observation space** inayofafanua muundo wa taarifa tunazopokea kutoka kwa mazingira. Kwa tatizo la CartPole, tunapokea nafasi ya fimbo, kasi, na thamani nyingine.
 
-- **Nafasi ya hatua** inayofafanua hatua zinazowezekana. Katika kesi yetu nafasi ya hatua ni ya kidijitali, na inajumuisha hatua mbili - **kushoto** na **kulia**. (msimbo wa block 2)
+- **Action space** inayofafanua hatua zinazowezekana. Katika kesi yetu, action space ni ya kidhahiri, na ina hatua mbili - **kushoto** na **kulia**. (msimbo wa block 2)
 
 1. Ili kuanzisha, andika msimbo ufuatao:
 
@@ -37,9 +46,9 @@ Ili kufanya kazi na tatizo la kusawazisha cartpole, tunahitaji kuanzisha mazingi
     print(env.action_space.sample())
     ```
 
-Ili kuona jinsi mazingira yanavyofanya kazi, wacha tuendeshe simulizi fupi kwa hatua 100. Katika kila hatua, tunatoa moja ya hatua zinazochukuliwa - katika simulizi hii tunachagua hatua kwa nasibu kutoka `action_space`. 
+Ili kuona jinsi mazingira yanavyofanya kazi, wacha tuendeshe simulizi fupi kwa hatua 100. Katika kila hatua, tunatoa moja ya hatua za kuchukuliwa - katika simulizi hii tunachagua hatua kwa nasibu kutoka `action_space`. 
 
-1. Endesha msimbo hapa chini na uone matokeo.
+1. Kimbia msimbo hapa chini na uone matokeo yake.
 
     ✅ Kumbuka kuwa inapendekezwa kuendesha msimbo huu kwenye usakinishaji wa Python wa ndani! (msimbo wa block 3)
 
@@ -54,9 +63,9 @@ Ili kuona jinsi mazingira yanavyofanya kazi, wacha tuendeshe simulizi fupi kwa h
 
     Unapaswa kuona kitu kinachofanana na picha hii:
 
-    ![cartpole isiyosawazisha](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
+    ![CartPole isiyosawazishwa](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. Wakati wa simulizi, tunahitaji kupata uchunguzi ili kuamua jinsi ya kuchukua hatua. Kwa kweli, kazi ya hatua inarejesha uchunguzi wa sasa, kazi ya tuzo, na bendera ya kumaliza inayoweka wazi kama ina maana kuendelea na simulizi au la: (msimbo wa block 4)
+1. Wakati wa simulizi, tunahitaji kupata uchunguzi ili kuamua jinsi ya kutenda. Kwa kweli, kazi ya hatua inarudisha uchunguzi wa sasa, kazi ya malipo, na bendera ya kumaliza inayonyesha kama ina maana kuendelea na simulizi au la: (msimbo wa block 4)
 
     ```python
     env.reset()
@@ -69,7 +78,7 @@ Ili kuona jinsi mazingira yanavyofanya kazi, wacha tuendeshe simulizi fupi kwa h
     env.close()
     ```
 
-    Mwishowe utaona kitu kama hiki kwenye matokeo ya daftari:
+    Mwisho wake utakuwa kitu kama hiki kwenye matokeo ya daftari:
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -82,43 +91,43 @@ Ili kuona jinsi mazingira yanavyofanya kazi, wacha tuendeshe simulizi fupi kwa h
     [ 0.17617249  0.35602306 -0.21873684 -0.90998894] -> 1.0
     ```
 
-    Vector ya uchunguzi inayorejeshwa katika kila hatua ya simulizi inajumuisha thamani zifuatazo:
+    Vector ya uchunguzi inayorudishwa katika kila hatua ya simulizi ina thamani zifuatazo:
     - Nafasi ya gari
     - Kasi ya gari
     - Pembe ya fimbo
     - Kiwango cha mzunguko wa fimbo
 
-1. Pata thamani ndogo na kubwa ya namba hizo: (msimbo wa block 5)
+1. Pata thamani ya chini na ya juu ya namba hizo: (msimbo wa block 5)
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    Unaweza pia kugundua kuwa thamani ya tuzo katika kila hatua ya simulizi ni 1 kila wakati. Hii ni kwa sababu lengo letu ni kuishi kwa muda mrefu iwezekanavyo, yaani kuweka fimbo katika nafasi ya wima kwa muda mrefu zaidi.
+    Unaweza pia kugundua kuwa thamani ya malipo katika kila hatua ya simulizi daima ni 1. Hii ni kwa sababu lengo letu ni kuishi kwa muda mrefu iwezekanavyo, yaani, kuweka fimbo katika nafasi ya wima kwa muda mrefu zaidi.
 
-    ✅ Kwa kweli, simulizi ya CartPole inachukuliwa kuwa imetatuliwa ikiwa tutafanikiwa kupata wastani wa tuzo ya 195 katika majaribio 100 mfululizo.
+    ✅ Kwa kweli, simulizi ya CartPole inachukuliwa kuwa imetatuliwa ikiwa tunafanikiwa kupata wastani wa malipo ya 195 katika majaribio 100 mfululizo.
 
-## Ugawanyaji wa hali
+## Ubadilishaji wa Hali
 
-Katika Q-Learning, tunahitaji kujenga Jedwali la Q linalofafanua nini cha kufanya katika kila hali. Ili kufanya hivyo, tunahitaji hali kuwa **ya kidijitali**, kwa usahihi zaidi, inapaswa kuwa na idadi ndogo ya thamani za kidijitali. Kwa hivyo, tunahitaji kwa namna fulani **kugawanya** uchunguzi wetu, kuziunganisha kwenye seti ndogo ya hali.
+Katika Q-Learning, tunahitaji kujenga Q-Table inayofafanua nini cha kufanya katika kila hali. Ili kufanya hivyo, tunahitaji hali iwe **kidhahiri**, haswa, inapaswa kuwa na idadi finyu ya thamani za kidhahiri. Kwa hivyo, tunahitaji kwa namna fulani **kubadilisha** uchunguzi wetu, kuupangilia kwenye seti finyu ya hali.
 
 Kuna njia kadhaa tunaweza kufanya hivi:
 
-- **Gawa katika sehemu**. Ikiwa tunajua kipindi cha thamani fulani, tunaweza kugawa kipindi hiki katika idadi ya **sehemu**, na kisha kubadilisha thamani kwa namba ya sehemu ambayo inahusiana nayo. Hii inaweza kufanywa kwa kutumia njia ya numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html). Katika kesi hii, tutajua kwa usahihi ukubwa wa hali, kwa sababu itategemea idadi ya sehemu tunazochagua kwa ajili ya digitalization.
+- **Gawanya katika bins**. Ikiwa tunajua kipindi cha thamani fulani, tunaweza kugawanya kipindi hiki katika idadi ya **bins**, kisha kubadilisha thamani kwa namba ya bin ambayo inahusiana nayo. Hii inaweza kufanywa kwa kutumia njia ya numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html). Katika kesi hii, tutajua kwa usahihi ukubwa wa hali, kwa sababu itategemea idadi ya bins tunazochagua kwa digitalization.
   
-✅ Tunaweza kutumia usawazishaji wa mstari kuleta thamani kwa kipindi fulani (sema, kutoka -20 hadi 20), na kisha kubadilisha namba kuwa namba za tarakimu kwa kuzungusha. Hii inatupa udhibiti mdogo wa ukubwa wa hali, hasa ikiwa hatujui mipaka halisi ya thamani za ingizo. Kwa mfano, katika kesi yetu 2 kati ya 4 hazina mipaka ya juu/chini ya thamani zao, ambazo zinaweza kusababisha idadi isiyo na kikomo ya hali.
+✅ Tunaweza kutumia uingiliano wa mstari kuleta thamani kwenye kipindi finyu (sema, kutoka -20 hadi 20), kisha kubadilisha namba kuwa namba za kidhahiri kwa kuzirudisha. Hii inatupa udhibiti mdogo juu ya ukubwa wa hali, hasa ikiwa hatujui mipaka halisi ya thamani za pembejeo. Kwa mfano, katika kesi yetu 2 kati ya 4 za thamani hazina mipaka ya juu/chini, ambayo inaweza kusababisha idadi isiyo na mwisho ya hali.
 
-Katika mfano wetu, tutatumia mbinu ya pili. Kama utakavyogundua baadaye, licha ya mipaka isiyoeleweka ya juu/chini, thamani hizo mara chache huchukua thamani nje ya vipindi fulani, hivyo hali hizo zenye thamani za juu zitakuwa nadra sana.
+Katika mfano wetu, tutatumia njia ya pili. Kama utakavyogundua baadaye, licha ya mipaka isiyofafanuliwa ya juu/chini, thamani hizo mara chache huchukua thamani nje ya vipindi finyu, kwa hivyo hali hizo zenye thamani za juu zitakuwa nadra sana.
 
-1. Hapa kuna kazi itakayochukua uchunguzi kutoka kwa mfano wetu na kutoa jozi ya thamani za tarakimu 4: (msimbo wa block 6)
+1. Hapa kuna kazi itakayochukua uchunguzi kutoka kwa mfano wetu na kutoa tuple ya thamani 4 za kidhahiri: (msimbo wa block 6)
 
     ```python
     def discretize(x):
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. Wacha pia tuchunguze njia nyingine ya ugawanyaji kwa kutumia sehemu: (msimbo wa block 7)
+1. Wacha pia tuchunguze njia nyingine ya ubadilishaji kwa kutumia bins: (msimbo wa block 7)
 
     ```python
     def create_bins(i,num):
@@ -134,9 +143,9 @@ Katika mfano wetu, tutatumia mbinu ya pili. Kama utakavyogundua baadaye, licha y
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Wacha sasa tuendeshe simulizi fupi na kuchunguza thamani hizo za mazingira ya kidijitali. Jisikie huru kujaribu zote `discretize` and `discretize_bins` na kuona kama kuna tofauti.
+1. Sasa wacha tuendeshe simulizi fupi na kuchunguza thamani za mazingira ya kidhahiri. Jisikie huru kujaribu `discretize` na `discretize_bins` na uone kama kuna tofauti.
 
-    ✅ discretize_bins inarejesha namba ya sehemu, ambayo ni ya msingi 0. Kwa hivyo kwa thamani za ingizo karibu na 0 inarejesha namba kutoka katikati ya kipindi (10). Katika discretize, hatukujali kuhusu wigo wa thamani za matokeo, tukiruhusu kuwa hasi, hivyo thamani za hali hazijahamishwa, na 0 inahusiana na 0. (msimbo wa block 8)
+    ✅ discretize_bins inarudisha namba ya bin, ambayo ni 0-based. Kwa hivyo kwa thamani za pembejeo karibu na 0 inarudisha namba kutoka katikati ya kipindi (10). Katika discretize, hatukujali kuhusu kipimo cha thamani za matokeo, tukiruhusu ziwe hasi, kwa hivyo thamani za hali hazijabadilishwa, na 0 inahusiana na 0. (msimbo wa block 8)
 
     ```python
     env.reset()
@@ -150,15 +159,15 @@ Katika mfano wetu, tutatumia mbinu ya pili. Kama utakavyogundua baadaye, licha y
     env.close()
     ```
 
-    ✅ Ondoa mstari unaoanza na env.render ikiwa unataka kuona jinsi mazingira yanavyotekelezwa. Vinginevyo unaweza kuutekeleza kwa siri, ambayo ni haraka zaidi. Tutatumia utekelezaji huu wa "kisiri" wakati wa mchakato wetu wa Q-Learning.
+    ✅ Ondoa mstari unaoanza na env.render ikiwa unataka kuona jinsi mazingira yanavyotekelezwa. Vinginevyo unaweza kuyatekeleza kwa siri, ambayo ni haraka zaidi. Tutatumia utekelezaji huu "usioonekana" wakati wa mchakato wetu wa Q-Learning.
 
-## Muundo wa Jedwali la Q
+## Muundo wa Q-Table
 
-Katika somo letu lililopita, hali ilikuwa jozi rahisi ya namba kutoka 0 hadi 8, na hivyo ilikuwa rahisi kuwakilisha Jedwali la Q kwa tensor ya numpy yenye umbo la 8x8x2. Ikiwa tunatumia ugawanyaji wa sehemu, ukubwa wa vector yetu ya hali pia unajulikana, hivyo tunaweza kutumia mbinu hiyo hiyo na kuwakilisha hali kwa safu yenye umbo la 20x20x10x10x2 (hapa 2 ni kipimo cha nafasi ya hatua, na vipimo vya kwanza vinahusiana na idadi ya sehemu tulizochagua kutumia kwa kila moja ya vigezo katika nafasi ya uchunguzi).
+Katika somo letu lililopita, hali ilikuwa jozi rahisi ya namba kutoka 0 hadi 8, na kwa hivyo ilikuwa rahisi kuwakilisha Q-Table kwa tensor ya numpy yenye umbo la 8x8x2. Ikiwa tunatumia bins discretization, ukubwa wa vector ya hali yetu pia unajulikana, kwa hivyo tunaweza kutumia mbinu sawa na kuwakilisha hali kwa safu yenye umbo la 20x20x10x10x2 (hapa 2 ni kipimo cha action space, na vipimo vya kwanza vinahusiana na idadi ya bins tulizochagua kutumia kwa kila parameter katika observation space).
 
-Hata hivyo, wakati mwingine vipimo halisi vya nafasi ya uchunguzi havijulikani. Katika kesi ya kazi ya `discretize`, hatuwezi kuwa na uhakika kwamba hali yetu inakaa ndani ya mipaka fulani, kwa sababu baadhi ya thamani za awali hazina mipaka. Kwa hivyo, tutatumia mbinu tofauti kidogo na kuwakilisha Jedwali la Q kwa kamusi. 
+Hata hivyo, wakati mwingine vipimo halisi vya observation space havijulikani. Katika kesi ya kazi ya `discretize`, hatuwezi kamwe kuwa na uhakika kwamba hali yetu inabaki ndani ya mipaka fulani, kwa sababu baadhi ya thamani za awali hazina mipaka. Kwa hivyo, tutatumia mbinu tofauti kidogo na kuwakilisha Q-Table kwa kamusi.
 
-1. Tumia jozi *(state,action)* kama ufunguo wa kamusi, na thamani itahusiana na thamani ya ingizo la Jedwali la Q. (msimbo wa block 9)
+1. Tumia jozi *(state,action)* kama ufunguo wa kamusi, na thamani itahusiana na thamani ya Q-Table. (msimbo wa block 9)
 
     ```python
     Q = {}
@@ -168,13 +177,13 @@ Hata hivyo, wakati mwingine vipimo halisi vya nafasi ya uchunguzi havijulikani. 
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Hapa pia tunafafanua kazi `qvalues()`, inayorejesha orodha ya thamani za Jedwali la Q kwa hali fulani inayohusiana na hatua zote zinazowezekana. Ikiwa ingizo halipo kwenye Jedwali la Q, tutarejesha 0 kama chaguo-msingi.
+    Hapa pia tunafafanua kazi `qvalues()`, ambayo inarudisha orodha ya thamani za Q-Table kwa hali fulani inayohusiana na hatua zote zinazowezekana. Ikiwa kiingilio hakipo katika Q-Table, tutarudisha 0 kama chaguo-msingi.
 
 ## Wacha tuanze Q-Learning
 
 Sasa tuko tayari kumfundisha Peter kusawazisha!
 
-1. Kwanza, wacha tuchague baadhi ya vigezo vya msingi: (msimbo wa block 10)
+1. Kwanza, wacha tuweke baadhi ya hyperparameters: (msimbo wa block 10)
 
     ```python
     # hyperparameters
@@ -183,23 +192,23 @@ Sasa tuko tayari kumfundisha Peter kusawazisha!
     epsilon = 0.90
     ```
 
-    Hapa, `alpha` is the **learning rate** that defines to which extent we should adjust the current values of Q-Table at each step. In the previous lesson we started with 1, and then decreased `alpha` to lower values during training. In this example we will keep it constant just for simplicity, and you can experiment with adjusting `alpha` values later.
+    Hapa, `alpha` ni **learning rate** inayofafanua kiwango ambacho tunapaswa kurekebisha thamani za sasa za Q-Table katika kila hatua. Katika somo lililopita tulianza na 1, kisha tukapunguza `alpha` hadi thamani za chini wakati wa mafunzo. Katika mfano huu tutaiweka kuwa ya kudumu kwa urahisi, na unaweza kujaribu kurekebisha thamani za `alpha` baadaye.
 
-    `gamma` is the **discount factor** that shows to which extent we should prioritize future reward over current reward.
+    `gamma` ni **discount factor** inayonyesha kiwango ambacho tunapaswa kuzingatia malipo ya baadaye zaidi ya malipo ya sasa.
 
-    `epsilon` is the **exploration/exploitation factor** that determines whether we should prefer exploration to exploitation or vice versa. In our algorithm, we will in `epsilon` percent of the cases select the next action according to Q-Table values, and in the remaining number of cases we will execute a random action. This will allow us to explore areas of the search space that we have never seen before. 
+    `epsilon` ni **exploration/exploitation factor** inayodhamiria kama tunapaswa kupendelea uchunguzi au matumizi. Katika algoriti yetu, tutachagua hatua inayofuata kulingana na thamani za Q-Table kwa asilimia ya `epsilon`, na katika idadi iliyobaki ya kesi tutatekeleza hatua ya nasibu. Hii itaturuhusu kuchunguza maeneo ya nafasi ya utafutaji ambayo hatujawahi kuona hapo awali. 
 
-    ✅ In terms of balancing - choosing random action (exploration) would act as a random punch in the wrong direction, and the pole would have to learn how to recover the balance from those "mistakes"
+    ✅ Kwa suala la kusawazisha - kuchagua hatua ya nasibu (uchunguzi) itakuwa kama pigo la nasibu katika mwelekeo usio sahihi, na fimbo italazimika kujifunza jinsi ya kurejesha usawa kutoka kwa "makosa" hayo.
 
-### Improve the algorithm
+### Boresha Algoriti
 
-We can also make two improvements to our algorithm from the previous lesson:
+Tunaweza pia kufanya maboresho mawili kwenye algoriti yetu kutoka somo lililopita:
 
-- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
+- **Hesabu wastani wa malipo ya jumla**, katika idadi ya simulizi. Tutachapisha maendeleo kila majaribio 5000, na tutapunguza wastani wa malipo yetu ya jumla katika kipindi hicho cha muda. Inamaanisha kwamba ikiwa tutapata zaidi ya pointi 195 - tunaweza kuzingatia tatizo limetatuliwa, kwa ubora wa juu zaidi kuliko inavyohitajika.
   
-- **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
+- **Hesabu matokeo ya juu ya wastani wa jumla**, `Qmax`, na tutahifadhi Q-Table inayohusiana na matokeo hayo. Unapokimbia mafunzo utagundua kwamba wakati mwingine matokeo ya wastani ya jumla yanaanza kushuka, na tunataka kuhifadhi thamani za Q-Table zinazohusiana na mfano bora uliotazamwa wakati wa mafunzo.
 
-1. Collect all cumulative rewards at each simulation at `rewards` vector kwa ajili ya kuchora baadaye. (msimbo wa block  11)
+1. Kusanya malipo yote ya jumla katika kila simulizi kwenye vector ya `rewards` kwa ajili ya kuchora baadaye. (msimbo wa block 11)
 
     ```python
     def probs(v,eps=1e-4):
@@ -242,23 +251,23 @@ We can also make two improvements to our algorithm from the previous lesson:
 
 Unachoweza kugundua kutoka kwa matokeo hayo:
 
-- **Karibu na lengo letu**. Tuko karibu sana na kufikia lengo la kupata tuzo ya 195 kwa jumla katika mfululizo wa majaribio 100+, au tunaweza kuwa tumelifanikisha! Hata kama tunapata namba ndogo, bado hatujui, kwa sababu tunachukua wastani wa majaribio 5000, na ni majaribio 100 tu yanahitajika katika vigezo rasmi.
+- **Karibu na lengo letu**. Tuko karibu sana kufanikisha lengo la kupata malipo ya jumla ya 195 katika majaribio 100+ mfululizo ya simulizi, au tunaweza kuwa tumelifanikisha! Hata kama tunapata namba ndogo, bado hatujui, kwa sababu tunapunguza wastani wa majaribio 5000, na majaribio 100 tu yanahitajika katika vigezo rasmi.
   
-- **Tuzo inaanza kushuka**. Wakati mwingine tuzo inaanza kushuka, ambayo inamaanisha kuwa tunaweza "kuharibu" thamani zilizojifunza tayari kwenye Jedwali la Q na zile zinazofanya hali kuwa mbaya zaidi.
+- **Malipo yanaanza kushuka**. Wakati mwingine malipo yanaanza kushuka, ambayo inamaanisha kwamba tunaweza "kuharibu" thamani zilizojifunza tayari katika Q-Table na zile zinazofanya hali kuwa mbaya zaidi.
 
-Uchunguzi huu unaonekana wazi zaidi ikiwa tutachora maendeleo ya mafunzo.
+Uchunguzi huu unaonekana wazi zaidi ikiwa tunachora maendeleo ya mafunzo.
 
 ## Kuchora Maendeleo ya Mafunzo
 
-Wakati wa mafunzo, tumekusanya thamani ya tuzo ya jumla katika kila moja ya kurudia kwenye vector ya `rewards`. Hivi ndivyo inavyoonekana tunapochora dhidi ya namba ya kurudia:
+Wakati wa mafunzo, tumekusanya thamani ya malipo ya jumla katika kila mojawapo ya majaribio kwenye vector ya `rewards`. Hivi ndivyo inavyoonekana tunapochora dhidi ya namba ya majaribio:
 
 ```python
 plt.plot(rewards)
 ```
 
-![maendeleo yasiyosafishwa](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.sw.png)
+![Maendeleo ya awali](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
-Kutoka kwenye grafu hii, haiwezekani kusema chochote, kwa sababu kutokana na asili ya mchakato wa mafunzo ya nasibu urefu wa vikao vya mafunzo hutofautiana sana. Ili kuelewa zaidi grafu hii, tunaweza kuhesabu **wastani wa kukimbia** juu ya mfululizo wa majaribio, tuseme 100. Hii inaweza kufanywa kwa urahisi kwa kutumia `np.convolve`: (msimbo wa block 12)
+Kutoka kwenye grafu hii, haiwezekani kusema chochote, kwa sababu kutokana na asili ya mchakato wa mafunzo wa nasibu urefu wa vipindi vya mafunzo hutofautiana sana. Ili kufanya grafu hii iwe na maana zaidi, tunaweza kuhesabu **wastani wa kukimbia** katika mfululizo wa majaribio, tuseme 100. Hii inaweza kufanywa kwa urahisi kwa kutumia `np.convolve`: (msimbo wa block 12)
 
 ```python
 def running_average(x,window):
@@ -267,23 +276,21 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![maendeleo ya mafunzo](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.sw.png)
+![Maendeleo ya mafunzo](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
-## Kurekebisha vigezo vya msingi
+## Kubadilisha Hyperparameters
 
-Ili kufanya mafunzo kuwa thabiti zaidi, ina maana kurekebisha baadhi ya vigezo vyetu vya msingi wakati wa mafunzo. Hasa:
+Ili kufanya mafunzo kuwa thabiti zaidi, ina maana kurekebisha baadhi ya hyperparameters zetu wakati wa mafunzo. Haswa:
 
-- **Kwa kiwango cha kujifunza**, `alpha`, we may start with values close to 1, and then keep decreasing the parameter. With time, we will be getting good probability values in the Q-Table, and thus we should be adjusting them slightly, and not overwriting completely with new values.
+- **Kwa learning rate**, `alpha`, tunaweza kuanza na thamani karibu na 1, kisha kuendelea kupunguza parameter. Kwa muda, tutakuwa tunapata thamani nzuri za uwezekano katika Q-Table, na kwa hivyo tunapaswa kuzirekebisha kidogo, na si kuandika upya kabisa na thamani mpya.
 
-- **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`, na kuhamia karibu na 1.
-
-> **Kazi 1**: Cheza na thamani za vigezo vya msingi na uone kama unaweza kufikia tuzo ya juu zaidi. Je, unapata zaidi ya 195?
-
-> **Kazi 2**: Ili kutatua tatizo rasmi, unahitaji kupata tuzo ya wastani ya 195 katika majaribio 100 mfululizo. Pima hilo wakati wa mafunzo na hakikisha kuwa umetatua tatizo rasmi!
+- **Ongeza epsilon**. Tunaweza kutaka kuongeza `epsilon` polepole, ili kuchunguza kidogo na kutumia zaidi. Inawezekana ina maana kuanza na thamani ya chini ya `epsilon`, na kuendelea hadi karibu na 1.
+> **Kazi ya 1**: Cheza na thamani za hyperparameter na uone kama unaweza kufikia zawadi ya juu zaidi ya jumla. Je, unapata zaidi ya 195?
+> **Kazi ya 2**: Ili kutatua tatizo rasmi, unahitaji kupata wastani wa zawadi ya 195 katika mizunguko 100 mfululizo. Pima hilo wakati wa mafunzo na hakikisha kuwa umetatua tatizo rasmi!
 
 ## Kuona matokeo kwa vitendo
 
-Itakuwa ya kuvutia kuona jinsi mfano uliyojifunza unavyofanya kazi. Wacha tuendeshe simulizi na kufuata mkakati wa kuchagua hatua kama wakati wa mafunzo, tukichagua kulingana na usambazaji wa uwezekano kwenye Jedwali la Q: (msimbo wa block 13)
+Itakuwa ya kuvutia kuona jinsi mfano uliopata mafunzo unavyofanya kazi. Hebu tuendeshe simulizi na kufuata mkakati wa kuchagua hatua kama wakati wa mafunzo, tukichagua kulingana na mgawanyo wa uwezekano katika Q-Table: (sehemu ya msimbo 13)
 
 ```python
 obs = env.reset()
@@ -299,26 +306,28 @@ env.close()
 
 Unapaswa kuona kitu kama hiki:
 
-![cartpole inayosawazisha](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
+![gari la kusawazisha pole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
 ---
 
 ## 🚀Changamoto
 
-> **Kazi 3**: Hapa, tulikuwa tunatumia nakala ya mwisho ya Jedwali la Q, ambalo linaweza lisiwe bora zaidi. Kumbuka kuwa tumehifadhi Jedwali la Q linalofanya kazi bora zaidi kwenye `Qbest` variable! Try the same example with the best-performing Q-Table by copying `Qbest` over to `Q` and see if you notice the difference.
+> **Kazi ya 3**: Hapa, tulikuwa tunatumia nakala ya mwisho ya Q-Table, ambayo huenda isiwe bora zaidi. Kumbuka kuwa tumetunza Q-Table inayofanya vizuri zaidi katika `Qbest`! Jaribu mfano huo huo ukitumia Q-Table inayofanya vizuri zaidi kwa kunakili `Qbest` kwenda `Q` na uone kama unagundua tofauti.
 
-> **Task 4**: Here we were not selecting the best action on each step, but rather sampling with corresponding probability distribution. Would it make more sense to always select the best action, with the highest Q-Table value? This can be done by using `np.argmax` ili kupata namba ya hatua inayohusiana na thamani ya juu zaidi ya Jedwali la Q. Tekeleza mkakati huu na uone kama unaboreshwa kusawazisha.
+> **Kazi ya 4**: Hapa hatukuchagua hatua bora katika kila hatua, bali tulichagua kulingana na mgawanyo wa uwezekano unaolingana. Je, ingekuwa na maana zaidi kuchagua hatua bora kila wakati, yenye thamani ya juu zaidi katika Q-Table? Hili linaweza kufanyika kwa kutumia kazi ya `np.argmax` ili kupata namba ya hatua inayolingana na thamani ya juu zaidi ya Q-Table. Tekeleza mkakati huu na uone kama unaboreshwa usawazishaji.
 
-## [Jaribio la baada ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [Jaribio la baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
-## Kazi
+## Kazi ya Nyumbani
 [Fundisha Gari la Mlima](assignment.md)
 
 ## Hitimisho
 
-Sasa tumejifunza jinsi ya kufundisha mawakala kufikia matokeo mazuri kwa kuwapa tuzo inayoelezea hali inayotakiwa ya mchezo, na kwa kuwapa fursa ya kuchunguza nafasi ya utafutaji kwa busara. Tumefanikiwa kutumia algorithimu ya Q-Learning katika hali za mazingira ya kidijitali na endelevu, lakini na hatua za kidijitali.
+Sasa tumejifunza jinsi ya kufundisha mawakala kufanikisha matokeo mazuri kwa kuwapa tu kazi ya zawadi inayofafanua hali inayotakiwa ya mchezo, na kwa kuwapa fursa ya kuchunguza kwa akili nafasi ya utafutaji. Tumetumia kwa mafanikio algoriti ya Q-Learning katika hali za mazingira ya kidijitali na endelevu, lakini kwa hatua za kidijitali.
 
-Ni muhimu pia kujifunza hali ambapo hatua ya hali pia ni endelevu, na wakati nafasi ya uchunguzi ni ngumu zaidi, kama picha kutoka skrini ya mchezo wa Atari. Katika matatizo hayo tunahitaji mara nyingi kutumia mbinu za kujifunza mashine zenye nguvu zaidi, kama vile mitandao ya neva, ili kufikia matokeo mazuri. Mada hizo za juu zaidi ni somo la kozi yetu ya AI ya juu zaidi inayokuja.
+Ni muhimu pia kusoma hali ambapo hali ya hatua ni endelevu, na wakati nafasi ya uchunguzi ni ngumu zaidi, kama picha kutoka skrini ya mchezo wa Atari. Katika matatizo hayo mara nyingi tunahitaji kutumia mbinu za kujifunza mashine zenye nguvu zaidi, kama mitandao ya neva, ili kufanikisha matokeo mazuri. Mada hizo za juu zaidi ni somo la kozi yetu ya AI ya juu inayokuja.
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotumia mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati asili katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo rasmi. Kwa habari muhimu, tafsiri ya kitaalamu ya kibinadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati asilia katika lugha yake ya awali inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

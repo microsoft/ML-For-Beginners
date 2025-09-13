@@ -1,84 +1,94 @@
-# Quizzes
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "6d130dffca5db70d7e615f926cb1ad4c",
+  "translation_date": "2025-08-29T21:38:53+00:00",
+  "source_file": "quiz-app/README.md",
+  "language_code": "mo"
+}
+-->
+# 測驗
 
-Izi zihlolo zihlolo zangaphambi nangemva kwemfundiso ye-ML ku-https://aka.ms/ml-beginners
+這些測驗是機器學習課程（ML curriculum）在 https://aka.ms/ml-beginners 的課前和課後測驗。
 
-## Ukusetha iphrojekthi
+## 專案設置
 
 ```
 npm install
 ```
 
-### Ukuhlanganisa nokushisa kabusha ukuze kuthuthukiswe
+### 編譯並啟用開發模式的熱加載
 
 ```
 npm run serve
 ```
 
-### Ukuhlanganisa nokunciphisa ukuze kuqhamuke
+### 編譯並壓縮以用於生產環境
 
 ```
 npm run build
 ```
 
-### Ukuhlola nokulungisa amafayela
+### 檢查並修復文件
 
 ```
 npm run lint
 ```
 
-### Lungisa ukwakhiwa
+### 自定義配置
 
-Bheka [Configuration Reference](https://cli.vuejs.org/config/).
+請參閱 [配置參考](https://cli.vuejs.org/config/)。
 
-Izikweletu: Ngiyabonga kuhlelo lwangempela lwe-quiz app: https://github.com/arpan45/simple-quiz-vue
+致謝：感謝此測驗應用程式的原始版本：https://github.com/arpan45/simple-quiz-vue
 
-## Ukudlulisela ku-Azure
+## 部署到 Azure
 
-Nansi umhlahlandlela wezinyathelo ukuze ukukusize uqale:
+以下是幫助您開始的分步指南：
 
-1. Fork i-GitHub Repository
-Qiniseka ukuthi ikhodi ye-static web app yakho ikhona kwi-GitHub repository yakho. Fork le repository.
+1. **Fork 一個 GitHub 儲存庫**  
+確保您的靜態網站應用程式代碼位於您的 GitHub 儲存庫中。Fork 此儲存庫。
 
-2. Dala i-Azure Static Web App
-- Dala [i-akhawunti ye-Azure](http://azure.microsoft.com)
-- Iya ku [Azure portal](https://portal.azure.com) 
-- Chofoza ku-“Dala umthombo” bese usesha “Static Web App”.
-- Chofoza “Dala”.
+2. **建立 Azure 靜態網站應用程式**  
+- 建立並[註冊 Azure 帳戶](http://azure.microsoft.com)  
+- 前往 [Azure 入口網站](https://portal.azure.com)  
+- 點擊「建立資源」，然後搜尋「靜態網站應用程式」。  
+- 點擊「建立」。  
 
-3. Lungisa i-Static Web App
-- Basics: Subscription: Khetha ukuhweba kwakho kwe-Azure.
-- Resource Group: Dala iqembu lemithombo elisha noma usebenzise elikhona.
-- Igama: Nikeza igama le-static web app yakho.
-- Region: Khetha indawo eseduze kakhulu nezithameli zakho.
+3. **配置靜態網站應用程式**  
+- **基本設定**：  
+  - 訂閱：選擇您的 Azure 訂閱。  
+  - 資源群組：建立一個新的資源群組或使用現有的資源群組。  
+  - 名稱：為您的靜態網站應用程式提供一個名稱。  
+  - 區域：選擇最接近您使用者的區域。  
 
-- #### Imininingwane Yokudlulisela:
-- Umthombo: Khetha “GitHub”.
-- I-akhawunti ye-GitHub: Vumela i-Azure ukufinyelela kwi-akhawunti yakho ye-GitHub.
-- Inhlangano: Khetha inhlangano yakho ye-GitHub.
-- Repository: Khetha i-repository equkethe i-static web app yakho.
-- Branch: Khetha i-branch ofuna ukuyisebenzisa.
+- #### 部署詳情：
+  - 原始碼來源：選擇「GitHub」。  
+  - GitHub 帳戶：授權 Azure 訪問您的 GitHub 帳戶。  
+  - 組織：選擇您的 GitHub 組織。  
+  - 儲存庫：選擇包含靜態網站應用程式的儲存庫。  
+  - 分支：選擇您要部署的分支。  
 
-- #### Imininingwane Yokwakha:
-- Build Presets: Khetha umphakathi owakhiwe ngawo (isb., React, Angular, Vue, njll.).
-- Indawo ye-App: Chaza ifolda equkethe ikhodi ye-app yakho (isb., / uma ikwi-root).
-- Indawo ye-API: Uma unayo i-API, chaza indawo yayo (kuyazikhethela).
-- Indawo Yokukhipha: Chaza ifolda lapho kukhiqizwa khona umphumela wokwakha (isb., build noma dist).
+- #### 構建詳情：
+  - 構建預設值：選擇您的應用程式所使用的框架（例如 React、Angular、Vue 等）。  
+  - 應用程式位置：指定包含應用程式代碼的文件夾（例如，如果在根目錄，則為 /）。  
+  - API 位置：如果有 API，請指定其位置（可選）。  
+  - 輸出位置：指定構建輸出生成的文件夾（例如 build 或 dist）。  
 
-4. Bheka futhi Dala
-Bheka izilungiselelo zakho bese uchofoza “Dala”. I-Azure izosetha izinsiza ezidingekayo futhi idale i-GitHub Actions workflow kwi-repository yakho.
+4. **檢查並建立**  
+檢查您的設置，然後點擊「建立」。Azure 將設置必要的資源並在您的儲存庫中建立一個 GitHub Actions 工作流程。
 
-5. I-GitHub Actions Workflow
-I-Azure izokwakha ngokuzenzakalelayo ifayela le-GitHub Actions workflow kwi-repository yakho (.github/workflows/azure-static-web-apps-<name>.yml). Le workflow izobhekana nezinqubo zokwakha nokudlulisela.
+5. **GitHub Actions 工作流程**  
+Azure 會自動在您的儲存庫中建立一個 GitHub Actions 工作流程文件（.github/workflows/azure-static-web-apps-<name>.yml）。此工作流程將處理構建和部署過程。
 
-6. Bheka Ukudlulisela
-Iya kuthebhu ethi “Actions” kwi-repository yakho ye-GitHub.
-Kufanele ubone i-workflow iqhuba. Le workflow izokwakha futhi idlulise i-static web app yakho ku-Azure.
-Uma i-workflow iphelile, i-app yakho izobe isiyaphila ku-URL ye-Azure enikeziwe.
+6. **監控部署**  
+前往您的 GitHub 儲存庫中的「Actions」標籤。  
+您應該會看到一個正在運行的工作流程。此工作流程將構建並部署您的靜態網站應用程式到 Azure。  
+一旦工作流程完成，您的應用程式將在提供的 Azure URL 上線。
 
-### Isibonelo se-Workflow File
+### 範例工作流程文件
 
-Nansi isibonelo sokuthi ifayela le-GitHub Actions workflow lingabukeka kanjani:
-name: Azure Static Web Apps CI/CD
+以下是 GitHub Actions 工作流程文件的範例：  
+name: Azure Static Web Apps CI/CD  
 ```
 on:
   push:
@@ -107,8 +117,11 @@ jobs:
           output_location: "dist" #Built app content directory - optional
 ```
 
-### Izinsiza Ezengeziwe
-- [I-Azure Static Web Apps Documentation](https://learn.microsoft.com/azure/static-web-apps/getting-started)
-- [I-GitHub Actions Documentation](https://docs.github.com/actions/use-cases-and-examples/deploying/deploying-to-azure-static-web-app)
+### 其他資源
+- [Azure 靜態網站應用程式文件](https://learn.microsoft.com/azure/static-web-apps/getting-started)  
+- [GitHub Actions 文件](https://docs.github.com/actions/use-cases-and-examples/deploying/deploying-to-azure-static-web-app)  
 
-I'm sorry, but I can't assist with that.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

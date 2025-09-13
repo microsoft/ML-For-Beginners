@@ -3,7 +3,7 @@
 ![Summary of responsible AI in Machine Learning in a sketchnote](../../sketchnotes/ml-fairness.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
  
 ## Introduction
 
@@ -126,7 +126,8 @@ To prevent harms from being introduced in the first place, we should:
 
 Think about real-life scenarios where a model's untrustworthiness is evident in model-building and usage. What else should we consider? 
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
+
 ## Review & Self Study 
  
 In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  

@@ -1,57 +1,66 @@
-# Erstellen Sie eine Web-App zur Empfehlungen von Küchen
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-04T22:02:39+00:00",
+  "source_file": "4-Classification/4-Applied/README.md",
+  "language_code": "de"
+}
+-->
+# Erstellen einer Web-App zur Empfehlung von Küchen
 
-In dieser Lektion werden Sie ein Klassifikationsmodell erstellen, indem Sie einige der Techniken verwenden, die Sie in früheren Lektionen gelernt haben, und mit dem köstlichen Küchendatensatz, der in dieser Reihe verwendet wird. Darüber hinaus werden Sie eine kleine Web-App erstellen, um ein gespeichertes Modell zu verwenden, und dabei die Web-Laufzeit von Onnx nutzen.
+In dieser Lektion wirst du ein Klassifikationsmodell erstellen, indem du einige der Techniken anwendest, die du in den vorherigen Lektionen gelernt hast, und mit dem köstlichen Küchendatensatz arbeitest, der in dieser Serie verwendet wurde. Außerdem wirst du eine kleine Web-App entwickeln, um ein gespeichertes Modell zu nutzen, indem du die Web-Laufzeit von Onnx einsetzt.
 
-Eine der nützlichsten praktischen Anwendungen des maschinellen Lernens ist der Aufbau von Empfehlungssystemen, und Sie können heute den ersten Schritt in diese Richtung machen!
+Eine der nützlichsten praktischen Anwendungen des maschinellen Lernens ist der Aufbau von Empfehlungssystemen, und du kannst heute den ersten Schritt in diese Richtung machen!
 
 [![Präsentation dieser Web-App](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Angewandtes ML")
 
-> 🎥 Klicken Sie auf das Bild oben für ein Video: Jen Looper erstellt eine Web-App mit klassifizierten Küchendaten
+> 🎥 Klicke auf das Bild oben für ein Video: Jen Looper erstellt eine Web-App mit klassifizierten Küchendaten
 
-## [Vorlesungsquiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Quiz vor der Lektion](https://ff-quizzes.netlify.app/en/ml/)
 
-In dieser Lektion werden Sie lernen:
+In dieser Lektion wirst du lernen:
 
 - Wie man ein Modell erstellt und es als Onnx-Modell speichert
 - Wie man Netron verwendet, um das Modell zu inspizieren
-- Wie man Ihr Modell in einer Web-App für Inferenz verwendet
+- Wie man das Modell in einer Web-App für Inferenz verwendet
 
-## Erstellen Sie Ihr Modell
+## Erstelle dein Modell
 
-Der Aufbau angewandter ML-Systeme ist ein wichtiger Teil der Nutzung dieser Technologien für Ihre Geschäftssysteme. Sie können Modelle in Ihren Webanwendungen verwenden (und somit bei Bedarf auch in einem Offline-Kontext) durch die Nutzung von Onnx.
+Der Aufbau angewandter ML-Systeme ist ein wichtiger Teil der Nutzung dieser Technologien für Geschäftssysteme. Du kannst Modelle innerhalb deiner Webanwendungen verwenden (und sie somit bei Bedarf offline nutzen), indem du Onnx einsetzt.
 
-In einer [früheren Lektion](../../3-Web-App/1-Web-App/README.md) haben Sie ein Regressionsmodell über UFO-Sichtungen erstellt, es "eingelegt" und in einer Flask-App verwendet. Während diese Architektur sehr nützlich zu wissen ist, handelt es sich um eine Full-Stack-Python-App, und Ihre Anforderungen können die Verwendung einer JavaScript-Anwendung umfassen.
+In einer [vorherigen Lektion](../../3-Web-App/1-Web-App/README.md) hast du ein Regressionsmodell über UFO-Sichtungen erstellt, es "eingemacht" und in einer Flask-App verwendet. Obwohl diese Architektur sehr nützlich ist, handelt es sich um eine vollständige Python-App, und deine Anforderungen könnten die Nutzung einer JavaScript-Anwendung umfassen.
 
-In dieser Lektion können Sie ein einfaches JavaScript-basiertes System für Inferenz erstellen. Zuerst müssen Sie jedoch ein Modell trainieren und es für die Verwendung mit Onnx konvertieren.
+In dieser Lektion kannst du ein einfaches JavaScript-basiertes System für Inferenz erstellen. Zunächst musst du jedoch ein Modell trainieren und es für die Verwendung mit Onnx konvertieren.
 
 ## Übung - Klassifikationsmodell trainieren
 
-Zuerst trainieren Sie ein Klassifikationsmodell mit dem bereinigten Küchendatensatz, den wir verwendet haben.
+Trainiere zunächst ein Klassifikationsmodell mit dem bereinigten Küchendatensatz, den wir verwendet haben.
 
-1. Beginnen Sie mit dem Importieren nützlicher Bibliotheken:
+1. Beginne mit dem Import nützlicher Bibliotheken:
 
     ```python
     !pip install skl2onnx
     import pandas as pd 
     ```
 
-    Sie benötigen '[skl2onnx](https://onnx.ai/sklearn-onnx/)', um Ihr Scikit-learn-Modell in das Onnx-Format zu konvertieren.
+    Du benötigst '[skl2onnx](https://onnx.ai/sklearn-onnx/)', um dein Scikit-learn-Modell in das Onnx-Format zu konvertieren.
 
-1. Arbeiten Sie dann mit Ihren Daten auf die gleiche Weise, wie Sie es in früheren Lektionen getan haben, indem Sie eine CSV-Datei mit `read_csv()` lesen:
+1. Arbeite dann mit deinen Daten wie in den vorherigen Lektionen, indem du eine CSV-Datei mit `read_csv()` liest:
 
     ```python
     data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
-1. Entfernen Sie die ersten beiden unnötigen Spalten und speichern Sie die verbleibenden Daten als 'X':
+1. Entferne die ersten beiden unnötigen Spalten und speichere die verbleibenden Daten als 'X':
 
     ```python
     X = data.iloc[:,2:]
     X.head()
     ```
 
-1. Speichern Sie die Labels als 'y':
+1. Speichere die Labels als 'y':
 
     ```python
     y = data[['cuisine']]
@@ -59,11 +68,11 @@ Zuerst trainieren Sie ein Klassifikationsmodell mit dem bereinigten Küchendaten
     
     ```
 
-### Beginnen Sie die Trainingsroutine
+### Beginne die Trainingsroutine
 
-Wir werden die 'SVC'-Bibliothek verwenden, die eine gute Genauigkeit aufweist.
+Wir werden die 'SVC'-Bibliothek verwenden, die eine gute Genauigkeit bietet.
 
-1. Importieren Sie die entsprechenden Bibliotheken von Scikit-learn:
+1. Importiere die entsprechenden Bibliotheken aus Scikit-learn:
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -72,26 +81,26 @@ Wir werden die 'SVC'-Bibliothek verwenden, die eine gute Genauigkeit aufweist.
     from sklearn.metrics import accuracy_score,precision_score,confusion_matrix,classification_report
     ```
 
-1. Trennen Sie die Trainings- und Testdatensätze:
+1. Teile die Trainings- und Testdaten:
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
     ```
 
-1. Erstellen Sie ein SVC-Klassifikationsmodell, wie Sie es in der vorherigen Lektion getan haben:
+1. Erstelle ein SVC-Klassifikationsmodell wie in der vorherigen Lektion:
 
     ```python
     model = SVC(kernel='linear', C=10, probability=True,random_state=0)
     model.fit(X_train,y_train.values.ravel())
     ```
 
-1. Testen Sie jetzt Ihr Modell, indem Sie `predict()` aufrufen:
+1. Teste nun dein Modell, indem du `predict()` aufrufst:
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-1. Drucken Sie einen Klassifikationsbericht aus, um die Qualität des Modells zu überprüfen:
+1. Gib einen Klassifikationsbericht aus, um die Qualität des Modells zu überprüfen:
 
     ```python
     print(classification_report(y_test,y_pred))
@@ -113,11 +122,11 @@ Wir werden die 'SVC'-Bibliothek verwenden, die eine gute Genauigkeit aufweist.
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-### Konvertieren Sie Ihr Modell in Onnx
+### Konvertiere dein Modell in Onnx
 
-Stellen Sie sicher, dass Sie die Konvertierung mit der richtigen Tensoranzahl durchführen. Dieser Datensatz hat 380 aufgeführte Zutaten, daher müssen Sie diese Zahl in `FloatTensorType` vermerken:
+Stelle sicher, dass die Konvertierung mit der richtigen Tensor-Anzahl erfolgt. Dieser Datensatz enthält 380 aufgelistete Zutaten, daher musst du diese Zahl in `FloatTensorType` angeben:
 
-1. Konvertieren Sie mit einer Tensoranzahl von 380.
+1. Konvertiere mit einer Tensor-Anzahl von 380.
 
     ```python
     from skl2onnx import convert_sklearn
@@ -127,7 +136,7 @@ Stellen Sie sicher, dass Sie die Konvertierung mit der richtigen Tensoranzahl du
     options = {id(model): {'nocl': True, 'zipmap': False}}
     ```
 
-1. Erstellen Sie die onx und speichern Sie sie als Datei **model.onnx**:
+1. Erstelle die Onnx-Datei und speichere sie als **model.onnx**:
 
     ```python
     onx = convert_sklearn(model, initial_types=initial_type, options=options)
@@ -135,25 +144,25 @@ Stellen Sie sicher, dass Sie die Konvertierung mit der richtigen Tensoranzahl du
         f.write(onx.SerializeToString())
     ```
 
-    > Hinweis: Sie können in Ihrem Konvertierungsskript [Optionen](https://onnx.ai/sklearn-onnx/parameterized.html) übergeben. In diesem Fall haben wir 'nocl' auf True und 'zipmap' auf False gesetzt. Da dies ein Klassifikationsmodell ist, haben Sie die Möglichkeit, ZipMap zu entfernen, das eine Liste von Dictionaries produziert (nicht notwendig). `nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'. 
+    > Hinweis: Du kannst [Optionen](https://onnx.ai/sklearn-onnx/parameterized.html) in deinem Konvertierungsskript übergeben. In diesem Fall haben wir 'nocl' auf True und 'zipmap' auf False gesetzt. Da es sich um ein Klassifikationsmodell handelt, hast du die Möglichkeit, ZipMap zu entfernen, das eine Liste von Wörterbüchern erzeugt (nicht erforderlich). `nocl` bezieht sich darauf, ob Klasseninformationen im Modell enthalten sind. Reduziere die Größe deines Modells, indem du `nocl` auf 'True' setzt.
 
-Running the entire notebook will now build an Onnx model and save it to this folder.
+Wenn du das gesamte Notebook ausführst, wird ein Onnx-Modell erstellt und in diesem Ordner gespeichert.
 
-## View your model
+## Betrachte dein Modell
 
-Onnx models are not very visible in Visual Studio code, but there's a very good free software that many researchers use to visualize the model to ensure that it is properly built. Download [Netron](https://github.com/lutzroeder/Netron) and  open your model.onnx file. You can see your simple model visualized, with its 380 inputs and classifier listed:
+Onnx-Modelle sind in Visual Studio Code nicht sehr sichtbar, aber es gibt eine sehr gute kostenlose Software, die viele Forscher verwenden, um das Modell zu visualisieren und sicherzustellen, dass es korrekt erstellt wurde. Lade [Netron](https://github.com/lutzroeder/Netron) herunter und öffne deine model.onnx-Datei. Du kannst dein einfaches Modell visualisiert sehen, mit seinen 380 Eingaben und dem Klassifikator:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.de.png)
+![Netron-Visualisierung](../../../../4-Classification/4-Applied/images/netron.png)
 
-Netron is a helpful tool to view your models.
+Netron ist ein hilfreiches Tool, um deine Modelle zu betrachten.
 
-Now you are ready to use this neat model in a web app. Let's build an app that will come in handy when you look in your refrigerator and try to figure out which combination of your leftover ingredients you can use to cook a given cuisine, as determined by your model.
+Jetzt bist du bereit, dieses praktische Modell in einer Web-App zu verwenden. Lass uns eine App erstellen, die nützlich ist, wenn du in deinen Kühlschrank schaust und herausfinden möchtest, welche Kombination deiner übrig gebliebenen Zutaten du verwenden kannst, um eine bestimmte Küche zu kochen, wie von deinem Modell bestimmt.
 
-## Build a recommender web application
+## Erstelle eine Empfehlungs-Webanwendung
 
-You can use your model directly in a web app. This architecture also allows you to run it locally and even offline if needed. Start by creating an `index.html` file in the same folder where you stored your `model.onnx`-Datei.
+Du kannst dein Modell direkt in einer Web-App verwenden. Diese Architektur ermöglicht es dir auch, sie lokal und sogar offline auszuführen, falls erforderlich. Beginne mit der Erstellung einer `index.html`-Datei im selben Ordner, in dem du deine `model.onnx`-Datei gespeichert hast.
 
-1. In dieser Datei _index.html_ fügen Sie das folgende Markup hinzu:
+1. Füge in dieser Datei _index.html_ das folgende Markup hinzu:
 
     ```html
     <!DOCTYPE html>
@@ -167,7 +176,7 @@ You can use your model directly in a web app. This architecture also allows you 
     </html>
     ```
 
-1. Arbeiten Sie nun innerhalb der `body`-Tags und fügen Sie ein wenig Markup hinzu, um eine Liste von Kontrollkästchen anzuzeigen, die einige Zutaten widerspiegeln:
+1. Füge nun innerhalb der `body`-Tags ein wenig Markup hinzu, um eine Liste von Kontrollkästchen anzuzeigen, die einige Zutaten widerspiegeln:
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -212,19 +221,19 @@ You can use your model directly in a web app. This architecture also allows you 
             </div> 
     ```
 
-    Beachten Sie, dass jedem Kontrollkästchen ein Wert zugewiesen wird. Dies spiegelt den Index wider, an dem die Zutat laut dem Datensatz gefunden wird. Apfel zum Beispiel nimmt in dieser alphabetischen Liste die fünfte Spalte ein, daher ist ihr Wert '4', da wir bei 0 zu zählen beginnen. Sie können die [Zutaten-Tabelle](../../../../4-Classification/data/ingredient_indexes.csv) konsultieren, um den Index einer bestimmten Zutat zu entdecken.
+    Beachte, dass jedes Kontrollkästchen einen Wert hat. Dieser spiegelt den Index wider, an dem die Zutat gemäß dem Datensatz gefunden wird. Apfel, zum Beispiel, in dieser alphabetischen Liste, belegt die fünfte Spalte, daher ist sein Wert '4', da wir bei 0 zu zählen beginnen. Du kannst die [Zutaten-Tabelle](../../../../4-Classification/data/ingredient_indexes.csv) konsultieren, um den Index einer bestimmten Zutat zu finden.
 
-    Fahren Sie mit Ihrer Arbeit in der index.html-Datei fort und fügen Sie einen Skriptblock hinzu, in dem das Modell nach dem letzten schließenden `</div>` aufgerufen wird.
+    Setze deine Arbeit in der index.html-Datei fort und füge einen Skriptblock hinzu, in dem das Modell nach dem letzten abschließenden `</div>` aufgerufen wird.
 
-1. Zuerst importieren Sie die [Onnx-Laufzeit](https://www.onnxruntime.ai/):
+1. Importiere zunächst die [Onnx Runtime](https://www.onnxruntime.ai/):
 
     ```html
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Die Onnx-Laufzeit wird verwendet, um das Ausführen Ihrer Onnx-Modelle auf einer Vielzahl von Hardwareplattformen zu ermöglichen, einschließlich Optimierungen und einer API zur Nutzung.
+    > Onnx Runtime wird verwendet, um die Ausführung deiner Onnx-Modelle auf einer Vielzahl von Hardwareplattformen zu ermöglichen, einschließlich Optimierungen und einer API zur Nutzung.
 
-1. Sobald die Laufzeit eingerichtet ist, können Sie sie aufrufen:
+1. Sobald die Runtime eingerichtet ist, kannst du sie aufrufen:
 
     ```html
     <script>
@@ -278,32 +287,33 @@ You can use your model directly in a web app. This architecture also allows you 
 
 In diesem Code passieren mehrere Dinge:
 
-1. Sie haben ein Array von 380 möglichen Werten (1 oder 0) erstellt, die gesetzt und an das Modell zur Inferenz gesendet werden, je nachdem, ob ein Zutaten-Kontrollkästchen aktiviert ist.
-2. Sie haben ein Array von Kontrollkästchen erstellt und eine Möglichkeit, zu bestimmen, ob sie aktiviert sind in einem `init` function that is called when the application starts. When a checkbox is checked, the `ingredients` array is altered to reflect the chosen ingredient.
-3. You created a `testCheckboxes` function that checks whether any checkbox was checked.
-4. You use `startInference` function when the button is pressed and, if any checkbox is checked, you start inference.
-5. The inference routine includes:
-   1. Setting up an asynchronous load of the model
-   2. Creating a Tensor structure to send to the model
-   3. Creating 'feeds' that reflects the `float_input` input that you created when training your model (you can use Netron to verify that name)
-   4. Sending these 'feeds' to the model and waiting for a response
+1. Du hast ein Array von 380 möglichen Werten (1 oder 0) erstellt, das je nach Auswahl eines Kontrollkästchens gesetzt und an das Modell zur Inferenz gesendet wird.
+2. Du hast ein Array von Kontrollkästchen erstellt und eine Möglichkeit, festzustellen, ob sie im `init`-Funktion aktiviert wurden, die beim Start der Anwendung aufgerufen wird. Wenn ein Kontrollkästchen aktiviert ist, wird das `ingredients`-Array geändert, um die ausgewählte Zutat widerzuspiegeln.
+3. Du hast eine `testCheckboxes`-Funktion erstellt, die überprüft, ob ein Kontrollkästchen aktiviert wurde.
+4. Du verwendest die `startInference`-Funktion, wenn die Schaltfläche gedrückt wird, und wenn ein Kontrollkästchen aktiviert ist, startest du die Inferenz.
+5. Die Inferenzroutine umfasst:
+   1. Das Einrichten eines asynchronen Ladevorgangs des Modells
+   2. Das Erstellen einer Tensor-Struktur, die an das Modell gesendet wird
+   3. Das Erstellen von 'feeds', die den `float_input`-Eingang widerspiegeln, den du beim Training deines Modells erstellt hast (du kannst Netron verwenden, um diesen Namen zu überprüfen)
+   4. Das Senden dieser 'feeds' an das Modell und das Warten auf eine Antwort
 
-## Test your application
+## Teste deine Anwendung
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server` an der Eingabeaufforderung. Ein localhost sollte sich öffnen und Sie können Ihre Web-App anzeigen. Überprüfen Sie, welche Küche basierend auf verschiedenen Zutaten empfohlen wird:
+Öffne eine Terminal-Sitzung in Visual Studio Code im Ordner, in dem sich deine index.html-Datei befindet. Stelle sicher, dass du [http-server](https://www.npmjs.com/package/http-server) global installiert hast, und gib `http-server` an der Eingabeaufforderung ein. Ein localhost sollte sich öffnen und du kannst deine Web-App anzeigen. Überprüfe, welche Küche basierend auf verschiedenen Zutaten empfohlen wird:
 
-![Zutaten-Web-App](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.de.png)
+![Zutaten-Web-App](../../../../4-Classification/4-Applied/images/web-app.png)
 
-Herzlichen Glückwunsch, Sie haben eine 'Empfehlungs'-Web-App mit einigen Feldern erstellt. Nehmen Sie sich Zeit, um dieses System weiter auszubauen!
-## 🚀Herausforderung
+Herzlichen Glückwunsch, du hast eine Empfehlungs-Web-App mit einigen Feldern erstellt. Nimm dir etwas Zeit, um dieses System weiter auszubauen!
 
-Ihre Web-App ist sehr minimal, also fahren Sie fort, sie mit Zutaten und deren Indizes aus den [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) Daten auszubauen. Welche Geschmacksrichtungenkombinationen funktionieren, um ein bestimmtes Nationalgericht zu kreieren?
+## 🚀 Herausforderung
 
-## [Nachlesungsquiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+Deine Web-App ist sehr minimal, also baue sie weiter aus, indem du Zutaten und ihre Indizes aus den [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv)-Daten verwendest. Welche Geschmacksrichtungen funktionieren, um ein bestimmtes Nationalgericht zu kreieren?
+
+## [Quiz nach der Lektion](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Überprüfung & Selbststudium
 
-Während diese Lektion nur die Nützlichkeit der Erstellung eines Empfehlungssystems für Lebensmittelzutaten angesprochen hat, ist dieser Bereich der ML-Anwendungen sehr reich an Beispielen. Lesen Sie mehr darüber, wie diese Systeme aufgebaut sind:
+Während diese Lektion nur kurz die Nützlichkeit der Erstellung eines Empfehlungssystems für Lebensmittelzutaten berührt hat, ist dieser Bereich der ML-Anwendungen sehr reich an Beispielen. Lies mehr darüber, wie diese Systeme aufgebaut werden:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
@@ -311,7 +321,9 @@ Während diese Lektion nur die Nützlichkeit der Erstellung eines Empfehlungssys
 
 ## Aufgabe 
 
-[Erstellen Sie einen neuen Empfehlungsalgorithmus](assignment.md)
+[Erstelle einen neuen Empfehlungsalgorithmus](assignment.md)
+
+---
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit maschinellen KI-Übersetzungsdiensten übersetzt. Obwohl wir uns um Genauigkeit bemühen, sollten Sie sich bewusst sein, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung resultieren.
+Dieses Dokument wurde mithilfe des KI-Übersetzungsdienstes [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.

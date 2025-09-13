@@ -1,58 +1,67 @@
-# Jenga Tovuti Kutumia Mfano wa ML
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
+  "translation_date": "2025-09-05T16:12:26+00:00",
+  "source_file": "3-Web-App/1-Web-App/README.md",
+  "language_code": "sw"
+}
+-->
+# Jenga Programu ya Wavuti Kutumia Modeli ya ML
 
-Katika somo hili, utafundisha mfano wa ML kwenye seti ya data ambayo ni ya kipekee: _matukio ya UFO katika karne iliyopita_, iliyotolewa kutoka kwenye hifadhidata ya NUFORC.
+Katika somo hili, utapokea mafunzo ya modeli ya ML kwa kutumia seti ya data isiyo ya kawaida: _Matukio ya UFO katika karne iliyopita_, yaliyokusanywa kutoka hifadhidata ya NUFORC.
 
 Utajifunza:
 
-- Jinsi ya 'pickle' mfano uliyo fundishwa
-- Jinsi ya kutumia mfano huo katika programu ya Flask
+- Jinsi ya 'pickle' modeli iliyofunzwa
+- Jinsi ya kutumia modeli hiyo katika programu ya Flask
 
-Tutaendelea kutumia daftari za maelezo kusafisha data na kufundisha mfano wetu, lakini unaweza kuchukua hatua moja zaidi kwa kuchunguza kutumia mfano 'katika mazingira halisi', kwa maneno mengine: katika programu ya wavuti.
+Tutaendelea kutumia daftari za maelezo (notebooks) kusafisha data na kufunza modeli yetu, lakini unaweza kuchukua hatua moja zaidi kwa kuchunguza jinsi ya kutumia modeli 'katika mazingira halisi', yaani: katika programu ya wavuti.
 
-Ili kufanya hivi, unahitaji kujenga programu ya wavuti kwa kutumia Flask.
+Ili kufanya hivyo, unahitaji kujenga programu ya wavuti kwa kutumia Flask.
 
-## [Jaribio la kabla ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [Maswali ya awali ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Kujenga programu
 
-Kuna njia kadhaa za kujenga programu za wavuti ili kutumia mifano ya kujifunza mashine. Muundo wako wa wavuti unaweza kuathiri jinsi mfano wako unavyofundishwa. Fikiria kuwa unafanya kazi katika biashara ambapo kikundi cha sayansi ya data kimefundisha mfano ambao wanataka utumie katika programu.
+Kuna njia kadhaa za kujenga programu za wavuti zinazotumia modeli za kujifunza mashine. Muundo wa wavuti yako unaweza kuathiri jinsi modeli yako inavyofunzwa. Fikiria kuwa unafanya kazi katika biashara ambapo kikundi cha sayansi ya data kimefunza modeli wanayotaka uitumie katika programu.
 
 ### Mambo ya Kuzingatia
 
 Kuna maswali mengi unayohitaji kuuliza:
 
-- **Je, ni programu ya wavuti au programu ya simu?** Ikiwa unajenga programu ya simu au unahitaji kutumia mfano katika muktadha wa IoT, unaweza kutumia [TensorFlow Lite](https://www.tensorflow.org/lite/) na kutumia mfano katika programu ya Android au iOS.
-- **Mfano utakuwa wapi?** Katika wingu au ndani ya nchi?
-- **Msaada wa nje ya mtandao.** Je, programu inahitaji kufanya kazi nje ya mtandao?
-- **Teknolojia gani ilitumika kufundisha mfano?** Teknolojia iliyochaguliwa inaweza kuathiri zana unazohitaji kutumia.
-    - **Kutumia TensorFlow.** Ikiwa unafundisha mfano kwa kutumia TensorFlow, kwa mfano, mfumo huo unatoa uwezo wa kubadilisha mfano wa TensorFlow kwa matumizi katika programu ya wavuti kwa kutumia [TensorFlow.js](https://www.tensorflow.org/js/).
-    - **Kutumia PyTorch.** Ikiwa unajenga mfano kwa kutumia maktaba kama [PyTorch](https://pytorch.org/), una chaguo la kuuza nje katika muundo wa [ONNX](https://onnx.ai/) (Open Neural Network Exchange) kwa matumizi katika programu za wavuti za JavaScript zinazoweza kutumia [Onnx Runtime](https://www.onnxruntime.ai/). Chaguo hili litachunguzwa katika somo la baadaye kwa mfano uliofundishwa na Scikit-learn.
-    - **Kutumia Lobe.ai au Azure Custom Vision.** Ikiwa unatumia mfumo wa ML SaaS (Software as a Service) kama [Lobe.ai](https://lobe.ai/) au [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) kufundisha mfano, aina hii ya programu inatoa njia za kuuza nje mfano kwa majukwaa mengi, ikiwa ni pamoja na kujenga API maalum ya kuulizwa katika wingu na programu yako ya mtandaoni.
+- **Je, ni programu ya wavuti au ya simu?** Ikiwa unajenga programu ya simu au unahitaji kutumia modeli katika muktadha wa IoT, unaweza kutumia [TensorFlow Lite](https://www.tensorflow.org/lite/) na kutumia modeli hiyo katika programu ya Android au iOS.
+- **Modeli itakuwa wapi?** Katika wingu au ndani ya kifaa?
+- **Msaada wa nje ya mtandao.** Je, programu inapaswa kufanya kazi bila mtandao?
+- **Teknolojia gani ilitumika kufunza modeli?** Teknolojia iliyochaguliwa inaweza kuathiri zana unazohitaji kutumia.
+    - **Kutumia TensorFlow.** Ikiwa unafunza modeli kwa kutumia TensorFlow, kwa mfano, mfumo huo unatoa uwezo wa kubadilisha modeli ya TensorFlow kwa matumizi katika programu ya wavuti kwa kutumia [TensorFlow.js](https://www.tensorflow.org/js/).
+    - **Kutumia PyTorch.** Ikiwa unajenga modeli kwa kutumia maktaba kama [PyTorch](https://pytorch.org/), una chaguo la kuisafirisha katika muundo wa [ONNX](https://onnx.ai/) (Open Neural Network Exchange) kwa matumizi katika programu za wavuti za JavaScript zinazoweza kutumia [Onnx Runtime](https://www.onnxruntime.ai/). Chaguo hili litachunguzwa katika somo la baadaye kwa modeli iliyofunzwa na Scikit-learn.
+    - **Kutumia Lobe.ai au Azure Custom Vision.** Ikiwa unatumia mfumo wa ML SaaS (Software as a Service) kama [Lobe.ai](https://lobe.ai/) au [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) kufunza modeli, programu ya aina hii inatoa njia za kusafirisha modeli kwa majukwaa mengi, ikiwa ni pamoja na kujenga API maalum inayoweza kuulizwa katika wingu na programu yako ya mtandaoni.
 
-Pia una nafasi ya kujenga programu kamili ya wavuti ya Flask ambayo ingeweza kufundisha mfano yenyewe katika kivinjari cha wavuti. Hii inaweza pia kufanywa kwa kutumia TensorFlow.js katika muktadha wa JavaScript.
+Pia una nafasi ya kujenga programu nzima ya wavuti ya Flask ambayo inaweza kufunza modeli yenyewe katika kivinjari cha wavuti. Hii inaweza pia kufanywa kwa kutumia TensorFlow.js katika muktadha wa JavaScript.
 
-Kwa madhumuni yetu, kwa kuwa tumekuwa tukifanya kazi na daftari za maelezo za msingi wa Python, hebu tuchunguze hatua unazohitaji kuchukua ili kuuza nje mfano uliofundishwa kutoka daftari kama hilo kwa muundo unaosomeka na programu ya wavuti iliyojengwa kwa Python.
+Kwa madhumuni yetu, kwa kuwa tumekuwa tukifanya kazi na daftari za maelezo za msingi wa Python, hebu tuchunguze hatua unazohitaji kuchukua kusafirisha modeli iliyofunzwa kutoka daftari kama hiyo hadi muundo unaoweza kusomwa na programu ya wavuti iliyojengwa kwa Python.
 
 ## Zana
 
-Kwa kazi hii, unahitaji zana mbili: Flask na Pickle, zote zinaendesha kwenye Python.
+Kwa kazi hii, unahitaji zana mbili: Flask na Pickle, zote zinazoendeshwa na Python.
 
-✅ Flask ni nini? [Flask](https://palletsprojects.com/p/flask/) ni mfumo wa 'micro-framework' kama ulivyoelezwa na waumbaji wake, Flask hutoa vipengele vya msingi vya mifumo ya wavuti kwa kutumia Python na injini ya templating kujenga kurasa za wavuti. Angalia [moduli hii ya kujifunza](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) ili kufanya mazoezi ya kujenga na Flask.
+✅ [Flask](https://palletsprojects.com/p/flask/) ni nini? Imeelezwa kama 'micro-framework' na waumbaji wake, Flask hutoa vipengele vya msingi vya mifumo ya wavuti kwa kutumia Python na injini ya kutengeneza kurasa za wavuti. Angalia [moduli hii ya kujifunza](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) ili kufanya mazoezi ya kujenga kwa kutumia Flask.
 
-✅ Pickle ni nini? [Pickle](https://docs.python.org/3/library/pickle.html) 🥒 ni moduli ya Python inayosarifu na kufungua muundo wa kitu cha Python. Unapofanya 'pickle' mfano, unasarifu au kupanua muundo wake kwa matumizi kwenye wavuti. Kuwa mwangalifu: pickle sio salama kiasili, kwa hivyo kuwa mwangalifu ikiwa umeombwa kufungua faili iliyofunguliwa kwa pickle. Faili iliyofunguliwa kwa pickle ina kiambishi cha `.pkl`.
+✅ [Pickle](https://docs.python.org/3/library/pickle.html) ni nini? Pickle 🥒 ni moduli ya Python inayosawazisha na kuondoa usawazishaji wa muundo wa kitu cha Python. Unapofanya 'pickle' modeli, unasawazisha au kuisawazisha kwa matumizi kwenye wavuti. Kuwa makini: pickle si salama kiasili, kwa hivyo kuwa mwangalifu ikiwa umeombwa 'kuondoa pickle' faili. Faili iliyofanyiwa pickle ina kiambishi `.pkl`.
 
 ## Zoezi - safisha data yako
 
-Katika somo hili utatumia data kutoka kwa matukio 80,000 ya UFO, yaliyokusanywa na [NUFORC](https://nuforc.org) (Kituo cha Kitaifa cha Kuripoti UFO). Data hii ina maelezo ya kuvutia ya matukio ya UFO, kwa mfano:
+Katika somo hili utatumia data kutoka kwa matukio 80,000 ya UFO, yaliyokusanywa na [NUFORC](https://nuforc.org) (Kituo cha Kitaifa cha Kuripoti Matukio ya UFO). Data hii ina maelezo ya kuvutia kuhusu matukio ya UFO, kwa mfano:
 
-- **Maelezo marefu ya mfano.** "Mtu anatoka kwenye mwanga unaong'aa kwenye uwanja wa nyasi usiku na anakimbia kuelekea kwenye maegesho ya Texas Instruments".
+- **Maelezo marefu ya mfano.** "Mtu anatokea kutoka kwenye mwanga unaong'aa kwenye uwanja wa nyasi usiku na anakimbilia kwenye maegesho ya Texas Instruments".
 - **Maelezo mafupi ya mfano.** "taa zilituandama".
 
-Faili ya [ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) inajumuisha safu kuhusu `city`, `state` na `country` ambapo tukio lilitokea, `shape` ya kitu na `latitude` na `longitude`.
+Faili ya [ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) inajumuisha safu kuhusu `mji`, `jimbo` na `nchi` ambapo tukio lilitokea, `umbo` la kitu na `latitudo` na `longitudo` yake.
 
-Katika [daftari](../../../../3-Web-App/1-Web-App/notebook.ipynb) lililojumuishwa katika somo hili:
+Katika [daftari](../../../../3-Web-App/1-Web-App/notebook.ipynb) tupu lililojumuishwa katika somo hili:
 
-1. ingiza `pandas`, `matplotlib`, na `numpy` kama ulivyofanya katika masomo yaliyopita na ingiza faili ya ufos. Unaweza kuangalia seti ya data ya sampuli:
+1. Ingiza `pandas`, `matplotlib`, na `numpy` kama ulivyofanya katika masomo ya awali na ingiza faili ya ufos. Unaweza kuangalia sampuli ya seti ya data:
 
     ```python
     import pandas as pd
@@ -62,7 +71,7 @@ Katika [daftari](../../../../3-Web-App/1-Web-App/notebook.ipynb) lililojumuishwa
     ufos.head()
     ```
 
-1. Badilisha data ya ufos kuwa dataframe ndogo na vichwa vipya. Angalia maadili ya kipekee katika uwanja wa `Country`.
+1. Badilisha data ya ufos kuwa fremu ndogo ya data yenye vichwa vipya. Angalia maadili ya kipekee katika safu ya `Nchi`.
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
@@ -70,7 +79,7 @@ Katika [daftari](../../../../3-Web-App/1-Web-App/notebook.ipynb) lililojumuishwa
     ufos.Country.unique()
     ```
 
-1. Sasa, unaweza kupunguza kiasi cha data tunachohitaji kushughulika nacho kwa kuondoa maadili yoyote ya null na kuingiza tu matukio kati ya sekunde 1-60:
+1. Sasa, unaweza kupunguza kiasi cha data tunachohitaji kushughulikia kwa kuondoa maadili tupu na kuingiza tu matukio ya muda wa sekunde 1-60:
 
     ```python
     ufos.dropna(inplace=True)
@@ -80,9 +89,9 @@ Katika [daftari](../../../../3-Web-App/1-Web-App/notebook.ipynb) lililojumuishwa
     ufos.info()
     ```
 
-1. Ingiza maktaba ya `LabelEncoder` ya Scikit-learn ili kubadilisha maadili ya maandishi kwa nchi kuwa namba:
+1. Ingiza maktaba ya `LabelEncoder` ya Scikit-learn ili kubadilisha maadili ya maandishi ya nchi kuwa nambari:
 
-    ✅ LabelEncoder inasimbua data kwa alfabeti
+    ✅ LabelEncoder inasimba data kwa mpangilio wa alfabeti
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -103,11 +112,11 @@ Katika [daftari](../../../../3-Web-App/1-Web-App/notebook.ipynb) lililojumuishwa
     24	3.0		3		51.783333	-0.783333
     ```
 
-## Zoezi - jenga mfano wako
+## Zoezi - jenga modeli yako
 
-Sasa unaweza kujiandaa kufundisha mfano kwa kugawanya data katika kikundi cha mafunzo na majaribio.
+Sasa unaweza kujiandaa kufunza modeli kwa kugawanya data katika kikundi cha mafunzo na majaribio.
 
-1. Chagua vipengele vitatu unavyotaka kufundisha kama vector yako ya X, na vector ya y itakuwa `Country`. You want to be able to input `Seconds`, `Latitude` and `Longitude` na pata kitambulisho cha nchi kurudisha.
+1. Chagua vipengele vitatu unavyotaka kufunza kama vector yako ya X, na vector ya y itakuwa `Nchi`. Unataka kuweza kuingiza `Sekunde`, `Latitudo` na `Longitudo` na kupata kitambulisho cha nchi cha kurudisha.
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -120,7 +129,7 @@ Sasa unaweza kujiandaa kufundisha mfano kwa kugawanya data katika kikundi cha ma
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. Fundisha mfano wako kwa kutumia regression ya logistic:
+1. Funza modeli yako kwa kutumia regression ya logistic:
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -134,13 +143,13 @@ Sasa unaweza kujiandaa kufundisha mfano kwa kugawanya data katika kikundi cha ma
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-Usahihi sio mbaya **(karibu 95%)**, bila kushangaza, kama `Country` and `Latitude/Longitude` correlate.
+Usahihi si mbaya **(karibu 95%)**, bila kushangaza, kwa kuwa `Nchi` na `Latitudo/Longitudo` vina uhusiano.
 
-The model you created isn't very revolutionary as you should be able to infer a `Country` from its `Latitude` and `Longitude`, lakini ni zoezi nzuri kujaribu kufundisha kutoka kwa data mbichi uliyoisafisha, kuiuza nje, na kisha kutumia mfano huu katika programu ya wavuti.
+Modeli uliyounda si ya mapinduzi sana kwa kuwa unapaswa kuweza kubaini `Nchi` kutoka kwa `Latitudo` na `Longitudo`, lakini ni zoezi zuri kujaribu kufunza kutoka kwa data ghafi uliyosafisha, ukasafirisha, na kisha kutumia modeli hii katika programu ya wavuti.
 
-## Zoezi - 'pickle' mfano wako
+## Zoezi - 'pickle' modeli yako
 
-Sasa, ni wakati wa _pickle_ mfano wako! Unaweza kufanya hivyo kwa mistari michache ya msimbo. Mara tu unapofanya _pickle_, pakia mfano wako uliopickle na ujaribu dhidi ya safu ya data ya sampuli iliyo na maadili ya sekunde, latitudo na longitudo,
+Sasa, ni wakati wa _pickle_ modeli yako! Unaweza kufanya hivyo kwa mistari michache ya msimbo. Mara tu imefanyiwa _pickle_, pakia faili ya modeli hiyo na ujaribu dhidi ya safu ya data ya sampuli inayojumuisha maadili ya sekunde, latitudo na longitudo,
 
 ```python
 import pickle
@@ -151,15 +160,15 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-Mfano unarudisha **'3'**, ambayo ni nambari ya nchi kwa Uingereza. Ajabu! 👽
+Modeli inarudisha **'3'**, ambayo ni nambari ya nchi ya Uingereza. Ajabu! 👽
 
 ## Zoezi - jenga programu ya Flask
 
-Sasa unaweza kujenga programu ya Flask ili kuita mfano wako na kurudisha matokeo sawa, lakini kwa njia ya kuvutia zaidi.
+Sasa unaweza kujenga programu ya Flask ili kuita modeli yako na kurudisha matokeo yanayofanana, lakini kwa njia ya kuvutia zaidi.
 
-1. Anza kwa kuunda folda inayoitwa **web-app** karibu na faili ya _notebook.ipynb_ ambapo faili yako ya _ufo-model.pkl_ ipo.
+1. Anza kwa kuunda folda inayoitwa **web-app** karibu na faili _notebook.ipynb_ ambapo faili yako _ufo-model.pkl_ iko.
 
-1. Katika folda hiyo unda folda nyingine tatu: **static**, yenye folda **css** ndani yake, na **templates**. Sasa unapaswa kuwa na faili na saraka zifuatazo:
+1. Katika folda hiyo unda folda tatu zaidi: **static**, yenye folda **css** ndani yake, na **templates**. Sasa unapaswa kuwa na faili na folda zifuatazo:
 
     ```output
     web-app/
@@ -170,9 +179,9 @@ Sasa unaweza kujenga programu ya Flask ili kuita mfano wako na kurudisha matokeo
     ufo-model.pkl
     ```
 
-    ✅ Rejelea folda ya suluhisho kwa mtazamo wa programu iliyokamilika
+    ✅ Rejelea folda ya suluhisho ili kuona programu iliyokamilika
 
-1. Faili ya kwanza kuunda katika folda ya _web-app_ ni faili ya **requirements.txt**. Kama _package.json_ katika programu ya JavaScript, faili hii inataja utegemezi unaohitajika na programu. Katika **requirements.txt** ongeza mistari:
+1. Faili ya kwanza ya kuunda katika folda ya _web-app_ ni faili ya **requirements.txt**. Kama _package.json_ katika programu ya JavaScript, faili hii inaorodhesha utegemezi unaohitajika na programu. Katika **requirements.txt** ongeza mistari:
 
     ```text
     scikit-learn
@@ -181,7 +190,7 @@ Sasa unaweza kujenga programu ya Flask ili kuita mfano wako na kurudisha matokeo
     flask
     ```
 
-1. Sasa, endesha faili hii kwa kuvinjari kwenye _web-app_:
+1. Sasa, endesha faili hii kwa kuvinjari hadi _web-app_:
 
     ```bash
     cd web-app
@@ -193,11 +202,11 @@ Sasa unaweza kujenga programu ya Flask ili kuita mfano wako na kurudisha matokeo
     pip install -r requirements.txt
     ```
 
-1. Sasa, uko tayari kuunda faili tatu zaidi kumaliza programu:
+1. Sasa, uko tayari kuunda faili tatu zaidi ili kukamilisha programu:
 
     1. Unda **app.py** katika mzizi.
-    2. Unda **index.html** katika saraka ya _templates_.
-    3. Unda **styles.css** katika saraka ya _static/css_.
+    2. Unda **index.html** katika folda ya _templates_.
+    3. Unda **styles.css** katika folda ya _static/css_.
 
 1. Jenga faili ya _styles.css_ na mitindo michache:
 
@@ -268,11 +277,11 @@ Sasa unaweza kujenga programu ya Flask ili kuita mfano wako na kurudisha matokeo
     </html>
     ```
 
-    Angalia templating katika faili hii. Kumbuka sintaksia ya 'mustache' kuzunguka mabadiliko ambayo yatatolewa na programu, kama maandishi ya utabiri: `{{}}`. There's also a form that posts a prediction to the `/predict` route.
+    Angalia templating katika faili hii. Tambua sintaksia ya 'mustache' karibu na vigezo ambavyo vitatolewa na programu, kama maandishi ya utabiri: `{{}}`. Pia kuna fomu inayotuma utabiri kwa njia ya `/predict`.
 
-    Finally, you're ready to build the python file that drives the consumption of the model and the display of predictions:
+    Hatimaye, uko tayari kujenga faili ya Python inayosukuma matumizi ya modeli na kuonyesha utabiri:
 
-1. In `app.py` ongeza:
+1. Katika `app.py` ongeza:
 
     ```python
     import numpy as np
@@ -309,40 +318,42 @@ Sasa unaweza kujenga programu ya Flask ili kuita mfano wako na kurudisha matokeo
         app.run(debug=True)
     ```
 
-    > 💡 Kidokezo: unapoongeza [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) while running the web app using Flask, any changes you make to your application will be reflected immediately without the need to restart the server. Beware! Don't enable this mode in a production app.
+    > 💡 Kidokezo: unapoongeza [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) wakati wa kuendesha programu ya wavuti kwa kutumia Flask, mabadiliko yoyote unayofanya kwenye programu yako yataonyeshwa mara moja bila hitaji la kuanzisha upya seva. Tahadhari! Usifungue hali hii katika programu ya uzalishaji.
 
-If you run `python app.py` or `python3 app.py` - your web server starts up, locally, and you can fill out a short form to get an answer to your burning question about where UFOs have been sighted!
+Ukikimbia `python app.py` au `python3 app.py` - seva yako ya wavuti inaanza, ndani ya kifaa chako, na unaweza kujaza fomu fupi ili kupata jibu la swali lako kuhusu mahali UFO zimeonekana!
 
-Before doing that, take a look at the parts of `app.py`:
+Kabla ya kufanya hivyo, angalia sehemu za `app.py`:
 
-1. First, dependencies are loaded and the app starts.
-1. Then, the model is imported.
-1. Then, index.html is rendered on the home route.
+1. Kwanza, utegemezi unapakuliwa na programu inaanza.
+1. Kisha, modeli inasafirishwa.
+1. Kisha, index.html inatolewa kwenye njia ya nyumbani.
 
-On the `/predict` route, several things happen when the form is posted:
+Katika njia ya `/predict`, mambo kadhaa hufanyika wakati fomu inatumwa:
 
-1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned.
-2. The Countries that we want displayed are re-rendered as readable text from their predicted country code, and that value is sent back to index.html to be rendered in the template.
+1. Vigezo vya fomu vinakusanywa na kubadilishwa kuwa safu ya numpy. Kisha vinatumwa kwa modeli na utabiri unarudishwa.
+2. Nchi tunazotaka kuonyesha zinabadilishwa kuwa maandishi yanayosomeka kutoka kwa nambari ya nchi iliyotabiriwa, na thamani hiyo inarudishwa kwa index.html ili kutolewa katika template.
 
-Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction.
+Kutumia modeli kwa njia hii, kwa Flask na modeli iliyofanyiwa pickle, ni rahisi kiasi. Jambo gumu zaidi ni kuelewa umbo la data ambalo lazima litumwe kwa modeli ili kupata utabiri. Hilo linategemea jinsi modeli ilivyofunzwa. Hii ina alama tatu za data za kuingiza ili kupata utabiri.
 
-In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+Katika mazingira ya kitaalamu, unaweza kuona jinsi mawasiliano mazuri yanavyohitajika kati ya wale wanaofunza modeli na wale wanaoitumia katika programu ya wavuti au ya simu. Katika kesi yetu, ni mtu mmoja tu, wewe!
 
 ---
 
-## 🚀 Challenge
+## 🚀 Changamoto
 
-Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. Je, ni faida na hasara gani za kufuata njia hii?
+Badala ya kufanya kazi katika daftari na kuingiza modeli kwenye programu ya Flask, unaweza kufunza modeli moja kwa moja ndani ya programu ya Flask! Jaribu kubadilisha msimbo wako wa Python katika daftari, labda baada ya data yako kusafishwa, ili kufunza modeli kutoka ndani ya programu kwenye njia inayoitwa `train`. Je, ni faida na hasara gani za kufuata njia hii?
 
-## [Jaribio la baada ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [Maswali ya baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujisomea
+## Mapitio na Kujifunza Binafsi
 
-Kuna njia nyingi za kujenga programu ya wavuti ili kutumia mifano ya ML. Fanya orodha ya njia ambazo unaweza kutumia JavaScript au Python kujenga programu ya wavuti ili kutumia kujifunza mashine. Fikiria muundo: je, mfano unabaki katika programu au unaishi katika wingu? Ikiwa ni la pili, utaupataje? Chora muundo wa kimuundo kwa suluhisho la wavuti linalotumia ML.
+Kuna njia nyingi za kujenga programu ya wavuti inayotumia modeli za ML. Tengeneza orodha ya njia unazoweza kutumia JavaScript au Python kujenga programu ya wavuti inayotumia kujifunza mashine. Fikiria muundo: je, modeli inapaswa kubaki katika programu au kuishi katika wingu? Ikiwa ni ya pili, utaipataje? Chora muundo wa usanifu wa suluhisho la ML linalotumika kwenye wavuti.
 
 ## Kazi
 
-[Jaribu mfano tofauti](assignment.md)
+[Jaribu modeli tofauti](assignment.md)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI za mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati asilia katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, inashauriwa kutumia tafsiri ya kibinadamu ya kitaalamu. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

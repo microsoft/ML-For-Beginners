@@ -1,46 +1,55 @@
-# Prévision de séries temporelles avec ARIMA
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-06T09:09:11+00:00",
+  "source_file": "7-TimeSeries/2-ARIMA/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用 ARIMA 進行時間序列預測
 
-Dans la leçon précédente, vous avez appris un peu sur la prévision de séries temporelles et chargé un ensemble de données montrant les fluctuations de la charge électrique sur une période donnée.
+在上一課中，你已經了解了一些關於時間序列預測的基礎知識，並載入了一個顯示電力負載隨時間波動的數據集。
 
-[![Introduction à ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction à ARIMA")
+[![ARIMA 簡介](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "ARIMA 簡介")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo : Une brève introduction aux modèles ARIMA. L'exemple est réalisé en R, mais les concepts sont universels.
+> 🎥 點擊上方圖片觀看影片：ARIMA 模型的簡要介紹。範例使用 R 語言，但概念具有普遍性。
 
-## [Quiz pré-lecture](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Introduction
+## 簡介
 
-Dans cette leçon, vous découvrirez une méthode spécifique pour construire des modèles avec [ARIMA : *A*uto*R*égressif *I*ntegré *M*oyenne *A*mobile](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Les modèles ARIMA sont particulièrement adaptés pour ajuster des données qui montrent une [non-stationnarité](https://wikipedia.org/wiki/Stationary_process).
+在本課中，你將學習如何使用 [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average) 建立模型。ARIMA 模型特別適合用於分析具有 [非平穩性](https://wikipedia.org/wiki/Stationary_process) 的數據。
 
-## Concepts généraux
+## 基本概念
 
-Pour pouvoir travailler avec ARIMA, il y a quelques concepts que vous devez connaître :
+在使用 ARIMA 之前，你需要了解以下幾個概念：
 
-- 🎓 **Stationnarité**. Dans un contexte statistique, la stationnarité fait référence à des données dont la distribution ne change pas lorsqu'elle est décalée dans le temps. Les données non stationnaires montrent donc des fluctuations dues à des tendances qui doivent être transformées pour être analysées. La saisonnalité, par exemple, peut introduire des fluctuations dans les données et peut être éliminée par un processus de 'différenciation saisonnière'.
+- 🎓 **平穩性**。在統計學中，平穩性指的是數據的分佈在時間移動時不會改變。非平穩數據則因趨勢而波動，必須進行轉換才能進行分析。例如，季節性可能會引入數據波動，可以通過“季節性差分”過程來消除。
 
-- 🎓 **[Différenciation](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. La différenciation des données, toujours dans un contexte statistique, fait référence au processus de transformation des données non stationnaires pour les rendre stationnaires en éliminant leur tendance non constante. "La différenciation élimine les changements dans le niveau d'une série temporelle, éliminant ainsi tendance et saisonnalité et stabilisant par conséquent la moyenne de la série temporelle." [Article de Shixiong et al](https://arxiv.org/abs/1904.07632)
+- 🎓 **[差分](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**。差分是指將非平穩數據轉換為平穩數據的過程，通過移除其非恆定趨勢來實現。“差分可以消除時間序列中的水平變化，消除趨勢和季節性，從而穩定時間序列的均值。” [Shixiong 等人的論文](https://arxiv.org/abs/1904.07632)
 
-## ARIMA dans le contexte des séries temporelles
+## ARIMA 在時間序列中的應用
 
-Décomposons les parties d'ARIMA pour mieux comprendre comment cela nous aide à modéliser des séries temporelles et à faire des prévisions.
+讓我們拆解 ARIMA 的各部分，以更好地理解它如何幫助我們建模時間序列並進行預測。
 
-- **AR - pour AutoRégressif**. Les modèles autorégressifs, comme leur nom l'indique, regardent 'en arrière' dans le temps pour analyser les valeurs précédentes de vos données et faire des hypothèses à leur sujet. Ces valeurs précédentes sont appelées 'lags'. Un exemple serait des données montrant les ventes mensuelles de crayons. Le total des ventes de chaque mois serait considéré comme une 'variable évolutive' dans l'ensemble de données. Ce modèle est construit car "la variable évolutive d'intérêt est régressée sur ses propres valeurs retardées (c'est-à-dire, antérieures)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - 自回歸**。自回歸模型顧名思義，會“回溯”分析數據中的過去值並對其進行假設。這些過去的值被稱為“滯後”。例如，顯示每月鉛筆銷售數據的數據集。每個月的銷售總額被視為數據集中的“演變變量”。該模型的構建方式是“演變變量與其自身的滯後（即之前的）值進行回歸。” [維基百科](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - pour Intégré**. Contrairement aux modèles 'ARMA' similaires, le 'I' dans ARIMA fait référence à son aspect *[intégré](https://wikipedia.org/wiki/Order_of_integration)*. Les données sont 'intégrées' lorsque des étapes de différenciation sont appliquées pour éliminer la non-stationnarité.
+- **I - 整合**。與類似的 'ARMA' 模型不同，ARIMA 中的 'I' 指的是其 *[整合](https://wikipedia.org/wiki/Order_of_integration)* 特性。數據在應用差分步驟後被“整合”，以消除非平穩性。
 
-- **MA - pour Moyenne Mobile**. L'aspect [moyenne mobile](https://wikipedia.org/wiki/Moving-average_model) de ce modèle fait référence à la variable de sortie qui est déterminée en observant les valeurs actuelles et passées des lags.
+- **MA - 移動平均**。該模型的 [移動平均](https://wikipedia.org/wiki/Moving-average_model) 部分指的是通過觀察滯後的當前和過去值來確定輸出變量。
 
-En résumé : ARIMA est utilisé pour faire en sorte qu'un modèle s'adapte à la forme spéciale des données de séries temporelles aussi étroitement que possible.
+總結：ARIMA 用於使模型盡可能貼合時間序列數據的特殊形式。
 
-## Exercice - construire un modèle ARIMA
+## 練習 - 建立 ARIMA 模型
 
-Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) dans cette leçon et trouvez le fichier [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb).
+打開本課中的 [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) 資料夾，找到 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) 文件。
 
-1. Exécutez le notebook pour charger la bibliothèque `statsmodels` Python ; vous en aurez besoin pour les modèles ARIMA.
+1. 運行 notebook 以載入 `statsmodels` Python 庫；你需要它來使用 ARIMA 模型。
 
-1. Chargez les bibliothèques nécessaires.
+1. 載入必要的庫。
 
-1. Maintenant, chargez plusieurs autres bibliothèques utiles pour tracer les données :
+1. 現在，載入更多有助於繪製數據的庫：
 
     ```python
     import os
@@ -63,14 +72,14 @@ Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tre
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. Chargez les données à partir du fichier `/data/energy.csv` dans un dataframe Pandas et jetez un œil :
+1. 從 `/data/energy.csv` 文件中載入數據到 Pandas dataframe，並查看：
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. Tracez toutes les données d'énergie disponibles de janvier 2012 à décembre 2014. Il ne devrait pas y avoir de surprises, car nous avons vu ces données dans la leçon précédente :
+1. 繪製 2012 年 1 月至 2014 年 12 月的所有可用能源數據。這些數據應該不會有驚喜，因為我們在上一課中已經看過：
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -79,22 +88,22 @@ Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tre
     plt.show()
     ```
 
-    Maintenant, construisons un modèle !
+    現在，讓我們建立模型！
 
-### Créer des ensembles de données d'entraînement et de test
+### 創建訓練和測試數據集
 
-Maintenant que vos données sont chargées, vous pouvez les séparer en ensembles d'entraînement et de test. Vous entraînerez votre modèle sur l'ensemble d'entraînement. Comme d'habitude, après que le modèle ait terminé son entraînement, vous évaluerez sa précision en utilisant l'ensemble de test. Vous devez vous assurer que l'ensemble de test couvre une période ultérieure par rapport à l'ensemble d'entraînement pour garantir que le modèle ne tire pas d'informations des périodes futures.
+現在數據已載入，你可以將其分為訓練集和測試集。你將在訓練集上訓練模型。像往常一樣，模型訓練完成後，你將使用測試集評估其準確性。你需要確保測試集涵蓋訓練集之後的時間段，以確保模型不會從未來的時間段中獲取信息。
 
-1. Allouez une période de deux mois du 1er septembre au 31 octobre 2014 à l'ensemble d'entraînement. L'ensemble de test comprendra la période de deux mois du 1er novembre au 31 décembre 2014 :
+1. 將 2014 年 9 月 1 日至 10 月 31 日的兩個月期間分配給訓練集。測試集將包括 2014 年 11 月 1 日至 12 月 31 日的兩個月期間：
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Étant donné que ces données reflètent la consommation quotidienne d'énergie, il existe un fort schéma saisonnier, mais la consommation est la plus similaire à celle des jours plus récents.
+    由於此數據反映了每日能源消耗，因此存在強烈的季節性模式，但消耗量與最近幾天的消耗量最為相似。
 
-1. Visualisez les différences :
+1. 可視化差異：
 
     ```python
     energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -105,17 +114,17 @@ Maintenant que vos données sont chargées, vous pouvez les séparer en ensemble
     plt.show()
     ```
 
-    ![données d'entraînement et de test](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.mo.png)
+    ![訓練和測試數據](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    Par conséquent, utiliser une fenêtre de temps relativement petite pour entraîner les données devrait être suffisant.
+    因此，使用相對較小的時間窗口來訓練數據應該足夠。
 
-    > Note : Étant donné que la fonction que nous utilisons pour ajuster le modèle ARIMA utilise une validation intra-échantillon lors de l'ajustement, nous allons omettre les données de validation.
+    > 注意：由於我們用於擬合 ARIMA 模型的函數在擬合過程中使用了樣本內驗證，因此我們將省略驗證數據。
 
-### Préparer les données pour l'entraînement
+### 為訓練準備數據
 
-Maintenant, vous devez préparer les données pour l'entraînement en effectuant un filtrage et un redimensionnement de vos données. Filtrez votre ensemble de données pour n'inclure que les périodes et les colonnes dont vous avez besoin, et redimensionnez pour garantir que les données sont projetées dans l'intervalle 0,1.
+現在，你需要通過過濾和縮放數據來準備訓練數據。過濾數據集以僅包含所需的時間段和列，並縮放以確保數據投影在 0 到 1 的區間內。
 
-1. Filtrez l'ensemble de données d'origine pour n'inclure que les périodes mentionnées par ensemble et uniquement la colonne nécessaire 'load' ainsi que la date :
+1. 過濾原始數據集以僅包含上述每個集合的時間段，並僅包含所需的“load”列和日期：
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -125,14 +134,14 @@ Maintenant, vous devez préparer les données pour l'entraînement en effectuant
     print('Test data shape: ', test.shape)
     ```
 
-    Vous pouvez voir la forme des données :
+    你可以查看數據的形狀：
 
     ```output
     Training data shape:  (1416, 1)
     Test data shape:  (48, 1)
     ```
 
-1. Redimensionnez les données pour qu'elles soient dans la plage (0, 1).
+1. 將數據縮放到範圍 (0, 1)。
 
     ```python
     scaler = MinMaxScaler()
@@ -140,7 +149,7 @@ Maintenant, vous devez préparer les données pour l'entraînement en effectuant
     train.head(10)
     ```
 
-1. Visualisez les données originales par rapport aux données redimensionnées :
+1. 可視化原始數據與縮放後的數據：
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,40 +157,40 @@ Maintenant, vous devez préparer les données pour l'entraînement en effectuant
     plt.show()
     ```
 
-    ![original](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.mo.png)
+    ![原始數據](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
-    > Les données originales
+    > 原始數據
 
-    ![scaled](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.mo.png)
+    ![縮放後數據](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
-    > Les données redimensionnées
+    > 縮放後數據
 
-1. Maintenant que vous avez calibré les données redimensionnées, vous pouvez redimensionner les données de test :
+1. 現在你已校準縮放後的數據，可以縮放測試數據：
 
     ```python
     test['load'] = scaler.transform(test)
     test.head()
     ```
 
-### Implémenter ARIMA
+### 實現 ARIMA
 
-Il est temps d'implémenter ARIMA ! Vous allez maintenant utiliser la bibliothèque `statsmodels` que vous avez installée plus tôt.
+現在是實現 ARIMA 的時候了！你將使用之前安裝的 `statsmodels` 庫。
 
-Maintenant, vous devez suivre plusieurs étapes
+接下來需要遵循幾個步驟：
 
-   1. Définissez le modèle en appelant `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters.
-   2. Prepare the model for the training data by calling the fit() function.
-   3. Make predictions calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast.
+   1. 通過調用 `SARIMAX()` 並傳入模型參數：p、d 和 q 參數，以及 P、D 和 Q 參數來定義模型。
+   2. 通過調用 `fit()` 函數為訓練數據準備模型。
+   3. 通過調用 `forecast()` 函數並指定要預測的步數（即“預測範圍”）來進行預測。
 
-> 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
+> 🎓 這些參數是什麼意思？在 ARIMA 模型中，有 3 個參數用於幫助建模時間序列的主要方面：季節性、趨勢和噪音。這些參數是：
 
-`p`: the parameter associated with the auto-regressive aspect of the model, which incorporates *past* values.
-`d`: the parameter associated with the integrated part of the model, which affects the amount of *differencing* (🎓 remember differencing 👆?) to apply to a time series.
-`q`: the parameter associated with the moving-average part of the model.
+`p`: 與模型的自回歸部分相關的參數，包含*過去*的值。
+`d`: 與模型的整合部分相關的參數，影響應用於時間序列的*差分*次數（🎓 還記得差分嗎 👆？）。
+`q`: 與模型的移動平均部分相關的參數。
 
-> Note: If your data has a seasonal aspect - which this one does - , we use a seasonal ARIMA model (SARIMA). In that case you need to use another set of parameters: `P`, `D`, and `Q` which describe the same associations as `p`, `d`, and `q`, mais correspondant aux composants saisonniers du modèle.
+> 注意：如果你的數據具有季節性特徵（此數據確實如此），我們使用季節性 ARIMA 模型（SARIMA）。在這種情況下，你需要使用另一組參數：`P`、`D` 和 `Q`，它們與 `p`、`d` 和 `q` 的關聯相同，但對應於模型的季節性部分。
 
-1. Commencez par définir votre valeur d'horizon préférée. Essayons 3 heures :
+1. 首先設置你偏好的預測範圍值。我們試試 3 小時：
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -189,9 +198,9 @@ Maintenant, vous devez suivre plusieurs étapes
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Sélectionner les meilleures valeurs pour les paramètres d'un modèle ARIMA peut être difficile car c'est quelque peu subjectif et chronophage. Vous pourriez envisager d'utiliser une bibliothèque `auto_arima()` function from the [`pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
+    為 ARIMA 模型選擇最佳參數值可能具有挑戰性，因為它有些主觀且耗時。你可以考慮使用 [`pyramid` 庫](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html) 中的 `auto_arima()` 函數。
 
-1. Pour l'instant, essayez quelques sélections manuelles pour trouver un bon modèle.
+1. 現在嘗試一些手動選擇以找到一個好的模型。
 
     ```python
     order = (4, 1, 0)
@@ -203,23 +212,23 @@ Maintenant, vous devez suivre plusieurs étapes
     print(results.summary())
     ```
 
-    Un tableau de résultats est imprimé.
+    一個結果表格被打印出來。
 
-Vous avez construit votre premier modèle ! Maintenant, nous devons trouver un moyen de l'évaluer.
+你已經建立了第一個模型！現在我們需要找到評估它的方法。
 
-### Évaluer votre modèle
+### 評估你的模型
 
-Pour évaluer votre modèle, vous pouvez effectuer la validation dite `walk forward`. En pratique, les modèles de séries temporelles sont ré-entraînés chaque fois qu'une nouvelle donnée devient disponible. Cela permet au modèle de faire la meilleure prévision à chaque étape temporelle.
+為了評估你的模型，你可以執行所謂的 `逐步前進` 驗證。在實際操作中，每次有新數據可用時，時間序列模型都會重新訓練。這使得模型能夠在每個時間步驟上進行最佳預測。
 
-En commençant par le début de la série temporelle en utilisant cette technique, entraînez le modèle sur l'ensemble de données d'entraînement. Ensuite, faites une prédiction sur l'étape temporelle suivante. La prédiction est évaluée par rapport à la valeur connue. L'ensemble d'entraînement est ensuite élargi pour inclure la valeur connue et le processus est répété.
+使用此技術從時間序列的開頭開始，對訓練數據集進行模型訓練。然後對下一個時間步驟進行預測。預測結果與已知值進行評估。然後擴展訓練集以包含已知值，並重複該過程。
 
-> Note : Vous devez garder la fenêtre de l'ensemble d'entraînement fixe pour un entraînement plus efficace afin que chaque fois que vous ajoutez une nouvelle observation à l'ensemble d'entraînement, vous supprimiez l'observation du début de l'ensemble.
+> 注意：為了更高效地進行訓練，你應保持訓練集窗口固定，因此每次向訓練集添加新觀測值時，需移除訓練集開頭的觀測值。
 
-Ce processus fournit une estimation plus robuste de la façon dont le modèle se comportera en pratique. Cependant, cela a un coût computationnel de création de tant de modèles. Cela est acceptable si les données sont petites ou si le modèle est simple, mais cela pourrait poser un problème à grande échelle.
+此過程提供了模型在實際操作中的更穩健估計。然而，這需要付出計算成本來創建大量模型。如果數據量小或模型簡單，這是可以接受的，但在大規模情況下可能會成為問題。
 
-La validation par marche avant est la norme d'or de l'évaluation des modèles de séries temporelles et est recommandée pour vos propres projets.
+逐步前進驗證是時間序列模型評估的黃金標準，並推薦用於你的項目。
 
-1. Tout d'abord, créez un point de données de test pour chaque étape HORIZON.
+1. 首先，為每個預測範圍步驟創建測試數據點。
 
     ```python
     test_shifted = test.copy()
@@ -239,9 +248,9 @@ La validation par marche avant est la norme d'or de l'évaluation des modèles d
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    Les données sont décalées horizontalement en fonction de son point d'horizon.
+    數據根據其預測範圍點水平移動。
 
-1. Faites des prédictions sur vos données de test en utilisant cette approche de fenêtre glissante dans une boucle de la taille de la longueur des données de test :
+1. 使用此滑動窗口方法對測試數據進行預測，循環大小為測試數據的長度：
 
     ```python
     %%time
@@ -271,7 +280,7 @@ La validation par marche avant est la norme d'or de l'évaluation des modèles d
         print(t+1, ': predicted =', yhat, 'expected =', obs)
     ```
 
-    Vous pouvez voir l'entraînement se dérouler :
+    你可以看到訓練過程：
 
     ```output
     2014-12-30 00:00:00
@@ -284,7 +293,7 @@ La validation par marche avant est la norme d'or de l'évaluation des modèles d
     3 : predicted = [0.27 0.28 0.32] expected = [0.2739480752014323, 0.26812891674127126, 0.3025962399283795]
     ```
 
-1. Comparez les prédictions à la charge réelle :
+1. 將預測結果與實際負載進行比較：
 
     ```python
     eval_df = pd.DataFrame(predictions, columns=['t+'+str(t) for t in range(1, HORIZON+1)])
@@ -295,7 +304,7 @@ La validation par marche avant est la norme d'or de l'évaluation des modèles d
     eval_df.head()
     ```
 
-    Sortie
+    輸出
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -304,19 +313,19 @@ La validation par marche avant est la norme d'or de l'évaluation des modèles d
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-    Observez la prédiction des données horaires, comparée à la charge réelle. Quelle est sa précision ?
+    觀察每小時數據的預測結果，與實際負載相比。準確性如何？
 
-### Vérifier la précision du modèle
+### 檢查模型準確性
 
-Vérifiez la précision de votre modèle en testant son erreur absolue moyenne en pourcentage (MAPE) sur toutes les prédictions.
-
-> **🧮 Montrez-moi les mathématiques**
+通過測試所有預測的平均絕對百分比誤差 (MAPE) 來檢查模型的準確性。
+> **🧮 展示數學公式**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.mo.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) est utilisé pour montrer la précision des prévisions comme un ratio défini par la formule ci-dessus. La différence entre réel<sub>t</sub> et prédit<sub>t</sub> est divisée par réel<sub>t</sub>. "La valeur absolue dans ce calcul est sommée pour chaque point prévu dans le temps et divisée par le nombre de points ajustés n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
-
-1. Exprimez l'équation en code :
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) 用於顯示預測準確度，公式如上所示。實際值與預測值之間的差異除以實際值。
+>
+> 「此計算中的絕對值會對每個預測點進行加總，然後除以擬合點的數量 n。」 [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+1. 用程式碼表示公式：
 
     ```python
     if(HORIZON > 1):
@@ -324,15 +333,15 @@ Vérifiez la précision de votre modèle en testant son erreur absolue moyenne e
         print(eval_df.groupby('h')['APE'].mean())
     ```
 
-1. Calculez le MAPE d'une étape :
+1. 計算單步的 MAPE：
 
     ```python
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
     ```
 
-    MAPE de prévision d'une étape :  0.5570581332313952 %
+    單步預測 MAPE：0.5570581332313952 %
 
-1. Imprimez le MAPE de prévision multi-étapes :
+1. 輸出多步預測的 MAPE：
 
     ```python
     print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
@@ -342,9 +351,9 @@ Vérifiez la précision de votre modèle en testant son erreur absolue moyenne e
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    Un joli petit nombre est préférable : considérez qu'une prévision ayant un MAPE de 10 est décalée de 10 %.
+    一個較低的數值是最好的：請考慮，如果預測的 MAPE 為 10，表示偏差為 10%。
 
-1. Mais comme toujours, il est plus facile de voir ce genre de mesure de précision visuellement, alors traçons-le :
+1. 但如同往常，視覺化這類準確度的測量會更容易理解，因此讓我們繪製圖表：
 
     ```python
      if(HORIZON == 1):
@@ -372,24 +381,27 @@ Vérifiez la précision de votre modèle en testant son erreur absolue moyenne e
     plt.show()
     ```
 
-    ![un modèle de série temporelle](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.mo.png)
+    ![時間序列模型](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 Un très joli graphique, montrant un modèle avec une bonne précision. Bien joué !
+🏆 非常棒的圖表，顯示了一個具有良好準確度的模型。做得好！
 
 ---
 
-## 🚀Défi
+## 🚀挑戰
 
-Explorez les différentes façons de tester la précision d'un modèle de série temporelle. Nous abordons le MAPE dans cette leçon, mais existe-t-il d'autres méthodes que vous pourriez utiliser ? Faites des recherches à leur sujet et notez-les. Un document utile peut être trouvé [ici](https://otexts.com/fpp2/accuracy.html)
+深入了解測試時間序列模型準確度的方法。本課程中我們提到了 MAPE，但是否還有其他方法可以使用？研究它們並加以註解。一份有用的文件可以在[這裡](https://otexts.com/fpp2/accuracy.html)找到。
 
-## [Quiz post-lecture](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revue & Auto-apprentissage
+## 回顧與自學
 
-Cette leçon ne couvre que les bases de la prévision de séries temporelles avec ARIMA. Prenez le temps d'approfondir vos connaissances en explorant [ce dépôt](https://microsoft.github.io/forecasting/) et ses différents types de modèles pour découvrir d'autres façons de construire des modèles de séries temporelles.
+本課程僅觸及了使用 ARIMA 進行時間序列預測的基礎知識。花些時間深入了解[這個資料庫](https://microsoft.github.io/forecasting/)及其各種模型類型，學習其他建立時間序列模型的方法。
 
-## Mission
+## 作業
 
-[Un nouveau modèle ARIMA](assignment.md)
+[一個新的 ARIMA 模型](assignment.md)
 
-I'm sorry, but I cannot translate text into the fictional language "mo" as it is not a recognized language. If you have another language in mind or need assistance with something else, please let me know!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

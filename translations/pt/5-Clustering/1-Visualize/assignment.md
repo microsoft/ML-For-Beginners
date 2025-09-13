@@ -1,14 +1,25 @@
-# Pesquise outras visualizações para agrupamento
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "589fa015a5e7d9e67bd629f7d47b53de",
+  "translation_date": "2025-09-03T17:16:25+00:00",
+  "source_file": "5-Clustering/1-Visualize/assignment.md",
+  "language_code": "pt"
+}
+-->
+# Pesquisar outras visualizações para clustering
 
 ## Instruções
 
-Nesta lição, você trabalhou com algumas técnicas de visualização para entender como plotar seus dados em preparação para agrupá-los. Gráficos de dispersão, em particular, são úteis para encontrar grupos de objetos. Pesquise diferentes maneiras e diferentes bibliotecas para criar gráficos de dispersão e documente seu trabalho em um caderno. Você pode usar os dados desta lição, de outras lições ou dados que você mesmo obtiver (por favor, dê crédito à sua fonte, no entanto, em seu caderno). Plote alguns dados usando gráficos de dispersão e explique o que você descobriu.
+Nesta lição, trabalhou com algumas técnicas de visualização para compreender como representar os seus dados em preparação para o clustering. Os gráficos de dispersão, em particular, são úteis para identificar grupos de objetos. Pesquise diferentes formas e diferentes bibliotecas para criar gráficos de dispersão e documente o seu trabalho num notebook. Pode usar os dados desta lição, de outras lições ou dados que obtenha por conta própria (por favor, credite a sua fonte no notebook). Plote alguns dados utilizando gráficos de dispersão e explique o que descobriu.
 
 ## Rubrica
 
-| Critério | Exemplar                                                      | Adequado                                                                                 | Necessita Melhorias                   |
-| -------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------- |
-|          | Um caderno é apresentado com cinco gráficos de dispersão bem documentados | Um caderno é apresentado com menos de cinco gráficos de dispersão e é menos bem documentado | Um caderno incompleto é apresentado   |
+| Critérios | Exemplar                                                      | Adequado                                                                                 | Necessita de Melhorias              |
+| --------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+|           | Um notebook é apresentado com cinco gráficos de dispersão bem documentados | Um notebook é apresentado com menos de cinco gráficos de dispersão e está menos bem documentado | Um notebook incompleto é apresentado |
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido usando serviços de tradução automática baseados em IA. Embora nos esforcemos para garantir a precisão, esteja ciente de que as traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações erradas decorrentes do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante ter em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

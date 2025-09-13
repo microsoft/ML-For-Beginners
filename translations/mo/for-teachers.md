@@ -1,25 +1,37 @@
-## Pour les éducateurs
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "b37de02054fa6c0438ede6fabe1fdfb8",
+  "translation_date": "2025-08-29T20:11:50+00:00",
+  "source_file": "for-teachers.md",
+  "language_code": "mo"
+}
+-->
+## 給教育工作者
 
-Souhaitez-vous utiliser ce programme dans votre classe ? N'hésitez pas !
+想在您的課堂上使用這份課程嗎？請隨意使用！
 
-En fait, vous pouvez l'utiliser directement sur GitHub en utilisant GitHub Classroom.
+事實上，您可以直接在 GitHub 上使用它，透過 GitHub Classroom 來實現。
 
-Pour ce faire, faites un fork de ce dépôt. Vous devrez créer un dépôt pour chaque leçon, donc vous devrez extraire chaque dossier dans un dépôt séparé. De cette façon, [GitHub Classroom](https://classroom.github.com/classrooms) pourra récupérer chaque leçon individuellement.
+要這麼做，請先 fork 這個 repo。您需要為每一課創建一個 repo，因此需要將每個資料夾提取到一個單獨的 repo 中。這樣，[GitHub Classroom](https://classroom.github.com/classrooms) 就能分別處理每一課。
 
-Ces [instructions complètes](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) vous donneront une idée de la façon de configurer votre classe.
+這些[完整的說明](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/)可以幫助您了解如何設置您的課堂。
 
-## Utiliser le dépôt tel quel
+## 按原樣使用這個 repo
 
-Si vous souhaitez utiliser ce dépôt tel qu'il est actuellement, sans utiliser GitHub Classroom, cela est également possible. Vous devrez communiquer avec vos étudiants sur la leçon à travailler ensemble.
+如果您希望按目前的形式使用這個 repo，而不使用 GitHub Classroom，也完全可以。您需要與您的學生溝通，告訴他們要一起完成哪一課。
 
-Dans un format en ligne (Zoom, Teams ou autre), vous pourriez former des salles de discussion pour les quiz, et encadrer les étudiants pour les aider à se préparer à apprendre. Ensuite, invitez les étudiants à participer aux quiz et à soumettre leurs réponses en tant qu'« issues » à un moment donné. Vous pourriez faire de même avec les devoirs, si vous souhaitez que les étudiants travaillent de manière collaborative en toute transparence.
+在線上教學形式（如 Zoom、Teams 或其他工具）中，您可以為測驗設置分組討論室，並指導學生為學習做好準備。然後邀請學生參加測驗，並在特定時間以 'issues' 的形式提交答案。如果您希望學生公開合作完成作業，也可以採用相同的方式。
 
-Si vous préférez un format plus privé, demandez à vos étudiants de forker le programme, leçon par leçon, vers leurs propres dépôts GitHub en tant que dépôts privés, et de vous donner accès. Ainsi, ils peuvent compléter les quiz et les devoirs de manière privée et vous les soumettre via des issues sur votre dépôt de classe.
+如果您更喜歡更私密的形式，可以要求學生逐課 fork 這份課程到他們自己的 GitHub 私人 repo，並授予您訪問權限。這樣，他們可以私下完成測驗和作業，並通過 classroom repo 上的 issues 提交給您。
 
-Il existe de nombreuses façons de faire fonctionner cela dans un format de classe en ligne. Faites-nous savoir ce qui fonctionne le mieux pour vous !
+在線課堂有很多種運作方式。請告訴我們哪種方式最適合您！
 
-## Merci de nous donner votre avis !
+## 請分享您的想法！
 
-Nous voulons que ce programme fonctionne pour vous et vos étudiants. Merci de nous donner [votre retour](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
+我們希望這份課程能夠滿足您和您學生的需求。請提供您的[反饋](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u)。
 
-I'm sorry, but I can't provide translations to the fictional language "mo." If you have another language in mind or need assistance with something else, feel free to ask!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

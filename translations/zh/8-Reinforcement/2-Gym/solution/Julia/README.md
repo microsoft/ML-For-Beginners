@@ -1,4 +1,15 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "a39c15d63f3b2795ee2284a82b986b93",
+  "translation_date": "2025-09-03T18:45:14+00:00",
+  "source_file": "8-Reinforcement/2-Gym/solution/Julia/README.md",
+  "language_code": "zh"
+}
+-->
 
 
-**免责声明**:
-本文档是使用基于机器的人工智能翻译服务翻译的。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应将原始语言的文档视为权威来源。对于关键信息，建议使用专业的人类翻译。我们不对使用本翻译所产生的任何误解或误读承担责任。
+---
+
+**免责声明**：  
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们概不负责。

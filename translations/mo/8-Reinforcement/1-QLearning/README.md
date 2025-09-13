@@ -1,6 +1,205 @@
-## Checking the policy
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "911efd5e595089000cb3c16fce1beab8",
+  "translation_date": "2025-09-06T09:18:41+00:00",
+  "source_file": "8-Reinforcement/1-QLearning/README.md",
+  "language_code": "mo"
+}
+-->
+# 強化學習與 Q-Learning 簡介
 
-Since the Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can select the action corresponding to the highest Q-Table value: (code block 9)
+![機器學習中強化學習的摘要示意圖](../../../../sketchnotes/ml-reinforcement.png)
+> 示意圖由 [Tomomi Imura](https://www.twitter.com/girlie_mac) 提供
+
+強化學習涉及三個重要概念：代理（agent）、一些狀態（states）以及每個狀態的一組行動（actions）。代理通過在特定狀態執行某個行動，會獲得一個獎勵。想像一下電腦遊戲《超級瑪利歐》。你是瑪利歐，處於遊戲的一個關卡中，站在懸崖邊上。你的上方有一枚金幣。你作為瑪利歐，處於遊戲關卡中的某個特定位置……這就是你的狀態。向右移動一步（行動）會讓你掉下懸崖，並獲得一個低分數。然而，按下跳躍按鈕可以讓你獲得一分並保持存活。這是一個正面的結果，應該給予你一個正的數值分數。
+
+通過使用強化學習和模擬器（遊戲），你可以學習如何玩遊戲以最大化獎勵，即保持存活並獲得盡可能多的分數。
+
+[![強化學習簡介](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
+
+> 🎥 點擊上方圖片觀看 Dmitry 討論強化學習
+
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
+
+## 前置條件與設置
+
+在本課程中，我們將使用 Python 實驗一些程式碼。你應該能夠在你的電腦或雲端環境中運行本課程的 Jupyter Notebook 程式碼。
+
+你可以打開[課程筆記本](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb)，並按照課程步驟進行學習。
+
+> **注意：** 如果你從雲端打開這段程式碼，你還需要獲取 [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) 文件，該文件在筆記本程式碼中使用。將其添加到與筆記本相同的目錄中。
+
+## 簡介
+
+在本課程中，我們將探索 **[彼得與狼](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)** 的世界，靈感來自俄羅斯作曲家 [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev) 的音樂童話。我們將使用 **強化學習** 讓彼得探索他的環境，收集美味的蘋果並避免遇到狼。
+
+**強化學習**（RL）是一種學習技術，通過多次實驗讓我們學習代理在某個**環境**中的最佳行為。代理在這個環境中應該有某些**目標**，由**獎勵函數**定義。
+
+## 環境
+
+為了簡化，我們將彼得的世界設想為一個大小為 `width` x `height` 的方形棋盤，如下所示：
+
+![彼得的環境](../../../../8-Reinforcement/1-QLearning/images/environment.png)
+
+棋盤中的每個格子可以是：
+
+* **地面**，彼得和其他生物可以在上面行走。
+* **水域**，顯然不能行走。
+* **樹木**或**草地**，可以休息的地方。
+* **蘋果**，彼得希望找到以餵飽自己。
+* **狼**，危險且應該避免。
+
+有一個單獨的 Python 模組 [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py)，包含與此環境交互的程式碼。由於這段程式碼對理解概念並不重要，我們將導入該模組並使用它來創建示例棋盤（程式碼塊 1）：
+
+```python
+from rlboard import *
+
+width, height = 8,8
+m = Board(width,height)
+m.randomize(seed=13)
+m.plot()
+```
+
+此程式碼應該打印出類似上方的環境圖片。
+
+## 行動與策略
+
+在我們的示例中，彼得的目標是找到蘋果，同時避免狼和其他障礙物。為此，他可以在棋盤上四處走動，直到找到蘋果。
+
+因此，在任何位置，他可以選擇以下行動之一：向上、向下、向左和向右。
+
+我們將這些行動定義為一個字典，並將它們映射到相應的座標變化。例如，向右移動（`R`）對應於座標變化 `(1,0)`。（程式碼塊 2）：
+
+```python
+actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
+action_idx = { a : i for i,a in enumerate(actions.keys()) }
+```
+
+總結一下，此場景的策略和目標如下：
+
+- **策略**：代理（彼得）的策略由所謂的**政策**定義。政策是一個函數，能在任何給定狀態下返回行動。在我們的例子中，問題的狀態由棋盤表示，包括玩家的當前位置。
+
+- **目標**：強化學習的目標是最終學習一個良好的政策，使我們能有效地解決問題。然而，作為基準，我們先考慮最簡單的政策，稱為**隨機行走**。
+
+## 隨機行走
+
+首先，我們通過實現隨機行走策略來解決問題。在隨機行走中，我們將從允許的行動中隨機選擇下一個行動，直到到達蘋果（程式碼塊 3）。
+
+1. 使用以下程式碼實現隨機行走：
+
+    ```python
+    def random_policy(m):
+        return random.choice(list(actions))
+    
+    def walk(m,policy,start_position=None):
+        n = 0 # number of steps
+        # set initial position
+        if start_position:
+            m.human = start_position 
+        else:
+            m.random_start()
+        while True:
+            if m.at() == Board.Cell.apple:
+                return n # success!
+            if m.at() in [Board.Cell.wolf, Board.Cell.water]:
+                return -1 # eaten by wolf or drowned
+            while True:
+                a = actions[policy(m)]
+                new_pos = m.move_pos(m.human,a)
+                if m.is_valid(new_pos) and m.at(new_pos)!=Board.Cell.water:
+                    m.move(a) # do the actual move
+                    break
+            n+=1
+    
+    walk(m,random_policy)
+    ```
+
+    `walk` 函數的調用應返回相應路徑的長度，該長度可能因每次運行而異。
+
+1. 多次運行行走實驗（例如，100 次），並打印結果統計數據（程式碼塊 4）：
+
+    ```python
+    def print_statistics(policy):
+        s,w,n = 0,0,0
+        for _ in range(100):
+            z = walk(m,policy)
+            if z<0:
+                w+=1
+            else:
+                s += z
+                n += 1
+        print(f"Average path length = {s/n}, eaten by wolf: {w} times")
+    
+    print_statistics(random_policy)
+    ```
+
+    注意，路徑的平均長度約為 30-40 步，這相當多，考慮到到最近蘋果的平均距離約為 5-6 步。
+
+    你還可以看到彼得在隨機行走中的移動情況：
+
+    ![彼得的隨機行走](../../../../8-Reinforcement/1-QLearning/images/random_walk.gif)
+
+## 獎勵函數
+
+為了使我們的政策更智能，我們需要了解哪些移動比其他移動“更好”。為此，我們需要定義我們的目標。
+
+目標可以通過**獎勵函數**來定義，該函數會為每個狀態返回一些分數值。數值越高，獎勵函數越好。（程式碼塊 5）
+
+```python
+move_reward = -0.1
+goal_reward = 10
+end_reward = -10
+
+def reward(m,pos=None):
+    pos = pos or m.human
+    if not m.is_valid(pos):
+        return end_reward
+    x = m.at(pos)
+    if x==Board.Cell.water or x == Board.Cell.wolf:
+        return end_reward
+    if x==Board.Cell.apple:
+        return goal_reward
+    return move_reward
+```
+
+獎勵函數的一個有趣之處在於，大多數情況下，*只有在遊戲結束時才會給予實質性獎勵*。這意味著我們的算法應該以某種方式記住導致正面獎勵的“好”步驟，並增加它們的重要性。同樣，所有導致不良結果的移動應該被抑制。
+
+## Q-Learning
+
+我們將討論的算法稱為 **Q-Learning**。在此算法中，政策由一個函數（或數據結構）定義，稱為 **Q-Table**。它記錄了在給定狀態下每個行動的“好壞程度”。
+
+之所以稱為 Q-Table，是因為將其表示為表格或多維數組通常很方便。由於我們的棋盤尺寸為 `width` x `height`，我們可以使用形狀為 `width` x `height` x `len(actions)` 的 numpy 數組來表示 Q-Table：（程式碼塊 6）
+
+```python
+Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
+```
+
+注意，我們將 Q-Table 的所有值初始化為相等值，在我們的例子中為 0.25。這對應於“隨機行走”政策，因為每個狀態中的所有移動都是同樣好的。我們可以將 Q-Table 傳遞給 `plot` 函數，以便在棋盤上可視化該表格：`m.plot(Q)`。
+
+![彼得的環境](../../../../8-Reinforcement/1-QLearning/images/env_init.png)
+
+在每個格子的中心有一個“箭頭”，指示移動的首選方向。由於所有方向都是相等的，因此顯示為一個點。
+
+現在我們需要運行模擬，探索環境，並學習更好的 Q-Table 值分佈，這將使我們能更快地找到蘋果的路徑。
+
+## Q-Learning 的核心：貝爾曼方程
+
+一旦我們開始移動，每個行動都會有相應的獎勵，即我們理論上可以根據最高的即時獎勵選擇下一個行動。然而，在大多數狀態下，移動並不能實現我們到達蘋果的目標，因此我們無法立即決定哪個方向更好。
+
+> 記住，重要的不是即時結果，而是最終結果，即我們在模擬結束時獲得的結果。
+
+為了考慮這種延遲獎勵，我們需要使用 **[動態規劃](https://en.wikipedia.org/wiki/Dynamic_programming)** 的原則，這使我們能以遞歸方式思考問題。
+
+假設我們現在處於狀態 *s*，並希望移動到下一個狀態 *s'*。通過這樣做，我們將獲得由獎勵函數定義的即時獎勵 *r(s,a)*，加上一些未來的獎勵。如果我們假設 Q-Table 正確反映了每個行動的“吸引力”，那麼在狀態 *s'* 我們將選擇對應於 *Q(s',a')* 最大值的行動 *a'*。因此，我們在狀態 *s* 能夠獲得的最佳未來獎勵將由 `max` 定義：
+
+*Q(s',a')*（此處的最大值是針對狀態 *s'* 下所有可能行動 *a'* 計算的）。
+
+這給出了計算狀態 *s* 下行動 *a* 的 Q-Table 值的 **貝爾曼公式**：
+
+## 檢查政策
+
+由於 Q-Table 列出了每個狀態下每個行動的「吸引力」，因此使用它來定義我們世界中的高效導航非常簡單。在最簡單的情況下，我們可以選擇對應於最高 Q-Table 值的行動：（程式碼區塊 9）
 
 ```python
 def qpolicy_strict(m):
@@ -12,17 +211,17 @@ def qpolicy_strict(m):
 walk(m,qpolicy_strict)
 ```
 
-> If you try the code above several times, you may notice that sometimes it "hangs", and you need to press the STOP button in the notebook to interrupt it. This happens because there could be situations when two states "point" to each other in terms of optimal Q-Value, in which case the agents ends up moving between those states indefinitely.
+> 如果多次嘗試上述程式碼，您可能會注意到有時它會「卡住」，需要按下筆記本中的 STOP 按鈕來中斷執行。這是因為可能存在某些情況，兩個狀態在最佳 Q-Value 上「指向」彼此，導致代理不斷在這些狀態之間移動。
 
-## 🚀Challenge
+## 🚀挑戰
 
-> **Task 1:** Modify the `walk` function to limit the maximum length of path by a certain number of steps (say, 100), and watch the code above return this value from time to time.
+> **任務 1：** 修改 `walk` 函數，限制路徑的最大長度為一定步數（例如 100），並觀察上述程式碼有時會返回此值。
 
-> **Task 2:** Modify the `walk` function so that it does not go back to the places where it has already been previously. This will prevent `walk` from looping, however, the agent can still end up being "trapped" in a location from which it is unable to escape.
+> **任務 2：** 修改 `walk` 函數，使其不會回到之前已經到過的地方。這將防止 `walk` 進入循環，但代理仍可能被「困住」在無法逃脫的位置。
 
-## Navigation
+## 導航
 
-A better navigation policy would be the one that we used during training, which combines exploitation and exploration. In this policy, we will select each action with a certain probability, proportional to the values in the Q-Table. This strategy may still result in the agent returning back to a position it has already explored, but, as you can see from the code below, it results in a very short average path to the desired location (remember that `print_statistics` runs the simulation 100 times): (code block 10)
+更好的導航政策是我們在訓練期間使用的政策，它結合了利用和探索。在此政策中，我們將以一定的概率選擇每個行動，該概率與 Q-Table 中的值成比例。此策略可能仍會導致代理返回到已探索過的位置，但正如您從以下程式碼中看到的，它會導致到達目標位置的平均路徑非常短（請記住，`print_statistics` 會模擬 100 次）：（程式碼區塊 10）
 
 ```python
 def qpolicy(m):
@@ -34,25 +233,28 @@ def qpolicy(m):
 print_statistics(qpolicy)
 ```
 
-After running this code, you should get a much smaller average path length than before, in the range of 3-6.
+執行此程式碼後，您應該會得到比之前更短的平均路徑長度，範圍約為 3-6。
 
-## Investigating the learning process
+## 探索學習過程
 
-As we have mentioned, the learning process is a balance between exploration and exploitation of gained knowledge about the structure of problem space. We have seen that the results of learning (the ability to help an agent to find a short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process:
+如前所述，學習過程是在探索和利用已獲得的問題空間結構知識之間取得平衡。我們已經看到學習的結果（幫助代理找到通往目標的短路徑的能力）有所改善，但觀察平均路徑長度在學習過程中的變化也很有趣：
 
-The learnings can be summarized as:
+學習過程可以總結如下：
 
-- **Average path length increases**. What we see here is that at first, the average path length increases. This is probably due to the fact that when we know nothing about the environment, we are likely to get trapped in bad states, such as water or the wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know where the apples are very well.
+- **平均路徑長度增加**。我們看到的是，起初平均路徑長度增加。這可能是因為當我們對環境一無所知時，很容易陷入不良狀態，例如水或狼。隨著我們學到更多並開始利用這些知識，我們可以更長時間地探索環境，但仍然不太清楚蘋果的位置。
 
-- **Path length decreases, as we learn more**. Once we learn enough, it becomes easier for the agent to achieve the goal, and the path length starts to decrease. However, we are still open to exploration, so we often diverge away from the best path and explore new options, making the path longer than optimal.
+- **隨著學習的深入，路徑長度減少**。一旦我們學到足夠的知識，代理更容易達成目標，路徑長度開始減少。然而，我們仍然保持探索的開放性，因此經常偏離最佳路徑，探索新的選項，導致路徑比最佳路徑更長。
 
-- **Length increases abruptly**. What we also observe on this graph is that at some point, the length increased abruptly. This indicates the stochastic nature of the process, and that we can at some point "spoil" the Q-Table coefficients by overwriting them with new values. This ideally should be minimized by decreasing the learning rate (for example, towards the end of training, we only adjust Q-Table values by a small value).
+- **路徑長度突然增加**。我們在圖表上還觀察到某些時候路徑長度突然增加。這表明過程的隨機性，並且我們可能在某些時候通過覆蓋新值「破壞」了 Q-Table 的係數。理想情況下，這應該通過降低學習率來最小化（例如，在訓練結束時，我們僅以小值調整 Q-Table 的值）。
 
-Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters such as learning rate, learning rate decay, and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters**, which we optimize during training (for example, Q-Table coefficients). The process of finding the best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
+總體而言，重要的是要記住，學習過程的成功和質量在很大程度上取決於參數，例如學習率、學習率衰減和折扣因子。這些通常被稱為 **超參數**，以區分 **參數**，即我們在訓練期間優化的內容（例如 Q-Table 的係數）。尋找最佳超參數值的過程稱為 **超參數優化**，這是一個值得單獨討論的主題。
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Assignment 
-[A More Realistic World](assignment.md)
+## 作業 
+[更真實的世界](assignment.md)
 
-I'm sorry, but I cannot translate text into "mo" as it is not a recognized language or dialect in my training data. If you meant a specific language or dialect, please clarify, and I'll be happy to assist you!
+---
+
+**免責聲明**：  
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

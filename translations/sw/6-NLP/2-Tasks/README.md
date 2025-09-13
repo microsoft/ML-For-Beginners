@@ -1,46 +1,55 @@
-# Kazi na Mbinu za Kawaida za Usindikaji Lugha Asilia
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "5f3cb462e3122e1afe7ab0050ccf2bd3",
+  "translation_date": "2025-09-05T16:49:56+00:00",
+  "source_file": "6-NLP/2-Tasks/README.md",
+  "language_code": "sw"
+}
+-->
+# Kazi za kawaida za usindikaji wa lugha asilia na mbinu zake
 
-Kwa kazi nyingi za *usindikaji lugha asilia*, maandishi yanayopaswa kushughulikiwa lazima yavunjwe, yakaguliwe, na matokeo yake yahifadhiwe au yarejelewe na sheria na seti za data. Kazi hizi, zinamruhusu mpangaji kupata _maana_ au _nia_ au tu _mara kwa mara_ ya maneno na maneno katika maandishi.
+Kwa kazi nyingi za *usindikaji wa lugha asilia*, maandishi yanayopaswa kusindikiwa lazima yagawanywe, kuchunguzwa, na matokeo yake kuhifadhiwa au kulinganishwa na sheria na seti za data. Kazi hizi zinamruhusu mpangaji programu kupata _maana_, _nia_, au tu _mara kwa mara_ ya maneno na misemo katika maandishi.
 
-## [Maswali ya awali ya mihadhara](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
+## [Jaribio la awali la somo](https://ff-quizzes.netlify.app/en/ml/)
 
-Hebu tujifunze mbinu za kawaida zinazotumika katika usindikaji wa maandishi. Pamoja na kujifunza kwa mashine, mbinu hizi zinakusaidia kuchambua kiasi kikubwa cha maandishi kwa ufanisi. Kabla ya kutumia ML kwa kazi hizi, hata hivyo, hebu tuangalie matatizo yanayokutana na mtaalamu wa NLP.
+Hebu tujifunze mbinu za kawaida zinazotumika katika usindikaji wa maandishi. Zikichanganywa na ujifunzaji wa mashine, mbinu hizi zinakusaidia kuchambua kiasi kikubwa cha maandishi kwa ufanisi. Kabla ya kutumia ML kwa kazi hizi, hata hivyo, hebu tuelewe changamoto zinazokumbana na mtaalamu wa NLP.
 
 ## Kazi za kawaida za NLP
 
-Kuna njia tofauti za kuchambua maandishi unayofanyia kazi. Kuna kazi ambazo unaweza kufanya na kupitia kazi hizi unaweza kuelewa maandishi na kutoa hitimisho. Kawaida unafanya kazi hizi kwa mpangilio.
+Kuna njia tofauti za kuchambua maandishi unayofanyia kazi. Kuna kazi unazoweza kutekeleza, na kupitia kazi hizi unaweza kuelewa maandishi na kutoa hitimisho. Kawaida unatekeleza kazi hizi kwa mpangilio.
 
-### Utoaji wa Tokeni
+### Ugawanyaji wa maneno (Tokenization)
 
-Labda jambo la kwanza ambalo algorithimu nyingi za NLP zinahitaji kufanya ni kugawanya maandishi kuwa tokeni, au maneno. Ingawa hili linaweza kuonekana rahisi, kuzingatia alama za uakifishaji na mipaka ya maneno na sentensi za lugha tofauti kunaweza kufanya iwe ngumu. Unaweza kulazimika kutumia mbinu mbalimbali kubaini mipaka.
+Labda jambo la kwanza ambalo algorithimu nyingi za NLP zinapaswa kufanya ni kugawanya maandishi katika tokeni, au maneno. Ingawa hili linaweza kuonekana rahisi, kuzingatia alama za uakifishaji na mipaka ya sentensi na maneno katika lugha tofauti kunaweza kuwa changamoto. Unaweza kulazimika kutumia mbinu mbalimbali kuamua mipaka.
 
-![tokenization](../../../../translated_images/tokenization.1641a160c66cd2d93d4524e8114e93158a9ce0eba3ecf117bae318e8a6ad3487.sw.png)
+![tokenization](../../../../6-NLP/2-Tasks/images/tokenization.png)
 > Kugawanya sentensi kutoka **Pride and Prejudice**. Picha na [Jen Looper](https://twitter.com/jenlooper)
 
-### Utoaji wa Embeddings
+### Uwakilishi wa maneno (Embeddings)
 
-[Embeddings za maneno](https://wikipedia.org/wiki/Word_embedding) ni njia ya kubadilisha data yako ya maandishi kwa njia ya nambari. Embeddings hufanywa kwa njia ambayo maneno yenye maana sawa au maneno yanayotumika pamoja yanajikusanya pamoja.
+[Uwakilishi wa maneno](https://wikipedia.org/wiki/Word_embedding) ni njia ya kubadilisha data yako ya maandishi kuwa nambari. Uwakilishi hufanywa kwa njia ambayo maneno yenye maana sawa au maneno yanayotumika pamoja yanajikusanya pamoja.
 
-![word embeddings](../../../../translated_images/embedding.2cf8953c4b3101d188c2f61a5de5b6f53caaa5ad4ed99236d42bc3b6bd6a1fe2.sw.png)
-> "Nawaheshimu sana mishipa yako, wao ni marafiki zangu wa zamani." - Embeddings za maneno kwa sentensi katika **Pride and Prejudice**. Picha na [Jen Looper](https://twitter.com/jenlooper)
+![word embeddings](../../../../6-NLP/2-Tasks/images/embedding.png)
+> "Nawaheshimu sana mishipa yako, ni marafiki wangu wa zamani." - Uwakilishi wa maneno kwa sentensi kutoka **Pride and Prejudice**. Picha na [Jen Looper](https://twitter.com/jenlooper)
 
-✅ Jaribu [chombo hiki cha kuvutia](https://projector.tensorflow.org/) kujaribu embeddings za maneno. Kubofya neno moja inaonyesha makundi ya maneno yanayofanana: 'toy' inakusanyika na 'disney', 'lego', 'playstation', na 'console'.
+✅ Jaribu [chombo hiki cha kuvutia](https://projector.tensorflow.org/) ili kufanya majaribio na uwakilishi wa maneno. Kubonyeza neno moja kunaonyesha makundi ya maneno yanayofanana: 'toy' linajikusanya na 'disney', 'lego', 'playstation', na 'console'.
 
-### Uchanganuzi & Uwekaji wa Sehemu za Hotuba
+### Uchambuzi wa muundo na Tagi za Sehemu ya Hotuba (Parsing & Part-of-speech Tagging)
 
-Kila neno ambalo limegawanywa linaweza kuwekwa alama kama sehemu ya hotuba - nomino, kitenzi, au kivumishi. Sentensi `the quick red fox jumped over the lazy brown dog` inaweza kuwekwa alama za POS kama fox = nomino, jumped = kitenzi.
+Kila neno lililogawanywa linaweza kutagiwa kama sehemu ya hotuba - nomino, kitenzi, au kivumishi. Sentensi `the quick red fox jumped over the lazy brown dog` inaweza kutagiwa kama fox = nomino, jumped = kitenzi.
 
-![parsing](../../../../translated_images/parse.d0c5bbe1106eae8fe7d60a183cd1736c8b6cec907f38000366535f84f3036101.sw.png)
+![parsing](../../../../6-NLP/2-Tasks/images/parse.png)
 
-> Kuchanganua sentensi kutoka **Pride and Prejudice**. Picha na [Jen Looper](https://twitter.com/jenlooper)
+> Kuchambua sentensi kutoka **Pride and Prejudice**. Picha na [Jen Looper](https://twitter.com/jenlooper)
 
-Uchanganuzi ni kutambua maneno yanayohusiana katika sentensi - kwa mfano `the quick red fox jumped` ni mlolongo wa kivumishi-nomino-kitenzi ambao ni tofauti na mlolongo wa `lazy brown dog`.  
+Uchambuzi wa muundo ni kutambua maneno yanayohusiana katika sentensi - kwa mfano `the quick red fox jumped` ni mfuatano wa kivumishi-nomino-kitenzi ambao ni tofauti na mfuatano wa `lazy brown dog`.
 
-### Mara kwa Mara ya Maneno na Misemo
+### Mara kwa mara ya Maneno na Misemo
 
-Utaratibu muhimu wakati wa kuchambua mwili mkubwa wa maandishi ni kujenga kamusi ya kila neno au msemo wa kuvutia na jinsi inavyoonekana mara kwa mara. Msemo `the quick red fox jumped over the lazy brown dog` una mara mbili ya neno the.
+Njia muhimu wakati wa kuchambua maandishi mengi ni kujenga kamusi ya kila neno au msemo wa kuvutia na jinsi unavyojitokeza mara kwa mara. Msemo `the quick red fox jumped over the lazy brown dog` una mara kwa mara ya neno 2 kwa the.
 
-Hebu tuangalie mfano wa maandishi ambapo tunahesabu mara kwa mara ya maneno. Shairi la Rudyard Kipling "The Winners" lina beti ifuatayo:
+Hebu tuangalie mfano wa maandishi ambapo tunahesabu mara kwa mara ya maneno. Shairi la Rudyard Kipling The Winners lina aya ifuatayo:
 
 ```output
 What the moral? Who rides may read.
@@ -51,11 +60,11 @@ Down to Gehenna or up to the Throne,
 He travels the fastest who travels alone.
 ```
 
-Kama mara kwa mara ya misemo inaweza kuwa isiyo na hisia za herufi kubwa au ndogo kama inavyohitajika, msemo `a friend` has a frequency of 2 and `the` has a frequency of 6, and `travels` ni 2.
+Kwa kuwa mara kwa mara ya misemo inaweza kuwa bila kujali herufi kubwa au ndogo kama inavyohitajika, msemo `a friend` una mara kwa mara ya 2 na `the` una mara kwa mara ya 6, na `travels` ni 2.
 
 ### N-grams
 
-Maandishi yanaweza kugawanywa katika mfuatano wa maneno ya urefu uliowekwa, neno moja (unigram), maneno mawili (bigrams), maneno matatu (trigrams) au idadi yoyote ya maneno (n-grams).
+Maandishi yanaweza kugawanywa katika mfuatano wa maneno ya urefu fulani, neno moja (unigram), maneno mawili (bigrams), maneno matatu (trigrams) au idadi yoyote ya maneno (n-grams).
 
 Kwa mfano `the quick red fox jumped over the lazy brown dog` na alama ya n-gram ya 2 inazalisha n-grams zifuatazo:
 
@@ -69,7 +78,7 @@ Kwa mfano `the quick red fox jumped over the lazy brown dog` na alama ya n-gram 
 8. lazy brown 
 9. brown dog
 
-Inaweza kuwa rahisi kuona kama sanduku la kuteleza juu ya sentensi. Hapa kuna n-grams za maneno 3, n-gram iko kwa herufi nzito katika kila sentensi:
+Inaweza kuwa rahisi kuiona kama sanduku linalosonga juu ya sentensi. Hapa kuna mfano wa n-grams ya maneno 3, n-gram iko kwa herufi nzito katika kila sentensi:
 
 1.   <u>**the quick red**</u> fox jumped over the lazy brown dog
 2.   the **<u>quick red fox</u>** jumped over the lazy brown dog
@@ -84,47 +93,47 @@ Inaweza kuwa rahisi kuona kama sanduku la kuteleza juu ya sentensi. Hapa kuna n-
 
 > Thamani ya N-gram ya 3: Picha na [Jen Looper](https://twitter.com/jenlooper)
 
-### Utoaji wa Misemo ya Nomino
+### Uchimbaji wa Misemo ya Nomino
 
-Katika sentensi nyingi, kuna nomino ambayo ni mhusika, au kitu cha sentensi. Katika Kiingereza, mara nyingi inatambulika kwa kuwa na 'a' au 'an' au 'the' kabla yake. Kutambua mhusika au kitu cha sentensi kwa 'kutoa msemo wa nomino' ni kazi ya kawaida katika NLP wakati wa kujaribu kuelewa maana ya sentensi.
+Katika sentensi nyingi, kuna nomino ambayo ni somo au kitu cha sentensi. Katika Kiingereza, mara nyingi inaweza kutambulika kwa kuwa na 'a' au 'an' au 'the' kabla yake. Kutambua somo au kitu cha sentensi kwa 'kuchimba msemo wa nomino' ni kazi ya kawaida katika NLP wakati wa kujaribu kuelewa maana ya sentensi.
 
-✅ Katika sentensi "Siwezi kuweka saa, au sehemu, au muonekano au maneno, ambayo yaliweka msingi. Ni muda mrefu sana uliopita. Nilikuwa katikati kabla sijajua kuwa nilianza.", unaweza kutambua misemo ya nomino?
+✅ Katika sentensi "I cannot fix on the hour, or the spot, or the look or the words, which laid the foundation. It is too long ago. I was in the middle before I knew that I had begun.", unaweza kutambua misemo ya nomino?
 
 Katika sentensi `the quick red fox jumped over the lazy brown dog` kuna misemo 2 ya nomino: **quick red fox** na **lazy brown dog**.
 
-### Uchanganuzi wa Hisia
+### Uchambuzi wa Hisia
 
-Sentensi au maandishi yanaweza kuchambuliwa kwa hisia, au jinsi *chanya* au *hasi* ilivyo. Hisia hupimwa kwa *polarity* na *objectivity/subjectivity*. Polarity hupimwa kutoka -1.0 hadi 1.0 (hasi hadi chanya) na 0.0 hadi 1.0 (isiyo na upande hadi yenye upande zaidi).
+Sentensi au maandishi yanaweza kuchambuliwa kwa hisia, au jinsi *chanya* au *hasi* ilivyo. Hisia hupimwa kwa *polarity* na *objectivity/subjectivity*. Polarity hupimwa kutoka -1.0 hadi 1.0 (hasi hadi chanya) na 0.0 hadi 1.0 (yawezekana zaidi hadi ya kibinafsi zaidi).
 
-✅ Baadaye utajifunza kuwa kuna njia tofauti za kuamua hisia kwa kutumia kujifunza kwa mashine, lakini njia moja ni kuwa na orodha ya maneno na misemo ambayo imewekwa kama chanya au hasi na mtaalamu wa binadamu na kutumia mfano huo kwa maandishi ili kuhesabu alama ya polarity. Unaweza kuona jinsi hii ingeweza kufanya kazi katika hali zingine na chini katika zingine?
+✅ Baadaye utajifunza kuwa kuna njia tofauti za kuamua hisia kwa kutumia ujifunzaji wa mashine, lakini njia moja ni kuwa na orodha ya maneno na misemo ambayo imeainishwa kama chanya au hasi na mtaalamu wa binadamu na kutumia mfano huo kwa maandishi ili kuhesabu alama ya polarity. Unaweza kuona jinsi hii ingeweza kufanya kazi katika hali fulani na si vizuri katika hali nyingine?
 
-### Ubadilishaji
+### Mabadiliko ya Maneno (Inflection)
 
-Ubadilishaji unakuwezesha kuchukua neno na kupata umoja au wingi wa neno hilo.
+Mabadiliko ya maneno yanakuwezesha kuchukua neno na kupata umoja au wingi wa neno hilo.
 
 ### Lemmatization
 
-*Lemma* ni mzizi au neno kuu kwa seti ya maneno, kwa mfano *flew*, *flies*, *flying* yana lemma ya kitenzi *fly*.
+*Lemma* ni mzizi au neno la kichwa kwa seti ya maneno, kwa mfano *flew*, *flies*, *flying* yana lemma ya kitenzi *fly*.
 
-Kuna pia hifadhidata muhimu zinazopatikana kwa mtafiti wa NLP, haswa:
+Pia kuna hifadhidata muhimu zinazopatikana kwa mtafiti wa NLP, hasa:
 
 ### WordNet
 
-[WordNet](https://wordnet.princeton.edu/) ni hifadhidata ya maneno, visawe, kinyume na maelezo mengine mengi kwa kila neno katika lugha nyingi tofauti. Ni muhimu sana wakati wa kujaribu kujenga tafsiri, ukaguzi wa tahajia, au zana za lugha za aina yoyote.
+[WordNet](https://wordnet.princeton.edu/) ni hifadhidata ya maneno, visawe, maneno kinyume na maelezo mengine mengi kwa kila neno katika lugha nyingi tofauti. Ni muhimu sana wakati wa kujaribu kujenga tafsiri, ukaguzi wa tahajia, au zana za lugha za aina yoyote.
 
 ## Maktaba za NLP
 
-Kwa bahati nzuri, huhitaji kujenga mbinu hizi zote wewe mwenyewe, kwani kuna maktaba bora za Python zinazopatikana ambazo zinaifanya iwe rahisi zaidi kwa waendelezaji ambao hawajabobea katika usindikaji lugha asilia au kujifunza kwa mashine. Masomo yanayofuata yanajumuisha mifano zaidi ya hizi, lakini hapa utajifunza mifano muhimu kukusaidia na kazi inayofuata.
+Kwa bahati nzuri, huhitaji kujenga mbinu hizi zote mwenyewe, kwani kuna maktaba bora za Python zinazopatikana ambazo zinawafanya waendelezaji wasio maalum katika usindikaji wa lugha asilia au ujifunzaji wa mashine kufikia kwa urahisi. Masomo yanayofuata yanajumuisha mifano zaidi ya hizi, lakini hapa utajifunza mifano muhimu kukusaidia na kazi inayofuata.
 
-### Zoezi - kutumia `TextBlob` library
+### Zoezi - kutumia maktaba ya `TextBlob`
 
-Let's use a library called TextBlob as it contains helpful APIs for tackling these types of tasks. TextBlob "stands on the giant shoulders of [NLTK](https://nltk.org) and [pattern](https://github.com/clips/pattern), and plays nicely with both." It has a considerable amount of ML embedded in its API.
+Hebu tutumie maktaba inayoitwa TextBlob kwani ina API za kusaidia kushughulikia aina hizi za kazi. TextBlob "inasimama juu ya mabega makubwa ya [NLTK](https://nltk.org) na [pattern](https://github.com/clips/pattern), na inafanya kazi vizuri na zote mbili." Ina kiasi kikubwa cha ML kilichojumuishwa katika API yake.
 
-> Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers 
+> Kumbuka: Mwongozo wa [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) unapatikana kwa TextBlob ambao unapendekezwa kwa waendelezaji wenye uzoefu wa Python.
 
-When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases. 
+Wakati wa kujaribu kutambua *misemo ya nomino*, TextBlob inatoa chaguo kadhaa za wachimbaji wa kupata misemo ya nomino.
 
-1. Take a look at `ConllExtractor`.
+1. Angalia `ConllExtractor`.
 
     ```python
     from textblob import TextBlob
@@ -138,24 +147,24 @@ When attempting to identify *noun phrases*, TextBlob offers several options of e
     np = user_input_blob.noun_phrases                                    
     ```
 
-    > Nini kinaendelea hapa? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) ni "Kitoa misemo ya nomino kinachotumia uchanganuzi wa vipande vilivyofunzwa na korpasi ya mafunzo ya ConLL-2000." ConLL-2000 inarejelea Mkutano wa 2000 wa Kujifunza Lugha Asilia kwa Njia ya Kompyuta. Kila mwaka mkutano huo ulifanyika warsha ya kushughulikia tatizo gumu la NLP, na mnamo 2000 ilikuwa ni kuchanganua misemo ya nomino. Mfano ulifunzwa kwenye Wall Street Journal, na "sehemu 15-18 kama data ya mafunzo (tokeni 211727) na sehemu 20 kama data ya majaribio (tokeni 47377)". Unaweza kuangalia taratibu zilizotumika [hapa](https://www.clips.uantwerpen.be/conll2000/chunking/) na [matokeo](https://ifarm.nl/erikt/research/np-chunking.html).
+    > Nini kinaendelea hapa? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) ni "Kichimbaji cha misemo ya nomino kinachotumia uchambuzi wa vipande vilivyofundishwa na hifadhidata ya mafunzo ya ConLL-2000." ConLL-2000 inahusu Mkutano wa 2000 wa Kujifunza Lugha Asilia kwa Kompyuta. Kila mwaka mkutano huo ulifanya warsha ya kushughulikia tatizo gumu la NLP, na mwaka 2000 ilikuwa uchambuzi wa vipande vya nomino. Mfano ulifundishwa kwenye Wall Street Journal, na "sehemu 15-18 kama data ya mafunzo (tokeni 211727) na sehemu ya 20 kama data ya majaribio (tokeni 47377)". Unaweza kuangalia taratibu zilizotumika [hapa](https://www.clips.uantwerpen.be/conll2000/chunking/) na [matokeo](https://ifarm.nl/erikt/research/np-chunking.html).
 
 ### Changamoto - kuboresha bot yako kwa NLP
 
-Katika somo lililopita ulijenga bot rahisi sana ya Q&A. Sasa, utamfanya Marvin kuwa na huruma kidogo kwa kuchambua maingizo yako kwa hisia na kuchapisha jibu linalolingana na hisia. Pia utahitaji kutambua `noun_phrase` na kuuliza kuhusu hilo.
+Katika somo lililopita ulijenga bot rahisi ya Maswali na Majibu. Sasa, utamfanya Marvin awe na huruma zaidi kwa kuchambua maoni yako kwa hisia na kuchapisha jibu linalolingana na hisia hizo. Pia utahitaji kutambua `noun_phrase` na kuuliza kuhusu hilo.
 
 Hatua zako wakati wa kujenga bot bora ya mazungumzo:
 
-1. Chapisha maelekezo yanayoshauri mtumiaji jinsi ya kuwasiliana na bot
-2. Anza kitanzi 
-   1. Kubali maingizo ya mtumiaji
-   2. Ikiwa mtumiaji ameomba kutoka, basi toka
-   3. Shughulikia maingizo ya mtumiaji na kubaini jibu linalofaa la hisia
-   4. Ikiwa msemo wa nomino umetambuliwa katika hisia, fanya wingi wake na uliza maingizo zaidi juu ya mada hiyo
+1. Chapisha maelekezo yanayoshauri mtumiaji jinsi ya kuingiliana na bot
+2. Anzisha mzunguko 
+   1. Kubali maoni ya mtumiaji
+   2. Ikiwa mtumiaji ameomba kuondoka, basi ondoka
+   3. Chakata maoni ya mtumiaji na uamue jibu linalofaa la hisia
+   4. Ikiwa msemo wa nomino umetambuliwa katika hisia, fanya wingi wake na uliza maoni zaidi kuhusu mada hiyo
    5. Chapisha jibu
-3. Rudi kwenye hatua ya 2
+3. rudi hatua ya 2
 
-Hapa kuna kipande cha msimbo wa kubaini hisia kwa kutumia TextBlob. Kumbuka kuna *mwelekeo* nne tu za jibu la hisia (unaweza kuwa na zaidi ikiwa unapenda):
+Hapa kuna kipande cha msimbo wa kuamua hisia kwa kutumia TextBlob. Kumbuka kuna *viwango* vinne tu vya jibu la hisia (unaweza kuwa na zaidi ikiwa unapenda):
 
 ```python
 if user_input_blob.polarity <= -0.5:
@@ -168,7 +177,7 @@ elif user_input_blob.polarity <= 1:
   response = "Wow, that sounds great. "
 ```
 
-Hapa kuna matokeo ya sampuli kukuelekeza (maingizo ya mtumiaji yako kwenye mistari iliyoanza na >):
+Hapa kuna baadhi ya matokeo ya sampuli ya kuongoza (maoni ya mtumiaji yako kwenye mistari inayoanza na >):
 
 ```output
 Hello, I am Marvin, the friendly robot.
@@ -187,31 +196,33 @@ Hmm, that's not great. Can you tell me more about old hounddogs?
 It was nice talking to you, goodbye!
 ```
 
-Suluhisho moja linalowezekana kwa kazi hiyo liko [hapa](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/2-Tasks/solution/bot.py)
+Suluhisho moja linalowezekana kwa kazi hiyo ni [hapa](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/2-Tasks/solution/bot.py)
 
 ✅ Uhakiki wa Maarifa
 
-1. Je, unadhani majibu ya huruma yangeweza 'kumdanganya' mtu kufikiria kuwa bot kweli inaelewa?
+1. Je, unadhani majibu yenye huruma yanaweza 'kumdanganya' mtu kufikiria kwamba bot inaelewa kweli?
 2. Je, kutambua msemo wa nomino kunafanya bot iwe ya 'kuaminika' zaidi?
-3. Kwa nini kutoa 'msemo wa nomino' kutoka kwa sentensi ni jambo muhimu kufanya?
+3. Kwa nini kuchimba 'msemo wa nomino' kutoka sentensi ni jambo muhimu kufanya?
 
 ---
 
-Tekeleza bot katika uhakiki wa maarifa wa awali na ujaribu kwa rafiki. Je, inaweza kumdanganya? Je, unaweza kufanya bot yako iwe ya 'kuaminika' zaidi?
+Tekeleza bot katika uhakiki wa maarifa wa awali na ujaribu kwa rafiki. Je, inaweza kuwahadaa? Je, unaweza kufanya bot yako iwe ya 'kuaminika' zaidi?
 
 ## 🚀Changamoto
 
-Chukua kazi katika uhakiki wa maarifa wa awali na ujaribu kuitekeleza. Jaribu bot kwa rafiki. Je, inaweza kumdanganya? Je, unaweza kufanya bot yako iwe ya 'kuaminika' zaidi?
+Chukua kazi katika uhakiki wa maarifa wa awali na jaribu kuitekeleza. Jaribu bot kwa rafiki. Je, inaweza kuwahadaa? Je, unaweza kufanya bot yako iwe ya 'kuaminika' zaidi?
 
-## [Maswali ya baada ya mihadhara](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [Jaribio la baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujisomea
+## Mapitio na Kujisomea
 
-Katika masomo machache yajayo utajifunza zaidi kuhusu uchanganuzi wa hisia. Tafiti mbinu hii ya kuvutia katika makala kama hizi kwenye [KDNuggets](https://www.kdnuggets.com/tag/nlp)
+Katika masomo yanayofuata utajifunza zaidi kuhusu uchambuzi wa hisia. Tafiti mbinu hii ya kuvutia katika makala kama hizi kwenye [KDNuggets](https://www.kdnuggets.com/tag/nlp)
 
-## Kazi
+## Kazi 
 
 [Fanya bot izungumze](assignment.md)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotumia mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya kiasili inapaswa kuzingatiwa kama chanzo chenye mamlaka. Kwa habari muhimu, inashauriwa kupata tafsiri ya kibinadamu ya kitaalamu. Hatutawajibika kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

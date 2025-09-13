@@ -1,6 +1,6 @@
 # Introduction to machine learning
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
@@ -130,7 +130,7 @@ In the near future, understanding the basics of machine learning is going to be 
 
 Sketch, on paper or using an online app like [Excalidraw](https://excalidraw.com/), your understanding of the differences between AI, ML, deep learning, and data science. Add some ideas of problems that each of these techniques are good at solving.
 
-# [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/)
+# [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 # Review & Self Study

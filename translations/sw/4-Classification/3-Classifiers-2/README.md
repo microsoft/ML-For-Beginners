@@ -1,42 +1,51 @@
-# Vihesabu vya vyakula 2
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-05T16:23:09+00:00",
+  "source_file": "4-Classification/3-Classifiers-2/README.md",
+  "language_code": "sw"
+}
+-->
+# Wainishi wa vyakula 2
 
-Katika somo hili la pili la uainishaji, utaangalia njia zaidi za kuainisha data za nambari. Pia utajifunza kuhusu athari za kuchagua kihesabu kimoja juu ya kingine.
+Katika somo hili la pili la uainishaji, utachunguza njia zaidi za kuainisha data ya nambari. Pia utajifunza kuhusu athari za kuchagua mainishi moja badala ya jingine.
 
-## [Jaribio la kabla ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Jaribio la awali la somo](https://ff-quizzes.netlify.app/en/ml/)
 
-### Sharti
+### Mahitaji ya awali
 
-Tunadhani kwamba umekamilisha masomo ya awali na una dataset iliyosafishwa katika folda yako ya `data` inayoitwa _cleaned_cuisines.csv_ katika mzizi wa folda hii ya masomo manne.
+Tunadhani kuwa umekamilisha masomo ya awali na una dataset iliyosafishwa katika folda yako ya `data` inayoitwa _cleaned_cuisines.csv_ katika mzizi wa folda hii ya masomo 4.
 
 ### Maandalizi
 
-Tumeweka faili yako ya _notebook.ipynb_ na dataset iliyosafishwa na tumeigawa katika dataframes za X na y, tayari kwa mchakato wa kujenga modeli.
+Tumeweka faili yako ya _notebook.ipynb_ na dataset iliyosafishwa na tumeigawanya katika fremu za data za X na y, tayari kwa mchakato wa kujenga modeli.
 
 ## Ramani ya uainishaji
 
-Hapo awali, ulijifunza kuhusu chaguzi mbalimbali unazoweza kuwa nazo unapoweka data kwa kutumia karatasi ya udanganyifu ya Microsoft. Scikit-learn inatoa karatasi ya udanganyifu inayofanana, lakini yenye undani zaidi ambayo inaweza kusaidia zaidi kupunguza washauri wako (neno lingine la vihesabu):
+Hapo awali, ulijifunza kuhusu chaguo mbalimbali unazoweza kutumia kuainisha data kwa kutumia karatasi ya udanganyifu ya Microsoft. Scikit-learn inatoa karatasi ya udanganyifu inayofanana, lakini ya kina zaidi, ambayo inaweza kusaidia zaidi kupunguza chaguo zako za makadirio (neno lingine kwa wainishi):
 
-![Ramani ya ML kutoka Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.sw.png)
-> Tip: [tembelea ramani hii mtandaoni](https://scikit-learn.org/stable/tutorial/machine_learning_map/) na bonyeza njia ili kusoma nyaraka.
+![Ramani ya ML kutoka Scikit-learn](../../../../4-Classification/3-Classifiers-2/images/map.png)
+> Kidokezo: [tembelea ramani hii mtandaoni](https://scikit-learn.org/stable/tutorial/machine_learning_map/) na bonyeza njia zake kusoma nyaraka.
 
 ### Mpango
 
-Ramani hii ni muhimu sana mara tu unapokuwa na uelewa mzuri wa data yako, kwani unaweza 'kutembea' kwenye njia zake hadi uamuzi:
+Ramani hii ni muhimu sana mara tu unapokuwa na uelewa wa wazi wa data yako, kwani unaweza 'kutembea' kwenye njia zake hadi kufikia uamuzi:
 
 - Tuna sampuli >50
 - Tunataka kutabiri kategoria
-- Tuna data zilizo na lebo
+- Tuna data yenye lebo
 - Tuna sampuli chini ya 100K
 - ✨ Tunaweza kuchagua Linear SVC
-- Ikiwa hiyo haifanyi kazi, kwa kuwa tuna data za nambari
+- Ikiwa hiyo haifanyi kazi, kwa kuwa tuna data ya nambari
     - Tunaweza kujaribu ✨ KNeighbors Classifier 
       - Ikiwa hiyo haifanyi kazi, jaribu ✨ SVC na ✨ Ensemble Classifiers
 
-Hii ni njia nzuri sana ya kufuata.
+Hii ni njia muhimu sana ya kufuata.
 
 ## Zoezi - gawanya data
 
-Kufuata njia hii, tunapaswa kuanza kwa kuingiza baadhi ya maktaba za kutumia.
+Kwa kufuata njia hii, tunapaswa kuanza kwa kuingiza baadhi ya maktaba za kutumia.
 
 1. Ingiza maktaba zinazohitajika:
 
@@ -56,13 +65,13 @@ Kufuata njia hii, tunapaswa kuanza kwa kuingiza baadhi ya maktaba za kutumia.
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Kihesabu cha Linear SVC
+## Wainishi wa Linear SVC
 
-Support-Vector clustering (SVC) ni mtoto wa familia ya Support-Vector machines ya mbinu za ML (jifunze zaidi kuhusu hizi hapa chini). Katika njia hii, unaweza kuchagua 'kernel' kuamua jinsi ya kuainisha lebo. Kigezo cha 'C' kinahusu 'uregulishaji' ambao unadhibiti ushawishi wa vigezo. Kernel inaweza kuwa moja ya [kadhaa](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); hapa tunaweka 'linear' kuhakikisha tunatumia linear SVC. Uwezekano kwa default ni 'false'; hapa tunaweka 'true' ili kupata makadirio ya uwezekano. Tunaweka hali ya nasibu kuwa '0' ili kuchanganya data kupata uwezekano.
+Support-Vector clustering (SVC) ni sehemu ya familia ya Support-Vector machines ya mbinu za ML (jifunze zaidi kuhusu hizi hapa chini). Katika mbinu hii, unaweza kuchagua 'kernel' kuamua jinsi ya kuainisha lebo. Kipengele cha 'C' kinahusu 'regularization' ambacho kinadhibiti ushawishi wa vigezo. Kernel inaweza kuwa moja ya [kadhaa](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); hapa tunaiweka kuwa 'linear' ili kuhakikisha tunatumia Linear SVC. Uwezekano unakuwa 'false' kwa default; hapa tunaiweka kuwa 'true' ili kupata makadirio ya uwezekano. Tunaiweka random state kuwa '0' ili kuchanganya data kupata uwezekano.
 
-### Zoezi - tumia linear SVC
+### Zoezi - tumia Linear SVC
 
-Anza kwa kuunda safu ya vihesabu. Utaongeza polepole kwenye safu hii tunapojaribu. 
+Anza kwa kuunda safu ya wainishi. Utaongeza hatua kwa hatua kwenye safu hii tunapojaribu. 
 
 1. Anza na Linear SVC:
 
@@ -74,7 +83,7 @@ Anza kwa kuunda safu ya vihesabu. Utaongeza polepole kwenye safu hii tunapojarib
     }
     ```
 
-2. Funza modeli yako kwa kutumia Linear SVC na uchapishe ripoti:
+2. Funza modeli yako kwa kutumia Linear SVC na chapisha ripoti:
 
     ```python
     n_classifiers = len(classifiers)
@@ -88,7 +97,7 @@ Anza kwa kuunda safu ya vihesabu. Utaongeza polepole kwenye safu hii tunapojarib
         print(classification_report(y_test,y_pred))
     ```
 
-    Matokeo ni mazuri sana:
+    Matokeo ni mazuri:
 
     ```output
     Accuracy (train) for Linear SVC: 78.6% 
@@ -105,21 +114,21 @@ Anza kwa kuunda safu ya vihesabu. Utaongeza polepole kwenye safu hii tunapojarib
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-## K-Neighbors classifier
+## Wainishi wa K-Neighbors
 
-K-Neighbors ni sehemu ya familia ya "majirani" ya mbinu za ML, ambazo zinaweza kutumika kwa kujifunza kwa usimamizi na bila usimamizi. Katika njia hii, idadi iliyopangwa ya pointi huundwa na data hukusanywa karibu na pointi hizi ili lebo zilizojumlishwa ziweze kutabiriwa kwa data.
+K-Neighbors ni sehemu ya familia ya "neighbors" ya mbinu za ML, ambazo zinaweza kutumika kwa kujifunza kwa usimamizi na bila usimamizi. Katika mbinu hii, idadi ya alama zilizowekwa awali huundwa na data hukusanywa karibu na alama hizi ili lebo za jumla ziweze kutabiriwa kwa data.
 
-### Zoezi - tumia K-Neighbors classifier
+### Zoezi - tumia wainishi wa K-Neighbors
 
-Kihesabu kilichopita kilikuwa kizuri, na kilifanya kazi vizuri na data, lakini labda tunaweza kupata usahihi bora zaidi. Jaribu K-Neighbors classifier.
+Wainishi wa awali ulikuwa mzuri, na ulifanya kazi vizuri na data, lakini labda tunaweza kupata usahihi bora. Jaribu wainishi wa K-Neighbors.
 
-1. Ongeza mstari kwenye safu yako ya kihesabu (ongeza koma baada ya kipengee cha Linear SVC):
+1. Ongeza mstari kwenye safu yako ya wainishi (ongeza koma baada ya kipengele cha Linear SVC):
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
     ```
 
-    Matokeo ni mabaya kidogo:
+    Matokeo ni kidogo mabaya:
 
     ```output
     Accuracy (train) for KNN classifier: 73.8% 
@@ -138,15 +147,15 @@ Kihesabu kilichopita kilikuwa kizuri, na kilifanya kazi vizuri na data, lakini l
 
     ✅ Jifunze kuhusu [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
 
-## Kihesabu cha Support Vector
+## Wainishi wa Support Vector
 
-Kihesabu cha Support-Vector ni sehemu ya familia ya [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) ya mbinu za ML ambazo hutumika kwa kazi za uainishaji na regression. SVMs "huweka mifano ya mafunzo kwenye pointi katika nafasi" ili kuongeza umbali kati ya kategoria mbili. Data inayofuata huwekwa katika nafasi hii ili kategoria yao iweze kutabiriwa.
+Wainishi wa Support-Vector ni sehemu ya familia ya [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) ya mbinu za ML zinazotumika kwa kazi za uainishaji na urejeleaji. SVMs "huweka mifano ya mafunzo kwenye alama katika nafasi" ili kuongeza umbali kati ya kategoria mbili. Data inayofuata huwekwa kwenye nafasi hii ili kategoria yake iweze kutabiriwa.
 
-### Zoezi - tumia Support Vector Classifier
+### Zoezi - tumia wainishi wa Support Vector
 
-Hebu jaribu kupata usahihi bora zaidi kwa kutumia Support Vector Classifier.
+Hebu jaribu kupata usahihi bora kidogo kwa wainishi wa Support Vector.
 
-1. Ongeza koma baada ya kipengee cha K-Neighbors, na kisha ongeza mstari huu:
+1. Ongeza koma baada ya kipengele cha K-Neighbors, kisha ongeza mstari huu:
 
     ```python
     'SVC': SVC(),
@@ -171,9 +180,9 @@ Hebu jaribu kupata usahihi bora zaidi kwa kutumia Support Vector Classifier.
 
     ✅ Jifunze kuhusu [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm)
 
-## Vihesabu vya Ensemble
+## Wainishi wa Ensemble
 
-Hebu fuata njia hadi mwisho, ingawa jaribio la awali lilikuwa zuri sana. Hebu jaribu 'Ensemble Classifiers, haswa Random Forest na AdaBoost:
+Hebu fuata njia hadi mwisho kabisa, ingawa jaribio la awali lilikuwa zuri sana. Hebu jaribu baadhi ya 'Ensemble Classifiers', hasa Random Forest na AdaBoost:
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
@@ -212,27 +221,29 @@ weighted avg       0.73      0.72      0.72      1199
 
 ✅ Jifunze kuhusu [Ensemble Classifiers](https://scikit-learn.org/stable/modules/ensemble.html)
 
-Njia hii ya Kujifunza Mashine "inaunganisha utabiri wa wahesabuji kadhaa wa msingi" ili kuboresha ubora wa modeli. Katika mfano wetu, tulitumia Random Trees na AdaBoost. 
+Mbinu hii ya Kujifunza kwa Mashine "inaunganisha makadirio ya wainishi kadhaa wa msingi" ili kuboresha ubora wa modeli. Katika mfano wetu, tulitumia Random Trees na AdaBoost. 
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), njia ya wastani, inajenga 'msitu' wa 'miti ya maamuzi' iliyo na nasibu ili kuepuka kufaa kupita kiasi. Kigezo cha n_estimators kimewekwa kwa idadi ya miti.
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), mbinu ya wastani, huunda 'msitu' wa 'miti ya maamuzi' yenye nasibu ili kuepuka overfitting. Kipengele cha n_estimators kimewekwa kwa idadi ya miti.
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) inafaa kihesabu kwa dataset na kisha inafaa nakala za kihesabu hicho kwa dataset hiyo hiyo. Inazingatia uzito wa vitu vilivyoainishwa vibaya na kurekebisha kifaa kwa kihesabu kinachofuata ili kusahihisha.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) huweka wainishi kwenye dataset na kisha huweka nakala za wainishi huo kwenye dataset hiyo hiyo. Inazingatia uzito wa vitu vilivyoainishwa vibaya na kurekebisha fit kwa wainishi unaofuata ili kusahihisha.
 
 ---
 
 ## 🚀Changamoto
 
-Kila moja ya mbinu hizi ina idadi kubwa ya vigezo unavyoweza kurekebisha. Tafiti vigezo vya default vya kila moja na fikiria kuhusu nini kurekebisha vigezo hivi kungeleta kwa ubora wa modeli.
+Kila moja ya mbinu hizi ina idadi kubwa ya vigezo ambavyo unaweza kurekebisha. Tafiti vigezo vya default vya kila moja na fikiria kuhusu maana ya kurekebisha vigezo hivi kwa ubora wa modeli.
 
-## [Jaribio la baada ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Jaribio la baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Mapitio & Kujisomea
 
-Kuna maneno mengi ya kitaalamu katika masomo haya, kwa hivyo chukua muda kidogo kupitia [orodha hii](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) ya maneno muhimu!
+Kuna msamiati mwingi katika masomo haya, kwa hivyo chukua muda kupitia [orodha hii](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) ya istilahi muhimu!
 
 ## Kazi 
 
 [Cheza na vigezo](assignment.md)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotumia mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokamilika. Hati ya asili katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au kutafsiri vibaya kunakotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

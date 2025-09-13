@@ -1,14 +1,25 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "58dfdaf79fb73f7d34b22bdbacf57329",
+  "translation_date": "2025-09-05T19:57:46+00:00",
+  "source_file": "4-Classification/3-Classifiers-2/assignment.md",
+  "language_code": "ms"
+}
+-->
 # Parameter Play
 
 ## Arahan
 
-Terdapat banyak parameter yang ditetapkan secara default apabila bekerja dengan pengklasifikasi ini. Intellisense dalam VS Code boleh membantu anda menggali ke dalamnya. Gunakan salah satu Teknik Pengelasan ML dalam pelajaran ini dan latih semula model dengan menyesuaikan pelbagai nilai parameter. Bina sebuah notebook yang menerangkan mengapa beberapa perubahan membantu kualiti model sementara yang lain merosakkannya. Berikan jawapan anda dengan terperinci.
+Terdapat banyak parameter yang ditetapkan secara lalai apabila bekerja dengan pengklasifikasi ini. Intellisense dalam VS Code boleh membantu anda menyelidiki parameter-parameter tersebut. Gunakan salah satu Teknik Pengklasifikasian ML dalam pelajaran ini dan latih semula model dengan mengubah nilai parameter yang berbeza. Bina sebuah notebook yang menerangkan mengapa sesetengah perubahan membantu kualiti model manakala yang lain merosakkannya. Berikan jawapan yang terperinci.
 
 ## Rubrik
 
-| Kriteria | Cemerlang                                                                                                              | Memadai                                               | Perlu Penambahbaikan          |
+| Kriteria | Cemerlang                                                                                                              | Memadai                                              | Perlu Penambahbaikan         |
 | -------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------- |
-|          | Sebuah notebook dipersembahkan dengan pengklasifikasi yang dibina sepenuhnya dan parameternya disesuaikan serta perubahan dijelaskan dalam kotak teks | Sebuah notebook dipersembahkan sebahagian atau dijelaskan dengan lemah | Sebuah notebook yang bermasalah atau cacat |
+|          | Sebuah notebook disediakan dengan pengklasifikasi yang dibina sepenuhnya dan parameternya diubah serta perubahan diterangkan dalam kotak teks | Sebuah notebook disediakan sebahagian atau diterangkan dengan kurang baik | Sebuah notebook yang mempunyai pepijat atau cacat |
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesalahan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

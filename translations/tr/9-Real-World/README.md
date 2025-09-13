@@ -1,21 +1,32 @@
-# Sonsöz: Klasik makine öğreniminin gerçek dünya uygulamaları
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "5e069a0ac02a9606a69946c2b3c574a9",
+  "translation_date": "2025-09-06T07:52:48+00:00",
+  "source_file": "9-Real-World/README.md",
+  "language_code": "tr"
+}
+-->
+# Postscript: Klasik Makine Öğreniminin Gerçek Dünya Uygulamaları
 
-Bu bölümde, klasik ML'in bazı gerçek dünya uygulamalarıyla tanışacaksınız. İnterneti tarayarak bu stratejileri kullanan uygulamalar hakkında makaleler ve raporlar bulduk, mümkün olduğunca sinir ağlarından, derin öğrenmeden ve yapay zekadan kaçındık. ML'in iş sistemlerinde, ekolojik uygulamalarda, finans, sanat ve kültürde nasıl kullanıldığını öğrenin.
+Bu müfredat bölümünde, klasik makine öğreniminin gerçek dünya uygulamalarına dair örneklerle tanışacaksınız. İnternette, bu stratejileri kullanan uygulamalar hakkında makaleler ve teknik raporlar bulmak için kapsamlı bir araştırma yaptık; mümkün olduğunca sinir ağları, derin öğrenme ve yapay zekadan kaçındık. Makine öğreniminin iş sistemlerinde, ekolojik uygulamalarda, finans, sanat ve kültür gibi alanlarda nasıl kullanıldığını öğrenin.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.tr.jpg)
+![chess](../../../9-Real-World/images/chess.jpg)
 
-> Fotoğraf <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> tarafından <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> üzerinde
+> Fotoğraf: <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a>, <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Ders
 
-1. [ML için Gerçek Dünya Uygulamaları](1-Applications/README.md)
-2. [Sorumlu AI kontrol paneli bileşenlerini kullanarak Makine Öğrenimi Modellerini Hata Ayıklama](2-Debugging-ML-Models/README.md)
+1. [Makine Öğrenimi için Gerçek Dünya Uygulamaları](1-Applications/README.md)
+2. [Makine Öğrenimi Modellerinde Hata Ayıklama: Responsible AI Dashboard Bileşenleri Kullanımı](2-Debugging-ML-Models/README.md)
 
 ## Katkıda Bulunanlar
 
 "Gerçek Dünya Uygulamaları" [Jen Looper](https://twitter.com/jenlooper) ve [Ornella Altunyan](https://twitter.com/ornelladotcom) dahil olmak üzere bir ekip tarafından yazılmıştır.
 
-"Sorumlu AI kontrol paneli bileşenlerini kullanarak Makine Öğrenimi Modellerini Hata Ayıklama" [Ruth Yakubu](https://twitter.com/ruthieyakubu) tarafından yazılmıştır.
+"Makine Öğrenimi Modellerinde Hata Ayıklama: Responsible AI Dashboard Bileşenleri Kullanımı" [Ruth Yakubu](https://twitter.com/ruthieyakubu) tarafından yazılmıştır.
 
-**Feragatname**: 
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluğu sağlamak için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilmektedir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

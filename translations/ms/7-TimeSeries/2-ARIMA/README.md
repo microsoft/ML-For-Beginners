@@ -1,46 +1,55 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T19:01:16+00:00",
+  "source_file": "7-TimeSeries/2-ARIMA/README.md",
+  "language_code": "ms"
+}
+-->
 # Ramalan siri masa dengan ARIMA
 
-Dalam pelajaran sebelumnya, anda telah mempelajari sedikit tentang ramalan siri masa dan memuat dataset yang menunjukkan turun naik beban elektrik dalam satu tempoh masa.
+Dalam pelajaran sebelumnya, anda telah mempelajari sedikit tentang ramalan siri masa dan memuatkan dataset yang menunjukkan turun naik beban elektrik sepanjang tempoh masa.
 
 [![Pengenalan kepada ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Pengenalan kepada ARIMA")
 
-> 🎥 Klik pada imej di atas untuk video: Pengenalan ringkas kepada model ARIMA. Contoh dilakukan dalam R, tetapi konsepnya adalah universal.
+> 🎥 Klik imej di atas untuk video: Pengenalan ringkas kepada model ARIMA. Contoh dilakukan dalam R, tetapi konsepnya adalah universal.
 
-## [Kuiz pra-kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Kuiz pra-pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Pengenalan
 
-Dalam pelajaran ini, anda akan menemui cara khusus untuk membina model dengan [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Model ARIMA sangat sesuai untuk data yang menunjukkan [ketidakstasioner](https://wikipedia.org/wiki/Stationary_process).
+Dalam pelajaran ini, anda akan meneroka cara khusus untuk membina model dengan [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Model ARIMA sangat sesuai untuk data yang menunjukkan [ketidakstasioner](https://wikipedia.org/wiki/Stationary_process).
 
 ## Konsep umum
 
-Untuk dapat bekerja dengan ARIMA, terdapat beberapa konsep yang perlu anda ketahui:
+Untuk bekerja dengan ARIMA, terdapat beberapa konsep yang perlu anda ketahui:
 
-- 🎓 **Stasioneriti**. Dari konteks statistik, stasioneriti merujuk kepada data yang taburannya tidak berubah apabila digeser dalam masa. Data yang tidak stasioner, kemudian, menunjukkan turun naik akibat tren yang mesti ditransformasikan untuk dianalisis. Musim, sebagai contoh, boleh memperkenalkan turun naik dalam data dan boleh dihapuskan melalui proses 'perbezaan bermusim'.
+- 🎓 **Stasioneriti**. Dalam konteks statistik, stasioneriti merujuk kepada data yang taburannya tidak berubah apabila dialihkan dalam masa. Data yang tidak stasioner menunjukkan turun naik akibat trend yang perlu diubah untuk dianalisis. Musim, sebagai contoh, boleh memperkenalkan turun naik dalam data dan boleh dihapuskan melalui proses 'seasonal-differencing'.
 
-- 🎓 **[Perbezaan](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Membezakan data, sekali lagi dari konteks statistik, merujuk kepada proses mengubah data yang tidak stasioner untuk menjadikannya stasioner dengan menghapuskan tren yang tidak tetap. "Perbezaan menghapuskan perubahan dalam tahap siri masa, menghapuskan tren dan musim dan seterusnya menstabilkan purata siri masa." [Kertas oleh Shixiong et al](https://arxiv.org/abs/1904.07632)
+- 🎓 **[Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Differencing data, sekali lagi dalam konteks statistik, merujuk kepada proses mengubah data yang tidak stasioner untuk menjadikannya stasioner dengan menghapuskan trend yang tidak tetap. "Differencing menghapuskan perubahan dalam tahap siri masa, menghapuskan trend dan musim, dan seterusnya menstabilkan purata siri masa." [Kertas oleh Shixiong et al](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA dalam konteks siri masa
 
-Mari kita huraikan bahagian-bahagian ARIMA untuk lebih memahami bagaimana ia membantu kita memodelkan siri masa dan membantu kita membuat ramalan terhadapnya.
+Mari kita pecahkan bahagian ARIMA untuk memahami dengan lebih baik bagaimana ia membantu kita memodelkan siri masa dan membuat ramalan terhadapnya.
 
-- **AR - untuk AutoRegressive**. Model autoregressive, seperti namanya, melihat 'ke belakang' dalam masa untuk menganalisis nilai-nilai terdahulu dalam data anda dan membuat anggapan mengenainya. Nilai-nilai terdahulu ini dipanggil 'lags'. Contohnya ialah data yang menunjukkan jualan bulanan pensel. Jumlah jualan setiap bulan akan dianggap sebagai 'pembolehubah yang berkembang' dalam dataset. Model ini dibina kerana "pembolehubah yang berkembang menarik minat diregresi pada nilai terdahulunya sendiri (iaitu, nilai sebelumnya)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - untuk AutoRegressive**. Model autoregressive, seperti namanya, melihat 'ke belakang' dalam masa untuk menganalisis nilai sebelumnya dalam data anda dan membuat andaian mengenainya. Nilai sebelumnya ini dipanggil 'lags'. Contohnya ialah data yang menunjukkan jualan bulanan pensel. Jumlah jualan setiap bulan akan dianggap sebagai 'pembolehubah yang berkembang' dalam dataset. Model ini dibina sebagai "pembolehubah yang berkembang diregreskan pada nilai lagged (iaitu, sebelumnya) sendiri." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - untuk Integrated**. Berbeza dengan model 'ARMA' yang serupa, 'I' dalam ARIMA merujuk kepada aspek *[terintegrasi](https://wikipedia.org/wiki/Order_of_integration)*. Data 'terintegrasi' apabila langkah-langkah perbezaan diterapkan untuk menghapuskan ketidakstasioner.
+- **I - untuk Integrated**. Berbeza dengan model 'ARMA' yang serupa, 'I' dalam ARIMA merujuk kepada aspek *[integrated](https://wikipedia.org/wiki/Order_of_integration)*. Data 'diintegrasikan' apabila langkah-langkah differencing digunakan untuk menghapuskan ketidakstasioner.
 
-- **MA - untuk Moving Average**. Aspek [moving-average](https://wikipedia.org/wiki/Moving-average_model) model ini merujuk kepada pembolehubah output yang ditentukan dengan memerhati nilai semasa dan masa lalu lag.
+- **MA - untuk Moving Average**. Aspek [moving-average](https://wikipedia.org/wiki/Moving-average_model) model ini merujuk kepada pembolehubah output yang ditentukan dengan memerhatikan nilai lag semasa dan sebelumnya.
 
-Kesimpulan: ARIMA digunakan untuk membuat model sesuai dengan bentuk khas data siri masa seakrab mungkin.
+Kesimpulan: ARIMA digunakan untuk membuat model sesuai dengan bentuk khas data siri masa sebaik mungkin.
 
 ## Latihan - bina model ARIMA
 
 Buka folder [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) dalam pelajaran ini dan cari fail [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb).
 
-1. Jalankan notebook untuk memuat perpustakaan `statsmodels` Python; anda akan memerlukannya untuk model ARIMA.
+1. Jalankan notebook untuk memuatkan pustaka Python `statsmodels`; anda akan memerlukan ini untuk model ARIMA.
 
-1. Muatkan perpustakaan yang diperlukan
+1. Muatkan pustaka yang diperlukan.
 
-1. Sekarang, muatkan beberapa perpustakaan lagi yang berguna untuk melukis data:
+1. Sekarang, muatkan beberapa pustaka lagi yang berguna untuk memplot data:
 
     ```python
     import os
@@ -63,14 +72,14 @@ Buka folder [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. Muat data dari fail `/data/energy.csv` ke dalam dataframe Pandas dan lihat:
+1. Muatkan data dari fail `/data/energy.csv` ke dalam dataframe Pandas dan lihat:
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. Lukis semua data tenaga yang tersedia dari Januari 2012 hingga Disember 2014. Tidak sepatutnya ada kejutan kerana kita telah melihat data ini dalam pelajaran lepas:
+1. Plot semua data tenaga yang tersedia dari Januari 2012 hingga Disember 2014. Tidak ada kejutan kerana kita telah melihat data ini dalam pelajaran terakhir:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -81,9 +90,9 @@ Buka folder [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
 
     Sekarang, mari kita bina model!
 
-### Buat dataset latihan dan ujian
+### Cipta dataset latihan dan ujian
 
-Sekarang data anda telah dimuatkan, jadi anda boleh memisahkannya ke dalam set latihan dan ujian. Anda akan melatih model anda pada set latihan. Seperti biasa, selepas model selesai dilatih, anda akan menilai ketepatannya menggunakan set ujian. Anda perlu memastikan bahawa set ujian meliputi tempoh masa yang lebih lewat daripada set latihan untuk memastikan bahawa model tidak memperoleh maklumat daripada tempoh masa hadapan.
+Sekarang data anda telah dimuatkan, anda boleh memisahkannya kepada set latihan dan ujian. Anda akan melatih model anda pada set latihan. Seperti biasa, selepas model selesai dilatih, anda akan menilai ketepatannya menggunakan set ujian. Anda perlu memastikan bahawa set ujian meliputi tempoh masa yang lebih lewat daripada set latihan untuk memastikan model tidak mendapat maklumat daripada tempoh masa akan datang.
 
 1. Peruntukkan tempoh dua bulan dari 1 September hingga 31 Oktober 2014 kepada set latihan. Set ujian akan merangkumi tempoh dua bulan dari 1 November hingga 31 Disember 2014:
 
@@ -92,9 +101,9 @@ Sekarang data anda telah dimuatkan, jadi anda boleh memisahkannya ke dalam set l
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Oleh kerana data ini mencerminkan penggunaan tenaga harian, terdapat corak bermusim yang kuat, tetapi penggunaan adalah paling serupa dengan penggunaan pada hari-hari yang lebih baru.
+    Oleh kerana data ini mencerminkan penggunaan tenaga harian, terdapat corak bermusim yang kuat, tetapi penggunaan paling serupa dengan penggunaan pada hari-hari yang lebih baru.
 
-1. Visualisasikan perbezaannya:
+1. Visualisasikan perbezaan:
 
     ```python
     energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -105,17 +114,17 @@ Sekarang data anda telah dimuatkan, jadi anda boleh memisahkannya ke dalam set l
     plt.show()
     ```
 
-    ![data latihan dan ujian](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.ms.png)
+    ![data latihan dan ujian](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    Oleh itu, menggunakan jangka masa yang agak kecil untuk melatih data sepatutnya mencukupi.
+    Oleh itu, menggunakan tetingkap masa yang agak kecil untuk melatih data sepatutnya mencukupi.
 
-    > Nota: Oleh kerana fungsi yang kita gunakan untuk menyesuaikan model ARIMA menggunakan pengesahan dalam-sampel semasa pemasangan, kita akan mengabaikan data pengesahan.
+    > Nota: Oleh kerana fungsi yang kita gunakan untuk memuatkan model ARIMA menggunakan pengesahan dalam-sampel semasa pemuatan, kita akan mengabaikan data pengesahan.
 
 ### Sediakan data untuk latihan
 
-Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan dan penskalaan data anda. Tapis dataset anda untuk hanya merangkumi tempoh masa dan lajur yang anda perlukan, dan penskalaan untuk memastikan data diproyeksikan dalam selang 0,1.
+Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan dan penskalaan data anda. Tapis dataset anda untuk hanya memasukkan tempoh masa dan lajur yang diperlukan, dan skala untuk memastikan data diproyeksikan dalam selang 0,1.
 
-1. Tapis dataset asal untuk hanya merangkumi tempoh masa yang disebutkan di atas setiap set dan hanya termasuk lajur 'load' yang diperlukan serta tarikh:
+1. Tapis dataset asal untuk hanya memasukkan tempoh masa yang disebutkan sebelum ini bagi setiap set dan hanya memasukkan lajur 'load' yang diperlukan serta tarikh:
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -140,7 +149,7 @@ Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan d
     train.head(10)
     ```
 
-1. Visualisasikan data asal vs. data berskala:
+1. Visualisasikan data asal vs. data yang telah diskala:
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,15 +157,15 @@ Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan d
     plt.show()
     ```
 
-    ![asal](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.ms.png)
+    ![asal](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > Data asal
 
-    ![berskala](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.ms.png)
+    ![diskala](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
-    > Data berskala
+    > Data yang telah diskala
 
-1. Sekarang bahawa anda telah menentukur data berskala, anda boleh menskala data ujian:
+1. Sekarang setelah anda menentukur data yang telah diskala, anda boleh menskalakan data ujian:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -165,21 +174,21 @@ Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan d
 
 ### Laksanakan ARIMA
 
-Sudah tiba masanya untuk melaksanakan ARIMA! Anda kini akan menggunakan perpustakaan `statsmodels` yang anda pasang sebelum ini.
+Sudah tiba masanya untuk melaksanakan ARIMA! Anda kini akan menggunakan pustaka `statsmodels` yang telah anda pasang sebelum ini.
 
-Sekarang anda perlu mengikuti beberapa langkah
+Sekarang anda perlu mengikuti beberapa langkah:
 
-   1. Tentukan model dengan memanggil `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters.
-   2. Prepare the model for the training data by calling the fit() function.
-   3. Make predictions calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast.
+   1. Tentukan model dengan memanggil `SARIMAX()` dan memasukkan parameter model: parameter p, d, dan q, serta parameter P, D, dan Q.
+   2. Sediakan model untuk data latihan dengan memanggil fungsi fit().
+   3. Buat ramalan dengan memanggil fungsi `forecast()` dan menentukan bilangan langkah (horizon) untuk diramalkan.
 
-> 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
+> 🎓 Apakah semua parameter ini? Dalam model ARIMA terdapat 3 parameter yang digunakan untuk membantu memodelkan aspek utama siri masa: musim, trend, dan bunyi. Parameter ini adalah:
 
-`p`: the parameter associated with the auto-regressive aspect of the model, which incorporates *past* values.
-`d`: the parameter associated with the integrated part of the model, which affects the amount of *differencing* (🎓 remember differencing 👆?) to apply to a time series.
-`q`: the parameter associated with the moving-average part of the model.
+`p`: parameter yang berkaitan dengan aspek auto-regressive model, yang menggabungkan nilai *masa lalu*.
+`d`: parameter yang berkaitan dengan bahagian integrated model, yang mempengaruhi jumlah *differencing* (🎓 ingat differencing 👆?) yang digunakan pada siri masa.
+`q`: parameter yang berkaitan dengan bahagian moving-average model.
 
-> Note: If your data has a seasonal aspect - which this one does - , we use a seasonal ARIMA model (SARIMA). In that case you need to use another set of parameters: `P`, `D`, and `Q` which describe the same associations as `p`, `d`, and `q`, tetapi sepadan dengan komponen bermusim model.
+> Nota: Jika data anda mempunyai aspek bermusim - seperti data ini -, kita menggunakan model ARIMA bermusim (SARIMA). Dalam kes ini, anda perlu menggunakan satu set parameter lain: `P`, `D`, dan `Q` yang menerangkan hubungan yang sama seperti `p`, `d`, dan `q`, tetapi berkaitan dengan komponen bermusim model.
 
 1. Mulakan dengan menetapkan nilai horizon pilihan anda. Mari cuba 3 jam:
 
@@ -189,7 +198,7 @@ Sekarang anda perlu mengikuti beberapa langkah
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Memilih nilai terbaik untuk parameter model ARIMA boleh menjadi mencabar kerana ia agak subjektif dan memerlukan masa. Anda mungkin mempertimbangkan untuk menggunakan `auto_arima()` function from the [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
+    Memilih nilai terbaik untuk parameter model ARIMA boleh menjadi cabaran kerana ia agak subjektif dan memakan masa. Anda mungkin mempertimbangkan untuk menggunakan fungsi `auto_arima()` daripada pustaka [`pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
 
 1. Buat masa ini cuba beberapa pilihan manual untuk mencari model yang baik.
 
@@ -203,23 +212,23 @@ Sekarang anda perlu mengikuti beberapa langkah
     print(results.summary())
     ```
 
-    Jadual keputusan dicetak.
+    Jadual hasil dicetak.
 
 Anda telah membina model pertama anda! Sekarang kita perlu mencari cara untuk menilainya.
 
-### Menilai model anda
+### Nilai model anda
 
-Untuk menilai model anda, anda boleh melakukan pengesahan `walk forward`. Dalam amalan, model siri masa dilatih semula setiap kali data baru tersedia. Ini membolehkan model membuat ramalan terbaik pada setiap langkah masa.
+Untuk menilai model anda, anda boleh melakukan pengesahan `walk forward`. Dalam praktiknya, model siri masa dilatih semula setiap kali data baru tersedia. Ini membolehkan model membuat ramalan terbaik pada setiap langkah masa.
 
-Bermula dari awal siri masa menggunakan teknik ini, latih model pada set data latihan. Kemudian buat ramalan pada langkah masa seterusnya. Ramalan dinilai terhadap nilai yang diketahui. Set latihan kemudian diperluas untuk merangkumi nilai yang diketahui dan proses diulang.
+Bermula dari awal siri masa menggunakan teknik ini, latih model pada set data latihan. Kemudian buat ramalan pada langkah masa seterusnya. Ramalan dinilai terhadap nilai yang diketahui. Set latihan kemudian diperluaskan untuk memasukkan nilai yang diketahui dan proses diulang.
 
-> Nota: Anda harus memastikan tetingkap set latihan tetap untuk latihan yang lebih cekap supaya setiap kali anda menambah pemerhatian baru pada set latihan, anda menghapuskan pemerhatian dari permulaan set.
+> Nota: Anda harus mengekalkan tetingkap set latihan tetap untuk latihan yang lebih cekap supaya setiap kali anda menambah pemerhatian baru ke set latihan, anda menghapuskan pemerhatian dari permulaan set.
 
-Proses ini menyediakan anggaran yang lebih kukuh tentang bagaimana model akan berfungsi dalam amalan. Walau bagaimanapun, ia datang pada kos pengiraan untuk mencipta begitu banyak model. Ini boleh diterima jika data kecil atau model mudah, tetapi boleh menjadi isu pada skala besar.
+Proses ini memberikan anggaran yang lebih kukuh tentang bagaimana model akan berfungsi dalam praktik. Walau bagaimanapun, ia datang dengan kos pengiraan untuk mencipta begitu banyak model. Ini boleh diterima jika data kecil atau jika model mudah, tetapi boleh menjadi isu pada skala besar.
 
-Pengesahan 'walk-forward' adalah standard emas penilaian model siri masa dan disyorkan untuk projek anda sendiri.
+Pengesahan walk-forward adalah standard emas untuk penilaian model siri masa dan disyorkan untuk projek anda sendiri.
 
-1. Pertama, buat titik data ujian untuk setiap langkah HORIZON.
+1. Pertama, cipta titik data ujian untuk setiap langkah HORIZON.
 
     ```python
     test_shifted = test.copy()
@@ -239,9 +248,9 @@ Pengesahan 'walk-forward' adalah standard emas penilaian model siri masa dan dis
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    Data digeser secara mendatar mengikut titik horizon.
+    Data dialihkan secara mendatar mengikut titik horizon.
 
-1. Buat ramalan pada data ujian anda menggunakan pendekatan tetingkap gelongsor ini dalam gelung sepanjang panjang data ujian:
+1. Buat ramalan pada data ujian anda menggunakan pendekatan tetingkap gelongsor dalam gelung sepanjang panjang data ujian:
 
     ```python
     %%time
@@ -304,19 +313,21 @@ Pengesahan 'walk-forward' adalah standard emas penilaian model siri masa dan dis
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-    Perhatikan ramalan data setiap jam, berbanding beban sebenar. Sejauh mana ketepatannya?
+    Perhatikan ramalan data setiap jam, dibandingkan dengan beban sebenar. Seberapa tepatkah ini?
 
-### Semak ketepatan model
+### Periksa ketepatan model
 
-Periksa ketepatan model anda dengan menguji ralat peratusan mutlak purata (MAPE) ke atas semua ramalan.
-
-> **🧮 Tunjukkan saya matematik**
+Periksa ketepatan model anda dengan menguji ralat peratusan mutlak purata (MAPE) model tersebut ke atas semua ramalan.
+> **🧮 Tunjukkan matematik**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.ms.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) digunakan untuk menunjukkan ketepatan ramalan sebagai nisbah yang ditakrifkan oleh formula di atas. Perbezaan antara actual<sub>t</sub> dan predicted<sub>t</sub> dibahagikan dengan actual<sub>t</sub>. "Nilai mutlak dalam pengiraan ini dijumlahkan untuk setiap titik ramalan dalam masa dan dibahagikan dengan bilangan titik yang dipasangkan n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) digunakan untuk menunjukkan ketepatan ramalan sebagai nisbah yang ditakrifkan oleh formula di atas. Perbezaan antara nilai sebenar 
 
-1. Nyatakan persamaan dalam kod:
+dan nilai ramalan 
+
+dibahagikan dengan nilai sebenar. "Nilai mutlak dalam pengiraan ini dijumlahkan untuk setiap titik ramalan dalam masa dan dibahagikan dengan bilangan titik yang sesuai n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+1. Ungkapkan persamaan dalam kod:
 
     ```python
     if(HORIZON > 1):
@@ -324,7 +335,7 @@ Periksa ketepatan model anda dengan menguji ralat peratusan mutlak purata (MAPE)
         print(eval_df.groupby('h')['APE'].mean())
     ```
 
-1. Kira MAPE satu langkah:
+1. Kira MAPE untuk satu langkah:
 
     ```python
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
@@ -332,7 +343,7 @@ Periksa ketepatan model anda dengan menguji ralat peratusan mutlak purata (MAPE)
 
     MAPE ramalan satu langkah:  0.5570581332313952 %
 
-1. Cetak MAPE ramalan pelbagai langkah:
+1. Cetak MAPE ramalan berbilang langkah:
 
     ```python
     print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
@@ -342,9 +353,9 @@ Periksa ketepatan model anda dengan menguji ralat peratusan mutlak purata (MAPE)
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    Nombor yang rendah adalah yang terbaik: pertimbangkan bahawa ramalan yang mempunyai MAPE 10 adalah meleset sebanyak 10%.
+    Nombor yang rendah adalah terbaik: pertimbangkan bahawa ramalan dengan MAPE 10 adalah tersasar sebanyak 10%.
 
-1. Tetapi seperti biasa, lebih mudah untuk melihat jenis ukuran ketepatan ini secara visual, jadi mari kita plotkannya:
+1. Tetapi seperti biasa, lebih mudah untuk melihat ukuran ketepatan seperti ini secara visual, jadi mari kita plotkan:
 
     ```python
      if(HORIZON == 1):
@@ -372,25 +383,27 @@ Periksa ketepatan model anda dengan menguji ralat peratusan mutlak purata (MAPE)
     plt.show()
     ```
 
-    ![model siri masa](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.ms.png)
+    ![model siri masa](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 Plot yang sangat bagus, menunjukkan model dengan ketepatan yang baik. Syabas!
+🏆 Plot yang sangat baik, menunjukkan model dengan ketepatan yang bagus. Syabas!
 
 ---
 
 ## 🚀Cabaran
 
-Selidik cara untuk menguji ketepatan model Siri Masa. Kami menyentuh tentang MAPE dalam pelajaran ini, tetapi adakah terdapat kaedah lain yang boleh anda gunakan? Selidik dan anotasi mereka. Dokumen yang berguna boleh didapati [di sini](https://otexts.com/fpp2/accuracy.html)
+Selidiki cara-cara untuk menguji ketepatan Model Siri Masa. Kita menyentuh tentang MAPE dalam pelajaran ini, tetapi adakah kaedah lain yang boleh digunakan? Lakukan penyelidikan dan buat anotasi. Dokumen yang berguna boleh didapati [di sini](https://otexts.com/fpp2/accuracy.html)
 
-## [Kuiz pasca-kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Kuiz selepas kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## Kajian & Pembelajaran Sendiri
+## Ulasan & Kajian Kendiri
 
-Pelajaran ini hanya menyentuh asas-asas Ramalan Siri Masa dengan ARIMA. Luangkan masa untuk mendalami pengetahuan anda dengan menyelidik [repositori ini](https://microsoft.github.io/forecasting/) dan jenis modelnya yang pelbagai untuk mempelajari cara lain membina model Siri Masa.
+Pelajaran ini hanya menyentuh asas Peramalan Siri Masa dengan ARIMA. Luangkan masa untuk mendalami pengetahuan anda dengan menyelidiki [repositori ini](https://microsoft.github.io/forecasting/) dan pelbagai jenis modelnya untuk mempelajari cara lain membina model Siri Masa.
 
 ## Tugasan
 
-[Model ARIMA baru](assignment.md)
+[Model ARIMA baharu](assignment.md)
 
-**Penafian**: 
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

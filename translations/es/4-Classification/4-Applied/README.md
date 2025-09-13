@@ -1,32 +1,41 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-04T22:23:45+00:00",
+  "source_file": "4-Classification/4-Applied/README.md",
+  "language_code": "es"
+}
+-->
 # Construir una Aplicación Web de Recomendación de Cocina
 
-En esta lección, construirás un modelo de clasificación utilizando algunas de las técnicas que has aprendido en lecciones anteriores y con el delicioso conjunto de datos de cocina utilizado a lo largo de esta serie. Además, construirás una pequeña aplicación web para usar un modelo guardado, aprovechando el runtime web de Onnx.
+En esta lección, construirás un modelo de clasificación utilizando algunas de las técnicas que has aprendido en lecciones anteriores y con el delicioso conjunto de datos de cocina utilizado a lo largo de esta serie. Además, crearás una pequeña aplicación web para usar un modelo guardado, aprovechando el runtime web de Onnx.
 
-Uno de los usos prácticos más útiles del aprendizaje automático es construir sistemas de recomendación, ¡y puedes dar el primer paso en esa dirección hoy!
+Uno de los usos prácticos más útiles del aprendizaje automático es construir sistemas de recomendación, ¡y hoy puedes dar el primer paso en esa dirección!
 
-[![Presentando esta aplicación web](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
+[![Presentando esta aplicación web](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "ML Aplicado")
 
-> 🎥 Haz clic en la imagen de arriba para ver un video: Jen Looper construye una aplicación web usando datos de cocina clasificados
+> 🎥 Haz clic en la imagen de arriba para ver un video: Jen Looper construye una aplicación web utilizando datos clasificados de cocina.
 
-## [Cuestionario antes de la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 En esta lección aprenderás:
 
-- Cómo construir un modelo y guardarlo como un modelo Onnx
-- Cómo usar Netron para inspeccionar el modelo
-- Cómo usar tu modelo en una aplicación web para inferencia
+- Cómo construir un modelo y guardarlo como un modelo Onnx.
+- Cómo usar Netron para inspeccionar el modelo.
+- Cómo usar tu modelo en una aplicación web para inferencia.
 
 ## Construye tu modelo
 
-Construir sistemas de ML aplicados es una parte importante de aprovechar estas tecnologías para tus sistemas empresariales. Puedes usar modelos dentro de tus aplicaciones web (y así usarlos en un contexto offline si es necesario) utilizando Onnx.
+Construir sistemas de aprendizaje automático aplicado es una parte importante de aprovechar estas tecnologías para tus sistemas empresariales. Puedes usar modelos dentro de tus aplicaciones web (y así utilizarlos en un contexto offline si es necesario) usando Onnx.
 
-En una [lección anterior](../../3-Web-App/1-Web-App/README.md), construiste un modelo de Regresión sobre avistamientos de OVNIs, lo "encurtiste" y lo usaste en una aplicación Flask. Si bien esta arquitectura es muy útil de conocer, es una aplicación Python de pila completa, y tus requisitos pueden incluir el uso de una aplicación JavaScript.
+En una [lección anterior](../../3-Web-App/1-Web-App/README.md), construiste un modelo de Regresión sobre avistamientos de OVNIs, lo "encurtiste" y lo usaste en una aplicación Flask. Aunque esta arquitectura es muy útil de conocer, es una aplicación Python de pila completa, y tus requisitos pueden incluir el uso de una aplicación JavaScript.
 
-En esta lección, puedes construir un sistema básico basado en JavaScript para la inferencia. Primero, sin embargo, necesitas entrenar un modelo y convertirlo para usarlo con Onnx.
+En esta lección, puedes construir un sistema básico basado en JavaScript para inferencia. Sin embargo, primero necesitas entrenar un modelo y convertirlo para usarlo con Onnx.
 
-## Ejercicio - entrenar modelo de clasificación
+## Ejercicio - entrenar un modelo de clasificación
 
-Primero, entrena un modelo de clasificación utilizando el conjunto de datos de cocinas limpiado que utilizamos.
+Primero, entrena un modelo de clasificación utilizando el conjunto de datos de cocina limpio que usamos.
 
 1. Comienza importando bibliotecas útiles:
 
@@ -61,7 +70,7 @@ Primero, entrena un modelo de clasificación utilizando el conjunto de datos de 
 
 ### Comienza la rutina de entrenamiento
 
-Usaremos la biblioteca 'SVC' que tiene buena precisión.
+Usaremos la biblioteca 'SVC', que tiene buena precisión.
 
 1. Importa las bibliotecas apropiadas de Scikit-learn:
 
@@ -85,7 +94,7 @@ Usaremos la biblioteca 'SVC' que tiene buena precisión.
     model.fit(X_train,y_train.values.ravel())
     ```
 
-1. Ahora, prueba tu modelo, llamando a `predict()`:
+1. Ahora, prueba tu modelo llamando a `predict()`:
 
     ```python
     y_pred = model.predict(X_test)
@@ -115,7 +124,7 @@ Usaremos la biblioteca 'SVC' que tiene buena precisión.
 
 ### Convierte tu modelo a Onnx
 
-Asegúrate de hacer la conversión con el número de Tensor adecuado. Este conjunto de datos tiene 380 ingredientes listados, por lo que necesitas anotar ese número en `FloatTensorType`:
+Asegúrate de hacer la conversión con el número adecuado de tensores. Este conjunto de datos tiene 380 ingredientes listados, por lo que necesitas anotar ese número en `FloatTensorType`:
 
 1. Convierte usando un número de tensor de 380.
 
@@ -135,23 +144,23 @@ Asegúrate de hacer la conversión con el número de Tensor adecuado. Este conju
         f.write(onx.SerializeToString())
     ```
 
-    > Nota, puedes pasar [opciones](https://onnx.ai/sklearn-onnx/parameterized.html) en tu script de conversión. En este caso, pasamos 'nocl' como True y 'zipmap' como False. Dado que este es un modelo de clasificación, tienes la opción de eliminar ZipMap, que produce una lista de diccionarios (no es necesario). `nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'. 
+    > Nota, puedes pasar [opciones](https://onnx.ai/sklearn-onnx/parameterized.html) en tu script de conversión. En este caso, pasamos 'nocl' como True y 'zipmap' como False. Dado que este es un modelo de clasificación, tienes la opción de eliminar ZipMap, que produce una lista de diccionarios (no es necesario). `nocl` se refiere a la información de clase incluida en el modelo. Reduce el tamaño de tu modelo configurando `nocl` como 'True'.
 
-Running the entire notebook will now build an Onnx model and save it to this folder.
+Ejecutar todo el notebook ahora construirá un modelo Onnx y lo guardará en esta carpeta.
 
-## View your model
+## Visualiza tu modelo
 
-Onnx models are not very visible in Visual Studio code, but there's a very good free software that many researchers use to visualize the model to ensure that it is properly built. Download [Netron](https://github.com/lutzroeder/Netron) and  open your model.onnx file. You can see your simple model visualized, with its 380 inputs and classifier listed:
+Los modelos Onnx no son muy visibles en Visual Studio Code, pero hay un software gratuito muy bueno que muchos investigadores usan para visualizar el modelo y asegurarse de que esté correctamente construido. Descarga [Netron](https://github.com/lutzroeder/Netron) y abre tu archivo model.onnx. Puedes ver tu modelo simple visualizado, con sus 380 entradas y clasificador listados:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.es.png)
+![Visualización de Netron](../../../../4-Classification/4-Applied/images/netron.png)
 
-Netron is a helpful tool to view your models.
+Netron es una herramienta útil para visualizar tus modelos.
 
-Now you are ready to use this neat model in a web app. Let's build an app that will come in handy when you look in your refrigerator and try to figure out which combination of your leftover ingredients you can use to cook a given cuisine, as determined by your model.
+Ahora estás listo para usar este modelo en una aplicación web. Construyamos una aplicación que será útil cuando mires en tu refrigerador y trates de averiguar qué combinación de tus ingredientes sobrantes puedes usar para cocinar un plato determinado, según lo determine tu modelo.
 
-## Build a recommender web application
+## Construye una aplicación web de recomendación
 
-You can use your model directly in a web app. This architecture also allows you to run it locally and even offline if needed. Start by creating an `index.html` file in the same folder where you stored your `model.onnx` file.
+Puedes usar tu modelo directamente en una aplicación web. Esta arquitectura también te permite ejecutarla localmente e incluso offline si es necesario. Comienza creando un archivo `index.html` en la misma carpeta donde guardaste tu archivo `model.onnx`.
 
 1. En este archivo _index.html_, agrega el siguiente marcado:
 
@@ -167,7 +176,7 @@ You can use your model directly in a web app. This architecture also allows you 
     </html>
     ```
 
-1. Ahora, trabajando dentro de las etiquetas `body`, agrega un poco de marcado para mostrar una lista de casillas de verificación que reflejan algunos ingredientes:
+1. Ahora, trabajando dentro de las etiquetas `body`, agrega un poco de marcado para mostrar una lista de casillas de verificación que reflejen algunos ingredientes:
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -212,9 +221,9 @@ You can use your model directly in a web app. This architecture also allows you 
             </div> 
     ```
 
-    Nota que a cada casilla de verificación se le da un valor. Esto refleja el índice donde se encuentra el ingrediente según el conjunto de datos. La manzana, por ejemplo, en esta lista alfabética, ocupa la quinta columna, por lo que su valor es '4' ya que comenzamos a contar desde 0. Puedes consultar la [hoja de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descubrir el índice de un ingrediente dado.
+    Nota que a cada casilla de verificación se le asigna un valor. Esto refleja el índice donde se encuentra el ingrediente según el conjunto de datos. Por ejemplo, la manzana, en esta lista alfabética, ocupa la quinta columna, por lo que su valor es '4' ya que comenzamos a contar desde 0. Puedes consultar la [hoja de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descubrir el índice de un ingrediente dado.
 
-    Continuando tu trabajo en el archivo index.html, agrega un bloque de script donde se llama al modelo después del cierre final `</div>`.
+    Continuando tu trabajo en el archivo index.html, agrega un bloque de script donde se llame al modelo después del cierre final de `</div>`.
 
 1. Primero, importa el [Runtime de Onnx](https://www.onnxruntime.ai/):
 
@@ -222,7 +231,7 @@ You can use your model directly in a web app. This architecture also allows you 
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Onnx Runtime se usa para permitir ejecutar tus modelos Onnx en una amplia gama de plataformas de hardware, incluidas optimizaciones y una API para usar.
+    > El Runtime de Onnx se utiliza para habilitar la ejecución de tus modelos Onnx en una amplia gama de plataformas de hardware, incluyendo optimizaciones y una API para usar.
 
 1. Una vez que el Runtime esté en su lugar, puedes llamarlo:
 
@@ -278,41 +287,43 @@ You can use your model directly in a web app. This architecture also allows you 
 
 En este código, están ocurriendo varias cosas:
 
-1. Creaste una matriz de 380 posibles valores (1 o 0) para ser configurados y enviados al modelo para inferencia, dependiendo de si una casilla de verificación de ingrediente está marcada.
-2. Creaste una matriz de casillas de verificación y una forma de determinar si estaban marcadas en un `init` function that is called when the application starts. When a checkbox is checked, the `ingredients` array is altered to reflect the chosen ingredient.
-3. You created a `testCheckboxes` function that checks whether any checkbox was checked.
-4. You use `startInference` function when the button is pressed and, if any checkbox is checked, you start inference.
-5. The inference routine includes:
-   1. Setting up an asynchronous load of the model
-   2. Creating a Tensor structure to send to the model
-   3. Creating 'feeds' that reflects the `float_input` input that you created when training your model (you can use Netron to verify that name)
-   4. Sending these 'feeds' to the model and waiting for a response
+1. Creaste un array de 380 posibles valores (1 o 0) que se configurarán y enviarán al modelo para inferencia, dependiendo de si se marca una casilla de verificación de ingrediente.
+2. Creaste un array de casillas de verificación y una forma de determinar si fueron marcadas en una función `init` que se llama cuando la aplicación comienza. Cuando se marca una casilla, el array `ingredients` se altera para reflejar el ingrediente elegido.
+3. Creaste una función `testCheckboxes` que verifica si alguna casilla fue marcada.
+4. Usas la función `startInference` cuando se presiona el botón y, si alguna casilla está marcada, comienzas la inferencia.
+5. La rutina de inferencia incluye:
+   1. Configurar una carga asincrónica del modelo.
+   2. Crear una estructura de Tensor para enviar al modelo.
+   3. Crear 'feeds' que reflejan la entrada `float_input` que creaste al entrenar tu modelo (puedes usar Netron para verificar ese nombre).
+   4. Enviar estos 'feeds' al modelo y esperar una respuesta.
 
-## Test your application
+## Prueba tu aplicación
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server` en el indicador. Debería abrirse un localhost y puedes ver tu aplicación web. Verifica qué cocina se recomienda según varios ingredientes:
+Abre una sesión de terminal en Visual Studio Code en la carpeta donde reside tu archivo index.html. Asegúrate de tener [http-server](https://www.npmjs.com/package/http-server) instalado globalmente y escribe `http-server` en el prompt. Debería abrirse un localhost y podrás ver tu aplicación web. Verifica qué cocina se recomienda según varios ingredientes:
 
-![aplicación web de ingredientes](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.es.png)
+![Aplicación web de ingredientes](../../../../4-Classification/4-Applied/images/web-app.png)
 
-¡Felicidades, has creado una aplicación web de 'recomendación' con unos pocos campos! Tómate un tiempo para desarrollar este sistema.
+¡Felicidades, has creado una aplicación web de 'recomendación' con algunos campos! Tómate un tiempo para desarrollar este sistema.
 
 ## 🚀Desafío
 
-Tu aplicación web es muy mínima, así que continúa desarrollándola utilizando ingredientes y sus índices de los datos de [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). ¿Qué combinaciones de sabores funcionan para crear un plato nacional dado?
+Tu aplicación web es muy básica, así que continúa desarrollándola utilizando ingredientes y sus índices del archivo de datos [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). ¿Qué combinaciones de sabores funcionan para crear un plato nacional dado?
 
-## [Cuestionario después de la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisión y Autoestudio
+## Repaso y Estudio Personal
 
-Si bien esta lección solo tocó la utilidad de crear un sistema de recomendación para ingredientes alimentarios, esta área de aplicaciones de ML es muy rica en ejemplos. Lee más sobre cómo se construyen estos sistemas:
+Aunque esta lección solo tocó la utilidad de crear un sistema de recomendación para ingredientes de comida, esta área de aplicaciones de aprendizaje automático es muy rica en ejemplos. Lee más sobre cómo se construyen estos sistemas:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
 - https://www.technologyreview.com/2015/03/23/168831/everything-is-a-recommendation/
 
-## Asignación
+## Tarea 
 
 [Construye un nuevo recomendador](assignment.md)
 
-**Descargo de responsabilidad**:
-Este documento ha sido traducido utilizando servicios de traducción automática basados en IA. Aunque nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción profesional humana. No somos responsables de ningún malentendido o interpretación errónea que surja del uso de esta traducción.
+---
+
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

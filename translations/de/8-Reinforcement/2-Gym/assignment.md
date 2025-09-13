@@ -1,13 +1,21 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1f2b7441745eb52e25745423b247016b",
+  "translation_date": "2025-09-03T22:00:43+00:00",
+  "source_file": "8-Reinforcement/2-Gym/assignment.md",
+  "language_code": "de"
+}
+-->
 # Train Mountain Car
 
-[OpenAI Gym](http://gym.openai.com) wurde so gestaltet, dass alle Umgebungen dieselte API bereitstellen - d.h. dieselben Methoden `reset`, `step` und `render` sowie dieselben Abstraktionen von **Aktionsraum** und **Beobachtungsraum**. Daher sollte es möglich sein, dieselben Algorithmen für verstärkendes Lernen an verschiedene Umgebungen mit minimalen Codeänderungen anzupassen.
+[OpenAI Gym](http://gym.openai.com) wurde so konzipiert, dass alle Umgebungen dieselbe API bereitstellen – d.h. dieselben Methoden `reset`, `step` und `render` sowie dieselben Abstraktionen von **Action Space** und **Observation Space**. Daher sollte es möglich sein, dieselben Reinforcement-Learning-Algorithmen mit minimalen Codeänderungen an verschiedene Umgebungen anzupassen.
 
-## Eine Mountain Car Umgebung
+## Eine Mountain-Car-Umgebung
 
-Die [Mountain Car Umgebung](https://gym.openai.com/envs/MountainCar-v0/) enthält ein Auto, das in einem Tal feststeckt:
-Sie werden mit Daten bis Oktober 2023 trainiert.
+Die [Mountain-Car-Umgebung](https://gym.openai.com/envs/MountainCar-v0/) enthält ein Auto, das in einem Tal feststeckt:
 
-Das Ziel ist es, aus dem Tal herauszukommen und die Flagge zu erreichen, indem Sie in jedem Schritt eine der folgenden Aktionen ausführen:
+Das Ziel ist es, aus dem Tal herauszukommen und die Fahne zu erreichen, indem man bei jedem Schritt eine der folgenden Aktionen ausführt:
 
 | Wert | Bedeutung |
 |---|---|
@@ -15,31 +23,35 @@ Das Ziel ist es, aus dem Tal herauszukommen und die Flagge zu erreichen, indem S
 | 1 | Nicht beschleunigen |
 | 2 | Nach rechts beschleunigen |
 
-Der Haupttrick dieses Problems besteht jedoch darin, dass der Motor des Autos nicht stark genug ist, um den Berg in einem einzigen Durchgang zu erklimmen. Daher besteht der einzige Weg zum Erfolg darin, hin und her zu fahren, um Schwung aufzubauen.
+Der Hauptkniff bei diesem Problem ist jedoch, dass der Motor des Autos nicht stark genug ist, um den Berg in einem einzigen Anlauf zu erklimmen. Daher besteht die einzige Möglichkeit, erfolgreich zu sein, darin, hin- und herzufahren, um Schwung aufzubauen.
 
-Der Beobachtungsraum besteht aus nur zwei Werten:
+Der Observation Space besteht aus nur zwei Werten:
 
 | Nr. | Beobachtung  | Min | Max |
 |-----|--------------|-----|-----|
-|  0  | Auto Position | -1.2| 0.6 |
-|  1  | Auto Geschwindigkeit | -0.07 | 0.07 |
+|  0  | Position des Autos | -1.2 | 0.6 |
+|  1  | Geschwindigkeit des Autos | -0.07 | 0.07 |
 
-Das Belohnungssystem für das Mountain Car ist recht knifflig:
+Das Belohnungssystem für das Mountain Car ist ziemlich knifflig:
 
- * Eine Belohnung von 0 wird vergeben, wenn der Agent die Flagge (Position = 0.5) auf dem Gipfel des Berges erreicht.
- * Eine Belohnung von -1 wird vergeben, wenn die Position des Agenten weniger als 0.5 beträgt.
+ * Eine Belohnung von 0 wird vergeben, wenn der Agent die Fahne (Position = 0.5) auf dem Berggipfel erreicht.
+ * Eine Belohnung von -1 wird vergeben, wenn die Position des Agenten kleiner als 0.5 ist.
 
-Die Episode endet, wenn die Auto-Position mehr als 0.5 beträgt oder die Episodenlänge größer als 200 ist.
+Die Episode endet, wenn die Position des Autos größer als 0.5 ist oder die Episodenlänge 200 überschreitet.
+
 ## Anweisungen
 
-Passen Sie unseren Algorithmus für verstärkendes Lernen an, um das Mountain Car Problem zu lösen. Beginnen Sie mit dem bestehenden [notebook.ipynb](../../../../8-Reinforcement/2-Gym/notebook.ipynb) Code, ersetzen Sie die neue Umgebung, ändern Sie die Funktionen zur Zustandsdiskretisierung und versuchen Sie, den bestehenden Algorithmus mit minimalen Codeänderungen zu trainieren. Optimieren Sie das Ergebnis, indem Sie die Hyperparameter anpassen.
+Passen Sie unseren Reinforcement-Learning-Algorithmus an, um das Mountain-Car-Problem zu lösen. Beginnen Sie mit dem bestehenden Code in [notebook.ipynb](notebook.ipynb), ersetzen Sie die Umgebung, ändern Sie die Funktionen zur Diskretisierung des Zustands und versuchen Sie, den bestehenden Algorithmus mit minimalen Codeänderungen zu trainieren. Optimieren Sie das Ergebnis, indem Sie die Hyperparameter anpassen.
 
-> **Hinweis**: Es wird wahrscheinlich erforderlich sein, die Hyperparameter anzupassen, um den Algorithmus konvergieren zu lassen. 
-## Bewertungsrichtlinien
+> **Hinweis**: Es wird wahrscheinlich notwendig sein, die Hyperparameter anzupassen, damit der Algorithmus konvergiert.
 
-| Kriterien | Vorbildlich | Angemessen | Verbesserungsbedürftig |
-| -------- | --------- | -------- | ----------------- |
-|          | Der Q-Learning-Algorithmus wurde erfolgreich aus dem CartPole-Beispiel angepasst, mit minimalen Codeänderungen, und ist in der Lage, das Problem der Flaggenerrung in unter 200 Schritten zu lösen. | Ein neuer Q-Learning-Algorithmus wurde aus dem Internet übernommen, ist jedoch gut dokumentiert; oder ein bestehender Algorithmus wurde übernommen, erreicht jedoch nicht die gewünschten Ergebnisse. | Der Student war nicht in der Lage, einen Algorithmus erfolgreich anzupassen, hat aber wesentliche Schritte in Richtung Lösung unternommen (Implementierung der Zustandsdiskretisierung, Q-Tabellen-Datenstruktur usw.) |
+## Bewertungskriterien
+
+| Kriterien | Vorbildlich | Angemessen | Verbesserungswürdig |
+| --------- | ----------- | ---------- | -------------------- |
+|           | Der Q-Learning-Algorithmus wurde erfolgreich aus dem CartPole-Beispiel übernommen, mit minimalen Codeänderungen, und ist in der Lage, das Problem des Erreichens der Fahne in weniger als 200 Schritten zu lösen. | Ein neuer Q-Learning-Algorithmus wurde aus dem Internet übernommen, aber gut dokumentiert; oder ein bestehender Algorithmus wurde übernommen, erreicht jedoch nicht die gewünschten Ergebnisse. | Der Student war nicht in der Lage, erfolgreich einen Algorithmus zu übernehmen, hat jedoch wesentliche Schritte zur Lösung unternommen (z. B. Implementierung der Zustandsdiskretisierung, Q-Table-Datenstruktur usw.). |
+
+---
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mithilfe von KI-Übersetzungsdiensten übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als die maßgebliche Quelle betrachtet werden. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.

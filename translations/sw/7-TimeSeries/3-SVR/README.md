@@ -1,32 +1,41 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-05T15:36:08+00:00",
+  "source_file": "7-TimeSeries/3-SVR/README.md",
+  "language_code": "sw"
+}
+-->
 # Utabiri wa Mfululizo wa Wakati kwa Kutumia Support Vector Regressor
 
-Katika somo lililopita, ulijifunza jinsi ya kutumia mfano wa ARIMA kufanya utabiri wa mfululizo wa wakati. Sasa utakuwa unatazama mfano wa Support Vector Regressor ambao ni mfano wa kurudi nyuma unaotumika kutabiri data inayoendelea.
+Katika somo lililopita, ulijifunza jinsi ya kutumia modeli ya ARIMA kufanya utabiri wa mfululizo wa wakati. Sasa utaangalia modeli ya Support Vector Regressor, ambayo ni modeli ya regression inayotumika kutabiri data endelevu.
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [Maswali ya awali ya somo](https://ff-quizzes.netlify.app/en/ml/) 
 
 ## Utangulizi
 
-Katika somo hili, utagundua njia maalum ya kujenga mifano kwa [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) kwa kurudi nyuma, au **SVR: Support Vector Regressor**. 
+Katika somo hili, utagundua njia maalum ya kujenga modeli kwa [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) kwa regression, au **SVR: Support Vector Regressor**. 
 
 ### SVR katika muktadha wa mfululizo wa wakati [^1]
 
 Kabla ya kuelewa umuhimu wa SVR katika utabiri wa mfululizo wa wakati, hapa kuna baadhi ya dhana muhimu unazohitaji kujua:
 
-- **Regression:** Mbinu ya kujifunza yenye usimamizi ili kutabiri thamani zinazoendelea kutoka kwenye seti fulani ya pembejeo. Wazo ni kufaa mkurva (au mstari) katika nafasi ya vipengele ambayo ina idadi kubwa ya pointi za data. [Bonyeza hapa](https://en.wikipedia.org/wiki/Regression_analysis) kwa maelezo zaidi.
-- **Support Vector Machine (SVM):** Aina ya mfano wa kujifunza kwa mashine yenye usimamizi unaotumika kwa uainishaji, kurudi nyuma na kugundua vitu vya kipekee. Mfano huo ni ndege ya juu katika nafasi ya vipengele, ambayo katika kesi ya uainishaji inafanya kazi kama mpaka, na katika kesi ya kurudi nyuma inafanya kazi kama mstari bora wa kufaa. Katika SVM, kazi ya Kernel hutumika kubadilisha seti ya data kuwa nafasi ya idadi kubwa ya vipimo, ili iweze kutenganishwa kwa urahisi. [Bonyeza hapa](https://en.wikipedia.org/wiki/Support-vector_machine) kwa maelezo zaidi kuhusu SVMs.
-- **Support Vector Regressor (SVR):** Aina ya SVM, kupata mstari bora wa kufaa (ambao katika kesi ya SVM ni ndege ya juu) ambayo ina idadi kubwa ya pointi za data.
+- **Regression:** Mbinu ya kujifunza kwa usimamizi inayotabiri thamani endelevu kutoka kwa seti fulani ya pembejeo. Wazo ni kufaa mstari au curve katika nafasi ya vipengele ambayo ina idadi kubwa ya pointi za data. [Bonyeza hapa](https://en.wikipedia.org/wiki/Regression_analysis) kwa maelezo zaidi.
+- **Support Vector Machine (SVM):** Aina ya modeli ya kujifunza kwa usimamizi inayotumika kwa uainishaji, regression, na kugundua data isiyo ya kawaida. Modeli ni hyperplane katika nafasi ya vipengele, ambayo katika hali ya uainishaji hufanya kama mpaka, na katika hali ya regression hufanya kama mstari bora wa kufaa. Katika SVM, kazi ya Kernel hutumika kwa kawaida kubadilisha seti ya data kuwa nafasi ya vipimo vingi zaidi, ili iweze kutenganishwa kwa urahisi. [Bonyeza hapa](https://en.wikipedia.org/wiki/Support-vector_machine) kwa maelezo zaidi kuhusu SVM.
+- **Support Vector Regressor (SVR):** Aina ya SVM, inayotafuta mstari bora wa kufaa (ambayo katika hali ya SVM ni hyperplane) yenye idadi kubwa ya pointi za data.
 
 ### Kwa nini SVR? [^1]
 
-Katika somo la mwisho ulijifunza kuhusu ARIMA, ambayo ni njia ya takwimu ya mstari yenye mafanikio sana kutabiri data ya mfululizo wa wakati. Hata hivyo, katika kesi nyingi, data ya mfululizo wa wakati ina *kutokuwa na mstari*, ambayo haiwezi kuakisiwa na mifano ya mstari. Katika kesi hizo, uwezo wa SVM kuzingatia kutokuwa na mstari katika data kwa kazi za kurudi nyuma hufanya SVR kufanikiwa katika utabiri wa mfululizo wa wakati.
+Katika somo la mwisho ulijifunza kuhusu ARIMA, ambayo ni mbinu ya takwimu ya mstari inayofanikiwa sana kutabiri data ya mfululizo wa wakati. Hata hivyo, katika hali nyingi, data ya mfululizo wa wakati ina *kutokuwa na mstari*, ambayo haiwezi kuonyeshwa na modeli za mstari. Katika hali kama hizi, uwezo wa SVM kuzingatia kutokuwa na mstari katika data kwa kazi za regression hufanya SVR kufanikiwa katika utabiri wa mfululizo wa wakati.
 
-## Zoezi - jenga mfano wa SVR
+## Zoezi - jenga modeli ya SVR
 
 Hatua za awali za maandalizi ya data ni sawa na zile za somo lililopita kuhusu [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
 
-Fungua folda ya [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) katika somo hili na tafuta faili [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb). [^2]
+Fungua folda [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) katika somo hili na pata faili [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb). [^2]
 
-1. Endesha daftari na ulete maktaba muhimu: [^2]
+1. Endesha notebook na uagize maktaba muhimu: [^2]
 
    ```python
    import sys
@@ -47,13 +56,13 @@ Fungua folda ya [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/
    from common.utils import load_data, mape
    ```
 
-2. Pakia data kutoka kwenye faili `/data/energy.csv` ndani ya dataframe ya Pandas na uangalie: [^2]
+2. Pakia data kutoka faili `/data/energy.csv` kwenye dataframe ya Pandas na uitazame: [^2]
 
    ```python
    energy = load_data('../../data')[['load']]
    ```
 
-3. Chora data zote za nishati zinazopatikana kutoka Januari 2012 hadi Desemba 2014: [^2]
+3. Chora data yote ya nishati inayopatikana kutoka Januari 2012 hadi Desemba 2014: [^2]
 
    ```python
    energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -62,22 +71,22 @@ Fungua folda ya [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/
    plt.show()
    ```
 
-   ![full data](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.sw.png)
+   ![data kamili](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
-   Sasa, hebu tujenge mfano wetu wa SVR.
+   Sasa, hebu tujenge modeli yetu ya SVR.
 
-### Tengeneza seti za mafunzo na majaribio
+### Unda seti za mafunzo na majaribio
 
-Sasa data yako imepakuliwa, kwa hivyo unaweza kuitenganisha kuwa seti za mafunzo na majaribio. Kisha utarekebisha data ili kuunda seti ya data inayotegemea wakati ambayo itahitajika kwa SVR. Utaufundisha mfano wako kwenye seti ya mafunzo. Baada ya mfano kumaliza mafunzo, utapima usahihi wake kwenye seti ya mafunzo, seti ya majaribio na kisha seti kamili ya data ili kuona utendaji wa jumla. Unahitaji kuhakikisha kwamba seti ya majaribio inashughulikia kipindi cha baadaye kutoka kwenye seti ya mafunzo ili kuhakikisha kwamba mfano haupati habari kutoka kwenye vipindi vya wakati vijavyo [^2] (hali inayojulikana kama *Overfitting*).
+Sasa data yako imepakizwa, unaweza kuigawanya katika seti za mafunzo na majaribio. Kisha utabadilisha data ili kuunda seti ya data inayotegemea hatua za wakati ambayo itahitajika kwa SVR. Utazoeza modeli yako kwenye seti ya mafunzo. Baada ya modeli kumaliza mafunzo, utatathmini usahihi wake kwenye seti ya mafunzo, seti ya majaribio, na kisha seti kamili ya data ili kuona utendaji wa jumla. Unahitaji kuhakikisha kuwa seti ya majaribio inashughulikia kipindi cha baadaye kutoka seti ya mafunzo ili kuhakikisha kuwa modeli haipati taarifa kutoka vipindi vya baadaye [^2] (hali inayojulikana kama *Overfitting*).
 
-1. Tengeneza kipindi cha miezi miwili kutoka Septemba 1 hadi Oktoba 31, 2014 kwa seti ya mafunzo. Seti ya majaribio itajumuisha kipindi cha miezi miwili kutoka Novemba 1 hadi Desemba 31, 2014: [^2]
+1. Toa kipindi cha miezi miwili kutoka Septemba 1 hadi Oktoba 31, 2014 kwa seti ya mafunzo. Seti ya majaribio itajumuisha kipindi cha miezi miwili kutoka Novemba 1 hadi Desemba 31, 2014: [^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
    test_start_dt = '2014-12-30 00:00:00'
    ```
 
-2. Angalia tofauti: [^2]
+2. Onyesha tofauti: [^2]
 
    ```python
    energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -88,13 +97,13 @@ Sasa data yako imepakuliwa, kwa hivyo unaweza kuitenganisha kuwa seti za mafunzo
    plt.show()
    ```
 
-   ![training and testing data](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.sw.png)
+   ![data ya mafunzo na majaribio](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
 ### Andaa data kwa mafunzo
 
-Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yako. Chuja seti yako ya data ili kujumuisha vipindi vya wakati vilivyotajwa tu kwa kila seti na kujumuisha safu inayohitajika 'load' pamoja na tarehe: [^2]
+Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na upimaji wa data yako. Chuja seti yako ya data ili kujumuisha tu vipindi vya wakati na safu unazohitaji, na upimaji ili kuhakikisha data inaonyeshwa katika interval 0,1.
 
-1. Chuja seti ya data asili ili kujumuisha vipindi vya wakati vilivyotajwa hapo juu tu kwa kila seti na kujumuisha safu inayohitajika 'load' pamoja na tarehe: [^2]
+1. Chuja seti ya data ya awali ili kujumuisha tu vipindi vya wakati vilivyotajwa kwa kila seti na kujumuisha tu safu inayohitajika 'load' pamoja na tarehe: [^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -109,7 +118,7 @@ Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yak
    Test data shape:  (48, 1)
    ```
    
-2. Pima data ya mafunzo kuwa katika safu ya (0, 1): [^2]
+2. Pima data ya mafunzo kuwa katika kiwango cha (0, 1): [^2]
 
    ```python
    scaler = MinMaxScaler()
@@ -122,9 +131,9 @@ Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yak
    test['load'] = scaler.transform(test)
    ```
 
-### Unda data kwa hatua za wakati [^1]
+### Unda data yenye hatua za wakati [^1]
 
-Kwa SVR, unabadilisha data ya pembejeo kuwa ya fomu `[batch, timesteps]`. So, you reshape the existing `train_data` and `test_data` kwa njia ambayo kuna kipimo kipya kinachorejelea hatua za wakati. 
+Kwa SVR, unabadilisha data ya pembejeo kuwa ya fomu `[batch, timesteps]`. Kwa hivyo, unabadilisha `train_data` na `test_data` iliyopo ili kuwe na kipimo kipya kinachorejelea hatua za wakati. 
 
 ```python
 # Converting to numpy arrays
@@ -132,13 +141,13 @@ train_data = train.values
 test_data = test.values
 ```
 
-Kwa mfano huu, tunachukua `timesteps = 5`. Kwa hivyo, pembejeo kwa mfano ni data ya hatua za wakati za kwanza 4, na pato litakuwa data ya hatua ya wakati ya 5.
+Kwa mfano huu, tunachukua `timesteps = 5`. Kwa hivyo, pembejeo kwa modeli ni data ya hatua za kwanza 4, na matokeo yatakuwa data ya hatua ya 5.
 
 ```python
 timesteps=5
 ```
 
-Kubadilisha data ya mafunzo kuwa tensor ya 2D kwa kutumia orodha iliyo ndani ya orodha:
+Kubadilisha data ya mafunzo kuwa tensor ya 2D kwa kutumia nested list comprehension:
 
 ```python
 train_data_timesteps=np.array([[j for j in train_data[i:i+timesteps]] for i in range(0,len(train_data)-timesteps+1)])[:,:,0]
@@ -160,7 +169,7 @@ test_data_timesteps.shape
 (44, 5)
 ```
 
- Kuchagua pembejeo na matokeo kutoka kwa data ya mafunzo na majaribio:
+Kuchagua pembejeo na matokeo kutoka data ya mafunzo na majaribio:
 
 ```python
 x_train, y_train = train_data_timesteps[:,:timesteps-1],train_data_timesteps[:,[timesteps-1]]
@@ -177,19 +186,19 @@ print(x_test.shape, y_test.shape)
 
 ### Tekeleza SVR [^1]
 
-Sasa, ni wakati wa kutekeleza SVR. Kusoma zaidi kuhusu utekelezaji huu, unaweza kurejelea [hati hii](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Kwa utekelezaji wetu, tunafuata hatua hizi:
+Sasa, ni wakati wa kutekeleza SVR. Ili kusoma zaidi kuhusu utekelezaji huu, unaweza kurejelea [hati hii](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Kwa utekelezaji wetu, tunafuata hatua hizi:
 
-  1. Fafanua mfano kwa kuita `SVR()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
-  2. Prepare the model for the training data by calling the `fit()` function
-  3. Make predictions calling the `predict()` function
+  1. Fafanua modeli kwa kuita `SVR()` na kupitisha hyperparameters za modeli: kernel, gamma, c na epsilon
+  2. Andaa modeli kwa data ya mafunzo kwa kuita kazi ya `fit()`
+  3. Fanya utabiri kwa kuita kazi ya `predict()`
 
-Sasa tunaunda mfano wa SVR. Hapa tunatumia [kernel ya RBF](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), na kuweka hyperparameters gamma, C na epsilon kama 0.5, 10 na 0.05 mtawaliwa.
+Sasa tunaunda modeli ya SVR. Hapa tunatumia [RBF kernel](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), na kuweka hyperparameters gamma, C na epsilon kama 0.5, 10 na 0.05 mtawalia.
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
 ```
 
-#### Fiti mfano kwenye data ya mafunzo [^1]
+#### Fanya modeli ifanye mafunzo kwenye data ya mafunzo [^1]
 
 ```python
 model.fit(x_train, y_train[:,0])
@@ -200,7 +209,7 @@ SVR(C=10, cache_size=200, coef0=0.0, degree=3, epsilon=0.05, gamma=0.5,
     kernel='rbf', max_iter=-1, shrinking=True, tol=0.001, verbose=False)
 ```
 
-#### Fanya utabiri wa mfano [^1]
+#### Fanya utabiri wa modeli [^1]
 
 ```python
 y_train_pred = model.predict(x_train).reshape(-1,1)
@@ -213,13 +222,13 @@ print(y_train_pred.shape, y_test_pred.shape)
 (1412, 1) (44, 1)
 ```
 
-Umejenga SVR yako! Sasa tunahitaji kuipima.
+Umejenga SVR yako! Sasa tunahitaji kuitathmini.
 
-### Pima mfano wako [^1]
+### Tathmini modeli yako [^1]
 
-Kwa tathmini, kwanza tutapima data tena kuwa kwenye kipimo chetu asili. Kisha, ili kuangalia utendaji, tutachora mfululizo wa wakati wa asili na utabiri, na pia kuchapisha matokeo ya MAPE.
+Kwa tathmini, kwanza tutapima tena data kwa kiwango chetu cha awali. Kisha, ili kuangalia utendaji, tutachora grafu ya mfululizo wa wakati wa asili na uliotabiriwa, na pia kuchapisha matokeo ya MAPE.
 
-Pima tena data ya utabiri na pato la asili:
+Pima tena matokeo yaliyotabiriwa na ya asili:
 
 ```python
 # Scaling the predictions
@@ -237,9 +246,9 @@ y_test = scaler.inverse_transform(y_test)
 print(len(y_train), len(y_test))
 ```
 
-#### Angalia utendaji wa mfano kwenye data ya mafunzo na majaribio [^1]
+#### Angalia utendaji wa modeli kwenye data ya mafunzo na majaribio [^1]
 
-Tunatoa timestamps kutoka kwenye seti ya data kuonyesha kwenye mhimili wa x wa mchoro wetu. Kumbuka kuwa tunatumia ```timesteps-1``` thamani za kwanza kama pembejeo kwa pato la kwanza, kwa hivyo timestamps za pato zitaanza baada ya hapo.
+Tunatoa timestamps kutoka seti ya data ili kuonyesha kwenye mhimili wa x wa grafu yetu. Kumbuka kuwa tunatumia ```timesteps-1``` za kwanza kama pembejeo kwa matokeo ya kwanza, kwa hivyo timestamps za matokeo zitaanza baada ya hapo.
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -252,7 +261,7 @@ print(len(train_timestamps), len(test_timestamps))
 1412 44
 ```
 
-Chora utabiri kwa data ya mafunzo:
+Chora utabiri wa data ya mafunzo:
 
 ```python
 plt.figure(figsize=(25,6))
@@ -264,7 +273,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![training data prediction](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.sw.png)
+![utabiri wa data ya mafunzo](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
 Chapisha MAPE kwa data ya mafunzo
 
@@ -276,7 +285,7 @@ print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
 MAPE for training data: 1.7195710200875551 %
 ```
 
-Chora utabiri kwa data ya majaribio
+Chora utabiri wa data ya majaribio
 
 ```python
 plt.figure(figsize=(10,3))
@@ -287,7 +296,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testing data prediction](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.sw.png)
+![utabiri wa data ya majaribio](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
 Chapisha MAPE kwa data ya majaribio
 
@@ -301,7 +310,7 @@ MAPE for testing data:  1.2623790187854018 %
 
 🏆 Una matokeo mazuri sana kwenye seti ya data ya majaribio!
 
-### Angalia utendaji wa mfano kwenye seti kamili ya data [^1]
+### Angalia utendaji wa modeli kwenye seti kamili ya data [^1]
 
 ```python
 # Extracting load values as numpy array
@@ -343,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![full data prediction](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.sw.png)
+![utabiri wa data kamili](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -353,21 +362,21 @@ print('MAPE: ', mape(Y_pred, Y)*100, '%')
 MAPE:  2.0572089029888656 %
 ```
 
-🏆 Michoro nzuri sana, inaonyesha mfano wenye usahihi mzuri. Hongera!
+🏆 Grafu nzuri sana, zinazoonyesha modeli yenye usahihi mzuri. Hongera!
 
 ---
 
 ## 🚀Changamoto
 
-- Jaribu kubadilisha hyperparameters (gamma, C, epsilon) wakati wa kuunda mfano na tathmini kwenye data ili kuona seti gani ya hyperparameters inatoa matokeo bora kwenye data ya majaribio. Kujua zaidi kuhusu hyperparameters hizi, unaweza kurejelea hati [hapa](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
-- Jaribu kutumia kazi tofauti za kernel kwa mfano na uchanganue utendaji wao kwenye seti ya data. Hati inayosaidia inaweza kupatikana [hapa](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
-- Jaribu kutumia thamani tofauti za `timesteps` kwa mfano ili kuangalia nyuma kufanya utabiri.
+- Jaribu kubadilisha hyperparameters (gamma, C, epsilon) wakati wa kuunda modeli na tathmini kwenye data ili kuona ni seti gani ya hyperparameters inatoa matokeo bora kwenye data ya majaribio. Ili kujua zaidi kuhusu hyperparameters hizi, unaweza kurejelea hati [hapa](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
+- Jaribu kutumia kazi tofauti za kernel kwa modeli na uchanganue utendaji wake kwenye seti ya data. Hati inayosaidia inaweza kupatikana [hapa](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
+- Jaribu kutumia thamani tofauti za `timesteps` kwa modeli kuangalia nyuma ili kufanya utabiri.
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Maswali ya baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Mapitio na Kujisomea
 
-Somo hili lilikuwa la kuanzisha matumizi ya SVR kwa Utabiri wa Mfululizo wa Wakati. Kusoma zaidi kuhusu SVR, unaweza kurejelea [blogu hii](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Hii [hati ya scikit-learn](https://scikit-learn.org/stable/modules/svm.html) inatoa maelezo ya kina zaidi kuhusu SVMs kwa ujumla, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) na pia maelezo mengine ya utekelezaji kama vile kazi tofauti za [kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) zinazoweza kutumika, na vigezo vyake.
+Somo hili lilikuwa la kuanzisha matumizi ya SVR kwa Utabiri wa Mfululizo wa Wakati. Ili kusoma zaidi kuhusu SVR, unaweza kurejelea [blogu hii](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Hati hii [katika scikit-learn](https://scikit-learn.org/stable/modules/svm.html) inatoa maelezo ya kina zaidi kuhusu SVM kwa ujumla, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) na pia maelezo mengine ya utekelezaji kama vile kazi tofauti za [kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) zinazoweza kutumika, na vigezo vyake.
 
 ## Kazi
 
@@ -378,5 +387,7 @@ Somo hili lilikuwa la kuanzisha matumizi ya SVR kwa Utabiri wa Mfululizo wa Waka
 [^1]: Maandishi, msimbo na matokeo katika sehemu hii yalichangiwa na [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
 [^2]: Maandishi, msimbo na matokeo katika sehemu hii yalichukuliwa kutoka [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotumia mashine. Ingawa tunajitahidi kuwa sahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo chenye mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutokuelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

@@ -1,79 +1,88 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "abf86d845c84330bce205a46b382ec88",
+  "translation_date": "2025-09-05T18:48:36+00:00",
+  "source_file": "2-Regression/4-Logistic/README.md",
+  "language_code": "ms"
+}
+-->
 # Regresi Logistik untuk Meramal Kategori
 
-![Infografik Regresi Logistik vs. Linear](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.ms.png)
+![Infografik regresi logistik vs. regresi linear](../../../../2-Regression/4-Logistic/images/linear-vs-logistic.png)
 
-## [Kuiz Pra-Kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [Kuiz Pra-Pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Pelajaran ini tersedia dalam R!](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
 
 ## Pengenalan
 
-Dalam pelajaran terakhir mengenai Regresi ini, salah satu teknik dasar _klasik_ ML, kita akan melihat Regresi Logistik. Anda akan menggunakan teknik ini untuk menemukan pola untuk meramal kategori biner. Apakah permen ini coklat atau tidak? Apakah penyakit ini menular atau tidak? Apakah pelanggan ini akan memilih produk ini atau tidak?
+Dalam pelajaran terakhir mengenai Regresi, salah satu teknik asas _klasik_ ML, kita akan melihat Regresi Logistik. Anda boleh menggunakan teknik ini untuk mengenal pasti pola bagi meramal kategori binari. Adakah gula-gula ini coklat atau tidak? Adakah penyakit ini berjangkit atau tidak? Adakah pelanggan ini akan memilih produk ini atau tidak?
 
-Dalam pelajaran ini, Anda akan belajar:
+Dalam pelajaran ini, anda akan belajar:
 
 - Perpustakaan baru untuk visualisasi data
 - Teknik untuk regresi logistik
 
-✅ Perdalam pemahaman Anda tentang bekerja dengan jenis regresi ini di [modul Pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
+✅ Tingkatkan pemahaman anda tentang bekerja dengan jenis regresi ini dalam [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
 
 ## Prasyarat
 
-Setelah bekerja dengan data labu, kita sekarang cukup akrab untuk menyadari bahwa ada satu kategori biner yang bisa kita kerjakan: `Color`.
+Setelah bekerja dengan data labu, kita kini cukup biasa dengannya untuk menyedari bahawa terdapat satu kategori binari yang boleh kita gunakan: `Color`.
 
-Mari kita bangun model regresi logistik untuk meramal bahwa, mengingat beberapa variabel, _warna apa yang kemungkinan besar dari labu yang diberikan_ (oranye 🎃 atau putih 👻).
+Mari bina model regresi logistik untuk meramal, berdasarkan beberapa pemboleh ubah, _warna labu yang mungkin_ (oren 🎃 atau putih 👻).
 
-> Mengapa kita membicarakan klasifikasi biner dalam pelajaran tentang regresi? Hanya untuk kenyamanan linguistik, karena regresi logistik adalah [sebenarnya metode klasifikasi](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), meskipun berbasis linear. Pelajari cara lain untuk mengklasifikasikan data dalam kelompok pelajaran berikutnya.
+> Mengapa kita bercakap tentang klasifikasi binari dalam pelajaran mengenai regresi? Hanya untuk kemudahan linguistik, kerana regresi logistik adalah [sebenarnya kaedah klasifikasi](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), walaupun berasaskan linear. Ketahui cara lain untuk mengklasifikasikan data dalam kumpulan pelajaran seterusnya.
 
-## Definisikan pertanyaan
+## Tentukan Soalan
 
-Untuk tujuan kita, kita akan menyatakannya sebagai biner: 'Putih' atau 'Tidak Putih'. Ada juga kategori 'bergaris' dalam dataset kita, tetapi ada sedikit contohnya, jadi kita tidak akan menggunakannya. Itu hilang setelah kita menghapus nilai null dari dataset, bagaimanapun juga.
+Untuk tujuan kita, kita akan menyatakannya sebagai binari: 'Putih' atau 'Bukan Putih'. Terdapat juga kategori 'berjalur' dalam dataset kita tetapi terdapat sedikit contoh, jadi kita tidak akan menggunakannya. Ia akan hilang apabila kita membuang nilai null daripada dataset, bagaimanapun.
 
-> 🎃 Fakta menyenangkan, kadang-kadang kita menyebut labu putih sebagai 'labu hantu'. Mereka tidak mudah diukir, jadi mereka tidak sepopuler yang oranye tetapi mereka terlihat keren! Jadi kita juga bisa merumuskan ulang pertanyaan kita sebagai: 'Hantu' atau 'Bukan Hantu'. 👻
+> 🎃 Fakta menarik, kita kadang-kadang memanggil labu putih sebagai labu 'hantu'. Ia tidak mudah untuk diukir, jadi ia tidak sepopular labu oren tetapi ia kelihatan menarik! Jadi kita juga boleh merumuskan semula soalan kita sebagai: 'Hantu' atau 'Bukan Hantu'. 👻
 
-## Tentang regresi logistik
+## Mengenai Regresi Logistik
 
-Regresi logistik berbeda dari regresi linear, yang telah Anda pelajari sebelumnya, dalam beberapa cara penting.
+Regresi logistik berbeza daripada regresi linear, yang telah anda pelajari sebelum ini, dalam beberapa cara penting.
 
 [![ML untuk pemula - Memahami Regresi Logistik untuk Klasifikasi Pembelajaran Mesin](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "ML untuk pemula - Memahami Regresi Logistik untuk Klasifikasi Pembelajaran Mesin")
 
-> 🎥 Klik gambar di atas untuk video singkat tentang regresi logistik.
+> 🎥 Klik imej di atas untuk video ringkas mengenai regresi logistik.
 
-### Klasifikasi biner
+### Klasifikasi Binari
 
-Regresi logistik tidak menawarkan fitur yang sama seperti regresi linear. Yang pertama menawarkan prediksi tentang kategori biner ("putih atau tidak putih") sedangkan yang terakhir mampu meramal nilai berkelanjutan, misalnya mengingat asal labu dan waktu panen, _berapa banyak harganya akan naik_.
+Regresi logistik tidak menawarkan ciri yang sama seperti regresi linear. Yang pertama menawarkan ramalan tentang kategori binari ("putih atau bukan putih") manakala yang kedua mampu meramal nilai berterusan, contohnya berdasarkan asal labu dan masa penuaian, _berapa banyak harganya akan meningkat_.
 
-![Model Klasifikasi Labu](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.ms.png)
+![Model Klasifikasi Labu](../../../../2-Regression/4-Logistic/images/pumpkin-classifier.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-### Klasifikasi lainnya
+### Klasifikasi Lain
 
-Ada jenis regresi logistik lainnya, termasuk multinomial dan ordinal:
+Terdapat jenis regresi logistik lain, termasuk multinomial dan ordinal:
 
-- **Multinomial**, yang melibatkan lebih dari satu kategori - "Oranye, Putih, dan Bergaris".
-- **Ordinal**, yang melibatkan kategori berurutan, berguna jika kita ingin mengurutkan hasil kita secara logis, seperti labu kita yang diurutkan berdasarkan sejumlah ukuran terbatas (mini,sm,med,lg,xl,xxl).
+- **Multinomial**, yang melibatkan lebih daripada satu kategori - "Oren, Putih, dan Berjalur".
+- **Ordinal**, yang melibatkan kategori yang diatur, berguna jika kita ingin mengatur hasil kita secara logik, seperti labu kita yang diatur mengikut bilangan saiz terhingga (mini, sm, med, lg, xl, xxl).
 
-![Regresi Multinomial vs ordinal](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.ms.png)
+![Regresi multinomial vs ordinal](../../../../2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
-### Variabel TIDAK HARUS berkorelasi
+### Pemboleh ubah TIDAK Perlu Berkorelasi
 
-Ingat bagaimana regresi linear bekerja lebih baik dengan lebih banyak variabel yang berkorelasi? Regresi logistik adalah kebalikannya - variabelnya tidak harus sejajar. Itu bekerja untuk data ini yang memiliki korelasi yang agak lemah.
+Ingat bagaimana regresi linear berfungsi lebih baik dengan pemboleh ubah yang lebih berkorelasi? Regresi logistik adalah sebaliknya - pemboleh ubah tidak perlu sejajar. Ini berfungsi untuk data ini yang mempunyai korelasi yang agak lemah.
 
-### Anda memerlukan banyak data bersih
+### Anda Memerlukan Banyak Data Bersih
 
-Regresi logistik akan memberikan hasil yang lebih akurat jika Anda menggunakan lebih banyak data; dataset kecil kita tidak optimal untuk tugas ini, jadi ingatlah hal itu.
+Regresi logistik akan memberikan hasil yang lebih tepat jika anda menggunakan lebih banyak data; dataset kecil kita tidak optimum untuk tugas ini, jadi ingatlah perkara ini.
 
-[![ML untuk pemula - Analisis dan Persiapan Data untuk Regresi Logistik](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "ML untuk pemula - Analisis dan Persiapan Data untuk Regresi Logistik")
+[![ML untuk pemula - Analisis dan Penyediaan Data untuk Regresi Logistik](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "ML untuk pemula - Analisis dan Penyediaan Data untuk Regresi Logistik")
 
-> 🎥 Klik gambar di atas untuk video singkat tentang persiapan data untuk regresi linear
+> 🎥 Klik imej di atas untuk video ringkas mengenai penyediaan data untuk regresi linear
 
-✅ Pikirkan tentang jenis data yang cocok untuk regresi logistik
+✅ Fikirkan jenis data yang sesuai untuk regresi logistik
 
-## Latihan - bersihkan data
+## Latihan - kemas kini data
 
-Pertama, bersihkan data sedikit, hilangkan nilai null dan pilih hanya beberapa kolom:
+Mula-mula, bersihkan data sedikit, buang nilai null dan pilih hanya beberapa lajur:
 
-1. Tambahkan kode berikut:
+1. Tambahkan kod berikut:
 
     ```python
   
@@ -83,7 +92,7 @@ Pertama, bersihkan data sedikit, hilangkan nilai null dan pilih hanya beberapa k
     pumpkins.dropna(inplace=True)
     ```
 
-    Anda selalu dapat melihat sekilas dataframe baru Anda:
+    Anda sentiasa boleh melihat dataframe baru anda:
 
     ```python
     pumpkins.info
@@ -91,11 +100,11 @@ Pertama, bersihkan data sedikit, hilangkan nilai null dan pilih hanya beberapa k
 
 ### Visualisasi - plot kategori
 
-Sekarang Anda telah memuat [notebook awal](../../../../2-Regression/4-Logistic/notebook.ipynb) dengan data labu sekali lagi dan membersihkannya sehingga menyimpan dataset yang berisi beberapa variabel, termasuk `Color`. Mari kita visualisasikan dataframe dalam notebook menggunakan perpustakaan yang berbeda: [Seaborn](https://seaborn.pydata.org/index.html), yang dibangun di atas Matplotlib yang kita gunakan sebelumnya.
+Pada masa ini anda telah memuatkan [notebook permulaan](../../../../2-Regression/4-Logistic/notebook.ipynb) dengan data labu sekali lagi dan membersihkannya untuk mengekalkan dataset yang mengandungi beberapa pemboleh ubah, termasuk `Color`. Mari visualisasikan dataframe dalam notebook menggunakan perpustakaan yang berbeza: [Seaborn](https://seaborn.pydata.org/index.html), yang dibina di atas Matplotlib yang kita gunakan sebelum ini.
 
-Seaborn menawarkan beberapa cara menarik untuk memvisualisasikan data Anda. Misalnya, Anda dapat membandingkan distribusi data untuk setiap `Variety` dan `Color` dalam plot kategori.
+Seaborn menawarkan beberapa cara menarik untuk memvisualisasikan data anda. Sebagai contoh, anda boleh membandingkan taburan data untuk setiap `Variety` dan `Color` dalam plot kategori.
 
-1. Buat plot seperti itu dengan menggunakan `catplot` function, using our pumpkin data `pumpkins`, dan tentukan pemetaan warna untuk setiap kategori labu (oranye atau putih):
+1. Buat plot sedemikian dengan menggunakan fungsi `catplot`, menggunakan data labu kita `pumpkins`, dan menentukan pemetaan warna untuk setiap kategori labu (oren atau putih):
 
     ```python
     import seaborn as sns
@@ -111,18 +120,18 @@ Seaborn menawarkan beberapa cara menarik untuk memvisualisasikan data Anda. Misa
     )
     ```
 
-    ![Sebuah grid data yang divisualisasikan](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.ms.png)
+    ![Grid data yang divisualisasikan](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_1.png)
 
-    Dengan mengamati data, Anda dapat melihat bagaimana data Warna berkaitan dengan Variety.
+    Dengan memerhatikan data, anda boleh melihat bagaimana data Color berkaitan dengan Variety.
 
-    ✅ Mengingat plot kategori ini, eksplorasi menarik apa yang bisa Anda bayangkan?
+    ✅ Berdasarkan plot kategori ini, apakah beberapa penerokaan menarik yang boleh anda bayangkan?
 
-### Praproses data: pengkodean fitur dan label
-Dataset labu kita mengandung nilai string untuk semua kolomnya. Bekerja dengan data kategori adalah intuitif bagi manusia tetapi tidak untuk mesin. Algoritma pembelajaran mesin bekerja dengan baik dengan angka. Itulah mengapa pengkodean adalah langkah yang sangat penting dalam fase praproses data, karena memungkinkan kita untuk mengubah data kategori menjadi data numerik, tanpa kehilangan informasi apa pun. Pengkodean yang baik mengarah pada pembangunan model yang baik.
+### Pra-pemprosesan data: pengekodan ciri dan label
+Dataset labu kita mengandungi nilai string untuk semua lajur. Bekerja dengan data kategori adalah intuitif untuk manusia tetapi tidak untuk mesin. Algoritma pembelajaran mesin berfungsi dengan baik dengan nombor. Itulah sebabnya pengekodan adalah langkah yang sangat penting dalam fasa pra-pemprosesan data, kerana ia membolehkan kita menukar data kategori kepada data berangka, tanpa kehilangan sebarang maklumat. Pengekodan yang baik membawa kepada pembinaan model yang baik.
 
-Untuk pengkodean fitur ada dua jenis pengkode utama:
+Untuk pengekodan ciri terdapat dua jenis pengekod utama:
 
-1. Pengkode ordinal: cocok untuk variabel ordinal, yang merupakan variabel kategori di mana datanya mengikuti urutan logis, seperti kolom `Item Size` dalam dataset kita. Ini membuat pemetaan sehingga setiap kategori diwakili oleh angka, yang merupakan urutan kategori dalam kolom.
+1. Pengekod ordinal: sesuai untuk pemboleh ubah ordinal, iaitu pemboleh ubah kategori di mana datanya mengikuti susunan logik, seperti lajur `Item Size` dalam dataset kita. Ia mencipta pemetaan supaya setiap kategori diwakili oleh nombor, yang merupakan susunan kategori dalam lajur.
 
     ```python
     from sklearn.preprocessing import OrdinalEncoder
@@ -132,7 +141,7 @@ Untuk pengkodean fitur ada dua jenis pengkode utama:
     ordinal_encoder = OrdinalEncoder(categories=item_size_categories)
     ```
 
-2. Pengkode kategori: cocok untuk variabel nominal, yang merupakan variabel kategori di mana datanya tidak mengikuti urutan logis, seperti semua fitur yang berbeda dari `Item Size` dalam dataset kita. Ini adalah pengkodean satu-hot, yang berarti bahwa setiap kategori diwakili oleh kolom biner: variabel yang dikodekan sama dengan 1 jika labu termasuk dalam Variety tersebut dan 0 sebaliknya.
+2. Pengekod kategori: sesuai untuk pemboleh ubah nominal, iaitu pemboleh ubah kategori di mana datanya tidak mengikuti susunan logik, seperti semua ciri yang berbeza daripada `Item Size` dalam dataset kita. Ia adalah pengekodan satu-haba, yang bermaksud bahawa setiap kategori diwakili oleh lajur binari: pemboleh ubah yang dikodkan adalah sama dengan 1 jika labu tergolong dalam Variety itu dan 0 sebaliknya.
 
     ```python
     from sklearn.preprocessing import OneHotEncoder
@@ -140,7 +149,7 @@ Untuk pengkodean fitur ada dua jenis pengkode utama:
     categorical_features = ['City Name', 'Package', 'Variety', 'Origin']
     categorical_encoder = OneHotEncoder(sparse_output=False)
     ```
-Kemudian, `ColumnTransformer` digunakan untuk menggabungkan beberapa pengkode ke dalam satu langkah dan menerapkannya ke kolom yang sesuai.
+Kemudian, `ColumnTransformer` digunakan untuk menggabungkan beberapa pengekod ke dalam satu langkah dan menerapkannya pada lajur yang sesuai.
 
 ```python
     from sklearn.compose import ColumnTransformer
@@ -153,7 +162,7 @@ Kemudian, `ColumnTransformer` digunakan untuk menggabungkan beberapa pengkode ke
     ct.set_output(transform='pandas')
     encoded_features = ct.fit_transform(pumpkins)
 ```
-Di sisi lain, untuk mengkode label, kita menggunakan kelas `LabelEncoder` dari scikit-learn, yang merupakan kelas utilitas untuk membantu menormalkan label sehingga hanya berisi nilai antara 0 dan n_classes-1 (di sini, 0 dan 1).
+Sebaliknya, untuk mengekod label, kita menggunakan kelas `LabelEncoder` scikit-learn, yang merupakan kelas utiliti untuk membantu menormalkan label supaya ia hanya mengandungi nilai antara 0 dan n_classes-1 (di sini, 0 dan 1).
 
 ```python
     from sklearn.preprocessing import LabelEncoder
@@ -161,17 +170,17 @@ Di sisi lain, untuk mengkode label, kita menggunakan kelas `LabelEncoder` dari s
     label_encoder = LabelEncoder()
     encoded_label = label_encoder.fit_transform(pumpkins['Color'])
 ```
-Setelah kita mengkode fitur dan label, kita dapat menggabungkannya ke dalam dataframe baru `encoded_pumpkins`.
+Setelah kita mengekod ciri dan label, kita boleh menggabungkannya ke dalam dataframe baru `encoded_pumpkins`.
 
 ```python
     encoded_pumpkins = encoded_features.assign(Color=encoded_label)
 ```
-✅ Apa keuntungan menggunakan pengkode ordinal untuk kolom `Item Size` column?
+✅ Apakah kelebihan menggunakan pengekod ordinal untuk lajur `Item Size`?
 
-### Analyse relationships between variables
+### Analisis hubungan antara pemboleh ubah
 
-Now that we have pre-processed our data, we can analyse the relationships between the features and the label to grasp an idea of how well the model will be able to predict the label given the features.
-The best way to perform this kind of analysis is plotting the data. We'll be using again the Seaborn `catplot` function, to visualize the relationships between `Item Size`,  `Variety` dan `Color` dalam plot kategori. Untuk lebih memplot data kita akan menggunakan kolom `Item Size` column and the unencoded `Variety` yang telah dikodekan.
+Sekarang kita telah memproses data kita, kita boleh menganalisis hubungan antara ciri dan label untuk mendapatkan idea tentang sejauh mana model akan dapat meramal label berdasarkan ciri.
+Cara terbaik untuk melakukan analisis jenis ini adalah dengan memplotkan data. Kita akan menggunakan semula fungsi `catplot` Seaborn, untuk memvisualisasikan hubungan antara `Item Size`, `Variety` dan `Color` dalam plot kategori. Untuk memplotkan data dengan lebih baik kita akan menggunakan lajur `Item Size` yang dikodkan dan lajur `Variety` yang tidak dikodkan.
 
 ```python
     palette = {
@@ -190,15 +199,15 @@ The best way to perform this kind of analysis is plotting the data. We'll be usi
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
 ```
-![Sebuah catplot data yang divisualisasikan](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.ms.png)
+![Catplot data yang divisualisasikan](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_2.png)
 
 ### Gunakan plot swarm
 
-Karena Warna adalah kategori biner (Putih atau Tidak), itu memerlukan 'pendekatan [khusus](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) untuk visualisasi'. Ada cara lain untuk memvisualisasikan hubungan kategori ini dengan variabel lainnya.
+Oleh kerana Color adalah kategori binari (Putih atau Tidak), ia memerlukan 'pendekatan [khusus](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) untuk visualisasi'. Terdapat cara lain untuk memvisualisasikan hubungan kategori ini dengan pemboleh ubah lain.
 
-Anda dapat memvisualisasikan variabel berdampingan dengan plot Seaborn.
+Anda boleh memvisualisasikan pemboleh ubah secara bersebelahan dengan plot Seaborn.
 
-1. Coba plot 'swarm' untuk menunjukkan distribusi nilai:
+1. Cuba plot 'swarm' untuk menunjukkan taburan nilai:
 
     ```python
     palette = {
@@ -208,28 +217,27 @@ Anda dapat memvisualisasikan variabel berdampingan dengan plot Seaborn.
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![Sebuah swarm data yang divisualisasikan](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.ms.png)
+    ![Swarm data yang divisualisasikan](../../../../2-Regression/4-Logistic/images/swarm_2.png)
 
-**Perhatikan**: kode di atas mungkin menghasilkan peringatan, karena seaborn gagal mewakili jumlah titik data tersebut dalam plot swarm. Solusi yang mungkin adalah mengurangi ukuran penanda, dengan menggunakan parameter 'size'. Namun, perlu diketahui bahwa ini memengaruhi keterbacaan plot.
+**Perhatian**: kod di atas mungkin menghasilkan amaran, kerana seaborn gagal mewakili sejumlah besar titik data ke dalam plot swarm. Penyelesaian yang mungkin adalah mengurangkan saiz penanda, dengan menggunakan parameter 'size'. Walau bagaimanapun, sedar bahawa ini mempengaruhi kebolehbacaan plot.
 
-
-> **🧮 Tunjukkan Matematika**
+> **🧮 Tunjukkan Matematik**
 >
-> Regresi logistik bergantung pada konsep 'maximum likelihood' menggunakan [fungsi sigmoid](https://wikipedia.org/wiki/Sigmoid_function). Fungsi 'Sigmoid' pada plot terlihat seperti bentuk 'S'. Ini mengambil nilai dan memetakannya ke antara 0 dan 1. Kurvanya juga disebut 'kurva logistik'. Rumusnya terlihat seperti ini:
+> Regresi logistik bergantung pada konsep 'kebolehjadian maksimum' menggunakan [fungsi sigmoid](https://wikipedia.org/wiki/Sigmoid_function). Fungsi 'Sigmoid' pada plot kelihatan seperti bentuk 'S'. Ia mengambil nilai dan memetakan ke suatu tempat antara 0 dan 1. Lengkungnya juga dipanggil 'lengkung logistik'. Formula kelihatan seperti ini:
 >
-> ![fungsi logistik](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.ms.png)
+> ![fungsi logistik](../../../../2-Regression/4-Logistic/images/sigmoid.png)
 >
-> di mana titik tengah sigmoid berada pada titik 0 dari x, L adalah nilai maksimum kurva, dan k adalah kemiringan kurva. Jika hasil fungsi lebih dari 0,5, label yang dimaksud akan diberi kelas '1' dari pilihan biner. Jika tidak, itu akan diklasifikasikan sebagai '0'.
+> di mana titik tengah sigmoid berada pada titik 0 x, L adalah nilai maksimum lengkung, dan k adalah kecuraman lengkung. Jika hasil fungsi lebih daripada 0.5, label yang dimaksudkan akan diberikan kelas '1' daripada pilihan binari. Jika tidak, ia akan diklasifikasikan sebagai '0'.
 
-## Bangun model Anda
+## Bina model anda
 
-Membangun model untuk menemukan klasifikasi biner ini ternyata cukup mudah di Scikit-learn.
+Membina model untuk mencari klasifikasi binari ini adalah agak mudah dalam Scikit-learn.
 
 [![ML untuk pemula - Regresi Logistik untuk klasifikasi data](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML untuk pemula - Regresi Logistik untuk klasifikasi data")
 
-> 🎥 Klik gambar di atas untuk video singkat tentang membangun model regresi linear
+> 🎥 Klik imej di atas untuk video ringkas mengenai membina model regresi linear
 
-1. Pilih variabel yang ingin Anda gunakan dalam model klasifikasi Anda dan bagi set pelatihan dan pengujian dengan memanggil `train_test_split()`:
+1. Pilih pemboleh ubah yang ingin anda gunakan dalam model klasifikasi anda dan bahagikan set latihan dan ujian dengan memanggil `train_test_split()`:
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -241,7 +249,7 @@ Membangun model untuk menemukan klasifikasi biner ini ternyata cukup mudah di Sc
     
     ```
 
-2. Sekarang Anda dapat melatih model Anda, dengan memanggil `fit()` dengan data pelatihan Anda, dan mencetak hasilnya:
+2. Kini anda boleh melatih model anda, dengan memanggil `fit()` dengan data latihan anda, dan cetak hasilnya:
 
     ```python
     from sklearn.metrics import f1_score, classification_report 
@@ -256,7 +264,7 @@ Membangun model untuk menemukan klasifikasi biner ini ternyata cukup mudah di Sc
     print('F1-score: ', f1_score(y_test, predictions))
     ```
 
-    Lihatlah papan skor model Anda. Tidak buruk, mengingat Anda hanya memiliki sekitar 1000 baris data:
+    Lihat papan skor model anda. Ia tidak buruk, memandangkan anda hanya mempunyai kira-kira 1000 baris data:
 
     ```output
                        precision    recall  f1-score   support
@@ -277,75 +285,75 @@ Membangun model untuk menemukan klasifikasi biner ini ternyata cukup mudah di Sc
         F1-score:  0.7457627118644068
     ```
 
-## Pemahaman yang lebih baik melalui matriks kebingungan
+## Pemahaman yang lebih baik melalui matriks kekeliruan
 
-Meskipun Anda bisa mendapatkan laporan papan skor [istilah](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) dengan mencetak item di atas, Anda mungkin bisa memahami model Anda dengan lebih mudah dengan menggunakan [matriks kebingungan](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) untuk membantu kita memahami bagaimana model bekerja.
+Walaupun anda boleh mendapatkan laporan papan skor [terma](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) dengan mencetak item di atas, anda mungkin dapat memahami model anda dengan lebih mudah dengan menggunakan [matriks kekeliruan](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) untuk membantu kita memahami bagaimana model berfungsi.
 
-> 🎓 Sebuah '[matriks kebingungan](https://wikipedia.org/wiki/Confusion_matrix)' (atau 'matriks kesalahan') adalah tabel yang mengungkapkan positif dan negatif sejati vs. palsu dari model Anda, sehingga mengukur akurasi prediksi.
+> 🎓 '[Matriks kekeliruan](https://wikipedia.org/wiki/Confusion_matrix)' (atau 'matriks ralat') ialah jadual yang menyatakan positif dan negatif sebenar vs. palsu model anda, dengan itu mengukur ketepatan ramalan.
 
-1. Untuk menggunakan metrik kebingungan, panggil `confusion_matrix()`:
+1. Untuk menggunakan matriks kekeliruan, panggil `confusion_matrix()`:
 
     ```python
     from sklearn.metrics import confusion_matrix
     confusion_matrix(y_test, predictions)
     ```
 
-    Lihatlah matriks kebingungan model Anda:
+    Lihat matriks kekeliruan model anda:
 
     ```output
     array([[162,   4],
            [ 11,  22]])
     ```
 
-Di Scikit-learn, Baris (sumbu 0) matriks kebingungan adalah label sebenarnya dan kolom (sumbu 1) adalah label yang diprediksi.
+Dalam Scikit-learn, baris matriks kekeliruan (paksi 0) adalah label sebenar dan lajur (paksi 1) adalah label yang diramal.
 
 |       |   0   |   1   |
 | :---: | :---: | :---: |
 |   0   |  TN   |  FP   |
 |   1   |  FN   |  TP   |
 
-Apa yang terjadi di sini? Katakanlah model kita diminta untuk mengklasifikasikan labu antara dua kategori biner, kategori 'putih' dan kategori 'tidak putih'.
+Apa yang berlaku di sini? Katakan model kita diminta untuk mengklasifikasikan labu antara dua kategori binari, kategori 'putih' dan kategori 'bukan putih'.
 
-- Jika model Anda memprediksi labu sebagai tidak putih dan itu benar-benar termasuk dalam kategori 'tidak putih' kita menyebutnya negatif benar, ditunjukkan oleh angka kiri atas.
-- Jika model Anda memprediksi labu sebagai putih dan itu benar-benar termasuk dalam kategori 'tidak putih' kita menyebutnya negatif palsu, ditunjukkan oleh angka kiri bawah.
-- Jika model Anda memprediksi labu sebagai tidak putih dan itu benar-benar termasuk dalam kategori 'putih' kita menyebutnya positif palsu, ditunjukkan oleh angka kanan atas.
-- Jika model Anda memprediksi labu sebagai putih dan itu benar-benar termasuk dalam kategori 'putih' kita menyebutnya positif benar, ditunjukkan oleh angka kanan bawah.
+- Jika model anda meramal labu sebagai bukan putih dan ia tergolong dalam kategori 'bukan putih' dalam realiti kita memanggilnya negatif benar, ditunjukkan oleh nombor kiri atas.
+- Jika model anda meramal labu sebagai putih dan ia tergolong dalam kategori 'bukan putih' dalam realiti kita memanggilnya negatif palsu, ditunjukkan oleh nombor kiri bawah. 
+- Jika model anda meramal labu sebagai bukan putih dan ia tergolong dalam kategori 'putih' dalam realiti kita memanggilnya positif palsu, ditunjukkan oleh nombor kanan atas. 
+- Jika model anda meramal labu sebagai putih dan ia tergolong dalam kategori 'putih' dalam realiti kita memanggilnya positif benar, ditunjukkan oleh nombor kanan bawah.
 
-Seperti yang mungkin Anda duga, lebih disukai memiliki jumlah positif benar dan negatif benar yang lebih besar dan jumlah positif palsu dan negatif palsu yang lebih rendah, yang menyiratkan bahwa model bekerja lebih baik.
+Seperti yang anda mungkin telah teka, adalah lebih baik untuk mempunyai bilangan positif benar dan negatif benar yang lebih besar dan bilangan positif palsu dan negatif palsu yang lebih rendah, yang menunjukkan bahawa model berfungsi dengan lebih baik.
+Bagaimana matriks kekeliruan berkaitan dengan ketepatan dan ingatan? Ingat, laporan klasifikasi yang dicetak di atas menunjukkan ketepatan (0.85) dan ingatan (0.67).
 
-Bagaimana matriks kebingungan berkaitan dengan presisi dan recall? Ingat, laporan klasifikasi yang dicetak di atas menunjukkan presisi (0.85) dan recall (0.67).
+Ketepatan = tp / (tp + fp) = 22 / (22 + 4) = 0.8461538461538461
 
-Presisi = tp / (tp + fp) = 22 / (22 + 4) = 0.8461538461538461
+Ingatan = tp / (tp + fn) = 22 / (22 + 11) = 0.6666666666666666
 
-Recall = tp / (tp + fn) = 22 / (22 + 11) = 0.6666666666666666
+✅ S: Berdasarkan matriks kekeliruan, bagaimana prestasi model? J: Tidak buruk; terdapat sejumlah besar negatif benar tetapi juga beberapa negatif palsu.
 
-✅ Q: Menurut matriks kebingungan, bagaimana kinerja model? A: Tidak buruk; ada banyak negatif benar tetapi juga beberapa negatif palsu.
+Mari kita ulang semula istilah yang kita lihat sebelum ini dengan bantuan pemetaan TP/TN dan FP/FN dalam matriks kekeliruan:
 
-Mari kita tinjau kembali istilah yang kita lihat sebelumnya dengan bantuan pemetaan TP/TN dan FP/FN dari matriks kebingungan:
+🎓 Ketepatan: TP/(TP + FP) Bahagian contoh yang relevan di antara contoh yang diambil (contohnya, label mana yang dilabel dengan baik)
 
-🎓 Presisi: TP/(TP + FP) Fraksi instance relevan di antara instance yang diambil (misalnya label mana yang dilabeli dengan baik)
+🎓 Ingatan: TP/(TP + FN) Bahagian contoh yang relevan yang diambil, sama ada dilabel dengan baik atau tidak
 
-🎓 Recall: TP/(TP + FN) Fraksi instance relevan yang diambil, apakah dilabeli dengan baik atau tidak
+🎓 Skor f1: (2 * ketepatan * ingatan)/(ketepatan + ingatan) Purata berwajaran antara ketepatan dan ingatan, dengan yang terbaik adalah 1 dan yang terburuk adalah 0
 
-🎓 f1-score: (2 * presisi * recall)/(presisi + recall) Rata-rata tertimbang dari presisi dan recall, dengan yang terbaik adalah 1 dan yang terburuk adalah 0
+🎓 Sokongan: Bilangan kejadian bagi setiap label yang diambil
 
-🎓 Dukungan: Jumlah kejadian dari setiap label yang diambil
+🎓 Ketepatan: (TP + TN)/(TP + TN + FP + FN) Peratusan label yang diramal dengan tepat untuk satu sampel.
 
-🎓 Akurasi: (TP + TN)/(TP + TN + FP + FN) Persentase label yang diprediksi dengan akurat untuk sebuah sampel.
+🎓 Purata Makro: Pengiraan purata metrik tanpa berat bagi setiap label, tanpa mengambil kira ketidakseimbangan label.
 
-🎓 Rata-rata Makro: Perhitungan rata-rata metrik yang tidak berbobot untuk setiap label, tanpa memperhitungkan ketidakseimbangan label.
+🎓 Purata Berwajaran: Pengiraan purata metrik bagi setiap label, mengambil kira ketidakseimbangan label dengan menimbangnya berdasarkan sokongan mereka (bilangan contoh benar bagi setiap label).
 
-🎓 Rata-rata Tertimbang: Perhitungan rata-rata metrik untuk setiap label, dengan memperhitungkan ketidakseimbangan label dengan menimbangnya berdasarkan dukungan mereka (jumlah instance sebenarnya untuk setiap label).
+✅ Bolehkah anda fikirkan metrik mana yang perlu diperhatikan jika anda mahu model anda mengurangkan bilangan negatif palsu?
 
-✅ Bisakah Anda memikirkan metrik mana yang harus Anda perhatikan jika Anda ingin model Anda mengurangi jumlah negatif palsu?
+## Visualisasi lengkung ROC model ini
 
-## Visualisasikan kurva ROC dari model ini
+[![ML untuk pemula - Menganalisis Prestasi Regresi Logistik dengan Lengkung ROC](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "ML untuk pemula - Menganalisis Prestasi Regresi Logistik dengan Lengkung ROC")
 
-[![ML untuk pemula - Menganalisis Kinerja Regresi Logistik dengan Kurva ROC](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "ML untuk pemula - Menganalisis Kinerja Regresi Logistik dengan Kurva ROC")
 
-> 🎥 Klik gambar di atas untuk video singkat tentang kurva ROC
+> 🎥 Klik imej di atas untuk video ringkas mengenai lengkung ROC
 
-Mari kita lakukan satu visualisasi lagi untuk melihat yang disebut 'kurva ROC':
+Mari kita lakukan satu lagi visualisasi untuk melihat apa yang dipanggil 'ROC' curve:
 
 ```python
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -365,28 +373,36 @@ plt.title('ROC Curve')
 plt.show()
 ```
 
-Menggunakan Matplotlib, plot [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) atau ROC dari model. Kurva ROC sering digunakan untuk mendapatkan pandangan tentang output dari sebuah classifier dalam hal positif benar vs. positif palsu. "Kurva ROC biasanya menampilkan true positive rate pada sumbu Y, dan false positive rate pada sumbu X." Dengan demikian, kemiringan kurva dan ruang antara garis tengah dan kurva penting: Anda ingin kurva yang cepat naik dan melewati garis. Dalam kasus kita, ada positif palsu untuk memulai, dan kemudian garis naik dan melewati dengan benar:
+Menggunakan Matplotlib, plotkan [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) atau ROC model. Lengkung ROC sering digunakan untuk mendapatkan pandangan tentang output pengklasifikasi dari segi positif benar vs. positif palsu. "Lengkung ROC biasanya memaparkan kadar positif benar pada paksi Y, dan kadar positif palsu pada paksi X." Oleh itu, kecuraman lengkung dan ruang antara garis tengah dan lengkung adalah penting: anda mahukan lengkung yang cepat naik dan melepasi garis. Dalam kes kita, terdapat positif palsu pada permulaan, dan kemudian garis naik dan melepasi dengan betul:
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.ms.png)
+![ROC](../../../../2-Regression/4-Logistic/images/ROC_2.png)
 
-Akhirnya, gunakan [`API roc_auc_score` dari Scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) untuk menghitung 'Area Under the Curve' (AUC) yang sebenarnya:
+Akhirnya, gunakan API [`roc_auc_score`](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) Scikit-learn untuk mengira 'Area Under the Curve' (AUC) sebenar:
 
 ```python
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```
-Hasilnya adalah `0.9749908725812341`. Mengingat bahwa AUC berkisar dari 0 hingga 1, Anda menginginkan skor yang besar, karena model yang 100% benar dalam prediksinya akan memiliki AUC sebesar 1; dalam kasus ini, model _cukup bagus_. 
+Hasilnya ialah `0.9749908725812341`. Memandangkan AUC berkisar dari 0 hingga 1, anda mahukan skor yang besar, kerana model yang 100% betul dalam ramalannya akan mempunyai AUC sebanyak 1; dalam kes ini, model ini _agak baik_.
 
-Dalam pelajaran klasifikasi di masa depan, Anda akan belajar cara mengulangi untuk meningkatkan skor model Anda. Tetapi untuk saat ini, selamat! Anda telah menyelesaikan pelajaran regresi ini!
+Dalam pelajaran masa depan mengenai klasifikasi, anda akan belajar bagaimana untuk mengulangi proses bagi meningkatkan skor model anda. Tetapi buat masa ini, tahniah! Anda telah menyelesaikan pelajaran regresi ini!
 
 ---
-## 🚀Tantangan
+## 🚀Cabaran
 
-Masih banyak lagi yang bisa dibahas mengenai regresi logistik! Tapi cara terbaik untuk belajar adalah dengan bereksperimen. Temukan dataset yang cocok untuk analisis jenis ini dan bangun model dengannya. Apa yang Anda pelajari? tip: coba [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) untuk dataset yang menarik.
+Masih banyak lagi yang boleh diterokai mengenai regresi logistik! Tetapi cara terbaik untuk belajar adalah dengan bereksperimen. Cari dataset yang sesuai untuk jenis analisis ini dan bina model dengannya. Apa yang anda pelajari? tip: cuba [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) untuk dataset yang menarik.
 
-## [Kuiz Pasca-Kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+## [Kuiz selepas kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## T
+## Ulasan & Kajian Kendiri
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Baca beberapa halaman pertama [kertas kerja dari Stanford ini](https://web.stanford.edu/~jurafsky/slp3/5.pdf) mengenai beberapa kegunaan praktikal untuk regresi logistik. Fikirkan tentang tugas yang lebih sesuai untuk satu jenis regresi berbanding yang lain yang telah kita pelajari setakat ini. Apa yang akan berfungsi dengan baik?
+
+## Tugasan 
+
+[Ulangi regresi ini](assignment.md)
+
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

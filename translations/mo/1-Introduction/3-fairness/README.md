@@ -1,158 +1,170 @@
-# Construire des solutions d'apprentissage automatique avec une IA responsable
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "9a6b702d1437c0467e3c5c28d763dac2",
+  "translation_date": "2025-09-06T09:13:33+00:00",
+  "source_file": "1-Introduction/3-fairness/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用負責任的人工智慧建構機器學習解決方案
 
-![Résumé de l'IA responsable dans l'apprentissage automatique dans un sketchnote](../../../../translated_images/ml-fairness.ef296ebec6afc98a44566d7b6c1ed18dc2bf1115c13ec679bb626028e852fa1d.mo.png)
-> Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![機器學習中負責任人工智慧的摘要草圖](../../../../sketchnotes/ml-fairness.png)
+> 草圖由 [Tomomi Imura](https://www.twitter.com/girlie_mac) 提供
 
-## [Quiz pré-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Introduction
+## 簡介
 
-Dans ce programme, vous allez commencer à découvrir comment l'apprentissage automatique peut et impacte notre vie quotidienne. Même maintenant, des systèmes et des modèles sont impliqués dans des tâches de prise de décision quotidiennes, telles que les diagnostics de santé, les approbations de prêts ou la détection de fraudes. Il est donc important que ces modèles fonctionnent bien pour fournir des résultats fiables. Tout comme toute application logicielle, les systèmes d'IA peuvent ne pas répondre aux attentes ou avoir un résultat indésirable. C'est pourquoi il est essentiel de comprendre et d'expliquer le comportement d'un modèle d'IA.
+在這門課程中，您將開始探索機器學習如何影響我們的日常生活。即使是現在，系統和模型已經參與了日常的決策任務，例如醫療診斷、貸款審批或欺詐檢測。因此，確保這些模型能夠提供值得信賴的結果是非常重要的。就像任何軟體應用程式一樣，人工智慧系統可能無法達到預期或產生不理想的結果。因此，理解並解釋人工智慧模型的行為是至關重要的。
 
-Imaginez ce qui peut se passer lorsque les données que vous utilisez pour construire ces modèles manquent de certaines démographies, telles que la race, le genre, l'opinion politique, la religion, ou représentent de manière disproportionnée ces démographies. Que se passe-t-il lorsque la sortie du modèle est interprétée comme favorisant un certain groupe démographique ? Quelle est la conséquence pour l'application ? De plus, que se passe-t-il lorsque le modèle a un résultat négatif et nuit aux personnes ? Qui est responsable du comportement des systèmes d'IA ? Ce sont quelques-unes des questions que nous allons explorer dans ce programme.
+想像一下，當您用來構建這些模型的數據缺乏某些人口統計數據（例如種族、性別、政治觀點、宗教）或過度代表某些人口統計數據時會發生什麼情況？如果模型的輸出被解讀為偏袒某些群體，又會有什麼後果？此外，當模型產生不良結果並對人們造成傷害時，該怎麼辦？誰應該對人工智慧系統的行為負責？這些是我們在這門課程中將探討的一些問題。
 
-Dans cette leçon, vous allez :
+在這節課中，您將：
 
-- Prendre conscience de l'importance de l'équité dans l'apprentissage automatique et des préjudices liés à l'équité.
-- Vous familiariser avec la pratique de l'exploration des valeurs aberrantes et des scénarios inhabituels pour garantir la fiabilité et la sécurité.
-- Comprendre la nécessité d'habiliter tout le monde en concevant des systèmes inclusifs.
-- Explorer à quel point il est vital de protéger la vie privée et la sécurité des données et des personnes.
-- Voir l'importance d'avoir une approche en boîte de verre pour expliquer le comportement des modèles d'IA.
-- Être conscient de la façon dont la responsabilité est essentielle pour instaurer la confiance dans les systèmes d'IA.
+- 提高對機器學習中公平性及相關傷害的重要性的認識。
+- 熟悉探索異常值和不尋常情境以確保可靠性和安全性的實踐。
+- 理解設計包容性系統以賦能每個人的必要性。
+- 探討保護數據和人員隱私與安全的重要性。
+- 認識到採用透明化方法解釋人工智慧模型行為的必要性。
+- 意識到責任感對於建立對人工智慧系統的信任至關重要。
 
-## Prérequis
+## 先修條件
 
-Comme prérequis, veuillez suivre le parcours d'apprentissage "Principes de l'IA responsable" et regarder la vidéo ci-dessous sur le sujet :
+作為先修條件，請完成「負責任人工智慧原則」學習路徑，並觀看以下主題的影片：
 
-En savoir plus sur l'IA responsable en suivant ce [Parcours d'apprentissage](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+通過此 [學習路徑](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott) 了解更多關於負責任人工智慧的內容。
 
-[![Approche de Microsoft en matière d'IA responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Approche de Microsoft en matière d'IA responsable")
+[![微軟的負責任人工智慧方法](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "微軟的負責任人工智慧方法")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo : Approche de Microsoft en matière d'IA responsable
+> 🎥 點擊上方圖片觀看影片：微軟的負責任人工智慧方法
 
-## Équité
+## 公平性
 
-Les systèmes d'IA doivent traiter tout le monde de manière équitable et éviter d'affecter des groupes de personnes similaires de manière différente. Par exemple, lorsque les systèmes d'IA fournissent des recommandations sur des traitements médicaux, des demandes de prêt ou des emplois, ils doivent faire les mêmes recommandations à tous ceux qui ont des symptômes, des circonstances financières ou des qualifications professionnelles similaires. Chacun de nous, en tant qu'humain, porte des biais hérités qui influencent nos décisions et nos actions. Ces biais peuvent être évidents dans les données que nous utilisons pour former des systèmes d'IA. Une telle manipulation peut parfois se produire sans intention. Il est souvent difficile de savoir consciemment quand vous introduisez un biais dans les données.
+人工智慧系統應該公平對待每個人，避免對相似群體的人產生不同的影響。例如，當人工智慧系統提供醫療建議、貸款申請或就業建議時，應該對具有相似症狀、財務狀況或專業資格的人給出相同的建議。我們每個人都帶有一些繼承的偏見，這些偏見會影響我們的決策和行動。這些偏見可能會反映在我們用來訓練人工智慧系統的數據中，有時甚至是無意間發生的。我們往往很難有意識地察覺到自己在數據中引入了偏見。
 
-**“L'inéquité”** englobe les impacts négatifs, ou “préjudices”, pour un groupe de personnes, tels que ceux définis en termes de race, de genre, d'âge ou de statut de handicap. Les principaux préjudices liés à l'équité peuvent être classés comme suit :
+**「不公平」** 包括對某些群體（例如基於種族、性別、年齡或殘疾狀況定義的群體）造成的負面影響或「傷害」。主要與公平性相關的傷害可以分類為：
 
-- **Allocation**, si un genre ou une ethnie est favorisé par rapport à un autre.
-- **Qualité du service**. Si vous formez les données pour un scénario spécifique mais que la réalité est beaucoup plus complexe, cela conduit à un service peu performant. Par exemple, un distributeur de savon liquide qui ne semble pas capable de détecter les personnes à la peau foncée. [Référence](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Dénigrement**. Critiquer et étiqueter injustement quelque chose ou quelqu'un. Par exemple, une technologie d'étiquetage d'images a tristement mal étiqueté des images de personnes à la peau foncée comme des gorilles.
-- **Sur- ou sous-représentation**. L'idée est qu'un certain groupe n'est pas vu dans une certaine profession, et tout service ou fonction qui continue à promouvoir cela contribue à un préjudice.
-- **Stéréotypage**. Associer un groupe donné à des attributs prédéfinis. Par exemple, un système de traduction de langue entre l'anglais et le turc peut avoir des inexactitudes en raison de mots ayant des associations stéréotypées avec le genre.
+- **分配不公**：例如，偏袒某一性別或種族。
+- **服務質量**：如果您僅針對特定情境訓練數據，而現實情況更為複雜，則會導致服務表現不佳。例如，一款無法感應深色皮膚的洗手液分配器。[參考資料](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **貶低**：不公平地批評或標籤某事或某人。例如，一項圖像標籤技術曾將深色皮膚的人的照片錯誤標籤為猩猩。
+- **過度或不足代表**：某些群體在某些職業中未被看到，而任何繼續推動這種情況的服務或功能都在助長傷害。
+- **刻板印象**：將某一群體與預設的屬性聯繫起來。例如，英語與土耳其語之間的語言翻譯系統可能因性別相關的刻板印象而出現不準確。
 
-![traduction en turc](../../../../translated_images/gender-bias-translate-en-tr.f185fd8822c2d4372912f2b690f6aaddd306ffbb49d795ad8d12a4bf141e7af0.mo.png)
-> traduction en turc
+![翻譯成土耳其語](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
+> 翻譯成土耳其語
 
-![traduction en anglais](../../../../translated_images/gender-bias-translate-tr-en.4eee7e3cecb8c70e13a8abbc379209bc8032714169e585bdeac75af09b1752aa.mo.png)
-> traduction en anglais
+![翻譯回英語](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
+> 翻譯回英語
 
-Lors de la conception et des tests des systèmes d'IA, nous devons nous assurer que l'IA est équitable et n'est pas programmée pour prendre des décisions biaisées ou discriminatoires, que les êtres humains sont également interdits de prendre. Garantir l'équité dans l'IA et l'apprentissage automatique reste un défi sociotechnique complexe.
+在設計和測試人工智慧系統時，我們需要確保人工智慧是公平的，並且未被編程為做出偏見或歧視性的決策，這些決策是人類也被禁止做出的。保證人工智慧和機器學習的公平性仍然是一個複雜的社會技術挑戰。
 
-### Fiabilité et sécurité
+### 可靠性與安全性
 
-Pour instaurer la confiance, les systèmes d'IA doivent être fiables, sûrs et cohérents dans des conditions normales et inattendues. Il est important de savoir comment les systèmes d'IA se comporteront dans une variété de situations, en particulier lorsqu'ils sont confrontés à des valeurs aberrantes. Lors de la construction de solutions d'IA, il doit y avoir une attention substantielle sur la façon de gérer une large variété de circonstances que les solutions d'IA pourraient rencontrer. Par exemple, une voiture autonome doit mettre la sécurité des personnes en priorité absolue. En conséquence, l'IA qui alimente la voiture doit considérer tous les scénarios possibles auxquels la voiture pourrait être confrontée, comme la nuit, les tempêtes, les blizzards, les enfants traversant la rue, les animaux de compagnie, les constructions routières, etc. La capacité d'un système d'IA à gérer une large gamme de conditions de manière fiable et sûre reflète le niveau d'anticipation que le scientifique des données ou le développeur d'IA a pris en compte lors de la conception ou des tests du système.
+為了建立信任，人工智慧系統需要在正常和意外情況下保持可靠、安全和一致。我們需要了解人工智慧系統在各種情境下的行為，特別是當它們面對異常情況時。在構建人工智慧解決方案時，需要大量關注如何處理人工智慧可能遇到的各種情況。例如，自駕車需要將人們的安全放在首位。因此，驅動汽車的人工智慧需要考慮所有可能的情境，例如夜晚、雷暴或暴風雪、孩子橫穿馬路、寵物、道路施工等。人工智慧系統能否可靠、安全地處理廣泛的情況，反映了數據科學家或人工智慧開發者在設計或測試系統時的考量程度。
 
-> [🎥 Cliquez ici pour une vidéo : ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 點擊這裡觀看影片：](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
-### Inclusivité
+### 包容性
 
-Les systèmes d'IA doivent être conçus pour engager et habiliter tout le monde. Lors de la conception et de la mise en œuvre des systèmes d'IA, les scientifiques des données et les développeurs d'IA identifient et abordent les barrières potentielles dans le système qui pourraient exclure involontairement des personnes. Par exemple, il y a 1 milliard de personnes handicapées dans le monde. Avec l'avancement de l'IA, elles peuvent accéder plus facilement à une large gamme d'informations et d'opportunités dans leur vie quotidienne. En abordant les barrières, cela crée des opportunités pour innover et développer des produits d'IA avec de meilleures expériences qui bénéficient à tous.
+人工智慧系統應該被設計為能夠吸引並賦能每個人。在設計和實施人工智慧系統時，數據科學家和人工智慧開發者需要識別並解決系統中可能無意間排除某些人的潛在障礙。例如，全球有10億人有殘疾。隨著人工智慧的進步，他們可以更輕鬆地獲取廣泛的信息和機會。通過解決這些障礙，可以創造創新機會，開發出能為所有人提供更好體驗的人工智慧產品。
 
-> [🎥 Cliquez ici pour une vidéo : inclusivité dans l'IA](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 點擊這裡觀看影片：人工智慧中的包容性](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
-### Sécurité et vie privée
+### 安全性與隱私
 
-Les systèmes d'IA doivent être sûrs et respecter la vie privée des personnes. Les gens ont moins confiance dans les systèmes qui mettent leur vie privée, leurs informations ou leur vie en danger. Lors de la formation des modèles d'apprentissage automatique, nous comptons sur les données pour produire les meilleurs résultats. Ce faisant, l'origine des données et leur intégrité doivent être prises en compte. Par exemple, les données ont-elles été soumises par l'utilisateur ou sont-elles disponibles publiquement ? Ensuite, lors de l'utilisation des données, il est crucial de développer des systèmes d'IA qui peuvent protéger les informations confidentielles et résister aux attaques. À mesure que l'IA devient plus répandue, la protection de la vie privée et la sécurisation des informations personnelles et commerciales importantes deviennent de plus en plus critiques et complexes. Les questions de vie privée et de sécurité des données nécessitent une attention particulièrement étroite pour l'IA, car l'accès aux données est essentiel pour que les systèmes d'IA puissent faire des prédictions et des décisions précises et éclairées concernant les personnes.
+人工智慧系統應該是安全的，並尊重人們的隱私。如果系統威脅到人們的隱私、信息或生命安全，人們對其的信任就會減少。在訓練機器學習模型時，我們依賴數據來產生最佳結果。在此過程中，必須考慮數據的來源和完整性。例如，數據是用戶提交的還是公開可用的？接下來，在處理數據時，開發能夠保護機密信息並抵禦攻擊的人工智慧系統至關重要。隨著人工智慧的普及，保護隱私和確保重要的個人和商業信息的安全變得越來越重要且複雜。隱私和數據安全問題對人工智慧尤為重要，因為數據的可用性對於人工智慧系統做出準確且知情的預測和決策至關重要。
 
-> [🎥 Cliquez ici pour une vidéo : sécurité dans l'IA](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 點擊這裡觀看影片：人工智慧中的安全性](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- En tant qu'industrie, nous avons réalisé des avancées significatives en matière de vie privée et de sécurité, alimentées de manière significative par des réglementations comme le RGPD (Règlement général sur la protection des données).
-- Pourtant, avec les systèmes d'IA, nous devons reconnaître la tension entre la nécessité de plus de données personnelles pour rendre les systèmes plus personnels et efficaces – et la vie privée.
-- Tout comme avec la naissance des ordinateurs connectés à Internet, nous voyons également une forte augmentation du nombre de problèmes de sécurité liés à l'IA.
-- En même temps, nous avons vu l'IA être utilisée pour améliorer la sécurité. Par exemple, la plupart des scanners antivirus modernes sont aujourd'hui alimentés par des heuristiques d'IA.
-- Nous devons nous assurer que nos processus de science des données s'harmonisent avec les dernières pratiques en matière de vie privée et de sécurité.
+- 作為一個行業，我們在隱私和安全性方面取得了顯著進展，這在很大程度上得益於《通用數據保護條例》（GDPR）等法規。
+- 然而，對於人工智慧系統，我們必須承認在需要更多個人數據以使系統更加個性化和有效與隱私之間的緊張關係。
+- 就像互聯網誕生時連接的計算機一樣，我們也看到了與人工智慧相關的安全問題數量的急劇增加。
+- 同時，我們也看到人工智慧被用於改善安全性。例如，大多數現代防病毒掃描器今天都由人工智慧啟發的啟發式方法驅動。
+- 我們需要確保我們的數據科學流程與最新的隱私和安全實踐和諧融合。
 
-### Transparence
+### 透明性
 
-Les systèmes d'IA doivent être compréhensibles. Une partie cruciale de la transparence est d'expliquer le comportement des systèmes d'IA et de leurs composants. Améliorer la compréhension des systèmes d'IA nécessite que les parties prenantes comprennent comment et pourquoi ils fonctionnent afin de pouvoir identifier les problèmes de performance potentiels, les préoccupations en matière de sécurité et de vie privée, les biais, les pratiques d'exclusion ou les résultats inattendus. Nous croyons également que ceux qui utilisent les systèmes d'IA doivent être honnêtes et transparents sur quand, pourquoi et comment ils choisissent de les déployer, ainsi que sur les limitations des systèmes qu'ils utilisent. Par exemple, si une banque utilise un système d'IA pour soutenir ses décisions de prêt aux consommateurs, il est important d'examiner les résultats et de comprendre quelles données influencent les recommandations du système. Les gouvernements commencent à réglementer l'IA dans divers secteurs, donc les scientifiques des données et les organisations doivent expliquer si un système d'IA répond aux exigences réglementaires, surtout lorsqu'il y a un résultat indésirable.
+人工智慧系統應該是可理解的。透明性的一個關鍵部分是解釋人工智慧系統及其組件的行為。提高對人工智慧系統的理解需要利益相關者了解它們如何以及為什麼運作，以便識別潛在的性能問題、安全和隱私問題、偏見、排他性實踐或意外結果。我們還認為，使用人工智慧系統的人應該誠實並坦率地說明何時、為什麼以及如何選擇部署它們，以及它們使用的系統的局限性。例如，如果一家銀行使用人工智慧系統來支持其消費者貸款決策，則需要檢查結果並了解哪些數據影響了系統的建議。隨著政府開始對各行業的人工智慧進行監管，數據科學家和組織必須解釋人工智慧系統是否符合監管要求，特別是在出現不良結果時。
 
-> [🎥 Cliquez ici pour une vidéo : transparence dans l'IA](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 點擊這裡觀看影片：人工智慧中的透明性](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Parce que les systèmes d'IA sont si complexes, il est difficile de comprendre comment ils fonctionnent et d'interpréter les résultats.
-- Ce manque de compréhension affecte la façon dont ces systèmes sont gérés, opérationnalisés et documentés.
-- Ce manque de compréhension affecte surtout les décisions prises en utilisant les résultats que ces systèmes produisent.
+- 由於人工智慧系統非常複雜，很難理解它們的工作原理並解釋結果。
+- 這種缺乏理解影響了這些系統的管理、運營和文檔化方式。
+- 更重要的是，這種缺乏理解影響了基於這些系統產生的結果所做的決策。
 
-### Responsabilité
+### 責任
 
-Les personnes qui conçoivent et déploient des systèmes d'IA doivent être responsables de leur fonctionnement. La nécessité de responsabilité est particulièrement cruciale avec des technologies d'utilisation sensible comme la reconnaissance faciale. Récemment, il y a eu une demande croissante pour la technologie de reconnaissance faciale, en particulier de la part des organisations d'application de la loi qui voient le potentiel de cette technologie dans des usages tels que la recherche d'enfants disparus. Cependant, ces technologies pourraient potentiellement être utilisées par un gouvernement pour mettre en danger les libertés fondamentales de ses citoyens en permettant, par exemple, une surveillance continue de personnes spécifiques. Par conséquent, les scientifiques des données et les organisations doivent être responsables de l'impact de leur système d'IA sur les individus ou la société.
+設計和部署人工智慧系統的人必須對其系統的運作方式負責。責任的必要性在面部識別等敏感技術中尤為重要。最近，對面部識別技術的需求不斷增長，特別是來自執法機構的需求，他們看到了該技術在尋找失蹤兒童等用途中的潛力。然而，這些技術可能會被政府用來威脅其公民的基本自由，例如，通過對特定個體進行持續監控。因此，數據科學家和組織需要對其人工智慧系統對個人或社會的影響負責。
 
-[![Un chercheur en IA de premier plan met en garde contre la surveillance de masse grâce à la reconnaissance faciale](../../../../translated_images/accountability.41d8c0f4b85b6231301d97f17a450a805b7a07aaeb56b34015d71c757cad142e.mo.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Approche de Microsoft en matière d'IA responsable")
+[![人工智慧研究者警告面部識別可能導致大規模監控](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "微軟的負責任人工智慧方法")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo : Avertissements sur la surveillance de masse grâce à la reconnaissance faciale
+> 🎥 點擊上方圖片觀看影片：面部識別可能導致大規模監控的警告
 
-En fin de compte, l'une des plus grandes questions pour notre génération, en tant que première génération qui introduit l'IA dans la société, est de savoir comment s'assurer que les ordinateurs resteront responsables envers les gens et comment s'assurer que les personnes qui conçoivent des ordinateurs restent responsables envers tout le monde.
+最終，作為第一代將人工智慧引入社會的人，我們這一代面臨的最大問題之一是如何確保計算機始終對人類負責，以及如何確保設計計算機的人對其他人負責。
 
-## Évaluation d'impact
+## 影響評估
 
-Avant de former un modèle d'apprentissage automatique, il est important de réaliser une évaluation d'impact pour comprendre l'objectif du système d'IA ; quel est l'usage prévu ; où il sera déployé ; et qui interagira avec le système. Cela est utile pour les examinateurs ou les testeurs évaluant le système de savoir quels facteurs prendre en compte lors de l'identification des risques potentiels et des conséquences attendues.
+在訓練機器學習模型之前，進行影響評估以了解人工智慧系統的目的、預期用途、部署地點以及與系統互動的對象是非常重要的。這些評估對於評審者或測試者來說非常有幫助，因為它們可以知道在識別潛在風險和預期後果時需要考慮哪些因素。
 
-Les domaines suivants sont des axes d'intérêt lors de la réalisation d'une évaluation d'impact :
+進行影響評估時的重點領域包括：
 
-* **Impact négatif sur les individus**. Être conscient de toute restriction ou exigence, d'une utilisation non prise en charge ou de toute limitation connue entravant la performance du système est vital pour garantir que le système n'est pas utilisé d'une manière qui pourrait nuire aux individus.
-* **Exigences en matière de données**. Comprendre comment et où le système utilisera les données permet aux examinateurs d'explorer les exigences en matière de données dont vous devrez tenir compte (par exemple, réglementations sur les données GDPR ou HIPAA). De plus, examinez si la source ou la quantité de données est substantielle pour la formation.
-* **Résumé de l'impact**. Rassemblez une liste des préjudices potentiels qui pourraient découler de l'utilisation du système. Tout au long du cycle de vie de l'apprentissage automatique, examinez si les problèmes identifiés sont atténués ou abordés.
-* **Objectifs applicables** pour chacun des six principes fondamentaux. Évaluez si les objectifs de chacun des principes sont atteints et s'il y a des lacunes.
+* **對個人的不利影響**：了解任何限制或要求、不支持的用途或任何已知限制對系統性能的影響至關重要，以確保系統不會以可能對個人造成傷害的方式使用。
+* **數據需求**：了解系統如何以及在哪裡使用數據，使評審者能夠探索需要注意的任何數據需求（例如 GDPR 或 HIPPA 數據法規）。此外，檢查數據的來源或數量是否足夠用於訓練。
+* **影響摘要**：收集使用系統可能產生的潛在傷害清單。在機器學習生命周期中，檢查是否已緩解或解決識別出的問題。
+* **適用於六大核心原則的目標**：評估每個原則的目標是否達成，以及是否存在任何差距。
 
-## Débogage avec une IA responsable
+## 使用負責任人工智慧進行調試
 
-Tout comme le débogage d'une application logicielle, le débogage d'un système d'IA est un processus nécessaire pour identifier et résoudre les problèmes du système. Il existe de nombreux facteurs qui pourraient affecter un modèle ne fonctionnant pas comme prévu ou de manière responsable. La plupart des métriques de performance des modèles traditionnels sont des agrégats quantitatifs de la performance d'un modèle, qui ne sont pas suffisants pour analyser comment un modèle viole les principes de l'IA responsable. De plus, un modèle d'apprentissage automatique est une boîte noire qui rend difficile la compréhension de ce qui influence son résultat ou de fournir une explication lorsqu'il fait une erreur. Plus tard dans ce cours, nous apprendrons comment utiliser le tableau de bord de l'IA responsable pour aider à déboguer les systèmes d'IA. Le tableau de bord fournit un outil holistique pour les scientifiques des données et les développeurs d'IA pour effectuer :
+與調試軟體應用程式類似，調試人工智慧系統是識別和解決系統問題的必要過程。許多因素可能導致模型未按預期或負責任地運行。大多數傳統的模型性能指標是模型性能的定量匯總，這不足以分析模型如何違反負責任人工智慧原則。此外，機器學習模型是一個黑箱，難以理解其結果的驅動因素或在出錯時提供解釋。在本課程的後續部分，我們將學習如何使用負責任人工智慧儀表板來幫助調試人工智慧系統。該儀表板為數據科學家和人工智慧開發者提供了一個全面的工具，用於執行以下操作：
 
-* **Analyse des erreurs**. Pour identifier la distribution des erreurs du modèle qui peut affecter l'équité ou la fiabilité du système.
-* **Vue d'ensemble du modèle**. Pour découvrir où se trouvent les disparités dans la performance du modèle à travers les cohortes de données.
-* **Analyse des données**. Pour comprendre la distribution des données et identifier tout biais potentiel dans les données qui pourrait conduire à des problèmes d'équité, d'inclusivité et de fiabilité.
-* **Interprétabilité du modèle**. Pour comprendre ce qui affecte ou influence les prédictions du modèle. Cela aide à expliquer le comportement du modèle, ce qui est important pour la transparence et la responsabilité.
+* **錯誤分析**：識別模型的錯誤分佈，這可能影響系統的公平性或可靠性。
+* **模型概覽**：發現模型在數據群體中的性能差異。
+* **數據分析**：了解數據分佈並識別數據中可能導致公平性、包容性和可靠性問題的潛在偏見。
+* **模型可解釋性**：了解影響或影響模型預測的因素。這有助於解釋模型的行為，這對於透明性和責任感至關重要。
 
-## 🚀 Défi
+## 🚀 挑戰
 
-Pour éviter que des préjudices ne soient introduits dès le départ, nous devrions :
+為了防止傷害的產生，我們應該：
 
-- avoir une diversité de parcours et de perspectives parmi les personnes travaillant sur les systèmes
-- investir dans des ensembles de données qui reflètent la diversité de notre société
-- développer de meilleures méthodes tout au long du cycle de vie de l'apprentissage automatique pour détecter et corriger l'IA responsable lorsqu'elle se produit
+- 確保參與系統工作的團隊成員具有多樣化的背景和觀點。
+- 投資於反映社會多樣性的數據集。
+- 在機器學習生命周期中開發更好的方法來檢測和糾正負責任人工智慧問題。
 
-Pensez à des scénarios de la vie réelle où l'absence de confiance d'un modèle est évidente dans la construction et l'utilisation du modèle. Quoi d'autre devrions-nous considérer ?
+思考一些現實生活中的情境，模型的不可信性在模型構建和使用中顯而易見。我們還應該考慮什麼？
 
-## [Quiz post-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
-## Révision & Auto-apprentissage
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-Dans cette leçon, vous avez appris quelques bases des concepts d'équité et d'inéquité dans l'apprentissage automatique.
+## 回顧與自學
 
-Regardez cet atelier pour approfondir les sujets :
+在本課中，您已經學習了機器學習中公平性和不公平性概念的一些基礎知識。
+觀看這場工作坊，深入了解相關主題：
 
-- À la recherche d'une IA responsable : Mettre les principes en pratique par Besmira Nushi, Mehrnoosh Sameki et Amit Sharma
+- 追求負責任的人工智慧：將原則付諸實踐，由 Besmira Nushi、Mehrnoosh Sameki 和 Amit Sharma 主講
 
-[![Boîte à outils d'IA responsable : Un cadre open-source pour construire une IA responsable](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox : Un cadre open-source pour construire une IA responsable")
+[![負責任的人工智慧工具箱：建立負責任人工智慧的開源框架](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: 建立負責任人工智慧的開源框架")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo : RAI Toolbox : Un cadre open-source pour construire une IA responsable par Besmira Nushi, Mehrnoosh Sameki et Amit Sharma
+> 🎥 點擊上方圖片觀看影片：RAI Toolbox: 建立負責任人工智慧的開源框架，由 Besmira Nushi、Mehrnoosh Sameki 和 Amit Sharma 主講
 
-De plus, lisez :
+此外，閱讀以下資源：
 
-- Centre de ressources RAI de Microsoft : [Ressources sur l'IA responsable – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- 微軟的負責任人工智慧資源中心：[負責任人工智慧資源 – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
 
-- Groupe de recherche FATE de Microsoft : [FATE : Équité, Responsabilité, Transparence et Éthique dans l'IA - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+- 微軟的 FATE 研究小組：[FATE: 公平性、問責性、透明性與人工智慧倫理 - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 
-Boîte à outils RAI :
+RAI 工具箱：
 
-- [Dépôt GitHub de la boîte à outils d'IA responsable](https://github.com/microsoft/responsible-ai-toolbox)
+- [負責任人工智慧工具箱 GitHub 儲存庫](https://github.com/microsoft/responsible-ai-toolbox)
 
-Lisez à propos des outils d'Azure Machine Learning pour garantir l'équité :
+了解 Azure 機器學習工具如何確保公平性：
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
+- [Azure 機器學習](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
 
-## Devoir
+## 作業
 
-[Explorer la boîte à outils RAI
+[探索 RAI 工具箱](assignment.md)
 
-I'm sorry, but I cannot translate text into "mo" as it is not clear what language or dialect you are referring to. Could you please specify the language you would like the text translated into?
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

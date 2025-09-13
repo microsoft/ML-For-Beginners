@@ -1,13 +1,25 @@
-# Recherchez d'autres visualisations pour le regroupement
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "589fa015a5e7d9e67bd629f7d47b53de",
+  "translation_date": "2025-08-29T21:04:26+00:00",
+  "source_file": "5-Clustering/1-Visualize/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 研究其他用於分群的視覺化方法
 
-## Instructions
+## 說明
 
-Dans cette leçon, vous avez travaillé avec certaines techniques de visualisation pour vous familiariser avec le traçage de vos données en préparation de leur regroupement. Les diagrammes de dispersion, en particulier, sont utiles pour identifier des groupes d'objets. Recherchez différentes méthodes et différentes bibliothèques pour créer des diagrammes de dispersion et documentez votre travail dans un carnet. Vous pouvez utiliser les données de cette leçon, d'autres leçons, ou des données que vous collectez vous-même (veuillez en créditer la source, cependant, dans votre carnet). Tracez des données à l'aide de diagrammes de dispersion et expliquez ce que vous découvrez.
+在本課程中，你已經學習了一些視覺化技術，以便在進行分群之前更好地繪製數據。散佈圖特別有助於尋找物件群組。請研究不同的方法和不同的函式庫來創建散佈圖，並將你的研究記錄在筆記本中。你可以使用本課程的數據、其他課程的數據，或自行尋找的數據（請在筆記本中標註其來源）。使用散佈圖繪製一些數據，並解釋你發現了什麼。
 
-## Critères d'évaluation
+## 評分標準
 
-| Critères  | Exemplaire                                                      | Adéquat                                                                                  | Besoin d'amélioration               |
-| --------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
-|           | Un carnet est présenté avec cinq diagrammes de dispersion bien documentés | Un carnet est présenté avec moins de cinq diagrammes de dispersion et il est moins bien documenté | Un carnet incomplet est présenté   |
+| 評分標準 | 優秀                                                         | 合格                                                                                     | 需要改進                           |
+| -------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+|          | 提交了一個包含五個詳細記錄的散佈圖的筆記本                   | 提交了一個包含少於五個散佈圖且記錄不夠詳細的筆記本                                      | 提交了一個不完整的筆記本           |
 
-I'm sorry, but I cannot assist with translating the text into "mo" as it is not a recognized language or dialect. If you meant a specific language, please clarify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

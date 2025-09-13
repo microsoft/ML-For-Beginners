@@ -1,117 +1,127 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "8d32dadeda93c6fb5c43619854882ab1",
+  "translation_date": "2025-09-06T09:40:57+00:00",
+  "source_file": "6-NLP/4-Hotel-Reviews-1/README.md",
+  "language_code": "ja"
+}
+-->
 # ホテルレビューによる感情分析 - データの処理
 
-このセクションでは、前のレッスンで学んだ技術を使って、大規模なデータセットの探索的データ分析を行います。各列の有用性を十分に理解した後、次のことを学びます:
+このセクションでは、前のレッスンで学んだ技術を使って、大規模なデータセットの探索的データ分析を行います。各列の有用性を十分に理解した後、以下を学びます：
 
-- 不要な列の削除方法
+- 不要な列を削除する方法
 - 既存の列を基に新しいデータを計算する方法
-- 最終チャレンジで使用するために結果のデータセットを保存する方法
+- 最終的な課題で使用するために結果のデータセットを保存する方法
 
-## [事前レクチャークイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/37/)
+## [講義前のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
 ### はじめに
 
-これまで、テキストデータが数値データとは全く異なるものであることを学びました。人間が書いたり話したりしたテキストは、パターンや頻度、感情や意味を見つけるために分析することができます。このレッスンでは、実際のデータセットと実際のチャレンジに取り組みます: **[515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)** で、[CC0: Public Domainライセンス](https://creativecommons.org/publicdomain/zero/1.0/)が含まれています。このデータはBooking.comから公開ソースからスクレイピングされました。データセットの作成者はJiashen Liuです。
+これまでに、テキストデータが数値データとは大きく異なることを学びました。人間が書いたり話したりしたテキストは、パターンや頻度、感情、意味を分析することができます。このレッスンでは、実際のデータセットと課題に取り組みます：**[ヨーロッパの515Kホテルレビューのデータ](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)**。このデータセットは[CC0: パブリックドメインライセンス](https://creativecommons.org/publicdomain/zero/1.0/)のもとで提供されており、Booking.comから公開情報をスクレイピングして作成されました。データセットの作成者はJiashen Liuです。
 
 ### 準備
 
-必要なもの:
+必要なもの：
 
-* Python 3を使用して.ipynbノートブックを実行できる能力
+* Python 3で.ipynbノートブックを実行する能力
 * pandas
-* NLTK、[ローカルにインストールする必要があります](https://www.nltk.org/install.html)
-* Kaggleで入手可能なデータセット [515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)。解凍すると約230MBです。これをこれらのNLPレッスンに関連するルート `/data` フォルダーにダウンロードしてください。
+* NLTK、[ローカルにインストールしてください](https://www.nltk.org/install.html)
+* Kaggleからダウンロード可能なデータセット [ヨーロッパの515Kホテルレビューのデータ](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)。解凍後約230MBです。このNLPレッスンに関連するルート`/data`フォルダに保存してください。
 
 ## 探索的データ分析
 
-このチャレンジでは、感情分析とゲストレビューのスコアを使用してホテル推薦ボットを構築することを前提としています。使用するデータセットには、6つの都市にある1493の異なるホテルのレビューが含まれています。
+この課題では、感情分析とゲストレビューのスコアを使用してホテル推薦ボットを構築することを想定しています。使用するデータセットには、6つの都市にある1493の異なるホテルのレビューが含まれています。
 
-Python、ホテルレビューのデータセット、およびNLTKの感情分析を使用して次のことがわかります:
+Python、ホテルレビューのデータセット、そしてNLTKの感情分析を使用して以下を調べることができます：
 
 * レビューで最も頻繁に使用される単語やフレーズは何か？
-* ホテルを説明する公式の *タグ* はレビューのスコアと相関しているか？（例えば、*Family with young children* のレビューが *Solo traveller* よりもネガティブなレビューが多い場合、そのホテルは *Solo travellers* に向いているかもしれません）
-* NLTKの感情スコアはホテルレビューの数値スコアと一致するか？
+* ホテルを説明する公式の*タグ*はレビューのスコアと関連しているか？（例えば、*若い子供連れの家族*のレビューが*一人旅*よりもネガティブな場合、そのホテルは*一人旅*に適している可能性がある）
+* NLTKの感情スコアはホテルレビューの数値スコアと一致しているか？
 
 #### データセット
 
-ダウンロードしてローカルに保存したデータセットを探索してみましょう。VS CodeやExcelのようなエディタでファイルを開いてみてください。
+ダウンロードしてローカルに保存したデータセットを探索してみましょう。VS CodeやExcelのようなエディタでファイルを開いてください。
 
-データセットのヘッダーは次の通りです:
+データセットのヘッダーは以下の通りです：
 
 *Hotel_Address, Additional_Number_of_Scoring, Review_Date, Average_Score, Hotel_Name, Reviewer_Nationality, Negative_Review, Review_Total_Negative_Word_Counts, Total_Number_of_Reviews, Positive_Review, Review_Total_Positive_Word_Counts, Total_Number_of_Reviews_Reviewer_Has_Given, Reviewer_Score, Tags, days_since_review, lat, lng*
 
-ここでは、検査しやすいようにグループ化しています:
-##### ホテル列
+以下のようにグループ化すると、より簡単に確認できます：
+##### ホテル関連の列
 
 * `Hotel_Name`, `Hotel_Address`, `lat` (緯度), `lng` (経度)
-  * *lat* と *lng* を使用して、Pythonでホテルの場所を示す地図をプロットできます（ネガティブレビューとポジティブレビューの色分けをすることも可能です）
-  * Hotel_Address は明らかに有用ではないので、国に置き換えてソートや検索を容易にする予定です
+  * *lat*と*lng*を使用して、Pythonでホテルの位置を示す地図をプロットすることができます（例えば、ネガティブレビューとポジティブレビューを色分けする）
+  * Hotel_Addressはあまり有用ではないため、国名に置き換えてソートや検索を簡単にする予定です
 
-**ホテルメタレビュー列**
+**ホテルのメタレビュー関連の列**
 
 * `Average_Score`
-  * データセット作成者によると、この列は「過去1年の最新コメントに基づいて計算されたホテルの平均スコア」です。この方法でスコアを計算するのは珍しいですが、今のところそのまま受け入れることにします。
+  * データセット作成者によると、この列は「ホテルの平均スコアで、過去1年間の最新コメントに基づいて計算されたもの」です。この計算方法は少し特殊ですが、現時点ではそのまま受け入れることにします。
   
-  ✅ 他の列に基づいて、平均スコアを計算する別の方法を考えられますか？
+  ✅ このデータの他の列を基に、別の方法で平均スコアを計算する方法を考えられますか？
 
 * `Total_Number_of_Reviews`
-  * このホテルが受け取ったレビューの総数です。このデータセットのレビューに関するものかどうかは（コードを書かずに）明確ではありません。
+  * このホテルが受け取ったレビューの総数 - この値がデータセット内のレビューを指しているかどうかはコードを書かないと明確ではありません。
 * `Additional_Number_of_Scoring`
-  * これはレビューのスコアが与えられたが、レビュアーによってポジティブまたはネガティブなレビューが書かれなかったことを意味します
+  * レビューのスコアが付けられたが、ポジティブまたはネガティブなレビューが書かれていない場合を意味します
 
-**レビュー列**
+**レビュー関連の列**
 
 - `Reviewer_Score`
-  - 最小値と最大値の間で小数点以下1桁までの数値です
+  - 小数点以下1桁までの数値で、最小値2.5から最大値10の間
   - なぜ2.5が最低スコアなのかは説明されていません
 - `Negative_Review`
-  - レビュアーが何も書かなかった場合、このフィールドには「**No Negative**」と表示されます
-  - レビュアーがネガティブレビュー欄にポジティブレビューを書くこともあります（例：「このホテルには悪いところが何もありません」）
+  - レビューが書かれていない場合、このフィールドには「**No Negative**」と記載されます
+  - ネガティブレビューの列にポジティブな内容を書くレビューもあります（例：「このホテルには悪いところがありません」）
 - `Review_Total_Negative_Word_Counts`
-  - ネガティブな単語数が多いほど、スコアは低くなります（感情をチェックしない場合）
+  - ネガティブな単語数が多いほど、スコアが低い傾向があります（感情分析を行わない場合）
 - `Positive_Review`
-  - レビュアーが何も書かなかった場合、このフィールドには「**No Positive**」と表示されます
-  - レビュアーがポジティブレビュー欄にネガティブレビューを書くこともあります（例：「このホテルには全く良いところがありません」）
+  - レビューが書かれていない場合、このフィールドには「**No Positive**」と記載されます
+  - ポジティブレビューの列にネガティブな内容を書くレビューもあります（例：「このホテルには良いところが全くありません」）
 - `Review_Total_Positive_Word_Counts`
-  - ポジティブな単語数が多いほど、スコアは高くなります（感情をチェックしない場合）
-- `Review_Date` と `days_since_review`
-  - レビューに新鮮さや古さの指標を適用することができます（古いレビューは、新しいレビューほど正確でないかもしれません。ホテルの管理が変わったり、改装が行われたり、プールが追加されたりするため）
+  - ポジティブな単語数が多いほど、スコアが高い傾向があります（感情分析を行わない場合）
+- `Review_Date`と`days_since_review`
+  - レビューの新鮮さや古さを測る指標として使用できます（古いレビューは、ホテルの管理が変わったり、改装が行われたり、プールが追加されたりして、正確性が低い可能性があります）
 - `Tags`
-  - これはレビュアーが選択できる短い記述子で、ゲストの種類（例：一人旅や家族）、部屋の種類、滞在期間、レビューが提出されたデバイスの種類を示します。
-  - ただし、これらのタグを使用するのは問題がある場合があります。以下のセクションでその有用性について説明します
+  - レビューアが選択する短い記述で、ゲストのタイプ（例：一人旅や家族）、部屋のタイプ、滞在期間、レビューの提出方法などを示します。
+  - 残念ながら、これらのタグを使用するのは問題がある場合があります。以下のセクションでその有用性について説明します。
 
-**レビュアー列**
+**レビューア関連の列**
 
 - `Total_Number_of_Reviews_Reviewer_Has_Given`
-  - 推奨モデルの要素になるかもしれません。例えば、数百のレビューを持つレビューアーがポジティブよりもネガティブなレビューを残す可能性が高いと判断できる場合。しかし、特定のレビューのレビュアーは一意のコードで識別されないため、一連のレビューにリンクすることはできません。100以上のレビューを持つレビュアーが30人いますが、これが推奨モデルにどのように役立つかは明確ではありません。
+  - 推薦モデルでの要因になる可能性があります。例えば、数百件のレビューを投稿しているレビューアがネガティブなレビューを投稿する傾向があるかどうかを判断できる場合。ただし、特定のレビューのレビューアは一意のコードで識別されておらず、レビューのセットにリンクすることはできません。100件以上のレビューを投稿しているレビューアは30人いますが、推薦モデルにどのように役立つかは不明です。
 - `Reviewer_Nationality`
-  - 一部の人々は、特定の国籍がポジティブまたはネガティブなレビューを残す傾向があると考えるかもしれませんが、これはモデルにそのような逸話的な見解を組み込む際には注意が必要です。これらは国や時には人種のステレオタイプであり、各レビュアーは彼らの経験に基づいてレビューを書いた個人です。彼らの国籍がレビューのスコアの理由であると考えるのは正当化するのが難しいです。
+  - 一部の人々は、特定の国籍がポジティブまたはネガティブなレビューを投稿する傾向があると考えるかもしれません。しかし、こうしたモデルにそのような経験則を組み込む際には注意が必要です。これらは国籍（時には人種）に基づくステレオタイプであり、各レビューアは個々の経験に基づいてレビューを書いています。それが以前のホテル滞在、移動距離、個人的な気質など多くの要因を通じてフィルタリングされている可能性があります。レビューのスコアが国籍によるものだと考えるのは正当化が難しいです。
 
 ##### 例
 
-| Average  Score | Total Number   Reviews | Reviewer   Score | Negative <br />Review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Positive   Review                 | Tags                                                                                      |
-| -------------- | ---------------------- | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 7.8            | 1945                   | 2.5              | This is  currently not a hotel but a construction site I was terrorized from early  morning and all day with unacceptable building noise while resting after a  long trip and working in the room People were working all day i e with  jackhammers in the adjacent rooms I asked for a room change but no silent  room was available To make things worse I was overcharged I checked out in  the evening since I had to leave very early flight and received an appropriate  bill A day later the hotel made another charge without my consent in excess  of booked price It's a terrible place Don't punish yourself by booking  here | Nothing  Terrible place Stay away | Business trip                                Couple Standard Double  Room Stayed 2 nights |
+| 平均スコア | レビュー総数 | レビューアスコア | ネガティブ<br />レビュー                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | ポジティブレビュー                 | タグ                                                                                      |
+| ---------- | ------------ | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+| 7.8        | 1945         | 2.5              | 現在この場所はホテルではなく建設現場です。長旅の後に休んでいる間、また部屋で仕事をしている間、早朝から一日中許容できない建設騒音に悩まされました。隣の部屋ではジャックハンマーを使った作業が一日中行われていました。部屋の変更を求めましたが、静かな部屋はありませんでした。さらに悪いことに、料金を過剰請求されました。早朝のフライトのために夕方にチェックアウトし、適切な請求書を受け取りましたが、翌日ホテルは予約価格を超える金額を無断で請求しました。ひどい場所です。ここを予約して自分を罰しないでください。 | 何もありません。ひどい場所です。避けてください。 | 出張                                カップル スタンダードダブルルーム 2泊滞在 |
 
-このゲストは、このホテルでの滞在に満足していなかったことがわかります。ホテルは7.8の良い平均スコアと1945のレビューを持っていますが、このレビュアーは2.5を与え、滞在がいかにネガティブだったかを115語で書いています。ポジティブレビュー欄に何も書いていなければ、ポジティブな点がなかったと推測できますが、7語の警告を書いています。単語の数だけを数える代わりに、単語の意味や感情を分析しないと、レビュアーの意図が歪んでしまうかもしれません。奇妙なことに、2.5のスコアは混乱を招きます。なぜなら、そのホテル滞在がそれほど悪かったなら、なぜポイントを与えるのでしょうか？データセットを詳しく調査すると、最低スコアが2.5であり、0ではないことがわかります。最高スコアは10です。
+このように、このゲストはホテルでの滞在に満足していませんでした。このホテルは7.8の良い平均スコアと1945件のレビューを持っていますが、このレビューアは2.5を付け、115語で滞在のネガティブな点を述べています。ポジティブレビューの列に何も書かなかった場合、ポジティブな点がなかったと推測できますが、実際には警告の7語を書いています。単語の数だけを数えると、レビューアの意図が歪んでしまう可能性があります。不思議なことに、2.5というスコアは混乱を招きます。滞在がそれほど悪かったのなら、なぜ全く点数を付けないのではなく2.5を付けたのでしょうか？データセットを詳しく調査すると、最低スコアは2.5であり、0ではないことがわかります。最高スコアは10です。
 
 ##### タグ
 
-前述のように、`Tags` を使用してデータを分類するアイデアは一見理にかなっているように見えます。しかし、これらのタグは標準化されていないため、あるホテルでは *Single room*、*Twin room*、*Double room* というオプションがあり、次のホテルでは *Deluxe Single Room*、*Classic Queen Room*、*Executive King Room* というオプションがあります。これらは同じものかもしれませんが、バリエーションが非常に多いため、選択肢は次のようになります:
+前述のように、最初は`Tags`を使用してデータを分類するアイデアは理にかなっているように思えます。しかし、これらのタグは標準化されていないため、あるホテルでは*シングルルーム*、*ツインルーム*、*ダブルルーム*というオプションがあり、別のホテルでは*デラックスシングルルーム*、*クラシッククイーンルーム*、*エグゼクティブキングルーム*というオプションがあります。これらは同じものかもしれませんが、バリエーションが多すぎて選択肢は以下のようになります：
 
-1. すべての用語を単一の標準に変更する試み、これは非常に困難です。なぜなら、各ケースでの変換パスが明確ではないからです（例：*Classic single room* を *Single room* にマッピングするが、*Superior Queen Room with Courtyard Garden or City View* はマッピングが難しい）
-1. NLPアプローチを取り、各ホテルに適用される *Solo*、*Business Traveller*、*Family with young kids* などの用語の頻度を測定し、それを推奨に組み込む
+1. すべての用語を単一の標準に変更しようとする。ただし、各ケースで変換方法が明確ではないため非常に困難です（例：*クラシックシングルルーム*は*シングルルーム*に対応しますが、*中庭または市街地ビュー付きスーペリアクイーンルーム*は対応が非常に難しい）。
 
-タグは通常（必ずしもそうではありませんが）、*Type of trip*、*Type of guests*、*Type of room*、*Number of nights*、*Type of device review was submitted on* に一致する5〜6のコンマ区切りの値のリストを含む単一のフィールドです。しかし、一部のレビュアーは各フィールドを埋めないことがあるため（空欄のままにすることがある）、値は常に同じ順序にはありません。
+1. NLPアプローチを取り、各ホテルに適用される*ソロ*、*ビジネストラベラー*、*若い子供連れの家族*などの特定の用語の頻度を測定し、それを推薦に組み込む。
 
-例えば、*Type of group* を取り上げます。このフィールドには `Tags` 列に1025の一意の可能性がありますが、そのうちの一部だけがグループに関連しています（いくつかは部屋の種類など）。*Family* に関連するものだけをフィルタリングすると、多くの *Family room* タイプの結果が含まれます。*with* という用語を含めると、*Family with* の値を数えると、結果は良くなり、515,000の結果のうち80,000以上が「Family with young children」または「Family with older children」を含んでいます。
+タグは通常（ただし常にではありません）、*旅行の種類*、*ゲストの種類*、*部屋の種類*、*滞在日数*、*レビューが提出されたデバイスの種類*に対応する5〜6個のカンマ区切りの値を含む単一のフィールドです。ただし、一部のレビューアが各フィールドを埋めない場合（空白のままにする場合）、値は常に同じ順序で並んでいるわけではありません。
 
-これは、タグ列が完全に無用ではないが、役立つようにするには作業が必要であることを意味します。
+例として、*グループの種類*を取り上げます。このフィールドには`Tags`列で1025のユニークな可能性がありますが、残念ながらそのうちの一部しかグループを指していません（他は部屋の種類などです）。*家族*に言及するものだけをフィルタリングすると、結果には多くの*ファミリールーム*タイプの結果が含まれます。*with*という用語を含めると、つまり*Family with*の値をカウントすると、結果は改善され、515,000件の結果のうち80,000件以上が「若い子供連れの家族」または「年長の子供連れの家族」というフレーズを含んでいます。
+
+これにより、`Tags`列は完全に無用ではないことがわかりますが、有用にするには少し作業が必要です。
 
 ##### ホテルの平均スコア
 
-データセットにはいくつかの奇妙な点や不一致がありますが、モデルを構築する際にそれらに気付いているように、ここに示しています。もし解決方法がわかったら、ディスカッションセクションで教えてください！
+データセットにはいくつかの奇妙な点や矛盾があり、それを解明することはできませんが、モデルを構築する際に注意するためにここで説明します。もし解明できたら、ディスカッションセクションで教えてください！
 
-データセットには、平均スコアとレビュー数に関連する次の列があります:
+データセットには、平均スコアとレビュー数に関連する以下の列があります：
 
 1. Hotel_Name
 2. Additional_Number_of_Scoring
@@ -119,26 +129,85 @@ Python、ホテルレビューのデータセット、およびNLTKの感情分�
 4. Total_Number_of_Reviews
 5. Reviewer_Score  
 
-このデータセットで最もレビューが多いホテルは *Britannia International Hotel Canary Wharf* で、515,000のレビューのうち4789件のレビューがあります。しかし、このホテルの `Total_Number_of_Reviews` の値を見ると、9086です。多くのスコアがレビューなしであると推測できますので、`Additional_Number_of_Scoring` 列の値を追加する必要があります。その値は2682で、4789に追加すると7471になりますが、`Total_Number_of_Reviews` の値よりも1615少ないです。
+このデータセットで最もレビュー数が多いホテルは*Britannia International Hotel Canary Wharf*で、515,000件中4789件のレビューがあります。しかし、このホテルの`Total_Number_of_Reviews`値を見ると9086です。レビューの多くがスコアのみでレビューがないと推測するかもしれません。その場合、`Additional_Number_of_Scoring`列の値を加えるべきです。その値は2682で、4789に加えると7471になりますが、それでも`Total_Number_of_Reviews`の9086には1615足りません。
 
-`Average_Score` 列を取ると、データセット内のレビューの平均であると推測できますが、Kaggleの説明には「*過去1年の最新コメントに基づいて計算されたホテルの平均スコア*」とあります。それはあまり役立たないように見えますが、データセット内のレビューのスコアに基づいて独自の平均を計算できます。同じホテルを例にとると、平均ホテルスコアは7.1とされていますが、データセット内のレビュアースコアの平均は6.8です。これは近いですが同じ値ではなく、`Additional_Number_of_Scoring` のレビューで与えられたスコアが平均を7.1に引き上げたと推測できますが、その主張をテストまたは証明する方法がないため、`Average_Score`、`Additional_Number_of_Scoring`、および `Total_Number_of_Reviews` の値を使用または信頼するのは難しいです。
+`Average_Score`列を取ると、それがデータセット内のレビューの平均であると推測するかもしれませんが、Kaggleの説明では「*過去1年間の最新コメントに基づいて計算されたホテルの平均スコア*」とされています。それはあまり有用ではないように思えますが、データセット内のレビューのスコアに基づいて独自の平均を計算することができます。同じホテルを例に取ると、平均ホテルスコアは7.1とされていますが、データセット内のレビューアスコアの計算平均は6.8です。これは近いですが、同じ値ではありません。`Additional_Number_of_Scoring`レビューで与えられたスコアが平均を7.1に引き上げたと推測するしかありません。しかし、その主張をテストまたは証明する方法がないため、`Average_Score`、`Additional_Number_of_Scoring`、`Total_Number_of_Reviews`を使用することは難しいです。
 
-さらに複雑なのは、レビュー数が2番目に多いホテルの計算された平均スコアが8.12で、データセットの `Average_Score` は8.1です。この正しいスコアは偶然の一致でしょうか、それとも最初のホテルの不一致でしょうか？
+さらに複雑なのは、レビュー数が2番目に多いホテルの計算平均スコアが8.12で、データセットの`Average_Score`は8.1です。この正しいスコアは偶然なのか、それとも最初のホテルが例外なのか？
 
-これらのホテルが外れ値である可能性があり、ほとんどの値が一致する（ただし、いくつかは何らかの理由で一致しない）ことを前提に、次にデータセットの値を探索し、値の正しい使用（または非使用）を決定するための短いプログラムを書きます。
-
-> 🚨 注意点
->
-> このデータセットを使用する際には、テキストを自分で読んだり分析したりすることなく、テキストから何かを計算するコードを書きます。これがNLPの本質であり、人間がそれを行わずに意味や感情を解釈することです。しかし、ネガティブなレビューを読む可能性があります。必要ないのであれば、読まないようにしましょう。中には「天気が良くなかった」など、ホテルや誰にもコントロールできないことを理由にした馬鹿げたネガティブなレビューもありますが、一部のレビューには人種差別、性差別、年齢差別が含まれていることもあります。これは残念ですが、公開されたウェブサイトからスクレイピングされたデータセットでは予想されることです。一部のレビュアーは、あなたが不快に感じたり、気分を害したりするようなレビューを残します。コードで感情を測定する方が、実際に読んで気分を害するよりも良いでしょう。とはいえ、そのようなことを書く人は少数ですが、それでも存在します。
-
+これらのホテルが外れ値である可能性があり、ほとんどの値が一致している（ただし一部は何らかの理由で一致していない）可能性を考慮して、次にデータセット内の値を探索し、値の正しい使用法（または使用しない方法）を決定する短いプログラムを書きます。
+> 🚨 注意事項  
+>  
+> このデータセットを扱う際には、テキストを自分で読んだり分析したりすることなく、テキストから何かを計算するコードを書くことになります。これがNLPの本質であり、人間が直接関与せずに意味や感情を解釈することです。しかし、ネガティブなレビューを読む可能性もあります。読む必要はないので、ぜひ避けてください。中には「天気が良くなかった」など、ホテルや誰にもコントロールできないような、くだらない、または無関係なネガティブなホテルレビューもあります。しかし、レビューには暗い側面も存在します。時には、ネガティブなレビューが人種差別的、性差別的、または年齢差別的な内容を含むことがあります。これは残念なことですが、公共のウェブサイトから収集されたデータセットでは予想されることです。一部のレビュアーは、不快感を覚えたり、不安になったり、心を痛めたりするようなレビューを残すことがあります。コードに感情を測定させる方が、自分で読んで気分を害するよりも良いでしょう。とはいえ、そのようなレビューを書く人は少数派ですが、それでも存在していることは事実です。
 ## 演習 - データ探索
 ### データの読み込み
 
-視覚的にデータを調べるのはここまでにして、コードを書いていくつかの答えを見つけましょう！このセクションでは、pandasライブラリを使用します。最初のタスクは、CSVデータを読み込んで表示できることを確認することです。pandasライブラリには高速なCSVローダーがあり、結果は前のレッスンのようにデータフレームに配置されます。読み込むCSVには50万行以上ありますが、列は17列だけです。pandasは、データ
-rows have column `Positive_Review` values of "No Positive" 9. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" **and** `Negative_Review` values of "No Negative" ### Code answers 1. Print out the *shape* of the data frame you have just loaded (the shape is the number of rows and columns) ```python
+データを視覚的に確認するのはここまでにして、コードを書いて答えを導き出しましょう！このセクションでは pandas ライブラリを使用します。最初のタスクは、CSVデータを正しく読み込めることを確認することです。pandas ライブラリには高速なCSVローダーがあり、結果は前のレッスンで学んだようにデータフレームに格納されます。今回読み込むCSVには50万行以上のデータが含まれていますが、列は17個だけです。pandas はデータフレームを操作するための強力な機能を提供しており、各行に対して操作を実行することも可能です。
+
+このレッスンでは、コードスニペットとその説明、そして結果についての議論が含まれます。コードは付属の _notebook.ipynb_ を使用してください。
+
+まずは使用するデータファイルを読み込んでみましょう：
+
+```python
+# Load the hotel reviews from CSV
+import pandas as pd
+import time
+# importing time so the start and end time can be used to calculate file loading time
+print("Loading data file now, this could take a while depending on file size")
+start = time.time()
+# df is 'DataFrame' - make sure you downloaded the file to the data folder
+df = pd.read_csv('../../data/Hotel_Reviews.csv')
+end = time.time()
+print("Loading took " + str(round(end - start, 2)) + " seconds")
+```
+
+データが読み込まれたら、いくつかの操作を実行できます。このコードを次のセクションのプログラムの冒頭に置いてください。
+
+## データの探索
+
+今回のデータはすでに*クリーン*な状態です。つまり、英語以外の文字が含まれておらず、アルゴリズムが英語文字のみを期待している場合に問題を引き起こすことはありません。
+
+✅ データを処理する前にフォーマットを整える必要がある場合もありますが、今回はその必要はありません。もし非英語文字を処理する必要がある場合、どのように対応しますか？
+
+データが読み込まれたら、コードを使って探索できることを確認してください。`Negative_Review` と `Positive_Review` の列に注目したくなるかもしれません。これらの列には、NLPアルゴリズムで処理する自然言語テキストが含まれています。しかし、感情分析に飛び込む前に、以下のコードを使用して、データセット内の値がpandasで計算した値と一致するか確認してください。
+
+## データフレーム操作
+
+このレッスンの最初のタスクは、以下の主張が正しいかどうかを確認するために、データフレームを調査するコードを書くことです（データフレームを変更しないでください）。
+
+> 多くのプログラミングタスクと同様に、これを完了する方法は複数ありますが、最も簡単で理解しやすい方法を選ぶのが良いアドバイスです。特に後でコードを見直す際に理解しやすい方法が望ましいです。データフレームには包括的なAPIがあり、効率的に目的を達成する方法がしばしば存在します。
+
+以下の質問をコーディングタスクとして扱い、解答を試みてください。解答を見る前に自分で挑戦してください。
+
+1. 読み込んだデータフレームの*形状*（行数と列数）を出力してください。
+2. レビュアーの国籍の頻度を計算してください：
+   1. `Reviewer_Nationality` 列にいくつの異なる値があるか、それらは何か？
+   2. データセットで最も一般的なレビュアーの国籍は何か（国名とレビュー数を出力してください）？
+   3. 次に多い上位10の国籍とその頻度を出力してください。
+3. 上位10のレビュアー国籍ごとに最も頻繁にレビューされたホテルは何か？
+4. データセット内のホテルごとのレビュー数（ホテルの頻度）を計算してください。
+5. データセット内の各ホテルのレビュースコアの平均を計算し、新しい列 `Calc_Average_Score` をデータフレームに追加してください。この列には計算された平均値が含まれます。
+6. 四捨五入して小数点第1位までの `Average_Score` と `Calc_Average_Score` が一致するホテルはありますか？
+   1. Series（行）を引数として受け取り、値を比較し、一致しない場合にメッセージを出力するPython関数を書いてみてください。その後、`.apply()` メソッドを使用して各行を処理してください。
+7. `Negative_Review` 列の値が "No Negative" の行数を計算して出力してください。
+8. `Positive_Review` 列の値が "No Positive" の行数を計算して出力してください。
+9. `Positive_Review` 列の値が "No Positive" **かつ** `Negative_Review` 列の値が "No Negative" の行数を計算して出力してください。
+
+### コード解答
+
+1. 読み込んだデータフレームの*形状*（行数と列数）を出力してください。
+
+   ```python
    print("The shape of the data (rows, cols) is " + str(df.shape))
    > The shape of the data (rows, cols) is (515738, 17)
-   ``` 2. Calculate the frequency count for reviewer nationalities: 1. How many distinct values are there for the column `Reviewer_Nationality` and what are they? 2. What reviewer nationality is the most common in the dataset (print country and number of reviews)? ```python
+   ```
+
+2. レビュアーの国籍の頻度を計算してください：
+
+   1. `Reviewer_Nationality` 列にいくつの異なる値があるか、それらは何か？
+   2. データセットで最も一般的なレビュアーの国籍は何か（国名とレビュー数を出力してください）？
+
+   ```python
    # value_counts() creates a Series object that has index and values in this case, the country and the frequency they occur in reviewer nationality
    nationality_freq = df["Reviewer_Nationality"].value_counts()
    print("There are " + str(nationality_freq.size) + " different nationalities")
@@ -158,7 +227,11 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
     Cape Verde                        1
     Guinea                            1
    Name: Reviewer_Nationality, Length: 227, dtype: int64
-   ``` 3. What are the next top 10 most frequently found nationalities, and their frequency count? ```python
+   ```
+
+   3. 次に多い上位10の国籍とその頻度を出力してください。
+
+      ```python
       print("The highest frequency reviewer nationality is " + str(nationality_freq.index[0]).strip() + " with " + str(nationality_freq[0]) + " reviews.")
       # Notice there is a leading space on the values, strip() removes that for printing
       # What is the top 10 most common nationalities and their frequencies?
@@ -177,7 +250,11 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
        Germany                       7941
        Canada                        7894
        France                        7296
-      ``` 3. What was the most frequently reviewed hotel for each of the top 10 most reviewer nationalities? ```python
+      ```
+
+3. 上位10のレビュアー国籍ごとに最も頻繁にレビューされたホテルは何か？
+
+   ```python
    # What was the most frequently reviewed hotel for the top 10 nationalities
    # Normally with pandas you will avoid an explicit loop, but wanted to show creating a new dataframe using criteria (don't do this with large amounts of data because it could be very slow)
    for nat in nationality_freq[:10].index:
@@ -197,7 +274,11 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    The most reviewed hotel for Switzerland was Hotel Da Vinci with 97 reviews.
    The most reviewed hotel for Germany was Hotel Da Vinci with 86 reviews.
    The most reviewed hotel for Canada was St James Court A Taj Hotel London with 61 reviews.
-   ``` 4. How many reviews are there per hotel (frequency count of hotel) in the dataset? ```python
+   ```
+
+4. データセット内のホテルごとのレビュー数（ホテルの頻度）を計算してください。
+
+   ```python
    # First create a new dataframe based on the old one, removing the uneeded columns
    hotel_freq_df = df.drop(["Hotel_Address", "Additional_Number_of_Scoring", "Review_Date", "Average_Score", "Reviewer_Nationality", "Negative_Review", "Review_Total_Negative_Word_Counts", "Positive_Review", "Review_Total_Positive_Word_Counts", "Total_Number_of_Reviews_Reviewer_Has_Given", "Reviewer_Score", "Tags", "days_since_review", "lat", "lng"], axis = 1)
    
@@ -207,7 +288,22 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    # Get rid of all the duplicated rows
    hotel_freq_df = hotel_freq_df.drop_duplicates(subset = ["Hotel_Name"])
    display(hotel_freq_df) 
-   ``` | Hotel_Name | Total_Number_of_Reviews | Total_Reviews_Found | | :----------------------------------------: | :---------------------: | :-----------------: | | Britannia International Hotel Canary Wharf | 9086 | 4789 | | Park Plaza Westminster Bridge London | 12158 | 4169 | | Copthorne Tara Hotel London Kensington | 7105 | 3578 | | ... | ... | ... | | Mercure Paris Porte d Orleans | 110 | 10 | | Hotel Wagner | 135 | 10 | | Hotel Gallitzinberg | 173 | 8 | You may notice that the *counted in the dataset* results do not match the value in `Total_Number_of_Reviews`. It is unclear if this value in the dataset represented the total number of reviews the hotel had, but not all were scraped, or some other calculation. `Total_Number_of_Reviews` is not used in the model because of this unclarity. 5. While there is an `Average_Score` column for each hotel in the dataset, you can also calculate an average score (getting the average of all reviewer scores in the dataset for each hotel). Add a new column to your dataframe with the column header `Calc_Average_Score` that contains that calculated average. Print out the columns `Hotel_Name`, `Average_Score`, and `Calc_Average_Score`. ```python
+   ```
+   |                 Hotel_Name                 | Total_Number_of_Reviews | Total_Reviews_Found |
+   | :----------------------------------------: | :---------------------: | :-----------------: |
+   | Britannia International Hotel Canary Wharf |          9086           |        4789         |
+   |    Park Plaza Westminster Bridge London    |          12158          |        4169         |
+   |   Copthorne Tara Hotel London Kensington   |          7105           |        3578         |
+   |                    ...                     |           ...           |         ...         |
+   |       Mercure Paris Porte d Orleans        |           110           |         10          |
+   |                Hotel Wagner                |           135           |         10          |
+   |            Hotel Gallitzinberg             |           173           |          8          |
+   
+   データセット内で*カウントされた*結果が `Total_Number_of_Reviews` の値と一致しないことに気付くかもしれません。この値がホテルの総レビュー数を表しているのか、それともスクレイピングされなかったレビューがあるのか、または他の計算によるものなのかは不明です。この不明確さのため、`Total_Number_of_Reviews` はモデルで使用されません。
+
+5. データセット内の各ホテルのレビュースコアの平均を計算し、新しい列 `Calc_Average_Score` をデータフレームに追加してください。列 `Hotel_Name`、`Average_Score`、`Calc_Average_Score` を出力してください。
+
+   ```python
    # define a function that takes a row and performs some calculation with it
    def get_difference_review_avg(row):
      return row["Average_Score"] - row["Calc_Average_Score"]
@@ -225,7 +321,33 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    review_scores_df = review_scores_df.sort_values(by=["Average_Score_Difference"])
    
    display(review_scores_df[["Average_Score_Difference", "Average_Score", "Calc_Average_Score", "Hotel_Name"]])
-   ``` You may also wonder about the `Average_Score` value and why it is sometimes different from the calculated average score. As we can't know why some of the values match, but others have a difference, it's safest in this case to use the review scores that we have to calculate the average ourselves. That said, the differences are usually very small, here are the hotels with the greatest deviation from the dataset average and the calculated average: | Average_Score_Difference | Average_Score | Calc_Average_Score | Hotel_Name | | :----------------------: | :-----------: | :----------------: | ------------------------------------------: | | -0.8 | 7.7 | 8.5 | Best Western Hotel Astoria | | -0.7 | 8.8 | 9.5 | Hotel Stendhal Place Vend me Paris MGallery | | -0.7 | 7.5 | 8.2 | Mercure Paris Porte d Orleans | | -0.7 | 7.9 | 8.6 | Renaissance Paris Vendome Hotel | | -0.5 | 7.0 | 7.5 | Hotel Royal Elys es | | ... | ... | ... | ... | | 0.7 | 7.5 | 6.8 | Mercure Paris Op ra Faubourg Montmartre | | 0.8 | 7.1 | 6.3 | Holiday Inn Paris Montparnasse Pasteur | | 0.9 | 6.8 | 5.9 | Villa Eugenie | | 0.9 | 8.6 | 7.7 | MARQUIS Faubourg St Honor Relais Ch teaux | | 1.3 | 7.2 | 5.9 | Kube Hotel Ice Bar | With only 1 hotel having a difference of score greater than 1, it means we can probably ignore the difference and use the calculated average score. 6. Calculate and print out how many rows have column `Negative_Review` values of "No Negative" 7. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" 8. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" **and** `Negative_Review` values of "No Negative" ```python
+   ```
+
+   データセットの平均値と計算された平均値が異なる理由について疑問に思うかもしれません。一部の値が一致する一方で、他の値に差異がある理由は分かりません。この場合、レビューのスコアを使用して自分で平均を計算するのが安全です。ただし、差異は通常非常に小さいです。以下はデータセットの平均値と計算された平均値の差が最も大きいホテルです：
+
+   | Average_Score_Difference | Average_Score | Calc_Average_Score |                                  Hotel_Name |
+   | :----------------------: | :-----------: | :----------------: | ------------------------------------------: |
+   |           -0.8           |      7.7      |        8.5         |                  Best Western Hotel Astoria |
+   |           -0.7           |      8.8      |        9.5         | Hotel Stendhal Place Vend me Paris MGallery |
+   |           -0.7           |      7.5      |        8.2         |               Mercure Paris Porte d Orleans |
+   |           -0.7           |      7.9      |        8.6         |             Renaissance Paris Vendome Hotel |
+   |           -0.5           |      7.0      |        7.5         |                         Hotel Royal Elys es |
+   |           ...            |      ...      |        ...         |                                         ... |
+   |           0.7            |      7.5      |        6.8         |     Mercure Paris Op ra Faubourg Montmartre |
+   |           0.8            |      7.1      |        6.3         |      Holiday Inn Paris Montparnasse Pasteur |
+   |           0.9            |      6.8      |        5.9         |                               Villa Eugenie |
+   |           0.9            |      8.6      |        7.7         |   MARQUIS Faubourg St Honor Relais Ch teaux |
+   |           1.3            |      7.2      |        5.9         |                          Kube Hotel Ice Bar |
+
+   スコアの差が1を超えるホテルが1つしかないため、差異を無視して計算された平均スコアを使用しても問題ないでしょう。
+
+6. `Negative_Review` 列の値が "No Negative" の行数を計算して出力してください。
+
+7. `Positive_Review` 列の値が "No Positive" の行数を計算して出力してください。
+
+8. `Positive_Review` 列の値が "No Positive" **かつ** `Negative_Review` 列の値が "No Negative" の行数を計算して出力してください。
+
+   ```python
    # with lambdas:
    start = time.time()
    no_negative_reviews = df.apply(lambda x: True if x['Negative_Review'] == "No Negative" else False , axis=1)
@@ -243,7 +365,13 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
    Lambdas took 9.64 seconds
-   ``` ## Another way Another way count items without Lambdas, and use sum to count the rows: ```python
+   ```
+
+## 別の方法
+
+Lambdaを使用せずにアイテムをカウントし、行数をカウントするためにsumを使用する別の方法：
+
+   ```python
    # without lambdas (using a mixture of notations to show you can use both)
    start = time.time()
    no_negative_reviews = sum(df.Negative_Review == "No Negative")
@@ -262,7 +390,28 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
    Sum took 0.19 seconds
-   ``` You may have noticed that there are 127 rows that have both "No Negative" and "No Positive" values for the columns `Negative_Review` and `Positive_Review` respectively. That means that the reviewer gave the hotel a numerical score, but declined to write either a positive or negative review. Luckily this is a small amount of rows (127 out of 515738, or 0.02%), so it probably won't skew our model or results in any particular direction, but you might not have expected a data set of reviews to have rows with no reviews, so it's worth exploring the data to discover rows like this. Now that you have explored the dataset, in the next lesson you will filter the data and add some sentiment analysis. --- ## 🚀Challenge This lesson demonstrates, as we saw in previous lessons, how critically important it is to understand your data and its foibles before performing operations on it. Text-based data, in particular, bears careful scrutiny. Dig through various text-heavy datasets and see if you can discover areas that could introduce bias or skewed sentiment into a model. ## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/38/) ## Review & Self Study Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) to discover tools to try when building speech and text-heavy models. ## Assignment [NLTK](assignment.md)
+   ```
 
-**免責事項**:
-この文書は機械ベースのAI翻訳サービスを使用して翻訳されています。正確さを期していますが、自動翻訳には誤りや不正確さが含まれる可能性があることをご理解ください。権威ある情報源としては、元の言語で書かれた原文を考慮すべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤訳について、当社は一切の責任を負いかねます。
+   `Negative_Review` と `Positive_Review` の列に "No Negative" と "No Positive" の値が両方含まれる行が127行あることに気付いたかもしれません。つまり、レビュアーはホテルに数値スコアを付けましたが、肯定的または否定的なレビューを書くことを拒否しました。この行数は非常に少ない（515738行中127行、つまり0.02%）ため、モデルや結果に特定の方向への偏りを与えることはないでしょう。しかし、レビューがない行が含まれているデータセットを予期していなかったかもしれないので、このような行を発見するためにデータを探索する価値があります。
+
+データセットを探索したので、次のレッスンではデータをフィルタリングし、感情分析を追加します。
+
+---
+## 🚀チャレンジ
+
+このレッスンでは、前のレッスンで見たように、データとその特性を理解することがいかに重要かを示しています。特にテキストベースのデータは慎重に調査する必要があります。さまざまなテキスト中心のデータセットを掘り下げ、モデルにバイアスや偏った感情を導入する可能性のある領域を発見できるか試してみてください。
+
+## [講義後のクイズ](https://ff-quizzes.netlify.app/en/ml/)
+
+## 復習と自己学習
+
+[NLPに関するこの学習パス](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott)を受講して、音声やテキスト中心のモデルを構築する際に試すべきツールを発見してください。
+
+## 課題
+
+[NLTK](assignment.md)
+
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された原文が正式な情報源と見なされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用に起因する誤解や誤認について、当社は一切の責任を負いません。

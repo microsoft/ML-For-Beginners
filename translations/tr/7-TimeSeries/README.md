@@ -1,16 +1,25 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
+  "translation_date": "2025-09-06T07:48:26+00:00",
+  "source_file": "7-TimeSeries/README.md",
+  "language_code": "tr"
+}
+-->
 # Zaman Serisi Tahminine Giriş
 
-Zaman serisi tahmini nedir? Geçmişin trendlerini analiz ederek gelecekteki olayları tahmin etmekle ilgilidir.
+Zaman serisi tahmini nedir? Geçmişteki eğilimleri analiz ederek gelecekteki olayları tahmin etmektir.
 
 ## Bölgesel konu: dünya çapında elektrik kullanımı ✨
 
-Bu iki derste, makine öğreniminin biraz daha az bilinen, ancak endüstri ve iş uygulamaları gibi alanlar için son derece değerli olan bir alanı olan zaman serisi tahmini ile tanışacaksınız. Sinir ağları bu modellerin faydasını artırmak için kullanılabilirken, biz onları klasik makine öğrenimi bağlamında inceleyeceğiz çünkü modeller geçmişe dayanarak gelecekteki performansı tahmin etmeye yardımcı olur.
+Bu iki derste, makine öğreniminin biraz daha az bilinen ancak endüstri ve iş uygulamaları gibi alanlar için son derece değerli bir alanı olan zaman serisi tahmini ile tanışacaksınız. Sinir ağları bu modellerin faydasını artırmak için kullanılabilse de, geçmiş performansa dayanarak geleceği tahmin etmeye yardımcı olan modeller bağlamında klasik makine öğrenimini inceleyeceğiz.
 
-Bölgesel odağımız dünya çapında elektrik kullanımıdır, geçmiş yük desenlerine dayanarak gelecekteki güç kullanımını tahmin etmeyi öğrenmek için ilginç bir veri setidir. Bu tür bir tahminin iş ortamında son derece yararlı olabileceğini görebilirsiniz.
+Bölgesel odak noktamız, geçmiş yük desenlerine dayanarak gelecekteki enerji kullanımını tahmin etmeyi öğrenmek için ilginç bir veri kümesi olan dünya çapındaki elektrik kullanımıdır. Bu tür bir tahminin iş ortamında ne kadar faydalı olabileceğini görebilirsiniz.
 
-![elektrik şebekesi](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.tr.jpg)
+![elektrik şebekesi](../../../7-TimeSeries/images/electric-grid.jpg)
 
-Fotoğraf [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) tarafından Rajasthan'daki bir yolda elektrik kuleleri üzerine [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) üzerinde çekilmiştir.
+Fotoğraf [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) tarafından Rajasthan'daki bir yolda bulunan elektrik direkleri hakkında [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) üzerinde çekilmiştir.
 
 ## Dersler
 
@@ -20,7 +29,9 @@ Fotoğraf [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unspl
 
 ## Katkıda Bulunanlar
 
-"Zaman serisi tahminine giriş" ⚡️ ile [Francesca Lazzeri](https://twitter.com/frlazzeri) ve [Jen Looper](https://twitter.com/jenlooper) tarafından yazılmıştır. Not defterleri ilk olarak [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting)'da Francesca Lazzeri tarafından yazılmış olarak çevrimiçi olarak ortaya çıktı. SVR dersi [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD) tarafından yazılmıştır.
+"Zaman serisi tahminine giriş" ⚡️ ile [Francesca Lazzeri](https://twitter.com/frlazzeri) ve [Jen Looper](https://twitter.com/jenlooper) tarafından yazılmıştır. Not defterleri ilk olarak [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) üzerinde Francesca Lazzeri tarafından yazılmış olarak çevrimiçi yayınlanmıştır. SVR dersi [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD) tarafından yazılmıştır.
 
-**Feragatname**:
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilmektedir. Bu çevirinin kullanımından doğabilecek herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

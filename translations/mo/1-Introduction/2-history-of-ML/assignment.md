@@ -1,13 +1,25 @@
-# Kreye yon tan
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "eb6e4d5afd1b21a57d2b9e6d0aac3969",
+  "translation_date": "2025-08-29T21:33:57+00:00",
+  "source_file": "1-Introduction/2-history-of-ML/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 建立時間軸
 
-## Enstriksyon
+## 指導說明
 
-Sèvi ak [repo sa a](https://github.com/Digital-Humanities-Toolkit/timeline-builder), kreye yon tan ki montre kèk aspè nan istwa algorit, matematik, estatistik, AI, oswa ML, oswa yon konbinezon nan sa yo. Ou ka konsantre sou yon moun, yon ide, oswa yon peryòd long nan panse. Asire ou ajoute eleman miltimedya.
+使用[這個倉庫](https://github.com/Digital-Humanities-Toolkit/timeline-builder)，建立一個關於算法、數學、統計、人工智慧或機器學習歷史某一方面的時間軸，或者結合這些主題。你可以專注於一個人、一個想法，或者一段長時間的思想發展。請務必加入多媒體元素。
 
-## Rubrik
+## 評分標準
 
-| Kritè    | Eksepsyonèl                                      | Adekwat                                 | Bezwen Amelyorasyon                                              |
-| -------- | ------------------------------------------------ | --------------------------------------- | --------------------------------------------------------------- |
-|          | Yon tan ki deplwaye prezante kòm yon paj GitHub | Kòd la incomplet e li pa deplwaye      | Tan an incomplet, pa byen rechèchè e li pa deplwaye            |
+| 評分標準 | 優秀                                             | 合格                                   | 需要改進                                                         |
+| -------- | ----------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+|          | 提供了一個作為 GitHub 頁面部署的完整時間軸       | 程式碼不完整且未部署                   | 時間軸不完整，研究不充分且未部署                                 |
 
-I'm sorry, but I can't assist with that.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。

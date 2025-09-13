@@ -1,58 +1,67 @@
-# MLモデルを使用するWebアプリを構築する
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
+  "translation_date": "2025-09-06T09:35:43+00:00",
+  "source_file": "3-Web-App/1-Web-App/README.md",
+  "language_code": "ja"
+}
+-->
+# Webアプリで機械学習モデルを活用する
 
-このレッスンでは、NUFORCのデータベースから取得した「過去1世紀のUFO目撃情報」という、まさに非現実的なデータセットでMLモデルを訓練します。
+このレッスンでは、機械学習モデルをトレーニングし、ユニークなデータセットを使用します。それは、_過去100年間のUFO目撃情報_ であり、NUFORCのデータベースから取得されたものです。
 
-あなたが学ぶこと:
+学ぶ内容:
 
-- 訓練されたモデルを「ピクル」する方法
+- トレーニング済みモデルを「ピクル化」する方法
 - Flaskアプリでそのモデルを使用する方法
 
-データをクリーンアップし、モデルを訓練するためにノートブックを引き続き使用しますが、プロセスを一歩進めて、いわば「野生で」モデルを使用する方法を探求します：それはWebアプリの中でのことです。
+ノートブックを使ってデータをクリーンアップし、モデルをトレーニングする作業を続けますが、さらに一歩進めて、モデルを「実際の環境」で使用する方法を探ります。つまり、Webアプリでの活用です。
 
-これを実現するために、Flaskを使用してWebアプリを構築する必要があります。
+これを実現するには、Flaskを使用してWebアプリを構築する必要があります。
 
-## [講義前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [講義前のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
-## アプリの構築
+## アプリを構築する
 
-機械学習モデルを消費するためのWebアプリを構築する方法はいくつかあります。あなたのWebアーキテクチャは、モデルがどのように訓練されるかに影響を与えるかもしれません。データサイエンスグループが訓練したモデルをアプリで使用したいビジネスで働いていると想像してください。
+機械学習モデルを利用するWebアプリを構築する方法は複数あります。Webアーキテクチャは、モデルのトレーニング方法に影響を与える可能性があります。例えば、データサイエンスチームがトレーニングしたモデルをアプリで使用するよう求められるビジネス環境を想像してみてください。
 
 ### 考慮事項
 
-考慮すべき多くの質問があります：
+以下のような質問をする必要があります:
 
-- **Webアプリですか、それともモバイルアプリですか？** モバイルアプリを構築している場合や、IoTのコンテキストでモデルを使用する必要がある場合は、[TensorFlow Lite](https://www.tensorflow.org/lite/)を使用して、AndroidまたはiOSアプリでモデルを使用できます。
-- **モデルはどこに配置されますか？** クラウド上かローカルか？
-- **オフラインサポート。** アプリはオフラインで動作する必要がありますか？
-- **モデルを訓練するために使用された技術は何ですか？** 選択した技術は、使用するツールに影響を与えるかもしれません。
-    - **TensorFlowを使用する。** 例えば、TensorFlowを使用してモデルを訓練している場合、そのエコシステムは[TensorFlow.js](https://www.tensorflow.org/js/)を使用してWebアプリで利用するためにTensorFlowモデルを変換する機能を提供します。
-    - **PyTorchを使用する。** [PyTorch](https://pytorch.org/)のようなライブラリを使用してモデルを構築している場合、JavaScriptのWebアプリで使用できる[ONNX](https://onnx.ai/)（Open Neural Network Exchange）形式でエクスポートするオプションがあります。このオプションは、Scikit-learnで訓練されたモデルの将来のレッスンで探求されます。
-    - **Lobe.aiまたはAzure Custom Visionを使用する。** [Lobe.ai](https://lobe.ai/)や[Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott)のようなML SaaS（Software as a Service）システムを使用してモデルを訓練している場合、この種のソフトウェアは、オンラインアプリケーションからクラウドでクエリされるカスタムAPIを構築するなど、多くのプラットフォーム向けにモデルをエクスポートする方法を提供します。
+- **Webアプリかモバイルアプリか？** モバイルアプリを構築する場合やIoT環境でモデルを使用する必要がある場合、[TensorFlow Lite](https://www.tensorflow.org/lite/)を使用して、AndroidやiOSアプリでモデルを活用できます。
+- **モデルはどこに配置されるのか？** クラウドかローカルか？
+- **オフライン対応。** アプリはオフラインで動作する必要があるか？
+- **モデルのトレーニングに使用された技術は何か？** 選択された技術は、使用するツールに影響を与える可能性があります。
+    - **TensorFlowを使用する場合。** 例えば、TensorFlowを使用してモデルをトレーニングする場合、そのエコシステムは[TensorFlow.js](https://www.tensorflow.org/js/)を使用してWebアプリでモデルを活用するための変換機能を提供します。
+    - **PyTorchを使用する場合。** [PyTorch](https://pytorch.org/)のようなライブラリを使用してモデルを構築する場合、[ONNX](https://onnx.ai/) (Open Neural Network Exchange)形式でエクスポートし、[Onnx Runtime](https://www.onnxruntime.ai/)を使用してJavaScript Webアプリで活用することができます。このオプションは、Scikit-learnでトレーニングされたモデルを使用する将来のレッスンで探ります。
+    - **Lobe.aiやAzure Custom Visionを使用する場合。** [Lobe.ai](https://lobe.ai/)や[Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott)のようなML SaaS (Software as a Service)システムを使用してモデルをトレーニングする場合、この種のソフトウェアは、クラウドでオンラインアプリがクエリを実行するためのカスタムAPIを構築するなど、さまざまなプラットフォーム向けにモデルをエクスポートする方法を提供します。
 
-また、ブラウザでモデルを自ら訓練できる完全なFlask Webアプリを構築する機会もあります。これもJavaScriptコンテキストでTensorFlow.jsを使用して実現できます。
+また、ブラウザ内でモデルをトレーニングできるFlask Webアプリ全体を構築することも可能です。これもJavaScript環境でTensorFlow.jsを使用して実現できます。
 
-私たちの目的のために、Pythonベースのノートブックを使用しているので、そのようなノートブックから訓練されたモデルをPythonで構築されたWebアプリが読み取れる形式にエクスポートする手順を探ってみましょう。
+私たちの目的では、Pythonベースのノートブックを使用してきたので、トレーニング済みモデルをノートブックからPythonで構築されたWebアプリで読み取れる形式にエクスポートする手順を探ります。
 
 ## ツール
 
-このタスクには2つのツールが必要です：FlaskとPickle、どちらもPythonで動作します。
+このタスクには、FlaskとPickleという2つのツールが必要です。どちらもPython上で動作します。
 
-✅ [Flask](https://palletsprojects.com/p/flask/)とは何ですか？ Flaskはその作成者によって「マイクロフレームワーク」と定義されており、Pythonを使用してWebページを構築するための基本機能を提供します。Flaskでの構築を練習するために、[このLearnモジュール](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)を見てみてください。
+✅ [Flask](https://palletsprojects.com/p/flask/)とは？ Flaskはその開発者によって「マイクロフレームワーク」と定義されており、Pythonを使用してWebページを構築するためのテンプレートエンジンを提供します。[この学習モジュール](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)を確認して、Flaskを使った構築を練習してください。
 
-✅ [Pickle](https://docs.python.org/3/library/pickle.html)とは何ですか？ Pickle 🥒はPythonオブジェクト構造をシリアライズおよびデシリアライズするPythonモジュールです。モデルを「ピクル」すると、Webで使用するためにその構造をシリアライズまたはフラット化します。注意してください：pickleは本質的に安全ではないため、ファイルを「アンピクル」するように求められた場合は注意してください。ピクルされたファイルには接尾辞`.pkl`があります。
+✅ [Pickle](https://docs.python.org/3/library/pickle.html)とは？ Pickle 🥒はPythonモジュールで、Pythonオブジェクト構造をシリアル化およびデシリアル化します。モデルを「ピクル化」する際には、その構造をシリアル化またはフラット化してWebで使用できるようにします。ただし、Pickleは本質的に安全ではないため、ファイルを「アンピクル化」するよう求められた場合は注意してください。ピクル化されたファイルの拡張子は`.pkl`です。
 
 ## 演習 - データをクリーンアップする
 
-このレッスンでは、[NUFORC](https://nuforc.org)（全米UFO報告センター）が収集した80,000件のUFO目撃データを使用します。このデータには、UFO目撃の興味深い説明が含まれています。例えば：
+このレッスンでは、[NUFORC](https://nuforc.org) (The National UFO Reporting Center) によって収集された80,000件のUFO目撃情報を使用します。このデータには、以下のような興味深い目撃情報の説明が含まれています:
 
-- **長い例の説明。** 「光のビームから男が現れ、夜の草原に照らされ、テキサス・インスツルメンツの駐車場に向かって走る」。
-- **短い例の説明。** 「光が私たちを追いかけてきた」。
+- **長い説明の例。** 「夜の草原に光のビームが照らされ、そこから男性が現れ、テキサスインスツルメンツの駐車場に向かって走る」
+- **短い説明の例。** 「光が私たちを追いかけてきた」
 
-[ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv)スプレッドシートには、目撃が発生した`city`、`state`、`country`に関する列、オブジェクトの`shape`、およびその`latitude`と`longitude`が含まれています。
+[ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv)スプレッドシートには、目撃が発生した`city`、`state`、`country`、物体の`shape`、およびその`latitude`と`longitude`に関する列が含まれています。
 
-このレッスンに含まれる空の[ノートブック](../../../../3-Web-App/1-Web-App/notebook.ipynb)で：
+このレッスンに含まれる空白の[ノートブック](../../../../3-Web-App/1-Web-App/notebook.ipynb)で以下を行います:
 
-1. 前のレッスンで行ったように`pandas`、`matplotlib`、`numpy`をインポートし、ufosスプレッドシートをインポートします。サンプルデータセットを確認できます：
+1. 前のレッスンで行ったように`pandas`、`matplotlib`、`numpy`をインポートし、UFOスプレッドシートをインポートします。サンプルデータセットを確認できます:
 
     ```python
     import pandas as pd
@@ -62,7 +71,7 @@
     ufos.head()
     ```
 
-1. ufosデータを新しいタイトルの小さなデータフレームに変換します。`Country`フィールドのユニークな値を確認します。
+1. UFOデータを新しいタイトルで小さなデータフレームに変換します。`Country`フィールドのユニークな値を確認してください。
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
@@ -70,7 +79,7 @@
     ufos.Country.unique()
     ```
 
-1. 次に、null値を削除し、1〜60秒の間の目撃情報のみをインポートすることで、処理するデータの量を減らすことができます：
+1. 必要なデータ量を減らすために、null値を削除し、1〜60秒間の目撃情報のみをインポートします:
 
     ```python
     ufos.dropna(inplace=True)
@@ -80,7 +89,7 @@
     ufos.info()
     ```
 
-1. Scikit-learnの`LabelEncoder`ライブラリをインポートして、国のテキスト値を数値に変換します：
+1. Scikit-learnの`LabelEncoder`ライブラリをインポートして、国名のテキスト値を数値に変換します:
 
     ✅ LabelEncoderはデータをアルファベット順にエンコードします
 
@@ -92,7 +101,7 @@
     ufos.head()
     ```
 
-    あなたのデータは次のようになります：
+    データは以下のようになります:
 
     ```output
     	Seconds	Country	Latitude	Longitude
@@ -105,9 +114,9 @@
 
 ## 演習 - モデルを構築する
 
-データを訓練グループとテストグループに分割して、モデルを訓練する準備が整いました。
+次に、データをトレーニング用とテスト用に分割してモデルをトレーニングする準備をします。
 
-1. 訓練に使用する3つの特徴をXベクトルとして選択し、yベクトルは`Country`. You want to be able to input `Seconds`, `Latitude` and `Longitude`で、国のIDを返します。
+1. トレーニングする3つの特徴をXベクトルとして選択し、yベクトルは`Country`になります。`Seconds`、`Latitude`、`Longitude`を入力して国IDを返すようにします。
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -120,7 +129,7 @@
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. ロジスティック回帰を使用してモデルを訓練します：
+1. ロジスティック回帰を使用してモデルをトレーニングします:
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -134,13 +143,13 @@
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-精度は悪くありません **（約95%）**、予想通り、`Country` and `Latitude/Longitude` correlate.
+精度は悪くありません **(約95%)**。`Country`と`Latitude/Longitude`が相関しているため、当然の結果です。
 
-The model you created isn't very revolutionary as you should be able to infer a `Country` from its `Latitude` and `Longitude`ですが、クリーンアップし、エクスポートした生データから訓練し、このモデルをWebアプリで使用することを試みるのは良い練習です。
+作成したモデルは非常に革新的なものではありませんが、クリーンアップした生データからトレーニングし、エクスポートしてWebアプリで使用する練習としては良い例です。
 
-## 演習 - モデルを「ピクル」する
+## 演習 - モデルを「ピクル化」する
 
-さて、モデルを_ピクル_する時が来ました！ いくつかの行のコードでそれを行うことができます。一度_ピクル_したら、ピクルされたモデルを読み込み、秒、緯度、経度の値を含むサンプルデータ配列に対してテストします。
+次に、モデルを「ピクル化」します！数行のコードでこれを実現できます。ピクル化された後、ピクル化されたモデルをロードし、秒数、緯度、経度の値を含むサンプルデータ配列でテストします。
 
 ```python
 import pickle
@@ -151,15 +160,15 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-モデルは**「3」**を返します。これは、イギリスの国コードです。すごい！ 👽
+モデルは**「3」**を返します。これは英国の国コードです。驚きですね！👽
 
 ## 演習 - Flaskアプリを構築する
 
-次に、モデルを呼び出して似たような結果を返すFlaskアプリを構築できますが、より視覚的に魅力的な方法で。
+次に、Flaskアプリを構築してモデルを呼び出し、より視覚的に魅力的な方法で結果を返します。
 
-1. _ufo-model.pkl_ファイルが存在する_notebook.ipynb_ファイルの隣に**web-app**という名前のフォルダを作成します。
+1. _notebook.ipynb_ファイルの隣に**web-app**というフォルダを作成します。その中に_ufo-model.pkl_ファイルを配置します。
 
-1. そのフォルダ内に、**static**というフォルダとその中に**css**フォルダ、さらに**templates**というフォルダを作成します。これで、次のファイルとディレクトリが揃っているはずです：
+1. そのフォルダ内にさらに3つのフォルダを作成します: **static** (その中に**css**フォルダを作成)、および**templates**。以下のファイルとディレクトリが揃っているはずです:
 
     ```output
     web-app/
@@ -170,9 +179,9 @@ print(model.predict([[50,44,-12]]))
     ufo-model.pkl
     ```
 
-    ✅ 完成したアプリのビューについては、ソリューションフォルダを参照してください。
+    ✅ 完成したアプリのビューについてはソリューションフォルダを参照してください
 
-1. _web-app_フォルダで最初に作成するファイルは**requirements.txt**ファイルです。JavaScriptアプリの_package.json_のように、このファイルにはアプリに必要な依存関係がリストされています。**requirements.txt**に次の行を追加します：
+1. 最初に_web-app_フォルダ内に**requirements.txt**ファイルを作成します。JavaScriptアプリの_package.json_のように、このファイルはアプリに必要な依存関係をリストします。**requirements.txt**に以下を追加します:
 
     ```text
     scikit-learn
@@ -181,25 +190,25 @@ print(model.predict([[50,44,-12]]))
     flask
     ```
 
-1. 次に、このファイルを実行するために_web-app_に移動します：
+1. 次に、このファイルを_web-app_で実行します:
 
     ```bash
     cd web-app
     ```
 
-1. ターミナルに`pip install`と入力し、_requirements.txt_にリストされたライブラリをインストールします：
+1. ターミナルで`pip install`と入力し、_requirements.txt_にリストされたライブラリをインストールします:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-1. これで、アプリを完成させるためにさらに3つのファイルを作成する準備が整いました：
+1. 次に、アプリを完成させるためにさらに3つのファイルを作成します:
 
     1. ルートに**app.py**を作成します。
     2. _templates_ディレクトリに**index.html**を作成します。
     3. _static/css_ディレクトリに**styles.css**を作成します。
 
-1. _styles.css_ファイルにいくつかのスタイルを追加します：
+1. _styles.css_ファイルにいくつかのスタイルを追加します:
 
     ```css
     body {
@@ -233,7 +242,7 @@ print(model.predict([[50,44,-12]]))
     }
     ```
 
-1. 次に、_index.html_ファイルを構築します：
+1. 次に、_index.html_ファイルを構築します:
 
     ```html
     <!DOCTYPE html>
@@ -268,11 +277,11 @@ print(model.predict([[50,44,-12]]))
     </html>
     ```
 
-    このファイルのテンプレートに目を通してください。アプリによって提供される変数の周りの「マスタッシュ」構文、例えば予測テキスト：`{{}}`. There's also a form that posts a prediction to the `/predict` route.
+    このファイルのテンプレート構文を確認してください。変数がアプリによって提供される`{{}}`の「マスタッシュ」構文に注目してください。また、`/predict`ルートに予測を投稿するフォームがあります。
 
-    Finally, you're ready to build the python file that drives the consumption of the model and the display of predictions:
+    最後に、モデルの消費と予測の表示を駆動するPythonファイルを構築します:
 
-1. In `app.py`を追加します：
+1. `app.py`に以下を追加します:
 
     ```python
     import numpy as np
@@ -309,40 +318,42 @@ print(model.predict([[50,44,-12]]))
         app.run(debug=True)
     ```
 
-    > 💡 ヒント：[`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) while running the web app using Flask, any changes you make to your application will be reflected immediately without the need to restart the server. Beware! Don't enable this mode in a production app.
+    > 💡 ヒント: Flaskを使用してWebアプリを実行する際に[`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode)を追加すると、アプリケーションに加えた変更が即座に反映され、サーバーを再起動する必要がなくなります。ただし、注意してください！本番アプリではこのモードを有効にしないでください。
 
-If you run `python app.py` or `python3 app.py` - your web server starts up, locally, and you can fill out a short form to get an answer to your burning question about where UFOs have been sighted!
+`python app.py`または`python3 app.py`を実行すると、ローカルでWebサーバーが起動し、短いフォームに記入してUFO目撃情報に関する質問に答えを得ることができます！
 
-Before doing that, take a look at the parts of `app.py`:
+その前に、`app.py`の各部分を確認してください:
 
-1. First, dependencies are loaded and the app starts.
-1. Then, the model is imported.
-1. Then, index.html is rendered on the home route.
+1. まず、依存関係がロードされ、アプリが開始されます。
+1. 次に、モデルがインポートされます。
+1. その後、ホームルートでindex.htmlがレンダリングされます。
 
-On the `/predict` route, several things happen when the form is posted:
+`/predict`ルートでは、フォームが投稿されると以下のことが行われます:
 
-1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned.
-2. The Countries that we want displayed are re-rendered as readable text from their predicted country code, and that value is sent back to index.html to be rendered in the template.
+1. フォーム変数が収集され、numpy配列に変換されます。それがモデルに送られ、予測が返されます。
+2. 表示したい国名が予測された国コードから読み取り可能なテキストとして再レンダリングされ、その値がindex.htmlに送られてテンプレートでレンダリングされます。
 
-Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction.
+Flaskとピクル化されたモデルを使用してモデルを活用する方法は比較的簡単です。最も難しいのは、モデルに予測を得るために送信する必要があるデータの形状を理解することです。それはモデルがどのようにトレーニングされたかによります。このモデルでは、予測を得るために入力する必要があるデータポイントが3つあります。
 
-In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+プロフェッショナルな環境では、モデルをトレーニングする人々とWebやモバイルアプリでそれを活用する人々の間で良好なコミュニケーションが必要であることがわかります。私たちの場合、それはあなた一人です！
 
 ---
 
-## 🚀 Challenge
+## 🚀 チャレンジ
 
-Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`を追加したときに、アプリのエラーを特定するのが簡単になります。この方法の利点と欠点は何ですか？
+ノートブックで作業し、モデルをFlaskアプリにインポートする代わりに、Flaskアプリ内でモデルをトレーニングすることができます！データをクリーンアップした後、ノートブック内のPythonコードをアプリ内でトレーニングするように変換してみてください。この方法を追求する利点と欠点は何でしょうか？
 
-## [講義後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [講義後のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
-## まとめと自己学習
+## 復習と自己学習
 
-MLモデルを消費するためのWebアプリを構築する方法はいくつかあります。JavaScriptまたはPythonを使用して機械学習を活用するWebアプリを構築する方法のリストを作成してください。アーキテクチャを考慮してください：モデルはアプリ内に留まるべきか、それともクラウドに存在するべきか？ 後者の場合、どのようにアクセスしますか？ 実用的なML Webソリューションのアーキテクチャモデルを描いてみてください。
+機械学習モデルを活用するWebアプリを構築する方法は多数あります。JavaScriptやPythonを使用してWebアプリを構築し、機械学習を活用する方法のリストを作成してください。アーキテクチャを考慮してください: モデルはアプリ内に保持すべきか、それともクラウドに配置すべきか？後者の場合、どのようにアクセスしますか？応用されたML Webソリューションのアーキテクチャモデルを描いてみてください。
 
 ## 課題
 
-[別のモデルを試す](assignment.md)
+[別のモデルを試してみる](assignment.md)
+
+---
 
 **免責事項**:  
-この文書は、機械ベースのAI翻訳サービスを使用して翻訳されています。正確性を追求していますが、自動翻訳には誤りや不正確さが含まれる可能性があることをご理解ください。元の文書は、その原語での権威ある情報源と見なされるべきです。重要な情報については、専門の人間翻訳を推奨します。この翻訳の使用から生じる誤解や誤訳について、当社は一切の責任を負いません。
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な表現が含まれる可能性があります。元の言語で記載された原文が正式な情報源と見なされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤訳について、当社は一切の責任を負いません。

@@ -1,35 +1,45 @@
-# Otel yorumları ile duygu analizi
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-06T08:09:17+00:00",
+  "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
+  "language_code": "tr"
+}
+-->
+# Otel Yorumları ile Duygu Analizi
 
-Artık veri setini ayrıntılı bir şekilde incelediğinize göre, sütunları filtreleyip veri seti üzerinde NLP tekniklerini kullanarak oteller hakkında yeni bilgiler edinmenin zamanı geldi.
-## [Ders öncesi sınav](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+Artık veri setini detaylı bir şekilde incelediğinize göre, sütunları filtreleme zamanı geldi. Daha sonra veri seti üzerinde NLP tekniklerini kullanarak oteller hakkında yeni içgörüler elde edeceksiniz.
+
+## [Ders Öncesi Testi](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Filtreleme ve Duygu Analizi İşlemleri
 
-Muhtemelen fark etmişsinizdir, veri setinde bazı sorunlar var. Bazı sütunlar gereksiz bilgilerle dolu, diğerleri ise yanlış görünüyor. Doğru olsalar bile, nasıl hesaplandıkları belirsiz ve cevaplar kendi hesaplamalarınızla bağımsız olarak doğrulanamıyor.
+Muhtemelen fark etmişsinizdir, veri setinde birkaç sorun var. Bazı sütunlar gereksiz bilgilerle dolu, diğerleri ise yanlış görünüyor. Doğru olsalar bile, nasıl hesaplandıkları belirsiz ve kendi hesaplamalarınızla bağımsız olarak doğrulanamıyor.
 
-## Egzersiz: biraz daha veri işleme
+## Alıştırma: Biraz Daha Veri İşleme
 
-Verileri biraz daha temizleyin. Daha sonra kullanışlı olacak sütunlar ekleyin, diğer sütunlardaki değerleri değiştirin ve bazı sütunları tamamen kaldırın.
+Veriyi biraz daha temizleyin. Daha sonra faydalı olacak sütunlar ekleyin, diğer sütunlardaki değerleri değiştirin ve bazı sütunları tamamen kaldırın.
 
 1. İlk sütun işlemleri
 
-   1. `lat` ve `lng`'i kaldırın
+   1. `lat` ve `lng` sütunlarını kaldırın.
 
-   2. `Hotel_Address` değerlerini aşağıdaki değerlerle değiştirin (adres şehir ve ülke ismini içeriyorsa, sadece şehir ve ülke olarak değiştirin).
+   2. `Hotel_Address` değerlerini aşağıdaki değerlere değiştirin (adres şehir ve ülke adını içeriyorsa, sadece şehir ve ülke olarak değiştirin).
 
-      Veri setinde sadece bu şehirler ve ülkeler var:
+      Veri setindeki tek şehir ve ülkeler şunlardır:
 
-      Amsterdam, Netherlands
+      Amsterdam, Hollanda
 
-      Barcelona, Spain
+      Barselona, İspanya
 
-      London, United Kingdom
+      Londra, Birleşik Krallık
 
-      Milan, Italy
+      Milano, İtalya
 
-      Paris, France
+      Paris, Fransa
 
-      Vienna, Austria 
+      Viyana, Avusturya 
 
       ```python
       def replace_address(row):
@@ -58,24 +68,24 @@ Verileri biraz daha temizleyin. Daha sonra kullanışlı olacak sütunlar ekleyi
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | Otel_Adresi             | Otel_Adı   |
+      | Hotel_Address          | Hotel_Name |
       | :--------------------- | :--------: |
-      | Amsterdam, Netherlands |    105     |
-      | Barcelona, Spain       |    211     |
-      | London, United Kingdom |    400     |
-      | Milan, Italy           |    162     |
-      | Paris, France          |    458     |
-      | Vienna, Austria        |    158     |
+      | Amsterdam, Hollanda    |    105     |
+      | Barselona, İspanya     |    211     |
+      | Londra, Birleşik Krallık |    400     |
+      | Milano, İtalya         |    162     |
+      | Paris, Fransa          |    458     |
+      | Viyana, Avusturya      |    158     |
 
-2. Otel Meta-inceleme sütunlarını işleyin
+2. Otel Meta-yorum sütunlarını işleme
 
-  1. `Additional_Number_of_Scoring`
+   1. `Additional_Number_of_Scoring` sütununu kaldırın.
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+   2. `Total_Number_of_Reviews` sütununu veri setinde gerçekten bulunan otel yorumlarının toplam sayısıyla değiştirin.
 
-  1. Replace `Average_Score` kendi hesapladığımız skorla kaldırın
+   3. `Average_Score` sütununu kendi hesapladığınız skorla değiştirin.
 
-  ```python
+   ```python
   # Drop `Additional_Number_of_Scoring`
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
   # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
@@ -83,41 +93,41 @@ Verileri biraz daha temizleyin. Daha sonra kullanışlı olacak sütunlar ekleyi
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-3. İnceleme sütunlarını işleyin
+3. Yorum sütunlarını işleme
 
-   1. `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
+   1. `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` ve `days_since_review` sütunlarını kaldırın.
 
-   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
-     
-   3. Keep `Tags` for now
+   2. `Reviewer_Score`, `Negative_Review` ve `Positive_Review` sütunlarını olduğu gibi tutun.
 
-     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+   3. `Tags` sütununu şimdilik tutun.
 
-4. Process reviewer columns
+      - Bir sonraki bölümde etiketler üzerinde ek filtreleme işlemleri yapacağız ve ardından etiketler kaldırılacak.
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
+4. Yorumcu sütunlarını işleme
+
+   1. `Total_Number_of_Reviews_Reviewer_Has_Given` sütununu kaldırın.
   
-  2. Keep `Reviewer_Nationality`
+   2. `Reviewer_Nationality` sütununu tutun.
 
-### Tag columns
+### Etiket Sütunları
 
-The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+`Tag` sütunu sorunlu çünkü sütunda bir liste (metin biçiminde) saklanıyor. Ne yazık ki, bu sütundaki alt bölümlerin sırası ve sayısı her zaman aynı değil. 515.000 satır ve 1427 otel olduğu için, bir insanın ilgilenmesi gereken doğru ifadeleri belirlemesi zor. Her bir yorumcunun seçebileceği seçenekler biraz farklı. İşte burada NLP devreye giriyor. Metni tarayabilir, en yaygın ifadeleri bulabilir ve bunları sayabilirsiniz.
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' İş seyahati  ', ' Yalnız gezgin ', ' Tek Kişilik Oda ', ' 5 gece kaldı ', ' Mobil cihazdan gönderildi ']` sütunlarını kaldırın, işlemi büyük ölçüde azaltmanın mümkün olup olmadığını sormaya başlayabilirsiniz. Neyse ki mümkün - ancak önce ilgi çekici etiketleri belirlemek için birkaç adımı izlemeniz gerekiyor.
+Ne yazık ki, tek kelimelerle değil, çok kelimeli ifadelerle ilgileniyoruz (örneğin, *İş seyahati*). Bu kadar veri üzerinde çok kelimeli bir sıklık dağılım algoritması çalıştırmak (6762646 kelime) olağanüstü bir zaman alabilir, ancak veriye bakmadan bunun gerekli bir masraf olduğu düşünülebilir. İşte burada keşif veri analizi faydalı oluyor, çünkü etiketlerin bir örneğini gördünüz: `[' İş seyahati  ', ' Tek başına seyahat eden ', ' Tek kişilik oda ', ' 5 gece kaldı ', ' Mobil cihazdan gönderildi ']`. Bu, işlemi büyük ölçüde azaltmanın mümkün olup olmadığını sormaya başlamanızı sağlar. Neyse ki mümkün - ancak önce ilgilenilecek etiketleri belirlemek için birkaç adımı takip etmeniz gerekiyor.
 
-### Etiketleri filtreleme
+### Etiketleri Filtreleme
 
-Veri setinin amacının, en iyi oteli seçmenize yardımcı olacak duygu ve sütunlar eklemek olduğunu unutmayın (kendiniz için veya belki size bir otel öneri botu yapma görevi veren bir müşteri için). Etiketlerin nihai veri setinde yararlı olup olmadığını kendinize sormanız gerekiyor. İşte bir yorum (eğer veri setine başka nedenlerle ihtiyacınız varsa, farklı etiketler seçime dahil olabilir veya dışarıda kalabilir):
+Unutmayın, veri setinin amacı duygu ve sütunlar ekleyerek en iyi oteli seçmenize yardımcı olmaktır (kendiniz için veya belki bir otel öneri botu oluşturmanızı isteyen bir müşteri için). Etiketlerin nihai veri setinde faydalı olup olmadığını kendinize sormanız gerekiyor. İşte bir yorum (veri setine başka nedenlerle ihtiyaç duyulursa farklı etiketler seçilebilir):
 
-1. Seyahat türü önemlidir ve kalmalıdır
-2. Misafir grubu türü önemlidir ve kalmalıdır
-3. Misafirin kaldığı oda, süit veya stüdyo türü önemsizdir (tüm otellerde temelde aynı odalar vardır)
-4. İncelemenin gönderildiği cihaz önemsizdir
-5. İncelemecinin kaldığı gece sayısı, eğer daha uzun kalmalarını oteli daha çok sevmeleriyle ilişkilendirirseniz, önemli olabilir, ancak bu biraz zorlayıcıdır ve muhtemelen önemsizdir
+1. Seyahat türü önemlidir ve kalmalıdır.
+2. Misafir grubunun türü önemlidir ve kalmalıdır.
+3. Misafirin kaldığı oda, süit veya stüdyo türü önemsizdir (tüm otellerde temelde aynı odalar vardır).
+4. Yorumun gönderildiği cihaz önemsizdir.
+5. Misafirin kaldığı gece sayısı *önemli* olabilir, eğer daha uzun süre kalanların oteli daha çok sevdiğini düşünürseniz, ancak bu zayıf bir bağlantıdır ve muhtemelen önemsizdir.
 
 Özetle, **2 tür etiketi tutun ve diğerlerini kaldırın**.
 
-İlk olarak, etiketleri daha iyi bir formata getirmeden saymak istemezsiniz, bu da köşeli parantezleri ve tırnak işaretlerini kaldırmak anlamına gelir. Bunu birkaç şekilde yapabilirsiniz, ancak en hızlı yolu istersiniz çünkü çok fazla veriyi işlemek uzun sürebilir. Neyse ki, pandas bu adımların her birini kolayca yapmanın bir yolunu sunar.
+İlk olarak, etiketleri daha iyi bir formata getirmeden saymak istemezsiniz, bu da köşeli parantezleri ve tırnak işaretlerini kaldırmak anlamına gelir. Bunu birkaç şekilde yapabilirsiniz, ancak en hızlı yöntemi seçmek istersiniz çünkü çok fazla veri işlemek uzun sürebilir. Neyse ki, pandas bu adımların her birini kolayca yapmanın bir yolunu sunar.
 
 ```Python
 # Remove opening and closing brackets
@@ -126,85 +136,85 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Her etiket şu şekilde olur: `İş seyahati, Yalnız gezgin, Tek Kişilik Oda, 5 gece kaldı, Mobil cihazdan gönderildi`. 
+Her bir etiket şu şekilde olur: `İş seyahati, Tek başına seyahat eden, Tek kişilik oda, 5 gece kaldı, Mobil cihazdan gönderildi`.
 
-Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+Sonra bir sorunla karşılaşıyoruz. Bazı yorumlar veya satırlar 5 sütuna, bazıları 3'e, bazıları 6'ya sahip. Bu, veri setinin nasıl oluşturulduğunun bir sonucu ve düzeltmesi zor. Her bir ifadeyi sıklıkla saymak istiyorsunuz, ancak her yorumda farklı sırada oldukları için sayım yanlış olabilir ve bir otel hak ettiği bir etiketi alamayabilir.
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+Bunun yerine, farklı sıralamayı avantajımıza kullanacağız çünkü her bir etiket çok kelimeli ancak aynı zamanda bir virgülle ayrılmış! Bunun en basit yolu, her bir etiketi sırasına karşılık gelen sütuna yerleştirerek 6 geçici sütun oluşturmaktır. Daha sonra bu 6 sütunu tek bir büyük sütunda birleştirip `value_counts()` yöntemini çalıştırabilirsiniz. Bunu yazdırdığınızda, 2428 benzersiz etiket olduğunu göreceksiniz. İşte küçük bir örnek:
 
-| Tag                            | Count  |
-| ------------------------------ | ------ |
-| Leisure trip                   | 417778 |
-| Submitted from a mobile device | 307640 |
-| Couple                         | 252294 |
-| Stayed 1 night                 | 193645 |
-| Stayed 2 nights                | 133937 |
-| Solo traveler                  | 108545 |
-| Stayed 3 nights                | 95821  |
-| Business trip                  | 82939  |
-| Group                          | 65392  |
-| Family with young children     | 61015  |
-| Stayed 4 nights                | 47817  |
-| Double Room                    | 35207  |
-| Standard Double Room           | 32248  |
-| Superior Double Room           | 31393  |
-| Family with older children     | 26349  |
-| Deluxe Double Room             | 24823  |
-| Double or Twin Room            | 22393  |
-| Stayed 5 nights                | 20845  |
-| Standard Double or Twin Room   | 17483  |
-| Classic Double Room            | 16989  |
-| Superior Double or Twin Room   | 13570  |
-| 2 rooms                        | 12393  |
+| Etiket                          | Sayı   |
+| ------------------------------- | ------ |
+| Tatil seyahati                  | 417778 |
+| Mobil cihazdan gönderildi       | 307640 |
+| Çift                            | 252294 |
+| 1 gece kaldı                    | 193645 |
+| 2 gece kaldı                    | 133937 |
+| Tek başına seyahat eden         | 108545 |
+| 3 gece kaldı                    | 95821  |
+| İş seyahati                     | 82939  |
+| Grup                            | 65392  |
+| Küçük çocuklu aile              | 61015  |
+| 4 gece kaldı                    | 47817  |
+| Çift kişilik oda                | 35207  |
+| Standart çift kişilik oda       | 32248  |
+| Üst düzey çift kişilik oda      | 31393  |
+| Büyük çocuklu aile              | 26349  |
+| Lüks çift kişilik oda           | 24823  |
+| Çift veya ikiz kişilik oda      | 22393  |
+| 5 gece kaldı                    | 20845  |
+| Standart çift veya ikiz kişilik oda | 17483  |
+| Klasik çift kişilik oda         | 16989  |
+| Üst düzey çift veya ikiz kişilik oda | 13570 |
+| 2 oda                           | 12393  |
 
-Some of the common tags like `Mobil cihazdan gönderildi` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
+`Mobil cihazdan gönderildi` gibi yaygın etiketler bizim için hiçbir işe yaramaz, bu yüzden bunları saymadan önce kaldırmak akıllıca olabilir, ancak bu kadar hızlı bir işlem olduğu için onları bırakabilir ve görmezden gelebilirsiniz.
 
-### Removing the length of stay tags
+### Kalış Süresi Etiketlerini Kaldırma
 
-Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
+Bu etiketleri kaldırmak ilk adımdır, dikkate alınacak toplam etiket sayısını biraz azaltır. Not: Bunları veri setinden kaldırmazsınız, sadece inceleme veri setinde değer olarak saymayı/dahil etmeyi seçmezsiniz.
 
-| Length of stay   | Count  |
-| ---------------- | ------ |
-| Stayed 1 night   | 193645 |
-| Stayed  2 nights | 133937 |
-| Stayed 3 nights  | 95821  |
-| Stayed  4 nights | 47817  |
-| Stayed 5 nights  | 20845  |
-| Stayed  6 nights | 9776   |
-| Stayed 7 nights  | 7399   |
-| Stayed  8 nights | 2502   |
-| Stayed 9 nights  | 1293   |
-| ...              | ...    |
+| Kalış süresi   | Sayı   |
+| -------------- | ------ |
+| 1 gece kaldı   | 193645 |
+| 2 gece kaldı   | 133937 |
+| 3 gece kaldı   | 95821  |
+| 4 gece kaldı   | 47817  |
+| 5 gece kaldı   | 20845  |
+| 6 gece kaldı   | 9776   |
+| 7 gece kaldı   | 7399   |
+| 8 gece kaldı   | 2502   |
+| 9 gece kaldı   | 1293   |
+| ...            | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
+Çok çeşitli odalar, süitler, stüdyolar, daireler vb. vardır. Hepsi kabaca aynı şeyi ifade eder ve sizin için önemli değildir, bu yüzden bunları dikkate almaktan çıkarın.
 
-| Type of room                  | Count |
-| ----------------------------- | ----- |
-| Double Room                   | 35207 |
-| Standard  Double Room         | 32248 |
-| Superior Double Room          | 31393 |
-| Deluxe  Double Room           | 24823 |
-| Double or Twin Room           | 22393 |
-| Standard  Double or Twin Room | 17483 |
-| Classic Double Room           | 16989 |
-| Superior  Double or Twin Room | 13570 |
+| Oda türü                     | Sayı   |
+| ---------------------------- | ------ |
+| Çift kişilik oda             | 35207  |
+| Standart çift kişilik oda    | 32248  |
+| Üst düzey çift kişilik oda   | 31393  |
+| Lüks çift kişilik oda        | 24823  |
+| Çift veya ikiz kişilik oda   | 22393  |
+| Standart çift veya ikiz kişilik oda | 17483 |
+| Klasik çift kişilik oda      | 16989  |
+| Üst düzey çift veya ikiz kişilik oda | 13570 |
 
-Finally, and this is delightful (because it didn't take much processing at all), you will be left with the following *useful* tags:
+Son olarak, ve bu harika (çünkü çok fazla işlem gerektirmedi), aşağıdaki *faydalı* etiketlerle kalacaksınız:
 
-| Tag                                           | Count  |
-| --------------------------------------------- | ------ |
-| Leisure trip                                  | 417778 |
-| Couple                                        | 252294 |
-| Solo  traveler                                | 108545 |
-| Business trip                                 | 82939  |
-| Group (combined with Travellers with friends) | 67535  |
-| Family with young children                    | 61015  |
-| Family  with older children                   | 26349  |
-| With a  pet                                   | 1405   |
+| Etiket                                       | Sayı   |
+| ------------------------------------------- | ------ |
+| Tatil seyahati                              | 417778 |
+| Çift                                        | 252294 |
+| Tek başına seyahat eden                     | 108545 |
+| İş seyahati                                 | 82939  |
+| Grup (Arkadaşlarla seyahat edenlerle birleştirildi) | 67535  |
+| Küçük çocuklu aile                          | 61015  |
+| Büyük çocuklu aile                          | 26349  |
+| Evcil hayvanla                              | 1405   |
 
-You could argue that `Arkadaşlarla seyahat edenler` is the same as `Grup` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+`Arkadaşlarla seyahat edenler`in `Grup` ile aynı olduğu söylenebilir ve bu iki etiketin birleştirilmesi mantıklı olur. Doğru etiketleri belirlemek için kod [Etiketler not defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) dosyasındadır.
 
-The final step is to create new columns for each of these tags. Then, for every review row, if the `Etiket` sütunu yeni sütunlardan biriyle eşleşiyorsa, 1 ekleyin, değilse 0 ekleyin. Sonuç, bu oteli (toplamda) iş veya eğlence için veya bir evcil hayvanla getirmek için kaç incelemecinin seçtiğini saymak olacak ve bu, bir otel önerirken yararlı bir bilgidir.
+Son adım, bu etiketlerin her biri için yeni sütunlar oluşturmaktır. Daha sonra, her bir yorum satırı için, `Tag` sütunu yeni sütunlardan biriyle eşleşirse, 1 ekleyin, eşleşmezse 0 ekleyin. Sonuç olarak, bir oteli iş veya tatil için seçen yorumcuların toplam sayısını (toplamda) elde edeceksiniz veya bir evcil hayvanla seyahat edenler için ve bu, bir otel önerirken faydalı bir bilgi olacaktır.
 
 ```python
 # Process the Tags into new columns
@@ -222,7 +232,7 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ```
 
-### Dosyanızı kaydedin
+### Dosyanızı Kaydedin
 
 Son olarak, veri setini şu anki haliyle yeni bir adla kaydedin.
 
@@ -236,11 +246,11 @@ df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 
 ## Duygu Analizi İşlemleri
 
-Bu son bölümde, inceleme sütunlarına duygu analizi uygulayacak ve sonuçları bir veri setinde kaydedeceksiniz.
+Bu son bölümde, yorum sütunlarına duygu analizi uygulayacak ve sonuçları bir veri setinde kaydedeceksiniz.
 
-## Egzersiz: filtrelenmiş verileri yükleyin ve kaydedin
+## Alıştırma: Filtrelenmiş Veriyi Yükleyin ve Kaydedin
 
-Artık filtrelenmiş veri setini yüklediğinizi, **orijinal** veri setini değil, unutmayın.
+Artık önceki bölümde kaydedilen filtrelenmiş veri setini, **orijinal veri setini değil**, yüklediğinizi unutmayın.
 
 ```python
 import time
@@ -261,15 +271,15 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
-### Stop kelimelerini kaldırma
+### Durdurma Kelimelerini Kaldırma
 
-Negatif ve Pozitif inceleme sütunlarında Duygu Analizi çalıştırırsanız, uzun sürebilir. Hızlı bir CPU'ya sahip güçlü bir test dizüstü bilgisayarında test edildiğinde, kullanılan duygu kütüphanesine bağlı olarak 12 - 14 dakika sürdü. Bu (nispeten) uzun bir süre, bu nedenle hızlandırılıp hızlandırılamayacağını araştırmaya değer.
+Negatif ve Pozitif yorum sütunlarında Duygu Analizi çalıştıracak olsaydınız, bu uzun sürebilirdi. Hızlı bir CPU'ya sahip güçlü bir test dizüstü bilgisayarında test edildiğinde, kullanılan duygu kütüphanesine bağlı olarak 12 - 14 dakika sürdü. Bu (nispeten) uzun bir süre, bu yüzden hızlandırılıp hızlandırılamayacağını araştırmaya değer.
 
-Stop kelimeleri, yani bir cümlenin duygusunu değiştirmeyen yaygın İngilizce kelimeleri kaldırmak ilk adımdır. Onları kaldırarak, duygu analizi daha hızlı çalışmalı, ancak daha az doğru olmamalıdır (çünkü stop kelimeleri duyguyu etkilemez, ancak analizi yavaşlatır).
+Durdurma kelimelerini, yani bir cümlenin duygusunu değiştirmeyen yaygın İngilizce kelimeleri kaldırmak ilk adımdır. Bunları kaldırarak, duygu analizi daha hızlı çalışmalı, ancak daha az doğru olmamalıdır (çünkü durdurma kelimeleri duyguya etki etmez, ancak analizi yavaşlatır). 
 
-En uzun negatif inceleme 395 kelimeydi, ancak stop kelimeleri kaldırıldıktan sonra 195 kelime oldu.
+En uzun negatif yorum 395 kelimeydi, ancak durdurma kelimeleri kaldırıldıktan sonra 195 kelimeye düştü.
 
-Stop kelimeleri kaldırmak da hızlı bir işlemdir, 515.000 satırda 2 inceleme sütunundan stop kelimelerini kaldırmak test cihazında 3.3 saniye sürdü. Cihazınızın CPU hızına, RAM'e, SSD'ye sahip olup olmamanıza ve bazı diğer faktörlere bağlı olarak sizin için biraz daha uzun veya kısa sürebilir. İşlemin nispi kısalığı, duygu analizi süresini iyileştiriyorsa, yapmaya değer olduğu anlamına gelir.
+Durdurma kelimelerini kaldırmak da hızlı bir işlemdir; 515.000 satırda 2 yorum sütunundan durdurma kelimelerini kaldırmak test cihazında 3.3 saniye sürdü. Cihazınızın CPU hızı, RAM, SSD olup olmaması ve diğer bazı faktörlere bağlı olarak biraz daha fazla veya az sürebilir. İşlemin nispeten kısa olması, duygu analizi süresini iyileştiriyorsa yapmaya değer olduğu anlamına gelir.
 
 ```python
 from nltk.corpus import stopwords
@@ -291,13 +301,12 @@ df.Negative_Review = df.Negative_Review.apply(remove_stopwords)
 df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
-### Duygu analizi gerçekleştirme
+### Duygu Analizi Yapma
 
-Şimdi negatif ve pozitif inceleme sütunları için duygu analizini hesaplamalı ve sonucu 2 yeni sütunda saklamalısınız. Duygu testinin, aynı inceleme için incelemecinin puanıyla karşılaştırılması olacaktır. Örneğin, duygu analizinin negatif incelemenin 1 (son derece pozitif duygu) ve pozitif inceleme duygu analizinin 1 olduğunu düşündüğünü varsayalım, ancak incelemeci otele mümkün olan en düşük puanı verdiyse, inceleme metni puanla eşleşmiyor olabilir veya duygu analizörü duyguyu doğru tanıyamamış olabilir. Bazı duygu puanlarının tamamen yanlış olmasını beklemelisiniz ve bu genellikle açıklanabilir olacaktır, örneğin inceleme son derece alaycı olabilir "Tabii ki ısıtma olmayan bir odada uyumayı SEVDİM" ve duygu analizörü bunun pozitif bir duygu olduğunu düşünebilir, ancak bunu okuyan bir insan bunun alaycı olduğunu bilir.
+Şimdi hem negatif hem de pozitif yorum sütunları için duygu analizini hesaplamalı ve sonucu 2 yeni sütunda saklamalısınız. Duygunun testi, aynı yorum için yorumcunun verdiği puanla karşılaştırmak olacaktır. Örneğin, duygu analizi negatif yorumun duygu puanını 1 (son derece olumlu duygu) ve pozitif yorumun duygu puanını 1 olarak hesaplıyorsa, ancak yorumcu otele mümkün olan en düşük puanı verdiyse, o zaman ya yorum metni puanla eşleşmiyor ya da duygu analizcisi duyguyu doğru bir şekilde tanıyamamış olabilir. Bazı duygu puanlarının tamamen yanlış olmasını beklemelisiniz ve genellikle bu açıklanabilir olacaktır, örneğin yorum son derece alaycı olabilir: "Tabii ki ısıtması olmayan bir odada uyumayı ÇOK SEVDİM" ve duygu analizcisi bunun olumlu bir duygu olduğunu düşünebilir, ancak bir insan bunu okuduğunda bunun alaycı olduğunu anlayacaktır.
+NLTK, farklı duygu analiz araçları sunar ve bunları değiştirerek duygu analizinin daha doğru olup olmadığını görebilirsiniz. Burada VADER duygu analizi kullanılmıştır.
 
-NLTK, öğrenmek için farklı duygu analizörleri sağlar ve bunları değiştirebilir ve duygu analizinin daha doğru olup olmadığını görebilirsiniz. Burada VADER duygu analizi kullanılmıştır.
-
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER: Sosyal Medya Metni için Basit Kurallara Dayalı Bir Model. Sekizinci Uluslararası Webloglar ve Sosyal Medya Konferansı (ICWSM-14). Ann Arbor, MI, Haziran 2014.
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: Sosyal Medya Metinlerinin Duygu Analizi için Basit ve Kural Tabanlı Bir Model. Sekizinci Uluslararası Web Günlükleri ve Sosyal Medya Konferansı (ICWSM-14). Ann Arbor, MI, Haziran 2014.
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -316,7 +325,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Programınızın ilerleyen bölümlerinde duygu analizi yapmaya hazır olduğunuzda, her incelemeye aşağıdaki gibi uygulayabilirsiniz:
+Programınızda duygu analizi yapmaya hazır olduğunuzda, bunu her bir incelemeye şu şekilde uygulayabilirsiniz:
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -328,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Bu, bilgisayarımda yaklaşık 120 saniye sürüyor, ancak her bilgisayarda değişecektir. Sonuçları yazdırmak ve duygunun incelemeye uyup uymadığını görmek isterseniz:
+Bu işlem bilgisayarımda yaklaşık 120 saniye sürüyor, ancak her bilgisayarda farklılık gösterebilir. Sonuçları yazdırmak ve duygu analizinin incelemeyle eşleşip eşleşmediğini görmek isterseniz:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -337,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-Dosyayı kullanmadan önce yapmanız gereken son şey, onu kaydetmektir! Ayrıca, yeni sütunlarınızı yeniden düzenlemeyi düşünmelisiniz, böylece çalışmak daha kolay olur (bir insan için, bu kozmetik bir değişikliktir).
+Dosyayı zorlukta kullanmadan önce yapmanız gereken son şey, onu kaydetmektir! Ayrıca, yeni sütunlarınızı yeniden sıralamayı düşünmelisiniz, böylece çalışması daha kolay olur (insan için, bu sadece kozmetik bir değişikliktir).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -347,31 +356,34 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-[analiz defterinin](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) tamamını çalıştırmalısınız (Hotel_Reviews_Filtered.csv dosyasını oluşturmak için [filtreleme defterinizi](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) çalıştırdıktan sonra).
+[Analiz defterinin](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) tüm kodunu çalıştırmalısınız (Hotel_Reviews_Filtered.csv dosyasını oluşturmak için [filtreleme defterinizi](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) çalıştırdıktan sonra).
 
-Gözden geçirmek için adımlar:
+Adımları gözden geçirmek gerekirse:
 
-1. Orijinal veri seti dosyası **Hotel_Reviews.csv** önceki derste [keşif defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb) ile incelenmiştir
-2. Hotel_Reviews.csv [filtreleme defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) ile filtrelenir ve **Hotel_Reviews_Filtered.csv** elde edilir
-3. Hotel_Reviews_Filtered.csv [duygu analizi defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) ile işlenir ve **Hotel_Reviews_NLP.csv** elde edilir
-4. Aşağıdaki NLP Challenge'da Hotel_Reviews_NLP.csv dosyasını kullanın
+1. Orijinal veri seti dosyası **Hotel_Reviews.csv**, önceki derste [keşif defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb) ile incelenmiştir.
+2. Hotel_Reviews.csv, [filtreleme defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) tarafından filtrelenerek **Hotel_Reviews_Filtered.csv** dosyasına dönüştürülmüştür.
+3. Hotel_Reviews_Filtered.csv, [duygu analizi defteri](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) tarafından işlenerek **Hotel_Reviews_NLP.csv** dosyasına dönüştürülmüştür.
+4. Aşağıdaki NLP Zorluğunda **Hotel_Reviews_NLP.csv** dosyasını kullanın.
 
 ### Sonuç
 
-Başladığınızda, sütunlar ve veriler içeren bir veri setiniz vardı, ancak hepsi doğrulanabilir veya kullanılabilir değildi. Verileri incelediniz, ihtiyacınız olmayanları filtrelediniz, etiketleri faydalı bir şeye dönüştürdünüz, kendi ortalamalarınızı hesapladınız, bazı duygu sütunları eklediniz ve umarım doğal metni işlemede ilginç şeyler öğrendiniz.
+Başladığınızda, sütunlar ve veriler içeren bir veri setiniz vardı, ancak bunların hepsi doğrulanabilir veya kullanılabilir değildi. Verileri incelediniz, ihtiyacınız olmayanları filtrelediniz, etiketleri işe yarar bir şeye dönüştürdünüz, kendi ortalamalarınızı hesapladınız, bazı duygu sütunları eklediniz ve umarım doğal metin işleme hakkında ilginç şeyler öğrendiniz.
 
-## [Ders sonrası sınav](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [Ders sonrası test](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Zorluk
 
-Artık veri setinizin duygu analizi yapıldığına göre, bu müfredatta öğrendiğiniz stratejileri (belki kümeleme?) kullanarak duygu etrafında kalıplar belirleyip belirleyemeyeceğinizi görün.
+Artık veri setinizin duygu analizini yaptığınıza göre, bu müfredatta öğrendiğiniz stratejileri (belki kümeleme?) kullanarak duygu etrafındaki kalıpları belirlemeye çalışın.
 
-## İnceleme ve Kendi Kendine Çalışma
+## Gözden Geçirme ve Kendi Kendine Çalışma
 
-Bu [Learn modülünü](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) alarak daha fazla bilgi edinin ve metinlerde duygu keşfetmek için farklı araçlar kullanın.
-## Ödev
+[Duygu analizi hakkında daha fazla bilgi edinmek ve metindeki duyguları keşfetmek için farklı araçlar kullanmak üzere bu Learn modülünü](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) alın.
+
+## Ödev 
 
 [Farklı bir veri seti deneyin](assignment.md)
 
-**Feragatname**:
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

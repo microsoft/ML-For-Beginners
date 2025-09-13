@@ -1,79 +1,86 @@
-# Logistic regression to predict categories
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "abf86d845c84330bce205a46b382ec88",
+  "translation_date": "2025-09-06T09:07:21+00:00",
+  "source_file": "2-Regression/4-Logistic/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用邏輯迴歸預測分類
 
-![Logistic vs. linear regression infographic](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.mo.png)
+![邏輯迴歸與線性迴歸資訊圖表](../../../../2-Regression/4-Logistic/images/linear-vs-logistic.png)
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [This lesson is available in R!](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
+> ### [本課程也提供 R 版本！](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
 
-## Introduction
+## 簡介
 
-In this final lesson on Regression, one of the fundamental _classic_ ML techniques, we will explore Logistic Regression. This technique is useful for uncovering patterns that can help predict binary categories. For example, is this candy chocolate or not? Is this disease contagious or not? Will this customer choose this product or not?
+在這堂關於迴歸的最後一課中，我們將探討邏輯迴歸，這是基本的 _經典_ 機器學習技術之一。你可以使用這種技術來發現模式並預測二元分類。例如：這顆糖果是巧克力嗎？這種疾病是否具有傳染性？這位顧客是否會選擇這個產品？
 
-In this lesson, you will learn:
+在本課程中，你將學到：
 
-- A new library for data visualization
-- Techniques for logistic regression
+- 一個新的資料視覺化庫
+- 邏輯迴歸的技術
 
-✅ Deepen your understanding of working with this type of regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
+✅ 在這個 [學習模組](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) 中深入了解如何使用這種類型的迴歸。
 
-## Prerequisite
+## 前置條件
 
-Having worked with the pumpkin data, we are now familiar enough with it to identify one binary category we can work with: `Color`.
+在使用南瓜數據後，我們已經足夠熟悉它，並意識到有一個二元分類可以使用：`Color`。
 
-Let's build a logistic regression model to predict that, given certain variables, _what color a given pumpkin is likely to be_ (orange 🎃 or white 👻).
+讓我們建立一個邏輯迴歸模型，根據一些變數來預測 _某個南瓜可能的顏色_（橙色 🎃 或白色 👻）。
 
-> Why are we discussing binary classification in a lesson series about regression? It's mainly for convenience, as logistic regression is [actually a classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), albeit one based on linear principles. Discover other ways to classify data in the next lesson series.
+> 為什麼我們在迴歸課程中討論二元分類？僅僅是語言上的方便，因為邏輯迴歸實際上是 [一種分類方法](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)，儘管它是基於線性的。在下一組課程中了解其他分類數據的方法。
 
-## Define the question
+## 定義問題
 
-For our purposes, we will frame this as a binary choice: 'White' or 'Not White'. There is also a 'striped' category in our dataset, but it has very few instances, so we will not consider it. It disappears anyway once we eliminate null values from the dataset.
+對於我們的目的，我們將其表述為二元分類：'白色' 或 '非白色'。我們的數據集中還有一個 '條紋' 類別，但它的樣本數量很少，因此我們不會使用它。事實上，當我們從數據集中移除空值時，它就消失了。
 
-> 🎃 Fun fact: we sometimes refer to white pumpkins as 'ghost' pumpkins. They aren't very easy to carve, making them less popular than the orange ones, but they have a unique appearance! Thus, we could also phrase our question as: 'Ghost' or 'Not Ghost'. 👻
+> 🎃 有趣的事實：我們有時會稱白色南瓜為 '幽靈南瓜'。它們不容易雕刻，因此不像橙色南瓜那麼受歡迎，但它們看起來很酷！所以我們也可以將問題重新表述為：'幽靈' 或 '非幽靈'。👻
 
-## About logistic regression
+## 關於邏輯迴歸
 
-Logistic regression differs from linear regression, which you learned about earlier, in several significant ways.
+邏輯迴歸與之前學到的線性迴歸在幾個重要方面有所不同。
 
-[![ML for beginners - Understanding Logistic Regression for Machine Learning Classification](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "ML for beginners - Understanding Logistic Regression for Machine Learning Classification")
+[![初學者的機器學習 - 理解邏輯迴歸](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "初學者的機器學習 - 理解邏輯迴歸")
 
-> 🎥 Click the image above for a brief video overview of logistic regression.
+> 🎥 點擊上方圖片觀看邏輯迴歸的簡短視頻概述。
 
-### Binary classification
+### 二元分類
 
-Logistic regression does not provide the same features as linear regression. The former predicts a binary category ("white or not white"), while the latter predicts continuous values. For instance, given the origin of a pumpkin and the time of harvest, it can predict _how much its price will increase_.
+邏輯迴歸不提供與線性迴歸相同的功能。前者提供關於二元分類（"白色或非白色"）的預測，而後者能夠預測連續值，例如根據南瓜的產地和收穫時間，_價格將上漲多少_。
 
-![Pumpkin classification Model](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.mo.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+![南瓜分類模型](../../../../2-Regression/4-Logistic/images/pumpkin-classifier.png)
+> 資訊圖表由 [Dasani Madipalli](https://twitter.com/dasani_decoded) 提供
 
-### Other classifications
+### 其他分類
 
-There are various types of logistic regression, including multinomial and ordinal:
+邏輯迴歸還有其他類型，包括多項式和序列：
 
-- **Multinomial**, which involves having multiple categories - "Orange, White, and Striped".
-- **Ordinal**, which deals with ordered categories, useful if we want to logically arrange our outcomes, like our pumpkins that are classified by a finite number of sizes (mini, sm, med, lg, xl, xxl).
+- **多項式**：涉及多個類別，例如 "橙色、白色和條紋"。
+- **序列**：涉及有序的類別，適合我們希望按邏輯順序排列結果，例如南瓜按有限數量的大小排序（迷你、小、中、大、特大、超大）。
 
-![Multinomial vs ordinal regression](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.mo.png)
+![多項式與序列迴歸](../../../../2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
-### Variables DO NOT have to correlate
+### 變數不需要相關
 
-Remember how linear regression performed better with more correlated variables? Logistic regression is different - the variables don't need to be aligned. This is effective for this data, which exhibits somewhat weak correlations.
+還記得線性迴歸在變數相關性更高時效果更好嗎？邏輯迴歸則相反——變數不需要相關性。這適用於我們的數據，因為它的相關性較弱。
 
-### You need a lot of clean data
+### 需要大量乾淨的數據
 
-Logistic regression will yield more accurate results if you utilize more data; our small dataset isn't optimal for this task, so keep that in mind.
+邏輯迴歸在使用更多數據時會提供更準確的結果；我們的小型數據集並不適合這項任務，因此請記住這一點。
 
-[![ML for beginners - Data Analysis and Preparation for Logistic Regression](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "ML for beginners - Data Analysis and Preparation for Logistic Regression")
+[![初學者的機器學習 - 邏輯迴歸的數據分析與準備](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "初學者的機器學習 - 邏輯迴歸的數據分析與準備")
 
-> 🎥 Click the image above for a brief video overview of preparing data for linear regression.
+✅ 思考哪些類型的數據適合邏輯迴歸。
 
-✅ Consider the types of data that would be suitable for logistic regression.
+## 練習 - 整理數據
 
-## Exercise - tidy the data
+首先，稍微清理一下數據，刪除空值並選擇部分列：
 
-First, clean the data a bit by dropping null values and selecting only some of the columns:
-
-1. Add the following code:
+1. 添加以下程式碼：
 
     ```python
   
@@ -83,19 +90,19 @@ First, clean the data a bit by dropping null values and selecting only some of t
     pumpkins.dropna(inplace=True)
     ```
 
-    You can always take a look at your new dataframe:
+    你可以隨時查看新的數據框：
 
     ```python
     pumpkins.info
     ```
 
-### Visualization - categorical plot
+### 視覺化 - 類別圖
 
-By now, you have loaded the [starter notebook](../../../../2-Regression/4-Logistic/notebook.ipynb) with pumpkin data again and cleaned it to preserve a dataset containing a few variables, including `Color`. Let's visualize the dataframe in the notebook using a different library: [Seaborn](https://seaborn.pydata.org/index.html), which is built on Matplotlib, which we used earlier.
+到目前為止，你已經在 [起始筆記本](../../../../2-Regression/4-Logistic/notebook.ipynb) 中載入了南瓜數據，並清理了它以保留包含一些變數（包括 `Color`）的數據集。讓我們使用不同的庫 [Seaborn](https://seaborn.pydata.org/index.html) 在筆記本中視覺化數據框。Seaborn 是基於我們之前使用的 Matplotlib。
 
-Seaborn provides some excellent methods for visualizing your data. For instance, you can compare the distributions of the data for each `Variety` and `Color` in a categorical plot.
+Seaborn 提供了一些很棒的方式來視覺化數據。例如，你可以在類別圖中比較每個 `Variety` 和 `Color` 的數據分佈。
 
-1. Create such a plot by using the `catplot` function, using our pumpkin data `pumpkins`, and specifying a color mapping for each pumpkin category (orange or white):
+1. 使用 `catplot` 函數創建這樣的圖，使用南瓜數據 `pumpkins`，並為每個南瓜類別（橙色或白色）指定顏色映射：
 
     ```python
     import seaborn as sns
@@ -111,19 +118,19 @@ Seaborn provides some excellent methods for visualizing your data. For instance,
     )
     ```
 
-    ![A grid of visualized data](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.mo.png)
+    ![一組視覺化數據的網格](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_1.png)
 
-    By examining the data, you can see how the Color data relates to Variety.
+    通過觀察數據，你可以看到 `Color` 數據與 `Variety` 的關係。
 
-    ✅ Based on this categorical plot, what interesting explorations can you imagine?
+    ✅ 根據這個類別圖，你能想到哪些有趣的探索？
 
-### Data pre-processing: feature and label encoding
+### 數據預處理：特徵和標籤編碼
 
-Our pumpkins dataset contains string values for all its columns. While working with categorical data is intuitive for humans, it's not for machines. Machine learning algorithms perform better with numerical data. That's why encoding is a crucial step in the data pre-processing phase, as it allows us to convert categorical data into numerical data without losing any information. Proper encoding leads to building a robust model.
+我們的南瓜數據集包含所有列的字串值。對人類來說，處理類別數據是直觀的，但對機器來說並非如此。機器學習算法更適合處理數字。因此，編碼是數據預處理階段非常重要的一步，因為它使我們能夠將類別數據轉換為數字數據，而不丟失任何信息。良好的編碼有助於建立良好的模型。
 
-For feature encoding, there are two primary types of encoders:
+對於特徵編碼，有兩種主要的編碼器：
 
-1. Ordinal encoder: it works well for ordinal variables, which are categorical variables with a logical order, like the `Item Size` column in our dataset. It creates a mapping so that each category is represented by a number corresponding to its order in the column.
+1. 序列編碼器：適合序列變數，即類別變數，其數據遵循邏輯順序，例如數據集中的 `Item Size` 列。它創建一個映射，使每個類別由一個數字表示，該數字是列中類別的順序。
 
     ```python
     from sklearn.preprocessing import OrdinalEncoder
@@ -133,7 +140,7 @@ For feature encoding, there are two primary types of encoders:
     ordinal_encoder = OrdinalEncoder(categories=item_size_categories)
     ```
 
-2. Categorical encoder: it is suitable for nominal variables, which are categorical variables that do not follow a logical order, like all features other than `Item Size` in our dataset. It employs one-hot encoding, meaning that each category is represented by a binary column: the encoded variable is equal to 1 if the pumpkin belongs to that Variety and 0 otherwise.
+2. 類別編碼器：適合名義變數，即類別變數，其數據不遵循邏輯順序，例如數據集中除 `Item Size` 以外的所有特徵。它是一種獨熱編碼，意味著每個類別由一個二元列表示：如果南瓜屬於該 `Variety`，則編碼變數等於 1，否則為 0。
 
     ```python
     from sklearn.preprocessing import OneHotEncoder
@@ -141,7 +148,8 @@ For feature encoding, there are two primary types of encoders:
     categorical_features = ['City Name', 'Package', 'Variety', 'Origin']
     categorical_encoder = OneHotEncoder(sparse_output=False)
     ```
-Then, `ColumnTransformer` is utilized to combine multiple encoders into a single step and apply them to the appropriate columns.
+
+接著，使用 `ColumnTransformer` 將多個編碼器合併為一個步驟，並應用於適當的列。
 
 ```python
     from sklearn.compose import ColumnTransformer
@@ -154,7 +162,8 @@ Then, `ColumnTransformer` is utilized to combine multiple encoders into a single
     ct.set_output(transform='pandas')
     encoded_features = ct.fit_transform(pumpkins)
 ```
-On the other hand, to encode the label, we use the scikit-learn `LabelEncoder` class, which is a utility class designed to normalize labels so that they contain only values between 0 and n_classes-1 (here, 0 and 1).
+
+另一方面，對於標籤編碼，我們使用 scikit-learn 的 `LabelEncoder` 類，這是一個工具類，用於將標籤標準化，使其僅包含 0 到 n_classes-1（此處為 0 和 1）之間的值。
 
 ```python
     from sklearn.preprocessing import LabelEncoder
@@ -162,17 +171,20 @@ On the other hand, to encode the label, we use the scikit-learn `LabelEncoder` c
     label_encoder = LabelEncoder()
     encoded_label = label_encoder.fit_transform(pumpkins['Color'])
 ```
-Once we have encoded the features and the label, we can merge them into a new dataframe `encoded_pumpkins`.
+
+一旦我們編碼了特徵和標籤，就可以將它們合併到新的數據框 `encoded_pumpkins` 中。
 
 ```python
     encoded_pumpkins = encoded_features.assign(Color=encoded_label)
 ```
-✅ What are the advantages of using an ordinal encoder for the `Item Size` column?
 
-### Analyse relationships between variables
+✅ 使用序列編碼器處理 `Item Size` 列有哪些優勢？
 
-Now that we have pre-processed our data, we can analyse the relationships between the features and the label to grasp an idea of how well the model will be able to predict the label given the features.
-The best way to perform this kind of analysis is plotting the data. We'll be using again the Seaborn `catplot` function, to visualize the relationships between `Item Size`,  `Variety` and `Color` in a categorical plot? To better visualize the data, we'll be using the encoded `Item Size` column and the unencoded `Variety` column.
+### 分析變數之間的關係
+
+現在我們已經對數據進行了預處理，可以分析特徵和標籤之間的關係，以了解模型在給定特徵的情況下預測標籤的能力。
+
+進行這類分析的最佳方式是繪製數據。我們將再次使用 Seaborn 的 `catplot` 函數，視覺化 `Item Size`、`Variety` 和 `Color` 之間的關係。為了更好地繪製數據，我們將使用編碼後的 `Item Size` 列和未編碼的 `Variety` 列。
 
 ```python
     palette = {
@@ -191,15 +203,16 @@ The best way to perform this kind of analysis is plotting the data. We'll be usi
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
 ```
-![A catplot of visualized data](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.mo.png)
 
-### Use a swarm plot
+![視覺化數據的類別圖](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_2.png)
 
-Since Color is a binary category (White or Not), it requires 'a [specialized approach](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) to visualization'. There are various ways to visualize the relationship of this category with other variables.
+### 使用 swarm plot
 
-You can display variables side-by-side using Seaborn plots.
+由於 `Color` 是二元分類（白色或非白色），它需要一種 [專門的視覺化方法](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar)。還有其他方法可以視覺化此分類與其他變數的關係。
 
-1. Try a 'swarm' plot to show the distribution of values:
+你可以使用 Seaborn 圖表並排視覺化變數。
+
+1. 嘗試使用 'swarm' 圖來顯示值的分佈：
 
     ```python
     palette = {
@@ -209,27 +222,27 @@ You can display variables side-by-side using Seaborn plots.
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![A swarm of visualized data](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.mo.png)
+    ![視覺化數據的 swarm 圖](../../../../2-Regression/4-Logistic/images/swarm_2.png)
 
-**Watch Out**: The code above may generate a warning, as Seaborn struggles to represent such a large number of data points in a swarm plot. A potential solution is to reduce the size of the marker by using the 'size' parameter. However, be cautious, as this may affect the readability of the plot.
+**注意**：上述程式碼可能會產生警告，因為 Seaborn 無法在 swarm 圖中表示如此多的數據點。一種可能的解決方案是使用 'size' 參數減小標記的大小，但請注意這會影響圖表的可讀性。
 
-> **🧮 Show Me The Math**
+> **🧮 數學解析**
 >
-> Logistic regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot resembles an 'S' shape. It takes a value and maps it to a range between 0 and 1. Its curve is also referred to as a 'logistic curve'. Its formula appears as follows:
+> 邏輯迴歸依賴於 '最大似然' 的概念，使用 [S 型函數](https://wikipedia.org/wiki/Sigmoid_function)。在圖表上，S 型函數看起來像一個 'S' 形。它將一個值映射到 0 和 1 之間的某個位置。其曲線也被稱為 '邏輯曲線'。公式如下：
 >
-> ![logistic function](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.mo.png)
+> ![邏輯函數](../../../../2-Regression/4-Logistic/images/sigmoid.png)
 >
-> where the sigmoid's midpoint is at x's 0 point, L is the curve's maximum value, and k is the curve's steepness. If the function's outcome exceeds 0.5, the label in question will be assigned the class '1' of the binary choice. Otherwise, it will be classified as '0'.
+> 其中 S 型函數的中點位於 x 的 0 點，L 是曲線的最大值，k 是曲線的陡度。如果函數的結果大於 0.5，該標籤將被分配為二元選擇中的 '1' 類別；否則，將被分配為 '0' 類別。
 
-## Build your model
+## 建立模型
 
-Constructing a model to identify these binary classifications is surprisingly straightforward in Scikit-learn.
+在 Scikit-learn 中建立二元分類模型的過程相當簡單。
 
-[![ML for beginners - Logistic Regression for classification of data](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML for beginners - Logistic Regression for classification of data")
+[![初學者的機器學習 - 使用邏輯迴歸進行數據分類](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "初學者的機器學習 - 使用邏輯迴歸進行數據分類")
 
-> 🎥 Click the image above for a brief video overview of building a linear regression model.
+> 🎥 點擊上方圖片觀看建立線性迴歸模型的簡短視頻概述。
 
-1. Select the variables you want to use in your classification model and split the training and test sets by calling `train_test_split()`:
+1. 選擇你想在分類模型中使用的變數，並使用 `train_test_split()` 分割訓練集和測試集：
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -241,7 +254,7 @@ Constructing a model to identify these binary classifications is surprisingly st
     
     ```
 
-2. Now you can train your model by calling `fit()` with your training data, and print out its result:
+2. 現在你可以通過使用訓練數據調用 `fit()` 來訓練模型，並打印出結果：
 
     ```python
     from sklearn.metrics import f1_score, classification_report 
@@ -256,7 +269,7 @@ Constructing a model to identify these binary classifications is surprisingly st
     print('F1-score: ', f1_score(y_test, predictions))
     ```
 
-    Take a look at your model's scoreboard. It's quite good, considering you have only about 1000 rows of data:
+    查看模型的得分板。考慮到你只有大約 1000 行數據，結果還不錯：
 
     ```output
                        precision    recall  f1-score   support
@@ -277,75 +290,79 @@ Constructing a model to identify these binary classifications is surprisingly st
         F1-score:  0.7457627118644068
     ```
 
-## Better comprehension via a confusion matrix
+## 使用混淆矩陣更好地理解模型
 
-While you can obtain a scoreboard report [terms](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) by printing out the items above, you may find it easier to understand your model using a [confusion matrix](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) to assess how well the model is performing.
+雖然你可以通過打印上述項目獲得得分板報告 [術語](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report)，但使用 [混淆矩陣](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) 可能更容易理解模型的表現。
 
-> 🎓 A '[confusion matrix](https://wikipedia.org/wiki/Confusion_matrix)' (or 'error matrix') is a table that displays your model's true vs. false positives and negatives, thus gauging the accuracy of predictions.
+> 🎓 '[混淆矩陣](https://wikipedia.org/wiki/Confusion_matrix)'（或 '錯誤矩陣'）是一個表格，用於表達模型的真實與錯誤的正例和負例，從而評估預測的準確性。
 
-1. To use a confusion matrix, call `confusion_matrix()`:
+1. 要使用混淆矩陣，調用 `confusion_matrix()`：
 
     ```python
     from sklearn.metrics import confusion_matrix
     confusion_matrix(y_test, predictions)
     ```
 
-    Take a look at your model's confusion matrix:
+    查看模型的混淆矩陣：
 
     ```output
     array([[162,   4],
            [ 11,  22]])
     ```
 
-In Scikit-learn, the confusion matrix's rows (axis 0) represent actual labels, while the columns (axis 1) represent predicted labels.
+在 Scikit-learn 中，混淆矩陣的行（軸 0）是實際標籤，列（軸 1）是預測標籤。
 
 |       |   0   |   1   |
 | :---: | :---: | :---: |
 |   0   |  TN   |  FP   |
 |   1   |  FN   |  TP   |
 
-What does this mean? Suppose our model is tasked with classifying pumpkins into two binary categories, 'white' and 'not-white'.
+這裡發生了什麼？假設模型被要求在兩個二元分類中對南瓜進行分類，分類為 '白色' 和 '非白色'。
 
-- If your model predicts a pumpkin as not white, and it actually belongs to the 'not-white' category, we refer to it as a true negative, represented by the top left number.
-- If your model predicts a pumpkin as white, but it actually belongs to 'not-white', we call it a false negative, represented by the bottom left number.
-- If your model predicts a pumpkin as not white, but it actually belongs to 'white', we refer to it as a false positive, represented by the top right number.
-- If your model predicts a pumpkin as white, and it actually belongs to 'white', we call it a true positive, represented by the bottom right number.
+- 如果模型預測南瓜為非白色，且實際屬於 '非白色' 類別，我們稱之為真負例，顯示在左上角。
+- 如果模型預測南瓜為白色，且實際屬於 '非白色' 類別，我們稱之為假負例，顯示在左下角。
+- 如果模型預測南瓜為非白色，且實際屬於 '白色' 類別，我們稱之為假正例，顯示在右上角。
+- 如果模型預測南瓜為白色，且實際屬於 '白色' 類別，我們稱之為真正例，顯示在右下角。
 
-As you may have guessed, it is preferable to have a larger number of true positives and true negatives, and a smaller number of false positives and false negatives, indicating that the model performs better.
+如你所料，真正例和真負例的數量越多，假正例和假負例的數量越少，模型的表現就越好。
+混淆矩陣如何與精確度和召回率相關？記住，上面列出的分類報告顯示精確度 (0.85) 和召回率 (0.67)。
 
-How does the confusion matrix relate to precision and recall? Remember, the classification report printed above indicated precision (0.85) and recall (0.67).
+精確度 = tp / (tp + fp) = 22 / (22 + 4) = 0.8461538461538461
 
-Precision = tp / (tp + fp) = 22 / (22 + 4) = 0.8461538461538461
+召回率 = tp / (tp + fn) = 22 / (22 + 11) = 0.6666666666666666
 
-Recall = tp / (tp + fn) = 22 / (22 + 11) = 0.6666666666666666
+✅ 問：根據混淆矩陣，模型表現如何？  
+答：還不錯；有相當多的真負例，但也有一些假負例。
 
-✅ Q: Based on the confusion matrix, how did the model perform? A: Not too bad; there are a good number of true negatives, but also a few false negatives.
+讓我們再次回顧之前提到的術語，並結合混淆矩陣中 TP/TN 和 FP/FN 的映射來理解：
 
-Let's revisit the terms we encountered earlier with the help of the confusion matrix's mapping of TP/TN and FP/FN:
+🎓 精確度：TP/(TP + FP)  
+檢索到的實例中，相關實例的比例（例如，哪些標籤被正確標記）。
 
-🎓 Precision: TP/(TP + FP) The fraction of relevant instances among the retrieved instances (e.g., which labels were accurately labeled).
+🎓 召回率：TP/(TP + FN)  
+被檢索到的相關實例比例，無論是否被正確標記。
 
-🎓 Recall: TP/(TP + FN) The fraction of relevant instances that were retrieved, regardless of whether they were well-labeled.
+🎓 f1-score：(2 * 精確度 * 召回率)/(精確度 + 召回率)  
+精確度和召回率的加權平均值，最佳值為 1，最差值為 0。
 
-🎓 f1-score: (2 * precision * recall)/(precision + recall) A weighted average of precision and recall, with the best score being 1 and the worst being 0.
+🎓 支援度：檢索到的每個標籤的出現次數。
 
-🎓 Support: The number of occurrences of each label retrieved.
+🎓 準確率：(TP + TN)/(TP + TN + FP + FN)  
+樣本中標籤被正確預測的百分比。
 
-🎓 Accuracy: (TP + TN)/(TP + TN + FP + FN) The percentage of labels predicted accurately for a sample.
+🎓 宏平均：每個標籤的未加權平均值計算，不考慮標籤的不平衡。
 
-🎓 Macro Avg: The calculation of the unweighted mean metrics for each label, without considering label imbalance.
+🎓 加權平均：每個標籤的平均值計算，根據支援度（每個標籤的真實實例數量）進行加權。
 
-🎓 Weighted Avg: The calculation of the mean metrics for each label, factoring in label imbalance by weighting them according to their support (the number of true instances for each label).
+✅ 你能想到如果想減少假負例，應該關注哪個指標嗎？
 
-✅ Can you determine which metric you should focus on if you want your model to reduce the number of false negatives?
+## 可視化此模型的 ROC 曲線
 
-## Visualize the ROC curve of this model
+[![初學者機器學習 - 使用 ROC 曲線分析邏輯回歸性能](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "初學者機器學習 - 使用 ROC 曲線分析邏輯回歸性能")
 
-[![ML for beginners - Analyzing Logistic Regression Performance with ROC Curves](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "ML for beginners - Analyzing Logistic Regression Performance with ROC Curves")
+> 🎥 點擊上方圖片觀看 ROC 曲線的簡短視頻概述
 
-> 🎥 Click the image above for a brief video overview of ROC curves.
-
-Let's do one more visualization to examine the so-called 'ROC' curve:
+讓我們進行另一個可視化，來查看所謂的 "ROC" 曲線：
 
 ```python
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -365,33 +382,37 @@ plt.title('ROC Curve')
 plt.show()
 ```
 
-Using Matplotlib, plot the model's [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) or ROC. ROC curves are commonly used to assess a classifier's output in terms of its true vs. false positives. "ROC curves typically display the true positive rate on the Y axis, and the false positive rate on the X axis." Thus, the steepness of the curve and the distance between the midpoint line and the curve are significant: you want a curve that quickly rises and surpasses the line. In our case, there are false positives initially, but then the line rises and surpasses appropriately:
+使用 Matplotlib 繪製模型的 [接收者操作特徵曲線](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) 或 ROC。ROC 曲線通常用於查看分類器的輸出，從真陽性和假陽性的角度分析。"ROC 曲線通常在 Y 軸上顯示真陽性率，在 X 軸上顯示假陽性率。" 因此，曲線的陡峭程度以及曲線與中線之間的空間很重要：你希望曲線快速向上並超過中線。在我們的例子中，起初有一些假陽性，然後曲線正確地向上並超過中線：
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.mo.png)
+![ROC](../../../../2-Regression/4-Logistic/images/ROC_2.png)
 
-Finally, use Scikit-learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Curve' (AUC):
+最後，使用 Scikit-learn 的 [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) 計算實際的 "曲線下面積" (AUC)：
 
 ```python
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
-```
-The result is `0.9749908725812341`. Given that the AUC ranges from 0 to 1, you want a high score, as a model that is 100% correct in its predictions will have an AUC of 1; in this case, the model is _quite good_.
+```  
+結果是 `0.9749908725812341`。由於 AUC 的範圍是 0 到 1，你希望分數越高越好，因為一個完全正確預測的模型的 AUC 為 1；在這個例子中，模型表現 _相當不錯_。
 
-In future lessons on classifications, you will learn how to iterate to improve your model's scores. But for now, congratulations! You've completed these regression lessons!
+在未來的分類課程中，你將學習如何迭代以改進模型的分數。但目前，恭喜你！你已完成這些回歸課程！
 
 ---
-## 🚀Challenge
 
-There's much more to explore regarding logistic regression! However, the best way to learn is through experimentation. Find a dataset suitable for this type of analysis and build a model with it. What insights do you gain? Tip: try [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) for interesting datasets.
+## 🚀挑戰
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+關於邏輯回歸還有很多值得探索的內容！但最好的學習方式是進行實驗。找到一個適合此類分析的數據集並用它建立模型。你學到了什麼？提示：試試 [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) 上有趣的數據集。
 
-## Review & Self Study
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-Read the first few pages of [this paper from Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) on some practical uses for logistic regression. Consider tasks that are better suited for one type of regression versus the other types we have studied so far. What would work best?
+## 回顧與自學
 
-## Assignment 
+閱讀 [這篇來自斯坦福的論文](https://web.stanford.edu/~jurafsky/slp3/5.pdf) 的前幾頁，了解邏輯回歸的一些實際用途。思考哪些任務更適合我們到目前為止所學的不同回歸類型。哪種方法效果最好？
 
-[Retrying this regression](assignment.md)
+## 作業
 
-I'm sorry, but I cannot translate text into "mo" as it is not clear what language or dialect you are referring to. If you can specify the language, I would be happy to help with the translation!
+[重試此回歸](assignment.md)
+
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

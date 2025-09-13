@@ -1,44 +1,53 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-05T15:45:24+00:00",
+  "source_file": "5-Clustering/2-K-Means/README.md",
+  "language_code": "sw"
+}
+-->
 # K-Means clustering
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-Katika somo hili, utajifunza jinsi ya kuunda vikundi kwa kutumia Scikit-learn na dataset ya muziki wa Nigeria uliyoiingiza awali. Tutashughulikia misingi ya K-Means kwa ajili ya Clustering. Kumbuka kwamba, kama ulivyojifunza katika somo la awali, kuna njia nyingi za kufanya kazi na vikundi na njia unayotumia inategemea data yako. Tutajaribu K-Means kwani ni mbinu ya kawaida zaidi ya clustering. Twende kazi!
+Katika somo hili, utajifunza jinsi ya kuunda makundi kwa kutumia Scikit-learn na seti ya data ya muziki wa Nigeria uliyoingiza awali. Tutazungumzia misingi ya K-Means kwa Clustering. Kumbuka kwamba, kama ulivyojifunza katika somo la awali, kuna njia nyingi za kufanya kazi na makundi, na mbinu unayotumia inategemea data yako. Tutajaribu K-Means kwa kuwa ni mbinu ya kawaida zaidi ya clustering. Twende kazi!
 
 Maneno utakayojifunza:
 
-- Silhouette scoring
-- Elbow method
-- Inertia
-- Variance
+- Silhouette scoring  
+- Njia ya Elbow  
+- Inertia  
+- Variance  
 
 ## Utangulizi
 
-[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) ni mbinu inayotokana na eneo la usindikaji wa ishara. Inatumika kugawanya na kugawa vikundi vya data katika 'k' clusters kwa kutumia mfululizo wa uchunguzi. Kila uchunguzi hufanya kazi ya kuweka kipengele cha data karibu zaidi na 'mean' yake, au sehemu ya kati ya cluster.
+[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) ni mbinu inayotokana na uwanja wa usindikaji wa ishara. Inatumika kugawanya na kupanga vikundi vya data katika makundi 'k' kwa kutumia mfululizo wa uchunguzi. Kila uchunguzi hufanya kazi ya kuunganisha kipengele cha data kilicho karibu zaidi na 'mean' yake, au kituo cha kundi.
 
-Vikundi vinaweza kuonyeshwa kama [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), ambazo zinajumuisha sehemu (au 'mbegu') na eneo lake linalolingana.
+Makundi yanaweza kuonyeshwa kama [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), ambazo zinajumuisha nukta (au 'mbegu') na eneo lake linalohusiana.
 
-![voronoi diagram](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.sw.png)
+![voronoi diagram](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
-> infographic by [Jen Looper](https://twitter.com/jenlooper)
+> infographic na [Jen Looper](https://twitter.com/jenlooper)
 
-Mchakato wa K-Means clustering [unatekelezwa katika hatua tatu](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+Mchakato wa K-Means clustering [hufanyika kwa hatua tatu](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
-1. Algorithimu huchagua idadi ya k ya sehemu za kati kwa kuchukua sampuli kutoka kwenye dataset. Baada ya hapo, inarudia:
-    1. Inapeleka kila sampuli kwa centroid iliyo karibu zaidi.
-    2. Inaunda centroids mpya kwa kuchukua thamani ya wastani wa sampuli zote zilizotolewa kwa centroids za awali.
-    3. Kisha, inahesabu tofauti kati ya centroids mpya na za zamani na kurudia hadi centroids zitakapokuwa imara.
+1. Algorithimu huchagua idadi ya vituo vya k kwa kuchukua sampuli kutoka seti ya data. Baada ya hapo, inarudia:
+    1. Inapanga kila sampuli kwa kituo kilicho karibu zaidi.
+    2. Inaunda vituo vipya kwa kuchukua thamani ya wastani ya sampuli zote zilizopangwa kwa vituo vya awali.
+    3. Kisha, inahesabu tofauti kati ya vituo vipya na vya zamani na kurudia hadi vituo viwe thabiti.
 
-Hasara moja ya kutumia K-Means ni kwamba utahitaji kuanzisha 'k', ambayo ni idadi ya centroids. Kwa bahati nzuri, 'elbow method' husaidia kukadiria thamani nzuri ya kuanzia kwa 'k'. Utaijaribu baada ya muda mfupi.
+Changamoto moja ya kutumia K-Means ni kwamba unahitaji kuamua 'k', yaani idadi ya vituo. Kwa bahati nzuri, 'njia ya elbow' husaidia kukadiria thamani nzuri ya kuanzia kwa 'k'. Utajaribu muda si mrefu.
 
-## Sharti
+## Mahitaji ya awali
 
-Utafanya kazi katika faili la [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) la somo hili ambalo linajumuisha uingizaji wa data na usafishaji wa awali ulioufanya katika somo lililopita.
+Utafanya kazi katika faili ya [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) ya somo hili ambayo inajumuisha uingizaji wa data na usafishaji wa awali uliofanya katika somo la mwisho.
 
-## Mazoezi - maandalizi
+## Zoezi - maandalizi
 
 Anza kwa kuangalia tena data ya nyimbo.
 
-1. Unda boxplot, ukipiga `boxplot()` kwa kila safu:
+1. Unda boxplot, ukitumia `boxplot()` kwa kila safu:
 
     ```python
     plt.figure(figsize=(20,20), dpi=200)
@@ -80,13 +89,13 @@ Anza kwa kuangalia tena data ya nyimbo.
     sns.boxplot(x = 'release_date', data = df)
     ```
 
-    Data hii ni kidogo yenye kelele: kwa kuangalia kila safu kama boxplot, unaweza kuona outliers.
+    Data hii ina kelele kidogo: kwa kuangalia kila safu kama boxplot, unaweza kuona outliers.
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.sw.png)
+    ![outliers](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
-Unaweza kupitia dataset na kuondoa hizi outliers, lakini hiyo ingefanya data kuwa kidogo sana.
+Unaweza kupitia seti ya data na kuondoa outliers hizi, lakini hiyo itafanya data kuwa ndogo sana.
 
-1. Kwa sasa, chagua safu ambazo utatumia kwa zoezi lako la clustering. Chagua zile zenye anuwai zinazofanana na encode safu ya `artist_top_genre` kama data ya nambari:
+1. Kwa sasa, chagua safu ambazo utatumia kwa zoezi lako la clustering. Chagua zile zenye viwango vinavyofanana na encode safu ya `artist_top_genre` kama data ya nambari:
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -101,7 +110,7 @@ Unaweza kupitia dataset na kuondoa hizi outliers, lakini hiyo ingefanya data kuw
     y = le.transform(y)
     ```
 
-1. Sasa unahitaji kuchagua idadi ya clusters za kulenga. Unajua kuna aina 3 za nyimbo ambazo tulizitenga kutoka kwenye dataset, kwa hivyo jaribu 3:
+1. Sasa unahitaji kuchagua idadi ya makundi ya kulenga. Unajua kuna aina 3 za muziki ambazo tulizitambua kutoka seti ya data, kwa hivyo jaribu 3:
 
     ```python
     from sklearn.cluster import KMeans
@@ -118,9 +127,9 @@ Unaweza kupitia dataset na kuondoa hizi outliers, lakini hiyo ingefanya data kuw
     y_cluster_kmeans
     ```
 
-Unaona safu iliyochapishwa na clusters zilizotabiriwa (0, 1, au 2) kwa kila safu ya dataframe.
+Unaona array iliyochapishwa na makundi yaliyotabiriwa (0, 1, au 2) kwa kila safu ya dataframe.
 
-1. Tumia safu hii kuhesabu 'silhouette score':
+1. Tumia array hii kuhesabu 'silhouette score':
 
     ```python
     from sklearn import metrics
@@ -130,11 +139,11 @@ Unaona safu iliyochapishwa na clusters zilizotabiriwa (0, 1, au 2) kwa kila safu
 
 ## Silhouette score
 
-Tafuta silhouette score iliyo karibu na 1. Alama hii inatofautiana kutoka -1 hadi 1, na ikiwa alama ni 1, cluster ni mnene na imejitenga vizuri na clusters nyingine. Thamani karibu na 0 inawakilisha clusters zinazofuatana na sampuli ziko karibu sana na mipaka ya maamuzi ya clusters jirani. [(Chanzo)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
+Tafuta silhouette score iliyo karibu na 1. Alama hii inatofautiana kutoka -1 hadi 1, na ikiwa alama ni 1, kundi ni lenye msongamano na limetenganishwa vizuri na makundi mengine. Thamani karibu na 0 inawakilisha makundi yanayofuatana na sampuli zilizo karibu sana na mpaka wa maamuzi wa makundi jirani. [(Chanzo)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
 
-Alama yetu ni **.53**, kwa hivyo katikati. Hii inaonyesha kwamba data yetu haifai sana kwa aina hii ya clustering, lakini tuendelee.
+Alama yetu ni **.53**, kwa hivyo iko katikati. Hii inaonyesha kuwa data yetu haifai sana kwa aina hii ya clustering, lakini tuendelee.
 
-### Mazoezi - jenga modeli
+### Zoezi - unda modeli
 
 1. Ingiza `KMeans` na anza mchakato wa clustering.
 
@@ -149,23 +158,23 @@ Alama yetu ni **.53**, kwa hivyo katikati. Hii inaonyesha kwamba data yetu haifa
     
     ```
 
-    Kuna sehemu chache hapa ambazo zinahitaji maelezo.
+    Kuna sehemu chache hapa zinazostahili maelezo.
 
-    > 🎓 range: Hizi ni iterations za mchakato wa clustering
+    > 🎓 range: Hizi ni marudio ya mchakato wa clustering  
 
-    > 🎓 random_state: "Inabainisha uzalishaji wa nambari za bahati nasibu kwa uanzishaji wa centroid." [Chanzo](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+    > 🎓 random_state: "Inaamua kizazi cha nambari za bahati nasibu kwa uanzishaji wa vituo." [Chanzo](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)  
 
-    > 🎓 WCSS: "within-cluster sums of squares" hupima umbali wa wastani wa mraba wa pointi zote ndani ya cluster hadi kwenye centroid ya cluster. [Chanzo](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
+    > 🎓 WCSS: "jumla ya mraba ndani ya kundi" hupima umbali wa wastani wa mraba wa pointi zote ndani ya kundi hadi kituo cha kundi. [Chanzo](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).  
 
-    > 🎓 Inertia: Algorithimu za K-Means hujaribu kuchagua centroids kupunguza 'inertia', "kipimo cha jinsi clusters zilivyo na mshikamano wa ndani." [Chanzo](https://scikit-learn.org/stable/modules/clustering.html). Thamani inaongezwa kwenye variable ya wcss katika kila iteration.
+    > 🎓 Inertia: Algorithimu za K-Means hujaribu kuchagua vituo ili kupunguza 'inertia', "kipimo cha jinsi makundi yalivyo thabiti ndani." [Chanzo](https://scikit-learn.org/stable/modules/clustering.html). Thamani inaongezwa kwenye variable ya wcss kwa kila marudio.  
 
-    > 🎓 k-means++: Katika [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) unaweza kutumia 'k-means++' optimization, ambayo "inaanzisha centroids kuwa (kwa ujumla) mbali kutoka kwa kila mmoja, na kusababisha matokeo bora kuliko uanzishaji wa nasibu.
+    > 🎓 k-means++: Katika [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) unaweza kutumia optimization ya 'k-means++', ambayo "inaanzisha vituo kuwa (kwa ujumla) mbali kutoka kwa kila mmoja, na kusababisha matokeo bora zaidi kuliko uanzishaji wa bahati nasibu."
 
-### Elbow method
+### Njia ya Elbow
 
-Awali, ulidhani kwamba, kwa kuwa ulilenga aina 3 za nyimbo, unapaswa kuchagua clusters 3. Lakini je, ni hivyo?
+Hapo awali, ulidhani kwamba, kwa kuwa umelenga aina 3 za muziki, unapaswa kuchagua makundi 3. Lakini je, ni kweli?
 
-1. Tumia 'elbow method' kuhakikisha.
+1. Tumia 'njia ya elbow' kuhakikisha.
 
     ```python
     plt.figure(figsize=(10,5))
@@ -176,13 +185,13 @@ Awali, ulidhani kwamba, kwa kuwa ulilenga aina 3 za nyimbo, unapaswa kuchagua cl
     plt.show()
     ```
 
-    Tumia variable ya `wcss` ambayo uliijenga katika hatua ya awali kuunda chati inayoonyesha wapi 'bend' katika elbow ipo, ambayo inaonyesha idadi bora ya clusters. Labda ni **3**!
+    Tumia variable ya `wcss` uliyounda katika hatua ya awali kuunda chati inayoonyesha mahali ambapo 'kink' katika elbow iko, ambayo inaonyesha idadi bora ya makundi. Labda ni **3**!
 
-    ![elbow method](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.sw.png)
+    ![elbow method](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
-## Mazoezi - onyesha clusters
+## Zoezi - onyesha makundi
 
-1. Jaribu mchakato tena, wakati huu ukiweka clusters tatu, na uonyeshe clusters kama scatterplot:
+1. Jaribu mchakato tena, wakati huu ukichagua makundi matatu, na onyesha makundi kama scatterplot:
 
     ```python
     from sklearn.cluster import KMeans
@@ -207,44 +216,46 @@ Awali, ulidhani kwamba, kwa kuwa ulilenga aina 3 za nyimbo, unapaswa kuchagua cl
     print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
     ```
 
-    Usahihi wa modeli hii sio mzuri sana, na umbo la clusters linakupa dokezo kwa nini.
+    Usahihi wa modeli hii si mzuri sana, na umbo la makundi linakupa dalili kwa nini.
 
-    ![clusters](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.sw.png)
+    ![clusters](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
-    Data hii ni isiyo na usawa, haijakolea sana na kuna tofauti kubwa kati ya thamani za safu ili kuunda clusters vizuri. Kwa kweli, clusters zinazoundwa zinaweza kuwa zimeathiriwa sana au kupotoshwa na aina tatu za muziki tulizozitaja hapo juu. Huo ulikuwa mchakato wa kujifunza!
+    Data hii haina uwiano mzuri, haina uhusiano wa kutosha, na kuna tofauti kubwa sana kati ya thamani za safu ili kuunda makundi vizuri. Kwa kweli, makundi yanayoundwa huenda yameathiriwa sana au yamepotoshwa na aina tatu za muziki tulizotambua hapo juu. Hii ilikuwa mchakato wa kujifunza!
 
-    Katika nyaraka za Scikit-learn, unaweza kuona kwamba modeli kama hii, yenye clusters ambazo hazijatengwa vizuri, ina tatizo la 'variance':
+    Katika nyaraka za Scikit-learn, unaweza kuona kwamba modeli kama hii, yenye makundi yasiyo na mipaka dhahiri, ina tatizo la 'variance':
 
-    ![problem models](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.sw.png)
+    ![problem models](../../../../5-Clustering/2-K-Means/images/problems.png)
     > Infographic kutoka Scikit-learn
 
 ## Variance
 
-Variance inafafanuliwa kama "wastani wa tofauti za mraba kutoka kwa Mean" [(Chanzo)](https://www.mathsisfun.com/data/standard-deviation.html). Katika muktadha wa tatizo hili la clustering, inahusu data ambayo nambari za dataset yetu zina mwelekeo wa kutofautiana sana kutoka kwa wastani.
+Variance inafafanuliwa kama "wastani wa tofauti za mraba kutoka kwa Mean" [(Chanzo)](https://www.mathsisfun.com/data/standard-deviation.html). Katika muktadha wa tatizo hili la clustering, inahusu data ambayo nambari za seti yetu ya data zina mwelekeo wa kutofautiana sana kutoka kwa wastani.
 
-✅ Huu ni wakati mzuri wa kufikiria njia zote ambazo unaweza kurekebisha tatizo hili. Kuboresha data zaidi? Kutumia safu tofauti? Kutumia algorithimu tofauti? Dokezo: Jaribu [kusawazisha data yako](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) ili kuifanya iwe kawaida na jaribu safu zingine.
+✅ Huu ni wakati mzuri wa kufikiria njia zote unazoweza kutumia kurekebisha tatizo hili. Kuboresha data kidogo zaidi? Kutumia safu tofauti? Kutumia algorithimu tofauti? Kidokezo: Jaribu [kusawazisha data yako](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) ili kuifanya kuwa ya kawaida na ujaribu safu nyingine.
 
-> Jaribu hii '[variance calculator](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' kuelewa dhana zaidi.
+> Jaribu '[kikokotoo cha variance](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' ili kuelewa dhana hii zaidi.
 
 ---
 
 ## 🚀Changamoto
 
-Tumia muda na notebook hii, ukibadilisha vigezo. Je, unaweza kuboresha usahihi wa modeli kwa kusafisha data zaidi (kuondoa outliers, kwa mfano)? Unaweza kutumia uzito kutoa uzito zaidi kwa sampuli fulani za data. Unaweza kufanya nini kingine kuunda clusters bora?
+Tumia muda na notebook hii, ukibadilisha vigezo. Je, unaweza kuboresha usahihi wa modeli kwa kusafisha data zaidi (kwa mfano, kuondoa outliers)? Unaweza kutumia uzito ili kutoa uzito zaidi kwa sampuli fulani za data. Je, ni nini kingine unaweza kufanya ili kuunda makundi bora?
 
-Dokezo: Jaribu kusawazisha data yako. Kuna msimbo uliotolewa maoni katika notebook unaoongeza kusawazisha kwa kiwango cha kawaida ili kufanya safu za data zifanane zaidi kwa karibu kwa suala la anuwai. Utapata kuwa wakati silhouette score inashuka, 'kink' katika grafu ya elbow inakuwa laini zaidi. Hii ni kwa sababu kuacha data bila kusawazishwa kunaruhusu data yenye tofauti ndogo kubeba uzito zaidi. Soma zaidi kuhusu tatizo hili [hapa](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Kidokezo: Jaribu kusawazisha data yako. Kuna msimbo ulio na maoni katika notebook unaoongeza scaling ya kawaida ili kufanya safu za data zifanane zaidi kwa karibu katika suala la viwango. Utagundua kwamba ingawa silhouette score inashuka, 'kink' katika grafu ya elbow inakuwa laini. Hii ni kwa sababu kuacha data bila kusawazishwa kunaruhusu data yenye tofauti ndogo kuwa na uzito zaidi. Soma zaidi kuhusu tatizo hili [hapa](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujisomea
+## Mapitio na Kujisomea
 
-Angalia K-Means Simulator [kama hii](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Unaweza kutumia zana hii kuona pointi za sampuli za data na kubaini centroids zake. Unaweza kuhariri nasibu ya data, idadi ya clusters na idadi ya centroids. Je, hii inakusaidia kupata wazo la jinsi data inaweza kugawanywa?
+Angalia Simulator ya K-Means [kama hii](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Unaweza kutumia zana hii kuonyesha pointi za data za sampuli na kuamua vituo vyake. Unaweza kuhariri nasibu ya data, idadi ya makundi na idadi ya vituo. Je, hii inakusaidia kupata wazo la jinsi data inaweza kugawanywa?
 
-Pia, angalia [handout hii juu ya K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) kutoka Stanford.
+Pia, angalia [handout hii kuhusu K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) kutoka Stanford.
 
 ## Kazi
 
-[Jaribu njia tofauti za clustering](assignment.md)
+[Jaribu mbinu tofauti za clustering](assignment.md)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotegemea mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati asilia katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo chenye mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

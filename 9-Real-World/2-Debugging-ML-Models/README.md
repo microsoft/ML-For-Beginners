@@ -1,7 +1,7 @@
 # Postscript: Model Debugging in Machine Learning using Responsible AI dashboard components
  
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
  
 ## Introduction
 
@@ -143,7 +143,7 @@ To prevent statistical or data biases from being introduced in the first place, 
 
 Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider? 
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 ## Review & Self Study 
  
 In this lesson, you have learned some of the practical tools of incorporating responsible AI in machine learning.  

@@ -1,32 +1,41 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-05T19:09:03+00:00",
+  "source_file": "7-TimeSeries/3-SVR/README.md",
+  "language_code": "ms"
+}
+-->
 # Ramalan Siri Masa dengan Support Vector Regressor
 
-Dalam pelajaran sebelumnya, anda telah belajar cara menggunakan model ARIMA untuk membuat ramalan siri masa. Sekarang anda akan melihat model Support Vector Regressor yang merupakan model regressor yang digunakan untuk meramalkan data berterusan.
+Dalam pelajaran sebelumnya, anda telah belajar cara menggunakan model ARIMA untuk membuat ramalan siri masa. Kini anda akan melihat model Support Vector Regressor, iaitu model regresi yang digunakan untuk meramalkan data berterusan.
 
-## [Kuiz Pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [Kuiz pra-pelajaran](https://ff-quizzes.netlify.app/en/ml/) 
 
 ## Pengenalan
 
-Dalam pelajaran ini, anda akan menemui cara khusus untuk membina model dengan [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) untuk regresi, atau **SVR: Support Vector Regressor**. 
+Dalam pelajaran ini, anda akan meneroka cara khusus untuk membina model dengan [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) untuk regresi, atau **SVR: Support Vector Regressor**. 
 
 ### SVR dalam konteks siri masa [^1]
 
 Sebelum memahami kepentingan SVR dalam ramalan siri masa, berikut adalah beberapa konsep penting yang perlu anda ketahui:
 
-- **Regresi:** Teknik pembelajaran terkawal untuk meramalkan nilai berterusan dari set input yang diberikan. Ideanya adalah untuk memadankan lengkung (atau garis) dalam ruang ciri yang mempunyai bilangan titik data maksimum. [Klik di sini](https://en.wikipedia.org/wiki/Regression_analysis) untuk maklumat lanjut.
-- **Support Vector Machine (SVM):** Jenis model pembelajaran mesin terkawal yang digunakan untuk klasifikasi, regresi dan pengesanan pencilan. Model ini adalah hyperplane dalam ruang ciri, yang dalam kes klasifikasi bertindak sebagai sempadan, dan dalam kes regresi bertindak sebagai garis padanan terbaik. Dalam SVM, fungsi Kernel biasanya digunakan untuk mengubah set data ke ruang dengan bilangan dimensi yang lebih tinggi, supaya mereka dapat dipisahkan dengan mudah. [Klik di sini](https://en.wikipedia.org/wiki/Support-vector_machine) untuk maklumat lanjut mengenai SVM.
-- **Support Vector Regressor (SVR):** Jenis SVM, untuk mencari garis padanan terbaik (yang dalam kes SVM adalah hyperplane) yang mempunyai bilangan titik data maksimum.
+- **Regresi:** Teknik pembelajaran terarah untuk meramalkan nilai berterusan daripada set input yang diberikan. Idea utamanya adalah untuk memadankan lengkung (atau garis) dalam ruang ciri yang mempunyai bilangan titik data maksimum. [Klik di sini](https://en.wikipedia.org/wiki/Regression_analysis) untuk maklumat lanjut.
+- **Support Vector Machine (SVM):** Jenis model pembelajaran mesin terarah yang digunakan untuk klasifikasi, regresi dan pengesanan pencilan. Model ini adalah hyperplane dalam ruang ciri, yang dalam kes klasifikasi bertindak sebagai sempadan, dan dalam kes regresi bertindak sebagai garis terbaik. Dalam SVM, fungsi Kernel biasanya digunakan untuk mengubah dataset ke ruang dengan bilangan dimensi yang lebih tinggi supaya ia mudah dipisahkan. [Klik di sini](https://en.wikipedia.org/wiki/Support-vector_machine) untuk maklumat lanjut tentang SVM.
+- **Support Vector Regressor (SVR):** Jenis SVM, untuk mencari garis terbaik (yang dalam kes SVM adalah hyperplane) yang mempunyai bilangan titik data maksimum.
 
 ### Mengapa SVR? [^1]
 
-Dalam pelajaran lepas anda belajar tentang ARIMA, yang merupakan kaedah statistik linear yang sangat berjaya untuk meramalkan data siri masa. Walau bagaimanapun, dalam banyak kes, data siri masa mempunyai *non-linearity*, yang tidak dapat dipetakan oleh model linear. Dalam kes sedemikian, keupayaan SVM untuk mempertimbangkan non-linearity dalam data untuk tugas regresi menjadikan SVR berjaya dalam ramalan siri masa.
+Dalam pelajaran sebelumnya, anda telah belajar tentang ARIMA, yang merupakan kaedah linear statistik yang sangat berjaya untuk meramalkan data siri masa. Walau bagaimanapun, dalam banyak kes, data siri masa mempunyai *ketidaklinearan*, yang tidak dapat dipetakan oleh model linear. Dalam kes sebegini, keupayaan SVM untuk mempertimbangkan ketidaklinearan dalam data untuk tugas regresi menjadikan SVR berjaya dalam ramalan siri masa.
 
 ## Latihan - bina model SVR
 
-Langkah pertama untuk penyediaan data adalah sama seperti pelajaran sebelumnya mengenai [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
+Langkah-langkah awal untuk penyediaan data adalah sama seperti pelajaran sebelumnya tentang [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
 
 Buka folder [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) dalam pelajaran ini dan cari fail [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb).[^2]
 
-1. Jalankan notebook dan import perpustakaan yang diperlukan:  [^2]
+1. Jalankan notebook dan import pustaka yang diperlukan:  [^2]
 
    ```python
    import sys
@@ -62,22 +71,22 @@ Buka folder [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
    plt.show()
    ```
 
-   ![data penuh](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.ms.png)
+   ![data penuh](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
-   Sekarang, mari bina model SVR kita.
+   Sekarang, mari kita bina model SVR kita.
 
-### Buat dataset latihan dan ujian
+### Cipta dataset latihan dan ujian
 
-Sekarang data anda dimuatkan, anda boleh memisahkannya ke dalam set latihan dan ujian. Kemudian anda akan mengubah bentuk data untuk mencipta dataset berdasarkan langkah masa yang diperlukan untuk SVR. Anda akan melatih model anda pada set latihan. Selepas model selesai latihan, anda akan menilai ketepatannya pada set latihan, set ujian dan kemudian keseluruhan dataset untuk melihat prestasi keseluruhan. Anda perlu memastikan bahawa set ujian meliputi tempoh masa yang lebih lewat dari set latihan untuk memastikan model tidak mendapat maklumat dari tempoh masa depan [^2] (situasi yang dikenali sebagai *Overfitting*).
+Sekarang data anda telah dimuatkan, anda boleh memisahkannya kepada set latihan dan ujian. Kemudian anda akan mengubah bentuk data untuk mencipta dataset berdasarkan langkah masa yang diperlukan untuk SVR. Anda akan melatih model anda pada set latihan. Selepas model selesai dilatih, anda akan menilai ketepatannya pada set latihan, set ujian dan kemudian dataset penuh untuk melihat prestasi keseluruhan. Anda perlu memastikan bahawa set ujian merangkumi tempoh masa yang lebih lewat daripada set latihan untuk memastikan model tidak mendapat maklumat daripada tempoh masa akan datang [^2] (situasi yang dikenali sebagai *Overfitting*).
 
-1. Peruntukkan tempoh dua bulan dari 1 September hingga 31 Oktober 2014 ke set latihan. Set ujian akan merangkumi tempoh dua bulan dari 1 November hingga 31 Disember 2014: [^2]
+1. Peruntukkan tempoh dua bulan dari 1 September hingga 31 Oktober 2014 kepada set latihan. Set ujian akan merangkumi tempoh dua bulan dari 1 November hingga 31 Disember 2014: [^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
    test_start_dt = '2014-12-30 00:00:00'
    ```
 
-2. Visualisasikan perbezaannya: [^2]
+2. Visualisasikan perbezaan: [^2]
 
    ```python
    energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -88,15 +97,13 @@ Sekarang data anda dimuatkan, anda boleh memisahkannya ke dalam set latihan dan 
    plt.show()
    ```
 
-   ![data latihan dan ujian](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.ms.png)
-
-
+   ![data latihan dan ujian](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
 ### Sediakan data untuk latihan
 
-Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan dan penskalaan data anda. Tapis dataset anda untuk hanya merangkumi tempoh masa dan lajur yang anda perlukan, dan penskalaan untuk memastikan data diproyeksikan dalam julat 0,1.
+Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan dan penskalaan data anda. Tapis dataset anda untuk hanya memasukkan tempoh masa dan lajur yang diperlukan, serta penskalaan untuk memastikan data diproyeksikan dalam julat 0,1.
 
-1. Tapis dataset asal untuk hanya merangkumi tempoh masa yang disebutkan di atas per set dan hanya termasuk lajur 'load' yang diperlukan serta tarikh: [^2]
+1. Tapis dataset asal untuk hanya memasukkan tempoh masa yang disebutkan bagi setiap set dan hanya memasukkan lajur 'load' yang diperlukan serta tarikh: [^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -118,7 +125,7 @@ Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan d
    train['load'] = scaler.fit_transform(train)
    ```
    
-4. Sekarang, anda skala data ujian: [^2]
+4. Sekarang, skala data ujian: [^2]
 
    ```python
    test['load'] = scaler.transform(test)
@@ -126,7 +133,7 @@ Sekarang, anda perlu menyediakan data untuk latihan dengan melakukan penapisan d
 
 ### Cipta data dengan langkah masa [^1]
 
-Untuk SVR, anda mengubah input data menjadi bentuk `[batch, timesteps]`. So, you reshape the existing `train_data` and `test_data` supaya terdapat dimensi baru yang merujuk kepada langkah masa. 
+Untuk SVR, anda mengubah data input supaya berbentuk `[batch, timesteps]`. Jadi, anda mengubah bentuk `train_data` dan `test_data` yang sedia ada supaya terdapat dimensi baharu yang merujuk kepada langkah masa. 
 
 ```python
 # Converting to numpy arrays
@@ -140,7 +147,7 @@ Untuk contoh ini, kita ambil `timesteps = 5`. Jadi, input kepada model adalah da
 timesteps=5
 ```
 
-Menukar data latihan kepada tensor 2D menggunakan senarai bersarang:
+Menukar data latihan kepada tensor 2D menggunakan list comprehension bersarang:
 
 ```python
 train_data_timesteps=np.array([[j for j in train_data[i:i+timesteps]] for i in range(0,len(train_data)-timesteps+1)])[:,:,0]
@@ -162,7 +169,7 @@ test_data_timesteps.shape
 (44, 5)
 ```
 
- Memilih input dan output dari data latihan dan ujian:
+Memilih input dan output daripada data latihan dan ujian:
 
 ```python
 x_train, y_train = train_data_timesteps[:,:timesteps-1],train_data_timesteps[:,[timesteps-1]]
@@ -179,19 +186,19 @@ print(x_test.shape, y_test.shape)
 
 ### Laksanakan SVR [^1]
 
-Sekarang, tiba masanya untuk melaksanakan SVR. Untuk membaca lebih lanjut mengenai pelaksanaan ini, anda boleh merujuk kepada [dokumentasi ini](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Untuk pelaksanaan kita, kita ikut langkah-langkah ini:
+Sekarang, tiba masanya untuk melaksanakan SVR. Untuk membaca lebih lanjut tentang pelaksanaan ini, anda boleh merujuk kepada [dokumentasi ini](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Untuk pelaksanaan kita, kita ikuti langkah-langkah ini:
 
-  1. Tentukan model dengan memanggil `SVR()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
-  2. Prepare the model for the training data by calling the `fit()` function
-  3. Make predictions calling the `predict()` function
+  1. Tentukan model dengan memanggil `SVR()` dan memasukkan hyperparameter model: kernel, gamma, c dan epsilon
+  2. Sediakan model untuk data latihan dengan memanggil fungsi `fit()`
+  3. Buat ramalan dengan memanggil fungsi `predict()`
 
-Sekarang kita cipta model SVR. Di sini kita gunakan [RBF kernel](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), dan tetapkan hyperparameters gamma, C dan epsilon sebagai 0.5, 10 dan 0.05 masing-masing.
+Sekarang kita cipta model SVR. Di sini kita gunakan [RBF kernel](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), dan tetapkan hyperparameter gamma, C dan epsilon sebagai 0.5, 10 dan 0.05 masing-masing.
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
 ```
 
-#### Latih model pada data latihan [^1]
+#### Fit model pada data latihan [^1]
 
 ```python
 model.fit(x_train, y_train[:,0])
@@ -215,13 +222,13 @@ print(y_train_pred.shape, y_test_pred.shape)
 (1412, 1) (44, 1)
 ```
 
-Anda telah membina SVR anda! Sekarang kita perlu menilai ia.
+Anda telah membina SVR anda! Sekarang kita perlu menilainya.
 
 ### Nilai model anda [^1]
 
-Untuk penilaian, pertama kita akan skala kembali data ke skala asal kita. Kemudian, untuk memeriksa prestasi, kita akan plot siri masa asal dan ramalan, dan juga cetak keputusan MAPE.
+Untuk penilaian, pertama kita akan skala semula data kepada skala asal kita. Kemudian, untuk memeriksa prestasi, kita akan plot siri masa asal dan yang diramalkan, serta mencetak hasil MAPE.
 
-Skala data ramalan dan output asal:
+Skala semula output yang diramalkan dan asal:
 
 ```python
 # Scaling the predictions
@@ -241,7 +248,7 @@ print(len(y_train), len(y_test))
 
 #### Periksa prestasi model pada data latihan dan ujian [^1]
 
-Kita ekstrak cap waktu dari dataset untuk ditunjukkan pada paksi-x plot kita. Perhatikan bahawa kita menggunakan ```timesteps-1``` nilai pertama sebagai input untuk output pertama, jadi cap waktu untuk output akan bermula selepas itu.
+Kita ekstrak cap masa daripada dataset untuk ditunjukkan pada paksi-x plot kita. Perhatikan bahawa kita menggunakan ```timesteps-1``` nilai pertama sebagai input untuk output pertama, jadi cap masa untuk output akan bermula selepas itu.
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -266,7 +273,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![ramalan data latihan](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.ms.png)
+![ramalan data latihan](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
 Cetak MAPE untuk data latihan
 
@@ -289,7 +296,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![ramalan data ujian](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.ms.png)
+![ramalan data ujian](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
 Cetak MAPE untuk data ujian
 
@@ -301,7 +308,7 @@ print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
 MAPE for testing data:  1.2623790187854018 %
 ```
 
-🏆 Anda mempunyai hasil yang sangat baik pada dataset ujian!
+🏆 Anda mendapat keputusan yang sangat baik pada dataset ujian!
 
 ### Periksa prestasi model pada dataset penuh [^1]
 
@@ -345,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![ramalan data penuh](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.ms.png)
+![ramalan data penuh](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -355,35 +362,32 @@ print('MAPE: ', mape(Y_pred, Y)*100, '%')
 MAPE:  2.0572089029888656 %
 ```
 
-
-
 🏆 Plot yang sangat bagus, menunjukkan model dengan ketepatan yang baik. Syabas!
 
 ---
 
 ## 🚀Cabaran
 
-- Cuba ubah hyperparameters (gamma, C, epsilon) semasa mencipta model dan nilai pada data untuk melihat set hyperparameters mana yang memberikan hasil terbaik pada data ujian. Untuk mengetahui lebih lanjut mengenai hyperparameters ini, anda boleh merujuk kepada dokumen [di sini](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
+- Cuba ubah hyperparameter (gamma, C, epsilon) semasa mencipta model dan nilai pada data untuk melihat set hyperparameter mana yang memberikan keputusan terbaik pada data ujian. Untuk mengetahui lebih lanjut tentang hyperparameter ini, anda boleh merujuk kepada dokumen [di sini](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Cuba gunakan fungsi kernel yang berbeza untuk model dan analisis prestasi mereka pada dataset. Dokumen yang berguna boleh didapati [di sini](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 - Cuba gunakan nilai yang berbeza untuk `timesteps` untuk model melihat ke belakang untuk membuat ramalan.
 
-## [Kuiz Pasca-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Kuiz pasca-pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Ulasan & Kajian Kendiri
 
-Pelajaran ini adalah untuk memperkenalkan aplikasi SVR untuk Ramalan Siri Masa. Untuk membaca lebih lanjut mengenai SVR, anda boleh merujuk kepada [blog ini](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). [Dokumentasi ini pada scikit-learn](https://scikit-learn.org/stable/modules/svm.html) menyediakan penjelasan yang lebih komprehensif mengenai SVM secara umum, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) dan juga butiran pelaksanaan lain seperti pelbagai [fungsi kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) yang boleh digunakan, dan parameter mereka.
+Pelajaran ini bertujuan untuk memperkenalkan aplikasi SVR untuk Ramalan Siri Masa. Untuk membaca lebih lanjut tentang SVR, anda boleh merujuk kepada [blog ini](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). [Dokumentasi ini pada scikit-learn](https://scikit-learn.org/stable/modules/svm.html) menyediakan penjelasan yang lebih komprehensif tentang SVM secara umum, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) dan juga butiran pelaksanaan lain seperti [fungsi kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) yang berbeza yang boleh digunakan, dan parameternya.
 
 ## Tugasan
 
-[Sebuah model SVR baru](assignment.md)
-
-
+[Model SVR baharu](assignment.md)
 
 ## Kredit
 
+[^1]: Teks, kod dan output dalam bahagian ini disumbangkan oleh [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
+[^2]: Teks, kod dan output dalam bahagian ini diambil daripada [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
 
-[^1]: Teks, kod dan output dalam seksyen ini disumbangkan oleh [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
-[^2]: Teks, kod dan output dalam seksyen ini diambil dari [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
+---
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

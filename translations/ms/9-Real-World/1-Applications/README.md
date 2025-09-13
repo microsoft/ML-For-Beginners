@@ -1,141 +1,149 @@
-# Postscript: Pembelajaran Mesin di Dunia Nyata
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "83320d6b6994909e35d830cebf214039",
+  "translation_date": "2025-09-05T19:23:57+00:00",
+  "source_file": "9-Real-World/1-Applications/README.md",
+  "language_code": "ms"
+}
+-->
+# Postscript: Pembelajaran Mesin di Dunia Sebenar
 
-![Ringkasan pembelajaran mesin di dunia nyata dalam sketchnote](../../../../translated_images/ml-realworld.26ee2746716155771f8076598b6145e6533fe4a9e2e465ea745f46648cbf1b84.ms.png)
+![Ringkasan pembelajaran mesin di dunia sebenar dalam sketchnote](../../../../sketchnotes/ml-realworld.png)
 > Sketchnote oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-Dalam kurikulum ini, anda telah mempelajari banyak cara untuk menyiapkan data untuk pelatihan dan membuat model pembelajaran mesin. Anda telah membangun serangkaian model regresi klasik, klastering, klasifikasi, pemrosesan bahasa alami, dan deret waktu. Selamat! Sekarang, anda mungkin bertanya-tanya apa tujuan semua ini... apa aplikasi dunia nyata untuk model-model ini?
+Dalam kurikulum ini, anda telah mempelajari pelbagai cara untuk menyediakan data bagi latihan dan mencipta model pembelajaran mesin. Anda telah membina siri model regresi klasik, pengelompokan, klasifikasi, pemprosesan bahasa semula jadi, dan siri masa. Tahniah! Kini, anda mungkin tertanya-tanya apa tujuan semua ini... apakah aplikasi dunia sebenar untuk model-model ini?
 
-Meskipun banyak minat dalam industri telah tertarik oleh AI, yang biasanya memanfaatkan pembelajaran mendalam, masih ada aplikasi berharga untuk model pembelajaran mesin klasik. Anda mungkin bahkan menggunakan beberapa aplikasi ini hari ini! Dalam pelajaran ini, anda akan menjelajahi bagaimana delapan industri dan domain materi pelajaran yang berbeda menggunakan jenis model ini untuk membuat aplikasi mereka lebih berkinerja, andal, cerdas, dan berharga bagi pengguna.
+Walaupun AI yang biasanya menggunakan pembelajaran mendalam telah menarik banyak perhatian dalam industri, masih terdapat aplikasi yang bernilai untuk model pembelajaran mesin klasik. Anda mungkin sudah menggunakan beberapa aplikasi ini hari ini! Dalam pelajaran ini, anda akan meneroka bagaimana lapan industri dan domain subjek yang berbeza menggunakan jenis model ini untuk menjadikan aplikasi mereka lebih berprestasi, boleh dipercayai, pintar, dan bernilai kepada pengguna.
 
-## [Kuis sebelum kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/49/)
+## [Kuiz pra-kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## 💰 Keuangan
+## 💰 Kewangan
 
-Sektor keuangan menawarkan banyak peluang untuk pembelajaran mesin. Banyak masalah di area ini dapat dimodelkan dan diselesaikan dengan menggunakan ML.
+Sektor kewangan menawarkan banyak peluang untuk pembelajaran mesin. Banyak masalah dalam bidang ini sesuai untuk dimodelkan dan diselesaikan menggunakan ML.
 
-### Deteksi penipuan kartu kredit
+### Pengesanan penipuan kad kredit
 
-Kami mempelajari tentang [k-means clustering](../../5-Clustering/2-K-Means/README.md) sebelumnya dalam kursus ini, tetapi bagaimana cara menggunakannya untuk menyelesaikan masalah terkait penipuan kartu kredit?
+Kami telah mempelajari tentang [k-means clustering](../../5-Clustering/2-K-Means/README.md) sebelum ini dalam kursus, tetapi bagaimana ia boleh digunakan untuk menyelesaikan masalah berkaitan penipuan kad kredit?
 
-K-means clustering berguna selama teknik deteksi penipuan kartu kredit yang disebut **deteksi outlier**. Outlier, atau penyimpangan dalam pengamatan tentang satu set data, dapat memberi tahu kita apakah kartu kredit digunakan secara normal atau jika ada sesuatu yang tidak biasa terjadi. Seperti yang ditunjukkan dalam makalah yang ditautkan di bawah ini, anda dapat menyortir data kartu kredit menggunakan algoritma k-means clustering dan menetapkan setiap transaksi ke klaster berdasarkan seberapa besar penyimpangan yang muncul. Kemudian, anda dapat mengevaluasi klaster yang paling berisiko untuk transaksi penipuan versus yang sah.
-[Referensi](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf)
+K-means clustering berguna dalam teknik pengesanan penipuan kad kredit yang dipanggil **pengesanan outlier**. Outlier, atau penyimpangan dalam pemerhatian tentang satu set data, boleh memberitahu kita sama ada kad kredit sedang digunakan secara normal atau jika terdapat sesuatu yang luar biasa. Seperti yang ditunjukkan dalam kertas kerja yang dipautkan di bawah, anda boleh menyusun data kad kredit menggunakan algoritma k-means clustering dan menetapkan setiap transaksi kepada kelompok berdasarkan sejauh mana ia kelihatan sebagai outlier. Kemudian, anda boleh menilai kelompok yang paling berisiko untuk transaksi penipuan berbanding transaksi sah.
+[Rujukan](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf)
 
-### Manajemen kekayaan
+### Pengurusan kekayaan
 
-Dalam manajemen kekayaan, individu atau perusahaan menangani investasi atas nama klien mereka. Tugas mereka adalah mempertahankan dan menumbuhkan kekayaan dalam jangka panjang, sehingga penting untuk memilih investasi yang berkinerja baik.
+Dalam pengurusan kekayaan, individu atau firma mengendalikan pelaburan bagi pihak pelanggan mereka. Tugas mereka adalah untuk mengekalkan dan meningkatkan kekayaan dalam jangka masa panjang, jadi adalah penting untuk memilih pelaburan yang berprestasi baik.
 
-Salah satu cara untuk mengevaluasi bagaimana kinerja investasi tertentu adalah melalui regresi statistik. [Regresi linear](../../2-Regression/1-Tools/README.md) adalah alat yang berharga untuk memahami bagaimana suatu dana berkinerja relatif terhadap beberapa tolok ukur. Kita juga dapat menyimpulkan apakah hasil regresi signifikan secara statistik atau tidak, atau seberapa besar pengaruhnya terhadap investasi klien. Anda bahkan dapat memperluas analisis anda menggunakan regresi berganda, di mana faktor risiko tambahan dapat diperhitungkan. Untuk contoh bagaimana ini akan bekerja untuk dana tertentu, lihat makalah di bawah ini tentang evaluasi kinerja dana menggunakan regresi.
-[Referensi](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/)
+Salah satu cara untuk menilai bagaimana sesuatu pelaburan berprestasi adalah melalui regresi statistik. [Regresi linear](../../2-Regression/1-Tools/README.md) adalah alat yang berguna untuk memahami bagaimana sesuatu dana berprestasi berbanding penanda aras tertentu. Kita juga boleh membuat kesimpulan sama ada hasil regresi itu signifikan secara statistik, atau sejauh mana ia akan mempengaruhi pelaburan pelanggan. Anda juga boleh memperluaskan analisis anda menggunakan regresi berganda, di mana faktor risiko tambahan boleh diambil kira. Untuk contoh bagaimana ini berfungsi untuk dana tertentu, lihat kertas kerja di bawah tentang menilai prestasi dana menggunakan regresi.
+[Rujukan](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/)
 
 ## 🎓 Pendidikan
 
-Sektor pendidikan juga merupakan area yang sangat menarik di mana ML dapat diterapkan. Ada masalah menarik yang harus dipecahkan seperti mendeteksi kecurangan pada ujian atau esai atau mengelola bias, disengaja atau tidak, dalam proses koreksi.
+Sektor pendidikan juga merupakan bidang yang sangat menarik di mana ML boleh digunakan. Terdapat masalah menarik untuk ditangani seperti mengesan penipuan dalam ujian atau esei atau menguruskan bias, sama ada sengaja atau tidak, dalam proses pembetulan.
 
-### Memprediksi perilaku siswa
+### Meramalkan tingkah laku pelajar
 
-[Coursera](https://coursera.com), penyedia kursus online terbuka, memiliki blog teknologi yang hebat di mana mereka membahas banyak keputusan teknis. Dalam studi kasus ini, mereka memplot garis regresi untuk mencoba mengeksplorasi korelasi antara rating NPS (Net Promoter Score) yang rendah dan retensi atau putus kursus.
-[Referensi](https://medium.com/coursera-engineering/controlled-regression-quantifying-the-impact-of-course-quality-on-learner-retention-31f956bd592a)
+[Coursera](https://coursera.com), penyedia kursus terbuka dalam talian, mempunyai blog teknologi yang hebat di mana mereka membincangkan banyak keputusan kejuruteraan. Dalam kajian kes ini, mereka memplotkan garis regresi untuk cuba meneroka sebarang korelasi antara penilaian NPS (Net Promoter Score) yang rendah dan pengekalan atau penurunan kursus.
+[Rujukan](https://medium.com/coursera-engineering/controlled-regression-quantifying-the-impact-of-course-quality-on-learner-retention-31f956bd592a)
 
-### Mengurangi bias
+### Mengurangkan bias
 
-[Grammarly](https://grammarly.com), asisten menulis yang memeriksa kesalahan ejaan dan tata bahasa, menggunakan sistem [pemrosesan bahasa alami](../../6-NLP/README.md) yang canggih di seluruh produknya. Mereka menerbitkan studi kasus menarik di blog teknologi mereka tentang bagaimana mereka menangani bias gender dalam pembelajaran mesin, yang anda pelajari dalam [pelajaran pengenalan tentang keadilan](../../1-Introduction/3-fairness/README.md).
-[Referensi](https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/)
+[Grammarly](https://grammarly.com), pembantu penulisan yang memeriksa kesalahan ejaan dan tatabahasa, menggunakan sistem [pemprosesan bahasa semula jadi](../../6-NLP/README.md) yang canggih dalam produknya. Mereka menerbitkan kajian kes yang menarik dalam blog teknologi mereka tentang bagaimana mereka menangani bias jantina dalam pembelajaran mesin, yang anda pelajari dalam [pelajaran pengenalan tentang keadilan](../../1-Introduction/3-fairness/README.md).
+[Rujukan](https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/)
 
-## 👜 Ritel
+## 👜 Runcit
 
-Sektor ritel pasti dapat memanfaatkan penggunaan ML, mulai dari menciptakan perjalanan pelanggan yang lebih baik hingga menyimpan inventaris dengan cara yang optimal.
+Sektor runcit sememangnya boleh mendapat manfaat daripada penggunaan ML, dengan segala-galanya daripada mencipta perjalanan pelanggan yang lebih baik kepada pengurusan inventori secara optimum.
 
-### Memperpersonalisasi perjalanan pelanggan
+### Memperibadikan perjalanan pelanggan
 
-Di Wayfair, perusahaan yang menjual barang-barang rumah tangga seperti furnitur, membantu pelanggan menemukan produk yang tepat untuk selera dan kebutuhan mereka sangat penting. Dalam artikel ini, insinyur dari perusahaan tersebut menjelaskan bagaimana mereka menggunakan ML dan NLP untuk "menampilkan hasil yang tepat bagi pelanggan". Secara khusus, Query Intent Engine mereka telah dibangun untuk menggunakan ekstraksi entitas, pelatihan klasifikasi, ekstraksi aset dan opini, serta penandaan sentimen pada ulasan pelanggan. Ini adalah contoh klasik bagaimana NLP bekerja dalam ritel online.
-[Referensi](https://www.aboutwayfair.com/tech-innovation/how-we-use-machine-learning-and-natural-language-processing-to-empower-search)
+Di Wayfair, sebuah syarikat yang menjual barangan rumah seperti perabot, membantu pelanggan mencari produk yang sesuai dengan citarasa dan keperluan mereka adalah sangat penting. Dalam artikel ini, jurutera dari syarikat tersebut menerangkan bagaimana mereka menggunakan ML dan NLP untuk "menampilkan hasil yang tepat untuk pelanggan". Khususnya, Query Intent Engine mereka telah dibina untuk menggunakan pengekstrakan entiti, latihan pengklasifikasi, pengekstrakan aset dan pendapat, serta penandaan sentimen pada ulasan pelanggan. Ini adalah contoh klasik bagaimana NLP berfungsi dalam runcit dalam talian.
+[Rujukan](https://www.aboutwayfair.com/tech-innovation/how-we-use-machine-learning-and-natural-language-processing-to-empower-search)
 
-### Manajemen inventaris
+### Pengurusan inventori
 
-Perusahaan inovatif dan gesit seperti [StitchFix](https://stitchfix.com), layanan kotak yang mengirim pakaian kepada konsumen, sangat bergantung pada ML untuk rekomendasi dan manajemen inventaris. Tim styling mereka bekerja sama dengan tim merchandising mereka, sebenarnya: "salah satu ilmuwan data kami bermain-main dengan algoritma genetik dan menerapkannya pada pakaian untuk memprediksi apa yang akan menjadi pakaian yang sukses yang tidak ada hari ini. Kami membawa itu ke tim merchandise dan sekarang mereka dapat menggunakannya sebagai alat."
-[Referensi](https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/)
+Syarikat inovatif dan tangkas seperti [StitchFix](https://stitchfix.com), perkhidmatan kotak yang menghantar pakaian kepada pengguna, sangat bergantung pada ML untuk cadangan dan pengurusan inventori. Pasukan penggayaan mereka bekerjasama dengan pasukan merchandising mereka, sebenarnya: "salah seorang saintis data kami bermain-main dengan algoritma genetik dan menerapkannya pada pakaian untuk meramalkan apa yang akan menjadi pakaian yang berjaya yang tidak wujud hari ini. Kami membawa itu kepada pasukan merchandise dan kini mereka boleh menggunakannya sebagai alat."
+[Rujukan](https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/)
 
-## 🏥 Perawatan Kesehatan
+## 🏥 Penjagaan Kesihatan
 
-Sektor perawatan kesehatan dapat memanfaatkan ML untuk mengoptimalkan tugas penelitian dan juga masalah logistik seperti readmisi pasien atau menghentikan penyebaran penyakit.
+Sektor penjagaan kesihatan boleh memanfaatkan ML untuk mengoptimumkan tugas penyelidikan dan juga masalah logistik seperti kemasukan semula pesakit atau menghentikan penyebaran penyakit.
 
-### Mengelola uji klinis
+### Pengurusan ujian klinikal
 
-Toksisitas dalam uji klinis adalah masalah besar bagi pembuat obat. Berapa banyak toksisitas yang dapat ditoleransi? Dalam studi ini, menganalisis berbagai metode uji klinis menghasilkan pengembangan pendekatan baru untuk memprediksi kemungkinan hasil uji klinis. Secara khusus, mereka dapat menggunakan random forest untuk menghasilkan [klasifikasi](../../4-Classification/README.md) yang dapat membedakan antara kelompok obat.
-[Referensi](https://www.sciencedirect.com/science/article/pii/S2451945616302914)
+Ketoksikan dalam ujian klinikal adalah kebimbangan utama kepada pembuat ubat. Berapa banyak ketoksikan yang boleh diterima? Dalam kajian ini, menganalisis pelbagai kaedah ujian klinikal membawa kepada pembangunan pendekatan baharu untuk meramalkan kemungkinan hasil ujian klinikal. Khususnya, mereka dapat menggunakan random forest untuk menghasilkan [pengklasifikasi](../../4-Classification/README.md) yang mampu membezakan antara kumpulan ubat.
+[Rujukan](https://www.sciencedirect.com/science/article/pii/S2451945616302914)
 
-### Manajemen readmisi rumah sakit
+### Pengurusan kemasukan semula hospital
 
-Perawatan rumah sakit mahal, terutama ketika pasien harus readmisi. Makalah ini membahas perusahaan yang menggunakan ML untuk memprediksi potensi readmisi menggunakan algoritma [klastering](../../5-Clustering/README.md). Klaster ini membantu analis untuk "menemukan kelompok readmisi yang mungkin memiliki penyebab yang sama".
-[Referensi](https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning)
+Penjagaan hospital adalah mahal, terutamanya apabila pesakit perlu dimasukkan semula. Kertas kerja ini membincangkan sebuah syarikat yang menggunakan ML untuk meramalkan potensi kemasukan semula menggunakan algoritma [pengelompokan](../../5-Clustering/README.md). Kelompok ini membantu penganalisis untuk "menemui kumpulan kemasukan semula yang mungkin berkongsi punca yang sama".
+[Rujukan](https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning)
 
-### Manajemen penyakit
+### Pengurusan penyakit
 
-Pandemi baru-baru ini telah menyoroti cara-cara di mana pembelajaran mesin dapat membantu menghentikan penyebaran penyakit. Dalam artikel ini, anda akan mengenali penggunaan ARIMA, kurva logistik, regresi linear, dan SARIMA. "Pekerjaan ini adalah upaya untuk menghitung laju penyebaran virus ini dan dengan demikian memprediksi kematian, pemulihan, dan kasus yang dikonfirmasi, sehingga dapat membantu kita untuk mempersiapkan diri dengan lebih baik dan bertahan hidup."
-[Referensi](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/)
+Pandemik baru-baru ini telah menonjolkan cara pembelajaran mesin boleh membantu menghentikan penyebaran penyakit. Dalam artikel ini, anda akan mengenali penggunaan ARIMA, lengkung logistik, regresi linear, dan SARIMA. "Kerja ini adalah usaha untuk mengira kadar penyebaran virus ini dan dengan itu meramalkan kematian, pemulihan, dan kes yang disahkan, supaya ia dapat membantu kita untuk bersedia dengan lebih baik dan bertahan."
+[Rujukan](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/)
 
 ## 🌲 Ekologi dan Teknologi Hijau
 
-Alam dan ekologi terdiri dari banyak sistem sensitif di mana interaksi antara hewan dan alam menjadi fokus. Penting untuk dapat mengukur sistem ini dengan akurat dan bertindak dengan tepat jika sesuatu terjadi, seperti kebakaran hutan atau penurunan populasi hewan.
+Alam semula jadi dan ekologi terdiri daripada banyak sistem sensitif di mana interaksi antara haiwan dan alam semula jadi menjadi fokus. Adalah penting untuk dapat mengukur sistem ini dengan tepat dan bertindak dengan sewajarnya jika sesuatu berlaku, seperti kebakaran hutan atau penurunan populasi haiwan.
 
-### Manajemen hutan
+### Pengurusan hutan
 
-Anda mempelajari tentang [Reinforcement Learning](../../8-Reinforcement/README.md) dalam pelajaran sebelumnya. Ini bisa sangat berguna ketika mencoba memprediksi pola di alam. Secara khusus, ini dapat digunakan untuk melacak masalah ekologi seperti kebakaran hutan dan penyebaran spesies invasif. Di Kanada, sekelompok peneliti menggunakan Reinforcement Learning untuk membangun model dinamika kebakaran hutan dari citra satelit. Menggunakan "spatially spreading process (SSP)" yang inovatif, mereka membayangkan kebakaran hutan sebagai "agen di setiap sel dalam lanskap." "Set tindakan yang dapat diambil api dari lokasi pada waktu tertentu termasuk menyebar ke utara, selatan, timur, atau barat atau tidak menyebar.
+Anda telah mempelajari tentang [Pembelajaran Pengukuhan](../../8-Reinforcement/README.md) dalam pelajaran sebelumnya. Ia boleh sangat berguna apabila cuba meramalkan corak dalam alam semula jadi. Khususnya, ia boleh digunakan untuk menjejaki masalah ekologi seperti kebakaran hutan dan penyebaran spesies invasif. Di Kanada, sekumpulan penyelidik menggunakan Pembelajaran Pengukuhan untuk membina model dinamik kebakaran hutan daripada imej satelit. Menggunakan "proses penyebaran spatial (SSP)" yang inovatif, mereka membayangkan kebakaran hutan sebagai "agen di mana-mana sel dalam landskap." "Set tindakan yang boleh diambil oleh kebakaran dari lokasi pada bila-bila masa termasuk menyebar ke utara, selatan, timur, atau barat atau tidak menyebar.
 
-Pendekatan ini membalik pengaturan RL yang biasa karena dinamika Proses Keputusan Markov (MDP) yang sesuai adalah fungsi yang diketahui untuk penyebaran kebakaran segera." Baca lebih lanjut tentang algoritma klasik yang digunakan oleh kelompok ini di tautan di bawah.
-[Referensi](https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full)
+Pendekatan ini membalikkan persediaan RL biasa kerana dinamik Proses Keputusan Markov (MDP) yang sepadan adalah fungsi yang diketahui untuk penyebaran kebakaran segera." Baca lebih lanjut tentang algoritma klasik yang digunakan oleh kumpulan ini di pautan di bawah.
+[Rujukan](https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full)
 
-### Pemantauan gerakan hewan
+### Pengesanan pergerakan haiwan
 
-Sementara pembelajaran mendalam telah menciptakan revolusi dalam melacak gerakan hewan secara visual (anda dapat membuat [pelacak beruang kutub](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott) anda sendiri di sini), ML klasik masih memiliki tempat dalam tugas ini.
+Walaupun pembelajaran mendalam telah mencipta revolusi dalam menjejaki pergerakan haiwan secara visual (anda boleh membina [penjejak beruang kutub](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott) anda sendiri di sini), ML klasik masih mempunyai tempat dalam tugas ini.
 
-Sensor untuk melacak gerakan hewan ternak dan IoT memanfaatkan jenis pemrosesan visual ini, tetapi teknik ML yang lebih dasar berguna untuk memproses data awal. Misalnya, dalam makalah ini, postur domba dipantau dan dianalisis menggunakan berbagai algoritma klasifikasi. Anda mungkin mengenali kurva ROC pada halaman 335.
-[Referensi](https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf)
+Sensor untuk menjejaki pergerakan haiwan ternakan dan IoT menggunakan jenis pemprosesan visual ini, tetapi teknik ML yang lebih asas berguna untuk memproses data awal. Sebagai contoh, dalam kertas kerja ini, postur kambing biri-biri dipantau dan dianalisis menggunakan pelbagai algoritma pengklasifikasi. Anda mungkin mengenali lengkung ROC pada halaman 335.
+[Rujukan](https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf)
 
-### ⚡️ Manajemen Energi
+### ⚡️ Pengurusan Tenaga
 
-Dalam pelajaran kami tentang [peramalan deret waktu](../../7-TimeSeries/README.md), kami mengajukan konsep meteran parkir pintar untuk menghasilkan pendapatan bagi kota berdasarkan pemahaman tentang penawaran dan permintaan. Artikel ini membahas secara rinci bagaimana klastering, regresi, dan peramalan deret waktu digabungkan untuk membantu memprediksi penggunaan energi masa depan di Irlandia, berdasarkan meteran pintar.
-[Referensi](https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf)
+Dalam pelajaran kami tentang [ramalan siri masa](../../7-TimeSeries/README.md), kami menyebut konsep meter parkir pintar untuk menjana pendapatan bagi sebuah bandar berdasarkan pemahaman tentang penawaran dan permintaan. Artikel ini membincangkan secara terperinci bagaimana pengelompokan, regresi, dan ramalan siri masa digabungkan untuk membantu meramalkan penggunaan tenaga masa depan di Ireland, berdasarkan meter pintar.
+[Rujukan](https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf)
 
-## 💼 Asuransi
+## 💼 Insurans
 
-Sektor asuransi adalah sektor lain yang menggunakan ML untuk membangun dan mengoptimalkan model keuangan dan aktuaria yang layak.
+Sektor insurans adalah satu lagi sektor yang menggunakan ML untuk membina dan mengoptimumkan model kewangan dan aktuari yang berdaya maju.
 
-### Manajemen Volatilitas
+### Pengurusan Volatiliti
 
-MetLife, penyedia asuransi jiwa, terbuka dengan cara mereka menganalisis dan mengurangi volatilitas dalam model keuangan mereka. Dalam artikel ini anda akan melihat visualisasi klasifikasi biner dan ordinal. Anda juga akan menemukan visualisasi peramalan.
-[Referensi](https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf)
+MetLife, penyedia insurans hayat, terbuka dengan cara mereka menganalisis dan mengurangkan volatiliti dalam model kewangan mereka. Dalam artikel ini, anda akan melihat visualisasi klasifikasi binari dan ordinal. Anda juga akan menemui visualisasi ramalan.
+[Rujukan](https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf)
 
-## 🎨 Seni, Budaya, dan Sastra
+## 🎨 Seni, Budaya, dan Kesusasteraan
 
-Dalam seni, misalnya dalam jurnalisme, ada banyak masalah menarik. Mendeteksi berita palsu adalah masalah besar karena terbukti mempengaruhi opini orang dan bahkan menjatuhkan demokrasi. Museum juga dapat memanfaatkan penggunaan ML dalam segala hal mulai dari menemukan hubungan antara artefak hingga perencanaan sumber daya.
+Dalam seni, contohnya dalam kewartawanan, terdapat banyak masalah menarik. Mengesan berita palsu adalah masalah besar kerana ia telah terbukti mempengaruhi pendapat orang ramai dan bahkan menjatuhkan demokrasi. Muzium juga boleh mendapat manfaat daripada menggunakan ML dalam segala-galanya daripada mencari hubungan antara artifak kepada perancangan sumber.
 
-### Deteksi berita palsu
+### Pengesanan berita palsu
 
-Mendeteksi berita palsu telah menjadi permainan kucing dan tikus dalam media saat ini. Dalam artikel ini, peneliti menyarankan bahwa sistem yang menggabungkan beberapa teknik ML yang telah kita pelajari dapat diuji dan model terbaik diterapkan: "Sistem ini didasarkan pada pemrosesan bahasa alami untuk mengekstrak fitur dari data dan kemudian fitur-fitur ini digunakan untuk pelatihan pengklasifikasi pembelajaran mesin seperti Naive Bayes, Support Vector Machine (SVM), Random Forest (RF), Stochastic Gradient Descent (SGD), dan Logistic Regression (LR)."
-[Referensi](https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf)
+Mengesan berita palsu telah menjadi permainan kucing dan tikus dalam media hari ini. Dalam artikel ini, penyelidik mencadangkan bahawa sistem yang menggabungkan beberapa teknik ML yang telah kami pelajari boleh diuji dan model terbaik digunakan: "Sistem ini berdasarkan pemprosesan bahasa semula jadi untuk mengekstrak ciri daripada data dan kemudian ciri-ciri ini digunakan untuk latihan pengklasifikasi pembelajaran mesin seperti Naive Bayes, Support Vector Machine (SVM), Random Forest (RF), Stochastic Gradient Descent (SGD), dan Logistic Regression (LR)."
+[Rujukan](https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf)
 
-Artikel ini menunjukkan bagaimana menggabungkan berbagai domain ML dapat menghasilkan hasil yang menarik yang dapat membantu menghentikan penyebaran berita palsu dan menciptakan kerusakan nyata; dalam hal ini, dorongan utama adalah penyebaran rumor tentang pengobatan COVID yang memicu kekerasan massa.
+Artikel ini menunjukkan bagaimana menggabungkan pelbagai domain ML boleh menghasilkan hasil menarik yang boleh membantu menghentikan penyebaran berita palsu dan mencipta kerosakan sebenar; dalam kes ini, dorongan adalah penyebaran khabar angin tentang rawatan COVID yang mencetuskan keganasan massa.
 
-### Museum ML
+### ML Muzium
 
-Museum berada di ambang revolusi AI di mana mengkatalogkan dan mendigitalkan koleksi serta menemukan hubungan antara artefak menjadi lebih mudah seiring dengan kemajuan teknologi. Proyek seperti [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) membantu membuka misteri koleksi yang tidak dapat diakses seperti Arsip Vatikan. Namun, aspek bisnis dari museum juga mendapat manfaat dari model ML.
+Muzium berada di ambang revolusi AI di mana katalog dan pendigitalan koleksi serta mencari hubungan antara artifak menjadi lebih mudah apabila teknologi maju. Projek seperti [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) membantu membuka misteri koleksi yang tidak dapat diakses seperti Arkib Vatican. Tetapi, aspek perniagaan muzium mendapat manfaat daripada model ML juga.
 
-Misalnya, Art Institute of Chicago membangun model untuk memprediksi apa yang diminati oleh audiens dan kapan mereka akan menghadiri pameran. Tujuannya adalah untuk menciptakan pengalaman pengunjung yang dipersonalisasi dan dioptimalkan setiap kali pengguna mengunjungi museum. "Selama tahun fiskal 2017, model tersebut memprediksi kehadiran dan penerimaan dengan akurasi dalam 1 persen, kata Andrew Simnick, wakil presiden senior di Art Institute."
-[Reference](https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices)
+Sebagai contoh, Art Institute of Chicago membina model untuk meramalkan apa yang penonton minati dan bila mereka akan menghadiri pameran. Matlamatnya adalah untuk mencipta pengalaman pelawat yang diperibadikan dan dioptimumkan setiap kali pengguna melawat muzium. "Semasa tahun fiskal 2017, model itu meramalkan kehadiran dan kemasukan dengan ketepatan dalam 1 peratus, kata Andrew Simnick, naib presiden kanan di Art Institute."
+[Rujukan](https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices)
 
 ## 🏷 Pemasaran
 
 ### Segmentasi pelanggan
 
-Strategi pemasaran yang paling berkesan menargetkan pelanggan dengan cara yang berbeza berdasarkan pelbagai pengelompokan. Dalam artikel ini, penggunaan algoritma Kluster dibincangkan untuk menyokong pemasaran yang berbeza. Pemasaran berbeza membantu syarikat meningkatkan pengiktirafan jenama, mencapai lebih ramai pelanggan, dan menjana lebih banyak wang.
-[Reference](https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/)
+Strategi pemasaran yang paling berkesan menyasarkan pelanggan dengan cara yang berbeza berdasarkan pelbagai kumpulan. Dalam artikel ini, penggunaan algoritma pengelompokan dibincangkan untuk menyokong pemasaran yang berbeza. Pemasaran yang berbeza membantu syarikat meningkatkan pengiktirafan jenama, mencapai lebih ramai pelanggan, dan menjana lebih banyak wang.
+[Rujukan](https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/)
 
 ## 🚀 Cabaran
 
-Kenal pasti sektor lain yang mendapat manfaat daripada beberapa teknik yang anda pelajari dalam kurikulum ini, dan ketahui bagaimana ia menggunakan ML.
-
-## [Kuiz selepas kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/50/)
+Kenal pasti sektor lain yang mendapat manfaat daripada beberapa teknik yang anda pelajari dalam kurikulum ini, dan temui bagaimana ia menggunakan ML.
+## [Kuiz selepas kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Ulasan & Kajian Kendiri
 
@@ -143,7 +151,9 @@ Pasukan sains data Wayfair mempunyai beberapa video menarik tentang bagaimana me
 
 ## Tugasan
 
-[Perburuan harta karun ML](assignment.md)
+[Perburuan ML](assignment.md)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

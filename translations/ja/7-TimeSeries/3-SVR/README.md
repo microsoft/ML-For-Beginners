@@ -1,32 +1,41 @@
-# サポートベクター回帰を用いた時系列予測
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-06T09:29:52+00:00",
+  "source_file": "7-TimeSeries/3-SVR/README.md",
+  "language_code": "ja"
+}
+-->
+# サポートベクター回帰による時系列予測
 
-前回のレッスンでは、ARIMAモデルを使用して時系列予測を行う方法を学びました。今回は、連続データを予測するために使用される回帰モデルであるサポートベクター回帰モデルについて見ていきます。
+前回のレッスンでは、ARIMAモデルを使用して時系列予測を行う方法を学びました。今回は、連続データを予測するために使用される回帰モデルであるサポートベクター回帰（Support Vector Regressor）モデルについて学びます。
 
-## [事前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [事前クイズ](https://ff-quizzes.netlify.app/en/ml/) 
 
 ## はじめに
 
-このレッスンでは、回帰のための[**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine)、つまり**SVR: サポートベクター回帰**を用いてモデルを構築する具体的な方法を学びます。
+このレッスンでは、回帰のための[**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine)を使用してモデルを構築する具体的な方法を学びます。これを**SVR: Support Vector Regressor**と呼びます。
 
-### 時系列におけるSVRの役割 [^1]
+### 時系列におけるSVR [^1]
 
-時系列予測におけるSVRの重要性を理解する前に、知っておくべき重要な概念をいくつか紹介します：
+時系列予測におけるSVRの重要性を理解する前に、以下の重要な概念を知っておく必要があります：
 
-- **回帰:** 与えられた入力セットから連続値を予測するための教師あり学習技術です。アイデアは、特徴空間内の最大数のデータポイントを持つ曲線（または直線）にフィットさせることです。詳細は[こちら](https://en.wikipedia.org/wiki/Regression_analysis)をクリックしてください。
-- **サポートベクターマシン (SVM):** 分類、回帰、および外れ値検出のために使用される教師あり機械学習モデルの一種です。モデルは特徴空間内の超平面であり、分類の場合は境界として機能し、回帰の場合は最適なフィットラインとして機能します。SVMでは、カーネル関数を使用してデータセットをより高次元の空間に変換し、容易に分離可能にすることが一般的です。SVMの詳細は[こちら](https://en.wikipedia.org/wiki/Support-vector_machine)をクリックしてください。
-- **サポートベクター回帰 (SVR):** SVMの一種で、最大数のデータポイントを持つ最適なフィットライン（SVMの場合は超平面）を見つけるためのものです。
+- **回帰:** 与えられた入力セットから連続値を予測する教師あり学習技術。特徴空間内で最大数のデータポイントを持つ曲線（または直線）をフィットさせることが目的です。[詳細はこちら](https://en.wikipedia.org/wiki/Regression_analysis)。
+- **サポートベクターマシン (SVM):** 分類、回帰、外れ値検出に使用される教師あり機械学習モデルの一種。モデルは特徴空間内のハイパープレーンであり、分類の場合は境界として機能し、回帰の場合は最適なフィットラインとして機能します。SVMでは、カーネル関数を使用してデータセットをより高次元の空間に変換し、分離しやすくします。[詳細はこちら](https://en.wikipedia.org/wiki/Support-vector_machine)。
+- **サポートベクター回帰 (SVR):** SVMの一種で、最大数のデータポイントを持つ最適なフィットライン（SVMの場合はハイパープレーン）を見つけることを目的としています。
 
-### なぜSVRを使うのか？ [^1]
+### なぜSVRなのか？ [^1]
 
-前回のレッスンでは、時系列データを予測するための非常に成功した統計的線形方法であるARIMAについて学びました。しかし、多くの場合、時系列データには線形モデルではマッピングできない*非線形性*が含まれています。このような場合、回帰タスクにおいてデータの非線形性を考慮できるSVMの能力が、時系列予測においてSVRを成功させる理由となります。
+前回のレッスンでは、時系列データを予測するための非常に成功した統計的線形手法であるARIMAについて学びました。しかし、多くの場合、時系列データには*非線形性*が含まれており、線形モデルでは対応できません。そのような場合、回帰タスクにおいてデータの非線形性を考慮するSVMの能力が、時系列予測においてSVRを成功させる要因となります。
 
-## 演習 - SVRモデルの構築
+## 演習 - SVRモデルを構築する
 
-データ準備の最初のステップは、前回の[ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)のレッスンと同じです。
+データ準備の最初のステップは、前回の[ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)レッスンと同じです。
 
 このレッスンの[_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working)フォルダーを開き、[_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb)ファイルを見つけてください。[^2]
 
-1. ノートブックを実行し、必要なライブラリをインポートします:  [^2]
+1. ノートブックを実行し、必要なライブラリをインポートします: [^2]
 
    ```python
    import sys
@@ -47,13 +56,13 @@
    from common.utils import load_data, mape
    ```
 
-2. `/data/energy.csv`ファイルからデータをPandasデータフレームに読み込み、確認します:  [^2]
+2. `/data/energy.csv`ファイルからデータをPandasデータフレームに読み込み、確認します: [^2]
 
    ```python
    energy = load_data('../../data')[['load']]
    ```
 
-3. 2012年1月から2014年12月までの利用可能なすべてのエネルギーデータをプロットします: [^2]
+3. 2012年1月から2014年12月までの利用可能なエネルギーデータをプロットします: [^2]
 
    ```python
    energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -62,22 +71,22 @@
    plt.show()
    ```
 
-   ![全データ](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.ja.png)
+   ![全データ](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
-   それでは、SVRモデルを構築しましょう。
+   では、SVRモデルを構築しましょう。
 
-### トレーニングデータとテストデータの作成
+### トレーニングとテストデータセットを作成する
 
-データが読み込まれたので、トレーニングセットとテストセットに分割します。その後、SVRに必要なタイムステップベースのデータセットを作成するためにデータを再形成します。モデルはトレーニングセットでトレーニングされます。トレーニングが終了した後、トレーニングセット、テストセット、そして全データセットでその精度を評価し、全体的なパフォーマンスを確認します。テストセットがトレーニングセットより後の期間をカバーするようにして、モデルが将来の時間から情報を得ないようにする必要があります[^2]（これは*過剰適合*と呼ばれる状況です）。
+データが読み込まれたので、トレーニングセットとテストセットに分割します。その後、SVRに必要なタイムステップベースのデータセットを作成するためにデータを再構成します。トレーニングセットでモデルをトレーニングします。トレーニングが完了したら、トレーニングセット、テストセット、そして全データセットでモデルの精度を評価し、全体的なパフォーマンスを確認します。テストセットがトレーニングセットより後の期間をカバーするようにして、モデルが将来の期間から情報を取得しないようにする必要があります[^2]（これを*過学習*と呼びます）。
 
-1. トレーニングセットには2014年9月1日から10月31日までの2ヶ月間を割り当てます。テストセットには2014年11月1日から12月31日までの2ヶ月間が含まれます: [^2]
+1. 2014年9月1日から10月31日までの2か月間をトレーニングセットに割り当てます。テストセットには2014年11月1日から12月31日までの2か月間を含めます: [^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
    test_start_dt = '2014-12-30 00:00:00'
    ```
 
-2. 違いを視覚化します: [^2]
+2. 違いを可視化します: [^2]
 
    ```python
    energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -88,13 +97,13 @@
    plt.show()
    ```
 
-   ![トレーニングデータとテストデータ](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.ja.png)
+   ![トレーニングとテストデータ](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
-### トレーニング用データの準備
+### トレーニングのためのデータ準備
 
-次に、データをフィルタリングおよびスケーリングしてトレーニング用に準備する必要があります。必要な期間と列のみを含むようにデータセットをフィルタリングし、データが0から1の範囲に投影されるようにスケーリングします。
+次に、データをフィルタリングしてスケーリングすることでトレーニングの準備をします。必要な期間と列のみを含むようにデータセットをフィルタリングし、データを0から1の範囲に投影するようにスケーリングします。
 
-1. 元のデータセットをフィルタリングして、前述の期間ごとのセットと、必要な列「load」と日付のみを含むようにします: [^2]
+1. 元のデータセットをフィルタリングして、前述の期間ごとのセットと必要な列「load」と日付のみを含むようにします: [^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -122,9 +131,9 @@
    test['load'] = scaler.transform(test)
    ```
 
-### タイムステップを持つデータの作成 [^1]
+### タイムステップを使用したデータ作成 [^1]
 
-SVRのために、入力データを`[batch, timesteps]`. So, you reshape the existing `train_data` and `test_data`の形式に変換します。新しい次元がタイムステップを参照するようになります。
+SVRでは、入力データを`[batch, timesteps]`の形式に変換します。そのため、既存の`train_data`と`test_data`を再構成し、新しい次元（タイムステップ）を追加します。
 
 ```python
 # Converting to numpy arrays
@@ -132,7 +141,7 @@ train_data = train.values
 test_data = test.values
 ```
 
-この例では、`timesteps = 5`とします。つまり、モデルへの入力は最初の4つのタイムステップのデータであり、出力は5番目のタイムステップのデータとなります。
+この例では、`timesteps = 5`を使用します。つまり、モデルへの入力は最初の4つのタイムステップのデータであり、出力は5番目のタイムステップのデータになります。
 
 ```python
 timesteps=5
@@ -177,18 +186,19 @@ print(x_test.shape, y_test.shape)
 
 ### SVRの実装 [^1]
 
-それでは、SVRを実装する時が来ました。この実装について詳しく知りたい場合は、[このドキュメント](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)を参照してください。私たちの実装では、以下のステップに従います：
+次に、SVRを実装します。この実装について詳しく知りたい場合は、[こちらのドキュメント](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)を参照してください。今回の実装では以下の手順を行います：
 
-  1. `SVR()`を呼び出してモデルを定義し、`fit()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
-  2. Prepare the model for the training data by calling the `predict()`関数を使用します。
+1. `SVR()`を呼び出し、カーネル、ガンマ、C、イプシロンなどのモデルハイパーパラメータを渡してモデルを定義します。
+2. `fit()`関数を呼び出してトレーニングデータにモデルを適用します。
+3. `predict()`関数を呼び出して予測を行います。
 
-次に、SVRモデルを作成します。ここでは[RBFカーネル](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel)を使用し、ハイパーパラメータgamma、C、およびepsilonをそれぞれ0.5、10、および0.05に設定します。
+ここでは[RBFカーネル](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel)を使用し、ハイパーパラメータのガンマ、C、イプシロンをそれぞれ0.5、10、0.05に設定します。
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
 ```
 
-#### トレーニングデータにモデルを適合させる [^1]
+#### トレーニングデータにモデルを適用 [^1]
 
 ```python
 model.fit(x_train, y_train[:,0])
@@ -212,13 +222,13 @@ print(y_train_pred.shape, y_test_pred.shape)
 (1412, 1) (44, 1)
 ```
 
-SVRを構築しました！次に、それを評価する必要があります。
+SVRを構築しました！次に評価を行います。
 
-### モデルの評価 [^1]
+### モデルを評価する [^1]
 
-評価のために、まずデータを元のスケールに戻します。次に、パフォーマンスを確認するために、元の時系列プロットと予測された時系列プロットをプロットし、MAPE結果も出力します。
+評価では、まずデータを元のスケールに戻します。その後、性能を確認するために、元の時系列データと予測データのプロットを作成し、MAPE結果を出力します。
 
-予測された出力と元の出力をスケールバックします:
+予測値と元の出力をスケールバックします:
 
 ```python
 # Scaling the predictions
@@ -236,9 +246,9 @@ y_test = scaler.inverse_transform(y_test)
 print(len(y_train), len(y_test))
 ```
 
-#### トレーニングデータとテストデータでモデルのパフォーマンスを確認する [^1]
+#### トレーニングデータとテストデータでモデル性能を確認 [^1]
 
-データセットからタイムスタンプを抽出し、プロットのx軸に表示します。最初の```timesteps-1```値を最初の出力の入力として使用しているため、出力のタイムスタンプはその後に開始します。
+データセットからタイムスタンプを抽出し、プロットのx軸に表示します。最初の```timesteps-1```値を最初の出力の入力として使用しているため、出力のタイムスタンプはその後から始まります。
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -263,9 +273,9 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![トレーニングデータ予測](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.ja.png)
+![トレーニングデータ予測](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
-トレーニングデータのMAPEを出力します
+トレーニングデータのMAPEを出力します:
 
 ```python
 print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
@@ -275,7 +285,7 @@ print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
 MAPE for training data: 1.7195710200875551 %
 ```
 
-テストデータの予測をプロットします
+テストデータの予測をプロットします:
 
 ```python
 plt.figure(figsize=(10,3))
@@ -286,9 +296,9 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![テストデータ予測](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.ja.png)
+![テストデータ予測](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
-テストデータのMAPEを出力します
+テストデータのMAPEを出力します:
 
 ```python
 print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
@@ -298,9 +308,9 @@ print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
 MAPE for testing data:  1.2623790187854018 %
 ```
 
-🏆 テストデータセットで非常に良い結果を得ました！
+🏆 テストデータセットで非常に良い結果が得られました！
 
-### 全データセットでモデルのパフォーマンスを確認する [^1]
+### 全データセットでモデル性能を確認 [^1]
 
 ```python
 # Extracting load values as numpy array
@@ -342,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![全データ予測](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.ja.png)
+![全データ予測](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -358,27 +368,26 @@ MAPE:  2.0572089029888656 %
 
 ## 🚀チャレンジ
 
-- モデルを作成する際にハイパーパラメータ（gamma、C、epsilon）を調整して、テストデータでの最適な結果を得るセットを評価してみてください。これらのハイパーパラメータについて詳しく知りたい場合は、[こちらのドキュメント](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel)を参照してください。
-- モデルに対して異なるカーネル関数を使用し、データセットでのパフォーマンスを分析してみてください。役立つドキュメントは[こちら](https://scikit-learn.org/stable/modules/svm.html#kernel-functions)にあります。
-- モデルが予測を行うために振り返る`timesteps`の値を異なるものにしてみてください。
+- モデルを作成する際にハイパーパラメータ（ガンマ、C、イプシロン）を調整し、テストデータで評価して、どのハイパーパラメータセットが最良の結果をもたらすか確認してください。これらのハイパーパラメータについて詳しく知りたい場合は、[こちらのドキュメント](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel)を参照してください。
+- モデルに異なるカーネル関数を使用し、それらの性能をデータセットで分析してください。役立つドキュメントは[こちら](https://scikit-learn.org/stable/modules/svm.html#kernel-functions)にあります。
+- モデルが予測を行う際に参照する`timesteps`の値を変更してみてください。
 
-## [事後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [事後クイズ](https://ff-quizzes.netlify.app/en/ml/)
 
-## レビューと自己学習
+## 復習と自己学習
 
-このレッスンでは、時系列予測のためのSVRの応用を紹介しました。SVRについてさらに詳しく知りたい場合は、[このブログ](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/)を参照してください。この[scikit-learnのドキュメント](https://scikit-learn.org/stable/modules/svm.html)では、SVM全般、[SVR](https://scikit-learn.org/stable/modules/svm.html#regression)、および異なる[カーネル関数](https://scikit-learn.org/stable/modules/svm.html#kernel-functions)の使用方法やそのパラメータなど、他の実装の詳細についても包括的な説明が提供されています。
+このレッスンでは、時系列予測におけるSVRの応用を紹介しました。SVRについてさらに詳しく知りたい場合は、[このブログ](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/)を参照してください。この[scikit-learnのドキュメント](https://scikit-learn.org/stable/modules/svm.html)では、一般的なSVM、[SVR](https://scikit-learn.org/stable/modules/svm.html#regression)、および使用可能な異なる[カーネル関数](https://scikit-learn.org/stable/modules/svm.html#kernel-functions)やそのパラメータなどの実装詳細について包括的な説明が提供されています。
 
 ## 課題
 
 [新しいSVRモデル](assignment.md)
 
-
-
 ## クレジット
 
-
-[^1]: このセクションのテキスト、コード、および出力は[AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)によって提供されました。
+[^1]: このセクションのテキスト、コード、および出力は[@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)によって寄稿されました。
 [^2]: このセクションのテキスト、コード、および出力は[ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)から引用されました。
 
-**免責事項**:
-この文書は、機械ベースのAI翻訳サービスを使用して翻訳されています。正確さを期していますが、自動翻訳には誤りや不正確さが含まれる可能性があることをご了承ください。元の言語で書かれた原文が権威ある情報源と見なされるべきです。重要な情報については、専門の人間による翻訳をお勧めします。この翻訳の使用に起因する誤解や誤認については、一切の責任を負いかねます。
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期すよう努めておりますが、自動翻訳には誤りや不正確な表現が含まれる可能性があります。元の言語で記載された原文を公式な情報源としてご参照ください。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用に起因する誤解や誤認について、当社は一切の責任を負いません。

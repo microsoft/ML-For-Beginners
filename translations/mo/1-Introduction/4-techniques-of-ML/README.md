@@ -1,120 +1,132 @@
-# Techniques of Machine Learning
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "9d91f3af3758fdd4569fb410575995ef",
+  "translation_date": "2025-09-06T09:14:17+00:00",
+  "source_file": "1-Introduction/4-techniques-of-ML/README.md",
+  "language_code": "mo"
+}
+-->
+# 機器學習技術
 
-Le processus de création, d'utilisation et de maintenance des modèles d'apprentissage automatique et des données qu'ils utilisent est très différent de nombreux autres flux de travail de développement. Dans cette leçon, nous allons démystifier le processus et décrire les principales techniques que vous devez connaître. Vous allez :
+建立、使用和維護機器學習模型及其所需數據的過程，與許多其他開發工作流程有很大的不同。在本課程中，我們將揭開這個過程的神秘面紗，並概述您需要了解的主要技術。您將：
 
-- Comprendre les processus sous-jacents à l'apprentissage automatique à un niveau élevé.
-- Explorer des concepts de base tels que 'modèles', 'prédictions' et 'données d'entraînement'.
+- 理解機器學習背後的高層次流程。
+- 探索基本概念，例如「模型」、「預測」和「訓練數據」。
 
-## [Quiz pré-lecture](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-[![ML pour les débutants - Techniques de Machine Learning](https://img.youtube.com/vi/4NGM0U2ZSHU/0.jpg)](https://youtu.be/4NGM0U2ZSHU "ML pour les débutants - Techniques de Machine Learning")
+[![機器學習入門 - 機器學習技術](https://img.youtube.com/vi/4NGM0U2ZSHU/0.jpg)](https://youtu.be/4NGM0U2ZSHU "機器學習入門 - 機器學習技術")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une courte vidéo expliquant cette leçon.
+> 🎥 點擊上方圖片觀看本課程的短視頻。
 
-## Introduction
+## 簡介
 
-À un niveau élevé, l'art de créer des processus d'apprentissage automatique (ML) se compose de plusieurs étapes :
+從高層次來看，創建機器學習（ML）流程的技術包括以下幾個步驟：
 
-1. **Décider de la question**. La plupart des processus ML commencent par poser une question qui ne peut pas être résolue par un programme conditionnel simple ou un moteur basé sur des règles. Ces questions tournent souvent autour des prédictions basées sur une collection de données.
-2. **Collecter et préparer les données**. Pour pouvoir répondre à votre question, vous avez besoin de données. La qualité et, parfois, la quantité de vos données détermineront à quel point vous pouvez répondre à votre question initiale. La visualisation des données est un aspect important de cette phase. Cette phase inclut également la division des données en un groupe d'entraînement et un groupe de test pour construire un modèle.
-3. **Choisir une méthode d'entraînement**. En fonction de votre question et de la nature de vos données, vous devez choisir comment vous souhaitez entraîner un modèle pour mieux refléter vos données et faire des prédictions précises. C'est la partie de votre processus ML qui nécessite une expertise spécifique et, souvent, une quantité considérable d'expérimentation.
-4. **Entraîner le modèle**. En utilisant vos données d'entraînement, vous utiliserez divers algorithmes pour entraîner un modèle à reconnaître des motifs dans les données. Le modèle pourrait tirer parti de poids internes qui peuvent être ajustés pour privilégier certaines parties des données par rapport à d'autres afin de construire un meilleur modèle.
-5. **Évaluer le modèle**. Vous utilisez des données jamais vues auparavant (vos données de test) de votre ensemble collecté pour voir comment le modèle performe.
-6. **Ajustement des paramètres**. En fonction des performances de votre modèle, vous pouvez recommencer le processus en utilisant différents paramètres, ou variables, qui contrôlent le comportement des algorithmes utilisés pour entraîner le modèle.
-7. **Prédire**. Utilisez de nouvelles entrées pour tester l'exactitude de votre modèle.
+1. **確定問題**。大多數機器學習流程始於提出一個無法通過簡單的條件程序或基於規則的引擎回答的問題。這些問題通常圍繞基於數據集合的預測。
+2. **收集和準備數據**。為了回答您的問題，您需要數據。數據的質量以及有時候數量將決定您能多好地回答最初的問題。可視化數據是此階段的重要方面。此階段還包括將數據分為訓練組和測試組以建立模型。
+3. **選擇訓練方法**。根據您的問題和數據的性質，您需要選擇如何訓練模型以最好地反映您的數據並進行準確的預測。這是機器學習流程中需要特定專業知識且通常需要大量實驗的部分。
+4. **訓練模型**。使用您的訓練數據，您將使用各種算法訓練模型以識別數據中的模式。模型可能利用內部權重，這些權重可以調整以優化某些數據部分，從而建立更好的模型。
+5. **評估模型**。使用從收集的數據集中從未見過的測試數據來檢查模型的性能。
+6. **參數調整**。根據模型的性能，您可以使用不同的參數或變量重新進行過程，這些參數或變量控制用於訓練模型的算法行為。
+7. **預測**。使用新的輸入測試模型的準確性。
 
-## Quelle question poser
+## 提出問題
 
-Les ordinateurs sont particulièrement doués pour découvrir des motifs cachés dans les données. Cette utilité est très utile pour les chercheurs qui ont des questions sur un domaine donné qui ne peuvent pas être facilement répondues en créant un moteur basé sur des règles conditionnelles. Par exemple, dans une tâche actuarielle, un scientifique des données pourrait être en mesure de construire des règles artisanales autour de la mortalité des fumeurs par rapport aux non-fumeurs.
+電腦特別擅長發現數據中的隱藏模式。這種能力對於研究人員來說非常有用，尤其是當他們面臨無法輕易通過條件規則引擎回答的問題時。例如，針對精算任務，數據科學家可能能夠手工製作規則來分析吸煙者與非吸煙者的死亡率。
 
-Cependant, lorsque de nombreuses autres variables sont introduites dans l'équation, un modèle ML pourrait s'avérer plus efficace pour prédire les taux de mortalité futurs basés sur l'historique de santé passé. Un exemple plus joyeux pourrait être de faire des prédictions météorologiques pour le mois d'avril dans un endroit donné en fonction de données qui incluent la latitude, la longitude, le changement climatique, la proximité de l'océan, les motifs du jet stream, et plus encore.
+然而，當涉及到許多其他變量時，機器學習模型可能更有效地根據過去的健康歷史預測未來的死亡率。一個更愉快的例子可能是根據包括緯度、經度、氣候變化、靠近海洋、噴流模式等數據，為某地四月的天氣進行預測。
 
-✅ Ce [diaporama](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf) sur les modèles météorologiques offre une perspective historique sur l'utilisation de ML dans l'analyse météorologique.  
+✅ 這份[幻燈片](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf)提供了使用機器學習進行天氣分析的歷史視角。
 
-## Tâches pré-construction
+## 建模前的任務
 
-Avant de commencer à construire votre modèle, il y a plusieurs tâches que vous devez accomplir. Pour tester votre question et former une hypothèse basée sur les prédictions d'un modèle, vous devez identifier et configurer plusieurs éléments.
+在開始建立模型之前，您需要完成幾項任務。為了測試您的問題並根據模型的預測形成假設，您需要識別並配置幾個元素。
 
-### Données
+### 數據
 
-Pour pouvoir répondre à votre question avec une certaine certitude, vous avez besoin d'une bonne quantité de données du bon type. À ce stade, vous devez faire deux choses :
+為了能夠有一定的確定性回答您的問題，您需要足夠數量且類型正確的數據。在這個階段，您需要完成以下兩件事：
 
-- **Collecter des données**. En gardant à l'esprit la leçon précédente sur l'équité dans l'analyse des données, collectez vos données avec soin. Soyez conscient des sources de ces données, de tout biais inhérent qu'elles pourraient avoir, et documentez leur origine.
-- **Préparer les données**. Il y a plusieurs étapes dans le processus de préparation des données. Vous pourriez avoir besoin de rassembler des données et de les normaliser si elles proviennent de sources diverses. Vous pouvez améliorer la qualité et la quantité des données par divers moyens, comme convertir des chaînes en nombres (comme nous le faisons dans [Clustering](../../5-Clustering/1-Visualize/README.md)). Vous pourriez également générer de nouvelles données, basées sur l'original (comme nous le faisons dans [Classification](../../4-Classification/1-Introduction/README.md)). Vous pouvez nettoyer et éditer les données (comme nous le ferons avant la leçon [Web App](../../3-Web-App/README.md)). Enfin, vous pourriez également avoir besoin de les randomiser et de les mélanger, en fonction de vos techniques d'entraînement.
+- **收集數據**。記住上一課中關於數據分析公平性的內容，謹慎收集您的數據。注意數據的來源、可能存在的固有偏差，並記錄其來源。
+- **準備數據**。數據準備過程包括多個步驟。如果數據來自不同來源，您可能需要整理並標準化它。您可以通過各種方法提高數據的質量和數量，例如將字符串轉換為數字（如我們在[聚類](../../5-Clustering/1-Visualize/README.md)中所做的）。您可能還會基於原始數據生成新數據（如我們在[分類](../../4-Classification/1-Introduction/README.md)中所做的）。您可以清理和編輯數據（如我們在[Web App](../../3-Web-App/README.md)課程之前所做的）。最後，根據您的訓練技術，您可能還需要隨機化並打亂數據。
 
-✅ Après avoir collecté et traité vos données, prenez un moment pour voir si leur forme vous permettra d'aborder votre question prévue. Il se peut que les données ne fonctionnent pas bien dans votre tâche donnée, comme nous le découvrons dans nos leçons [Clustering](../../5-Clustering/1-Visualize/README.md) !
+✅ 在收集和處理數據後，花點時間檢查其形狀是否能幫助您解決預期問題。可能數據在您的任務中表現不佳，正如我們在[聚類](../../5-Clustering/1-Visualize/README.md)課程中所發現的！
 
-### Caractéristiques et Cible
+### 特徵和目標
 
-Une [caractéristique](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) est une propriété mesurable de vos données. Dans de nombreux ensembles de données, elle est exprimée comme un en-tête de colonne comme 'date', 'taille' ou 'couleur'. Votre variable caractéristique, généralement représentée comme `X` dans le code, représente la variable d'entrée qui sera utilisée pour entraîner le modèle.
+[特徵](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection)是數據的一個可測量屬性。在許多數據集中，它通常以列標題的形式表達，例如「日期」、「大小」或「顏色」。特徵變量通常在代碼中表示為`X`，代表用於訓練模型的輸入變量。
 
-Une cible est une chose que vous essayez de prédire. La cible est généralement représentée comme `y` dans le code, représentant la réponse à la question que vous essayez de poser à vos données : en décembre, quelle **couleur** de citrouilles sera la moins chère ? à San Francisco, quels quartiers auront le meilleur **prix** immobilier ? Parfois, la cible est également appelée attribut d'étiquette.
+目標是您試圖預測的事物。目標通常在代碼中表示為`y`，代表您試圖從數據中回答的問題：在十二月，哪種**顏色**的南瓜最便宜？在舊金山，哪些街區的房地產**價格**最好？有時目標也被稱為標籤屬性。
 
-### Sélectionner votre variable caractéristique
+### 選擇特徵變量
 
-🎓 **Sélection de caractéristiques et extraction de caractéristiques** Comment savez-vous quelle variable choisir lors de la construction d'un modèle ? Vous passerez probablement par un processus de sélection de caractéristiques ou d'extraction de caractéristiques pour choisir les bonnes variables pour le modèle le plus performant. Ce ne sont pas la même chose, cependant : "L'extraction de caractéristiques crée de nouvelles caractéristiques à partir des fonctions des caractéristiques d'origine, tandis que la sélection de caractéristiques renvoie un sous-ensemble des caractéristiques." ([source](https://wikipedia.org/wiki/Feature_selection))
+🎓 **特徵選擇與特徵提取** 如何在建立模型時選擇變量？您可能需要通過特徵選擇或特徵提取的過程來選擇最合適的變量以構建性能最佳的模型。然而，它們並不完全相同：「特徵提取通過原始特徵的函數創建新特徵，而特徵選擇返回特徵的子集。」（[來源](https://wikipedia.org/wiki/Feature_selection)）
 
-### Visualisez vos données
+### 可視化數據
 
-Un aspect important de l'arsenal d'un scientifique des données est le pouvoir de visualiser les données en utilisant plusieurs excellentes bibliothèques telles que Seaborn ou MatPlotLib. Représenter vos données visuellement pourrait vous permettre de découvrir des corrélations cachées que vous pouvez exploiter. Vos visualisations pourraient également vous aider à découvrir des biais ou des données déséquilibrées (comme nous le découvrons dans [Classification](../../4-Classification/2-Classifiers-1/README.md)).
+數據科學家工具包中的一個重要方面是使用一些優秀的庫（如Seaborn或MatPlotLib）來可視化數據的能力。以可視化方式表示數據可能幫助您發現可以利用的隱藏相關性。您的可視化還可能幫助您發現偏差或數據不平衡（如我們在[分類](../../4-Classification/2-Classifiers-1/README.md)中所發現的）。
 
-### Divisez votre ensemble de données
+### 分割數據集
 
-Avant l'entraînement, vous devez diviser votre ensemble de données en deux ou plusieurs parties de taille inégale qui représentent néanmoins bien les données.
+在訓練之前，您需要將數據集分為兩個或更多不等大小的部分，這些部分仍然能很好地代表數據。
 
-- **Entraînement**. Cette partie de l'ensemble de données est adaptée à votre modèle pour l'entraîner. Cet ensemble constitue la majorité de l'ensemble de données d'origine.
-- **Test**. Un ensemble de données de test est un groupe indépendant de données, souvent recueilli à partir des données d'origine, que vous utilisez pour confirmer les performances du modèle construit.
-- **Validation**. Un ensemble de validation est un plus petit groupe indépendant d'exemples que vous utilisez pour ajuster les hyperparamètres du modèle, ou son architecture, afin d'améliorer le modèle. En fonction de la taille de vos données et de la question que vous posez, vous pourriez ne pas avoir besoin de construire cet ensemble supplémentaire (comme nous le notons dans [Prévisions de séries temporelles](../../7-TimeSeries/1-Introduction/README.md)).
+- **訓練**。數據集的這部分用於訓練模型。這部分通常佔原始數據集的大部分。
+- **測試**。測試數據集是獨立的數據組，通常從原始數據中獲得，用於確認已建立模型的性能。
+- **驗證**。驗證集是一個較小的獨立數據組，用於調整模型的超參數或架構以改進模型。根據數據的大小和您提出的問題，您可能不需要建立這第三部分（如我們在[時間序列預測](../../7-TimeSeries/1-Introduction/README.md)中所提到的）。
 
-## Construire un modèle
+## 建立模型
 
-En utilisant vos données d'entraînement, votre objectif est de construire un modèle, ou une représentation statistique de vos données, en utilisant divers algorithmes pour **l'entraîner**. Entraîner un modèle l'expose aux données et lui permet de faire des hypothèses sur les motifs perçus qu'il découvre, valide et accepte ou rejette.
+使用您的訓練數據，您的目標是使用各種算法建立模型，或數據的統計表示，並對其進行**訓練**。訓練模型使其接觸數據，並讓其對發現的模式進行假設、驗證並接受或拒絕。
 
-### Décidez d'une méthode d'entraînement
+### 決定訓練方法
 
-En fonction de votre question et de la nature de vos données, vous choisirez une méthode pour l'entraîner. En parcourant [la documentation de Scikit-learn](https://scikit-learn.org/stable/user_guide.html) - que nous utilisons dans ce cours - vous pouvez explorer de nombreuses façons d'entraîner un modèle. En fonction de votre expérience, vous pourriez devoir essayer plusieurs méthodes différentes pour construire le meilleur modèle. Vous êtes susceptible de passer par un processus où les scientifiques des données évaluent les performances d'un modèle en lui fournissant des données non vues, en vérifiant l'exactitude, le biais et d'autres problèmes de dégradation de la qualité, et en sélectionnant la méthode d'entraînement la plus appropriée pour la tâche à accomplir.
+根據您的問題和數據的性質，您將選擇一種訓練方法。瀏覽[Scikit-learn的文檔](https://scikit-learn.org/stable/user_guide.html)——我們在本課程中使用它——您可以探索多種訓練模型的方法。根據您的經驗，您可能需要嘗試幾種不同的方法以建立最佳模型。您可能會經歷一個過程，數據科學家通過向模型提供未見過的數據來評估其性能，檢查準確性、偏差和其他質量下降問題，並選擇最適合當前任務的訓練方法。
 
-### Entraîner un modèle
+### 訓練模型
 
-Armé de vos données d'entraînement, vous êtes prêt à 'adapter' le modèle. Vous remarquerez que dans de nombreuses bibliothèques ML, vous trouverez le code 'model.fit' - c'est à ce moment que vous envoyez votre variable caractéristique sous forme de tableau de valeurs (généralement 'X') et une variable cible (généralement 'y').
+有了訓練數據，您就可以「擬合」它來創建模型。您會注意到，在許多機器學習庫中，您會看到代碼`model.fit`——此時您將特徵變量作為值數組（通常是`X`）以及目標變量（通常是`y`）傳入。
 
-### Évaluer le modèle
+### 評估模型
 
-Une fois le processus d'entraînement terminé (cela peut prendre de nombreuses itérations, ou 'époques', pour entraîner un grand modèle), vous pourrez évaluer la qualité du modèle en utilisant des données de test pour évaluer ses performances. Ces données sont un sous-ensemble des données d'origine que le modèle n'a pas analysées auparavant. Vous pouvez imprimer un tableau de métriques sur la qualité de votre modèle.
+一旦訓練過程完成（對於大型模型，可能需要多次迭代或「epoch」），您將能夠使用測試數據評估模型的質量，以衡量其性能。這些數據是原始數據的一部分，模型之前未曾分析過。您可以打印出關於模型質量的指標表。
 
-🎓 **Ajustement du modèle**
+🎓 **模型擬合**
 
-Dans le contexte de l'apprentissage automatique, l'ajustement du modèle fait référence à l'exactitude de la fonction sous-jacente du modèle lorsqu'il tente d'analyser des données avec lesquelles il n'est pas familier.
+在機器學習的背景下，模型擬合指的是模型的底層函數在分析其不熟悉的數據時的準確性。
 
-🎓 **Sous-ajustement** et **sur-ajustement** sont des problèmes courants qui dégradent la qualité du modèle, car le modèle s'ajuste soit pas assez bien, soit trop bien. Cela amène le modèle à faire des prédictions soit trop étroitement alignées, soit trop librement alignées avec ses données d'entraînement. Un modèle sur-ajusté prédit trop bien les données d'entraînement car il a appris les détails et le bruit des données trop bien. Un modèle sous-ajusté n'est pas précis car il ne peut ni analyser correctement ses données d'entraînement ni les données qu'il n'a pas encore 'vues'.
+🎓 **欠擬合**和**過擬合**是常見問題，會降低模型的質量，因為模型要麼擬合得不夠好，要麼擬合得太好。這會導致模型的預測要麼過於貼合，要麼過於偏離其訓練數據。過擬合模型因為過於熟悉數據的細節和噪音而對訓練數據預測得過於準確。欠擬合模型則不夠準確，既無法準確分析其訓練數據，也無法準確分析其未見過的數據。
 
-![modèle sur-ajusté](../../../../translated_images/overfitting.1c132d92bfd93cb63240baf63ebdf82c30e30a0a44e1ad49861b82ff600c2b5c.mo.png)
-> Infographie par [Jen Looper](https://twitter.com/jenlooper)
+![過擬合模型](../../../../1-Introduction/4-techniques-of-ML/images/overfitting.png)
+> 信息圖由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-## Ajustement des paramètres
+## 參數調整
 
-Une fois votre entraînement initial terminé, observez la qualité du modèle et envisagez de l'améliorer en ajustant ses 'hyperparamètres'. Lisez-en plus sur le processus [dans la documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott).
+完成初步訓練後，觀察模型的質量，並考慮通過調整其「超參數」來改進它。閱讀更多相關內容[在文檔中](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott)。
 
-## Prédiction
+## 預測
 
-C'est le moment où vous pouvez utiliser des données complètement nouvelles pour tester l'exactitude de votre modèle. Dans un cadre de ML 'appliqué', où vous construisez des actifs web pour utiliser le modèle en production, ce processus peut impliquer la collecte des entrées des utilisateurs (un clic de bouton, par exemple) pour définir une variable et l'envoyer au modèle pour l'inférence, ou l'évaluation.
+這是您可以使用全新數據測試模型準確性的時刻。在「應用」機器學習設置中，當您構建網頁資產以在生產環境中使用模型時，此過程可能涉及收集用戶輸入（例如按下按鈕）以設置變量並將其發送到模型進行推斷或評估。
 
-Dans ces leçons, vous découvrirez comment utiliser ces étapes pour préparer, construire, tester, évaluer et prédire - tous les gestes d'un scientifique des données et plus encore, à mesure que vous progressez dans votre parcours pour devenir un ingénieur ML 'full stack'.
+在這些課程中，您將學習如何使用這些步驟來準備、建立、測試、評估和預測——這些都是數據科學家的手勢，隨著您的進步，您將成為「全棧」機器學習工程師。
 
 ---
 
-## 🚀Défi
+## 🚀挑戰
 
-Dessinez un organigramme reflétant les étapes d'un praticien ML. Où vous voyez-vous en ce moment dans le processus ? Où prévoyez-vous de rencontrer des difficultés ? Qu'est-ce qui vous semble facile ?
+繪製一個反映機器學習實踐者步驟的流程圖。您認為自己目前處於哪個步驟？您預測在哪些方面會遇到困難？哪些看起來比較容易？
 
-## [Quiz post-lecture](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/8/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revue & Auto-étude
+## 回顧與自學
 
-Recherchez en ligne des interviews avec des scientifiques des données qui discutent de leur travail quotidien. Voici [une](https://www.youtube.com/watch?v=Z3IjgbbCEfs).
+在線搜索數據科學家討論其日常工作的訪談。這裡有一個[例子](https://www.youtube.com/watch?v=Z3IjgbbCEfs)。
 
-## Mission
+## 作業
 
-[Interviewez un scientifique des données](assignment.md)
+[訪問一位數據科學家](assignment.md)
 
-I'm sorry, but I cannot translate the text into "mo" as it is not clear what language or dialect you are referring to. Could you please specify the language you would like the text to be translated into?
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

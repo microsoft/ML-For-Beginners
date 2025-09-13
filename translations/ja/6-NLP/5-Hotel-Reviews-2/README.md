@@ -1,35 +1,40 @@
-# ホテルレビューによる感情分析
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-06T09:43:24+00:00",
+  "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
+  "language_code": "ja"
+}
+-->
+# ホテルレビューを用いた感情分析
 
-データセットを詳細に調査したので、次は列をフィルタリングし、NLP技術を使ってホテルに関する新しい洞察を得ましょう。
-## [事前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+データセットを詳細に調査した後は、列をフィルタリングし、NLP技術を使用してホテルに関する新たな洞察を得る時です。
+
+## [事前講義クイズ](https://ff-quizzes.netlify.app/en/ml/)
 
 ### フィルタリングと感情分析の操作
 
-おそらく気づいたと思いますが、このデータセットにはいくつか問題があります。一部の列には無意味な情報が含まれており、他の列は正しくないように見えます。正しいとしても、どのように計算されたのか不明であり、自分の計算で独自に検証することはできません。
+おそらく気づいたと思いますが、このデータセットにはいくつかの問題があります。一部の列には無意味な情報が含まれており、他の列は正確性に疑問があります。仮に正確だとしても、それがどのように計算されたのか不明であり、自分自身の計算で独立して検証することができません。
 
-## 演習: もう少しデータ処理
+## 演習: もう少しデータを処理する
 
-データをもう少しきれいにしましょう。後で役立つ列を追加し、他の列の値を変更し、特定の列を完全に削除します。
+データをもう少しクリーンにしましょう。後で役立つ列を追加し、他の列の値を変更し、特定の列を完全に削除します。
 
 1. 初期の列処理
 
-   1. `lat` と `lng` を削除
+   1. `lat` と `lng` を削除する
 
-   2. `Hotel_Address` の値を以下の値に置き換える（住所に都市名と国名が含まれている場合は、都市名と国名のみに変更）。
+   2. `Hotel_Address` の値を以下の値に置き換える（住所に都市名と国名が含まれている場合、それを都市名と国名だけに変更する）。
 
-      データセットに含まれている都市と国は次の通りです：
+      データセットに含まれる都市と国は以下の通りです：
 
-      アムステルダム、オランダ
-
-      バルセロナ、スペイン
-
-      ロンドン、イギリス
-
-      ミラノ、イタリア
-
-      パリ、フランス
-
-      ウィーン、オーストリア 
+      アムステルダム, オランダ  
+      バルセロナ, スペイン  
+      ロンドン, イギリス  
+      ミラノ, イタリア  
+      パリ, フランス  
+      ウィーン, オーストリア  
 
       ```python
       def replace_address(row):
@@ -58,24 +63,24 @@
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | ホテル住所               | ホテル名 |
+      | Hotel_Address          | Hotel_Name |
       | :--------------------- | :--------: |
-      | アムステルダム、オランダ |    105     |
-      | バルセロナ、スペイン       |    211     |
-      | ロンドン、イギリス         |    400     |
-      | ミラノ、イタリア           |    162     |
-      | パリ、フランス             |    458     |
-      | ウィーン、オーストリア     |    158     |
+      | Amsterdam, Netherlands |    105     |
+      | Barcelona, Spain       |    211     |
+      | London, United Kingdom |    400     |
+      | Milan, Italy           |    162     |
+      | Paris, France          |    458     |
+      | Vienna, Austria        |    158     |
 
-2. ホテルメタレビュー列の処理
+2. ホテルのメタレビュー列を処理する
 
-  1. `Additional_Number_of_Scoring`
+   1. `Additional_Number_of_Scoring` を削除する
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+   2. `Total_Number_of_Reviews` を、そのホテルに実際に含まれるレビューの総数に置き換える
 
-  1. Replace `Average_Score` を自分で計算したスコアで置き換え
+   3. `Average_Score` を独自に計算したスコアに置き換える
 
-  ```python
+   ```python
   # Drop `Additional_Number_of_Scoring`
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
   # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
@@ -83,41 +88,41 @@
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-3. レビュー列の処理
+3. レビュー列を処理する
 
-   1. `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
+   1. `Review_Total_Negative_Word_Counts`、`Review_Total_Positive_Word_Counts`、`Review_Date`、`days_since_review` を削除する
 
-   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
-     
-   3. Keep `Tags` for now
+   2. `Reviewer_Score`、`Negative_Review`、`Positive_Review` はそのまま保持する
 
-     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+   3. `Tags` は一時的に保持する
 
-4. Process reviewer columns
+      - 次のセクションでタグに対して追加のフィルタリング操作を行い、その後タグを削除します
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
-  
-  2. Keep `Reviewer_Nationality`
+4. レビュアー列を処理する
 
-### Tag columns
+   1. `Total_Number_of_Reviews_Reviewer_Has_Given` を削除する
 
-The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+   2. `Reviewer_Nationality` を保持する
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` を削除し、タグの興味を確認するためのいくつかのステップに従う必要があります。
+### タグ列
+
+`Tag` 列は問題があります。この列にはリスト（テキスト形式）が格納されており、順序やサブセクションの数が常に同じではありません。このため、515,000行、1,427のホテルがあり、それぞれがレビュアーに異なる選択肢を提供しているため、人間が興味のある正しいフレーズを特定するのは困難です。ここでNLPが役立ちます。テキストをスキャンして最も一般的なフレーズを見つけ、それらをカウントすることができます。
+
+残念ながら、単語単位ではなく、複数単語のフレーズ（例：*Business trip*）に興味があります。このようなデータ（6,762,646語）に対して複数単語の頻度分布アルゴリズムを実行すると、非常に多くの時間がかかる可能性があります。しかし、データを見ずにそれが必要なコストだと判断するのは早計です。ここで探索的データ分析が役立ちます。例えば、`[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` のようなタグのサンプルを見た場合、処理を大幅に削減できる可能性があるかどうかを考え始めることができます。幸いにも、それは可能です。ただし、まずは興味のあるタグを確認するためにいくつかのステップを踏む必要があります。
 
 ### タグのフィルタリング
 
-データセットの目的は、感情と列を追加して、最適なホテルを選ぶのに役立つことです（自分自身やホテル推薦ボットを作成するクライアントのため）。最終データセットでタグが役立つかどうかを自問する必要があります。以下は一つの解釈です（他の理由でデータセットが必要な場合、異なるタグが選択に含まれるかもしれません）：
+このデータセットの目的は、感情や列を追加して、最適なホテルを選ぶのに役立てることです（自分自身のため、またはホテル推薦ボットを作るよう依頼されたクライアントのため）。タグが最終的なデータセットで有用かどうかを自問する必要があります。以下は一つの解釈です（他の目的でデータセットが必要な場合、異なるタグが選択に含まれる可能性があります）：
 
-1. 旅行の種類は関連しており、保持すべき
-2. ゲストグループの種類は重要で、保持すべき
-3. ゲストが滞在した部屋、スイート、スタジオの種類は無関係（すべてのホテルに基本的に同じ部屋がある）
-4. レビューが提出されたデバイスは無関係
-5. レビュアーが滞在した夜数は、ホテルを気に入っている可能性があるため関連するかもしれないが、おそらく無関係
+1. 旅行の種類は関連性があり、保持すべき
+2. ゲストグループの種類は重要であり、保持すべき
+3. ゲストが宿泊した部屋、スイート、スタジオの種類は無関係（どのホテルも基本的に同じ部屋を持っている）
+4. レビューが送信されたデバイスは無関係
+5. 宿泊日数は、長期滞在がホテルを気に入ったことを示す場合に関連性があるかもしれないが、可能性は低く、おそらく無関係
 
-要約すると、**2種類のタグを保持し、他のタグを削除する**。
+要約すると、**2種類のタグを保持し、他を削除する**ということです。
 
-まず、タグがより良い形式になるまでカウントしたくないので、角括弧と引用符を削除する必要があります。これにはいくつかの方法がありますが、最速の方法を選びたいです。幸い、pandasにはこれらのステップを簡単に行う方法があります。
+まず、タグをカウントする前に、より良い形式にする必要があります。つまり、角括弧や引用符を削除する必要があります。これを行う方法はいくつかありますが、データ量が多いため、最速の方法を選びたいところです。幸いにも、pandasにはこれらのステップを簡単に実行する方法があります。
 
 ```Python
 # Remove opening and closing brackets
@@ -126,11 +131,11 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-各タグは次のようになります: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
+各タグは次のようになります：`Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`。
 
-Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+次に問題が発生します。一部のレビュー（行）には5列、他には3列、6列のものもあります。これはデータセットの作成方法によるもので、修正が困難です。各フレーズの頻度をカウントしたいのですが、レビューごとに順序が異なるため、カウントが正確でない可能性があり、ホテルが本来得るべきタグを割り当てられない場合があります。
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+しかし、この異なる順序を逆に利用することができます。各タグは複数単語で構成されていますが、カンマで区切られています！最も簡単な方法は、6つの一時的な列を作成し、各タグをその順序に対応する列に挿入することです。その後、6つの列を1つの大きな列にマージし、`value_counts()` メソッドを実行します。これを出力すると、2,428個のユニークなタグがあることがわかります。以下はその一部です：
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
@@ -157,11 +162,11 @@ Instead you will use the different order to our advantage, because each tag is m
 | Superior Double or Twin Room   | 13570  |
 | 2 rooms                        | 12393  |
 
-Some of the common tags like `Submitted from a mobile device` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
+`Submitted from a mobile device` のような一般的なタグの一部は役に立たないため、フレーズの出現回数をカウントする前に削除するのが賢明かもしれませんが、操作が非常に高速であるため、それらを残して無視することもできます。
 
-### Removing the length of stay tags
+### 宿泊日数タグの削除
 
-Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
+これらのタグを削除するのが最初のステップです。これにより、考慮すべきタグの総数が若干減少します。データセットから削除するのではなく、レビューのデータセットでカウント/保持する値として考慮しないだけです。
 
 | Length of stay   | Count  |
 | ---------------- | ------ |
@@ -176,7 +181,7 @@ Removing these tags is step 1, it reduces the total number of tags to be conside
 | Stayed 9 nights  | 1293   |
 | ...              | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
+部屋、スイート、スタジオ、アパートメントなどの種類は非常に多様です。これらはほぼ同じ意味を持ち、関連性がないため、考慮から除外します。
 
 | Type of room                  | Count |
 | ----------------------------- | ----- |
@@ -189,7 +194,7 @@ There are a huge variety of rooms, suites, studios, apartments and so on. They a
 | Classic Double Room           | 16989 |
 | Superior  Double or Twin Room | 13570 |
 
-Finally, and this is delightful (because it didn't take much processing at all), you will be left with the following *useful* tags:
+最後に、これは非常に簡単な処理で（ほとんど処理を必要としませんでした）、以下の**有用な**タグが残ります：
 
 | Tag                                           | Count  |
 | --------------------------------------------- | ------ |
@@ -202,9 +207,9 @@ Finally, and this is delightful (because it didn't take much processing at all),
 | Family  with older children                   | 26349  |
 | With a  pet                                   | 1405   |
 
-You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+`Travellers with friends` は `Group` とほぼ同じ意味であると考えられるため、上記のように2つを統合するのが妥当です。正しいタグを特定するコードは[Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)にあります。
 
-The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag` 列が新しい列のいずれかと一致する場合は1を追加し、一致しない場合は0を追加します。最終結果は、ビジネス対レジャーのために、またはペットを連れて行くために、どれだけのレビュアーがこのホテルを選んだか（集計で）をカウントするものであり、これはホテルを推薦する際に有用な情報です。
+最終ステップは、これらのタグごとに新しい列を作成することです。そして、各レビュー行について、`Tag` 列が新しい列のいずれかに一致する場合は1を追加し、一致しない場合は0を追加します。その結果、例えばビジネス目的で選ばれたホテルの数や、レジャー目的で選ばれたホテルの数などを集計することができ、ホテルを推薦する際に有用な情報となります。
 
 ```python
 # Process the Tags into new columns
@@ -224,7 +229,7 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ### ファイルの保存
 
-最後に、現在のデータセットを新しい名前で保存します。
+最後に、現在の状態のデータセットを新しい名前で保存します。
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
@@ -236,11 +241,11 @@ df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 
 ## 感情分析の操作
 
-この最後のセクションでは、レビュー列に感情分析を適用し、結果をデータセットに保存します。
+この最終セクションでは、レビュー列に感情分析を適用し、その結果をデータセットに保存します。
 
 ## 演習: フィルタリングされたデータの読み込みと保存
 
-注意すべき点は、今は前のセクションで保存されたフィルタリングされたデータセットを読み込んでいることです。**元のデータセットではありません**。
+ここでは、元のデータセットではなく、前のセクションで保存したフィルタリング済みのデータセットを読み込みます。
 
 ```python
 import time
@@ -263,13 +268,13 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### ストップワードの削除
 
-ネガティブおよびポジティブレビュー列で感情分析を実行すると、時間がかかることがあります。高速なCPUを持つ強力なテストラップトップでテストしたところ、使用する感情ライブラリによって12〜14分かかりました。それは（比較的）長い時間なので、スピードアップできるかどうかを調査する価値があります。
+ネガティブおよびポジティブレビュー列で感情分析を実行すると、時間がかかる可能性があります。高速なCPUを搭載したテスト用ノートPCでテストしたところ、使用する感情分析ライブラリによって12～14分かかりました。これは（比較的）長い時間なので、速度を向上させる方法を検討する価値があります。
 
-ストップワード、つまり文の感情を変えない一般的な英語の単語を削除することが最初のステップです。これらを削除することで、感情分析はより速く実行されるはずですが、精度は低下しません（ストップワードは感情に影響を与えませんが、分析を遅くします）。
+最初のステップとして、ストップワード（英語の一般的な単語で、文の感情に影響を与えないもの）を削除します。これにより、感情分析の速度が向上するはずですが、精度が低下することはありません（ストップワードは感情に影響を与えませんが、分析を遅くします）。
 
-最も長いネガティブレビューは395単語でしたが、ストップワードを削除した後は195単語になりました。
+最も長いネガティブレビューは395語でしたが、ストップワードを削除すると195語になりました。
 
-ストップワードの削除も高速な操作であり、515,000行の2つのレビュー列からストップワードを削除するのに3.3秒かかりました。デバイスのCPU速度、RAM、SSDの有無、その他の要因により、若干の時間の違いがあるかもしれません。この操作が感情分析の時間を改善するならば、それは価値があります。
+ストップワードの削除も高速な操作であり、515,000行の2つのレビュー列からストップワードを削除するのに3.3秒かかりました。デバイスのCPU速度、RAM、SSDの有無、その他の要因によって若干の違いがあるかもしれませんが、操作が短時間で済むため、感情分析の時間が改善されるのであれば実行する価値があります。
 
 ```python
 from nltk.corpus import stopwords
@@ -293,9 +298,8 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 
 ### 感情分析の実行
 
-次に、ネガティブおよびポジティブレビュー列の感情分析を計算し、その結果を2つの新しい列に保存する必要があります。同じレビューに対するレビュアーのスコアと比較して感情をテストします。たとえば、感情分析がネガティブレビューの感情を1（非常にポジティブな感情）と判断し、ポジティブレビューの感情も1と判断したが、レビュアーがホテルに最低のスコアを与えた場合、レビューのテキストがスコアと一致していないか、感情分析が感情を正しく認識できなかった可能性があります。一部の感情スコアが完全に間違っていることを期待するべきであり、その理由は説明可能であることがよくあります。たとえば、レビューが非常に皮肉である場合、「もちろん、暖房のない部屋で寝るのが大好きでした」といった場合、感情分析はそれがポジティブな感情であると考えますが、人間が読むとそれが皮肉であることがわかります。
-
-NLTKは学習に使用できるさまざまな感情分析ツールを提供しており、それらを代替して感情がより正確かどうかを確認できます。ここではVADER感情分析が使用されています。
+次に、ネガティブおよびポジティブレビュー列の感情分析を計算し、その結果を2つの新しい列に保存します。感情のテストは、同じレビューに対するレビュアースコアと比較することです。例えば、感情分析がネガティブレビューの感情を1（非常にポジティブな感情）と判断し、ポジティブレビューの感情も1と判断したが、レビュアーがホテルに最低スコアを付けた場合、レビューのテキストがスコアと一致していないか、感情分析ツールが感情を正しく認識できなかった可能性があります。一部の感情スコアが完全に間違っていることを予想すべきであり、それはしばしば説明可能です。例えば、レビューが非常に皮肉的である場合（「もちろん、暖房のない部屋で寝るのが大好きでした」）は、感情分析ツールがそれをポジティブな感情と判断するかもしれませんが、人間が読めば皮肉であることがわかります。
+NLTKは、さまざまな感情分析ツールを提供しており、それらを置き換えて感情分析の精度が向上するかどうかを確認することができます。ここではVADER感情分析を使用しています。
 
 > Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
 
@@ -316,7 +320,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-プログラムの後半で感情を計算する準備ができたら、各レビューに次のように適用できます：
+プログラム内で感情を計算する準備が整ったら、以下のように各レビューに適用することができます。
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -328,7 +332,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-これは私のコンピュータで約120秒かかりますが、各コンピュータで異なります。結果を印刷して感情がレビューと一致するか確認したい場合：
+これには私のコンピュータで約120秒かかりますが、コンピュータによって異なります。結果を印刷して、感情がレビューと一致しているか確認したい場合は以下を実行してください。
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -337,7 +341,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-ファイルを使用する前に最後に行うことは、それを保存することです！また、新しい列をすべて再配置して、作業しやすくすることも検討してください（人間にとっては、これは見た目の変更です）。
+チャレンジでファイルを使用する前に最後に行うべきことは、ファイルを保存することです！また、新しい列をすべて並べ替えて、人間が扱いやすいようにすることを検討してください（見た目の変更です）。
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -347,31 +351,34 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-[分析ノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)の全コードを実行する必要があります（[フィルタリングノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)を実行してHotel_Reviews_Filtered.csvファイルを生成した後）。
+[分析ノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)のコード全体を実行する必要があります（[フィルタリングノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)を実行してHotel_Reviews_Filtered.csvファイルを生成した後）。
 
-手順を振り返ると：
+手順を振り返ると以下の通りです：
 
-1. 元のデータセットファイル **Hotel_Reviews.csv** は、[エクスプローラーノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)で前のレッスンで調査されました
-2. Hotel_Reviews.csv は [フィルタリングノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) によってフィルタリングされ、**Hotel_Reviews_Filtered.csv** になります
-3. Hotel_Reviews_Filtered.csv は [感情分析ノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) によって処理され、**Hotel_Reviews_NLP.csv** になります
-4. 以下のNLPチャレンジで Hotel_Reviews_NLP.csv を使用します
+1. 元のデータセットファイル **Hotel_Reviews.csv** は、前のレッスンで[エクスプローラーノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)を使用して調査されました。
+2. Hotel_Reviews.csv は[フィルタリングノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)によってフィルタリングされ、**Hotel_Reviews_Filtered.csv** が生成されます。
+3. Hotel_Reviews_Filtered.csv は[感情分析ノートブック](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)によって処理され、**Hotel_Reviews_NLP.csv** が生成されます。
+4. 以下のNLPチャレンジでHotel_Reviews_NLP.csvを使用します。
 
 ### 結論
 
-最初は、列とデータが含まれているデータセットがありましたが、そのすべてを検証したり使用したりすることはできませんでした。データを調査し、不要なものをフィルタリングし、タグを有用なものに変換し、独自の平均値を計算し、いくつかの感情列を追加し、自然言語処理について興味深いことを学びました。
+最初は列とデータが含まれたデータセットを持っていましたが、そのすべてが検証または使用できるわけではありませんでした。データを調査し、不要な部分をフィルタリングし、タグを有用なものに変換し、独自の平均値を計算し、感情に関する列を追加しました。そして、自然言語テキストを処理することについて興味深いことを学べたのではないでしょうか。
 
-## [事後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [講義後のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
 ## チャレンジ
 
-感情のためにデータセットを分析したので、このカリキュラムで学んだ戦略（クラスター分析など）を使用して、感情に関するパターンを特定できるか試してみてください。
+感情分析が完了したデータセットを使用して、このカリキュラムで学んだ戦略（例えばクラスタリング）を活用し、感情に関するパターンを特定してみてください。
 
 ## 復習と自己学習
 
-[このLearnモジュール](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)を取って、テキストの感情を探索するためのさまざまなツールを使用してみてください。
+[このLearnモジュール](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)を受講して、さらに学び、異なるツールを使用してテキストの感情を探求してください。
+
 ## 課題
 
-[別のデータセットを試してみてください](assignment.md)
+[別のデータセットを試してみる](assignment.md)
 
-**免責事項**:
-この文書は機械ベースのAI翻訳サービスを使用して翻訳されています。正確さを期すよう努めておりますが、自動翻訳には誤りや不正確さが含まれる可能性があることをご理解ください。原文はその言語での公式な文書とみなされるべきです。重要な情報については、専門の人間による翻訳をお勧めします。この翻訳の使用により生じた誤解や誤訳について、当社は一切の責任を負いません。
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期すよう努めておりますが、自動翻訳には誤りや不正確な表現が含まれる可能性があります。元の言語で記載された原文を公式な情報源としてご参照ください。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用に起因する誤解や誤認について、当方は一切の責任を負いません。

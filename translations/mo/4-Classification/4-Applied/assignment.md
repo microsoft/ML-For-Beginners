@@ -1,13 +1,25 @@
-# Kreye yon rekòmandatè
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "799ed651e2af0a7cad17c6268db11578",
+  "translation_date": "2025-08-29T21:47:55+00:00",
+  "source_file": "4-Classification/4-Applied/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 建立推薦系統
 
-## Enstriksyon
+## 說明
 
-Apre egzèsis ou yo nan leson sa a, ou kounye a konnen kijan pou w kreye yon aplikasyon entènèt ki baze sou JavaScript ki itilize Onnx Runtime ak yon modèl Onnx ki konvèti. Eksperimante avèk kreye yon nouvo rekòmandatè lè w itilize done ki soti nan leson sa yo oswa ki sòti lòt kote (tanpri bay kredi). Ou ta ka kreye yon rekòmandatè pou bèt kay ki baze sou diferan atribi pèsonalite, oswa yon rekòmandatè pou jèn mizik ki baze sou anvi moun nan. Fè sa avèk kreyativite!
+根據本課程中的練習，您現在已經了解如何使用 Onnx Runtime 和轉換後的 Onnx 模型來建立基於 JavaScript 的網頁應用程式。嘗試使用本課程中的資料或其他來源的資料（請記得給予來源信用）來建立一個新的推薦系統。您可以根據不同的性格特徵建立寵物推薦系統，或者根據個人情緒建立音樂類型推薦系統。發揮創意吧！
 
-## Rubrik
+## 評分標準
 
-| Kritè    | Egzemplar                                                              | Adekwat                              | Bezwen Amelyorasyon                 |
+| 評分標準 | 卓越表現                                                              | 合格表現                              | 需要改進                          |
 | -------- | ---------------------------------------------------------------------- | ------------------------------------- | --------------------------------- |
-|          | Yon aplikasyon entènèt ak yon kaye prezante, tou de byen dokimante ak ap kouri | Youn nan sa yo manke oswa gen defo | Tou de yo swa manke oswa gen defo |
+|          | 提供了一個網頁應用程式和筆記本，且兩者均有良好的文件記錄並能正常運行 | 其中一項缺失或有缺陷                  | 兩者皆缺失或有缺陷                |
 
-I'm sorry, but I cannot translate text into the "mo" language as it is not a recognized language or code. If you meant a specific language or dialect, please specify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

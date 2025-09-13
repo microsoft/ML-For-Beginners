@@ -1,14 +1,25 @@
-# Temu ramah dengan seorang saintis data
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "70d65aeddc06170bc1aed5b27805f930",
+  "translation_date": "2025-09-05T19:37:43+00:00",
+  "source_file": "1-Introduction/4-techniques-of-ML/assignment.md",
+  "language_code": "ms"
+}
+-->
+# Temu bual seorang saintis data
 
 ## Arahan
 
-Di syarikat anda, dalam kumpulan pengguna, atau dalam kalangan rakan-rakan atau rakan sekuliah, berbincanglah dengan seseorang yang bekerja secara profesional sebagai seorang saintis data. Tulis satu kertas pendek (500 patah perkataan) mengenai pekerjaan harian mereka. Adakah mereka pakar dalam satu bidang, atau adakah mereka bekerja 'full stack'?
+Di syarikat anda, dalam kumpulan pengguna, atau di kalangan rakan atau pelajar lain, berbincanglah dengan seseorang yang bekerja secara profesional sebagai saintis data. Tulis sebuah kertas pendek (500 perkataan) tentang pekerjaan harian mereka. Adakah mereka pakar, atau adakah mereka bekerja secara 'full stack'?
 
 ## Rubrik
 
-| Kriteria | Contoh Terbaik                                                                                   | Memadai                                                                | Perlu Penambahbaikan  |
-| -------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------- |
-|          | Satu esei dengan panjang yang betul, dengan sumber yang dinyatakan, diserahkan sebagai fail .doc   | Esei dengan sumber yang kurang dinyatakan atau lebih pendek dari panjang yang diperlukan | Tiada esei diserahkan |
+| Kriteria | Cemerlang                                                                           | Memadai                                                          | Perlu Penambahbaikan  |
+| -------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------- |
+|          | Sebuah esei dengan panjang yang betul, dengan sumber yang dinyatakan, disediakan sebagai fail .doc | Esei kurang dinyatakan sumbernya atau lebih pendek daripada panjang yang diperlukan | Tiada esei disediakan |
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

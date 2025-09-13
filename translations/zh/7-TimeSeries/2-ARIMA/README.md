@@ -1,46 +1,55 @@
-# ARIMA 时间序列预测
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T08:59:15+00:00",
+  "source_file": "7-TimeSeries/2-ARIMA/README.md",
+  "language_code": "zh"
+}
+-->
+# 使用 ARIMA 进行时间序列预测
 
-在上一节课中，你了解了一些时间序列预测的基础知识，并加载了一个显示某段时间内电力负载波动的数据集。
+在上一节课中，您学习了一些关于时间序列预测的知识，并加载了一个显示电力负载随时间波动的数据集。
 
-[![ARIMA 简介](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction to ARIMA")
+[![ARIMA 简介](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "ARIMA 简介")
 
-> 🎥 点击上面的图片观看视频：ARIMA 模型的简要介绍。示例使用 R 语言，但概念是通用的。
+> 🎥 点击上方图片观看视频：ARIMA 模型的简要介绍。示例使用 R 语言，但概念具有普适性。
 
-## [课前小测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [课前测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 简介
 
-在本课中，你将了解一种特定的构建模型的方法，即 [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)。ARIMA 模型特别适合拟合显示 [非平稳性](https://wikipedia.org/wiki/Stationary_process)的数据。
+在本节课中，您将学习一种特定的方法来构建 [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average) 模型。ARIMA 模型特别适合拟合显示 [非平稳性](https://wikipedia.org/wiki/Stationary_process) 的数据。
 
 ## 基本概念
 
-为了能够使用 ARIMA，有一些概念你需要了解：
+为了能够使用 ARIMA，您需要了解以下一些概念：
 
-- 🎓 **平稳性**。在统计学背景下，平稳性指的是数据的分布在时间上不变。非平稳数据则由于趋势而显示波动，必须通过转换来进行分析。例如，季节性可以引入数据波动，可以通过“季节性差分”过程来消除。
+- 🎓 **平稳性**。从统计学的角度来看，平稳性指的是分布在时间上不发生变化的数据。非平稳数据则由于趋势而出现波动，必须经过转换才能进行分析。例如，季节性可能会引入数据波动，可以通过“季节性差分”过程来消除。
 
-- 🎓 **[差分](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**。在统计学背景下，差分指的是通过移除非恒定趋势将非平稳数据转换为平稳数据的过程。“差分移除了时间序列中的水平变化，消除了趋势和季节性，从而稳定了时间序列的均值。” [Shixiong 等人的论文](https://arxiv.org/abs/1904.07632)
+- 🎓 **[差分](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**。差分数据是指从统计学角度将非平稳数据转换为平稳数据的过程，通过去除其非恒定趋势来实现。“差分消除了时间序列中的水平变化，消除了趋势和季节性，从而稳定了时间序列的均值。” [Shixiong 等人的论文](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA 在时间序列中的应用
 
-让我们拆解 ARIMA 的各个部分，以便更好地理解它如何帮助我们建模时间序列并进行预测。
+让我们拆解 ARIMA 的各个部分，以更好地理解它如何帮助我们对时间序列建模并进行预测。
 
-- **AR - 自回归**。自回归模型，顾名思义，是向“后”看，分析数据中的先前值并对其进行假设。这些先前值被称为“滞后”。例如，显示每月铅笔销售数据的数据集。每个月的销售总额将被视为数据集中的“演变变量”。该模型是“对其自身滞后（即先前）值进行回归”。[wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - 自回归**。顾名思义，自回归模型会“回溯”时间，分析数据中的先前值并对其进行假设。这些先前值称为“滞后”。例如，显示每月铅笔销售数据的时间序列。每个月的销售总额可以被视为数据集中的“演变变量”。该模型的构建方式是“将感兴趣的演变变量回归到其自身的滞后（即先前）值上。” [维基百科](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - 积分**。与类似的“ARMA”模型不同，ARIMA 中的“I”指的是其 *[积分](https://wikipedia.org/wiki/Order_of_integration)* 方面。通过应用差分步骤来消除非平稳性，数据被“积分”。
+- **I - 积分**。与类似的“ARMA”模型不同，ARIMA 中的“I”指的是其 *[积分](https://wikipedia.org/wiki/Order_of_integration)* 特性。通过应用差分步骤来消除非平稳性，从而使数据“积分化”。
 
-- **MA - 移动平均**。该模型的 [移动平均](https://wikipedia.org/wiki/Moving-average_model) 方面指的是通过观察当前和过去的滞后值来确定输出变量。
+- **MA - 移动平均**。该模型的 [移动平均](https://wikipedia.org/wiki/Moving-average_model) 部分指的是通过观察当前和过去的滞后值来确定输出变量。
 
-总而言之：ARIMA 被用来使模型尽可能紧密地拟合时间序列数据的特殊形式。
+总结：ARIMA 用于使模型尽可能贴合时间序列数据的特殊形式。
 
 ## 练习 - 构建 ARIMA 模型
 
-打开本课中的 [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) 文件夹，并找到 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) 文件。
+打开本节课中的 [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) 文件夹，找到 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) 文件。
 
-1. 运行 notebook 以加载 `statsmodels` Python 库；你将需要它来构建 ARIMA 模型。
+1. 运行 notebook 加载 `statsmodels` Python 库；您将需要它来构建 ARIMA 模型。
 
-1. 加载必要的库
+1. 加载必要的库。
 
-1. 现在，加载一些对绘图有用的库：
+1. 接下来，加载一些用于绘制数据的库：
 
     ```python
     import os
@@ -63,14 +72,14 @@
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. 将 `/data/energy.csv` 文件中的数据加载到 Pandas 数据框中并查看：
+1. 从 `/data/energy.csv` 文件中加载数据到 Pandas 数据框并查看：
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. 绘制 2012 年 1 月至 2014 年 12 月的所有可用能源数据。应该没有意外，因为我们在上一节课中看到了这些数据：
+1. 绘制 2012 年 1 月至 2014 年 12 月的所有可用能源数据。没有意外，因为我们在上一节课中已经看到过这些数据：
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -83,7 +92,7 @@
 
 ### 创建训练和测试数据集
 
-现在你的数据已经加载，可以将其分成训练集和测试集。你将用训练集来训练你的模型。像往常一样，模型训练完成后，你将使用测试集评估其准确性。你需要确保测试集覆盖比训练集晚的时间段，以确保模型不会从未来时间段获取信息。
+现在数据已加载，您可以将其分为训练集和测试集。您将在训练集上训练模型。与往常一样，模型训练完成后，您将使用测试集评估其准确性。您需要确保测试集覆盖的时间段晚于训练集，以确保模型不会从未来时间段中获取信息。
 
 1. 将 2014 年 9 月 1 日至 10 月 31 日的两个月分配给训练集。测试集将包括 2014 年 11 月 1 日至 12 月 31 日的两个月：
 
@@ -92,7 +101,7 @@
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    由于这些数据反映了每日能源消耗，存在明显的季节性模式，但最近几天的消耗最为相似。
+    由于这些数据反映了每日能源消耗，因此存在强烈的季节性模式，但消耗与最近几天的消耗最为相似。
 
 1. 可视化差异：
 
@@ -105,17 +114,17 @@
     plt.show()
     ```
 
-    ![训练和测试数据](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.zh.png)
+    ![训练和测试数据](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    因此，使用相对较小的时间窗口来训练数据应该是足够的。
+    因此，使用一个相对较小的时间窗口来训练数据应该是足够的。
 
-    > 注意：由于我们用来拟合 ARIMA 模型的函数在拟合过程中使用了样本内验证，我们将省略验证数据。
+    > 注意：由于我们用于拟合 ARIMA 模型的函数在拟合过程中使用了样本内验证，因此我们将省略验证数据。
 
-### 准备数据进行训练
+### 准备训练数据
 
-现在，你需要通过对数据进行过滤和缩放来准备训练数据。过滤数据集以仅包括所需的时间段和列，并缩放以确保数据在 0 到 1 之间。
+现在，您需要通过过滤和缩放数据来准备训练数据。过滤数据集以仅包含所需的时间段和列，并缩放数据以确保其投影在区间 0,1 内。
 
-1. 过滤原始数据集以仅包括上述时间段和所需的“load”列及日期：
+1. 过滤原始数据集，仅包含每个集合中上述时间段以及所需的“load”列和日期：
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -125,14 +134,14 @@
     print('Test data shape: ', test.shape)
     ```
 
-    你可以看到数据的形状：
+    您可以查看数据的形状：
 
     ```output
     Training data shape:  (1416, 1)
     Test data shape:  (48, 1)
     ```
 
-1. 将数据缩放到 0 到 1 的范围内。
+1. 将数据缩放到范围 (0, 1)。
 
     ```python
     scaler = MinMaxScaler()
@@ -140,7 +149,7 @@
     train.head(10)
     ```
 
-1. 可视化原始数据与缩放后的数据：
+1. 可视化原始数据与缩放数据：
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,15 +157,15 @@
     plt.show()
     ```
 
-    ![原始数据](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.zh.png)
+    ![原始数据](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > 原始数据
 
-    ![缩放后的数据](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.zh.png)
+    ![缩放数据](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
-    > 缩放后的数据
+    > 缩放数据
 
-1. 现在你已经校准了缩放后的数据，可以缩放测试数据：
+1. 现在您已经校准了缩放数据，可以对测试数据进行缩放：
 
     ```python
     test['load'] = scaler.transform(test)
@@ -165,23 +174,23 @@
 
 ### 实现 ARIMA
 
-现在是时候实现 ARIMA 了！你将使用之前安装的 `statsmodels` 库。
+现在是时候实现 ARIMA 了！您将使用之前安装的 `statsmodels` 库。
 
-现在你需要按照几个步骤进行
+接下来需要遵循几个步骤：
 
-   1. 通过调用 `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters.
-   2. Prepare the model for the training data by calling the fit() function.
-   3. Make predictions calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast.
+   1. 通过调用 `SARIMAX()` 并传入模型参数：p、d 和 q 参数，以及 P、D 和 Q 参数来定义模型。
+   2. 通过调用 `fit()` 函数为训练数据准备模型。
+   3. 通过调用 `forecast()` 函数并指定预测步数（即预测的时间范围）来进行预测。
 
-> 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
+> 🎓 这些参数的作用是什么？在 ARIMA 模型中，有 3 个参数用于帮助建模时间序列的主要方面：季节性、趋势和噪声。这些参数是：
 
-`p`: the parameter associated with the auto-regressive aspect of the model, which incorporates *past* values.
-`d`: the parameter associated with the integrated part of the model, which affects the amount of *differencing* (🎓 remember differencing 👆?) to apply to a time series.
-`q`: the parameter associated with the moving-average part of the model.
+`p`：与模型的自回归部分相关的参数，包含 *过去* 的值。
+`d`：与模型的积分部分相关的参数，影响应用于时间序列的 *差分*（🎓 记得差分 👆？）。
+`q`：与模型的移动平均部分相关的参数。
 
-> Note: If your data has a seasonal aspect - which this one does - , we use a seasonal ARIMA model (SARIMA). In that case you need to use another set of parameters: `P`, `D`, and `Q` which describe the same associations as `p`, `d`, and `q` 来定义模型，但对应于模型的季节性组件。
+> 注意：如果您的数据具有季节性特征（例如本数据），我们使用季节性 ARIMA 模型（SARIMA）。在这种情况下，您需要使用另一组参数：`P`、`D` 和 `Q`，它们与 `p`、`d` 和 `q` 的关联相同，但对应于模型的季节性部分。
 
-1. 首先设置你首选的 horizon 值。让我们尝试 3 小时：
+1. 首先设置您偏好的时间范围值。我们尝试 3 小时：
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -189,9 +198,9 @@
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    为 ARIMA 模型选择最佳参数值可能具有挑战性，因为它在某种程度上是主观且耗时的。你可以考虑使用 `auto_arima()` function from the [`pyramid` 库](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html)，
+    为 ARIMA 模型选择最佳参数值可能具有挑战性，因为它有些主观且耗时。您可以考虑使用 [`pyramid` 库](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html) 中的 `auto_arima()` 函数。
 
-1. 现在尝试一些手动选择以找到一个好的模型。
+1. 目前尝试一些手动选择以找到一个好的模型。
 
     ```python
     order = (4, 1, 0)
@@ -203,23 +212,23 @@
     print(results.summary())
     ```
 
-    打印出结果表格。
+    打印出结果表。
 
-你已经构建了你的第一个模型！现在我们需要找到一种方法来评估它。
+您已经构建了第一个模型！现在我们需要找到一种方法来评估它。
 
-### 评估你的模型
+### 评估您的模型
 
-为了评估你的模型，你可以进行所谓的 `walk forward` 验证。实际上，时间序列模型在每次新数据可用时都会重新训练。这允许模型在每个时间步长上做出最佳预测。
+为了评估您的模型，您可以执行所谓的 `逐步验证`。在实践中，每次有新数据可用时，时间序列模型都会重新训练。这使得模型能够在每个时间步进行最佳预测。
 
-使用这种技术从时间序列的开头开始，在训练数据集上训练模型。然后对下一个时间步长进行预测。预测结果与已知值进行评估。然后扩展训练集以包括已知值，并重复该过程。
+使用此技术从时间序列的开头开始，在训练数据集上训练模型。然后对下一个时间步进行预测。预测结果与已知值进行评估。然后扩展训练集以包含已知值，并重复该过程。
 
-> 注意：你应该保持训练集窗口固定，以便每次将新观察值添加到训练集中时，都从集开始移除观察值。
+> 注意：为了更高效地训练，您应该保持训练集窗口固定，这样每次向训练集中添加新观测值时，您都会从集合的开头移除观测值。
 
-此过程提供了模型在实际应用中的更稳健估计。然而，创建如此多的模型会带来计算成本。如果数据量小或模型简单，这是可以接受的，但在大规模应用中可能会成为问题。
+此过程提供了模型在实践中表现的更稳健估计。然而，这需要创建许多模型的计算成本。如果数据量较小或模型较简单，这是可以接受的，但在规模较大时可能会成为问题。
 
-步进验证是时间序列模型评估的黄金标准，推荐用于你自己的项目。
+逐步验证是时间序列模型评估的黄金标准，建议在您的项目中使用。
 
-1. 首先，为每个 HORIZON 步长创建一个测试数据点。
+1. 首先，为每个时间范围步创建一个测试数据点。
 
     ```python
     test_shifted = test.copy()
@@ -239,9 +248,9 @@
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    数据根据其 horizon 点水平移动。
+    数据根据其时间范围点水平移动。
 
-1. 使用这种滑动窗口方法对测试数据进行预测，循环大小为测试数据长度：
+1. 使用滑动窗口方法对测试数据进行预测，循环大小为测试数据长度：
 
     ```python
     %%time
@@ -271,7 +280,7 @@
         print(t+1, ': predicted =', yhat, 'expected =', obs)
     ```
 
-    你可以观看训练过程：
+    您可以观察训练过程：
 
     ```output
     2014-12-30 00:00:00
@@ -284,7 +293,7 @@
     3 : predicted = [0.27 0.28 0.32] expected = [0.2739480752014323, 0.26812891674127126, 0.3025962399283795]
     ```
 
-1. 比较预测值和实际负载：
+1. 将预测结果与实际负载进行比较：
 
     ```python
     eval_df = pd.DataFrame(predictions, columns=['t+'+str(t) for t in range(1, HORIZON+1)])
@@ -304,19 +313,19 @@
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-    观察每小时数据的预测值与实际负载。准确性如何？
+    观察每小时数据的预测结果，与实际负载进行比较。准确性如何？
 
 ### 检查模型准确性
 
-通过测试所有预测的平均绝对百分比误差（MAPE）来检查模型的准确性。
-
+通过测试所有预测的平均绝对百分比误差 (MAPE) 来检查模型的准确性。
 > **🧮 展示数学公式**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.zh.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) 用于显示预测准确性，定义如上公式。实际值<sub>t</sub>和预测值<sub>t</sub>之差除以实际值<sub>t</sub>。“在此计算中，每个预测点的绝对值之和除以拟合点数 n。” [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
-
-1. 用代码表达公式：
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) 用于以上述公式定义的比率显示预测准确性。实际值与预测值之间的差异除以实际值。
+>
+> “在此计算中，绝对值会对每个预测点进行求和，然后除以拟合点的数量 n。” [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+1. 用代码表示公式：
 
     ```python
     if(HORIZON > 1):
@@ -324,15 +333,15 @@
         print(eval_df.groupby('h')['APE'].mean())
     ```
 
-1. 计算一步的 MAPE：
+1. 计算单步预测的MAPE：
 
     ```python
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
     ```
 
-    一步预测 MAPE： 0.5570581332313952 %
+    单步预测的MAPE：0.5570581332313952 %
 
-1. 打印多步预测 MAPE：
+1. 打印多步预测的MAPE：
 
     ```python
     print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
@@ -342,9 +351,9 @@
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    一个较低的数值是最好的：考虑到一个预测 MAPE 为 10 的模型，误差为 10%。
+    一个较低的数值是最好的：请注意，如果预测的MAPE为10，则表示误差为10%。
 
-1. 但正如往常，视觉化这种准确性测量更容易，所以让我们绘制它：
+1. 但正如往常一样，这种准确性测量通过可视化更容易理解，所以让我们绘制一下：
 
     ```python
      if(HORIZON == 1):
@@ -372,25 +381,27 @@
     plt.show()
     ```
 
-    ![一个时间序列模型](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.zh.png)
+    ![时间序列模型](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 一个非常漂亮的图表，显示了一个准确性良好的模型。做得好！
+🏆 非常棒的图表，展示了一个具有良好准确性的模型。干得好！
 
 ---
 
 ## 🚀挑战
 
-深入研究测试时间序列模型准确性的方法。在本课中我们讨论了 MAPE，但还有其他方法可以使用吗？研究它们并注释。一份有用的文档可以在 [这里](https://otexts.com/fpp2/accuracy.html) 找到。
+深入研究测试时间序列模型准确性的方法。本课中我们提到了MAPE，但还有其他方法可以使用吗？研究它们并进行注释。可以参考[这份文档](https://otexts.com/fpp2/accuracy.html)。
 
-## [课后小测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [课后测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 复习与自学
 
-本课仅触及了使用 ARIMA 进行时间序列预测的基础知识。花些时间通过深入研究 [这个仓库](https://microsoft.github.io/forecasting/) 及其各种模型类型来加深你的知识，学习其他构建时间序列模型的方法。
+本课仅涉及ARIMA时间序列预测的基础知识。花些时间通过研究[这个仓库](https://microsoft.github.io/forecasting/)及其各种模型类型，深入了解其他构建时间序列模型的方法。
 
 ## 作业
 
-[一个新的 ARIMA 模型](assignment.md)
+[一个新的ARIMA模型](assignment.md)
 
-**免责声明**：
-本文件使用基于机器的人工智能翻译服务进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原文档的母语版本为权威来源。对于关键信息，建议寻求专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们不承担任何责任。
+---
+
+**免责声明**：  
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。因使用本翻译而导致的任何误解或误读，我们概不负责。

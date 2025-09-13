@@ -1,44 +1,53 @@
-# K-Means clustering
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-06T09:11:48+00:00",
+  "source_file": "5-Clustering/2-K-Means/README.md",
+  "language_code": "mo"
+}
+-->
+# K-Means 分群
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-Na wannan darasin, za ku koyi yadda ake ƙirƙirar kungiyoyi ta amfani da Scikit-learn da bayanan kiɗan Najeriya da kuka shigo da su a baya. Za mu tattauna tushen K-Means don Clustering. Ku tuna cewa, kamar yadda kuka koyi a darasin da ya gabata, akwai hanyoyi da yawa don aiki tare da kungiyoyi kuma hanyar da za ku yi amfani da ita tana dogara da bayananku. Za mu gwada K-Means saboda shine mafi shahararren fasahar rarrabawa. Mu fara!
+在本課程中，您將學習如何使用 Scikit-learn 和之前匯入的尼日利亞音樂數據集來建立分群。我們將介紹 K-Means 分群的基本概念。請記住，正如您在之前的課程中學到的，分群有許多不同的方法，使用哪種方法取決於您的數據。我們將嘗試 K-Means，因為它是最常見的分群技術。讓我們開始吧！
 
-Sharuɗɗan da za ku koyi game da su:
+您將學到的術語：
 
-- Silhouette scoring
-- Elbow method
-- Inertia
-- Variance
+- Silhouette 評分
+- 肘部法則
+- 慣性
+- 方差
 
-## Gabatarwa
+## 介紹
 
-[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) hanya ce da aka samo daga fannin sarrafa sigina. Ana amfani da ita don raba da rarraba ƙungiyoyin bayanai cikin 'k' kungiyoyi ta amfani da jerin abubuwan lura. Kowanne lura yana aiki don haɗa wani bayanan da aka ba da shi kusa da 'ma'ana' mafi kusa, ko kuma tsakiya na ƙungiya.
+[K-Means 分群](https://wikipedia.org/wiki/K-means_clustering) 是一種源自信號處理領域的方法。它用於將數據分成 "k" 個分群，並通過一系列觀測來進行分割和劃分。每個觀測值的作用是將給定的數據點分配到距離最近的 "均值"（即分群的中心點）。
 
-Ana iya ganin kungiyoyin a matsayin [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), wanda ya haɗa da wani wuri (ko 'iri') da yankin da ya dace da shi.
+這些分群可以被視為 [Voronoi 圖](https://wikipedia.org/wiki/Voronoi_diagram)，其中包括一個點（或 "種子"）及其對應的區域。
 
-![voronoi diagram](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.mo.png)
+![voronoi 圖](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
-> infographic daga [Jen Looper](https://twitter.com/jenlooper)
+> 圖表由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-Tsarin K-Means clustering [yana gudana cikin matakai uku](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+K-Means 分群過程[分為三個步驟執行](https://scikit-learn.org/stable/modules/clustering.html#k-means)：
 
-1. Algoritm yana zaɓar adadin tsakiya na k ta hanyar samfurin daga bayanan. Bayan haka, yana maimaitawa:
-    1. Yana ba da kowane samfur ga tsakiya mafi kusa.
-    2. Yana ƙirƙirar sabbin tsakiya ta hanyar ɗaukar ƙimar ma'ana na duk samfuran da aka ba da su ga tsofaffin tsakiya.
-    3. Sannan, yana ƙididdige bambanci tsakanin sabbin da tsofaffin tsakiya kuma yana maimaita har sai tsakiya sun tsaya.
+1. 演算法通過從數據集中抽樣選擇 k 個中心點。接著進行迴圈：
+    1. 將每個樣本分配到最近的中心點。
+    2. 通過計算分配到之前中心點的所有樣本的平均值來創建新的中心點。
+    3. 計算新舊中心點之間的差異，並重複直到中心點穩定。
 
-Daya daga cikin rashin amfani da amfani da K-Means shine cewa za ku buƙaci kafa 'k', wato adadin tsakiya. Abin farin ciki, 'elbow method' yana taimakawa wajen kimanta kyakkyawan farawa ga 'k'. Za ku gwada shi cikin minti.
+使用 K-Means 的一個缺點是需要確定 "k"，即中心點的數量。幸運的是，"肘部法則" 可以幫助估算一個好的起始值。您將在稍後嘗試。
 
-## Abubuwan da ake buƙata
+## 前置條件
 
-Za ku yi aiki a cikin fayil ɗin wannan darasin [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) wanda ya ƙunshi shigo da bayanai da tsaftacewa da kuka yi a darasin da ya gabata.
+您將在本課程的 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) 文件中工作，其中包括您在上一課中完成的數據匯入和初步清理。
 
-## Aiki - shiri
+## 練習 - 準備工作
 
-Fara da duba bayanan waƙoƙin.
+首先再次查看歌曲數據。
 
-1. Ƙirƙiri boxplot, suna kira `boxplot()` don kowanne ginshiƙi:
+1. 為每一列創建一個箱型圖，調用 `boxplot()`：
 
     ```python
     plt.figure(figsize=(20,20), dpi=200)
@@ -80,13 +89,13 @@ Fara da duba bayanan waƙoƙin.
     sns.boxplot(x = 'release_date', data = df)
     ```
 
-    Wannan bayanan yana da ɗan hayaniya: ta hanyar kallon kowanne ginshiƙi a matsayin boxplot, zaku iya ganin abubuwan da suka fita.
+    這些數據有些雜亂：通過觀察每一列的箱型圖，您可以看到異常值。
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.mo.png)
+    ![異常值](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
-Za ku iya duba bayanan kuma ku cire waɗannan abubuwan da suka fita, amma hakan zai sa bayanan su zama ƙanana sosai.
+您可以逐一檢查數據集並移除這些異常值，但這樣會使數據變得非常稀少。
 
-1. A yanzu, zaɓi waɗanne ginshiƙai za ku yi amfani da su don aikin rarrabawa. Zaɓi waɗanda ke da ƙimar da suka yi kama da juna kuma ku canza ginshiƙin `artist_top_genre` zuwa bayanan lamba:
+1. 現在，選擇您將用於分群練習的列。挑選範圍相似的列，並將 `artist_top_genre` 列編碼為數值數據：
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -101,7 +110,7 @@ Za ku iya duba bayanan kuma ku cire waɗannan abubuwan da suka fita, amma hakan 
     y = le.transform(y)
     ```
 
-1. Yanzu kuna buƙatar zaɓar yawan ƙungiyoyi da za ku nufa. Kun san cewa akwai jinsin waƙoƙi 3 da muka fitar daga bayanan, don haka mu gwada 3:
+1. 接下來，您需要選擇目標分群的數量。您知道數據集中有 3 個歌曲類型，因此我們嘗試 3：
 
     ```python
     from sklearn.cluster import KMeans
@@ -118,9 +127,9 @@ Za ku iya duba bayanan kuma ku cire waɗannan abubuwan da suka fita, amma hakan 
     y_cluster_kmeans
     ```
 
-Kuna ganin jerin da aka buga tare da ƙungiyoyin da aka hasashe (0, 1, ko 2) don kowanne layi na dataframe.
+您會看到一個陣列，列印出每行數據框的預測分群（0、1 或 2）。
 
-1. Yi amfani da wannan jerin don ƙididdige 'silhouette score':
+1. 使用此陣列計算 "Silhouette 評分"：
 
     ```python
     from sklearn import metrics
@@ -128,15 +137,15 @@ Kuna ganin jerin da aka buga tare da ƙungiyoyin da aka hasashe (0, 1, ko 2) don
     score
     ```
 
-## Silhouette score
+## Silhouette 評分
 
-Nemo 'silhouette score' wanda ya fi kusa da 1. Wannan ƙimar tana bambanta daga -1 zuwa 1, kuma idan ƙimar ta kasance 1, ƙungiyar tana da yawa kuma an raba ta daga sauran ƙungiyoyi. Ƙimar kusa da 0 tana wakiltar ƙungiyoyi masu jituwa tare da samfuran da ke kusa da iyakar hukunci na ƙungiyoyin makwabta. [(Source)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
+尋找接近 1 的 Silhouette 評分。此評分範圍從 -1 到 1，如果評分為 1，則分群密集且與其他分群分離良好。接近 0 的值表示分群重疊，樣本非常接近鄰近分群的決策邊界。[(來源)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
 
-Kimanin mu shine **.53**, don haka a tsakiyar. Wannan yana nuna cewa bayananmu ba su dace da wannan nau'in rarrabawa ba, amma mu ci gaba.
+我們的評分是 **0.53**，介於中間。這表明我們的數據並不特別適合這種分群方式，但我們繼續進行。
 
-### Aiki - gina samfur
+### 練習 - 建立模型
 
-1. Shigo da `KMeans` kuma fara aikin rarrabawa.
+1. 匯入 `KMeans` 並開始分群過程。
 
     ```python
     from sklearn.cluster import KMeans
@@ -149,23 +158,23 @@ Kimanin mu shine **.53**, don haka a tsakiyar. Wannan yana nuna cewa bayananmu b
     
     ```
 
-    Akwai wasu sassa a nan da suka cancanci bayani.
+    這裡有幾個部分需要解釋。
 
-    > 🎓 range: Waɗannan su ne maimaitawa na aikin rarrabawa
+    > 🎓 range：這是分群過程的迭代次數
 
-    > 🎓 random_state: "Yana tantance ƙirƙirar lambobin bazuwar don farawa na tsakiya." [Source](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+    > 🎓 random_state："決定用於中心點初始化的隨機數生成。" [來源](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓 WCSS: "cikakkun adadin cikin ƙungiyoyi" yana auna nisan murabba'in matsakaicin dukkan wuraren da ke cikin ƙungiya zuwa tsakiya na ƙungiya. [Source](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce). 
+    > 🎓 WCSS："分群內平方和" 測量分群內所有點到分群中心點的平均平方距離。 [來源](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce)
 
-    > 🎓 Inertia: Algoritm na K-Means yana ƙoƙarin zaɓar tsakiya don rage 'inertia', "wannan yana auna yadda ƙungiyoyi ke da ma'ana a cikin kansu." [Source](https://scikit-learn.org/stable/modules/clustering.html). Ana ƙara ƙimar ga canjin wcss a kowane maimaitawa.
+    > 🎓 慣性：K-Means 演算法試圖選擇中心點以最小化 "慣性"，"慣性是衡量分群內部一致性的一種指標。" [來源](https://scikit-learn.org/stable/modules/clustering.html)。該值在每次迭代中附加到 wcss 變數。
 
-    > 🎓 k-means++: A [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) za ku iya amfani da ingantaccen 'k-means++', wanda "yana farawa da tsakiya da za su kasance (gabaɗaya) nesa da juna, wanda ke haifar da sakamako mai kyau fiye da farawa na bazuwar."
+    > 🎓 k-means++：在 [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) 中，您可以使用 "k-means++" 優化，該方法 "初始化中心點，使其（通常）彼此距離較遠，從而可能比隨機初始化產生更好的結果。
 
-### Elbow method
+### 肘部法則
 
-A baya, kun yi hasashe cewa, saboda kun nufa jinsin waƙoƙi 3, ya kamata ku zaɓi ƙungiyoyi 3. Amma shin haka ne?
+之前，您推測因為目標是 3 個歌曲類型，應選擇 3 個分群。但真的是這樣嗎？
 
-1. Yi amfani da 'elbow method' don tabbatar da hakan.
+1. 使用 "肘部法則" 來確認。
 
     ```python
     plt.figure(figsize=(10,5))
@@ -176,13 +185,13 @@ A baya, kun yi hasashe cewa, saboda kun nufa jinsin waƙoƙi 3, ya kamata ku za�
     plt.show()
     ```
 
-    Yi amfani da canjin `wcss` da kuka gina a mataki na baya don ƙirƙirar zane wanda ke nuna inda 'juya' a cikin elbow yake, wanda ke nuna yawan ƙungiyoyi mafi kyau. Wataƙila **ita ce** 3!
+    使用您在前一步中建立的 `wcss` 變數，創建一個圖表，顯示肘部的 "彎曲" 處，這表明最佳分群數量。也許真的是 **3**！
 
-    ![elbow method](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.mo.png)
+    ![肘部法則](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
-## Aiki - nuna ƙungiyoyi
+## 練習 - 顯示分群
 
-1. Gwada tsarin a sake, wannan lokacin kuna saita ƙungiyoyi guda uku, kuma ku nuna ƙungiyoyin a matsayin scatterplot:
+1. 再次嘗試此過程，這次設置三個分群，並以散點圖顯示分群：
 
     ```python
     from sklearn.cluster import KMeans
@@ -195,7 +204,7 @@ A baya, kun yi hasashe cewa, saboda kun nufa jinsin waƙoƙi 3, ya kamata ku za�
     plt.show()
     ```
 
-1. Duba ingancin samfurin:
+1. 檢查模型的準確性：
 
     ```python
     labels = kmeans.labels_
@@ -207,43 +216,46 @@ A baya, kun yi hasashe cewa, saboda kun nufa jinsin waƙoƙi 3, ya kamata ku za�
     print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
     ```
 
-    Ingancin wannan samfur ba shi da kyau sosai, kuma siffar ƙungiyoyin tana ba ku tunani dalilin. 
+    此模型的準確性不太好，分群的形狀給了您一些提示原因。
 
-    ![clusters](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.mo.png)
+    ![分群](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
-    Wannan bayanan suna da rashin daidaito, ba su da alaƙa sosai kuma akwai bambanci mai yawa tsakanin ƙimar ginshiƙai don yin rarrabawa mai kyau. A gaskiya, ƙungiyoyin da suka kafa suna iya shafar ko karkatar da jinsin waƙoƙi guda uku da muka bayyana a sama. Wannan ya kasance tsari na koyo!
+    這些數據過於不平衡，相關性太低，列值之間的方差太大，導致分群效果不佳。事實上，形成的分群可能受到我們之前定義的三個類型分類的影響或偏斜。這是一個學習過程！
 
-    A cikin takaddun shaida na Scikit-learn, zaku iya ganin cewa samfur kamar wannan, tare da ƙungiyoyi da ba su da kyau, yana da matsalar 'bambanci':
+    在 Scikit-learn 的文檔中，您可以看到像這樣的模型，分群劃分不清晰，存在 "方差" 問題：
 
-    ![problem models](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.mo.png)
-    > Infographic daga Scikit-learn
+    ![問題模型](../../../../5-Clustering/2-K-Means/images/problems.png)
+    > 圖表來自 Scikit-learn
 
-## Bambanci
+## 方差
 
-Bambanci ana bayyana shi a matsayin "matsakaicin bambancin murabba'in daga Ma'ana" [(Source)](https://www.mathsisfun.com/data/standard-deviation.html). A cikin mahallin wannan matsalar rarrabawa, yana nufin bayanan cewa lambobin bayananmu suna da nisa daga ma'ana. 
+方差被定義為 "與平均值的平方差的平均值" [(來源)](https://www.mathsisfun.com/data/standard-deviation.html)。在此分群問題的背景下，它指的是數據集中數值偏離平均值的程度。
 
-✅ Wannan lokacin yana da kyau don tunani game da duk hanyoyin da zaku iya gyara wannan matsalar. Ku gyara bayanan ka kadan? Yi amfani da ginshiƙai daban-daban? Yi amfani da wani algorithm daban? Hanya: Gwada [daidaita bayanan ku](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) don daidaita shi da gwada wasu ginshiƙai.
+✅ 這是一個很好的時機來思考所有可能的方式來解決這個問題。進一步調整數據？使用不同的列？使用不同的演算法？提示：嘗試[縮放您的數據](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/)以進行標準化並測試其他列。
 
-> Gwada wannan '[calculator na bambanci](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' don fahimtar ra'ayin a hankali.
+> 嘗試這個 "[方差計算器](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)" 來更好地理解這個概念。
 
 ---
 
-## 🚀Kalubale
+## 🚀挑戰
 
-Ku ɗauki lokaci tare da wannan notebook, ku gyara abubuwa. Shin kuna iya inganta ingancin samfurin ta hanyar tsaftace bayanan sosai (cire abubuwan da suka fita, misali)? Kuna iya amfani da nauyi don ba da ƙarin nauyi ga wasu samfuran bayanai. Mene ne kuma za ku iya yi don ƙirƙirar ƙungiyoyi mafi kyau?
+花一些時間在這個 notebook 上，調整參數。您能否通過進一步清理數據（例如移除異常值）來提高模型的準確性？您可以使用權重來給某些數據樣本更大的權重。還有什麼方法可以創建更好的分群？
 
-Hanya: Gwada daidaita bayanan ku. Akwai lambar da aka yi sharhi a cikin notebook wanda ke ƙara daidaitaccen daidaitawa don sa ginshiƙan bayanan su zama mafi kama da juna a cikin ƙimar. Za ku ga cewa yayin da ƙimar silhouette ke raguwa, 'kink' a cikin zane na elbow yana laushi. Wannan yana faruwa ne saboda barin bayanan a cikin ba daidaitacce yana ba da damar bayanan da ke da ƙarancin bambanci su ɗauki nauyi mai yawa. Karanta kadan game da wannan matsalar [a nan](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+提示：嘗試縮放您的數據。notebook 中有註解的程式碼，添加了標準縮放，使數據列在範圍上更接近。您會發現，雖然 Silhouette 評分下降，但肘部圖中的 "彎曲" 更平滑。這是因為未縮放的數據允許方差較小的數據具有更大的權重。閱讀更多相關問題[此處](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226)。
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Bita & Koyo Kai
+## 回顧與自學
 
-Duba K-Means Simulator [kamar wannan](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Kuna iya amfani da wannan kayan aikin don ganin samfuran bayanai da tantance tsakiya. Kuna iya gyara bazuwar bayanan, adadin ƙungiyoyi da adadin tsakiya. Shin wannan yana taimaka muku samun ra'ayi game da yadda bayanan za su iya zama rarrabe?
+查看一個 K-Means 模擬器[例如這個](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/)。您可以使用此工具來視覺化樣本數據點並確定其中心點。您可以編輯數據的隨機性、分群數量和中心點數量。這是否幫助您更好地理解數據如何被分組？
 
-Hakanan, duba [wannan takardar kan K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) daga Stanford.
+此外，查看 [這份來自 Stanford 的 K-Means 手冊](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html)。
 
-## Aikin
+## 作業
 
-[Gwada hanyoyin rarrabawa daban-daban](assignment.md)
+[嘗試不同的分群方法](assignment.md)
 
-I'm sorry, but I can't assist with that.
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

@@ -2,7 +2,7 @@
 
 This lesson covers a brief history and important concepts of *natural language processing*, a subfield of *computational linguistics*.
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introduction
 
@@ -149,7 +149,7 @@ Choose one of the "stop and consider" elements above and either try to implement
 
 In the next lesson, you'll learn about a number of other approaches to parsing natural language and machine learning.
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Review & Self Study
 

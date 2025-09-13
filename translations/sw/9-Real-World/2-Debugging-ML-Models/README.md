@@ -1,118 +1,178 @@
-# Postscript: Urekebishaji wa Modeli katika Kujifunza kwa Mashine kwa kutumia Vipengele vya dashibodi ya AI inayowajibika
- 
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "df2b538e8fbb3e91cf0419ae2f858675",
+  "translation_date": "2025-09-05T15:53:25+00:00",
+  "source_file": "9-Real-World/2-Debugging-ML-Models/README.md",
+  "language_code": "sw"
+}
+-->
+# Postscript: Uchanganuzi wa Modeli ya Kujifunza kwa Mashine kwa kutumia Vipengele vya Dashibodi ya AI Inayowajibika
 
-## [Jaribio la awali ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
- 
+## [Maswali ya awali ya somo](https://ff-quizzes.netlify.app/en/ml/)
+
 ## Utangulizi
 
-Kujifunza kwa mashine kunaathiri maisha yetu ya kila siku. AI inajipenyeza katika baadhi ya mifumo muhimu zaidi inayotugusa kama watu binafsi na jamii yetu, kutoka afya, fedha, elimu, na ajira. Kwa mfano, mifumo na modeli zinahusika katika kazi za kila siku za kufanya maamuzi, kama vile utambuzi wa afya au kugundua ulaghai. Matokeo yake, maendeleo katika AI pamoja na kupitishwa kwa kasi yanakutana na matarajio yanayobadilika ya jamii na kanuni zinazokua kwa kujibu. Tunapata maeneo ambapo mifumo ya AI inaendelea kukosa matarajio; wanaonyesha changamoto mpya; na serikali zinaanza kudhibiti suluhisho za AI. Kwa hivyo, ni muhimu kwamba modeli hizi zichambuliwe ili kutoa matokeo ya haki, ya kuaminika, yanayojumuisha, wazi, na yanayowajibika kwa kila mtu.
+Kujifunza kwa mashine kunaathiri maisha yetu ya kila siku. AI inajipenyeza katika baadhi ya mifumo muhimu zaidi inayotugusa sisi kama watu binafsi na jamii yetu, kama vile afya, fedha, elimu, na ajira. Kwa mfano, mifumo na modeli zinahusika katika kazi za maamuzi ya kila siku, kama vile utambuzi wa magonjwa au kugundua udanganyifu. Kwa sababu ya maendeleo ya AI na kasi ya matumizi yake, matarajio ya kijamii yanabadilika na kanuni zinakua. Tunaendelea kuona maeneo ambapo mifumo ya AI inakosa matarajio; inafichua changamoto mpya; na serikali zinaanza kudhibiti suluhisho za AI. Kwa hivyo, ni muhimu kwamba modeli hizi zichunguzwe ili kutoa matokeo ya haki, ya kuaminika, ya kujumuisha, ya uwazi, na yenye uwajibikaji kwa kila mtu.
 
-Katika mtaala huu, tutaangalia zana za vitendo zinazoweza kutumika kutathmini kama modeli ina masuala ya AI inayowajibika. Mbinu za jadi za kurekebisha kujifunza kwa mashine zinategemea hesabu za kiasi kama vile usahihi wa jumla au upotevu wa makosa wa wastani. Fikiria kinachoweza kutokea wakati data unayotumia kujenga modeli hizi inakosa baadhi ya idadi ya watu, kama vile rangi, jinsia, mtazamo wa kisiasa, dini, au inawakilisha idadi hiyo kwa uwiano usio sawa. Je, vipi kuhusu wakati matokeo ya modeli yanapotafsiriwa kupendelea idadi fulani ya watu? Hii inaweza kuanzisha uwakilishi wa ziada au pungufu wa makundi haya nyeti ya vipengele na kusababisha masuala ya haki, ujumuishaji, au uaminifu kutoka kwa modeli. Sababu nyingine ni, modeli za kujifunza kwa mashine zinachukuliwa kuwa masanduku meusi, jambo ambalo linawafanya kuwa magumu kuelewa na kuelezea nini kinachoendesha utabiri wa modeli. Haya yote ni changamoto zinazowakabili wataalamu wa data na watengenezaji wa AI wanapokosa zana za kutosha za kurekebisha na kutathmini haki au uaminifu wa modeli.
+Katika mtaala huu, tutachunguza zana za vitendo zinazoweza kutumika kutathmini ikiwa modeli ina masuala ya AI inayowajibika. Mbinu za jadi za uchanganuzi wa modeli za kujifunza kwa mashine mara nyingi zinategemea hesabu za kiasi kama vile usahihi wa jumla au hasara ya makosa ya wastani. Fikiria kinachoweza kutokea wakati data unayotumia kujenga modeli hizi inakosa baadhi ya demografia, kama vile rangi, jinsia, mtazamo wa kisiasa, dini, au inawakilisha demografia hizo kwa uwiano usio sawa. Je, kuhusu pale ambapo matokeo ya modeli yanatafsiriwa kupendelea demografia fulani? Hii inaweza kuanzisha uwakilishi wa kupita kiasi au wa chini wa makundi haya nyeti, na kusababisha masuala ya haki, ujumuishaji, au uaminifu kutoka kwa modeli. Sababu nyingine ni kwamba modeli za kujifunza kwa mashine zinachukuliwa kuwa "masanduku meusi," jambo linalofanya iwe vigumu kuelewa na kueleza kinachosababisha utabiri wa modeli. Haya yote ni changamoto ambazo wanasayansi wa data na watengenezaji wa AI wanakabiliana nazo wanapokosa zana za kutosha za kuchunguza na kutathmini haki au uaminifu wa modeli.
 
-Katika somo hili, utajifunza kuhusu kurekebisha modeli zako kwa kutumia:
+Katika somo hili, utajifunza kuhusu kuchunguza modeli zako kwa kutumia:
 
--	**Uchambuzi wa Makosa**: tambua ni wapi katika usambazaji wa data yako modeli ina viwango vya juu vya makosa.
--	**Muhtasari wa Modeli**: fanya uchambuzi wa kulinganisha katika vikundi tofauti vya data ili kugundua tofauti katika vipimo vya utendaji wa modeli yako.
--	**Uchambuzi wa Data**: chunguza ni wapi kunaweza kuwa na uwakilishi wa ziada au pungufu wa data yako ambao unaweza kupotosha modeli yako kupendelea idadi moja ya watu kuliko nyingine.
--	**Umuhimu wa Vipengele**: elewa ni vipengele vipi vinaendesha utabiri wa modeli yako kwa kiwango cha jumla au cha ndani.
+- **Uchanganuzi wa Makosa**: Tambua maeneo katika usambazaji wa data yako ambapo modeli ina viwango vya juu vya makosa.
+- **Muhtasari wa Modeli**: Fanya uchanganuzi wa kulinganisha kati ya makundi tofauti ya data ili kugundua tofauti katika vipimo vya utendaji wa modeli yako.
+- **Uchanganuzi wa Data**: Chunguza maeneo ambapo kuna uwakilishi wa kupita kiasi au wa chini wa data yako, jambo linaloweza kupotosha modeli yako kupendelea demografia moja dhidi ya nyingine.
+- **Umuhimu wa Vipengele**: Elewa ni vipengele gani vinavyoendesha utabiri wa modeli yako kwa kiwango cha jumla au cha ndani.
 
-## Sharti
+## Mahitaji ya awali
 
-Kama sharti, tafadhali angalia [Zana za AI inayowajibika kwa watengenezaji](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
+Kama mahitaji ya awali, tafadhali pitia [Zana za AI Inayowajibika kwa watengenezaji](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
 
-> ![Gif kuhusu Zana za AI inayowajibika](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
+> ![Gif kuhusu Zana za AI Inayowajibika](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
-## Uchambuzi wa Makosa
+## Uchanganuzi wa Makosa
 
-Vipimo vya utendaji wa modeli vya jadi vinavyotumika kupima usahihi mara nyingi ni hesabu zinazotegemea utabiri sahihi dhidi ya usio sahihi. Kwa mfano, kuamua kuwa modeli ni sahihi kwa 89% ya wakati na upotevu wa makosa wa 0.001 inaweza kuchukuliwa kuwa utendaji mzuri. Makosa mara nyingi hayasambazwi kwa usawa katika seti yako ya data ya msingi. Unaweza kupata alama ya usahihi ya modeli ya 89% lakini kugundua kuwa kuna maeneo tofauti ya data yako ambayo modeli inashindwa kwa 42% ya wakati. Matokeo ya mifumo hii ya kushindwa na makundi fulani ya data yanaweza kusababisha masuala ya haki au uaminifu. Ni muhimu kuelewa maeneo ambapo modeli inafanya vizuri au la. Maeneo ya data ambapo kuna idadi kubwa ya kutokua sahihi katika modeli yako yanaweza kuwa idadi muhimu ya data.  
+Vipimo vya jadi vya utendaji wa modeli vinavyotumika kupima usahihi mara nyingi ni hesabu zinazotegemea utabiri sahihi dhidi ya usio sahihi. Kwa mfano, kuamua kwamba modeli ni sahihi kwa 89% ya muda na ina hasara ya makosa ya 0.001 inaweza kuchukuliwa kuwa utendaji mzuri. Makosa mara nyingi hayajasambazwa kwa usawa katika seti yako ya data. Unaweza kupata alama ya usahihi ya 89% ya modeli lakini kugundua kwamba kuna maeneo tofauti ya data yako ambapo modeli inashindwa kwa 42% ya muda. Matokeo ya mifumo hii ya kushindwa na makundi fulani ya data yanaweza kusababisha masuala ya haki au uaminifu. Ni muhimu kuelewa maeneo ambapo modeli inafanya vizuri au vibaya. Maeneo ya data ambapo kuna idadi kubwa ya makosa katika modeli yako yanaweza kuwa demografia muhimu ya data.
 
-![Chambua na rekebisha makosa ya modeli](../../../../translated_images/ea-error-distribution.117452e1177c1dd84fab2369967a68bcde787c76c6ea7fdb92fcf15d1fce8206.sw.png)
+![Changanua na chunguza makosa ya modeli](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
 
-Kipengele cha Uchambuzi wa Makosa kwenye dashibodi ya RAI kinaonyesha jinsi kushindwa kwa modeli kunavyosambazwa katika vikundi mbalimbali kwa kutumia mchanganuo wa mti. Hii ni muhimu katika kutambua vipengele au maeneo yenye viwango vya juu vya makosa katika seti yako ya data. Kwa kuona ni wapi makosa mengi ya modeli yanatokea, unaweza kuanza kuchunguza sababu kuu. Unaweza pia kuunda vikundi vya data kufanya uchambuzi juu yake. Vikundi hivi vya data husaidia katika mchakato wa kurekebisha ili kubaini kwa nini utendaji wa modeli ni mzuri katika kundi moja, lakini si sahihi katika kundi jingine.   
+Sehemu ya Uchanganuzi wa Makosa kwenye dashibodi ya RAI inaonyesha jinsi kushindwa kwa modeli kunavyosambazwa katika makundi mbalimbali kwa kutumia taswira ya mti. Hii ni muhimu katika kutambua vipengele au maeneo ambapo kuna kiwango cha juu cha makosa katika seti yako ya data. Kwa kuona mahali ambapo makosa mengi ya modeli yanatoka, unaweza kuanza kuchunguza chanzo chake. Unaweza pia kuunda makundi ya data ili kufanya uchanganuzi. Makundi haya ya data husaidia katika mchakato wa uchanganuzi ili kuamua kwa nini utendaji wa modeli ni mzuri katika kundi moja lakini una makosa katika jingine.
 
-![Uchambuzi wa Makosa](../../../../translated_images/ea-error-cohort.6886209ea5d438c4daa8bfbf5ce3a7042586364dd3eccda4a4e3d05623ac702a.sw.png)
+![Uchanganuzi wa Makosa](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
 
-Viashiria vya kuona kwenye ramani ya mti husaidia katika kupata maeneo yenye tatizo haraka. Kwa mfano, kivuli cha rangi nyekundu kilicho giza zaidi kwenye nodi ya mti, ndivyo kiwango cha makosa kinavyokuwa juu zaidi.  
+Viashiria vya taswira kwenye ramani ya mti husaidia katika kutambua maeneo yenye matatizo haraka. Kwa mfano, kivuli cha rangi nyekundu kilicho giza zaidi kwenye nodi ya mti kinaonyesha kiwango cha juu cha makosa.
 
-Ramani ya joto ni kipengele kingine cha kuona ambacho watumiaji wanaweza kutumia kuchunguza kiwango cha makosa kwa kutumia kipengele kimoja au viwili ili kupata mchango wa makosa ya modeli katika seti nzima ya data au vikundi.
+Ramani ya joto ni kipengele kingine cha taswira ambacho watumiaji wanaweza kutumia kuchunguza kiwango cha makosa kwa kutumia kipengele kimoja au viwili ili kupata mchango wa makosa ya modeli katika seti nzima ya data au makundi.
 
-![Ramani ya Joto ya Uchambuzi wa Makosa](../../../../translated_images/ea-heatmap.8d27185e28cee3830c85e1b2e9df9d2d5e5c8c940f41678efdb68753f2f7e56c.sw.png)
+![Ramani ya joto ya Uchanganuzi wa Makosa](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
 
-Tumia uchambuzi wa makosa unapohitaji:
+Tumia uchanganuzi wa makosa unapohitaji:
 
-* Kupata ufahamu wa kina juu ya jinsi kushindwa kwa modeli kunavyosambazwa katika seti ya data na katika vipengele mbalimbali vya ingizo na vipengele.
-* Kuvunja vipimo vya utendaji wa jumla ili kugundua moja kwa moja vikundi vya makosa ili kuarifu hatua zako za kurekebisha zilizolengwa.
+* Kupata uelewa wa kina wa jinsi kushindwa kwa modeli kunavyosambazwa katika seti ya data na vipengele kadhaa vya ingizo.
+* Kuvunja vipimo vya utendaji wa jumla ili kugundua makundi yenye makosa kwa njia ya kiotomatiki ili kuarifu hatua zako za kupunguza.
 
 ## Muhtasari wa Modeli
 
-Kutathmini utendaji wa modeli ya kujifunza kwa mashine kunahitaji kupata uelewa wa jumla wa tabia yake. Hii inaweza kupatikana kwa kupitia zaidi ya kipimo kimoja kama vile kiwango cha makosa, usahihi, kumbukumbu, usahihi, au MAE (Makosa ya Wastani wa Absolute) ili kupata tofauti kati ya vipimo vya utendaji. Kipimo kimoja cha utendaji kinaweza kuonekana kizuri, lakini kutokua sahihi kunaweza kufichuliwa katika kipimo kingine. Zaidi ya hayo, kulinganisha vipimo kwa tofauti katika seti nzima ya data au vikundi husaidia kutoa mwanga juu ya wapi modeli inafanya vizuri au la. Hii ni muhimu hasa katika kuona utendaji wa modeli kati ya vipengele nyeti dhidi ya visivyo nyeti (mfano, rangi ya mgonjwa, jinsia, au umri) ili kugundua uwezekano wa kutokua na haki ambao modeli inaweza kuwa nao. Kwa mfano, kugundua kuwa modeli ni sahihi zaidi katika kundi lenye vipengele nyeti kunaweza kufichua uwezekano wa kutokua na haki ambao modeli inaweza kuwa nao.
+Kutathmini utendaji wa modeli ya kujifunza kwa mashine kunahitaji kupata uelewa wa jumla wa tabia yake. Hii inaweza kufanyika kwa kupitia zaidi ya kipimo kimoja kama vile kiwango cha makosa, usahihi, kumbukumbu, usahihi, au MAE (Makosa ya Wastani ya Kawaida) ili kupata tofauti kati ya vipimo vya utendaji. Kipimo kimoja cha utendaji kinaweza kuonekana kizuri, lakini makosa yanaweza kufichuliwa katika kipimo kingine. Aidha, kulinganisha vipimo kwa tofauti katika seti nzima ya data au makundi husaidia kufichua maeneo ambapo modeli inafanya vizuri au vibaya. Hii ni muhimu hasa katika kuona utendaji wa modeli kati ya vipengele nyeti dhidi ya visivyo nyeti (mfano, rangi ya mgonjwa, jinsia, au umri) ili kufichua uwezekano wa kutokuwa na haki ambao modeli inaweza kuwa nao. Kwa mfano, kugundua kwamba modeli ina makosa zaidi katika kundi lenye vipengele nyeti kunaweza kufichua uwezekano wa kutokuwa na haki ambao modeli inaweza kuwa nao.
 
-Kipengele cha Muhtasari wa Modeli kwenye dashibodi ya RAI husaidia sio tu katika kuchambua vipimo vya utendaji wa uwakilishi wa data katika kundi, lakini inawapa watumiaji uwezo wa kulinganisha tabia ya modeli katika vikundi tofauti.
+Sehemu ya Muhtasari wa Modeli kwenye dashibodi ya RAI husaidia si tu katika kuchanganua vipimo vya utendaji wa uwakilishi wa data katika kundi, lakini pia inawapa watumiaji uwezo wa kulinganisha tabia ya modeli katika makundi tofauti.
 
-![Vikundi vya Dataset - muhtasari wa modeli kwenye dashibodi ya RAI](../../../../translated_images/model-overview-dataset-cohorts.dfa463fb527a35a0afc01b7b012fc87bf2cad756763f3652bbd810cac5d6cf33.sw.png)
+![Makundi ya seti ya data - muhtasari wa modeli kwenye dashibodi ya RAI](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
 
-Kipengele cha uchambuzi wa msingi wa vipengele cha kipengele hiki kinawaruhusu watumiaji kupunguza vikundi vidogo vya data ndani ya kipengele fulani ili kutambua hali zisizo za kawaida kwa kiwango cha kina. Kwa mfano, dashibodi ina akili iliyojengwa ndani ya kiotomatiki kuunda vikundi kwa kipengele kilichochaguliwa na mtumiaji (mfano, *"time_in_hospital < 3"* au *"time_in_hospital >= 7"*). Hii inamruhusu mtumiaji kutenganisha kipengele fulani kutoka kwa kundi kubwa la data ili kuona kama ni mshawishi mkuu wa matokeo yasiyo sahihi ya modeli.
+Kipengele cha uchanganuzi wa msingi wa vipengele cha sehemu hii kinawaruhusu watumiaji kupunguza makundi ya data ndani ya kipengele fulani ili kutambua kasoro kwa kiwango cha kina. Kwa mfano, dashibodi ina akili ya kujengwa ndani ya kiotomatiki ya kuunda makundi kwa kipengele kilichochaguliwa na mtumiaji (mfano, *"time_in_hospital < 3"* au *"time_in_hospital >= 7"*). Hii inamwezesha mtumiaji kutenga kipengele fulani kutoka kwa kundi kubwa la data ili kuona ikiwa ni mshawishi muhimu wa matokeo yenye makosa ya modeli.
 
-![Vikundi vya Vipengele - muhtasari wa modeli kwenye dashibodi ya RAI](../../../../translated_images/model-overview-feature-cohorts.c5104d575ffd0c80b7ad8ede7703fab6166bfc6f9125dd395dcc4ace2f522f70.sw.png)
+![Makundi ya vipengele - muhtasari wa modeli kwenye dashibodi ya RAI](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
 
-Kipengele cha Muhtasari wa Modeli kinasaidia aina mbili za vipimo vya tofauti:
+Sehemu ya Muhtasari wa Modeli inaunga mkono aina mbili za vipimo vya tofauti:
 
-**Tofauti katika utendaji wa modeli**: Seti hizi za vipimo zinahesabu tofauti (tofauti) katika maadili ya kipimo cha utendaji kilichochaguliwa katika vikundi vya data. Hapa kuna mifano michache:
+**Tofauti katika utendaji wa modeli**: Vipimo hivi vinahesabu tofauti (tofauti) katika thamani za kipimo cha utendaji kilichochaguliwa katika makundi ya data. Hapa kuna mifano michache:
 
 * Tofauti katika kiwango cha usahihi
 * Tofauti katika kiwango cha makosa
 * Tofauti katika usahihi
 * Tofauti katika kumbukumbu
-* Tofauti katika makosa ya wastani wa absolute (MAE)
+* Tofauti katika makosa ya wastani ya kawaida (MAE)
 
-**Tofauti katika kiwango cha uteuzi**: Kipimo hiki kina tofauti katika kiwango cha uteuzi (utabiri mzuri) kati ya vikundi. Mfano wa hii ni tofauti katika viwango vya idhini ya mkopo. Kiwango cha uteuzi kinamaanisha sehemu ya pointi za data katika kila darasa zilizoainishwa kama 1 (katika uainishaji wa binary) au usambazaji wa maadili ya utabiri (katika regression).
+**Tofauti katika kiwango cha uteuzi**: Kipimo hiki kina tofauti katika kiwango cha uteuzi (utabiri mzuri) kati ya makundi. Mfano wa hili ni tofauti katika viwango vya idhini ya mkopo. Kiwango cha uteuzi kinamaanisha sehemu ya alama za data katika kila darasa zilizoorodheshwa kama 1 (katika uainishaji wa binary) au usambazaji wa thamani za utabiri (katika regression).
 
-## Uchambuzi wa Data
+## Uchanganuzi wa Data
 
-> "Ukitesa data kwa muda mrefu vya kutosha, itakiri chochote" - Ronald Coase
+> "Ukitesa data vya kutosha, itakiri chochote" - Ronald Coase
 
-Kauli hii inasikika kali, lakini ni kweli kwamba data inaweza kudanganywa kuunga mkono hitimisho lolote. Udanganyifu kama huo wakati mwingine unaweza kutokea bila kukusudia. Kama wanadamu, sote tuna upendeleo, na mara nyingi ni vigumu kujua kwa ufahamu wakati unaleta upendeleo katika data. Kuhakikisha haki katika AI na kujifunza kwa mashine bado ni changamoto ngumu. 
+Kauli hii inaonekana kali, lakini ni kweli kwamba data inaweza kudanganywa ili kuunga mkono hitimisho lolote. Udanganyifu kama huo wakati mwingine unaweza kutokea bila kukusudia. Kama binadamu, sote tuna upendeleo, na mara nyingi ni vigumu kujua kwa makusudi wakati unaleta upendeleo katika data. Kuhakikisha haki katika AI na kujifunza kwa mashine bado ni changamoto ngumu.
 
-Data ni kipofu kikubwa kwa vipimo vya jadi vya utendaji wa modeli. Unaweza kuwa na alama za juu za usahihi, lakini hii haionyeshi kila mara upendeleo wa msingi wa data ambao unaweza kuwa katika seti yako ya data. Kwa mfano, ikiwa seti ya data ya wafanyakazi ina 27% ya wanawake katika nafasi za utendaji katika kampuni na 73% ya wanaume katika ngazi hiyo hiyo, modeli ya matangazo ya kazi ya AI iliyofundishwa kwenye data hii inaweza kulenga zaidi hadhira ya kiume kwa nafasi za kazi za ngazi za juu. Kuwa na uwiano huu wa data kulipotosha utabiri wa modeli kupendelea jinsia moja. Hii inaonyesha tatizo la haki ambapo kuna upendeleo wa kijinsia katika modeli ya AI.  
+Data ni eneo kubwa la upofu kwa vipimo vya jadi vya utendaji wa modeli. Unaweza kuwa na alama za usahihi wa juu, lakini hii haionyeshi kila mara upendeleo wa msingi wa data ambao unaweza kuwa katika seti yako ya data. Kwa mfano, ikiwa seti ya data ya wafanyakazi ina 27% ya wanawake katika nafasi za utendaji katika kampuni na 73% ya wanaume katika kiwango sawa, modeli ya AI ya kutangaza kazi iliyofunzwa kwenye data hii inaweza kulenga zaidi hadhira ya kiume kwa nafasi za kazi za ngazi ya juu. Kuwa na usawa huu katika data kulipotosha utabiri wa modeli kupendelea jinsia moja. Hii inaonyesha suala la haki ambapo kuna upendeleo wa kijinsia katika modeli ya AI.
 
-Kipengele cha Uchambuzi wa Data kwenye dashibodi ya RAI husaidia kutambua maeneo ambapo kuna uwakilishi wa ziada au pungufu katika seti ya data. Husaidia watumiaji kutambua sababu kuu za makosa na masuala ya haki yanayoletwa na uwiano wa data au ukosefu wa uwakilishi wa kundi fulani la data. Hii inawapa watumiaji uwezo wa kuona seti za data kulingana na matokeo yaliyotabiriwa na halisi, vikundi vya makosa, na vipengele maalum. Wakati mwingine kugundua kundi la data lililowakilishwa kidogo kunaweza pia kufichua kuwa modeli haijifunzi vizuri, hivyo makosa mengi. Kuwa na modeli ambayo ina upendeleo wa data sio tu tatizo la haki lakini inaonyesha kuwa modeli haijumuishi au haijakubalika.
+Sehemu ya Uchanganuzi wa Data kwenye dashibodi ya RAI husaidia kutambua maeneo ambapo kuna uwakilishi wa kupita kiasi au wa chini katika seti ya data. Inasaidia watumiaji kugundua chanzo cha makosa na masuala ya haki yanayoletwa na usawa wa data au ukosefu wa uwakilishi wa kundi fulani la data. Hii inawapa watumiaji uwezo wa kutazama seti za data kulingana na matokeo yaliyotabiriwa na halisi, makundi ya makosa, na vipengele maalum. Wakati mwingine kugundua kundi la data lisilowakilishwa vizuri kunaweza pia kufichua kwamba modeli haijifunzi vizuri, hivyo makosa ya juu. Kuwa na modeli yenye upendeleo wa data si tu suala la haki bali inaonyesha kwamba modeli si ya kujumuisha au ya kuaminika.
 
-![Kipengele cha Uchambuzi wa Data kwenye Dashibodi ya RAI](../../../../translated_images/dataanalysis-cover.8d6d0683a70a5c1e274e5a94b27a71137e3d0a3b707761d7170eb340dd07f11d.sw.png)
+![Sehemu ya Uchanganuzi wa Data kwenye Dashibodi ya RAI](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
 
+Tumia uchanganuzi wa data unapohitaji:
 
-Tumia uchambuzi wa data unapohitaji:
-
-* Kuchunguza takwimu za seti yako ya data kwa kuchagua vichujio tofauti ili kugawanya data yako katika vipimo tofauti (inayojulikana pia kama vikundi).
-* Kuelewa usambazaji wa seti yako ya data katika vikundi tofauti na makundi ya vipengele.
-* Kuamua kama matokeo yako yanayohusiana na haki, uchambuzi wa makosa, na uhusiano (yanayotokana na vipengele vingine vya dashibodi) ni matokeo ya usambazaji wa seti yako ya data.
-* Kuamua ni maeneo gani ya kukusanya data zaidi ili kupunguza makosa yanayotokana na masuala ya uwakilishi, kelele za lebo, kelele za vipengele, upendeleo wa lebo, na mambo yanayofanana.
+* Kuchunguza takwimu za seti yako ya data kwa kuchagua vichujio tofauti ili kugawanya data yako katika vipimo tofauti (pia vinajulikana kama makundi).
+* Kuelewa usambazaji wa seti yako ya data katika makundi tofauti na vikundi vya vipengele.
+* Kuamua ikiwa matokeo yako yanayohusiana na haki, uchanganuzi wa makosa, na usababishi (yanayotokana na vipengele vingine vya dashibodi) ni matokeo ya usambazaji wa seti yako ya data.
+* Kuamua maeneo ya kukusanya data zaidi ili kupunguza makosa yanayotokana na masuala ya uwakilishi, kelele za lebo, kelele za vipengele, upendeleo wa lebo, na mambo yanayofanana.
 
 ## Ufafanuzi wa Modeli
 
-Modeli za kujifunza kwa mashine zinapokuwa masanduku meusi. Kuelewa ni vipengele vipi vya data muhimu vinaendesha utabiri wa modeli inaweza kuwa changamoto. Ni muhimu kutoa uwazi kuhusu kwa nini modeli inatoa utabiri fulani. Kwa mfano, ikiwa mfumo wa AI unatabiri kuwa mgonjwa wa kisukari yuko hatarini kurudi hospitalini ndani ya siku 30, inapaswa kutoa data inayounga mkono ambayo ilisababisha utabiri wake. Kuwa na viashiria vya data vinavyounga mkono kunaleta uwazi kusaidia madaktari au hospitali kufanya maamuzi sahihi. Zaidi ya hayo, kuwa na uwezo wa kuelezea kwa nini modeli ilifanya utabiri kwa mgonjwa binafsi inasaidia uwajibikaji kwa kanuni za afya. Unapotumia modeli za kujifunza kwa mashine kwa njia zinazogusa maisha ya watu, ni muhimu kuelewa na kuelezea ni nini kinachoathiri tabia ya modeli. Ufafanuzi na ufafanuzi wa modeli husaidia kujibu maswali katika hali kama:
+Modeli za kujifunza kwa mashine mara nyingi huchukuliwa kuwa masanduku meusi. Kuelewa ni vipengele gani muhimu vya data vinavyoendesha utabiri wa modeli inaweza kuwa changamoto. Ni muhimu kutoa uwazi kuhusu kwa nini modeli inatoa utabiri fulani. Kwa mfano, ikiwa mfumo wa AI unatabiri kwamba mgonjwa mwenye kisukari yuko katika hatari ya kurudi hospitalini ndani ya siku 30, unapaswa kuwa na uwezo wa kutoa data inayounga mkono utabiri wake. Kuwa na viashiria vya data vinavyounga mkono huleta uwazi ili kusaidia madaktari au hospitali kufanya maamuzi yaliyojengwa vizuri. Aidha, kuwa na uwezo wa kueleza kwa nini modeli ilitoa utabiri kwa mgonjwa mmoja mmoja huwezesha uwajibikaji kwa kanuni za afya. Unapotumia modeli za kujifunza kwa mashine kwa njia zinazogusa maisha ya watu, ni muhimu kuelewa na kueleza kinachosababisha tabia ya modeli. Ufafanuzi na uelewa wa modeli husaidia kujibu maswali katika hali kama:
 
-* Kurekebisha modeli: Kwa nini modeli yangu ilikosea? Ninawezaje kuboresha modeli yangu?
+* Uchanganuzi wa modeli: Kwa nini modeli yangu ilifanya kosa hili? Ninawezaje kuboresha modeli yangu?
 * Ushirikiano wa binadamu na AI: Ninawezaje kuelewa na kuamini maamuzi ya modeli?
-* Kufuata kanuni: Je, modeli yangu inakidhi mahitaji ya kisheria?
+* Uzingatiaji wa kanuni: Je, modeli yangu inakidhi mahitaji ya kisheria?
 
-Kipengele cha Umuhimu wa Vipengele cha dashibodi ya RAI kinakusaidia kurekebisha na kupata uelewa wa kina wa jinsi modeli inavyotoa utabiri. Pia ni zana muhimu kwa wataalamu wa kujifunza kwa mashine na watoa maamuzi kuelezea na kuonyesha ushahidi wa vipengele vinavyoathiri tabia ya modeli kwa kufuata kanuni. Kisha, watumiaji wanaweza kuchunguza maelezo ya jumla na ya ndani kuthibitisha ni vipengele vipi vinaendesha utabiri wa modeli. Maelezo ya jumla yanaorodhesha vipengele vya juu vilivyoathiri utabiri wa jumla wa modeli. Maelezo ya ndani yanaonyesha ni vipengele vipi vilivyopelekea utabiri wa modeli kwa kesi ya mtu binafsi. Uwezo wa kutathmini maelezo ya ndani pia ni muhimu katika kurekebisha au kukagua kesi maalum ili kuelewa vizuri na kufafanua kwa nini modeli ilitoa utabiri sahihi au usio sahihi. 
+Sehemu ya Umuhimu wa Vipengele kwenye dashibodi ya RAI inakusaidia kuchunguza na kupata uelewa wa kina wa jinsi modeli inavyotoa utabiri. Pia ni zana muhimu kwa wataalamu wa kujifunza kwa mashine na watoa maamuzi kueleza na kuonyesha ushahidi wa vipengele vinavyoathiri tabia ya modeli kwa kufuata kanuni. Watumiaji wanaweza kuchunguza maelezo ya jumla na ya ndani ili kuthibitisha ni vipengele gani vinavyoendesha utabiri wa modeli. Maelezo ya jumla yanaorodhesha vipengele vya juu vilivyoathiri utabiri wa jumla wa modeli. Maelezo ya ndani yanaonyesha ni vipengele gani vilisababisha utabiri wa modeli kwa kesi moja. Uwezo wa kutathmini maelezo ya ndani pia ni muhimu katika kuchunguza au kukagua kesi maalum ili kuelewa na kufafanua kwa nini modeli ilitoa utabiri sahihi au usio sahihi.
 
-![Kipengele cha Umuhimu wa Vipengele cha dashibodi ya RAI](../../../../translated_images/9-feature-importance.cd3193b4bba3fd4bccd415f566c2437fb3298c4824a3dabbcab15270d783606e.sw.png)
+![Sehemu ya Umuhimu wa Vipengele kwenye Dashibodi ya RAI](../../../../9-Real-World/2-Debugging-ML-Models/images/9-feature-importance.png)
 
-* Maelezo ya jumla: Kwa mfano, ni vipengele gani vinavyoathiri tabia ya jumla ya modeli ya kurudi hospitalini kwa kisukari?
-* Maelezo ya ndani: Kwa mfano, kwa nini mgonjwa wa kisukari aliye na umri wa zaidi ya miaka 60 na aliye na historia ya kulazwa hospitalini alitabiriwa kurudi au kutorudi hospitalini ndani ya siku 30?
+* Maelezo ya jumla: Kwa mfano, ni vipengele gani vinavyoathiri tabia ya jumla ya modeli ya kurudi hospitalini kwa wagonjwa wenye kisukari?
+* Maelezo ya ndani: Kwa mfano, kwa nini mgonjwa mwenye kisukari mwenye umri wa zaidi ya miaka 60 na aliye na historia ya kulazwa hospitalini alitabiriwa kurudi au kutorudi hospitalini ndani ya siku 30?
 
-Katika mchakato wa kurekebisha utendaji wa modeli katika vikundi tofauti, Umuhimu wa Vipengele unaonyesha ni kiwango gani cha athari kipengele kinacho katika vikundi. Husaidia kufichua hali zisizo za kawaida wakati wa kulinganisha kiwango cha ushawishi kipengele kinacho katika kuendesha utabiri wa makosa ya modeli. Kipengele cha Umuhimu wa Vipengele kinaweza kuonyesha ni maadili gani katika kipengele yaliyoathiri utabiri wa modeli kwa njia nzuri au mbaya. Kwa mfano, ikiwa modeli ilitoa utabiri usio sahihi, kipengele hiki kinatoa uwezo wa kuchambua na kugundua ni vipengele vipi au maadili ya vipengele yaliyoendesha utabiri huo. Kiwango hiki cha kina husaidia sio tu katika kurekebisha lakini pia hutoa uwazi na uwajibikaji katika hali za ukaguzi. Hatimaye, kipengele hiki kinaweza kukusaidia kutambua masuala ya haki. Kwa mfano, ikiwa kipengele nyeti kama vile kabila au jinsia kina ushawishi mkubwa katika kuendesha utabiri wa modeli, hii inaweza kuwa ishara ya upendeleo wa rangi au jinsia katika modeli.
+Katika mchakato wa kuchunguza utendaji wa modeli katika makundi tofauti, Umuhimu wa Vipengele unaonyesha kiwango cha athari kipengele kinacholeta katika makundi hayo. Husaidia kufichua kasoro wakati wa kulinganisha kiwango cha ushawishi kipengele kinacholeta katika kuendesha utabiri wenye makosa wa modeli. Sehemu ya Umuhimu wa Vipengele inaweza kuonyesha ni thamani gani katika kipengele zilizoathiri kwa njia chanya au hasi matokeo ya modeli. Kwa mfano, ikiwa modeli ilitoa utabiri usio sahihi, sehemu hii inakupa uwezo wa kuchunguza kwa kina na kubaini ni vipengele au thamani za vipengele vilivyoendesha utabiri huo. Kiwango hiki cha maelezo husaidia si tu katika uchanganuzi bali pia hutoa uwazi na uwajibikaji katika hali za ukaguzi. Hatimaye, sehemu hii inaweza kukusaidia kutambua masuala ya haki. Kwa mfano, ikiwa kipengele nyeti kama vile kabila au jinsia kina ushawishi mkubwa katika kuendesha utabiri wa modeli, hii inaweza kuwa ishara ya upendeleo wa rangi au jinsia katika modeli.
 
-![Umuhimu wa vipengele](../../../../translated_images/9-features-influence.3ead3d3f68a84029f1e40d3eba82107445d3d3b6975d4682b23d8acc905da6d0.sw.png)
+![Umuhimu wa vipengele](../../../../9-Real-World/2-Debugging-ML-Models/images/9-features-influence.png)
 
-Tumia ufafanuzi unapohitaji:
+Tumia uelewa wa modeli unapohitaji:
 
-* Kuamua jinsi utabiri wa mfumo wako wa AI unavyoweza kuaminika kwa kuelewa ni vipengele vipi vilivyo muhimu zaidi kwa utabiri.
-* Kuanza kurekebisha modeli yako kwa kuelewa kwanza na kutambua kama modeli inatumia vipengele vyenye afya au uhusiano wa uongo tu.
-* Kugundua vyanzo vya uwezekano wa kutokua na haki kwa kuelewa kama modeli inategemea vipengele nyeti au vipengele vinavyohusiana sana navyo.
-* Kujenga imani ya mtumiaji katika maamuzi ya modeli yako kwa kutoa maelezo ya ndani ili kuelezea matokeo yao.
-* Kukamilisha uk
+* Kuamua jinsi utabiri wa mfumo wako wa AI unavyoweza kuaminika kwa kuelewa ni vipengele gani vilivyo muhimu zaidi kwa utabiri.
+* Kukaribia uchanganuzi wa modeli yako kwa kuielewa kwanza na kutambua ikiwa modeli inatumia vipengele vyenye afya au tu uhusiano wa uwongo.
+* Kufichua vyanzo vya uwezekano wa kutokuwa na haki kwa kuelewa ikiwa modeli inategemea vipengele nyeti au vipengele vinavyohusiana sana navyo.
+* Kujenga uaminifu wa mtumiaji katika maamuzi ya modeli yako kwa kutoa maelezo ya ndani ili kuonyesha matokeo yake.
+* Kukamilisha ukaguzi wa kanuni wa mfumo wa AI ili kuthibitisha modeli na kufuatilia athari za maamuzi ya modeli kwa binadamu.
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotegemea mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kuwa chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kibinadamu ya kitaalamu inapendekezwa. Hatutawajibika kwa maelewano mabaya au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+## Hitimisho
+
+Vipengele vyote vya dashibodi ya RAI ni zana za vitendo zinazokusaidia kujenga modeli za kujifunza kwa mashine ambazo ni salama zaidi na zinazoaminika
+- **Uwiano wa kupita kiasi au wa chini**. Wazo ni kwamba kundi fulani halionekani katika taaluma fulani, na huduma au kazi yoyote inayozidi kuendeleza hali hiyo inachangia madhara.
+
+### Dashibodi ya Azure RAI
+
+[Dashibodi ya Azure RAI](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) imejengwa kwa kutumia zana za chanzo huria zilizotengenezwa na taasisi za kitaaluma na mashirika yanayoongoza, ikiwemo Microsoft. Zana hizi ni muhimu kwa wanasayansi wa data na watengenezaji wa AI ili kuelewa vyema tabia ya modeli, kugundua na kupunguza masuala yasiyofaa kutoka kwa modeli za AI.
+
+- Jifunze jinsi ya kutumia vipengele tofauti kwa kuangalia [hati za dashibodi ya RAI.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
+
+- Angalia baadhi ya [notibuku za mfano za dashibodi ya RAI](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) kwa ajili ya kutatua changamoto za AI inayowajibika zaidi katika Azure Machine Learning.
+
+---
+## 🚀 Changamoto
+
+Ili kuzuia upendeleo wa takwimu au data kuingizwa tangu mwanzo, tunapaswa:
+
+- kuwa na utofauti wa asili na mitazamo miongoni mwa watu wanaofanya kazi kwenye mifumo
+- kuwekeza katika seti za data zinazowakilisha utofauti wa jamii yetu
+- kuendeleza mbinu bora za kugundua na kurekebisha upendeleo unapojitokeza
+
+Fikiria hali halisi ambapo kutokuwa sawa kunaonekana katika ujenzi na matumizi ya modeli. Ni mambo gani mengine tunapaswa kuzingatia?
+
+## [Jaribio baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
+## Mapitio na Kujisomea
+
+Katika somo hili, umejifunza baadhi ya zana za vitendo za kuingiza AI inayowajibika katika ujifunzaji wa mashine.
+
+Tazama warsha hii ili kuchunguza zaidi mada hizi:
+
+- Dashibodi ya AI Inayowajibika: Duka moja kwa kuendesha RAI kwa vitendo na Besmira Nushi na Mehrnoosh Sameki
+
+[![Dashibodi ya AI Inayowajibika: Duka moja kwa kuendesha RAI kwa vitendo](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Dashibodi ya AI Inayowajibika: Duka moja kwa kuendesha RAI kwa vitendo na Besmira Nushi na Mehrnoosh Sameki")
+
+> 🎥 Bofya picha hapo juu kwa video: Dashibodi ya AI Inayowajibika: Duka moja kwa kuendesha RAI kwa vitendo na Besmira Nushi na Mehrnoosh Sameki
+
+Rejelea nyenzo zifuatazo ili kujifunza zaidi kuhusu AI inayowajibika na jinsi ya kujenga modeli zinazoweza kuaminika zaidi:
+
+- Zana za dashibodi ya RAI za Microsoft kwa kutatua changamoto za modeli za ML: [Rasilimali za zana za AI inayowajibika](https://aka.ms/rai-dashboard)
+
+- Chunguza zana za AI inayowajibika: [Github](https://github.com/microsoft/responsible-ai-toolbox)
+
+- Kituo cha rasilimali cha RAI cha Microsoft: [Rasilimali za AI Inayowajibika – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+
+- Kikundi cha utafiti cha FATE cha Microsoft: [FATE: Uadilifu, Uwajibikaji, Uwazi, na Maadili katika AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+
+## Kazi
+
+[Chunguza dashibodi ya RAI](assignment.md)
+
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

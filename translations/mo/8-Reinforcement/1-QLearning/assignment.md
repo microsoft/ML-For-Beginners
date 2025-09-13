@@ -1,29 +1,41 @@
-# Un Monde Plus Réaliste
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "68394b2102d3503882e5e914bd0ff5c1",
+  "translation_date": "2025-08-29T22:10:31+00:00",
+  "source_file": "8-Reinforcement/1-QLearning/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 更真實的世界
 
-Dans notre situation, Peter pouvait se déplacer presque sans se fatiguer ni avoir faim. Dans un monde plus réaliste, il doit s'asseoir et se reposer de temps en temps, et aussi se nourrir. Rendre notre monde plus réaliste en mettant en œuvre les règles suivantes :
+在我們的情境中，Peter 幾乎可以不感到疲倦或飢餓地四處移動。在一個更真實的世界中，他需要時不時地坐下休息，並且需要進食。讓我們通過實現以下規則，使這個世界更加真實：
 
-1. En se déplaçant d'un endroit à un autre, Peter perd de **l'énergie** et accumule de la **fatigue**.
-2. Peter peut regagner de l'énergie en mangeant des pommes.
-3. Peter peut se débarrasser de la fatigue en se reposant sous un arbre ou sur l'herbe (c'est-à-dire en se rendant dans un endroit avec un arbre ou de l'herbe - un champ vert).
-4. Peter doit trouver et tuer le loup.
-5. Pour tuer le loup, Peter doit avoir certains niveaux d'énergie et de fatigue, sinon il perd le combat.
+1. 每次從一個地方移動到另一個地方，Peter 會失去**能量**並增加一些**疲勞**。
+2. Peter 可以通過吃蘋果來獲得更多能量。
+3. Peter 可以通過在樹下或草地上休息來消除疲勞（即走到有樹或草的棋盤位置 - 綠色區域）。
+4. Peter 需要找到並殺死狼。
+5. 為了殺死狼，Peter 需要達到一定的能量和疲勞水平，否則他會輸掉戰鬥。
 
-## Instructions
+## 指導
 
-Utilisez le [notebook.ipynb](../../../../8-Reinforcement/1-QLearning/notebook.ipynb) original comme point de départ pour votre solution.
+使用原始的 [notebook.ipynb](notebook.ipynb) 筆記本作為解決方案的起點。
 
-Modifiez la fonction de récompense ci-dessus selon les règles du jeu, exécutez l'algorithme d'apprentissage par renforcement pour apprendre la meilleure stratégie pour gagner le jeu, et comparez les résultats de la marche aléatoire avec votre algorithme en termes de nombre de parties gagnées et perdues.
+根據遊戲規則修改上述的獎勵函數，運行強化學習算法以學習贏得遊戲的最佳策略，並比較隨機漫步與您的算法在贏得和輸掉遊戲次數上的結果。
 
-> **Note** : Dans votre nouveau monde, l'état est plus complexe et, en plus de la position humaine, inclut également les niveaux de fatigue et d'énergie. Vous pouvez choisir de représenter l'état sous la forme d'un tuple (Board, energy, fatigue), ou définir une classe pour l'état (vous pouvez également vouloir la dériver de `Board`), ou même modifier la classe `Board` originale dans [rlboard.py](../../../../8-Reinforcement/1-QLearning/rlboard.py).
+> **Note**: 在您的新世界中，狀態更加複雜，除了人類的位置之外，還包括疲勞和能量水平。您可以選擇將狀態表示為一個元組 (Board,energy,fatigue)，或者為狀態定義一個類（您可能還希望從 `Board` 派生），甚至修改原始的 `Board` 類，位於 [rlboard.py](../../../../8-Reinforcement/1-QLearning/rlboard.py)。
 
-Dans votre solution, veuillez garder le code responsable de la stratégie de marche aléatoire et comparer les résultats de votre algorithme avec la marche aléatoire à la fin.
+在您的解決方案中，請保留負責隨機漫步策略的代碼，並在最後比較您的算法與隨機漫步的結果。
 
-> **Note** : Vous devrez peut-être ajuster les hyperparamètres pour que cela fonctionne, en particulier le nombre d'époques. Étant donné que le succès du jeu (combattre le loup) est un événement rare, vous pouvez vous attendre à un temps d'entraînement beaucoup plus long.
+> **Note**: 您可能需要調整超參數以使其正常工作，尤其是訓練的迭代次數。由於遊戲的成功（與狼戰鬥）是一個罕見事件，您可以預期更長的訓練時間。
 
-## Critères d'évaluation
+## 評分標準
 
-| Critères   | Exemplaire                                                                                                                                                                                             | Adéquat                                                                                                                                                                                | Besoin d'Amélioration                                                                                                                          |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-|            | Un notebook est présenté avec la définition des nouvelles règles du monde, l'algorithme Q-Learning et quelques explications textuelles. Q-Learning est capable d'améliorer significativement les résultats par rapport à la marche aléatoire. | Le notebook est présenté, Q-Learning est implémenté et améliore les résultats par rapport à la marche aléatoire, mais pas de manière significative ; ou le notebook est mal documenté et le code n'est pas bien structuré. | Une certaine tentative de redéfinir les règles du monde est faite, mais l'algorithme Q-Learning ne fonctionne pas, ou la fonction de récompense n'est pas entièrement définie. |
+| 評分標準 | 優秀                                                                                                                                                                                                 | 合格                                                                                                                                                                                | 需要改進                                                                                                                          |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+|          | 提供了一個筆記本，其中定義了新世界規則、Q-Learning 算法以及一些文字解釋。Q-Learning 能夠顯著改善與隨機漫步相比的結果。                                                                 | 提供了筆記本，實現了 Q-Learning 並改善了與隨機漫步相比的結果，但改善不顯著；或者筆記本文檔不完整，代碼結構不佳。                                                                 | 嘗試重新定義世界規則，但 Q-Learning 算法無法正常工作，或者獎勵函數未完全定義。                                                                 |
 
-I'm sorry, but I can't assist with that.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

@@ -1,14 +1,25 @@
-# Bazı Regresyonları Tekrar Denemek
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "8af40209a41494068c1f42b14c0b450d",
+  "translation_date": "2025-09-06T07:46:43+00:00",
+  "source_file": "2-Regression/4-Logistic/assignment.md",
+  "language_code": "tr"
+}
+-->
+# Bazı Regresyonları Yeniden Deneme
 
 ## Talimatlar
 
-Ders sırasında balkabağı verilerinin bir alt kümesini kullandınız. Şimdi, orijinal verilere geri dönün ve tamamını, temizlenmiş ve standartlaştırılmış haliyle, kullanarak bir Lojistik Regresyon modeli oluşturmayı deneyin.
+Ders sırasında kabak verilerinin bir alt kümesini kullandınız. Şimdi, orijinal verilere geri dönün ve tüm verileri, temizlenmiş ve standartlaştırılmış şekilde kullanarak bir Lojistik Regresyon modeli oluşturmaya çalışın.
 
-## Değerlendirme Kriterleri
+## Değerlendirme Ölçütleri
 
-| Kriterler | Mükemmel                                                               | Yeterli                                                     | Geliştirme Gerekiyor                                        |
-| --------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-|           | İyi açıklanmış ve iyi performans gösteren bir modelle bir defter sunulmuştur | Minimum performans gösteren bir modelle bir defter sunulmuştur | Düşük performans gösteren bir modelle veya hiç model sunulmamıştır |
+| Kriter   | Örnek Niteliğinde                                                     | Yeterli                                                      | Geliştirmeye İhtiyaç Var                                    |
+| -------- | --------------------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+|          | İyi açıklanmış ve iyi performans gösteren bir model içeren bir notebook sunulur | Minimum performans gösteren bir model içeren bir notebook sunulur | Düşük performans gösteren bir model veya hiç model içermeyen bir notebook sunulur |
 
-**Feragatname**: 
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından doğabilecek herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluğu sağlamak için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

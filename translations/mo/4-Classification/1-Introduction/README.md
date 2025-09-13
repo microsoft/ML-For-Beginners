@@ -1,67 +1,76 @@
-# Introduction à la classification
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "aaf391d922bd6de5efba871d514c6d47",
+  "translation_date": "2025-09-06T09:17:41+00:00",
+  "source_file": "4-Classification/1-Introduction/README.md",
+  "language_code": "mo"
+}
+-->
+# 分類簡介
 
-Dans ces quatre leçons, vous allez explorer un aspect fondamental de l'apprentissage automatique classique - _la classification_. Nous allons parcourir l'utilisation de divers algorithmes de classification avec un ensemble de données sur toutes les délicieuses cuisines d'Asie et d'Inde. J'espère que vous avez faim !
+在這四節課中，您將探索經典機器學習的一個核心主題——_分類_。我們將使用一個關於亞洲和印度美食的數據集，逐步了解各種分類算法的應用。希望您準備好大快朵頤了！
 
-![juste une pincée !](../../../../translated_images/pinch.1b035ec9ba7e0d408313b551b60c721c9c290b2dd2094115bc87e6ddacd114c9.mo.png)
+![只需一點點！](../../../../4-Classification/1-Introduction/images/pinch.png)
 
-> Célébrez les cuisines pan-asiatiques dans ces leçons ! Image par [Jen Looper](https://twitter.com/jenlooper)
+> 在這些課程中慶祝泛亞洲美食！圖片由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-La classification est une forme d'[apprentissage supervisé](https://wikipedia.org/wiki/Supervised_learning) qui partage beaucoup de points communs avec les techniques de régression. Si l'apprentissage automatique consiste à prédire des valeurs ou des noms pour des choses en utilisant des ensembles de données, alors la classification se divise généralement en deux groupes : _classification binaire_ et _classification multiclass_.
+分類是一種[監督式學習](https://wikipedia.org/wiki/Supervised_learning)，與回歸技術有許多相似之處。如果機器學習的核心是通過使用數據集來預測事物的值或名稱，那麼分類通常分為兩類：_二元分類_和_多類分類_。
 
-[![Introduction à la classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction à la classification")
+[![分類簡介](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "分類簡介")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo : John Guttag du MIT présente la classification
+> 🎥 點擊上方圖片觀看影片：麻省理工學院的 John Guttag 介紹分類
 
-Rappelez-vous :
+請記住：
 
-- **La régression linéaire** vous a aidé à prédire les relations entre les variables et à faire des prédictions précises sur l'endroit où un nouveau point de données se situerait par rapport à cette ligne. Par exemple, vous pourriez prédire _quel serait le prix d'une citrouille en septembre par rapport à décembre_.
-- **La régression logistique** vous a aidé à découvrir des "catégories binaires" : à ce prix, _cette citrouille est-elle orange ou non-orange_ ?
+- **線性回歸** 幫助您預測變量之間的關係，並準確預測新數據點在該線性關係中的位置。例如，您可以預測_南瓜在九月和十二月的價格_。
+- **邏輯回歸** 幫助您發現「二元類別」：在這個價格範圍內，_這個南瓜是橙色還是非橙色_？
 
-La classification utilise divers algorithmes pour déterminer d'autres façons d'identifier l'étiquette ou la classe d'un point de données. Travaillons avec ces données culinaires pour voir si, en observant un groupe d'ingrédients, nous pouvons déterminer sa cuisine d'origine.
+分類使用各種算法來確定數據點的標籤或類別。讓我們使用這些美食數據，看看是否可以通過觀察一組食材來確定其美食的來源。
 
-## [Quiz pré-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Cette leçon est disponible en R !](../../../../4-Classification/1-Introduction/solution/R/lesson_10.html)
+> ### [本課程提供 R 版本！](../../../../4-Classification/1-Introduction/solution/R/lesson_10.html)
 
-### Introduction
+### 簡介
 
-La classification est l'une des activités fondamentales du chercheur en apprentissage automatique et du scientifique des données. De la classification basique d'une valeur binaire ("cet e-mail est-il du spam ou non ?"), à la classification d'images complexe et à la segmentation utilisant la vision par ordinateur, il est toujours utile de pouvoir trier les données en classes et de poser des questions à leur sujet.
+分類是機器學習研究者和數據科學家的一項基本活動。從基本的二元值分類（「這封電子郵件是垃圾郵件還是非垃圾郵件？」），到使用計算機視覺進行複雜的圖像分類和分割，能夠將數據分成類別並提出問題始終是非常有用的。
 
-Pour exprimer le processus de manière plus scientifique, votre méthode de classification crée un modèle prédictif qui vous permet de cartographier la relation entre les variables d'entrée et les variables de sortie.
+用更科學的方式來描述這個過程，您的分類方法會創建一個預測模型，使您能夠將輸入變量與輸出變量之間的關係進行映射。
 
-![classification binaire vs multiclass](../../../../translated_images/binary-multiclass.b56d0c86c81105a697dddd82242c1d11e4d78b7afefea07a44627a0f1111c1a9.mo.png)
+![二元分類與多類分類](../../../../4-Classification/1-Introduction/images/binary-multiclass.png)
 
-> Problèmes binaires vs multiclass que les algorithmes de classification doivent traiter. Infographie par [Jen Looper](https://twitter.com/jenlooper)
+> 二元分類與多類分類問題，供分類算法處理。信息圖由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-Avant de commencer le processus de nettoyage de nos données, de les visualiser et de les préparer pour nos tâches d'apprentissage automatique, apprenons un peu sur les différentes manières dont l'apprentissage automatique peut être utilisé pour classifier des données.
+在開始清理數據、可視化數據並為機器學習任務做好準備之前，讓我們先了解一下機器學習分類數據的各種方式。
 
-Dérivée de [statistiques](https://wikipedia.org/wiki/Statistical_classification), la classification utilisant l'apprentissage automatique classique utilise des caractéristiques, telles que `smoker`, `weight`, et `age` pour déterminer _la probabilité de développer la maladie X_. En tant que technique d'apprentissage supervisé similaire aux exercices de régression que vous avez effectués précédemment, vos données sont étiquetées et les algorithmes d'apprentissage automatique utilisent ces étiquettes pour classifier et prédire les classes (ou 'caractéristiques') d'un ensemble de données et les assigner à un groupe ou à un résultat.
+分類源於[統計學](https://wikipedia.org/wiki/Statistical_classification)，使用經典機器學習技術，通過特徵（例如 `smoker`、`weight` 和 `age`）來確定_患某種疾病的可能性_。作為一種類似於您之前進行的回歸練習的監督式學習技術，您的數據是有標籤的，機器學習算法使用這些標籤來分類和預測數據集的類別（或「特徵」），並將它們分配到某個組或結果中。
 
-✅ Prenez un moment pour imaginer un ensemble de données sur les cuisines. Que pourrait répondre un modèle multiclass ? Que pourrait répondre un modèle binaire ? Que se passerait-il si vous vouliez déterminer si une cuisine donnée est susceptible d'utiliser du fenugrec ? Que se passerait-il si, en recevant un sac de courses rempli d'anis étoilé, d'artichauts, de chou-fleur et de raifort, vous pouviez créer un plat indien typique ?
+✅ 花點時間想像一個關於美食的數據集。一個多類模型能回答什麼問題？一個二元模型能回答什麼問題？如果您想確定某種美食是否可能使用葫蘆巴葉呢？如果您想知道，假如收到一袋包含八角、洋薊、花椰菜和辣根的雜貨，您是否能做出一道典型的印度菜？
 
-[![Paniers mystérieux fous](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Paniers mystérieux fous")
+[![瘋狂的神秘食材籃](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "瘋狂的神秘食材籃")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo. Le principe même de l'émission 'Chopped' est le 'panier mystérieux' où les chefs doivent réaliser un plat à partir d'un choix aléatoire d'ingrédients. Un modèle d'apprentissage automatique aurait sûrement aidé !
+> 🎥 點擊上方圖片觀看影片。節目《Chopped》的整個主題是「神秘食材籃」，廚師必須用隨機選擇的食材做出一道菜。機器學習模型肯定能幫上忙！
 
-## Bonjour 'classificateur'
+## 你好，分類器
 
-La question que nous voulons poser à cet ensemble de données culinaires est en réalité une **question multiclass**, car nous avons plusieurs cuisines nationales potentielles avec lesquelles travailler. Étant donné un lot d'ingrédients, à laquelle de ces nombreuses classes les données vont-elles correspondre ?
+我們想要問這個美食數據集的問題實際上是一個**多類問題**，因為我們有多個潛在的國家美食可以選擇。給定一批食材，這些食材會屬於哪一類？
 
-Scikit-learn propose plusieurs algorithmes différents à utiliser pour classifier les données, selon le type de problème que vous souhaitez résoudre. Dans les deux leçons suivantes, vous apprendrez à connaître plusieurs de ces algorithmes.
+Scikit-learn 提供了多種不同的算法來分類數據，具體取決於您想要解決的問題類型。在接下來的兩節課中，您將學習其中幾種算法。
 
-## Exercice - nettoyer et équilibrer vos données
+## 練習 - 清理並平衡數據
 
-La première tâche à accomplir, avant de commencer ce projet, est de nettoyer et de **équilibrer** vos données pour obtenir de meilleurs résultats. Commencez avec le fichier vide _notebook.ipynb_ à la racine de ce dossier.
+在開始這個項目之前，第一項任務是清理並**平衡**您的數據，以獲得更好的結果。從此文件夾根目錄中的空白 _notebook.ipynb_ 文件開始。
 
-La première chose à installer est [imblearn](https://imbalanced-learn.org/stable/). C'est un package Scikit-learn qui vous permettra de mieux équilibrer les données (vous en apprendrez davantage sur cette tâche dans un instant).
+首先需要安裝 [imblearn](https://imbalanced-learn.org/stable/)。這是一個 Scikit-learn 套件，可以幫助您更好地平衡數據（您將在稍後了解更多相關任務）。
 
-1. Pour installer `imblearn`, exécutez `pip install`, comme suit :
+1. 安裝 `imblearn`，運行 `pip install`，如下所示：
 
     ```python
     pip install imblearn
     ```
 
-1. Importez les packages nécessaires pour importer vos données et les visualiser, importez également `SMOTE` depuis `imblearn`.
+1. 導入所需的包以導入數據並進行可視化，還需從 `imblearn` 中導入 `SMOTE`。
 
     ```python
     import pandas as pd
@@ -71,23 +80,23 @@ La première chose à installer est [imblearn](https://imbalanced-learn.org/stab
     from imblearn.over_sampling import SMOTE
     ```
 
-    Maintenant, vous êtes prêt à lire et à importer les données.
+    現在您已準備好接下來導入數據。
 
-1. La prochaine tâche sera d'importer les données :
+1. 下一步是導入數據：
 
     ```python
     df  = pd.read_csv('../data/cuisines.csv')
     ```
 
-   En utilisant `read_csv()` will read the content of the csv file _cusines.csv_ and place it in the variable `df`.
+   使用 `read_csv()` 會讀取 csv 文件 _cusines.csv_ 的內容並將其放入變量 `df` 中。
 
-1. Vérifiez la forme des données :
+1. 檢查數據的形狀：
 
     ```python
     df.head()
     ```
 
-   Les cinq premières lignes ressemblent à ceci :
+   前五行看起來像這樣：
 
     ```output
     |     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
@@ -99,13 +108,13 @@ La première chose à installer est [imblearn](https://imbalanced-learn.org/stab
     | 4   | 69         | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
     ```
 
-1. Obtenez des informations sur ces données en appelant `info()` :
+1. 通過調用 `info()` 獲取有關此數據的信息：
 
     ```python
     df.info()
     ```
 
-    Votre sortie ressemble à :
+    您的輸出類似於：
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -115,21 +124,21 @@ La première chose à installer est [imblearn](https://imbalanced-learn.org/stab
     memory usage: 7.2+ MB
     ```
 
-## Exercice - apprendre sur les cuisines
+## 練習 - 了解美食
 
-Maintenant, le travail commence à devenir plus intéressant. Découvrons la distribution des données, par cuisine 
+現在工作開始變得更有趣了。讓我們探索每種美食的數據分佈。
 
-1. Tracez les données sous forme de barres en appelant `barh()` :
+1. 通過調用 `barh()` 將數據繪製為條形圖：
 
     ```python
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![distribution des données culinaires](../../../../translated_images/cuisine-dist.d0cc2d551abe5c25f83d73a5f560927e4a061e9a4560bac1e97d35682ef3ca6d.mo.png)
+    ![美食數據分佈](../../../../4-Classification/1-Introduction/images/cuisine-dist.png)
 
-    Il y a un nombre fini de cuisines, mais la distribution des données est inégale. Vous pouvez corriger cela ! Avant de le faire, explorez un peu plus. 
+    美食的數量是有限的，但數據分佈是不均勻的。您可以修正這一點！在修正之前，先多探索一下。
 
-1. Découvrez combien de données sont disponibles par cuisine et imprimez-le :
+1. 找出每種美食的數據量並打印出來：
 
     ```python
     thai_df = df[(df.cuisine == "thai")]
@@ -145,7 +154,7 @@ Maintenant, le travail commence à devenir plus intéressant. Découvrons la dis
     print(f'korean df: {korean_df.shape}')
     ```
 
-    la sortie ressemble à ceci :
+    輸出如下所示：
 
     ```output
     thai df: (289, 385)
@@ -155,11 +164,11 @@ Maintenant, le travail commence à devenir plus intéressant. Découvrons la dis
     korean df: (799, 385)
     ```
 
-## Découverte des ingrédients
+## 探索食材
 
-Maintenant, vous pouvez approfondir les données et apprendre quels sont les ingrédients typiques par cuisine. Vous devriez éliminer les données récurrentes qui créent de la confusion entre les cuisines, alors apprenons à propos de ce problème.
+現在您可以更深入地挖掘數據，了解每種美食的典型食材。您應該清理掉那些在美食之間造成混淆的重複數據，因此讓我們了解這個問題。
 
-1. Créez une fonction `create_ingredient()` en Python pour créer un dataframe d'ingrédients. Cette fonction commencera par supprimer une colonne inutile et triera les ingrédients par leur nombre :
+1. 在 Python 中創建一個名為 `create_ingredient()` 的函數，用於創建食材數據框。此函數將首先刪除一個無用的列，並根據食材的數量進行排序：
 
     ```python
     def create_ingredient_df(df):
@@ -170,56 +179,56 @@ Maintenant, vous pouvez approfondir les données et apprendre quels sont les ing
         return ingredient_df
     ```
 
-   Maintenant, vous pouvez utiliser cette fonction pour avoir une idée des dix ingrédients les plus populaires par cuisine.
+   現在您可以使用該函數了解每種美食中最受歡迎的前十種食材。
 
-1. Appelez `create_ingredient()` and plot it calling `barh()` :
+1. 調用 `create_ingredient()` 並通過調用 `barh()` 繪製圖表：
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thaï](../../../../translated_images/thai.0269dbab2e78bd38a132067759fe980008bdb80b6d778e5313448dbe12bed846.mo.png)
+    ![泰國](../../../../4-Classification/1-Introduction/images/thai.png)
 
-1. Faites de même pour les données japonaises :
+1. 對日本數據執行相同操作：
 
     ```python
     japanese_ingredient_df = create_ingredient_df(japanese_df)
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japonais](../../../../translated_images/japanese.30260486f2a05c463c8faa62ebe7b38f0961ed293bd9a6db8eef5d3f0cf17155.mo.png)
+    ![日本](../../../../4-Classification/1-Introduction/images/japanese.png)
 
-1. Maintenant pour les ingrédients chinois :
+1. 現在是中國食材：
 
     ```python
     chinese_ingredient_df = create_ingredient_df(chinese_df)
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinois](../../../../translated_images/chinese.e62cafa5309f111afd1b54490336daf4e927ce32bed837069a0b7ce481dfae8d.mo.png)
+    ![中國](../../../../4-Classification/1-Introduction/images/chinese.png)
 
-1. Tracez les ingrédients indiens :
+1. 繪製印度食材：
 
     ```python
     indian_ingredient_df = create_ingredient_df(indian_df)
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indien](../../../../translated_images/indian.2c4292002af1a1f97a4a24fec6b1459ee8ff616c3822ae56bb62b9903e192af6.mo.png)
+    ![印度](../../../../4-Classification/1-Introduction/images/indian.png)
 
-1. Enfin, tracez les ingrédients coréens :
+1. 最後，繪製韓國食材：
 
     ```python
     korean_ingredient_df = create_ingredient_df(korean_df)
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![coréen](../../../../translated_images/korean.4a4f0274f3d9805a65e61f05597eeaad8620b03be23a2c0a705c023f65fad2c0.mo.png)
+    ![韓國](../../../../4-Classification/1-Introduction/images/korean.png)
 
-1. Maintenant, éliminez les ingrédients les plus courants qui créent de la confusion entre les cuisines distinctes, en appelant `drop()` : 
+1. 現在，通過調用 `drop()` 刪除那些在不同美食之間造成混淆的最常見食材：
 
-   Tout le monde aime le riz, l'ail et le gingembre !
+   每個人都喜歡米飯、大蒜和薑！
 
     ```python
     feature_df= df.drop(['cuisine','Unnamed: 0','rice','garlic','ginger'], axis=1)
@@ -227,27 +236,27 @@ Maintenant, vous pouvez approfondir les données et apprendre quels sont les ing
     feature_df.head()
     ```
 
-## Équilibrer l'ensemble de données
+## 平衡數據集
 
-Maintenant que vous avez nettoyé les données, utilisez [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Technique de sur-échantillonnage des minorités synthétiques" - pour l'équilibrer.
+現在您已清理數據，使用 [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html)——「合成少數類別過採樣技術」——來平衡數據。
 
-1. Appelez `fit_resample()`, cette stratégie génère de nouveaux échantillons par interpolation.
+1. 調用 `fit_resample()`，此策略通過插值生成新樣本。
 
     ```python
     oversample = SMOTE()
     transformed_feature_df, transformed_label_df = oversample.fit_resample(feature_df, labels_df)
     ```
 
-    En équilibrant vos données, vous obtiendrez de meilleurs résultats lors de leur classification. Pensez à une classification binaire. Si la plupart de vos données appartiennent à une classe, un modèle d'apprentissage automatique va prédire cette classe plus fréquemment, simplement parce qu'il y a plus de données pour elle. L'équilibrage des données prend toute donnée biaisée et aide à supprimer cet déséquilibre. 
+    通過平衡數據，您在分類時會獲得更好的結果。想想二元分類。如果您的大部分數據屬於一個類別，機器學習模型會更頻繁地預測該類別，僅僅因為該類別的數據更多。平衡數據可以消除這種不平衡。
 
-1. Maintenant, vous pouvez vérifier le nombre d'étiquettes par ingrédient :
+1. 現在您可以檢查每種食材的標籤數量：
 
     ```python
     print(f'new label count: {transformed_label_df.value_counts()}')
     print(f'old label count: {df.cuisine.value_counts()}')
     ```
 
-    Votre sortie ressemble à ceci :
+    您的輸出如下所示：
 
     ```output
     new label count: korean      799
@@ -264,15 +273,15 @@ Maintenant que vous avez nettoyé les données, utilisez [SMOTE](https://imbalan
     Name: cuisine, dtype: int64
     ```
 
-    Les données sont belles et propres, équilibrées et très délicieuses ! 
+    數據現在乾淨、平衡，而且非常美味！
 
-1. La dernière étape consiste à enregistrer vos données équilibrées, y compris les étiquettes et les caractéristiques, dans un nouveau dataframe qui peut être exporté dans un fichier :
+1. 最後一步是將平衡後的數據，包括標籤和特徵，保存到一個新的數據框中，並導出到文件中：
 
     ```python
     transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
     ```
 
-1. Vous pouvez jeter un dernier coup d'œil aux données en utilisant `transformed_df.head()` and `transformed_df.info()`. Enregistrez une copie de ces données pour une utilisation dans les leçons futures :
+1. 您可以使用 `transformed_df.head()` 和 `transformed_df.info()` 再次查看數據。保存一份此數據以供未來課程使用：
 
     ```python
     transformed_df.head()
@@ -280,22 +289,25 @@ Maintenant que vous avez nettoyé les données, utilisez [SMOTE](https://imbalan
     transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
-    Ce nouveau CSV peut maintenant être trouvé dans le dossier de données racine.
+    此新鮮的 CSV 現在可以在根目錄的數據文件夾中找到。
 
 ---
 
-## 🚀Défi
+## 🚀挑戰
 
-Ce programme contient plusieurs ensembles de données intéressants. Fouillez dans les dossiers `data` et voyez s'il en contient qui seraient appropriés pour une classification binaire ou multiclass ? Quelles questions poseriez-vous à cet ensemble de données ?
+此課程包含多個有趣的數據集。翻閱 `data` 文件夾，看看是否有適合二元或多類分類的數據集？您會向這些數據集提出什麼問題？
 
-## [Quiz post-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revue & Auto-apprentissage
+## 回顧與自學
 
-Explorez l'API de SMOTE. Pour quels cas d'utilisation est-elle le mieux adaptée ? Quels problèmes résout-elle ?
+探索 SMOTE 的 API。它最適合用於哪些用例？它解決了哪些問題？
 
-## Devoir 
+## 作業 
 
-[Explorez les méthodes de classification](assignment.md)
+[探索分類方法](assignment.md)
 
-I'm sorry, but I cannot translate text into "mo" as it does not correspond to a recognized language or code. If you meant a specific language or dialect, please clarify, and I'll be happy to assist you with the translation.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

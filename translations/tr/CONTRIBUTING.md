@@ -1,14 +1,23 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "977ec5266dfd78ad1ce2bd8d46fccbda",
+  "translation_date": "2025-09-06T07:43:23+00:00",
+  "source_file": "CONTRIBUTING.md",
+  "language_code": "tr"
+}
+-->
 # Katkıda Bulunma
 
-Bu proje katkıları ve önerileri memnuniyetle karşılar. Çoğu katkı, bir Katılımcı Lisans Anlaşması'nı (CLA) kabul etmenizi gerektirir; bu, katkınızı kullanma haklarına sahip olduğunuzu ve bu hakları bize gerçekten verdiğinizi beyan eder. Ayrıntılar için https://cla.microsoft.com adresini ziyaret edin.
+Bu proje, katkıları ve önerileri memnuniyetle karşılar. Çoğu katkı, bir Katkıda Bulunma Lisans Sözleşmesi'ni (CLA) kabul etmenizi gerektirir. Bu sözleşme, katkınızı kullanma hakkını bize verdiğinizi ve bu hakka gerçekten sahip olduğunuzu beyan eder. Ayrıntılar için https://cla.microsoft.com adresini ziyaret edin.
 
-> Önemli: Bu depodaki metinleri çevirirken, lütfen makine çevirisi kullanmadığınızdan emin olun. Çevirileri topluluk aracılığıyla doğrulayacağız, bu nedenle yalnızca yetkin olduğunuz dillerde çeviri yapmak için gönüllü olun.
+> Önemli: Bu depodaki metinleri çevirirken, lütfen makine çevirisi kullanmadığınızdan emin olun. Çeviriler topluluk tarafından doğrulanacaktır, bu nedenle yalnızca akıcı olduğunuz dillerde çeviri yapmayı teklif edin.
 
-Bir pull request gönderdiğinizde, bir CLA-bot otomatik olarak bir CLA sağlamanız gerekip gerekmediğini belirleyecek ve PR'yi uygun şekilde süsleyecektir (örneğin, etiket, yorum). Bot tarafından sağlanan talimatları basitçe takip edin. Tüm depolarımızda CLA kullanarak bunu sadece bir kez yapmanız gerekecek.
+Bir pull request gönderdiğinizde, bir CLA-bot otomatik olarak bir CLA sağlamanız gerekip gerekmediğini belirleyecek ve PR'ı uygun şekilde işaretleyecektir (örneğin, etiket, yorum). Bot tarafından sağlanan talimatları takip etmeniz yeterlidir. Bunu, CLA kullanan tüm depolar için yalnızca bir kez yapmanız gerekecek.
 
-Bu proje [Microsoft Açık Kaynak Davranış Kuralları](https://opensource.microsoft.com/codeofconduct/)'nı benimsemiştir.
-Daha fazla bilgi için [Davranış Kuralları SSS](https://opensource.microsoft.com/codeofconduct/faq/) sayfasına bakabilir
-veya ek sorularınız ya da yorumlarınız için [opencode@microsoft.com](mailto:opencode@microsoft.com) ile iletişime geçebilirsiniz.
+Bu proje, [Microsoft Açık Kaynak Davranış Kuralları](https://opensource.microsoft.com/codeofconduct/) benimsemiştir. Daha fazla bilgi için [Davranış Kuralları SSS](https://opensource.microsoft.com/codeofconduct/faq/) sayfasını ziyaret edin veya ek sorularınız ya da yorumlarınız için [opencode@microsoft.com](mailto:opencode@microsoft.com) adresine e-posta gönderin.
 
-**Feragatname**:
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dilindeki hali, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.

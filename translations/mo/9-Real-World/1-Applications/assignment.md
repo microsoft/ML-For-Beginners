@@ -1,15 +1,27 @@
-# A ML Scavenger Hunt
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "fdebfcd0a3f12c9e2b436ded1aa79885",
+  "translation_date": "2025-08-29T21:14:01+00:00",
+  "source_file": "9-Real-World/1-Applications/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 機器學習尋寶遊戲
 
-## Instructions
+## 說明
 
-In this lesson, you learned about many real-life use cases that were solved using classical ML. While the use of deep learning, new techniques and tools in AI, and leveraging neural networks has helped speed up the production of tools to help in these sectors, classic ML using the techniques in this curriculum still hold great value.
+在本課程中，你學到了許多使用傳統機器學習解決的真實案例。雖然深度學習、新技術和人工智慧工具的使用，以及神經網絡的應用，已經加速了這些領域工具的開發，但使用本課程中介紹的傳統機器學習技術仍然具有重要價值。
 
-In this assignment, imagine that you are participating in a hackathon. Use what you learned in the curriculum to propose a solution using classic ML to solve a problem in one of the sectors discussed in this lesson. Create a presentation where you discuss how you will implement your idea. Bonus points if you can gather sample data and build a ML model to support your concept!
+在這項作業中，假設你正在參加一場黑客松。利用你在課程中學到的知識，提出一個使用傳統機器學習解決本課程中討論的某個領域問題的方案。製作一個演示文稿，討論你將如何實現你的想法。如果你能收集樣本數據並建立一個支持你概念的機器學習模型，還能獲得額外加分！
 
-## Rubric
+## 評分標準
 
-| Criteria | Exemplary                                                           | Adequate                                          | Needs Improvement      |
-| -------- | ------------------------------------------------------------------- | ------------------------------------------------- | ---------------------- |
-|          | A PowerPoint presentation is presented - bonus for building a model | A non-innovative, basic presentation is presented | The work is incomplete |
+| 評分標準 | 傑出表現                                                         | 基本表現                                      | 需要改進              |
+| -------- | ---------------------------------------------------------------- | --------------------------------------------- | --------------------- |
+|          | 提交了一份 PowerPoint 演示文稿 - 建立模型可獲得額外加分          | 提交了一份缺乏創新且基礎的演示文稿            | 工作未完成            |
 
-I'm sorry, but I cannot translate text into "mo" as it is not a recognized language or dialect. If you meant a specific language or dialect, please specify, and I would be happy to assist you!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

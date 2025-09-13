@@ -1,44 +1,53 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-05T08:47:46+00:00",
+  "source_file": "4-Classification/3-Classifiers-2/README.md",
+  "language_code": "pt"
+}
+-->
 # Classificadores de culinária 2
 
-Nesta segunda lição de classificação, você explorará mais maneiras de classificar dados numéricos. Você também aprenderá sobre as implicações de escolher um classificador em vez de outro.
+Nesta segunda lição sobre classificação, vais explorar mais formas de classificar dados numéricos. Também vais aprender sobre as implicações de escolher um classificador em vez de outro.
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-### Pré-requisito
+### Pré-requisitos
 
-Assumimos que você completou as lições anteriores e tem um conjunto de dados limpo na sua pasta `data` chamada _cleaned_cuisines.csv_ na raiz desta pasta de 4 lições.
+Assumimos que completaste as lições anteriores e tens um conjunto de dados limpo na tua pasta `data`, chamado _cleaned_cuisines.csv_, na raiz desta pasta de 4 lições.
 
 ### Preparação
 
-Carregamos seu arquivo _notebook.ipynb_ com o conjunto de dados limpo e o dividimos em dataframes X e y, prontos para o processo de construção do modelo.
+Carregámos o teu ficheiro _notebook.ipynb_ com o conjunto de dados limpo e dividimo-lo em dataframes X e y, prontos para o processo de construção do modelo.
 
 ## Um mapa de classificação
 
-Anteriormente, você aprendeu sobre as várias opções que tem ao classificar dados usando a folha de dicas da Microsoft. O Scikit-learn oferece uma folha de dicas semelhante, mas mais detalhada, que pode ajudar ainda mais a restringir seus estimadores (outro termo para classificadores):
+Anteriormente, aprendeste sobre as várias opções disponíveis para classificar dados utilizando o guia da Microsoft. O Scikit-learn oferece um guia semelhante, mas mais detalhado, que pode ajudar ainda mais a restringir os estimadores (outro termo para classificadores):
 
-![Mapa ML do Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.pt.png)
-> Dica: [visite este mapa online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) e clique ao longo do caminho para ler a documentação.
+![Mapa de ML do Scikit-learn](../../../../4-Classification/3-Classifiers-2/images/map.png)
+> Dica: [visita este mapa online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) e explora os caminhos para ler a documentação.
 
 ### O plano
 
-Este mapa é muito útil uma vez que você tenha uma compreensão clara dos seus dados, pois você pode 'caminhar' ao longo de seus caminhos até uma decisão:
+Este mapa é muito útil quando tens uma compreensão clara dos teus dados, pois podes 'percorrer' os seus caminhos até uma decisão:
 
-- Temos mais de 50 amostras
+- Temos >50 amostras
 - Queremos prever uma categoria
 - Temos dados rotulados
 - Temos menos de 100K amostras
-- ✨ Podemos escolher um SVC Linear
-- Se isso não funcionar, já que temos dados numéricos
-    - Podemos tentar um ✨ Classificador KNeighbors 
-      - Se isso não funcionar, tente ✨ SVC e ✨ Classificadores de Conjunto
+- ✨ Podemos escolher um Linear SVC
+- Se isso não funcionar, como temos dados numéricos:
+    - Podemos tentar um ✨ KNeighbors Classifier 
+      - Se isso não funcionar, tentar ✨ SVC e ✨ Ensemble Classifiers
 
 Este é um caminho muito útil a seguir.
 
 ## Exercício - dividir os dados
 
-Seguindo este caminho, devemos começar importando algumas bibliotecas para usar.
+Seguindo este caminho, devemos começar por importar algumas bibliotecas para usar.
 
-1. Importe as bibliotecas necessárias:
+1. Importa as bibliotecas necessárias:
 
     ```python
     from sklearn.neighbors import KNeighborsClassifier
@@ -50,21 +59,21 @@ Seguindo este caminho, devemos começar importando algumas bibliotecas para usar
     import numpy as np
     ```
 
-1. Divida seus dados de treinamento e teste:
+1. Divide os teus dados de treino e teste:
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Classificador SVC Linear
+## Classificador Linear SVC
 
-A clusterização Support-Vector (SVC) é um membro da família de técnicas de ML das Máquinas de Vetores de Suporte (aprenda mais sobre elas abaixo). Neste método, você pode escolher um 'kernel' para decidir como agrupar os rótulos. O parâmetro 'C' refere-se à 'regularização', que regula a influência dos parâmetros. O kernel pode ser um dos [vários](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); aqui o configuramos como 'linear' para garantir que aproveitemos o SVC linear. A probabilidade padrão é 'false'; aqui a configuramos como 'true' para coletar estimativas de probabilidade. Definimos o estado aleatório como '0' para embaralhar os dados e obter probabilidades.
+O clustering por Support-Vector (SVC) é um membro da família de técnicas de ML chamadas Support-Vector Machines (aprende mais sobre estas abaixo). Neste método, podes escolher um 'kernel' para decidir como agrupar os rótulos. O parâmetro 'C' refere-se à 'regularização', que regula a influência dos parâmetros. O kernel pode ser um de [vários](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); aqui definimos como 'linear' para garantir que utilizamos o Linear SVC. A probabilidade por padrão é 'falsa'; aqui definimos como 'verdadeira' para obter estimativas de probabilidade. Definimos o estado aleatório como '0' para embaralhar os dados e obter probabilidades.
 
-### Exercício - aplique um SVC linear
+### Exercício - aplicar um Linear SVC
 
-Comece criando um array de classificadores. Você adicionará progressivamente a este array à medida que testamos. 
+Começa por criar um array de classificadores. Vais adicionar progressivamente a este array à medida que testamos.
 
-1. Comece com um SVC Linear:
+1. Começa com um Linear SVC:
 
     ```python
     C = 10
@@ -74,7 +83,7 @@ Comece criando um array de classificadores. Você adicionará progressivamente a
     }
     ```
 
-2. Treine seu modelo usando o SVC Linear e imprima um relatório:
+2. Treina o teu modelo utilizando o Linear SVC e imprime um relatório:
 
     ```python
     n_classifiers = len(classifiers)
@@ -107,13 +116,13 @@ Comece criando um array de classificadores. Você adicionará progressivamente a
 
 ## Classificador K-Neighbors
 
-K-Neighbors é parte da família de métodos de ML "neighbors", que pode ser usada tanto para aprendizado supervisionado quanto não supervisionado. Neste método, um número predefinido de pontos é criado e dados são coletados ao redor desses pontos de modo que rótulos generalizados possam ser previstos para os dados.
+K-Neighbors faz parte da família de métodos de ML "neighbors", que podem ser usados tanto para aprendizagem supervisionada como não supervisionada. Neste método, é criado um número pré-definido de pontos e os dados são agrupados em torno desses pontos, de forma que rótulos generalizados possam ser previstos para os dados.
 
-### Exercício - aplique o classificador K-Neighbors
+### Exercício - aplicar o classificador K-Neighbors
 
-O classificador anterior foi bom e funcionou bem com os dados, mas talvez possamos obter uma precisão melhor. Tente um classificador K-Neighbors.
+O classificador anterior foi bom e funcionou bem com os dados, mas talvez possamos obter uma melhor precisão. Experimenta um classificador K-Neighbors.
 
-1. Adicione uma linha ao seu array de classificadores (adicione uma vírgula após o item SVC Linear):
+1. Adiciona uma linha ao teu array de classificadores (adiciona uma vírgula após o item Linear SVC):
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
@@ -136,23 +145,23 @@ O classificador anterior foi bom e funcionou bem com os dados, mas talvez possam
     weighted avg       0.76      0.74      0.74      1199
     ```
 
-    ✅ Aprenda sobre [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
+    ✅ Aprende sobre [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
 
 ## Classificador Support Vector
 
-Os classificadores Support-Vector são parte da família de métodos de ML [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) que são usados para tarefas de classificação e regressão. SVMs "mapeiam exemplos de treinamento para pontos no espaço" para maximizar a distância entre duas categorias. Dados subsequentes são mapeados para este espaço para que sua categoria possa ser prevista.
+Os classificadores Support-Vector fazem parte da família [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) de métodos de ML que são usados para tarefas de classificação e regressão. Os SVMs "mapeiam exemplos de treino para pontos no espaço" para maximizar a distância entre duas categorias. Dados subsequentes são mapeados neste espaço para que a sua categoria possa ser prevista.
 
-### Exercício - aplique um classificador Support Vector
+### Exercício - aplicar um classificador Support Vector
 
-Vamos tentar uma precisão um pouco melhor com um classificador Support Vector.
+Vamos tentar obter uma precisão um pouco melhor com um classificador Support Vector.
 
-1. Adicione uma vírgula após o item K-Neighbors e, em seguida, adicione esta linha:
+1. Adiciona uma vírgula após o item K-Neighbors e, em seguida, adiciona esta linha:
 
     ```python
     'SVC': SVC(),
     ```
 
-    O resultado é bastante bom!
+    O resultado é muito bom!
 
     ```output
     Accuracy (train) for SVC: 83.2% 
@@ -169,11 +178,11 @@ Vamos tentar uma precisão um pouco melhor com um classificador Support Vector.
     weighted avg       0.84      0.83      0.83      1199
     ```
 
-    ✅ Aprenda sobre [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm)
+    ✅ Aprende sobre [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm)
 
-## Classificadores de Conjunto
+## Classificadores Ensemble
 
-Vamos seguir o caminho até o fim, mesmo que o teste anterior tenha sido bastante bom. Vamos tentar alguns 'Classificadores de Conjunto', especificamente Random Forest e AdaBoost:
+Vamos seguir o caminho até ao fim, mesmo que o teste anterior tenha sido muito bom. Vamos experimentar alguns 'Classificadores Ensemble', especificamente Random Forest e AdaBoost:
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
@@ -210,29 +219,31 @@ Accuracy (train) for ADA: 72.4%
 weighted avg       0.73      0.72      0.72      1199
 ```
 
-✅ Aprenda sobre [Classificadores de Conjunto](https://scikit-learn.org/stable/modules/ensemble.html)
+✅ Aprende sobre [Classificadores Ensemble](https://scikit-learn.org/stable/modules/ensemble.html)
 
-Este método de Aprendizado de Máquina "combina as previsões de vários estimadores base" para melhorar a qualidade do modelo. No nosso exemplo, usamos Random Trees e AdaBoost. 
+Este método de Machine Learning "combina as previsões de vários estimadores base" para melhorar a qualidade do modelo. No nosso exemplo, utilizámos Random Trees e AdaBoost.
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), um método de média, constrói uma 'floresta' de 'árvores de decisão' infundidas com aleatoriedade para evitar overfitting. O parâmetro n_estimators é definido como o número de árvores.
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), um método de média, constrói uma 'floresta' de 'árvores de decisão' com infusão de aleatoriedade para evitar overfitting. O parâmetro n_estimators é definido como o número de árvores.
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) ajusta um classificador a um conjunto de dados e, em seguida, ajusta cópias desse classificador ao mesmo conjunto de dados. Ele foca nos pesos dos itens classificados incorretamente e ajusta o ajuste para o próximo classificador para corrigir.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) ajusta um classificador a um conjunto de dados e, em seguida, ajusta cópias desse classificador ao mesmo conjunto de dados. Foca-se nos pesos dos itens classificados incorretamente e ajusta o ajuste para o próximo classificador corrigir.
 
 ---
 
 ## 🚀Desafio
 
-Cada uma dessas técnicas tem um grande número de parâmetros que você pode ajustar. Pesquise os parâmetros padrão de cada um e pense sobre o que ajustar esses parâmetros significaria para a qualidade do modelo.
+Cada uma destas técnicas tem um grande número de parâmetros que podes ajustar. Pesquisa os parâmetros padrão de cada uma e pensa no que ajustar esses parâmetros significaria para a qualidade do modelo.
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão e Autoestudo
 
-Há muita terminologia técnica nessas lições, então reserve um minuto para revisar [esta lista](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) de termos úteis!
+Há muito jargão nestas lições, por isso tira um momento para rever [esta lista](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) de terminologia útil!
 
 ## Tarefa 
 
-[Brincadeira com parâmetros](assignment.md)
+[Exploração de parâmetros](assignment.md)
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido utilizando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas que possam surgir do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

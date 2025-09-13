@@ -1,32 +1,41 @@
-## CartPole Patinaje
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-04T22:26:14+00:00",
+  "source_file": "8-Reinforcement/2-Gym/README.md",
+  "language_code": "es"
+}
+-->
+# CartPole Patinaje
 
-El problema que hemos estado resolviendo en la lección anterior podría parecer un problema de juguete, no realmente aplicable a escenarios de la vida real. Este no es el caso, porque muchos problemas del mundo real también comparten este escenario, incluyendo jugar al Ajedrez o al Go. Son similares, porque también tenemos un tablero con reglas dadas y un **estado discreto**.
+El problema que resolvimos en la lección anterior puede parecer un problema de juguete, sin mucha aplicación en escenarios de la vida real. Sin embargo, este no es el caso, ya que muchos problemas del mundo real comparten características similares, como jugar al ajedrez o al Go. Son similares porque también tenemos un tablero con reglas definidas y un **estado discreto**.
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introducción
 
-En esta lección aplicaremos los mismos principios de Q-Learning a un problema con **estado continuo**, es decir, un estado que se da por uno o más números reales. Abordaremos el siguiente problema:
+En esta lección aplicaremos los mismos principios de Q-Learning a un problema con un **estado continuo**, es decir, un estado definido por uno o más números reales. Abordaremos el siguiente problema:
 
-> **Problema**: Si Peter quiere escapar del lobo, necesita poder moverse más rápido. Veremos cómo Peter puede aprender a patinar, en particular, a mantener el equilibrio, utilizando Q-Learning.
+> **Problema**: Si Pedro quiere escapar del lobo, necesita aprender a moverse más rápido. Veremos cómo Pedro puede aprender a patinar, en particular, a mantener el equilibrio, utilizando Q-Learning.
 
-![¡La gran escapada!](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.es.png)
+![¡La gran escapada!](../../../../8-Reinforcement/2-Gym/images/escape.png)
 
-> ¡Peter y sus amigos se ponen creativos para escapar del lobo! Imagen de [Jen Looper](https://twitter.com/jenlooper)
+> ¡Pedro y sus amigos se ponen creativos para escapar del lobo! Imagen de [Jen Looper](https://twitter.com/jenlooper)
 
-Usaremos una versión simplificada del equilibrio conocida como el problema **CartPole**. En el mundo de CartPole, tenemos un deslizador horizontal que puede moverse hacia la izquierda o hacia la derecha, y el objetivo es equilibrar un poste vertical sobre el deslizador.
+Usaremos una versión simplificada del equilibrio conocida como el problema del **CartPole**. En el mundo del CartPole, tenemos un deslizador horizontal que puede moverse a la izquierda o a la derecha, y el objetivo es equilibrar un palo vertical sobre el deslizador.
 
-## Requisitos previos
+## Prerrequisitos
 
-En esta lección, utilizaremos una biblioteca llamada **OpenAI Gym** para simular diferentes **entornos**. Puedes ejecutar el código de esta lección localmente (por ejemplo, desde Visual Studio Code), en cuyo caso la simulación se abrirá en una nueva ventana. Al ejecutar el código en línea, es posible que necesites hacer algunos ajustes en el código, como se describe [aquí](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+En esta lección, utilizaremos una biblioteca llamada **OpenAI Gym** para simular diferentes **entornos**. Puedes ejecutar el código de esta lección localmente (por ejemplo, desde Visual Studio Code), en cuyo caso la simulación se abrirá en una nueva ventana. Si ejecutas el código en línea, es posible que necesites hacer algunos ajustes, como se describe [aquí](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
-En la lección anterior, las reglas del juego y el estado fueron dados por la clase `Board` que definimos nosotros mismos. Aquí utilizaremos un **entorno de simulación** especial, que simulará la física detrás del poste en equilibrio. Uno de los entornos de simulación más populares para entrenar algoritmos de aprendizaje por refuerzo se llama [Gym](https://gym.openai.com/), que es mantenido por [OpenAI](https://openai.com/). Usando este gym, podemos crear diferentes **entornos** desde una simulación de CartPole hasta juegos de Atari.
+En la lección anterior, las reglas del juego y el estado estaban definidos por la clase `Board` que creamos nosotros mismos. Aquí utilizaremos un **entorno de simulación** especial, que simulará la física detrás del palo en equilibrio. Uno de los entornos de simulación más populares para entrenar algoritmos de aprendizaje por refuerzo se llama [Gym](https://gym.openai.com/), mantenido por [OpenAI](https://openai.com/). Usando este Gym, podemos crear diferentes **entornos**, desde una simulación de CartPole hasta juegos de Atari.
 
 > **Nota**: Puedes ver otros entornos disponibles en OpenAI Gym [aquí](https://gym.openai.com/envs/#classic_control).
 
-Primero, instalemos el gym e importemos las bibliotecas requeridas (bloque de código 1):
+Primero, instalemos Gym e importemos las bibliotecas necesarias (bloque de código 1):
 
 ```python
 import sys
@@ -40,11 +49,11 @@ import random
 
 ## Ejercicio - inicializar un entorno de CartPole
 
-Para trabajar con un problema de equilibrio de CartPole, necesitamos inicializar el entorno correspondiente. Cada entorno está asociado con:
+Para trabajar con el problema de equilibrio de CartPole, necesitamos inicializar el entorno correspondiente. Cada entorno está asociado con:
 
-- **Espacio de observación** que define la estructura de la información que recibimos del entorno. Para el problema de CartPole, recibimos la posición del poste, la velocidad y otros valores.
+- Un **espacio de observación** que define la estructura de la información que recibimos del entorno. Para el problema de CartPole, recibimos la posición del palo, la velocidad y otros valores.
 
-- **Espacio de acción** que define las posibles acciones. En nuestro caso, el espacio de acción es discreto y consta de dos acciones: **izquierda** y **derecha**. (bloque de código 2)
+- Un **espacio de acción** que define las acciones posibles. En nuestro caso, el espacio de acción es discreto y consta de dos acciones: **izquierda** y **derecha**. (bloque de código 2)
 
 1. Para inicializar, escribe el siguiente código:
 
@@ -55,9 +64,9 @@ Para trabajar con un problema de equilibrio de CartPole, necesitamos inicializar
     print(env.action_space.sample())
     ```
 
-Para ver cómo funciona el entorno, ejecutemos una simulación corta de 100 pasos. En cada paso, proporcionamos una de las acciones a realizar; en esta simulación simplemente seleccionamos aleatoriamente una acción de `action_space`.
+Para ver cómo funciona el entorno, ejecutemos una simulación corta de 100 pasos. En cada paso, proporcionamos una de las acciones a realizar; en esta simulación simplemente seleccionamos una acción aleatoriamente del `action_space`.
 
-1. Ejecuta el código a continuación y observa qué sucede.
+1. Ejecuta el siguiente código y observa el resultado.
 
     ✅ Recuerda que es preferible ejecutar este código en una instalación local de Python. (bloque de código 3)
 
@@ -70,11 +79,11 @@ Para ver cómo funciona el entorno, ejecutemos una simulación corta de 100 paso
     env.close()
     ```
 
-    Deberías estar viendo algo similar a esta imagen:
+    Deberías ver algo similar a esta imagen:
 
     ![CartPole sin equilibrio](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. Durante la simulación, necesitamos obtener observaciones para decidir cómo actuar. De hecho, la función step devuelve las observaciones actuales, una función de recompensa y una bandera de finalización que indica si tiene sentido continuar la simulación o no: (bloque de código 4)
+1. Durante la simulación, necesitamos obtener observaciones para decidir cómo actuar. De hecho, la función `step` devuelve las observaciones actuales, una función de recompensa y una bandera `done` que indica si tiene sentido continuar la simulación o no: (bloque de código 4)
 
     ```python
     env.reset()
@@ -87,7 +96,7 @@ Para ver cómo funciona el entorno, ejecutemos una simulación corta de 100 paso
     env.close()
     ```
 
-    Terminarás viendo algo como esto en la salida del notebook:
+    Verás algo como esto en la salida del notebook:
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -103,8 +112,8 @@ Para ver cómo funciona el entorno, ejecutemos una simulación corta de 100 paso
     El vector de observación que se devuelve en cada paso de la simulación contiene los siguientes valores:
     - Posición del carrito
     - Velocidad del carrito
-    - Ángulo del poste
-    - Tasa de rotación del poste
+    - Ángulo del palo
+    - Tasa de rotación del palo
 
 1. Obtén el valor mínimo y máximo de esos números: (bloque de código 5)
 
@@ -113,21 +122,21 @@ Para ver cómo funciona el entorno, ejecutemos una simulación corta de 100 paso
     print(env.observation_space.high)
     ```
 
-    También puedes notar que el valor de recompensa en cada paso de la simulación es siempre 1. Esto se debe a que nuestro objetivo es sobrevivir el mayor tiempo posible, es decir, mantener el poste en una posición razonablemente vertical durante el mayor tiempo posible.
+    También notarás que el valor de recompensa en cada paso de la simulación siempre es 1. Esto se debe a que nuestro objetivo es sobrevivir el mayor tiempo posible, es decir, mantener el palo en una posición razonablemente vertical durante el mayor tiempo posible.
 
-    ✅ De hecho, la simulación de CartPole se considera resuelta si logramos obtener una recompensa promedio de 195 durante 100 pruebas consecutivas.
+    ✅ De hecho, la simulación de CartPole se considera resuelta si logramos obtener una recompensa promedio de 195 en 100 ensayos consecutivos.
 
 ## Discretización del estado
 
-En Q-Learning, necesitamos construir una Q-Table que defina qué hacer en cada estado. Para poder hacer esto, necesitamos que el estado sea **discreto**, más precisamente, debe contener un número finito de valores discretos. Por lo tanto, necesitamos de alguna manera **discretizar** nuestras observaciones, mapeándolas a un conjunto finito de estados.
+En Q-Learning, necesitamos construir una Q-Table que defina qué hacer en cada estado. Para poder hacer esto, el estado debe ser **discreto**, más precisamente, debe contener un número finito de valores discretos. Por lo tanto, necesitamos de alguna manera **discretizar** nuestras observaciones, mapeándolas a un conjunto finito de estados.
 
 Hay algunas formas de hacer esto:
 
-- **Dividir en contenedores**. Si conocemos el intervalo de un cierto valor, podemos dividir este intervalo en un número de **contenedores**, y luego reemplazar el valor por el número del contenedor al que pertenece. Esto se puede hacer utilizando el método [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) de numpy. En este caso, conoceremos precisamente el tamaño del estado, porque dependerá del número de contenedores que seleccionemos para la digitalización.
+- **Dividir en intervalos**. Si conocemos el intervalo de un valor determinado, podemos dividir este intervalo en un número de **intervalos**, y luego reemplazar el valor por el número del intervalo al que pertenece. Esto se puede hacer utilizando el método [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) de numpy. En este caso, conoceremos con precisión el tamaño del estado, ya que dependerá del número de intervalos que seleccionemos para la digitalización.
 
-✅ Podemos usar la interpolación lineal para llevar los valores a un intervalo finito (digamos, de -20 a 20), y luego convertir los números en enteros redondeándolos. Esto nos da un poco menos de control sobre el tamaño del estado, especialmente si no conocemos los rangos exactos de los valores de entrada. Por ejemplo, en nuestro caso, 2 de los 4 valores no tienen límites superiores/inferiores en sus valores, lo que puede resultar en un número infinito de estados.
+✅ Podemos usar interpolación lineal para llevar los valores a un intervalo finito (por ejemplo, de -20 a 20), y luego convertir los números a enteros redondeándolos. Esto nos da un poco menos de control sobre el tamaño del estado, especialmente si no conocemos los rangos exactos de los valores de entrada. Por ejemplo, en nuestro caso, 2 de los 4 valores no tienen límites superiores/inferiores, lo que puede resultar en un número infinito de estados.
 
-En nuestro ejemplo, utilizaremos el segundo enfoque. Como puedes notar más adelante, a pesar de los límites superiores/inferiores indefinidos, esos valores rara vez toman valores fuera de ciertos intervalos finitos, por lo que esos estados con valores extremos serán muy raros.
+En nuestro ejemplo, utilizaremos el segundo enfoque. Como notarás más adelante, a pesar de los límites superiores/inferiores indefinidos, esos valores rara vez toman valores fuera de ciertos intervalos finitos, por lo que esos estados con valores extremos serán muy raros.
 
 1. Aquí está la función que tomará la observación de nuestro modelo y producirá una tupla de 4 valores enteros: (bloque de código 6)
 
@@ -136,7 +145,7 @@ En nuestro ejemplo, utilizaremos el segundo enfoque. Como puedes notar más adel
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. Exploremos también otro método de discretización utilizando contenedores: (bloque de código 7)
+1. Exploremos también otro método de discretización utilizando intervalos: (bloque de código 7)
 
     ```python
     def create_bins(i,num):
@@ -152,9 +161,9 @@ En nuestro ejemplo, utilizaremos el segundo enfoque. Como puedes notar más adel
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Ahora ejecutemos una simulación corta y observemos esos valores discretos del entorno. Siéntete libre de probar ambos `discretize` and `discretize_bins` y ver si hay alguna diferencia.
+1. Ahora ejecutemos una simulación corta y observemos esos valores discretos del entorno. Siéntete libre de probar tanto `discretize` como `discretize_bins` y observa si hay alguna diferencia.
 
-    ✅ discretize_bins devuelve el número del contenedor, que es basado en 0. Por lo tanto, para valores de la variable de entrada alrededor de 0, devuelve el número del medio del intervalo (10). En discretize, no nos preocupamos por el rango de valores de salida, permitiéndoles ser negativos, por lo que los valores del estado no están desplazados, y 0 corresponde a 0. (bloque de código 8)
+    ✅ `discretize_bins` devuelve el número del intervalo, que comienza en 0. Por lo tanto, para valores de la variable de entrada cercanos a 0, devuelve el número del medio del intervalo (10). En `discretize`, no nos preocupamos por el rango de los valores de salida, permitiendo que sean negativos, por lo que los valores del estado no están desplazados, y 0 corresponde a 0. (bloque de código 8)
 
     ```python
     env.reset()
@@ -168,15 +177,15 @@ En nuestro ejemplo, utilizaremos el segundo enfoque. Como puedes notar más adel
     env.close()
     ```
 
-    ✅ Descomenta la línea que comienza con env.render si deseas ver cómo se ejecuta el entorno. De lo contrario, puedes ejecutarlo en segundo plano, lo cual es más rápido. Usaremos esta ejecución "invisible" durante nuestro proceso de Q-Learning.
+    ✅ Descomenta la línea que comienza con `env.render` si deseas ver cómo se ejecuta el entorno. De lo contrario, puedes ejecutarlo en segundo plano, lo cual es más rápido. Usaremos esta ejecución "invisible" durante nuestro proceso de Q-Learning.
 
 ## La estructura de la Q-Table
 
-En nuestra lección anterior, el estado era un simple par de números del 0 al 8, y por lo tanto era conveniente representar la Q-Table con un tensor numpy con una forma de 8x8x2. Si usamos la discretización de contenedores, el tamaño de nuestro vector de estado también es conocido, por lo que podemos usar el mismo enfoque y representar el estado con un array de forma 20x20x10x10x2 (aquí 2 es la dimensión del espacio de acción, y las primeras dimensiones corresponden al número de contenedores que hemos seleccionado para usar para cada uno de los parámetros en el espacio de observación).
+En nuestra lección anterior, el estado era un simple par de números del 0 al 8, por lo que era conveniente representar la Q-Table con un tensor de numpy con una forma de 8x8x2. Si usamos la discretización por intervalos, el tamaño de nuestro vector de estado también es conocido, por lo que podemos usar el mismo enfoque y representar el estado con un array de forma 20x20x10x10x2 (aquí 2 es la dimensión del espacio de acción, y las primeras dimensiones corresponden al número de intervalos que seleccionamos para cada uno de los parámetros en el espacio de observación).
 
-Sin embargo, a veces las dimensiones precisas del espacio de observación no son conocidas. En el caso de la función `discretize`, nunca podemos estar seguros de que nuestro estado se mantenga dentro de ciertos límites, porque algunos de los valores originales no están limitados. Por lo tanto, usaremos un enfoque ligeramente diferente y representaremos la Q-Table con un diccionario.
+Sin embargo, a veces las dimensiones precisas del espacio de observación no son conocidas. En el caso de la función `discretize`, nunca podemos estar seguros de que nuestro estado se mantenga dentro de ciertos límites, ya que algunos de los valores originales no están acotados. Por lo tanto, utilizaremos un enfoque ligeramente diferente y representaremos la Q-Table con un diccionario.
 
-1. Usa el par *(estado, acción)* como la clave del diccionario, y el valor correspondería al valor de entrada de la Q-Table. (bloque de código 9)
+1. Usa el par *(estado, acción)* como clave del diccionario, y el valor corresponderá al valor de la entrada en la Q-Table. (bloque de código 9)
 
     ```python
     Q = {}
@@ -186,13 +195,13 @@ Sin embargo, a veces las dimensiones precisas del espacio de observación no son
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Aquí también definimos una función `qvalues()`, que devuelve una lista de valores de la Q-Table para un estado dado que corresponde a todas las posibles acciones. Si la entrada no está presente en la Q-Table, devolveremos 0 como valor predeterminado.
+    Aquí también definimos una función `qvalues()`, que devuelve una lista de valores de la Q-Table para un estado dado que corresponde a todas las acciones posibles. Si la entrada no está presente en la Q-Table, devolveremos 0 como valor predeterminado.
 
-## Comencemos con el Q-Learning
+## ¡Comencemos con Q-Learning!
 
-¡Ahora estamos listos para enseñar a Peter a mantener el equilibrio!
+Ahora estamos listos para enseñar a Pedro a mantener el equilibrio.
 
-1. Primero, establezcamos algunos hiperparámetros: (bloque de código 10)
+1. Primero, definamos algunos hiperparámetros: (bloque de código 10)
 
     ```python
     # hyperparameters
@@ -201,23 +210,23 @@ Sin embargo, a veces las dimensiones precisas del espacio de observación no son
     epsilon = 0.90
     ```
 
-    Aquí, `alpha` is the **learning rate** that defines to which extent we should adjust the current values of Q-Table at each step. In the previous lesson we started with 1, and then decreased `alpha` to lower values during training. In this example we will keep it constant just for simplicity, and you can experiment with adjusting `alpha` values later.
+    Aquí, `alpha` es la **tasa de aprendizaje** que define en qué medida debemos ajustar los valores actuales de la Q-Table en cada paso. En la lección anterior comenzamos con 1 y luego disminuimos `alpha` a valores más bajos durante el entrenamiento. En este ejemplo lo mantendremos constante por simplicidad, pero puedes experimentar ajustando los valores de `alpha` más adelante.
 
-    `gamma` is the **discount factor** that shows to which extent we should prioritize future reward over current reward.
+    `gamma` es el **factor de descuento** que muestra en qué medida debemos priorizar la recompensa futura sobre la recompensa actual.
 
-    `epsilon` is the **exploration/exploitation factor** that determines whether we should prefer exploration to exploitation or vice versa. In our algorithm, we will in `epsilon` percent of the cases select the next action according to Q-Table values, and in the remaining number of cases we will execute a random action. This will allow us to explore areas of the search space that we have never seen before. 
+    `epsilon` es el **factor de exploración/explotación** que determina si debemos preferir la exploración o la explotación. En nuestro algoritmo, en un porcentaje `epsilon` de los casos seleccionaremos la siguiente acción según los valores de la Q-Table, y en el porcentaje restante ejecutaremos una acción aleatoria. Esto nos permitirá explorar áreas del espacio de búsqueda que nunca hemos visto antes.
 
-    ✅ In terms of balancing - choosing random action (exploration) would act as a random punch in the wrong direction, and the pole would have to learn how to recover the balance from those "mistakes"
+    ✅ En términos de equilibrio, elegir una acción aleatoria (exploración) actuaría como un empujón aleatorio en la dirección equivocada, y el palo tendría que aprender a recuperar el equilibrio de esos "errores".
 
-### Improve the algorithm
+### Mejorar el algoritmo
 
-We can also make two improvements to our algorithm from the previous lesson:
+Podemos hacer dos mejoras a nuestro algoritmo de la lección anterior:
 
-- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
-  
-- **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
+- **Calcular la recompensa acumulativa promedio**, durante un número de simulaciones. Imprimiremos el progreso cada 5000 iteraciones, y promediaremos nuestra recompensa acumulativa durante ese período de tiempo. Esto significa que si obtenemos más de 195 puntos, podemos considerar el problema resuelto, con una calidad incluso mayor a la requerida.
 
-1. Collect all cumulative rewards at each simulation at `rewards` vector para su posterior representación gráfica. (bloque de código  11)
+- **Calcular el resultado acumulativo promedio máximo**, `Qmax`, y almacenaremos la Q-Table correspondiente a ese resultado. Cuando ejecutes el entrenamiento, notarás que a veces el resultado acumulativo promedio comienza a disminuir, y queremos conservar los valores de la Q-Table que corresponden al mejor modelo observado durante el entrenamiento.
+
+1. Recopila todas las recompensas acumulativas en cada simulación en el vector `rewards` para su posterior representación gráfica. (bloque de código 11)
 
     ```python
     def probs(v,eps=1e-4):
@@ -258,25 +267,25 @@ We can also make two improvements to our algorithm from the previous lesson:
             cum_rewards=[]
     ```
 
-Lo que puedes notar de esos resultados:
+Lo que puedes notar de estos resultados:
 
-- **Cerca de nuestro objetivo**. Estamos muy cerca de alcanzar el objetivo de obtener 195 recompensas acumuladas en más de 100 ejecuciones consecutivas de la simulación, ¡o podríamos haberlo logrado! Incluso si obtenemos números más pequeños, aún no lo sabemos, porque promediamos sobre 5000 ejecuciones, y solo se requieren 100 ejecuciones en el criterio formal.
+- **Cerca de nuestro objetivo**. Estamos muy cerca de alcanzar el objetivo de obtener 195 recompensas acumulativas en más de 100 ejecuciones consecutivas de la simulación, ¡o incluso podemos haberlo logrado! Incluso si obtenemos números más bajos, no lo sabremos con certeza, ya que promediamos sobre 5000 ejecuciones, y solo se requieren 100 ejecuciones según el criterio formal.
 
-- **La recompensa comienza a disminuir**. A veces la recompensa comienza a disminuir, lo que significa que podemos "destruir" valores ya aprendidos en la Q-Table con los que empeoran la situación.
+- **La recompensa comienza a disminuir**. A veces la recompensa comienza a disminuir, lo que significa que podemos "destruir" valores ya aprendidos en la Q-Table con otros que empeoran la situación.
 
-Esta observación es más claramente visible si graficamos el progreso del entrenamiento.
+Esta observación es más clara si graficamos el progreso del entrenamiento.
 
-## Graficando el progreso del entrenamiento
+## Graficar el progreso del entrenamiento
 
-Durante el entrenamiento, hemos recopilado el valor de recompensa acumulada en cada una de las iteraciones en el vector `rewards`. Así es como se ve cuando lo graficamos contra el número de iteración:
+Durante el entrenamiento, hemos recopilado el valor de la recompensa acumulativa en cada una de las iteraciones en el vector `rewards`. Así es como se ve cuando lo graficamos contra el número de iteración:
 
 ```python
 plt.plot(rewards)
 ```
 
-![progreso bruto](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.es.png)
+![progreso sin procesar](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
-De este gráfico, no es posible decir nada, porque debido a la naturaleza del proceso de entrenamiento estocástico, la duración de las sesiones de entrenamiento varía mucho. Para darle más sentido a este gráfico, podemos calcular el **promedio móvil** sobre una serie de experimentos, digamos 100. Esto se puede hacer convenientemente usando `np.convolve`: (bloque de código 12)
+En este gráfico no es posible sacar conclusiones, ya que debido a la naturaleza del proceso de entrenamiento estocástico, la duración de las sesiones de entrenamiento varía mucho. Para darle más sentido a este gráfico, podemos calcular el **promedio móvil** sobre una serie de experimentos, digamos 100. Esto se puede hacer convenientemente usando `np.convolve`: (bloque de código 12)
 
 ```python
 def running_average(x,window):
@@ -285,23 +294,21 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![progreso del entrenamiento](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.es.png)
+![progreso del entrenamiento](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
-## Variando los hiperparámetros
+## Variar los hiperparámetros
 
 Para hacer el aprendizaje más estable, tiene sentido ajustar algunos de nuestros hiperparámetros durante el entrenamiento. En particular:
 
-- **Para la tasa de aprendizaje**, `alpha`, we may start with values close to 1, and then keep decreasing the parameter. With time, we will be getting good probability values in the Q-Table, and thus we should be adjusting them slightly, and not overwriting completely with new values.
+- **Para la tasa de aprendizaje**, `alpha`, podemos comenzar con valores cercanos a 1 y luego ir disminuyendo el parámetro. Con el tiempo, obtendremos buenos valores de probabilidad en la Q-Table, y por lo tanto deberíamos ajustarlos ligeramente, y no sobrescribirlos completamente con nuevos valores.
 
-- **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`, y subir hasta casi 1.
+- **Aumentar epsilon**. Podríamos querer aumentar lentamente el valor de `epsilon`, para explorar menos y explotar más. Probablemente tenga sentido comenzar con un valor bajo de `epsilon` y aumentarlo hasta casi 1.
+> **Tarea 1**: Prueba con diferentes valores de hiperparámetros y observa si puedes lograr una recompensa acumulativa más alta. ¿Estás obteniendo más de 195?
+> **Tarea 2**: Para resolver formalmente el problema, necesitas alcanzar un promedio de recompensa de 195 a lo largo de 100 ejecuciones consecutivas. Mide eso durante el entrenamiento y asegúrate de que has resuelto el problema formalmente.
 
-> **Tarea 1**: Juega con los valores de los hiperparámetros y ve si puedes lograr una mayor recompensa acumulada. ¿Estás obteniendo más de 195?
+## Ver el resultado en acción
 
-> **Tarea 2**: Para resolver formalmente el problema, necesitas obtener una recompensa promedio de 195 en 100 ejecuciones consecutivas. Mide eso durante el entrenamiento y asegúrate de haber resuelto formalmente el problema.
-
-## Viendo el resultado en acción
-
-Sería interesante ver cómo se comporta el modelo entrenado. Ejecutemos la simulación y sigamos la misma estrategia de selección de acciones que durante el entrenamiento, muestreando según la distribución de probabilidad en la Q-Table: (bloque de código 13)
+Sería interesante ver cómo se comporta el modelo entrenado. Vamos a ejecutar la simulación y seguir la misma estrategia de selección de acciones que durante el entrenamiento, muestreando según la distribución de probabilidad en la Q-Table: (bloque de código 13)
 
 ```python
 obs = env.reset()
@@ -317,26 +324,28 @@ env.close()
 
 Deberías ver algo como esto:
 
-![un CartPole equilibrado](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
+![un carrito equilibrando](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
 ---
 
 ## 🚀Desafío
 
-> **Tarea 3**: Aquí, estábamos usando la copia final de la Q-Table, que puede no ser la mejor. Recuerda que hemos almacenado la Q-Table con mejor rendimiento en `Qbest` variable! Try the same example with the best-performing Q-Table by copying `Qbest` over to `Q` and see if you notice the difference.
+> **Tarea 3**: Aquí estuvimos utilizando la copia final de la Q-Table, que puede no ser la mejor. Recuerda que hemos almacenado la Q-Table con mejor rendimiento en la variable `Qbest`. ¡Prueba el mismo ejemplo con la Q-Table de mejor rendimiento copiando `Qbest` sobre `Q` y observa si notas alguna diferencia!
 
-> **Task 4**: Here we were not selecting the best action on each step, but rather sampling with corresponding probability distribution. Would it make more sense to always select the best action, with the highest Q-Table value? This can be done by using `np.argmax` para encontrar el número de acción correspondiente al valor más alto de la Q-Table. Implementa esta estrategia y ve si mejora el equilibrio.
+> **Tarea 4**: Aquí no estábamos seleccionando la mejor acción en cada paso, sino muestreando con la distribución de probabilidad correspondiente. ¿Tendría más sentido seleccionar siempre la mejor acción, con el valor más alto en la Q-Table? Esto se puede hacer utilizando la función `np.argmax` para encontrar el número de acción correspondiente al valor más alto en la Q-Table. Implementa esta estrategia y observa si mejora el equilibrio.
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [Cuestionario post-clase](https://ff-quizzes.netlify.app/en/ml/)
 
-## Tarea
+## Asignación
 [Entrena un Mountain Car](assignment.md)
 
 ## Conclusión
 
-Ahora hemos aprendido cómo entrenar agentes para lograr buenos resultados simplemente proporcionándoles una función de recompensa que define el estado deseado del juego, y dándoles la oportunidad de explorar inteligentemente el espacio de búsqueda. Hemos aplicado con éxito el algoritmo de Q-Learning en los casos de entornos discretos y continuos, pero con acciones discretas.
+Ahora hemos aprendido cómo entrenar agentes para lograr buenos resultados simplemente proporcionando una función de recompensa que define el estado deseado del juego y dándoles la oportunidad de explorar inteligentemente el espacio de búsqueda. Hemos aplicado con éxito el algoritmo de Q-Learning en casos de entornos discretos y continuos, pero con acciones discretas.
 
-Es importante también estudiar situaciones donde el estado de la acción también es continuo, y cuando el espacio de observación es mucho más complejo, como la imagen de la pantalla del juego de Atari. En esos problemas a menudo necesitamos usar técnicas de aprendizaje automático más poderosas, como redes neuronales, para lograr buenos resultados. Esos temas más avanzados son el tema de nuestro próximo curso más avanzado de IA.
+Es importante también estudiar situaciones donde el estado de las acciones sea continuo y cuando el espacio de observación sea mucho más complejo, como la imagen de la pantalla de un juego de Atari. En esos problemas, a menudo necesitamos usar técnicas de aprendizaje automático más poderosas, como redes neuronales, para lograr buenos resultados. Estos temas más avanzados serán el enfoque de nuestro próximo curso avanzado de IA.
 
-**Descargo de responsabilidad**:
-Este documento ha sido traducido utilizando servicios de traducción automática basados en inteligencia artificial. Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción humana profesional. No somos responsables de ningún malentendido o interpretación errónea que surja del uso de esta traducción.
+---
+
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

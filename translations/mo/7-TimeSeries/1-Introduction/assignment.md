@@ -1,13 +1,25 @@
-# Vizualizé plizé Tèms Sèri
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "d1781b0b92568ea1d119d0a198b576b4",
+  "translation_date": "2025-08-29T20:47:58+00:00",
+  "source_file": "7-TimeSeries/1-Introduction/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 視覺化更多時間序列
 
-## Enstriksyon
+## 說明
 
-Ou kòmanse aprann sou Prévision Tèms Sèri pa gade nan kalite done ki bezwen modèl espesyal sa a. Ou te vizualize kèk done sou enèji. Kounye a, gade alantou pou kèk lòt done ki ta ka benefisye de Prévision Tèms Sèri. Jwenn twa egzanp (eseye [Kaggle](https://kaggle.com) ak [Azure Open Datasets](https://azure.microsoft.com/en-us/services/open-datasets/catalog/?WT.mc_id=academic-77952-leestott)) epi kreye yon notebook pou vizualize yo. Fè nòt sou nenpòt karakteristik espesyal yo genyen (sèzonalite, chanjman abrup, oswa lòt tandans) nan notebook la.
+你已經開始學習時間序列預測，並了解需要這種特殊建模的數據類型。你已經視覺化了一些與能源相關的數據。現在，請尋找其他適合時間序列預測的數據。找到三個例子（可以嘗試使用 [Kaggle](https://kaggle.com) 和 [Azure Open Datasets](https://azure.microsoft.com/en-us/services/open-datasets/catalog/?WT.mc_id=academic-77952-leestott)），並建立一個筆記本來視覺化它們。在筆記本中記錄它們的任何特殊特徵（例如季節性、突變或其他趨勢）。
 
-## Rubrik
+## 評分標準
 
-| Kritè    | Eksepsyonèl                                           | Adekwat                                             | Bezwen Amelyorasyon                                                                         |
-| -------- | ---------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-|          | Twa dataset yo trase ak eksplike nan yon notebook    | De dataset yo trase ak eksplike nan yon notebook    | Kèk dataset yo trase oswa eksplike nan yon notebook oswa done yo prezante yo ensifizan   |
+| 評分標準 | 優秀                                                   | 合格                                                | 需要改進                                                                                 |
+| -------- | ------------------------------------------------------ | --------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+|          | 在筆記本中繪製並解釋了三個數據集                      | 在筆記本中繪製並解釋了兩個數據集                   | 在筆記本中繪製或解釋的數據集較少，或者所呈現的數據不足                                   |
 
-I'm sorry, but I cannot translate the text into "mo" as it is not clear what language or dialect you are referring to. If you meant a specific language or dialect, please specify, and I will do my best to assist you!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。
