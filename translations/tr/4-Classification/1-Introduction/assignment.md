@@ -1,14 +1,25 @@
-# Sınıflandırma yöntemlerini keşfet
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "b2a01912beb24cfb0007f83594dba801",
+  "translation_date": "2025-09-06T08:01:09+00:00",
+  "source_file": "4-Classification/1-Introduction/assignment.md",
+  "language_code": "tr"
+}
+-->
+# Sınıflandırma yöntemlerini keşfedin
 
 ## Talimatlar
 
-[Scikit-learn belgelerinde](https://scikit-learn.org/stable/supervised_learning.html) verileri sınıflandırmanın birçok yolunu bulacaksınız. Bu belgelerde küçük bir keşif yapın: amacınız sınıflandırma yöntemlerini aramak ve bu müfredattaki bir veri seti, ona sorabileceğiniz bir soru ve bir sınıflandırma tekniği ile eşleştirmektir. Bir elektronik tablo veya .doc dosyasında bir tablo oluşturun ve veri setinin sınıflandırma algoritması ile nasıl çalışacağını açıklayın.
+[Scikit-learn belgelerinde](https://scikit-learn.org/stable/supervised_learning.html) verileri sınıflandırmanın birçok yolunu bulabilirsiniz. Bu belgelerde küçük bir araştırma yapın: amacınız sınıflandırma yöntemlerini bulmak ve bu müfredattaki bir veri seti, ona sorabileceğiniz bir soru ve bir sınıflandırma tekniği ile eşleştirmek. Bir elektronik tablo veya .doc dosyasında bir tablo oluşturun ve veri setinin sınıflandırma algoritmasıyla nasıl çalışacağını açıklayın.
 
-## Değerlendirme Kriterleri
+## Değerlendirme Ölçütleri
 
-| Kriterler | Mükemmel                                                                                                                           | Yeterli                                                                                                                            | Geliştirmeye İhtiyacı Var                                                                                                                                      |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|           | 5 algoritmanın ve bir sınıflandırma tekniğinin genel bir bakışını içeren bir belge sunulmuştur. Genel bakış iyi açıklanmış ve detaylıdır. | 3 algoritmanın ve bir sınıflandırma tekniğinin genel bir bakışını içeren bir belge sunulmuştur. Genel bakış iyi açıklanmış ve detaylıdır. | Üçten az algoritmanın ve bir sınıflandırma tekniğinin genel bir bakışını içeren bir belge sunulmuştur ve genel bakış ne iyi açıklanmış ne de detaylıdır. |
+| Ölçüt   | Örnek                                                                                                                                | Yeterli                                                                                                                             | Geliştirme Gerekiyor                                                                                                                                          |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|          | 5 algoritmayı ve bir sınıflandırma tekniğini içeren bir belge sunulmuştur. Genel bakış iyi açıklanmış ve detaylıdır.                 | 3 algoritmayı ve bir sınıflandırma tekniğini içeren bir belge sunulmuştur. Genel bakış iyi açıklanmış ve detaylıdır.                 | Üçten az algoritmayı ve bir sınıflandırma tekniğini içeren bir belge sunulmuş ve genel bakış ne iyi açıklanmış ne de detaylıdır.                              |
 
-**Feragatname**:
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilmektedir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

@@ -1,118 +1,127 @@
-# Sentiment analysis with hotel reviews - processing the data
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "8d32dadeda93c6fb5c43619854882ab1",
+  "translation_date": "2025-09-06T09:20:34+00:00",
+  "source_file": "6-NLP/4-Hotel-Reviews-1/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用酒店評論進行情感分析 - 數據處理
 
-In this section, you will apply the techniques from previous lessons to perform exploratory data analysis on a large dataset. Once you grasp the significance of the various columns, you will learn:
+在本節中，您將使用前幾課中的技術對大型數據集進行探索性數據分析。一旦您對各列的實用性有了良好的理解，您將學習：
 
-- how to eliminate unnecessary columns
-- how to compute new data based on existing columns
-- how to save the resulting dataset for the final challenge
+- 如何刪除不必要的列
+- 如何基於現有列計算一些新數據
+- 如何保存結果數據集以用於最終挑戰
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/37/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-### Introduction
+### 簡介
 
-So far, you've learned that text data differs significantly from numerical data types. If it's text written or spoken by a human, it can be analyzed to uncover patterns, frequencies, sentiments, and meanings. This lesson introduces you to a real dataset with a real challenge: **[515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)**, which comes with a [CC0: Public Domain license](https://creativecommons.org/publicdomain/zero/1.0/). The data was scraped from Booking.com from public sources, and the dataset was created by Jiashen Liu.
+到目前為止，您已經了解了文本數據與數值類型數據的不同之處。如果文本是由人類撰寫或口述的，則可以通過分析找到模式、頻率、情感和含義。本課程將帶您進入一個真實的數據集並面臨一個真實的挑戰：**[歐洲515K酒店評論數據](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)**，並包含[CC0: 公共領域許可證](https://creativecommons.org/publicdomain/zero/1.0/)。該數據集是從Booking.com的公共來源抓取的，數據集的創建者是Jiashen Liu。
 
-### Preparation
+### 準備工作
 
-You will need:
+您需要：
 
-* The ability to run .ipynb notebooks using Python 3
+* 能夠使用Python 3運行.ipynb筆記本
 * pandas
-* NLTK, [which you should install locally](https://www.nltk.org/install.html)
-* The dataset available on Kaggle [515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe). It is approximately 230 MB when unzipped. Download it to the root `/data` folder associated with these NLP lessons.
+* NLTK，[您應該在本地安裝](https://www.nltk.org/install.html)
+* 可在Kaggle上獲得的數據集[歐洲515K酒店評論數據](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)。解壓後約230 MB。將其下載到與這些NLP課程相關的根目錄`/data`文件夾中。
 
-## Exploratory data analysis
+## 探索性數據分析
 
-This challenge assumes that you are developing a hotel recommendation bot using sentiment analysis and guest review scores. The dataset you will be using consists of reviews from 1493 different hotels in 6 cities.
+此挑戰假設您正在使用情感分析和客人評論分數構建酒店推薦機器人。您將使用的數據集包括6個城市中1493家不同酒店的評論。
 
-Using Python, a dataset of hotel reviews, and NLTK's sentiment analysis, you could discover:
+使用Python、酒店評論數據集和NLTK的情感分析，您可以找出：
 
-* What are the most frequently used words and phrases in reviews?
-* Do the official *tags* describing a hotel correlate with review scores (e.g., are the more negative reviews for a particular hotel from *Families with young children* rather than *Solo travelers*, possibly indicating it is better suited for *Solo travelers*?)
-* Do the NLTK sentiment scores 'agree' with the numerical scores given by hotel reviewers?
+* 在評論中最常用的詞語和短語是什麼？
+* 描述酒店的官方*標籤*是否與評論分數相關（例如，某酒店的*家庭帶小孩*評論是否比*單獨旅行者*更負面，可能表明該酒店更適合*單獨旅行者*？）
+* NLTK的情感分數是否與酒店評論者的數值分數一致？
 
-#### Dataset
+#### 數據集
 
-Let's explore the dataset you've downloaded and saved locally. Open the file in an editor like VS Code or even Excel.
+讓我們探索您已下載並保存到本地的數據集。使用VS Code或Excel等編輯器打開文件。
 
-The headers in the dataset are as follows:
+數據集的標題如下：
 
 *Hotel_Address, Additional_Number_of_Scoring, Review_Date, Average_Score, Hotel_Name, Reviewer_Nationality, Negative_Review, Review_Total_Negative_Word_Counts, Total_Number_of_Reviews, Positive_Review, Review_Total_Positive_Word_Counts, Total_Number_of_Reviews_Reviewer_Has_Given, Reviewer_Score, Tags, days_since_review, lat, lng*
 
-Here they are grouped in a way that might be easier to examine: 
-##### Hotel columns
+以下是分組後更易於檢查的方式：
+##### 酒店相關列
 
-* `Hotel_Name`, `Hotel_Address`, `lat` (latitude), `lng` (longitude)
-  * Using *lat* and *lng*, you could plot a map with Python showing the hotel locations (perhaps color-coded for negative and positive reviews).
-  * Hotel_Address may not be very useful to us, and we will likely replace it with a country for easier sorting & searching.
+* `Hotel_Name`, `Hotel_Address`, `lat` (緯度), `lng` (經度)
+  * 使用*lat*和*lng*，您可以使用Python繪製酒店位置的地圖（可能根據正面和負面評論進行顏色編碼）
+  * Hotel_Address對我們來說似乎沒有明顯的用途，我們可能會將其替換為國家以便於排序和搜索
 
-**Hotel Meta-review columns**
+**酒店元評論列**
 
 * `Average_Score`
-  * According to the dataset creator, this column represents the *Average Score of the hotel, calculated based on the latest comment in the last year*. This seems like an unusual method to calculate the score, but it is the data scraped, so we may take it at face value for now. 
+  * 根據數據集創建者的說法，此列是*酒店的平均分數，基於過去一年最新評論計算*。這似乎是一種不尋常的計算方式，但由於是抓取的數據，我們暫時接受它。
   
-  ✅ Based on the other columns in this data, can you think of another way to calculate the average score?
+  ✅ 根據此數據中的其他列，您能想到另一種計算平均分數的方法嗎？
 
 * `Total_Number_of_Reviews`
-  * This indicates the total number of reviews this hotel has received - it is not clear (without writing some code) if this refers to the reviews in the dataset.
+  * 該酒店收到的評論總數——尚不清楚（需要編寫一些代碼）這是否指數據集中的評論。
 * `Additional_Number_of_Scoring`
-  * This means a review score was given, but no positive or negative review was written by the reviewer.
+  * 表示評論者給出了分數但未撰寫正面或負面評論
 
-**Review columns**
+**評論相關列**
 
 - `Reviewer_Score`
-  - This is a numerical value with at most 1 decimal place between the min and max values of 2.5 and 10.
-  - It is not explained why 2.5 is the lowest score possible.
+  - 這是一個數值，最多有1位小數，範圍在2.5到10之間
+  - 未解釋為什麼最低分數可能是2.5
 - `Negative_Review`
-  - If a reviewer wrote nothing, this field will show "**No Negative**".
-  - Note that a reviewer may write a positive review in the Negative review column (e.g., "there is nothing bad about this hotel").
+  - 如果評論者未撰寫任何內容，此字段將顯示"**No Negative**"
+  - 注意，評論者可能在負面評論列中撰寫正面評論（例如："這家酒店沒有任何不好的地方"）
 - `Review_Total_Negative_Word_Counts`
-  - Higher negative word counts indicate a lower score (without checking the sentimentality).
+  - 更高的負面詞數表明分數較低（未檢查情感性）
 - `Positive_Review`
-  - If a reviewer wrote nothing, this field will show "**No Positive**".
-  - Note that a reviewer may write a negative review in the Positive review column (e.g., "there is nothing good about this hotel at all").
+  - 如果評論者未撰寫任何內容，此字段將顯示"**No Positive**"
+  - 注意，評論者可能在正面評論列中撰寫負面評論（例如："這家酒店完全沒有任何好的地方"）
 - `Review_Total_Positive_Word_Counts`
-  - Higher positive word counts indicate a higher score (without checking the sentimentality).
-- `Review_Date` and `days_since_review`
-  - A freshness or staleness measure might be applied to a review (older reviews might not be as accurate as newer ones because hotel management changed, renovations have been made, or a pool was added, etc.).
+  - 更高的正面詞數表明分數較高（未檢查情感性）
+- `Review_Date` 和 `days_since_review`
+  - 可以對評論應用新鮮度或陳舊度的衡量（較舊的評論可能不如較新的評論準確，因為酒店管理可能已更改，或進行了翻修，或新增了泳池等）
 - `Tags`
-  - These are short descriptors that a reviewer may select to describe the type of guest they were (e.g., solo or family), the type of room they had, the length of stay, and how the review was submitted. 
-  - Unfortunately, using these tags is problematic; check the section below which discusses their usefulness.
+  - 這些是評論者可能選擇用來描述他們是什麼類型的客人（例如，單獨或家庭）、他們的房間類型、停留時間以及評論提交方式的簡短描述。
+  - 不幸的是，使用這些標籤存在問題，請查看下面討論其實用性的部分
 
-**Reviewer columns**
+**評論者相關列**
 
 - `Total_Number_of_Reviews_Reviewer_Has_Given`
-  - This might be a factor in a recommendation model, for instance, if you could determine that more prolific reviewers with hundreds of reviews were more likely to be negative rather than positive. However, the reviewer of any particular review is not identified with a unique code, and therefore cannot be linked to a set of reviews. There are 30 reviewers with 100 or more reviews, but it's hard to see how this can aid the recommendation model.
+  - 這可能是推薦模型中的一個因素，例如，如果您能夠確定撰寫數百條評論的多產評論者更可能是負面而非正面。然而，任何特定評論的評論者並未用唯一代碼識別，因此無法鏈接到一組評論。有30位評論者撰寫了100條或更多評論，但很難看出這如何幫助推薦模型。
 - `Reviewer_Nationality`
-  - Some people might think that certain nationalities are more likely to give a positive or negative review because of a national inclination. Be cautious about incorporating such anecdotal views into your models. These are national (and sometimes racial) stereotypes, and each reviewer was an individual who wrote a review based on their experience. Their review might have been influenced by various factors such as previous hotel stays, the distance traveled, and their personal temperament. Assuming their nationality was the reason for a review score is hard to justify.
+  - 有些人可能認為某些國籍更可能給出正面或負面評論，因為有某種國家傾向。建模時要小心建立這樣的轶事觀點。這些是國家（有時是種族）刻板印象，每位評論者都是基於自身經驗撰寫評論的個體。評論可能受到多種因素的影響，例如他們之前的酒店住宿、旅行距離以及個人性格。認為評論分數是由國籍決定的很難證明。
 
-##### Examples
+##### 示例
 
-| Average  Score | Total Number   Reviews | Reviewer   Score | Negative <br />Review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Positive   Review                 | Tags                                                                                      |
-| -------------- | ---------------------- | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 7.8            | 1945                   | 2.5              | This is currently not a hotel but a construction site. I was terrorized from early morning and all day with unacceptable building noise while resting after a long trip and working in the room. People were working all day with jackhammers in the adjacent rooms. I asked for a room change, but no silent room was available. To make things worse, I was overcharged. I checked out in the evening since I had to leave for a very early flight and received an appropriate bill. A day later, the hotel made another charge without my consent in excess of the booked price. It's a terrible place. Don't punish yourself by booking here. | Nothing  Terrible place Stay away | Business trip                                Couple Standard Double Room Stayed 2 nights |
+| 平均分數 | 總評論數 | 評論者分數 | 負面<br />評論                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 正面評論                 | 標籤                                                                                      |
+| -------- | --------- | ---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------- |
+| 7.8      | 1945      | 2.5        | 這目前不是一家酒店，而是一個建築工地。我在長途旅行後休息並在房間工作時，從早上到全天都被不可接受的施工噪音折磨。人們整天都在工作，例如在相鄰房間使用鑽孔機。我要求更換房間，但沒有安靜的房間可用。更糟的是，我被多收了費。我在晚上退房，因為我需要趕早班飛機，並收到了一張適當的賬單。一天後，酒店在未經我同意的情況下額外收取了超出預訂價格的費用。這是一個可怕的地方。不要折磨自己，千萬不要預訂這裡。 | 沒有任何好處。可怕的地方，遠離這裡 | 商務旅行                                情侶 標準雙人房 停留2晚 |
 
-As you can see, this guest did not have a pleasant stay at this hotel. The hotel has a good average score of 7.8 and 1945 reviews, but this reviewer gave it 2.5 and wrote 115 words about how negative their stay was. If they wrote nothing at all in the Positive_Review column, you might assume there was nothing positive, but alas, they wrote 7 words of warning. If we just counted words instead of the meaning or sentiment of the words, we might have a skewed view of the reviewer's intent. Strangely, their score of 2.5 is perplexing because if that hotel stay was so bad, why give it any points at all? Investigating the dataset closely, you'll see that the lowest possible score is 2.5, not 0. The highest possible score is 10.
+如您所見，這位客人在這家酒店的住宿並不愉快。該酒店有7.8的良好平均分數和1945條評論，但這位評論者給出了2.5分，並撰寫了115個字描述他們的負面住宿體驗。如果他們在Positive_Review列中未撰寫任何內容，您可能會推測沒有任何正面內容，但他們卻寫了7個字的警告。如果我們僅僅計算字數而不是字詞的含義或情感，我們可能會對評論者的意圖有一個偏頗的看法。奇怪的是，他們的2.5分令人困惑，因為如果酒店住宿如此糟糕，為什麼還要給任何分數？仔細調查數據集，您會看到最低可能分數是2.5，而不是0。最高可能分數是10。
 
-##### Tags
+##### 標籤
 
-As mentioned above, at first glance, the idea of using `Tags` to categorize the data makes sense. Unfortunately, these tags are not standardized, which means that in a given hotel, the options might be *Single room*, *Twin room*, and *Double room*, but in the next hotel, they might be *Deluxe Single Room*, *Classic Queen Room*, and *Executive King Room*. These might be the same things, but there are so many variations that the choice becomes:
+如上所述，乍看之下，使用`Tags`來分類數據似乎很合理。不幸的是，這些標籤並未標準化，這意味著在某家酒店中，選項可能是*單人房*、*雙床房*和*雙人房*，但在下一家酒店中，它們可能是*豪華單人房*、*經典大床房*和*行政特大床房*。這些可能是相同的房型，但有如此多的變化，選擇變成：
 
-1. Attempt to change all terms to a single standard, which is very difficult because it is not clear what the conversion path would be in each case (e.g., *Classic single room* maps to *Single room*, but *Superior Queen Room with Courtyard Garden or City View* is much harder to map).
+1. 嘗試將所有術語更改為單一標準，這非常困難，因為不清楚每種情況的轉換路徑（例如，*經典單人房*映射到*單人房*，但*帶庭院花園或城市景觀的高級大床房*則更難映射）
 
-2. We can take an NLP approach and measure the frequency of certain terms like *Solo*, *Business Traveller*, or *Family with young kids* as they apply to each hotel, and factor that into the recommendation.  
+1. 我們可以採用NLP方法，測量某些術語（如*單獨*、*商務旅行者*或*家庭帶小孩*）在每家酒店中的頻率，並將其納入推薦中
 
-Tags are usually (but not always) a single field containing a list of 5 to 6 comma-separated values aligning to *Type of trip*, *Type of guests*, *Type of room*, *Number of nights*, and *Type of device review was submitted on*. However, because some reviewers don't fill in each field (they might leave one blank), the values are not always in the same order.
+標籤通常（但並非總是）是一個包含5到6個逗號分隔值的單一字段，對應於*旅行類型*、*客人類型*、*房間類型*、*停留天數*和*提交評論的設備類型*。然而，由於某些評論者未填寫每個字段（可能留空一個），值並不總是按相同順序排列。
 
-As an example, take *Type of group*. There are 1025 unique possibilities in this field in the `Tags` column, and unfortunately, only some of them refer to a group (some are the type of room, etc.). If you filter only the ones that mention family, the results contain many *Family room* type results. If you include the term *with*, i.e., count the *Family with* values, the results are better, with over 80,000 of the 515,000 results containing the phrase "Family with young children" or "Family with older children".
+例如，取*群體類型*。在`Tags`列中，此字段有1025種唯一可能性，不幸的是，其中只有部分提到群體（有些是房間類型等）。如果您僅篩選提到家庭的標籤，結果包含許多*家庭房*類型的結果。如果您包括術語*with*，即計算*家庭帶*的值，結果更好，515,000條結果中有超過80,000條包含"家庭帶小孩"或"家庭帶大孩"的短語。
 
-This means the tags column is not entirely useless to us, but it will take some work to make it useful.
+這意味著標籤列對我們來說並非完全無用，但需要一些工作才能使其有用。
 
-##### Average hotel score
+##### 酒店平均分數
 
-There are a number of oddities or discrepancies with the dataset that I can't figure out, but are illustrated here so you are aware of them when building your models. If you figure it out, please let us know in the discussion section!
+數據集中有一些奇怪或不一致的地方我無法弄清楚，但在此列出以便您在構建模型時注意。如果您弄清楚了，請在討論區告訴我們！
 
-The dataset has the following columns relating to the average score and number of reviews: 
+數據集有以下列與平均分數和評論數相關：
 
 1. Hotel_Name
 2. Additional_Number_of_Scoring
@@ -120,26 +129,24 @@ The dataset has the following columns relating to the average score and number o
 4. Total_Number_of_Reviews
 5. Reviewer_Score  
 
-The single hotel with the most reviews in this dataset is *Britannia International Hotel Canary Wharf* with 4789 reviews out of 515,000. But if we look at the `Total_Number_of_Reviews` value for this hotel, it is 9086. You might surmise that there are many more scores without reviews, so perhaps we should add in the `Additional_Number_of_Scoring` column value. That value is 2682, and adding it to 4789 gets us 7,471, which is still 1615 short of the `Total_Number_of_Reviews`. 
+數據集中評論最多的酒店是*Britannia International Hotel Canary Wharf*，有4789條評論（共515,000條）。但如果我們查看該酒店的`Total_Number_of_Reviews`值，則為9086。您可能推測有更多的分數未附評論，因此我們可能需要加上`Additional_Number_of_Scoring`列的值。該值為2682，加上4789得到7471，仍然比`Total_Number_of_Reviews`少1615。
 
-If you take the `Average_Score` columns, you might think it is the average of the reviews in the dataset, but the description from Kaggle is "*Average Score of the hotel, calculated based on the latest comment in the last year*". That doesn't seem very useful, but we can calculate our own average based on the reviewer scores in the dataset. Using the same hotel as an example, the average hotel score is given as 7.1, but the calculated score (average reviewer score *in* the dataset) is 6.8. This is close but not the same value, and we can only guess that the scores given in the `Additional_Number_of_Scoring` reviews increased the average to 7.1. Unfortunately, with no way to test or prove that assertion, it is difficult to use or trust `Average_Score`, `Additional_Number_of_Scoring`, and `Total_Number_of_Reviews` when they are based on, or refer to, data we do not have.
+如果您查看`Average_Score`列，可能會推測它是數據集中評論的平均值，但Kaggle的描述是"*酒店的平均分數，基於過去一年最新評論計算*"。這似乎不太有用，但我們可以根據數據集中的評論分數計算自己的平均值。以同一家酒店為例，酒店的平均分數為7.1，但計算出的分數（數據集中評論者的平均分數）為6.8。這很接近，但不是同一值，我們只能猜測`Additional_Number_of_Scoring`評論中的分數將平均值提高到7.1。不幸的是，由於無法測試或證明這一假設，使用或信任`Average_Score`、`Additional_Number_of_Scoring`和`Total_Number_of_Reviews`變得困難，因為它們基於或引用了我們沒有的數據。
 
-To complicate things further, the hotel with the second highest number of reviews has a calculated average score of 8.12, and the dataset `Average_Score` is 8.1. Is this correct score a coincidence, or is the first hotel a discrepancy? 
+更複雜的是，評論數第二多的酒店的計算平均分數為8.12，而數據集中的`Average_Score`為8.1。這是否正確分數是巧合，還是第一家酒店存在不一致？
 
-On the possibility that these hotels might be outliers, and that maybe most of the values tally up (but some do not for some reason), we will write a short program next to explore the values in the dataset and determine the correct usage (or non-usage) of the values.
-
-> 🚨 A note of caution
+基於這些酒店可能是異常值的可能性，以及也許大多數值是吻合的（但某些值因某些原因不吻合），我們將在下一步編寫一個簡短的程序來探索數據集中的值並確定正確的使用方式（或不使用方式）。
+> 🚨 注意事項
 >
-> When working with this dataset, you will write code that calculates something from the text without having to read or analyze the text yourself. This is the essence of NLP, interpreting meaning or sentiment without requiring human intervention. However, it is possible that you will encounter some negative reviews. I would advise against reading them, as you don't have to. Some of them are trivial, or irrelevant negative hotel reviews, such as "The weather wasn't great," something beyond the control of the hotel, or indeed, anyone. But there is a darker side to some reviews too. Sometimes, negative reviews are racist, sexist, or ageist. This is unfortunate but to be expected in a dataset scraped from a public website. Some reviewers leave comments that you might find distasteful, uncomfortable, or upsetting. It is better to let the code measure the sentiment than to read them yourself and be distressed. That said, it is a minority that write such things, but they exist nonetheless.
+> 在處理這個數據集時，你將撰寫程式碼來從文本中計算某些內容，而不需要自己閱讀或分析文本。這正是自然語言處理（NLP）的核心：在不需要人類介入的情況下解讀文本的意義或情感。然而，有可能你會讀到一些負面評論。我建議你不要這麼做，因為你並不需要這麼做。有些評論可能很荒謬，或者是無關緊要的負面酒店評論，例如「天氣不太好」，這是酒店或任何人都無法控制的事情。但有些評論也有陰暗的一面。有時候，負面評論可能帶有種族歧視、性別歧視或年齡歧視的內容。這很不幸，但在從公共網站抓取的數據集中是可以預期的。一些評論者可能會留下讓你感到厭惡、不適或心情不好的評論。最好讓程式碼來衡量情感，而不是自己閱讀這些評論並感到不安。話雖如此，撰寫這類評論的人只是少數，但它們的確存在。
+## 練習 - 資料探索
+### 載入資料
 
-## Exercise - Data exploration
-### Load the data
+視覺化檢視資料已經足夠，現在你需要撰寫一些程式碼來獲取答案！本節使用 pandas 函式庫。你的第一個任務是確保你能載入並讀取 CSV 資料。pandas 函式庫提供快速的 CSV 載入功能，結果會存放在 dataframe 中，就像之前的課程一樣。我們要載入的 CSV 檔案有超過五十萬筆資料，但只有 17 個欄位。pandas 提供許多強大的方法來與 dataframe 互動，包括能對每一列進行操作的能力。
 
-That's enough visual examination of the data; now you'll write some code to get some answers! This section uses the pandas library. Your very first task is to ensure you can load and read the CSV data. The pandas library has a fast CSV loader, and the result is placed in a dataframe, as in previous lessons. The CSV we are loading has over half a million rows, but only 17 columns. Pandas provides many powerful ways to interact with a dataframe, including the ability to perform operations on every row.
+從這裡開始，本課程將包含程式碼片段、程式碼解釋以及結果的討論。請使用附帶的 _notebook.ipynb_ 來撰寫你的程式碼。
 
-From here on in this lesson, there will be code snippets and some explanations of the code, along with discussions about what the results mean. Use the included _notebook.ipynb_ for your code.
-
-Let's start by loading the data file you will be using:
+讓我們從載入你將使用的資料檔案開始：
 
 ```python
 # Load the hotel reviews from CSV
@@ -154,27 +161,53 @@ end = time.time()
 print("Loading took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Now that the data is loaded, we can perform some operations on it. Keep this code at the top of your program for the next part.
+現在資料已載入，我們可以對其進行一些操作。請將這段程式碼保留在程式的頂部，以便進行下一部分。
 
-## Explore the data
+## 探索資料
 
-In this case, the data is already *clean*, meaning that it is ready to work with and does not contain characters from other languages that might confuse algorithms expecting only English characters.
+在這個案例中，資料已經是*乾淨*的，這意味著它已準備好使用，並且不包含可能會影響只接受英文字符的演算法的其他語言字符。
 
-✅ You might have to work with data that requires some initial processing to format it before applying NLP techniques, but not this time. If you had to, how would you handle non-English characters?
+✅ 你可能需要處理一些需要初步格式化的資料，才能應用 NLP 技術，但這次不需要。如果需要，你會如何處理非英文字符？
 
-Take a moment to ensure that once the data is loaded, you can explore it with code. It's very tempting to focus on the `Negative_Review` and `Positive_Review` columns. They are filled with natural text for your NLP algorithms to process. But wait! Before you dive into the NLP and sentiment analysis, you should follow the code below to check if the values given in the dataset match the values you calculate with pandas.
+花點時間確保資料載入後，你可以使用程式碼來探索它。很容易想要專注於 `Negative_Review` 和 `Positive_Review` 欄位。這些欄位充滿了自然文本，供你的 NLP 演算法處理。但等等！在進入 NLP 和情感分析之前，你應該遵循以下程式碼，確認資料集中提供的值是否與你使用 pandas 計算的值相符。
 
-## Dataframe operations
+## Dataframe 操作
 
-The first task in this lesson is to verify if the following assertions are correct by writing some code that examines the dataframe (without altering it).
+本課程的第一個任務是撰寫一些程式碼來檢查以下斷言是否正確（不更改資料框）。
 
-> Like many programming tasks, there are several ways to complete this, but a good practice is to do it in the simplest, most straightforward way you can, especially if it will be easier to understand when you revisit this code in the future. With dataframes, there is a comprehensive API that will often have a way to achieve what you want efficiently.
-Treat the following questions as coding tasks and attempt to answer them without looking at the solution. 1. Print out the *shape* of the dataframe you have just loaded (the shape is the number of rows and columns) 2. Calculate the frequency count for reviewer nationalities: 1. How many distinct values are there for the column `Reviewer_Nationality` and what are they? 2. What reviewer nationality is the most common in the dataset (print country and number of reviews)? 3. What are the next top 10 most frequently found nationalities, and their frequency count? 3. What was the most frequently reviewed hotel for each of the top 10 most reviewer nationalities? 4. How many reviews are there per hotel (frequency count of hotel) in the dataset? 5. While there is an `Average_Score` column for each hotel in the dataset, you can also calculate an average score (getting the average of all reviewer scores in the dataset for each hotel). Add a new column to your dataframe with the column header `Calc_Average_Score` that contains that calculated average. 6. Do any hotels have the same (rounded to 1 decimal place) `Average_Score` and `Calc_Average_Score`?
-   1. Try writing a Python function that takes a Series (row) as an argument and compares the values, printing out a message when the values are not equal. Then use the `.apply()` method to process every row with the function. 7. Calculate and print out how many rows have column `Negative_Review` values of "No Negative" 8. Calculate and print out how many
-rows have column `Positive_Review` values of "No Positive" 9. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" **and** `Negative_Review` values of "No Negative" ### Code answers 1. Print out the *shape* of the data frame you have just loaded (the shape is the number of rows and columns) ```python
+> 就像許多程式設計任務一樣，完成這些任務有多種方法，但好的建議是以最簡單、最容易的方式完成，特別是當你未來回顧這段程式碼時更容易理解。對於 dataframe，有一個全面的 API，通常可以有效地完成你想要的操作。
+
+將以下問題視為程式設計任務，嘗試回答它們而不查看解答。
+
+1. 輸出你剛載入的資料框的*形狀*（形狀是行數和列數）
+2. 計算評論者國籍的頻率：
+   1. `Reviewer_Nationality` 欄位中有多少個不同的值？它們是什麼？
+   2. 資料集中最常見的評論者國籍是什麼（輸出國家和評論數量）？
+   3. 接下來最常見的前 10 個國籍及其頻率是多少？
+3. 對於前 10 個評論者國籍，最常被評論的酒店是什麼？
+4. 資料集中每家酒店有多少評論（酒店的評論頻率）？
+5. 雖然資料集中每家酒店都有 `Average_Score` 欄位，但你也可以計算平均分數（計算每家酒店所有評論者分數的平均值）。新增一個名為 `Calc_Average_Score` 的新欄位到你的 dataframe，該欄位包含計算出的平均分數。
+6. 是否有酒店的 `Average_Score` 和 `Calc_Average_Score`（四捨五入到小數點後一位）相同？
+   1. 嘗試撰寫一個 Python 函數，該函數接受一個 Series（行）作為參數並比較這些值，當值不相等時輸出訊息。然後使用 `.apply()` 方法處理每一行。
+7. 計算並輸出 `Negative_Review` 欄位值為 "No Negative" 的行數
+8. 計算並輸出 `Positive_Review` 欄位值為 "No Positive" 的行數
+9. 計算並輸出 `Positive_Review` 欄位值為 "No Positive" **且** `Negative_Review` 欄位值為 "No Negative" 的行數
+
+### 程式碼解答
+
+1. 輸出你剛載入的資料框的*形狀*（形狀是行數和列數）
+
+   ```python
    print("The shape of the data (rows, cols) is " + str(df.shape))
    > The shape of the data (rows, cols) is (515738, 17)
-   ``` 2. Calculate the frequency count for reviewer nationalities: 1. How many distinct values are there for the column `Reviewer_Nationality` and what are they? 2. What reviewer nationality is the most common in the dataset (print country and number of reviews)? ```python
+   ```
+
+2. 計算評論者國籍的頻率：
+
+   1. `Reviewer_Nationality` 欄位中有多少個不同的值？它們是什麼？
+   2. 資料集中最常見的評論者國籍是什麼（輸出國家和評論數量）？
+
+   ```python
    # value_counts() creates a Series object that has index and values in this case, the country and the frequency they occur in reviewer nationality
    nationality_freq = df["Reviewer_Nationality"].value_counts()
    print("There are " + str(nationality_freq.size) + " different nationalities")
@@ -194,7 +227,11 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
     Cape Verde                        1
     Guinea                            1
    Name: Reviewer_Nationality, Length: 227, dtype: int64
-   ``` 3. What are the next top 10 most frequently found nationalities, and their frequency count? ```python
+   ```
+
+   3. 接下來最常見的前 10 個國籍及其頻率是多少？
+
+      ```python
       print("The highest frequency reviewer nationality is " + str(nationality_freq.index[0]).strip() + " with " + str(nationality_freq[0]) + " reviews.")
       # Notice there is a leading space on the values, strip() removes that for printing
       # What is the top 10 most common nationalities and their frequencies?
@@ -213,7 +250,11 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
        Germany                       7941
        Canada                        7894
        France                        7296
-      ``` 3. What was the most frequently reviewed hotel for each of the top 10 most reviewer nationalities? ```python
+      ```
+
+3. 對於前 10 個評論者國籍，最常被評論的酒店是什麼？
+
+   ```python
    # What was the most frequently reviewed hotel for the top 10 nationalities
    # Normally with pandas you will avoid an explicit loop, but wanted to show creating a new dataframe using criteria (don't do this with large amounts of data because it could be very slow)
    for nat in nationality_freq[:10].index:
@@ -233,7 +274,11 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    The most reviewed hotel for Switzerland was Hotel Da Vinci with 97 reviews.
    The most reviewed hotel for Germany was Hotel Da Vinci with 86 reviews.
    The most reviewed hotel for Canada was St James Court A Taj Hotel London with 61 reviews.
-   ``` 4. How many reviews are there per hotel (frequency count of hotel) in the dataset? ```python
+   ```
+
+4. 資料集中每家酒店有多少評論（酒店的評論頻率）？
+
+   ```python
    # First create a new dataframe based on the old one, removing the uneeded columns
    hotel_freq_df = df.drop(["Hotel_Address", "Additional_Number_of_Scoring", "Review_Date", "Average_Score", "Reviewer_Nationality", "Negative_Review", "Review_Total_Negative_Word_Counts", "Positive_Review", "Review_Total_Positive_Word_Counts", "Total_Number_of_Reviews_Reviewer_Has_Given", "Reviewer_Score", "Tags", "days_since_review", "lat", "lng"], axis = 1)
    
@@ -243,7 +288,22 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    # Get rid of all the duplicated rows
    hotel_freq_df = hotel_freq_df.drop_duplicates(subset = ["Hotel_Name"])
    display(hotel_freq_df) 
-   ``` | Hotel_Name | Total_Number_of_Reviews | Total_Reviews_Found | | :----------------------------------------: | :---------------------: | :-----------------: | | Britannia International Hotel Canary Wharf | 9086 | 4789 | | Park Plaza Westminster Bridge London | 12158 | 4169 | | Copthorne Tara Hotel London Kensington | 7105 | 3578 | | ... | ... | ... | | Mercure Paris Porte d Orleans | 110 | 10 | | Hotel Wagner | 135 | 10 | | Hotel Gallitzinberg | 173 | 8 | You may notice that the *counted in the dataset* results do not match the value in `Total_Number_of_Reviews`. It is unclear if this value in the dataset represented the total number of reviews the hotel had, but not all were scraped, or some other calculation. `Total_Number_of_Reviews` is not used in the model because of this unclarity. 5. While there is an `Average_Score` column for each hotel in the dataset, you can also calculate an average score (getting the average of all reviewer scores in the dataset for each hotel). Add a new column to your dataframe with the column header `Calc_Average_Score` that contains that calculated average. Print out the columns `Hotel_Name`, `Average_Score`, and `Calc_Average_Score`. ```python
+   ```
+   |                 Hotel_Name                 | Total_Number_of_Reviews | Total_Reviews_Found |
+   | :----------------------------------------: | :---------------------: | :-----------------: |
+   | Britannia International Hotel Canary Wharf |          9086           |        4789         |
+   |    Park Plaza Westminster Bridge London    |          12158          |        4169         |
+   |   Copthorne Tara Hotel London Kensington   |          7105           |        3578         |
+   |                    ...                     |           ...           |         ...         |
+   |       Mercure Paris Porte d Orleans        |           110           |         10          |
+   |                Hotel Wagner                |           135           |         10          |
+   |            Hotel Gallitzinberg             |           173           |          8          |
+   
+   你可能會注意到*資料集中計算的*結果與 `Total_Number_of_Reviews` 的值不匹配。尚不清楚資料集中該值是否代表酒店的總評論數，但並非所有評論都被抓取，或者是其他計算方式。由於這種不明確性，`Total_Number_of_Reviews` 不會用於模型。
+
+5. 雖然資料集中每家酒店都有 `Average_Score` 欄位，但你也可以計算平均分數（計算每家酒店所有評論者分數的平均值）。新增一個名為 `Calc_Average_Score` 的新欄位到你的 dataframe，該欄位包含計算出的平均分數。輸出欄位 `Hotel_Name`、`Average_Score` 和 `Calc_Average_Score`。
+
+   ```python
    # define a function that takes a row and performs some calculation with it
    def get_difference_review_avg(row):
      return row["Average_Score"] - row["Calc_Average_Score"]
@@ -261,7 +321,33 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    review_scores_df = review_scores_df.sort_values(by=["Average_Score_Difference"])
    
    display(review_scores_df[["Average_Score_Difference", "Average_Score", "Calc_Average_Score", "Hotel_Name"]])
-   ``` You may also wonder about the `Average_Score` value and why it is sometimes different from the calculated average score. As we can't know why some of the values match, but others have a difference, it's safest in this case to use the review scores that we have to calculate the average ourselves. That said, the differences are usually very small, here are the hotels with the greatest deviation from the dataset average and the calculated average: | Average_Score_Difference | Average_Score | Calc_Average_Score | Hotel_Name | | :----------------------: | :-----------: | :----------------: | ------------------------------------------: | | -0.8 | 7.7 | 8.5 | Best Western Hotel Astoria | | -0.7 | 8.8 | 9.5 | Hotel Stendhal Place Vend me Paris MGallery | | -0.7 | 7.5 | 8.2 | Mercure Paris Porte d Orleans | | -0.7 | 7.9 | 8.6 | Renaissance Paris Vendome Hotel | | -0.5 | 7.0 | 7.5 | Hotel Royal Elys es | | ... | ... | ... | ... | | 0.7 | 7.5 | 6.8 | Mercure Paris Op ra Faubourg Montmartre | | 0.8 | 7.1 | 6.3 | Holiday Inn Paris Montparnasse Pasteur | | 0.9 | 6.8 | 5.9 | Villa Eugenie | | 0.9 | 8.6 | 7.7 | MARQUIS Faubourg St Honor Relais Ch teaux | | 1.3 | 7.2 | 5.9 | Kube Hotel Ice Bar | With only 1 hotel having a difference of score greater than 1, it means we can probably ignore the difference and use the calculated average score. 6. Calculate and print out how many rows have column `Negative_Review` values of "No Negative" 7. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" 8. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" **and** `Negative_Review` values of "No Negative" ```python
+   ```
+
+   你可能也會好奇 `Average_Score` 的值以及為什麼它有時與計算出的平均分數不同。由於我們無法知道為什麼有些值匹配，但其他值有差異，在這種情況下，最安全的做法是使用我們擁有的評論分數自行計算平均分數。儘管如此，差異通常非常小，以下是資料集中平均分數與計算出的平均分數差異最大的酒店：
+
+   | Average_Score_Difference | Average_Score | Calc_Average_Score |                                  Hotel_Name |
+   | :----------------------: | :-----------: | :----------------: | ------------------------------------------: |
+   |           -0.8           |      7.7      |        8.5         |                  Best Western Hotel Astoria |
+   |           -0.7           |      8.8      |        9.5         | Hotel Stendhal Place Vend me Paris MGallery |
+   |           -0.7           |      7.5      |        8.2         |               Mercure Paris Porte d Orleans |
+   |           -0.7           |      7.9      |        8.6         |             Renaissance Paris Vendome Hotel |
+   |           -0.5           |      7.0      |        7.5         |                         Hotel Royal Elys es |
+   |           ...            |      ...      |        ...         |                                         ... |
+   |           0.7            |      7.5      |        6.8         |     Mercure Paris Op ra Faubourg Montmartre |
+   |           0.8            |      7.1      |        6.3         |      Holiday Inn Paris Montparnasse Pasteur |
+   |           0.9            |      6.8      |        5.9         |                               Villa Eugenie |
+   |           0.9            |      8.6      |        7.7         |   MARQUIS Faubourg St Honor Relais Ch teaux |
+   |           1.3            |      7.2      |        5.9         |                          Kube Hotel Ice Bar |
+
+   只有一家酒店的分數差異超過 1，這意味著我們可能可以忽略差異並使用計算出的平均分數。
+
+6. 計算並輸出 `Negative_Review` 欄位值為 "No Negative" 的行數
+
+7. 計算並輸出 `Positive_Review` 欄位值為 "No Positive" 的行數
+
+8. 計算並輸出 `Positive_Review` 欄位值為 "No Positive" **且** `Negative_Review` 欄位值為 "No Negative" 的行數
+
+   ```python
    # with lambdas:
    start = time.time()
    no_negative_reviews = df.apply(lambda x: True if x['Negative_Review'] == "No Negative" else False , axis=1)
@@ -279,7 +365,13 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
    Lambdas took 9.64 seconds
-   ``` ## Another way Another way count items without Lambdas, and use sum to count the rows: ```python
+   ```
+
+## 另一種方法
+
+另一種方法是不用 Lambdas，並使用 sum 來計算行數：
+
+   ```python
    # without lambdas (using a mixture of notations to show you can use both)
    start = time.time()
    no_negative_reviews = sum(df.Negative_Review == "No Negative")
@@ -298,6 +390,28 @@ rows have column `Positive_Review` values of "No Positive" 9. Calculate and prin
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
    Sum took 0.19 seconds
-   ``` You may have noticed that there are 127 rows that have both "No Negative" and "No Positive" values for the columns `Negative_Review` and `Positive_Review` respectively. That means that the reviewer gave the hotel a numerical score, but declined to write either a positive or negative review. Luckily this is a small amount of rows (127 out of 515738, or 0.02%), so it probably won't skew our model or results in any particular direction, but you might not have expected a data set of reviews to have rows with no reviews, so it's worth exploring the data to discover rows like this. Now that you have explored the dataset, in the next lesson you will filter the data and add some sentiment analysis. --- ## 🚀Challenge This lesson demonstrates, as we saw in previous lessons, how critically important it is to understand your data and its foibles before performing operations on it. Text-based data, in particular, bears careful scrutiny. Dig through various text-heavy datasets and see if you can discover areas that could introduce bias or skewed sentiment into a model. ## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/38/) ## Review & Self Study Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) to discover tools to try when building speech and text-heavy models. ## Assignment [NLTK](assignment.md) Please write the output from left to right.
+   ```
 
-I'm sorry, but I can't provide a translation to "mo" as it is not a recognized language code. If you meant a specific language, please clarify which language you'd like the text translated into, and I'd be happy to help!
+   你可能注意到有 127 行的 `Negative_Review` 和 `Positive_Review` 欄位分別為 "No Negative" 和 "No Positive"。這意味著評論者給了酒店一個數字分數，但拒絕撰寫正面或負面的評論。幸運的是，這是一個很小的行數（127 行中的 515738 行，約 0.02%），因此它可能不會在任何特定方向上影響我們的模型或結果。但你可能不會預期到一個評論資料集會有沒有評論的行，因此值得探索資料以發現這樣的行。
+
+現在你已經探索了資料集，在下一課中你將篩選資料並新增一些情感分析。
+
+---
+## 🚀挑戰
+
+本課程展示了，就像我們在之前的課程中看到的那樣，在對資料進行操作之前，了解資料及其特性是多麼重要。特別是基於文本的資料，需要仔細檢查。深入挖掘各種以文本為主的資料集，看看你是否能發現可能引入偏差或情感偏斜的地方。
+
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
+
+## 回顧與自學
+
+參加 [這個 NLP 學習路徑](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott)，探索在構建語音和文本模型時可以嘗試的工具。
+
+## 作業 
+
+[NLTK](assignment.md)
+
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

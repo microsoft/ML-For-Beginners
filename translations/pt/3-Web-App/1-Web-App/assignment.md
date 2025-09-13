@@ -1,14 +1,25 @@
-# Tente um modelo diferente
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "a8e8ae10be335cbc745b75ee552317ff",
+  "translation_date": "2025-09-03T17:57:40+00:00",
+  "source_file": "3-Web-App/1-Web-App/assignment.md",
+  "language_code": "pt"
+}
+-->
+# Experimente um modelo diferente
 
 ## Instruções
 
-Agora que você construiu um aplicativo web usando um modelo de Regressão treinado, use um dos modelos de uma lição anterior de Regressão para refazer este aplicativo web. Você pode manter o estilo ou projetá-lo de forma diferente para refletir os dados da abóbora. Tenha cuidado para mudar as entradas para refletir o método de treinamento do seu modelo.
+Agora que já criou uma aplicação web utilizando um modelo de Regressão treinado, utilize um dos modelos de uma lição anterior sobre Regressão para refazer esta aplicação web. Pode manter o estilo ou desenhá-la de forma diferente para refletir os dados das abóboras. Certifique-se de alterar os inputs para corresponder ao método de treino do seu modelo.
 
-## Rubrica
+## Critérios de Avaliação
 
-| Critérios                  | Exemplar                                                 | Adequado                                                 | Necessita de Melhoria                  |
-| -------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------- |
-|                          | O aplicativo web funciona como esperado e está implantado na nuvem | O aplicativo web contém falhas ou apresenta resultados inesperados | O aplicativo web não funciona corretamente |
+| Critérios                  | Exemplar                                                 | Adequado                                                  | Necessita Melhorias                    |
+| -------------------------- | -------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------- |
+| | A aplicação web funciona como esperado e está implementada na nuvem | A aplicação web contém falhas ou apresenta resultados inesperados | A aplicação web não funciona corretamente |
+
+---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando serviços de tradução automática baseados em IA. Embora nos esforcemos para garantir a precisão, esteja ciente de que as traduções automáticas podem conter erros ou imprecisões. O documento original em sua língua nativa deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas resultantes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.

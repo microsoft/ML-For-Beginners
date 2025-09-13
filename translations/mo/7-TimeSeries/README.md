@@ -1,25 +1,37 @@
-# Introduction à la prévision des séries temporelles
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
+  "translation_date": "2025-08-29T20:38:26+00:00",
+  "source_file": "7-TimeSeries/README.md",
+  "language_code": "mo"
+}
+-->
+# 時間序列預測簡介
 
-Qu'est-ce que la prévision des séries temporelles ? Il s'agit de prédire des événements futurs en analysant les tendances du passé.
+什麼是時間序列預測？它是通過分析過去的趨勢來預測未來事件。
 
-## Thème régional : consommation d'électricité dans le monde ✨
+## 區域主題：全球電力使用情況 ✨
 
-Dans ces deux leçons, vous serez introduit à la prévision des séries temporelles, un domaine de l'apprentissage automatique quelque peu moins connu mais néanmoins extrêmement précieux pour les applications industrielles et commerciales, parmi d'autres domaines. Bien que les réseaux neuronaux puissent être utilisés pour améliorer l'utilité de ces modèles, nous les étudierons dans le contexte de l'apprentissage automatique classique, car les modèles aident à prédire la performance future en se basant sur le passé.
+在這兩節課中，您將學習時間序列預測，這是一個相對較少人熟知但對於工業和商業應用等領域極其有價值的機器學習領域。雖然神經網絡可以用來增強這些模型的效用，但我們將在經典機器學習的背景下研究它們，因為這些模型可以根據過去的數據來幫助預測未來的表現。
 
-Notre focus régional est la consommation électrique dans le monde, un ensemble de données intéressant pour apprendre à prévoir la consommation future d'électricité en fonction des schémas de charge passés. Vous pouvez voir comment ce type de prévision peut être extrêmement utile dans un environnement commercial.
+我們的區域重點是全球的電力使用情況，這是一個有趣的數據集，可以用來學習如何根據過去的負載模式預測未來的電力使用情況。您可以看到，這種預測在商業環境中是多麼有幫助。
 
-![réseau électrique](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.mo.jpg)
+![電網](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.mo.jpg)
 
-Photo par [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de tours électriques sur une route au Rajasthan sur [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+照片由 [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) 拍攝，展示了拉賈斯坦邦道路上的電塔，來自 [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-## Leçons
+## 課程
 
-1. [Introduction à la prévision des séries temporelles](1-Introduction/README.md)
-2. [Construction de modèles de séries temporelles ARIMA](2-ARIMA/README.md)
-3. [Création d'un régressseur à vecteurs de support pour la prévision des séries temporelles](3-SVR/README.md)
+1. [時間序列預測簡介](1-Introduction/README.md)  
+2. [構建 ARIMA 時間序列模型](2-ARIMA/README.md)  
+3. [構建支持向量回歸器進行時間序列預測](3-SVR/README.md)  
 
-## Crédits
+## 致謝
 
-"Introduction à la prévision des séries temporelles" a été écrit avec ⚡️ par [Francesca Lazzeri](https://twitter.com/frlazzeri) et [Jen Looper](https://twitter.com/jenlooper). Les carnets sont d'abord apparus en ligne dans le [dépôt Azure "Deep Learning For Time Series"](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) initialement rédigé par Francesca Lazzeri. La leçon sur le SVR a été écrite par [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
+"時間序列預測簡介" 由 [Francesca Lazzeri](https://twitter.com/frlazzeri) 和 [Jen Looper](https://twitter.com/jenlooper) ⚡️ 撰寫。這些筆記本最初出現在 [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting)，由 Francesca Lazzeri 原創撰寫。SVR 課程由 [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD) 撰寫。
 
-I'm sorry, but I cannot translate text into "mo" as it is not a recognized language or code. If you meant a specific language or dialect, please clarify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。  

@@ -1,14 +1,25 @@
-# Essayez différentes méthodes de clustering
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "b8e17eff34ad1680eba2a5d3cf9ffc41",
+  "translation_date": "2025-09-03T23:12:39+00:00",
+  "source_file": "5-Clustering/2-K-Means/assignment.md",
+  "language_code": "fr"
+}
+-->
+# Essayez différentes méthodes de regroupement
 
 ## Instructions
 
-Dans cette leçon, vous avez appris sur le clustering K-Means. Parfois, K-Means n'est pas approprié pour vos données. Créez un carnet en utilisant des données provenant soit de ces leçons, soit d'ailleurs (citez votre source) et montrez une méthode de clustering différente SANS utiliser K-Means. Qu'avez-vous appris ? 
+Dans cette leçon, vous avez appris le regroupement K-Means. Parfois, K-Means n'est pas adapté à vos données. Créez un notebook en utilisant des données provenant de ces leçons ou d'une autre source (créditez votre source) et montrez une méthode de regroupement différente qui n'utilise PAS K-Means. Qu'avez-vous appris ?
 
-## Critères d'évaluation
+## Grille d'évaluation
 
-| Critères  | Exemplaire                                                       | Adéquat                                                              | Besoin d'amélioration        |
-| --------- | --------------------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------- |
-|           | Un carnet est présenté avec un modèle de clustering bien documenté | Un carnet est présenté sans bonne documentation et/ou incomplet      | Un travail incomplet est soumis |
+| Critères | Exemplaire                                                      | Adéquat                                                              | À améliorer                  |
+| -------- | --------------------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------- |
+|          | Un notebook est présenté avec un modèle de regroupement bien documenté | Un notebook est présenté sans bonne documentation et/ou incomplet    | Un travail incomplet est soumis |
+
+---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide de services de traduction automatisée basés sur l'IA. Bien que nous nous efforçons d'assurer l'exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue natale doit être considéré comme la source faisant autorité. Pour des informations critiques, une traduction humaine professionnelle est recommandée. Nous ne sommes pas responsables des malentendus ou des erreurs d'interprétation résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

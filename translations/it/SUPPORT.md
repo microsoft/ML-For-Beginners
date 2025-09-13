@@ -1,13 +1,24 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
+  "translation_date": "2025-08-29T20:09:50+00:00",
+  "source_file": "SUPPORT.md",
+  "language_code": "it"
+}
+-->
 # Supporto
-## Come segnalare problemi e ottenere assistenza
+## Come segnalare problemi e ottenere assistenza  
 
-Questo progetto utilizza GitHub Issues per tracciare bug e richieste di funzionalità. Si prega di cercare tra i problemi esistenti prima di segnalare nuovi problemi per evitare duplicati. Per nuovi problemi, segnalare il bug o la richiesta di funzionalità come una nuova Issue.
+Questo progetto utilizza GitHub Issues per tenere traccia di bug e richieste di funzionalità. Cerca tra i problemi esistenti prima di segnalare nuovi problemi per evitare duplicati. Per nuovi problemi, segnala il tuo bug o la tua richiesta di funzionalità come un nuovo Issue.
 
-Per assistenza e domande sull'utilizzo di questo progetto, segnalare un problema.
+Per assistenza e domande sull'utilizzo di questo progetto, apri un Issue.
 
-## Politica di supporto di Microsoft
+## Politica di supporto Microsoft  
 
 Il supporto per questo repository è limitato alle risorse elencate sopra.
 
-**Disclaimer**: 
-Questo documento è stato tradotto utilizzando servizi di traduzione automatica basati su intelligenza artificiale. Sebbene ci impegniamo per l'accuratezza, si prega di essere consapevoli che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua madre dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione umana professionale. Non siamo responsabili per eventuali malintesi o interpretazioni errate derivanti dall'uso di questa traduzione.
+---
+
+**Disclaimer**:  
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.

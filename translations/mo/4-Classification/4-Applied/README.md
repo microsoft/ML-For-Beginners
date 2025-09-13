@@ -1,57 +1,66 @@
-# Konstruye un Aplicativo Web de Recomendación de Cocina
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-06T09:16:55+00:00",
+  "source_file": "4-Classification/4-Applied/README.md",
+  "language_code": "mo"
+}
+-->
+# 建立一個美食推薦網頁應用程式
 
-En esta lección, construirás un modelo de clasificación utilizando algunas de las técnicas que has aprendido en lecciones anteriores y con el delicioso conjunto de datos de cocina utilizado a lo largo de esta serie. Además, crearás un pequeño aplicativo web para utilizar un modelo guardado, aprovechando el tiempo de ejecución web de Onnx.
+在這節課中，你將使用之前課程中學到的一些技術，並利用這個系列中使用的美味美食數據集，來建立一個分類模型。此外，你還將建立一個小型網頁應用程式，使用已保存的模型，並利用 Onnx 的網頁運行時環境。
 
-Uno de los usos prácticos más útiles del aprendizaje automático es la construcción de sistemas de recomendación, ¡y hoy puedes dar el primer paso en esa dirección!
+機器學習最實用的應用之一就是建立推薦系統，而今天你可以邁出這個方向的第一步！
 
-[![Presentando este aplicativo web](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "ML Aplicado")
+[![展示這個網頁應用程式](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "應用機器學習")
 
-> 🎥 Haz clic en la imagen de arriba para ver un video: Jen Looper construye un aplicativo web utilizando datos de cocina clasificados
+> 🎥 點擊上方圖片觀看影片：Jen Looper 使用分類的美食數據建立了一個網頁應用程式
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-En esta lección aprenderás:
+在這節課中，你將學到：
 
-- Cómo construir un modelo y guardarlo como un modelo Onnx
-- Cómo usar Netron para inspeccionar el modelo
-- Cómo usar tu modelo en un aplicativo web para inferencia
+- 如何建立模型並將其保存為 Onnx 模型
+- 如何使用 Netron 檢查模型
+- 如何在網頁應用程式中使用你的模型進行推理
 
-## Construye tu modelo
+## 建立你的模型
 
-Construir sistemas de ML aplicados es una parte importante de aprovechar estas tecnologías para tus sistemas de negocio. Puedes utilizar modelos dentro de tus aplicaciones web (y, por lo tanto, usarlos en un contexto fuera de línea si es necesario) utilizando Onnx.
+建立應用型機器學習系統是將這些技術應用於業務系統的重要部分。你可以通過使用 Onnx，將模型嵌入到你的網頁應用程式中（因此在需要時也可以在離線環境中使用）。
 
-En una [lección anterior](../../3-Web-App/1-Web-App/README.md), construiste un modelo de regresión sobre avistamientos de OVNIs, lo "pickleaste" y lo usaste en una aplicación Flask. Aunque esta arquitectura es muy útil de conocer, es una aplicación Python de pila completa, y tus requisitos pueden incluir el uso de una aplicación JavaScript.
+在[之前的課程](../../3-Web-App/1-Web-App/README.md)中，你建立了一個關於 UFO 目擊事件的回歸模型，將其“pickle”保存，並在 Flask 應用程式中使用。雖然這種架構非常實用，但它是一個全棧的 Python 應用程式，而你的需求可能包括使用 JavaScript 應用程式。
 
-En esta lección, puedes construir un sistema básico basado en JavaScript para inferencia. Sin embargo, primero necesitas entrenar un modelo y convertirlo para usarlo con Onnx.
+在這節課中，你可以建立一個基於 JavaScript 的基本推理系統。不過，首先你需要訓練一個模型並將其轉換為 Onnx 格式。
 
-## Ejercicio - entrenar modelo de clasificación
+## 練習 - 訓練分類模型
 
-Primero, entrena un modelo de clasificación utilizando el conjunto de datos de cocina limpiado que utilizamos.
+首先，使用我們之前清理過的美食數據集來訓練一個分類模型。
 
-1. Comienza importando bibliotecas útiles:
+1. 開始時導入一些有用的庫：
 
     ```python
     !pip install skl2onnx
     import pandas as pd 
     ```
 
-    Necesitas '[skl2onnx](https://onnx.ai/sklearn-onnx/)' para ayudar a convertir tu modelo de Scikit-learn al formato Onnx.
+    你需要使用 '[skl2onnx](https://onnx.ai/sklearn-onnx/)' 來幫助將 Scikit-learn 模型轉換為 Onnx 格式。
 
-1. Luego, trabaja con tus datos de la misma manera que lo hiciste en lecciones anteriores, leyendo un archivo CSV usando `read_csv()`:
+1. 然後，像之前課程中一樣，使用 `read_csv()` 讀取 CSV 文件來處理數據：
 
     ```python
     data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
-1. Elimina las dos primeras columnas innecesarias y guarda los datos restantes como 'X':
+1. 刪除前兩列不必要的數據，並將剩餘數據保存為 'X'：
 
     ```python
     X = data.iloc[:,2:]
     X.head()
     ```
 
-1. Guarda las etiquetas como 'y':
+1. 將標籤保存為 'y'：
 
     ```python
     y = data[['cuisine']]
@@ -59,11 +68,11 @@ Primero, entrena un modelo de clasificación utilizando el conjunto de datos de 
     
     ```
 
-### Comienza la rutina de entrenamiento
+### 開始訓練流程
 
-Usaremos la biblioteca 'SVC', que tiene buena precisión.
+我們將使用具有良好準確性的 'SVC' 庫。
 
-1. Importa las bibliotecas apropiadas de Scikit-learn:
+1. 從 Scikit-learn 導入相關庫：
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -72,32 +81,32 @@ Usaremos la biblioteca 'SVC', que tiene buena precisión.
     from sklearn.metrics import accuracy_score,precision_score,confusion_matrix,classification_report
     ```
 
-1. Separa los conjuntos de entrenamiento y prueba:
+1. 分離訓練集和測試集：
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
     ```
 
-1. Construye un modelo de clasificación SVC como lo hiciste en la lección anterior:
+1. 像之前課程中一樣，建立一個 SVC 分類模型：
 
     ```python
     model = SVC(kernel='linear', C=10, probability=True,random_state=0)
     model.fit(X_train,y_train.values.ravel())
     ```
 
-1. Ahora, prueba tu modelo, llamando a `predict()`:
+1. 現在，測試你的模型，調用 `predict()`：
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-1. Imprime un informe de clasificación para verificar la calidad del modelo:
+1. 輸出分類報告以檢查模型質量：
 
     ```python
     print(classification_report(y_test,y_pred))
     ```
 
-    Como vimos antes, la precisión es buena:
+    如我們之前所見，準確性是很好的：
 
     ```output
                     precision    recall  f1-score   support
@@ -113,11 +122,11 @@ Usaremos la biblioteca 'SVC', que tiene buena precisión.
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-### Convierte tu modelo a Onnx
+### 將模型轉換為 Onnx 格式
 
-Asegúrate de hacer la conversión con el número de tensor adecuado. Este conjunto de datos tiene 380 ingredientes listados, por lo que necesitas anotar ese número en `FloatTensorType`:
+確保使用正確的張量數進行轉換。這個數據集列出了 380 種食材，因此你需要在 `FloatTensorType` 中標註這個數字：
 
-1. Convierte utilizando un número de tensor de 380.
+1. 使用 380 的張量數進行轉換。
 
     ```python
     from skl2onnx import convert_sklearn
@@ -127,7 +136,7 @@ Asegúrate de hacer la conversión con el número de tensor adecuado. Este conju
     options = {id(model): {'nocl': True, 'zipmap': False}}
     ```
 
-1. Crea el onx y guárdalo como un archivo **model.onnx**:
+1. 創建 onx 並保存為文件 **model.onnx**：
 
     ```python
     onx = convert_sklearn(model, initial_types=initial_type, options=options)
@@ -135,25 +144,25 @@ Asegúrate de hacer la conversión con el número de tensor adecuado. Este conju
         f.write(onx.SerializeToString())
     ```
 
-    > Nota, puedes pasar [opciones](https://onnx.ai/sklearn-onnx/parameterized.html) en tu script de conversión. En este caso, pasamos 'nocl' como Verdadero y 'zipmap' como Falso. Dado que este es un modelo de clasificación, tienes la opción de eliminar ZipMap que produce una lista de diccionarios (no es necesario). `nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'. 
+    > 注意，你可以在轉換腳本中傳入[選項](https://onnx.ai/sklearn-onnx/parameterized.html)。在這個例子中，我們將 'nocl' 設為 True，'zipmap' 設為 False。由於這是一個分類模型，你可以選擇移除 ZipMap，它會生成一個字典列表（非必要）。`nocl` 表示是否在模型中包含類別信息。通過將 `nocl` 設為 'True'，可以減小模型的大小。
 
-Running the entire notebook will now build an Onnx model and save it to this folder.
+運行整個筆記本後，將生成一個 Onnx 模型並保存到這個文件夾中。
 
-## View your model
+## 查看你的模型
 
-Onnx models are not very visible in Visual Studio code, but there's a very good free software that many researchers use to visualize the model to ensure that it is properly built. Download [Netron](https://github.com/lutzroeder/Netron) and  open your model.onnx file. You can see your simple model visualized, with its 380 inputs and classifier listed:
+Onnx 模型在 Visual Studio Code 中不太容易查看，但有一個非常好的免費軟體，許多研究人員用來可視化模型，以確保其正確構建。下載 [Netron](https://github.com/lutzroeder/Netron) 並打開你的 model.onnx 文件。你可以看到你的簡單模型被可視化，顯示其 380 個輸入和分類器：
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.mo.png)
+![Netron 可視化](../../../../4-Classification/4-Applied/images/netron.png)
 
-Netron is a helpful tool to view your models.
+Netron 是一個查看模型的有用工具。
 
-Now you are ready to use this neat model in a web app. Let's build an app that will come in handy when you look in your refrigerator and try to figure out which combination of your leftover ingredients you can use to cook a given cuisine, as determined by your model.
+現在你已經準備好在網頁應用程式中使用這個簡單的模型了。讓我們建立一個應用程式，當你查看冰箱並試圖找出哪些剩餘食材可以用來烹飪某種美食時，這個應用程式會派上用場。
 
-## Build a recommender web application
+## 建立推薦網頁應用程式
 
-You can use your model directly in a web app. This architecture also allows you to run it locally and even offline if needed. Start by creating an `index.html` file in the same folder where you stored your `model.onnx` archivo.
+你可以直接在網頁應用程式中使用你的模型。這種架構還允許你在本地甚至離線運行它。首先，在存儲 `model.onnx` 文件的同一文件夾中創建一個 `index.html` 文件。
 
-1. En este archivo _index.html_, agrega el siguiente marcado:
+1. 在這個文件 _index.html_ 中，添加以下標記：
 
     ```html
     <!DOCTYPE html>
@@ -167,7 +176,7 @@ You can use your model directly in a web app. This architecture also allows you 
     </html>
     ```
 
-1. Ahora, trabajando dentro de las etiquetas `body`, agrega un poco de marcado para mostrar una lista de casillas de verificación reflejando algunos ingredientes:
+1. 現在，在 `body` 標籤內添加一些標記，顯示一些反映食材的複選框列表：
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -212,19 +221,19 @@ You can use your model directly in a web app. This architecture also allows you 
             </div> 
     ```
 
-    Observa que a cada casilla de verificación se le asigna un valor. Esto refleja el índice donde se encuentra el ingrediente según el conjunto de datos. La manzana, por ejemplo, en esta lista alfabética, ocupa la quinta columna, por lo que su valor es '4' ya que comenzamos a contar desde 0. Puedes consultar la [hoja de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descubrir el índice de un ingrediente dado.
+    注意，每個複選框都有一個值。這反映了數據集中食材所在的索引。例如，蘋果在這個按字母順序排列的列表中位於第五列，因此其值為 '4'（因為我們從 0 開始計數）。你可以查閱 [ingredients spreadsheet](../../../../4-Classification/data/ingredient_indexes.csv) 來找到某個食材的索引。
 
-    Continuando con tu trabajo en el archivo index.html, agrega un bloque de script donde se llame al modelo después del cierre final `</div>`.
+    繼續在 index.html 文件中工作，在最後一個閉合的 `</div>` 後添加一個腳本塊，調用模型。
 
-1. Primero, importa el [Onnx Runtime](https://www.onnxruntime.ai/):
+1. 首先，導入 [Onnx Runtime](https://www.onnxruntime.ai/)：
 
     ```html
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Onnx Runtime se utiliza para habilitar la ejecución de tus modelos Onnx en una amplia gama de plataformas de hardware, incluidas optimizaciones y una API para usar.
+    > Onnx Runtime 用於在廣泛的硬體平台上運行你的 Onnx 模型，包括優化和使用的 API。
 
-1. Una vez que el Runtime esté en su lugar, puedes llamarlo:
+1. 一旦運行時環境就緒，你可以調用它：
 
     ```html
     <script>
@@ -276,41 +285,45 @@ You can use your model directly in a web app. This architecture also allows you 
     </script>
     ```
 
-En este código, hay varias cosas sucediendo:
+在這段代碼中，發生了以下幾件事：
 
-1. Creaste un array de 380 posibles valores (1 o 0) que se establecerán y enviarán al modelo para inferencia, dependiendo de si una casilla de verificación de ingrediente está marcada.
-2. Creaste un array de casillas de verificación y una forma de determinar si estaban marcadas en un `init` function that is called when the application starts. When a checkbox is checked, the `ingredients` array is altered to reflect the chosen ingredient.
-3. You created a `testCheckboxes` function that checks whether any checkbox was checked.
-4. You use `startInference` function when the button is pressed and, if any checkbox is checked, you start inference.
-5. The inference routine includes:
-   1. Setting up an asynchronous load of the model
-   2. Creating a Tensor structure to send to the model
-   3. Creating 'feeds' that reflects the `float_input` input that you created when training your model (you can use Netron to verify that name)
-   4. Sending these 'feeds' to the model and waiting for a response
+1. 你創建了一個包含 380 個可能值（1 或 0）的數組，根據是否選中某個食材複選框來設置並發送到模型進行推理。
+2. 你創建了一個複選框數組，以及一個在應用程式啟動時調用的 `init` 函數，用於確定複選框是否被選中。當複選框被選中時，`ingredients` 數組會被修改以反映所選食材。
+3. 你創建了一個 `testCheckboxes` 函數，用於檢查是否有任何複選框被選中。
+4. 當按下按鈕時，你使用 `startInference` 函數，如果有任何複選框被選中，就開始推理。
+5. 推理過程包括：
+   1. 設置模型的異步加載
+   2. 創建一個張量結構，發送到模型
+   3. 創建反映你在訓練模型時創建的 `float_input` 輸入的 'feeds'（你可以使用 Netron 驗證該名稱）
+   4. 將這些 'feeds' 發送到模型並等待響應
 
-## Test your application
+## 測試你的應用程式
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server` en el aviso. Un localhost debería abrirse y puedes ver tu aplicativo web. Verifica qué cocina se recomienda según varios ingredientes:
+在 Visual Studio Code 中打開一個終端會話，進入存放 index.html 文件的文件夾。確保你已全局安裝 [http-server](https://www.npmjs.com/package/http-server)，然後在提示符下輸入 `http-server`。一個本地主機應該會打開，你可以查看你的網頁應用程式。檢查基於不同食材推薦的美食：
 
-![aplicativo web de ingredientes](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.mo.png)
+![食材網頁應用程式](../../../../4-Classification/4-Applied/images/web-app.png)
 
-¡Felicidades, has creado un aplicativo web de 'recomendación' con unos pocos campos! Tómate un tiempo para desarrollar este sistema.
-## 🚀Desafío
+恭喜你，你已經建立了一個帶有幾個字段的“推薦”網頁應用程式。花點時間擴展這個系統吧！
 
-Tu aplicativo web es muy minimalista, así que continúa desarrollándolo utilizando ingredientes y sus índices del dato [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). ¿Qué combinaciones de sabores funcionan para crear un plato nacional dado?
+## 🚀挑戰
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+你的網頁應用程式非常簡單，因此繼續使用 [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) 數據中的食材及其索引來擴展它。哪些味道組合可以用來創造某個國家的菜餚？
 
-## Revisión y Autoestudio
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-Aunque esta lección solo tocó la utilidad de crear un sistema de recomendación para ingredientes de comida, esta área de aplicaciones de ML es muy rica en ejemplos. Lee un poco más sobre cómo se construyen estos sistemas:
+## 回顧與自學
+
+雖然這節課只是簡單介紹了如何為食材創建推薦系統，但這個機器學習應用領域有非常豐富的例子。閱讀更多關於這些系統如何構建的內容：
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
 - https://www.technologyreview.com/2015/03/23/168831/everything-is-a-recommendation/
 
-## Asignación 
+## 作業
 
-[Construye un nuevo recomendador](assignment.md)
+[建立一個新的推薦系統](assignment.md)
 
-I'm sorry, but I can't assist with that.
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

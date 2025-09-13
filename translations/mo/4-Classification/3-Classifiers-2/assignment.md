@@ -1,13 +1,25 @@
-# Parameter Play
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "58dfdaf79fb73f7d34b22bdbacf57329",
+  "translation_date": "2025-08-29T21:50:22+00:00",
+  "source_file": "4-Classification/3-Classifiers-2/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 參數遊戲
 
-## Instructions
+## 說明
 
-Es gibt viele Parameter, die standardmäßig eingestellt sind, wenn man mit diesen Klassifizierern arbeitet. Intellisense in VS Code kann Ihnen helfen, sich darin zurechtzufinden. Wählen Sie eine der ML-Klassifikationstechniken in dieser Lektion aus und retrainieren Sie Modelle, indem Sie verschiedene Parameterwerte anpassen. Erstellen Sie ein Notizbuch, in dem erklärt wird, warum einige Änderungen die Modellqualität verbessern, während andere sie verschlechtern. Seien Sie detailliert in Ihrer Antwort.
+在使用這些分類器時，有許多參數是預設設定的。VS Code 中的 Intellisense 可以幫助你深入了解這些參數。在本課程中採用其中一種機器學習分類技術，並透過調整各種參數值重新訓練模型。建立一個筆記本，解釋為什麼某些更改能提升模型品質，而其他更改則會降低品質。請詳細回答。
 
-## Rubric
+## 評分標準
 
-| Kriterien | Vorbildlich                                                                                                           | Angemessen                                           | Verbesserungsbedarf           |
-| --------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------ |
-|           | Ein Notizbuch wird präsentiert, in dem ein Klassifizierer vollständig aufgebaut und seine Parameter angepasst sowie Änderungen in Textfeldern erklärt werden | Ein Notizbuch wird teilweise präsentiert oder schlecht erklärt | Ein Notizbuch hat Fehler oder Mängel |
+| 評分標準 | 卓越                                                                                                                  | 合格                                                | 需要改進                     |
+| -------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ---------------------------- |
+|          | 提供一個完整的筆記本，包含已建構的分類器及其參數調整，並在文字框中解釋更改的原因                                      | 提供的筆記本不完整或解釋不充分                     | 筆記本有錯誤或存在缺陷       |
 
-I'm sorry, but I cannot translate text into "mo" as it does not specify a recognized language or dialect. If you meant a specific language, please clarify, and I'll be happy to assist you!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

@@ -1,35 +1,40 @@
-# 酒店评论的情感分析
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-05T09:13:02+00:00",
+  "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
+  "language_code": "zh"
+}
+-->
+# 使用酒店评论进行情感分析
 
-现在你已经详细探索了数据集，是时候过滤列并使用NLP技术在数据集上获得关于酒店的新见解了。
-## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+现在您已经详细探索了数据集，是时候筛选列并对数据集应用NLP技术，以便获得关于酒店的新见解。
 
-### 过滤和情感分析操作
+## [课前测验](https://ff-quizzes.netlify.app/en/ml/)
 
-正如你可能已经注意到的，数据集存在一些问题。有些列充满了无用的信息，其他一些似乎不正确。如果它们是正确的，也不清楚它们是如何计算的，并且无法通过你自己的计算独立验证答案。
+### 筛选与情感分析操作
 
-## 练习：更多数据处理
+正如您可能已经注意到的，数据集存在一些问题。一些列充满了无用的信息，另一些列看起来不正确。即使它们是正确的，也不清楚它们是如何计算的，您无法通过自己的计算独立验证答案。
 
-进一步清理数据。添加以后有用的列，改变其他列中的值，并完全删除某些列。
+## 练习：进一步处理数据
+
+对数据进行更多清理。添加一些后续会用到的列，修改其他列中的值，并完全删除某些列。
 
 1. 初步列处理
 
-   1. 删除`lat`和`lng`
+   1. 删除 `lat` 和 `lng`
 
-   2. 将`Hotel_Address`的值替换为以下值（如果地址包含城市和国家的名称，将其更改为仅包含城市和国家）。
+   2. 将 `Hotel_Address` 的值替换为以下值（如果地址中包含城市和国家的名称，则将其更改为仅包含城市和国家）。
 
-      数据集中只有以下城市和国家：
+      数据集中仅包含以下城市和国家：
 
-      阿姆斯特丹，荷兰
-
-      巴塞罗那，西班牙
-
-      伦敦，英国
-
-      米兰，意大利
-
-      巴黎，法国
-
-      维也纳，奥地利 
+      阿姆斯特丹，荷兰  
+      巴塞罗那，西班牙  
+      伦敦，英国  
+      米兰，意大利  
+      巴黎，法国  
+      维也纳，奥地利  
 
       ```python
       def replace_address(row):
@@ -52,30 +57,30 @@
       print(df["Hotel_Address"].value_counts())
       ```
 
-      现在你可以查询国家级别的数据：
+      现在您可以查询国家级别的数据：
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | 酒店地址            | 酒店名称 |
-      | :------------------ | :------: |
-      | 阿姆斯特丹，荷兰     |   105    |
-      | 巴塞罗那，西班牙     |   211    |
-      | 伦敦，英国           |   400    |
-      | 米兰，意大利         |   162    |
-      | 巴黎，法国           |   458    |
-      | 维也纳，奥地利       |   158    |
+      | Hotel_Address          | Hotel_Name |
+      | :--------------------- | :--------: |
+      | 阿姆斯特丹，荷兰       |    105     |
+      | 巴塞罗那，西班牙       |    211     |
+      | 伦敦，英国             |    400     |
+      | 米兰，意大利           |    162     |
+      | 巴黎，法国             |    458     |
+      | 维也纳，奥地利         |    158     |
 
 2. 处理酒店元评论列
 
-  1. 删除`Additional_Number_of_Scoring`
+   1. 删除 `Additional_Number_of_Scoring`
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+   2. 将 `Total_Number_of_Reviews` 替换为数据集中该酒店实际的评论总数
 
-  1. Replace `Average_Score`，用我们自己计算的分数替代
+   3. 用我们自己计算的分数替换 `Average_Score`
 
-  ```python
+      ```python
   # Drop `Additional_Number_of_Scoring`
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
   # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
@@ -85,39 +90,39 @@
 
 3. 处理评论列
 
-   1. 删除`Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
+   1. 删除 `Review_Total_Negative_Word_Counts`、`Review_Total_Positive_Word_Counts`、`Review_Date` 和 `days_since_review`
 
-   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
-     
-   3. Keep `Tags` for now
+   2. 保留 `Reviewer_Score`、`Negative_Review` 和 `Positive_Review` 不变
 
-     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+   3. 暂时保留 `Tags`
 
-4. Process reviewer columns
+      - 我们将在下一部分对标签进行一些额外的筛选操作，然后再删除标签
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
+4. 处理评论者列
+
+   1. 删除 `Total_Number_of_Reviews_Reviewer_Has_Given`
   
-  2. Keep `Reviewer_Nationality`
+   2. 保留 `Reviewer_Nationality`
 
-### Tag columns
+### 标签列
 
-The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+`Tag` 列是一个问题，因为它是一个以文本形式存储的列表。不幸的是，该列中的子部分顺序和数量并不总是相同的。由于数据集有515,000行和1427家酒店，每个评论者可以选择的选项略有不同，因此人类很难识别出需要关注的正确短语。这正是NLP的优势所在。您可以扫描文本，找到最常见的短语并统计它们的数量。
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']`，你可以开始问是否有可能大大减少你必须做的处理。幸运的是，这是可能的，但首先你需要遵循几个步骤来确定感兴趣的标签。
+不幸的是，我们对单个单词不感兴趣，而是对多词短语（例如 *商务旅行*）感兴趣。在如此庞大的数据（6762646个单词）上运行多词频率分布算法可能需要极长的时间，但在不了解数据的情况下，这似乎是必要的开销。这时，探索性数据分析就派上用场了，因为您已经看到了标签的样本，例如 `[' 商务旅行 ', ' 独自旅行者 ', ' 单人房 ', ' 住了5晚 ', ' 从移动设备提交 ']`，您可以开始思考是否有可能大幅减少需要处理的数据量。幸运的是，这是可能的——但首先您需要遵循一些步骤来确定感兴趣的标签。
 
-### 过滤标签
+### 筛选标签
 
-记住数据集的目标是添加情感和列，以帮助你选择最佳酒店（为自己或客户要求你制作一个酒店推荐机器人）。你需要问自己这些标签在最终数据集中是否有用。这里有一个解释（如果你出于其他原因需要数据集，不同的标签可能会被保留/排除在选择之外）：
+记住，数据集的目标是添加情感和列，以帮助您选择最佳酒店（无论是为自己还是为客户创建一个酒店推荐机器人）。您需要问自己，这些标签在最终数据集中是否有用。以下是一个解释（如果您出于其他原因需要数据集，不同的标签可能会被保留或删除）：
 
 1. 旅行类型是相关的，应该保留
 2. 客人群体类型是重要的，应该保留
-3. 客人入住的房间、套房或工作室类型是无关紧要的（所有酒店基本上都有相同的房间）
-4. 提交评论的设备是无关紧要的
-5. 评论者入住的夜晚数量*可能*是相关的，如果你将较长的入住时间与他们更喜欢酒店联系起来，但这有点牵强，可能是无关紧要的
+3. 客人入住的房间、套房或工作室类型是无关的（所有酒店基本上都有相同的房间）
+4. 提交评论的设备是无关的
+5. 评论者入住的晚数*可能*相关，如果您认为更长的入住时间意味着他们更喜欢酒店，但这有点牵强，可能无关
 
-总之，**保留两种标签，删除其他的**。
+总之，**保留两类标签，删除其他标签**。
 
-首先，你不想计算标签，直到它们处于更好的格式，这意味着删除方括号和引号。你可以通过多种方式来做这件事，但你想要最快的方法，因为处理大量数据可能需要很长时间。幸运的是，pandas有一种简单的方法来完成每个步骤。
+首先，您不想在标签格式更好之前统计它们，因此需要移除方括号和引号。您可以通过多种方式完成此操作，但您需要最快的方法，因为处理大量数据可能需要很长时间。幸运的是，pandas 提供了一种简单的方法来完成这些步骤。
 
 ```Python
 # Remove opening and closing brackets
@@ -126,85 +131,85 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-每个标签变成类似这样的：`Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
+每个标签变成类似于：`商务旅行, 独自旅行者, 单人房, 住了5晚, 从移动设备提交`。
 
-Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+接下来我们发现一个问题。一些评论（或行）有5列，一些有3列，一些有6列。这是数据集创建方式的结果，很难修复。您希望统计每个短语的频率，但它们在每条评论中的顺序不同，因此统计可能会出错，某些酒店可能没有被分配到它应得的标签。
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+相反，您可以利用不同的顺序，因为每个标签是多词的，但也用逗号分隔！最简单的方法是创建6个临时列，将每个标签插入到对应顺序的列中。然后，您可以将这6列合并为一个大列，并对结果列运行 `value_counts()` 方法。打印出来后，您会看到有2428个唯一标签。以下是一个小样本：
 
-| Tag                            | Count  |
-| ------------------------------ | ------ |
-| Leisure trip                   | 417778 |
-| Submitted from a mobile device | 307640 |
-| Couple                         | 252294 |
-| Stayed 1 night                 | 193645 |
-| Stayed 2 nights                | 133937 |
-| Solo traveler                  | 108545 |
-| Stayed 3 nights                | 95821  |
-| Business trip                  | 82939  |
-| Group                          | 65392  |
-| Family with young children     | 61015  |
-| Stayed 4 nights                | 47817  |
-| Double Room                    | 35207  |
-| Standard Double Room           | 32248  |
-| Superior Double Room           | 31393  |
-| Family with older children     | 26349  |
-| Deluxe Double Room             | 24823  |
-| Double or Twin Room            | 22393  |
-| Stayed 5 nights                | 20845  |
-| Standard Double or Twin Room   | 17483  |
-| Classic Double Room            | 16989  |
-| Superior Double or Twin Room   | 13570  |
-| 2 rooms                        | 12393  |
+| 标签                              | 计数   |
+| --------------------------------- | ------ |
+| 休闲旅行                         | 417778 |
+| 从移动设备提交                   | 307640 |
+| 夫妻                             | 252294 |
+| 住了1晚                          | 193645 |
+| 住了2晚                          | 133937 |
+| 独自旅行者                       | 108545 |
+| 住了3晚                          | 95821  |
+| 商务旅行                         | 82939  |
+| 团体                             | 65392  |
+| 带小孩的家庭                     | 61015  |
+| 住了4晚                          | 47817  |
+| 双人房                           | 35207  |
+| 标准双人房                       | 32248  |
+| 高级双人房                       | 31393  |
+| 带大孩的家庭                     | 26349  |
+| 豪华双人房                       | 24823  |
+| 双人或双床房                     | 22393  |
+| 住了5晚                          | 20845  |
+| 标准双人或双床房                 | 17483  |
+| 经典双人房                       | 16989  |
+| 高级双人或双床房                 | 13570  |
+| 2间房                            | 12393  |
 
-Some of the common tags like `Submitted from a mobile device` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
+一些常见标签如 `从移动设备提交` 对我们没有用，因此在统计短语出现次数之前删除它们可能是明智的，但由于这是一个非常快速的操作，您可以将它们保留并忽略它们。
 
-### Removing the length of stay tags
+### 删除入住时长标签
 
-Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
+删除这些标签是第一步，这稍微减少了需要考虑的标签总数。注意，您并没有从数据集中删除它们，只是选择不将它们作为评论数据集中需要统计/保留的值。
 
-| Length of stay   | Count  |
-| ---------------- | ------ |
-| Stayed 1 night   | 193645 |
-| Stayed  2 nights | 133937 |
-| Stayed 3 nights  | 95821  |
-| Stayed  4 nights | 47817  |
-| Stayed 5 nights  | 20845  |
-| Stayed  6 nights | 9776   |
-| Stayed 7 nights  | 7399   |
-| Stayed  8 nights | 2502   |
-| Stayed 9 nights  | 1293   |
-| ...              | ...    |
+| 入住时长       | 计数   |
+| -------------- | ------ |
+| 住了1晚        | 193645 |
+| 住了2晚        | 133937 |
+| 住了3晚        | 95821  |
+| 住了4晚        | 47817  |
+| 住了5晚        | 20845  |
+| 住了6晚        | 9776   |
+| 住了7晚        | 7399   |
+| 住了8晚        | 2502   |
+| 住了9晚        | 1293   |
+| ...            | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
+房间、套房、工作室、公寓等类型种类繁多。它们的意义大致相同，对您来说并不重要，因此从考虑中删除它们。
 
-| Type of room                  | Count |
-| ----------------------------- | ----- |
-| Double Room                   | 35207 |
-| Standard  Double Room         | 32248 |
-| Superior Double Room          | 31393 |
-| Deluxe  Double Room           | 24823 |
-| Double or Twin Room           | 22393 |
-| Standard  Double or Twin Room | 17483 |
-| Classic Double Room           | 16989 |
-| Superior  Double or Twin Room | 13570 |
+| 房间类型                     | 计数  |
+| ---------------------------- | ----- |
+| 双人房                       | 35207 |
+| 标准双人房                   | 32248 |
+| 高级双人房                   | 31393 |
+| 豪华双人房                   | 24823 |
+| 双人或双床房                 | 22393 |
+| 标准双人或双床房             | 17483 |
+| 经典双人房                   | 16989 |
+| 高级双人或双床房             | 13570 |
 
-Finally, and this is delightful (because it didn't take much processing at all), you will be left with the following *useful* tags:
+最后，令人欣喜的是（因为几乎不需要处理），您将剩下以下**有用**的标签：
 
-| Tag                                           | Count  |
+| 标签                                           | 计数   |
 | --------------------------------------------- | ------ |
-| Leisure trip                                  | 417778 |
-| Couple                                        | 252294 |
-| Solo  traveler                                | 108545 |
-| Business trip                                 | 82939  |
-| Group (combined with Travellers with friends) | 67535  |
-| Family with young children                    | 61015  |
-| Family  with older children                   | 26349  |
-| With a  pet                                   | 1405   |
+| 休闲旅行                                      | 417778 |
+| 夫妻                                         | 252294 |
+| 独自旅行者                                   | 108545 |
+| 商务旅行                                     | 82939  |
+| 团体（与朋友旅行者合并）                     | 67535  |
+| 带小孩的家庭                                 | 61015  |
+| 带大孩的家庭                                 | 26349  |
+| 带宠物                                       | 1405   |
 
-You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+您可以认为 `与朋友旅行者` 与 `团体` 基本相同，将两者合并是合理的，如上所示。识别正确标签的代码在 [Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) 中。
 
-The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag`列匹配其中一个新列，添加1，否则添加0。最终结果将是一个计数，显示有多少评论者选择了这家酒店（总体上）用于，例如，商务旅行还是休闲旅行，或者是否带宠物，这在推荐酒店时是有用的信息。
+最后一步是为每个这些标签创建新列。然后，对于每条评论行，如果 `Tag` 列与新列之一匹配，则添加1，否则添加0。最终结果将是一个统计数据，显示有多少评论者选择了这家酒店（总体上）用于商务、休闲或带宠物入住，这在推荐酒店时是有用的信息。
 
 ```python
 # Process the Tags into new columns
@@ -224,7 +229,7 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ### 保存文件
 
-最后，以新名称保存现在的数据集。
+最后，将当前数据集保存为一个新名称。
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
@@ -236,11 +241,11 @@ df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 
 ## 情感分析操作
 
-在这一最后部分，你将对评论列应用情感分析，并将结果保存在数据集中。
+在最后一部分中，您将对评论列应用情感分析，并将结果保存到数据集中。
 
-## 练习：加载和保存过滤后的数据
+## 练习：加载并保存筛选后的数据
 
-请注意，现在你加载的是在上一部分保存的过滤后的数据集，而不是原始数据集。
+注意，现在您加载的是上一部分保存的筛选后的数据集，而**不是**原始数据集。
 
 ```python
 import time
@@ -261,15 +266,15 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
-### 移除停用词
+### 删除停用词
 
-如果你在负面和正面评论列上运行情感分析，可能需要很长时间。测试在一台强大的测试笔记本电脑上，使用快速CPU，耗时12-14分钟，具体取决于使用的情感库。这是一个（相对）较长的时间，所以值得调查是否可以加快速度。
+如果您对负面和正面评论列运行情感分析，可能需要很长时间。在一台性能强劲的测试笔记本电脑上测试时，根据使用的情感分析库不同，耗时为12到14分钟。这是一个（相对）较长的时间，因此值得研究是否可以加快速度。
 
-移除停用词，即不改变句子情感的常见英语词汇，是第一步。通过移除它们，情感分析应该运行得更快，但不会降低准确性（因为停用词不会影响情感，但会减慢分析速度）。
+删除停用词（即不会改变句子情感的常见英语单词）是第一步。通过删除它们，情感分析应该会运行得更快，但不会降低准确性（因为停用词不会影响情感，但会减慢分析速度）。
 
-最长的负面评论是395个词，但在移除停用词后是195个词。
+最长的负面评论有395个单词，但删除停用词后仅剩195个单词。
 
-移除停用词也是一个快速操作，在测试设备上从515,000行的两个评论列中移除停用词耗时3.3秒。根据你的设备CPU速度、RAM、是否有SSD等因素，这可能会稍微多一点或少一点时间。操作的相对短暂性意味着如果它能改善情感分析时间，那么这是值得做的。
+删除停用词也是一个快速操作，在测试设备上，从2个评论列中删除515,000行的停用词耗时3.3秒。根据您的设备CPU速度、内存、是否有SSD以及其他一些因素，这个时间可能略长或略短。操作相对较短，这意味着如果它能提高情感分析速度，那么值得一试。
 
 ```python
 from nltk.corpus import stopwords
@@ -293,11 +298,10 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 
 ### 执行情感分析
 
-现在你应该计算负面和正面评论列的情感分析，并将结果存储在两个新列中。情感测试将与同一评论的评论者评分进行比较。例如，如果情感认为负面评论的情感是1（极其正面的情感）而正面评论的情感也是1，但评论者给酒店的评分是最低的，那么要么评论文本与评分不匹配，要么情感分析器无法正确识别情感。你应该预期一些情感评分是完全错误的，通常这可以解释，例如评论可能是极其讽刺的“当然，我喜欢在没有暖气的房间里睡觉”，而情感分析器认为这是正面的情感，即使人类阅读它会知道这是讽刺。
+现在，您应该计算负面和正面评论列的情感分析，并将结果存储在2个新列中。情感分析的测试是将其与同一评论的评论者评分进行比较。例如，如果情感分析认为负面评论的情感为1（极其正面的情感），正面评论的情感也为1，但评论者给酒店的评分是最低分，那么要么评论文本与评分不匹配，要么情感分析器无法正确识别情感。您应该预期某些情感评分完全错误，这通常是可以解释的，例如评论可能极具讽刺意味，“当然，我*喜欢*住在没有暖气的房间里”，情感分析器可能认为这是正面情感，但人类阅读时会知道这是讽刺。
+NLTK 提供了不同的情感分析器供学习使用，您可以替换它们并查看情感分析的准确性是否有所不同。这里使用的是 VADER 情感分析。
 
-NLTK提供了不同的情感分析器供学习，你可以替换它们，看看情感是否更准确。这里使用的是VADER情感分析。
-
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: 一种简洁的基于规则的社交媒体文本情感分析模型。第八届国际博客与社交媒体会议 (ICWSM-14)。美国密歇根州安娜堡，2014年6月。
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -316,7 +320,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-在你的程序中，当你准备好计算情感时，可以将其应用于每个评论，如下所示：
+在程序中，当您准备计算情感时，可以将其应用到每条评论，如下所示：
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -328,7 +332,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-这在我的电脑上大约需要120秒，但在每台电脑上都会有所不同。如果你想打印结果并查看情感是否与评论匹配：
+在我的电脑上大约需要 120 秒，但每台电脑的运行时间会有所不同。如果您想打印结果并查看情感是否与评论匹配：
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -337,7 +341,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-在使用文件之前要做的最后一件事是保存它！你还应该考虑重新排序所有新列，以便于使用（对人类来说，这是一种外观上的变化）。
+在挑战中使用文件之前，最后要做的事情就是保存它！您还应该考虑重新排列所有新列，使其更易于操作（对人类来说，这只是一个外观上的调整）。
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -347,31 +351,34 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-你应该运行整个[分析笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)的代码（在你运行[过滤笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)以生成Hotel_Reviews_Filtered.csv文件之后）。
+您应该运行 [分析笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) 的完整代码（在运行 [过滤笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) 生成 Hotel_Reviews_Filtered.csv 文件之后）。
 
-回顾一下，步骤是：
+回顾一下，步骤如下：
 
-1. 原始数据集文件**Hotel_Reviews.csv**在上一课中通过[探索笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)进行了探索
-2. 通过[过滤笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)过滤Hotel_Reviews.csv，生成**Hotel_Reviews_Filtered.csv**
-3. 通过[情感分析笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)处理Hotel_Reviews_Filtered.csv，生成**Hotel_Reviews_NLP.csv**
-4. 在下面的NLP挑战中使用Hotel_Reviews_NLP.csv
+1. 原始数据集文件 **Hotel_Reviews.csv** 在上一课中通过 [探索笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb) 进行了探索。
+2. Hotel_Reviews.csv 通过 [过滤笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) 过滤，生成 **Hotel_Reviews_Filtered.csv**。
+3. Hotel_Reviews_Filtered.csv 通过 [情感分析笔记本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) 处理，生成 **Hotel_Reviews_NLP.csv**。
+4. 在下面的 NLP 挑战中使用 Hotel_Reviews_NLP.csv。
 
 ### 结论
 
-当你开始时，你有一个包含列和数据的数据集，但并非所有数据都可以验证或使用。你已经探索了数据，过滤了不需要的内容，将标签转换为有用的东西，计算了自己的平均值，添加了一些情感列，并希望学习了一些关于处理自然文本的有趣知识。
+在开始时，您有一个包含列和数据的数据集，但并非所有数据都可以验证或使用。您已经探索了数据，过滤掉了不需要的部分，将标签转换为有用的内容，计算了自己的平均值，添加了一些情感列，并希望学到了一些关于处理自然文本的有趣知识。
 
-## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [课后测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 挑战
 
-现在你已经对数据集进行了情感分析，看看你是否可以使用本课程中学到的策略（例如聚类）来确定情感模式。
+现在您已经对数据集进行了情感分析，试着使用您在本课程中学到的策略（例如聚类）来确定情感的模式。
 
 ## 复习与自学
 
-参加[这个学习模块](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)以了解更多并使用不同的工具探索文本中的情感。
-## 作业 
+学习 [这个模块](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)，了解更多内容并使用不同的工具探索文本中的情感。
 
-[尝试不同的数据集](assignment.md)
+## 作业
 
-**免责声明**：
-本文档是使用基于机器的人工智能翻译服务翻译的。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应将原文档的母语版本视为权威来源。对于关键信息，建议进行专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们不承担任何责任。
+[尝试一个不同的数据集](assignment.md)
+
+---
+
+**免责声明**：  
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们概不负责。

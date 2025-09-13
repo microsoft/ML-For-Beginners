@@ -1,35 +1,45 @@
-# 호텔 리뷰를 통한 감정 분석
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-05T10:58:14+00:00",
+  "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
+  "language_code": "ko"
+}
+-->
+# 호텔 리뷰를 활용한 감정 분석
 
-이제 데이터셋을 자세히 탐색했으니, 열을 필터링하고 NLP 기법을 사용하여 호텔에 대한 새로운 통찰을 얻을 때입니다.
-## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+데이터셋을 자세히 탐색한 후, 이제 열을 필터링하고 NLP 기술을 사용하여 호텔에 대한 새로운 인사이트를 얻을 때입니다.
+
+## [강의 전 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
 
 ### 필터링 및 감정 분석 작업
 
-아마도 데이터셋에 몇 가지 문제가 있다는 것을 눈치챘을 것입니다. 일부 열은 쓸모없는 정보로 채워져 있고, 다른 열은 잘못된 것처럼 보입니다. 만약 그 열이 맞다고 하더라도, 그것들이 어떻게 계산되었는지 명확하지 않으며, 자신의 계산으로 독립적으로 검증할 수 없습니다.
+아마도 눈치채셨겠지만, 데이터셋에는 몇 가지 문제가 있습니다. 일부 열은 쓸모없는 정보로 채워져 있고, 다른 열은 부정확해 보입니다. 만약 정확하다면, 그것이 어떻게 계산되었는지 불분명하며, 여러분의 계산으로 독립적으로 검증할 수 없습니다.
 
 ## 연습: 데이터 처리 조금 더 하기
 
-데이터를 조금 더 정리하세요. 나중에 유용할 열을 추가하고, 다른 열의 값을 변경하고, 특정 열을 완전히 삭제하세요.
+데이터를 조금 더 정리하세요. 나중에 유용할 열을 추가하고, 다른 열의 값을 변경하며, 특정 열을 완전히 삭제하세요.
 
 1. 초기 열 처리
 
-   1. `lat` 및 `lng` 삭제
+   1. `lat`와 `lng` 삭제
 
    2. `Hotel_Address` 값을 다음 값으로 대체하세요 (주소에 도시와 국가가 포함되어 있다면, 도시와 국가만 남기세요).
 
-      데이터셋에 있는 유일한 도시와 국가는 다음과 같습니다:
+      데이터셋에 포함된 도시와 국가는 다음과 같습니다:
 
-      암스테르담, 네덜란드
+      Amsterdam, Netherlands
 
-      바르셀로나, 스페인
+      Barcelona, Spain
 
-      런던, 영국
+      London, United Kingdom
 
-      밀라노, 이탈리아
+      Milan, Italy
 
-      파리, 프랑스
+      Paris, France
 
-      비엔나, 오스트리아 
+      Vienna, Austria 
 
       ```python
       def replace_address(row):
@@ -52,30 +62,30 @@
       print(df["Hotel_Address"].value_counts())
       ```
 
-      이제 국가 수준의 데이터를 쿼리할 수 있습니다:
+      이제 국가 수준 데이터를 쿼리할 수 있습니다:
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | 호텔 주소               | 호텔 이름 |
+      | Hotel_Address          | Hotel_Name |
       | :--------------------- | :--------: |
-      | 암스테르담, 네덜란드   |    105     |
-      | 바르셀로나, 스페인     |    211     |
-      | 런던, 영국             |    400     |
-      | 밀라노, 이탈리아       |    162     |
-      | 파리, 프랑스           |    458     |
-      | 비엔나, 오스트리아     |    158     |
+      | Amsterdam, Netherlands |    105     |
+      | Barcelona, Spain       |    211     |
+      | London, United Kingdom |    400     |
+      | Milan, Italy           |    162     |
+      | Paris, France          |    458     |
+      | Vienna, Austria        |    158     |
 
 2. 호텔 메타 리뷰 열 처리
 
-  1. `Additional_Number_of_Scoring`
+   1. `Additional_Number_of_Scoring` 삭제
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+   2. `Total_Number_of_Reviews`를 데이터셋에 실제로 포함된 호텔 리뷰 수로 대체
 
-  1. Replace `Average_Score` 삭제하고 직접 계산한 점수로 대체
+   3. `Average_Score`를 직접 계산한 점수로 대체
 
-  ```python
+   ```python
   # Drop `Additional_Number_of_Scoring`
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
   # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
@@ -85,39 +95,39 @@
 
 3. 리뷰 열 처리
 
-   1. `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
+   1. `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date`, `days_since_review` 삭제
 
-   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
+   2. `Reviewer_Score`, `Negative_Review`, `Positive_Review`는 그대로 유지
      
-   3. Keep `Tags` for now
+   3. `Tags`는 일단 유지
 
-     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+     - 다음 섹션에서 태그에 추가 필터링 작업을 수행한 후 태그를 삭제할 예정
 
-4. Process reviewer columns
+4. 리뷰어 열 처리
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
+   1. `Total_Number_of_Reviews_Reviewer_Has_Given` 삭제
   
-  2. Keep `Reviewer_Nationality`
+   2. `Reviewer_Nationality`는 유지
 
-### Tag columns
+### 태그 열
 
-The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+`Tag` 열은 텍스트 형식의 리스트로 저장되어 있어 문제가 됩니다. 불행히도 이 열의 하위 섹션 순서와 개수가 항상 동일하지 않습니다. 사람이 올바른 문구를 식별하기 어려운데, 이는 515,000개의 행과 1427개의 호텔이 있고, 각 리뷰어가 선택할 수 있는 옵션이 약간씩 다르기 때문입니다. 이럴 때 NLP가 유용합니다. 텍스트를 스캔하여 가장 일반적인 문구를 찾고, 이를 세어볼 수 있습니다.
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` 삭제하고, 관심 있는 태그를 확인하기 위해 몇 가지 단계를 따르세요.
+불행히도 단어 하나가 아닌 다단어 문구(예: *Business trip*)에 관심이 있습니다. 이처럼 많은 데이터(6762646 단어)에 대해 다단어 빈도 분포 알고리즘을 실행하면 엄청난 시간이 걸릴 수 있습니다. 하지만 데이터를 살펴보지 않고는 필요한 작업인지 판단하기 어렵습니다. 다행히도 탐색적 데이터 분석이 유용합니다. 예를 들어, `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']`와 같은 태그 샘플을 보면, 처리해야 할 작업을 크게 줄일 수 있는지 질문을 던질 수 있습니다. 다행히도 가능합니다. 하지만 먼저 관심 있는 태그를 확인하기 위해 몇 가지 단계를 따라야 합니다.
 
 ### 태그 필터링
 
-데이터셋의 목표는 감정을 추가하고 최종 데이터셋에서 유용한 열을 추가하여 최고의 호텔을 선택하는 데 도움을 주는 것입니다 (자신을 위해서나 호텔 추천 봇을 만들기 위해 클라이언트가 요청한 경우). 태그가 최종 데이터셋에서 유용한지 아닌지 스스로에게 물어봐야 합니다. 다음은 한 가지 해석입니다 (다른 이유로 데이터셋이 필요하다면 다른 태그가 선택에 남거나 제외될 수 있습니다):
+데이터셋의 목표는 감정을 추가하고 최종적으로 최고의 호텔을 선택하는 데 도움이 되는 열을 추가하는 것입니다(자신을 위해서든, 호텔 추천 봇을 만들라는 고객의 요청을 위해서든). 태그가 최종 데이터셋에서 유용한지 아닌지를 스스로 물어봐야 합니다. 다음은 한 가지 해석입니다(다른 이유로 데이터셋이 필요하다면 태그 선택이 달라질 수 있음):
 
-1. 여행 유형은 관련이 있으며, 유지해야 합니다.
-2. 게스트 그룹 유형은 중요하며, 유지해야 합니다.
-3. 게스트가 머문 방, 스위트룸, 스튜디오 유형은 무관합니다 (모든 호텔에 기본적으로 동일한 방이 있습니다).
-4. 리뷰가 제출된 장치는 무관합니다.
-5. 리뷰어가 머문 밤 수는 *관련*이 있을 수 있습니다. 더 긴 숙박이 호텔을 더 좋아하는 것과 관련이 있다고 가정할 수 있지만, 이는 다소 무관할 수 있습니다.
+1. 여행 유형은 관련이 있으므로 유지해야 합니다.
+2. 게스트 그룹 유형은 중요하므로 유지해야 합니다.
+3. 게스트가 머문 방, 스위트룸, 스튜디오 유형은 관련이 없습니다(모든 호텔은 기본적으로 동일한 방을 제공함).
+4. 리뷰가 제출된 기기는 관련이 없습니다.
+5. 리뷰어가 머문 밤 수는 호텔을 더 좋아하는 경향과 연관이 있을 수 있지만, 가능성이 낮아 아마도 관련이 없습니다.
 
-요약하자면, **두 가지 종류의 태그를 유지하고 나머지는 제거하세요**.
+요약하자면, **두 가지 유형의 태그만 유지하고 나머지는 제거**하세요.
 
-먼저, 태그가 더 나은 형식으로 변환될 때까지 태그를 계산하지 않으려면 대괄호와 따옴표를 제거해야 합니다. 여러 가지 방법이 있지만, 데이터 처리 시간이 오래 걸릴 수 있으므로 가장 빠른 방법을 원합니다. 다행히도, 판다는 이러한 각 단계를 쉽게 수행할 수 있는 방법을 제공합니다.
+우선, 태그를 더 나은 형식으로 만들기 전까지는 태그를 세지 않는 것이 좋습니다. 즉, 대괄호와 따옴표를 제거해야 합니다. 이를 수행하는 방법은 여러 가지가 있지만, 가장 빠른 방법을 선택해야 합니다. 다행히도 pandas는 각 단계를 쉽게 수행할 수 있는 방법을 제공합니다.
 
 ```Python
 # Remove opening and closing brackets
@@ -126,11 +136,11 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-각 태그는 다음과 같이 됩니다: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
+각 태그는 다음과 같은 형식이 됩니다: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
 
-Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+다음으로 문제가 발생합니다. 일부 리뷰(행)는 5개의 열을 가지고 있고, 일부는 3개, 일부는 6개입니다. 이는 데이터셋이 생성된 방식의 결과이며 수정하기 어렵습니다. 각 문구의 빈도수를 얻고 싶지만, 리뷰마다 순서가 다르기 때문에 카운트가 정확하지 않을 수 있으며, 호텔이 받을 자격이 있는 태그를 받지 못할 수도 있습니다.
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+대신, 서로 다른 순서를 활용할 수 있습니다. 각 태그는 다단어 문구이지만 쉼표로 구분되어 있습니다! 가장 간단한 방법은 임시로 6개의 열을 생성하여 각 태그를 해당 순서에 맞는 열에 삽입하는 것입니다. 그런 다음 6개의 열을 하나의 큰 열로 병합하고 결과 열에서 `value_counts()` 메서드를 실행합니다. 이를 출력하면 2428개의 고유 태그가 있음을 확인할 수 있습니다. 다음은 작은 샘플입니다:
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
@@ -157,11 +167,11 @@ Instead you will use the different order to our advantage, because each tag is m
 | Superior Double or Twin Room   | 13570  |
 | 2 rooms                        | 12393  |
 
-Some of the common tags like `Submitted from a mobile device` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
+`Submitted from a mobile device`와 같은 일반적인 태그는 우리에게 아무런 도움이 되지 않으므로, 이를 제거하는 것이 현명할 수 있습니다. 하지만 매우 빠른 작업이므로 그대로 두고 무시할 수 있습니다.
 
-### Removing the length of stay tags
+### 숙박 기간 태그 제거
 
-Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
+이 태그를 제거하는 것이 첫 번째 단계입니다. 고려해야 할 태그 수를 약간 줄여줍니다. 데이터셋에서 태그를 제거하는 것이 아니라, 리뷰 데이터셋에서 값으로 계산/유지하지 않기로 선택하는 것입니다.
 
 | Length of stay   | Count  |
 | ---------------- | ------ |
@@ -176,7 +186,7 @@ Removing these tags is step 1, it reduces the total number of tags to be conside
 | Stayed 9 nights  | 1293   |
 | ...              | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
+방, 스위트룸, 스튜디오, 아파트 등 다양한 유형이 있습니다. 이들은 대체로 동일한 의미를 가지며 관련이 없으므로 고려 대상에서 제거하세요.
 
 | Type of room                  | Count |
 | ----------------------------- | ----- |
@@ -189,7 +199,7 @@ There are a huge variety of rooms, suites, studios, apartments and so on. They a
 | Classic Double Room           | 16989 |
 | Superior  Double or Twin Room | 13570 |
 
-Finally, and this is delightful (because it didn't take much processing at all), you will be left with the following *useful* tags:
+마지막으로, 기쁜 소식은 (거의 처리 없이) 다음과 같은 **유용한** 태그만 남게 된다는 것입니다:
 
 | Tag                                           | Count  |
 | --------------------------------------------- | ------ |
@@ -202,9 +212,9 @@ Finally, and this is delightful (because it didn't take much processing at all),
 | Family  with older children                   | 26349  |
 | With a  pet                                   | 1405   |
 
-You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+`Travellers with friends`는 `Group`과 거의 동일하다고 볼 수 있으며, 이를 결합하는 것이 공정할 것입니다. 위와 같이 결합하세요. 올바른 태그를 식별하는 코드는 [Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)에 있습니다.
 
-The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag` 열이 새 열 중 하나와 일치하면 1을 추가하고, 그렇지 않으면 0을 추가합니다. 최종 결과는 비즈니스 vs 레저 또는 애완동물을 데리고 오는 등의 이유로 이 호텔을 선택한 리뷰어의 수를 집계한 것입니다. 이는 호텔을 추천할 때 유용한 정보입니다.
+마지막 단계는 각 태그에 대해 새로운 열을 생성하는 것입니다. 그런 다음 각 리뷰 행에서 `Tag` 열이 새 열 중 하나와 일치하면 1을 추가하고, 그렇지 않으면 0을 추가하세요. 최종 결과는 비즈니스 vs 레저, 또는 애완동물 동반 여부 등 호텔을 선택할 때 유용한 정보를 제공하는 리뷰어 선택 수의 집계가 될 것입니다.
 
 ```python
 # Process the Tags into new columns
@@ -240,7 +250,7 @@ df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 
 ## 연습: 필터링된 데이터 로드 및 저장
 
-이제 이전 섹션에서 저장한 필터링된 데이터셋을 로드하고, **원본 데이터셋이 아님**을 주의하세요.
+이제 이전 섹션에서 저장한 필터링된 데이터셋을 로드해야 하며, **원본 데이터셋이 아닙니다**.
 
 ```python
 import time
@@ -263,13 +273,13 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### 불용어 제거
 
-부정적 리뷰와 긍정적 리뷰 열에서 감정 분석을 수행하려면 시간이 오래 걸릴 수 있습니다. 빠른 CPU를 가진 강력한 테스트 노트북에서 테스트한 결과, 사용된 감정 라이브러리에 따라 12-14분이 걸렸습니다. 이는 (상대적으로) 긴 시간이므로, 이를 빠르게 할 수 있는지 조사할 가치가 있습니다.
+Negative 및 Positive 리뷰 열에서 감정 분석을 실행하면 시간이 오래 걸릴 수 있습니다. 빠른 CPU를 가진 강력한 테스트 노트북에서 테스트한 결과, 사용된 감정 라이브러리에 따라 12~14분이 걸렸습니다. 이는 (상대적으로) 긴 시간이므로 속도를 높일 수 있는지 조사할 가치가 있습니다.
 
-불용어, 즉 문장의 감정을 바꾸지 않는 일반적인 영어 단어를 제거하는 것이 첫 번째 단계입니다. 불용어를 제거하면 감정 분석이 더 빨리 실행되지만, 정확도가 떨어지지 않습니다 (불용어는 감정에 영향을 미치지 않지만, 분석을 느리게 만듭니다).
+불용어 제거는 첫 번째 단계입니다. 불용어는 문장의 감정에 영향을 주지 않지만 분석 속도를 늦추므로 제거하면 감정 분석이 더 빨라질 수 있습니다. 불용어를 제거해도 정확도가 떨어지지 않습니다(불용어는 감정에 영향을 주지 않지만 속도를 늦춤).
 
-가장 긴 부정적 리뷰는 395단어였지만, 불용어를 제거한 후에는 195단어입니다.
+가장 긴 부정 리뷰는 395단어였지만, 불용어를 제거한 후에는 195단어로 줄어듭니다.
 
-불용어를 제거하는 작업도 빠른 작업이며, 515,000개의 행에서 2개의 리뷰 열에서 불용어를 제거하는 데 테스트 장치에서 3.3초가 걸렸습니다. 장치의 CPU 속도, RAM, SSD 여부 등 여러 요인에 따라 시간이 약간 더 걸리거나 덜 걸릴 수 있습니다. 작업이 상대적으로 짧으므로, 감정 분석 시간을 개선할 수 있다면 수행할 가치가 있습니다.
+불용어 제거는 또한 빠른 작업입니다. 515,000개의 행에서 2개의 리뷰 열의 불용어를 제거하는 데 테스트 장치에서 3.3초가 걸렸습니다. 장치의 CPU 속도, RAM, SSD 여부 등 여러 요인에 따라 시간이 약간 더 걸리거나 덜 걸릴 수 있습니다. 작업이 상대적으로 짧기 때문에 감정 분석 시간을 개선한다면 수행할 가치가 있습니다.
 
 ```python
 from nltk.corpus import stopwords
@@ -293,9 +303,8 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 
 ### 감정 분석 수행
 
-이제 부정적 리뷰와 긍정적 리뷰 열에 대해 감정 분석을 계산하고 결과를 두 개의 새로운 열에 저장해야 합니다. 감정의 테스트는 같은 리뷰에 대해 리뷰어의 점수와 비교하는 것입니다. 예를 들어, 감정 분석이 부정적 리뷰에서 1 (매우 긍정적인 감정)을 나타내고 긍정적 리뷰에서 1을 나타내지만, 리뷰어가 호텔에 가능한 최저 점수를 준다면, 리뷰 텍스트가 점수와 일치하지 않거나 감정 분석기가 감정을 올바르게 인식하지 못했음을 나타냅니다. 일부 감정 점수가 완전히 잘못될 것으로 예상해야 하며, 종종 설명할 수 있습니다. 예를 들어, 리뷰가 매우 비꼬는 "물론 난 난방이 없는 방에서 자는 걸 정말 좋아했어요"와 같이 작성되었고, 감정 분석기가 이를 긍정적인 감정으로 인식할 수 있지만, 사람이 읽으면 비꼬는 것임을 알 수 있습니다.
-
-NLTK는 학습을 위한 다양한 감정 분석기를 제공하며, 이를 대체하여 감정이 더 정확한지 덜 정확한지 확인할 수 있습니다. 여기서는 VADER 감정 분석이 사용되었습니다.
+이제 부정 리뷰와 긍정 리뷰 열에 대해 감정 분석을 계산하고 결과를 2개의 새로운 열에 저장해야 합니다. 감정 테스트는 동일한 리뷰에 대한 리뷰어 점수와 비교하는 것입니다. 예를 들어, 감정 분석 결과 부정 리뷰의 감정이 1(매우 긍정적 감정)이고 긍정 리뷰의 감정이 1이라고 판단했지만 리뷰어가 호텔에 최저 점수를 준 경우, 리뷰 텍스트가 점수와 일치하지 않거나 감정 분석기가 감정을 올바르게 인식하지 못했을 가능성이 있습니다. 일부 감정 점수가 완전히 잘못될 것으로 예상되며, 이는 종종 설명 가능할 것입니다. 예를 들어, 리뷰가 매우 비꼬는 내용일 수 있습니다. "물론 난 난방이 없는 방에서 자는 게 정말 좋았어요"와 같은 경우, 감정 분석기는 이를 긍정적 감정으로 판단할 수 있지만, 인간이 읽으면 비꼬는 내용임을 알 수 있습니다.
+NLTK는 학습을 위해 다양한 감정 분석기를 제공하며, 이를 교체하여 감정 분석이 더 정확하거나 덜 정확한지 확인할 수 있습니다. 여기서는 VADER 감정 분석을 사용합니다.
 
 > Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
 
@@ -316,7 +325,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-프로그램에서 감정을 계산할 준비가 되었을 때, 다음과 같이 각 리뷰에 적용할 수 있습니다:
+프로그램에서 감정을 계산할 준비가 되었을 때, 각 리뷰에 다음과 같이 적용할 수 있습니다:
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -328,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-이 작업은 제 컴퓨터에서 약 120초가 걸리지만, 각 컴퓨터마다 다를 수 있습니다. 결과를 출력하여 감정이 리뷰와 일치하는지 확인하려면:
+이 작업은 제 컴퓨터에서 약 120초가 소요되지만, 컴퓨터마다 다를 수 있습니다. 결과를 출력하여 감정이 리뷰와 일치하는지 확인하려면 다음을 실행하세요:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -337,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-파일을 사용하기 전에 마지막으로 해야 할 일은 저장하는 것입니다! 또한 모든 새로운 열을 다시 정렬하여 작업하기 쉽게 만드세요 (사람에게는 미용적 변경입니다).
+도전 과제에서 파일을 사용하기 전에 마지막으로 해야 할 일은 저장하는 것입니다! 또한, 새로 추가한 모든 열을 재정렬하여 작업하기 쉽게 만드는 것도 고려해 보세요 (사람이 보기에는 단순히 미관상의 변화일 수 있습니다).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -347,31 +356,34 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-전체 코드를 실행하여 [분석 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)을 실행하세요 (필터링 노트북을 실행하여 Hotel_Reviews_Filtered.csv 파일을 생성한 후).
+[분석 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)의 전체 코드를 실행해야 합니다 (먼저 [필터링 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)을 실행하여 Hotel_Reviews_Filtered.csv 파일을 생성한 후).
 
-복습을 위해, 단계는 다음과 같습니다:
+요약하자면, 단계는 다음과 같습니다:
 
-1. 원본 데이터셋 파일 **Hotel_Reviews.csv**는 이전 강의에서 [탐색 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)으로 탐색되었습니다.
-2. Hotel_Reviews.csv는 [필터링 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)에 의해 필터링되어 **Hotel_Reviews_Filtered.csv**가 생성되었습니다.
-3. Hotel_Reviews_Filtered.csv는 [감정 분석 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)에 의해 처리되어 **Hotel_Reviews_NLP.csv**가 생성되었습니다.
-4. 아래의 NLP 챌린지에서 Hotel_Reviews_NLP.csv를 사용하세요.
+1. 원본 데이터셋 파일 **Hotel_Reviews.csv**는 이전 강의에서 [탐색 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)을 사용하여 탐색되었습니다.
+2. **Hotel_Reviews.csv**는 [필터링 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)을 통해 필터링되어 **Hotel_Reviews_Filtered.csv**가 생성되었습니다.
+3. **Hotel_Reviews_Filtered.csv**는 [감정 분석 노트북](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb)을 통해 처리되어 **Hotel_Reviews_NLP.csv**가 생성되었습니다.
+4. 아래 NLP 도전 과제에서 **Hotel_Reviews_NLP.csv**를 사용하세요.
 
 ### 결론
 
-처음 시작할 때, 검증하거나 사용할 수 없는 열과 데이터가 포함된 데이터셋이 있었습니다. 데이터를 탐색하고, 필요 없는 것을 필터링하고, 태그를 유용한 것으로 변환하고, 자신의 평균을 계산하고, 감정 열을 추가하여 자연어 텍스트 처리에 대해 흥미로운 것을 배웠기를 바랍니다.
+처음 시작할 때는 열과 데이터가 포함된 데이터셋을 가지고 있었지만, 모든 데이터가 검증되거나 사용 가능한 것은 아니었습니다. 데이터를 탐색하고, 필요 없는 부분을 필터링하며, 태그를 유용한 형태로 변환하고, 직접 평균을 계산하고, 감정 열을 추가하면서 자연어 텍스트를 처리하는 데 대해 흥미로운 점들을 배웠기를 바랍니다.
 
-## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [강의 후 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
 
-## 챌린지
+## 도전 과제
 
-이제 데이터셋의 감정 분석이 완료되었으니, 이 커리큘럼에서 배운 전략(예를 들어 클러스터링)을 사용하여 감정 주위의 패턴을 결정할 수 있는지 확인하세요.
+이제 데이터셋의 감정을 분석했으니, 이 커리큘럼에서 배운 전략(예: 클러스터링)을 사용하여 감정과 관련된 패턴을 찾아보세요.
 
-## 복습 및 자습
+## 복습 및 자기 학습
 
-[이 Learn 모듈](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)을 통해 더 많은 것을 배우고, 텍스트에서 감정을 탐색하는 데 다양한 도구를 사용해 보세요.
-## 과제 
+[이 학습 모듈](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)을 통해 더 많은 내용을 배우고, 텍스트에서 감정을 탐색하기 위해 다양한 도구를 사용해 보세요.
 
-[다른 데이터셋 시도해보기](assignment.md)
+## 과제
 
-**면책 조항**:
-이 문서는 기계 기반 AI 번역 서비스를 사용하여 번역되었습니다. 정확성을 위해 노력하고 있지만, 자동 번역에는 오류나 부정확성이 있을 수 있습니다. 원어로 작성된 원본 문서를 권위 있는 자료로 간주해야 합니다. 중요한 정보의 경우, 전문 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
+[다른 데이터셋 시도하기](assignment.md)
+
+---
+
+**면책 조항**:  
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서를 해당 언어로 작성된 상태에서 권위 있는 자료로 간주해야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.  

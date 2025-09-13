@@ -1,130 +1,183 @@
-# Sonsöz: Sorumlu AI panosu bileşenleri kullanarak Makine Öğreniminde Model Hatalarını Ayıklama
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "df2b538e8fbb3e91cf0419ae2f858675",
+  "translation_date": "2025-09-06T07:53:42+00:00",
+  "source_file": "9-Real-World/2-Debugging-ML-Models/README.md",
+  "language_code": "tr"
+}
+-->
+# Postscript: Makine Öğreniminde Model Hata Ayıklama ve Sorumlu AI Panosu Bileşenleri Kullanımı
 
-## [Ders Öncesi Testi](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [Ders Öncesi Test](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Giriş
 
-Makine öğrenimi günlük hayatımızı etkiliyor. AI, sağlık, finans, eğitim ve istihdam gibi bireyler ve toplum olarak bizi etkileyen en önemli sistemlere giriyor. Örneğin, sistemler ve modeller sağlık teşhisleri veya dolandırıcılığı tespit etme gibi günlük karar verme görevlerinde yer alır. Sonuç olarak, AI'daki ilerlemeler ve hızlandırılmış benimseme, gelişen toplumsal beklentiler ve artan düzenlemelerle karşılanmaktadır. AI sistemlerinin beklentileri karşılamadığı, yeni zorluklar ortaya çıkardığı ve hükümetlerin AI çözümlerini düzenlemeye başladığı alanları sürekli olarak görüyoruz. Bu nedenle, bu modellerin herkes için adil, güvenilir, kapsayıcı, şeffaf ve hesap verebilir sonuçlar sağlamak amacıyla analiz edilmesi önemlidir.
+Makine öğrenimi günlük hayatımızı etkiliyor. Yapay zeka, sağlık, finans, eğitim ve istihdam gibi bireyler ve toplum üzerinde etkili olan en önemli sistemlere giderek daha fazla entegre oluyor. Örneğin, sağlık teşhisleri veya dolandırıcılık tespiti gibi günlük karar verme görevlerinde sistemler ve modeller kullanılıyor. Bu nedenle, yapay zekadaki ilerlemeler ve hızla artan benimseme oranı, gelişen toplumsal beklentiler ve buna yanıt olarak artan düzenlemelerle karşılaşıyor. Yapay zeka sistemlerinin beklentileri karşılamadığı, yeni zorluklar ortaya çıkardığı ve hükümetlerin yapay zeka çözümlerini düzenlemeye başladığı alanları sürekli olarak görüyoruz. Bu nedenle, bu modellerin herkes için adil, güvenilir, kapsayıcı, şeffaf ve hesap verebilir sonuçlar sağlamak amacıyla analiz edilmesi önemlidir.
 
-Bu müfredatta, bir modelin sorumlu AI sorunları olup olmadığını değerlendirmek için kullanılabilecek pratik araçlara bakacağız. Geleneksel makine öğrenimi hata ayıklama teknikleri, genellikle toplanmış doğruluk veya ortalama hata kaybı gibi nicel hesaplamalara dayanır. Bu modelleri oluşturmak için kullandığınız verilerde ırk, cinsiyet, politik görüş, din gibi demografik bilgiler eksik olduğunda ne olabileceğini hayal edin. Modelin çıktısı belirli bir demografiyi tercih edecek şekilde yorumlandığında ne olur? Bu, bu hassas özellik gruplarının aşırı veya yetersiz temsil edilmesine neden olarak modelden adalet, kapsayıcılık veya güvenilirlik sorunlarına yol açabilir. Bir diğer faktör ise, makine öğrenimi modellerinin kara kutular olarak kabul edilmesidir, bu da bir modelin tahminini neyin yönlendirdiğini anlamayı ve açıklamayı zorlaştırır. Tüm bunlar, bir modelin adaletini veya güvenilirliğini değerlendirmek ve hata ayıklamak için yeterli araçlara sahip olmadıklarında veri bilimciler ve AI geliştiricilerin karşılaştığı zorluklardır.
+Bu müfredatta, bir modelin sorumlu yapay zeka sorunlarına sahip olup olmadığını değerlendirmek için kullanılabilecek pratik araçlara bakacağız. Geleneksel makine öğrenimi hata ayıklama teknikleri genellikle toplu doğruluk veya ortalama hata kaybı gibi nicel hesaplamalara dayanır. Bu modelleri oluşturmak için kullandığınız verilerin belirli demografik özelliklerden (örneğin, ırk, cinsiyet, siyasi görüş, din) yoksun olduğunu veya bu demografik özellikleri orantısız bir şekilde temsil ettiğini hayal edin. Peki ya modelin çıktısı bazı demografik grupları kayıracak şekilde yorumlanırsa? Bu, hassas özellik gruplarının aşırı veya yetersiz temsil edilmesine yol açarak modelde adalet, kapsayıcılık veya güvenilirlik sorunlarına neden olabilir. Ayrıca, makine öğrenimi modelleri genellikle "kara kutu" olarak kabul edilir, bu da bir modelin tahminlerini neyin yönlendirdiğini anlamayı ve açıklamayı zorlaştırır. Veri bilimciler ve yapay zeka geliştiricileri, bir modelin adaletini veya güvenilirliğini değerlendirmek ve hata ayıklamak için yeterli araçlara sahip olmadıklarında bu tür zorluklarla karşılaşırlar.
 
-Bu derste, modellerinizi hata ayıklama konusunda şunları öğreneceksiniz:
+Bu derste, modellerinizi aşağıdaki yöntemlerle hata ayıklamayı öğreneceksiniz:
 
-- **Hata Analizi**: Modelin yüksek hata oranlarına sahip olduğu veri dağılımındaki yerleri belirleyin.
-- **Model Genel Bakış**: Model performans metriklerindeki farklılıkları keşfetmek için farklı veri kohortları arasında karşılaştırmalı analiz yapın.
-- **Veri Analizi**: Modelinizin bir veri demografisini diğerine tercih etmesine neden olabilecek veri fazlalığı veya eksikliği olup olmadığını araştırın.
-- **Özellik Önemi**: Modelinizin tahminlerini küresel veya yerel düzeyde hangi özelliklerin yönlendirdiğini anlayın.
+- **Hata Analizi**: Modelin veri dağılımında yüksek hata oranlarına sahip olduğu yerleri belirleyin.
+- **Model Genel Bakışı**: Modelinizin performans metriklerindeki farklılıkları keşfetmek için farklı veri grupları arasında karşılaştırmalı analiz yapın.
+- **Veri Analizi**: Modelinizin bir veri demografisini diğerine kayırmasına neden olabilecek veri aşırı veya yetersiz temsilini araştırın.
+- **Özellik Önem Derecesi**: Modelinizin tahminlerini küresel veya yerel düzeyde yönlendiren özellikleri anlayın.
 
-## Önkoşul
+## Ön Koşul
 
-Bir önkoşul olarak, lütfen [Geliştiriciler için Sorumlu AI araçlarını](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard) inceleyin.
+Ön koşul olarak, [Geliştiriciler için Sorumlu AI Araçları](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard) incelemesini tamamlayın.
 
-> ![Sorumlu AI Araçları Hakkında Gif](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
+> ![Sorumlu AI Araçları ile ilgili Gif](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
 ## Hata Analizi
 
-Doğruluğu ölçmek için kullanılan geleneksel model performans metrikleri genellikle doğru ve yanlış tahminlere dayalı hesaplamalardır. Örneğin, bir modelin %89 doğruluk oranına sahip olduğunu ve hata kaybının 0.001 olduğunu belirlemek iyi bir performans olarak kabul edilebilir. Hatalar genellikle temel veri kümenizde eşit dağılmamıştır. %89 doğruluk puanı alabilirsiniz, ancak modelin verinizin farklı bölgelerinde %42 oranında başarısız olduğunu keşfedebilirsiniz. Belirli veri gruplarındaki bu başarısızlık modellerinin sonucu adalet veya güvenilirlik sorunlarına yol açabilir. Modelin iyi veya kötü performans gösterdiği alanları anlamak önemlidir. Modelinizde yüksek sayıda yanlışlıkların olduğu veri bölgeleri önemli bir veri demografisi olabilir.
+Doğruluğu ölçmek için kullanılan geleneksel model performans metrikleri genellikle doğru ve yanlış tahminlere dayalı hesaplamalardır. Örneğin, bir modelin %89 oranında doğru olduğunu ve 0.001 hata kaybına sahip olduğunu belirlemek iyi bir performans olarak kabul edilebilir. Ancak hatalar, temel veri kümenizde eşit olarak dağılmayabilir. %89 model doğruluk puanı alabilirsiniz, ancak modelin veri gruplarının belirli bölgelerinde %42 oranında başarısız olduğunu keşfedebilirsiniz. Belirli veri gruplarındaki bu hata kalıplarının sonuçları, adalet veya güvenilirlik sorunlarına yol açabilir. Modelin iyi veya kötü performans gösterdiği alanları anlamak önemlidir. Modelinizdeki yüksek hata oranlarına sahip veri bölgeleri, önemli bir veri demografisi olabilir.
 
-![Model hatalarını analiz edin ve hata ayıklayın](../../../../translated_images/ea-error-distribution.117452e1177c1dd84fab2369967a68bcde787c76c6ea7fdb92fcf15d1fce8206.tr.png)
+![Model hatalarını analiz etme ve hata ayıklama](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
 
-RAI panosundaki Hata Analizi bileşeni, model hatasının çeşitli kohortlar arasında nasıl dağıldığını ağaç görselleştirmesi ile gösterir. Bu, veri kümenizde yüksek hata oranına sahip özellikleri veya alanları belirlemede yararlıdır. Modelin yanlışlıklarının çoğunun nereden geldiğini görerek, sorunun kök nedenini araştırmaya başlayabilirsiniz. Ayrıca, analiz yapmak için veri kohortları oluşturabilirsiniz. Bu veri kohortları, model performansının bir kohortta neden iyi olduğunu, ancak başka bir kohortta neden hatalı olduğunu belirlemek için hata ayıklama sürecinde yardımcı olur.
+RAI panosundaki Hata Analizi bileşeni, model hatalarının çeşitli gruplar arasında nasıl dağıldığını bir ağaç görselleştirmesiyle gösterir. Bu, veri kümenizde yüksek hata oranına sahip özellikleri veya alanları belirlemede faydalıdır. Modelin hatalarının çoğunun nereden geldiğini görerek, sorunun kök nedenini araştırmaya başlayabilirsiniz. Ayrıca veri grupları oluşturarak analiz yapabilirsiniz. Bu veri grupları, modelin bir grupta neden iyi performans gösterdiğini, ancak diğerinde hatalı olduğunu belirlemek için hata ayıklama sürecinde yardımcı olur.
 
-![Hata Analizi](../../../../translated_images/ea-error-cohort.6886209ea5d438c4daa8bfbf5ce3a7042586364dd3eccda4a4e3d05623ac702a.tr.png)
+![Hata Analizi](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
 
-Ağaç haritasındaki görsel göstergeler, sorun alanlarını daha hızlı bulmanıza yardımcı olur. Örneğin, bir ağaç düğümünün daha koyu kırmızı tonu, hata oranının daha yüksek olduğunu gösterir.
+Ağaç haritasındaki görsel göstergeler, sorunlu alanları daha hızlı bulmaya yardımcı olur. Örneğin, bir ağaç düğümünün daha koyu kırmızı tonuna sahip olması, daha yüksek hata oranını gösterir.
 
-Isı haritası, kullanıcıların tüm veri kümesi veya kohortlar genelinde model hatalarına katkıda bulunan bir veya iki özelliği araştırmak için hata oranını incelemelerinde kullanabilecekleri başka bir görselleştirme işlevselliğidir.
+Isı haritası, kullanıcıların bir veya iki özelliği kullanarak hata oranını araştırması için başka bir görselleştirme işlevselliğidir. Bu, model hatalarına katkıda bulunan özellikleri tüm veri kümesi veya gruplar arasında bulmaya yardımcı olur.
 
-![Hata Analizi Isı Haritası](../../../../translated_images/ea-heatmap.8d27185e28cee3830c85e1b2e9df9d2d5e5c8c940f41678efdb68753f2f7e56c.tr.png)
+![Hata Analizi Isı Haritası](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
 
 Hata analizini şu durumlarda kullanın:
 
-* Model hatalarının bir veri kümesi ve çeşitli giriş ve özellik boyutları genelinde nasıl dağıldığını derinlemesine anlamak için.
-* Hata ayıklama adımlarınızı bilgilendirmek için hatalı kohortları otomatik olarak keşfetmek amacıyla toplam performans metriklerini parçalamak için.
+* Model hatalarının bir veri kümesi ve çeşitli giriş ve özellik boyutları arasında nasıl dağıldığını derinlemesine anlamak.
+* Toplu performans metriklerini bölerek, hedeflenen iyileştirme adımlarınızı bilgilendirmek için hatalı grupları otomatik olarak keşfetmek.
 
-## Model Genel Bakış
+## Model Genel Bakışı
 
-Bir makine öğrenimi modelinin performansını değerlendirmek, davranışını bütünsel olarak anlamayı gerektirir. Bu, performans metrikleri arasında farklılıkları bulmak için hata oranı, doğruluk, geri çağırma, kesinlik veya MAE (Ortalama Mutlak Hata) gibi birden fazla metriği gözden geçirerek elde edilebilir. Bir performans metriği harika görünebilir, ancak başka bir metrikte yanlışlıklar ortaya çıkabilir. Ayrıca, tüm veri kümesi veya kohortlar arasında metrikleri karşılaştırmak, modelin iyi veya kötü performans gösterdiği yerleri aydınlatmaya yardımcı olur. Bu, özellikle modelin hassas ve hassas olmayan özellikler (örneğin, hasta ırkı, cinsiyet veya yaşı) arasında performansını görerek modelin potansiyel adaletsizliğini ortaya çıkarmak için önemlidir. Örneğin, modelin hassas özelliklere sahip bir kohortta daha hatalı olduğunu keşfetmek, modelin potansiyel adaletsizliğini ortaya çıkarabilir.
+Bir makine öğrenimi modelinin performansını değerlendirmek, davranışını bütünsel bir şekilde anlamayı gerektirir. Bu, hata oranı, doğruluk, geri çağırma, hassasiyet veya MAE (Ortalama Mutlak Hata) gibi birden fazla metriği gözden geçirerek performans metrikleri arasındaki farklılıkları bulmakla sağlanabilir. Bir performans metriği harika görünebilir, ancak başka bir metrikteki yanlışlıklar ortaya çıkabilir. Ayrıca, metrikleri tüm veri kümesi veya gruplar arasında karşılaştırmak, modelin nerede iyi veya kötü performans gösterdiğini anlamaya yardımcı olur. Bu, özellikle hassas ve hassas olmayan özellikler (örneğin, hastanın ırkı, cinsiyeti veya yaşı) arasında modelin performansını görerek modelin potansiyel adaletsizliğini ortaya çıkarmak için önemlidir. Örneğin, modelin hassas özelliklere sahip bir grupta daha hatalı olduğunu keşfetmek, modelin potansiyel adaletsizliğini ortaya çıkarabilir.
 
-RAI panosundaki Model Genel Bakış bileşeni, sadece bir kohortta veri temsilinin performans metriklerini analiz etmekle kalmaz, aynı zamanda kullanıcıların modelin davranışını farklı kohortlar arasında karşılaştırma yeteneği sağlar.
+RAI panosundaki Model Genel Bakışı bileşeni, yalnızca bir veri grubundaki performans metriklerini analiz etmekle kalmaz, aynı zamanda kullanıcıların modelin davranışını farklı gruplar arasında karşılaştırma yeteneği sağlar.
 
-![Veri seti kohortları - RAI panosunda model genel bakış](../../../../translated_images/model-overview-dataset-cohorts.dfa463fb527a35a0afc01b7b012fc87bf2cad756763f3652bbd810cac5d6cf33.tr.png)
+![Veri grupları - RAI panosunda model genel bakışı](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
 
-Bileşenin özellik tabanlı analiz işlevselliği, kullanıcıların belirli bir özellik içinde veri alt gruplarını daraltarak anormallikleri daha ayrıntılı düzeyde belirlemelerini sağlar. Örneğin, pano, kullanıcı tarafından seçilen bir özellik için otomatik olarak kohortlar oluşturma yeteneğine sahiptir (örneğin, *"time_in_hospital < 3"* veya *"time_in_hospital >= 7"*). Bu, kullanıcının daha büyük bir veri grubundan belirli bir özelliği izole etmesine ve bu özelliğin modelin hatalı sonuçlarını yönlendiren önemli bir etken olup olmadığını görmesine olanak tanır.
+Bileşenin özellik tabanlı analiz işlevselliği, kullanıcıların belirli bir özellik içinde veri alt gruplarını daraltarak anormallikleri daha ayrıntılı bir düzeyde belirlemesine olanak tanır. Örneğin, pano, kullanıcı tarafından seçilen bir özellik için (örneğin, *"hastanede geçirilen süre < 3"* veya *"hastanede geçirilen süre >= 7"*) otomatik olarak gruplar oluşturmak için yerleşik zekaya sahiptir. Bu, kullanıcıların daha büyük bir veri grubundan belirli bir özelliği izole ederek modelin hatalı sonuçlarının anahtar bir etkileyicisi olup olmadığını görmesini sağlar.
 
-![Özellik kohortları - RAI panosunda model genel bakış](../../../../translated_images/model-overview-feature-cohorts.c5104d575ffd0c80b7ad8ede7703fab6166bfc6f9125dd395dcc4ace2f522f70.tr.png)
+![Özellik grupları - RAI panosunda model genel bakışı](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
 
-Model Genel Bakış bileşeni iki tür farklılık metriğini destekler:
+Model Genel Bakışı bileşeni iki tür farklılık metriğini destekler:
 
-**Model performansındaki farklılık**: Bu metrikler, veri alt grupları arasında seçilen performans metriğinin değerlerindeki farklılığı hesaplar. İşte birkaç örnek:
+**Model performansındaki farklılık**: Bu metrikler, seçilen performans metriğinin değerlerindeki farklılıkları veri alt grupları arasında hesaplar. İşte birkaç örnek:
 
 * Doğruluk oranındaki farklılık
 * Hata oranındaki farklılık
-* Kesinlikteki farklılık
+* Hassasiyetteki farklılık
 * Geri çağırmadaki farklılık
 * Ortalama mutlak hatadaki (MAE) farklılık
 
-**Seçim oranındaki farklılık**: Bu metrik, veri alt grupları arasında seçim oranındaki (olumlu tahmin) farkı içerir. Bunun bir örneği, kredi onay oranlarındaki farklılıktır. Seçim oranı, her sınıfta 1 olarak sınıflandırılan veri noktalarının oranını (ikili sınıflandırmada) veya tahmin değerlerinin dağılımını (regresyonda) ifade eder.
+**Seçim oranındaki farklılık**: Bu metrik, veri alt grupları arasındaki seçim oranındaki (olumlu tahmin) farkı içerir. Buna bir örnek, kredi onay oranlarındaki farklılıktır. Seçim oranı, her sınıftaki veri noktalarının 1 olarak sınıflandırılma oranını (ikili sınıflandırmada) veya tahmin değerlerinin dağılımını (regresyonda) ifade eder.
 
 ## Veri Analizi
 
-> "Verileri yeterince uzun süre işkence ederseniz, her şeyi itiraf eder" - Ronald Coase
+> "Veriyi yeterince zorlayın, her şeyi itiraf eder" - Ronald Coase
 
-Bu ifade aşırı gibi görünebilir, ancak verilerin herhangi bir sonucu desteklemek için manipüle edilebileceği doğrudur. Böyle bir manipülasyon bazen istemeden de olabilir. İnsan olarak hepimizin önyargıları vardır ve veriye önyargı eklediğinizde bunu bilinçli olarak fark etmek genellikle zordur. AI ve makine öğreniminde adaleti sağlamak karmaşık bir zorluk olmaya devam etmektedir.
+Bu ifade aşırı görünebilir, ancak verilerin herhangi bir sonucu desteklemek için manipüle edilebileceği doğrudur. Bu tür manipülasyon bazen istemeden gerçekleşebilir. İnsanlar olarak hepimiz önyargıya sahibiz ve verilerde önyargı oluşturduğumuzda bunu bilinçli olarak fark etmek genellikle zordur. Yapay zekada ve makine öğreniminde adaleti sağlamak karmaşık bir zorluk olmaya devam ediyor.
 
-Veri, geleneksel model performans metrikleri için büyük bir kör noktadır. Yüksek doğruluk puanlarına sahip olabilirsiniz, ancak bu her zaman veri kümenizde olabilecek temel veri önyargısını yansıtmaz. Örneğin, bir şirketin yönetici pozisyonlarındaki kadın çalışanların %27'si ve aynı seviyedeki erkeklerin %73'ü olan bir veri kümesi, bu verilere dayalı olarak eğitilmiş bir iş ilanı AI modelinin çoğunlukla üst düzey iş pozisyonları için erkek hedef kitleye yönelik olmasına neden olabilir. Veride bu dengesizlik, modelin tahminini bir cinsiyeti diğerine tercih edecek şekilde eğmiştir. Bu, AI modelinde bir cinsiyet önyargısı olan bir adalet sorunu ortaya çıkarır.
+Veri, geleneksel model performans metrikleri için büyük bir kör noktadır. Yüksek doğruluk puanlarına sahip olabilirsiniz, ancak bu her zaman veri kümenizdeki temel veri önyargısını yansıtmaz. Örneğin, bir şirketteki çalışanların %27'sinin kadın, %73'ünün erkek olduğu bir veri kümesi, bir iş ilanı yapay zeka modeli bu verilerle eğitildiğinde, üst düzey iş pozisyonları için çoğunlukla erkek bir kitleyi hedefleyebilir. Bu tür bir veri dengesizliği, modelin tahminini bir cinsiyeti kayıracak şekilde çarpıttı. Bu, yapay zeka modelinde bir adalet sorunu olduğunu ve cinsiyet önyargısı bulunduğunu gösterir.
 
-RAI panosundaki Veri Analizi bileşeni, veri kümesinde aşırı ve yetersiz temsili olan alanları belirlemeye yardımcı olur. Kullanıcılara, veri dengesizliklerinden veya belirli bir veri grubunun temsil eksikliğinden kaynaklanan hata ve adalet sorunlarının kök nedenini teşhis etme yeteneği sağlar. Bu, kullanıcıların tahmin edilen ve gerçek sonuçlar, hata grupları ve belirli özelliklere dayalı veri kümelerini görselleştirmelerine olanak tanır. Bazen az temsil edilen bir veri grubunu keşfetmek, modelin iyi öğrenmediğini de ortaya çıkarabilir, bu da yüksek yanlışlıkların nedenidir. Veride önyargı olan bir modelin sadece bir adalet sorunu değil, aynı zamanda kapsayıcı veya güvenilir olmadığını da gösterir.
+RAI panosundaki Veri Analizi bileşeni, veri kümesinde aşırı ve yetersiz temsil edilen alanları belirlemeye yardımcı olur. Kullanıcılara veri dengesizliklerinden veya belirli bir veri grubunun temsil eksikliğinden kaynaklanan hataların ve adalet sorunlarının kök nedenini teşhis etme olanağı sağlar. Bu, kullanıcıların veri kümelerini tahmin edilen ve gerçek sonuçlara, hata gruplarına ve belirli özelliklere göre görselleştirmesine olanak tanır. Bazen yetersiz temsil edilen bir veri grubunu keşfetmek, modelin iyi öğrenmediğini ve dolayısıyla yüksek yanlışlıklar olduğunu da ortaya çıkarabilir. Veri önyargısına sahip bir model, yalnızca bir adalet sorunu değil, aynı zamanda modelin kapsayıcı veya güvenilir olmadığını gösterir.
 
-![RAI Panosunda Veri Analizi bileşeni](../../../../translated_images/dataanalysis-cover.8d6d0683a70a5c1e274e5a94b27a71137e3d0a3b707761d7170eb340dd07f11d.tr.png)
+![RAI Panosundaki Veri Analizi bileşeni](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
 
 Veri analizini şu durumlarda kullanın:
 
-* Farklı filtreler seçerek veri kümenizi farklı boyutlara (kohortlar olarak da bilinir) dilimleyerek veri kümesi istatistiklerinizi keşfedin.
-* Veri kümenizin farklı kohortlar ve özellik grupları genelinde dağılımını anlayın.
-* Adalet, hata analizi ve nedensellik ile ilgili bulgularınızın (diğer pano bileşenlerinden türetilmiş) veri kümenizin dağılımının bir sonucu olup olmadığını belirleyin.
-* Temsil sorunlarından, etiket gürültüsünden, özellik gürültüsünden, etiket önyargısından ve benzeri faktörlerden kaynaklanan hataları hafifletmek için hangi alanlarda daha fazla veri toplayacağınıza karar verin.
+* Veri kümesi istatistiklerini farklı boyutlara (gruplara) ayırmak için farklı filtreler seçerek keşfetmek.
+* Veri kümenizin farklı gruplar ve özellik grupları arasındaki dağılımını anlamak.
+* Adalet, hata analizi ve nedensellik ile ilgili bulgularınızın (diğer pano bileşenlerinden türetilen) veri kümenizin dağılımından kaynaklanıp kaynaklanmadığını belirlemek.
+* Temsil sorunlarından, etiket gürültüsünden, özellik gürültüsünden, etiket önyargısından ve benzeri faktörlerden kaynaklanan hataları azaltmak için daha fazla veri toplamanız gereken alanları belirlemek.
 
 ## Model Yorumlanabilirliği
 
-Makine öğrenimi modelleri kara kutular olma eğilimindedir. Bir modelin tahminini yönlendiren anahtar veri özelliklerini anlamak zor olabilir. Bir modelin belirli bir tahminde bulunmasının nedenini açıklamak önemlidir. Örneğin, bir AI sistemi, bir diyabet hastasının 30 gün içinde tekrar hastaneye yatma riski taşıdığını tahmin ederse, bu tahminine yol açan destekleyici verileri sağlayabilmelidir. Destekleyici veri göstergelerine sahip olmak, klinisyenlerin veya hastanelerin iyi bilgilendirilmiş kararlar almasına yardımcı olmak için şeffaflık sağlar. Ayrıca, bir modelin bir birey için neden bir tahminde bulunduğunu açıklayabilmek, sağlık düzenlemeleriyle hesap verebilirlik sağlar. İnsanların hayatlarını etkileyen makine öğrenimi modelleri kullanırken, bir modelin davranışını neyin etkilediğini anlamak ve açıklamak çok önemlidir. Model açıklanabilirliği ve yorumlanabilirliği, aşağıdaki senaryolarda soruları yanıtlamaya yardımcı olur:
+Makine öğrenimi modelleri genellikle "kara kutu" olarak kabul edilir. Bir modelin tahminini yönlendiren temel veri özelliklerini anlamak zor olabilir. Bir modelin belirli bir tahmini neden yaptığını açıklamak önemlidir. Örneğin, bir yapay zeka sistemi, bir diyabet hastasının 30 gün içinde hastaneye yeniden yatma riski taşıdığını tahmin ederse, tahminine yol açan destekleyici verileri sağlamalıdır. Destekleyici veri göstergelerine sahip olmak, klinisyenlerin veya hastanelerin iyi bilgilendirilmiş kararlar almasına yardımcı olmak için şeffaflık sağlar. Ayrıca, bir modelin bireysel bir hasta için neden bir tahminde bulunduğunu açıklayabilmek, sağlık düzenlemeleriyle hesap verebilirlik sağlar. İnsanların hayatlarını etkileyen şekillerde makine öğrenimi modelleri kullanıyorsanız, bir modelin davranışını neyin etkilediğini anlamak ve açıklamak çok önemlidir. Model açıklanabilirliği ve yorumlanabilirliği, aşağıdaki senaryolarda soruları yanıtlamaya yardımcı olur:
 
 * Model hata ayıklama: Modelim neden bu hatayı yaptı? Modelimi nasıl geliştirebilirim?
-* İnsan-AI işbirliği: Modelin kararlarını nasıl anlayabilir ve güvenebilirim?
+* İnsan-Yapay Zeka iş birliği: Modelin kararlarını nasıl anlayabilir ve güvenebilirim?
 * Düzenleyici uyumluluk: Modelim yasal gereklilikleri karşılıyor mu?
 
-RAI panosundaki Özellik Önemi bileşeni, bir modelin tahminlerini nasıl yaptığını anlamak ve hata ayıklamak için kapsamlı bir anlayış sağlar. Ayrıca, makine öğrenimi profesyonelleri ve karar vericiler için modelin davranışını etkileyen özelliklerin kanıtlarını açıklamak ve göstermek için düzenleyici uyumluluk açısından faydalı bir araçtır. Kullanıcılar, hem küresel hem de yerel açıklamaları keşfederek hangi özelliklerin modelin tahminlerini yönlendirdiğini doğrulayabilir. Küresel açıklamalar, modelin genel tahminini etkileyen en önemli özellikleri listeler. Yerel açıklamalar, bir modelin belirli bir vaka için yaptığı tahmini hangi özelliklerin yönlendirdiğini gösterir. Yerel açıklamaları değerlendirme yeteneği, belirli bir vakayı hata ayıklama veya denetleme açısından modelin neden doğru veya yanlış bir tahminde bulunduğunu daha iyi anlamak ve yorumlamak için de faydalıdır.
+RAI panosundaki Özellik Önem Derecesi bileşeni, bir modelin tahminlerini nasıl yaptığını anlamak ve hata ayıklamak için kapsamlı bir araçtır. Ayrıca, makine öğrenimi profesyonelleri ve karar vericiler için modelin davranışını etkileyen özelliklerin kanıtlarını açıklamak ve düzenleyici uyumluluk için göstermek adına faydalı bir araçtır. Kullanıcılar, modelin tahminlerini yönlendiren özellikleri doğrulamak için hem küresel hem de yerel açıklamaları keşfedebilir. Küresel açıklamalar, bir modelin genel tahminini etkileyen en önemli özellikleri listeler. Yerel açıklamalar, bir modelin bireysel bir vaka için tahminine yol açan özellikleri gösterir. Yerel açıklamaları değerlendirme yeteneği, bir modelin doğru veya yanlış bir tahminde bulunmasının nedenini daha iyi anlamak ve yorumlamak için belirli bir vakayı hata ayıklama veya denetleme açısından da faydalıdır.
 
-![RAI panosunda Özellik Önemi bileşeni](../../../../translated_images/9-feature-importance.cd3193b4bba3fd4bccd415f566c2437fb3298c4824a3dabbcab15270d783606e.tr.png)
+![RAI panosundaki Özellik Önem Derecesi bileşeni](../../../../9-Real-World/2-Debugging-ML-Models/images/9-feature-importance.png)
 
-* Küresel açıklamalar: Örneğin, bir diyabet hastanesi tekrar yatış modelinin genel davranışını hangi özellikler etkiliyor?
-* Yerel açıklamalar: Örneğin, neden 60 yaş üstü ve önceki hastane yatışları olan bir diyabet hastası, 30 gün içinde tekrar hastaneye yatacağı veya yatmayacağı tahmin edildi?
+* Küresel açıklamalar: Örneğin, diyabet hastaneye yeniden yatış modelinin genel davranışını hangi özellikler etkiliyor?
+* Yerel açıklamalar: Örneğin, neden 60 yaşından büyük, önceki hastane yatışları olan bir diyabet hastası 30 gün içinde hastaneye yeniden yatacak veya yatmayacak şekilde tahmin edildi?
 
-Modelin performansını farklı kohortlar genelinde inceleme sürecinde, Özellik Önemi, bir özelliğin kohortlar genelinde ne düzeyde etki ettiğini gösterir. Modelin hatalı tahminlerini yönlendiren bir özelliğin etki düzeyini karşılaştırırken anormallikleri ortaya çıkarmaya yardımcı olur. Özellik Önemi bileşeni, bir özelliğin değerlerinin modelin sonucunu olumlu veya olumsuz etkilediğini gösterebilir. Örneğin, bir model yanlış bir tahminde bulunduğunda, bileşen, tahmini yönlendiren özellikleri veya özellik değerlerini belirleme ve inceleme yeteneği sağlar. Bu düzeydeki ayrıntı, sadece hata ayıklamada değil, aynı zamanda denetim durumlarında şeffaflık ve hesap verebilirlik sağlamada da yardımcı olur. Son olarak, bileşen adalet sorunlarını belirlemenize yardımcı olabilir. Örneğin, etnik köken veya cinsiyet gibi hassas bir özellik modelin tahminini yönlendirmede yüksek derecede etkiliyse, bu modelde ırk veya cinsiyet önyargısı olduğunu gösterebilir.
+Modelin performansını farklı gruplar arasında inceleme sürecinde, Özellik Önem Derecesi bir özelliğin gruplar arasında modelin hatalı tahminlerini yönlendirmedeki etkisini gösterir. Özelliklerin modelin sonuçlarını olumlu veya olumsuz etkilediği değerleri gösterebilir. Örneğin, bir model yanlış bir tahminde bulunduysa, bileşen, tahmini yönlendiren özellikleri veya özellik değerlerini belirlemenize olanak tanır. Bu ayrıntı düzeyi, yalnızca hata ayıklamada değil, aynı zamanda denetim durumlarında şeffaflık ve hesap verebilirlik sağlamada da yardımcı olur. Son olarak, bileşen adalet sorunlarını belirlemenize yardımcı olabilir. Örneğin, etnik köken veya cinsiyet gibi hassas bir özellik modelin tahminini yönlendirmede çok etkiliyse, bu modelde ırk veya cinsiyet önyargısının bir işareti olabilir.
 
-![Özellik önemi](../../../../translated_images/9-features-influence.3ead3d3f68a84029f1e40d3eba82107445d3d3b6975d4682b23d8acc905da6d0.tr.png)
+![Özellik önem derecesi](../../../../9-Real-World/2-Debugging-ML-Models/images/9-features-influence.png)
 
 Yorumlanabilirliği şu durumlarda kullanın:
 
-* AI sisteminizin tahminlerinin ne kadar güvenilir olduğunu, tahminler için hangi özelliklerin en önemli olduğunu anlayarak belirleyin.
-* Modelinizi anlamak ve sağlıklı özellikler kullanıp kullanmadığını veya sadece yanlış korelasyonları mı kullandığını belirlemek için modelin hata ayıklamasına yaklaşın.
-* Modelin tahminlerini hassas özelliklere veya onlarla yüksek derecede ilişkili özelliklere dayandırıp dayandırmadığını anlayarak potansiyel adaletsizlik kaynaklarını ortaya çıkarın.
-* Yerel açıklamalar oluşturarak modelin kararlarını kullanıcılara açıklamak ve güven oluşturmak.
-* AI sisteminin düzenleyici bir denetimini tamamlayarak modelleri doğrulamak ve model kararlarının insanlar üzerindeki etkisini izlemek.
+* Modelinizin tahminlerinin ne kadar güvenilir olduğunu belirlemek için tahminler için en önemli özelliklerin neler olduğunu anlamak.
+* Modelinizi önce anlayarak ve modelin sağlıklı özellikler mi yoksa yalnızca yanlış korelasyonlar mı kullandığını belirleyerek hata ayıklama sürecine yaklaşmak.
+* Modelin tahminlerini hassas özelliklere veya onlarla yüksek korelasyona sahip özelliklere dayandırıp dayandırmadığını anlayarak adaletsizlik kaynaklarını ortaya çıkarmak.
+* Yerel açıklamalar oluşturarak modelinizin kararlarına kullanıcı güveni oluşturmak.
+* İnsanlar üzerindeki model kararlarının etkisini izlemek ve modelleri doğrulamak için bir yapay zeka sisteminin düzenleyici denetimini tamamlamak.
 
 ## Sonuç
 
-Tüm RAI pano bileşenleri, topluma daha az zarar veren ve daha güvenilir makine öğrenimi modelleri oluşturmanıza yardımcı olan pratik araçlardır. İnsan haklarına yönelik tehditlerin önlenmesini, belirli grupları yaşam fırsatlarından dışlamayı veya fiziksel veya psikolojik yaralanma riskini artırır. Ayrıca, modelinizin kararlarına yerel açıklamalar oluşturarak güven oluşturmanıza yardımcı olur. Potansiyel zararlar şu şekilde sınıflandırılabilir:
+RAI panosundaki tüm bileşenler, topluma daha az zarar veren ve daha güvenilir makine öğrenimi modelleri oluşturmanıza yardımcı olacak pratik araçlardır. İnsan haklarına yönelik tehditlerin önlenmesini, belirli grupların yaşam fırsatlarından dışlanmasını veya ayrımcılığa uğramasını ve fiziksel veya psikolojik zarar riskini azaltır. Ayrıca, modelinizin kararlarına güven oluşturmak için yerel açıklamalar oluşturarak sonuçlarını göstermenize yardımcı olur. Potansiyel zararlar şu şekilde sınıflandırılabilir:
 
-- **Tahsis**, örneğin bir cinsiyet veya etnik kökenin diğerine tercih edilmesi.
-- **Hizmet kalitesi**. Veriyi belirli bir senaryo için eğitiyorsanız, ancak gerçeklik çok daha karmaşıksa, bu kötü performans gösteren bir hizmete yol açar.
-- **Kalıp**. Belirli bir grubu önceden atanmış özelliklerle ilişkilendirme.
-- **Aşağılama**. Bir şeyi veya birini haksızca eleştirmek ve etiketlemek.
-- **Aşırı veya yetersiz temsil**. Belirli bir grubun belirli bir meslekte görülmediği fikri ve bu durumu teşvik eden herhangi bir hizmet veya işlev zarara katkıda bulunur.
+- **Tahsis**: Örneğin, bir cinsiyet veya etnik kökenin diğerine kayırılması.
+- **Hizmet kalitesi**: Verileri belirli bir senaryo için eğitmek, ancak gerçekliğin çok daha karmaşık olması, kötü performans gösteren bir hizmete yol açar.
+- **Stereotipleme**: Belirli bir grubu önceden atanmış özelliklerle ilişkilendirme.
+- **Küçümseme**: Bir şey veya birini haksız yere eleştirme ve etiketleme.
+- **Aşırı veya yetersiz temsil**. Belirli bir grubun belirli bir meslek alanında görülmemesi fikri, ve bu durumu teşvik eden herhangi bir hizmet veya işlev zarara katkıda bulunuyor demektir.
 
 ### Azure RAI panosu
 
-[Azure RAI panosu](https://learn.microsoft.com
+[Azure RAI panosu](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu), Microsoft dahil olmak üzere önde gelen akademik kurumlar ve organizasyonlar tarafından geliştirilen açık kaynaklı araçlar üzerine inşa edilmiştir. Bu araçlar, veri bilimciler ve yapay zeka geliştiricilerinin model davranışını daha iyi anlamalarına, yapay zeka modellerindeki istenmeyen sorunları keşfetmelerine ve hafifletmelerine yardımcı olur.
 
-**Feragatname**: 
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi tavsiye edilir. Bu çevirinin kullanılması sonucu oluşabilecek yanlış anlaşılmalar veya yanlış yorumlamalardan sorumlu değiliz.
+- RAI panosunun farklı bileşenlerini nasıl kullanacağınızı öğrenmek için [dokümanlara](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) göz atın.
+
+- Azure Machine Learning'de daha sorumlu yapay zeka senaryolarını hata ayıklamak için bazı RAI panosu [örnek not defterlerini](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) inceleyin.
+
+---
+## 🚀 Zorluk
+
+İstatistiksel veya veri önyargılarının en baştan ortaya çıkmasını önlemek için şunları yapmalıyız:
+
+- sistemler üzerinde çalışan kişiler arasında farklı geçmişlere ve bakış açılarına sahip olmak
+- toplumumuzun çeşitliliğini yansıtan veri setlerine yatırım yapmak
+- önyargıyı tespit etmek ve düzeltmek için daha iyi yöntemler geliştirmek
+
+Model oluşturma ve kullanımı sırasında adaletsizliğin açıkça görüldüğü gerçek yaşam senaryolarını düşünün. Başka neleri dikkate almalıyız?
+
+## [Ders sonrası test](https://ff-quizzes.netlify.app/en/ml/)
+## Gözden Geçirme ve Kendi Kendine Çalışma
+
+Bu derste, makine öğreniminde sorumlu yapay zekayı dahil etmenin bazı pratik araçlarını öğrendiniz.
+
+Konulara daha derinlemesine dalmak için bu atölye çalışmasını izleyin:
+
+- Sorumlu Yapay Zeka Panosu: Besmira Nushi ve Mehrnoosh Sameki tarafından pratikte RAI'yi operasyonelleştirmek için tek durak noktası
+
+[![Sorumlu Yapay Zeka Panosu: Pratikte RAI'yi operasyonelleştirmek için tek durak noktası](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Sorumlu Yapay Zeka Panosu: Pratikte RAI'yi operasyonelleştirmek için tek durak noktası")
+
+> 🎥 Yukarıdaki görüntüye tıklayarak video izleyin: Besmira Nushi ve Mehrnoosh Sameki tarafından Sorumlu Yapay Zeka Panosu: Pratikte RAI'yi operasyonelleştirmek için tek durak noktası
+
+Sorumlu yapay zeka hakkında daha fazla bilgi edinmek ve daha güvenilir modeller oluşturmak için aşağıdaki materyallere başvurun:
+
+- ML modellerini hata ayıklamak için Microsoft’un RAI panosu araçları: [Sorumlu Yapay Zeka araçları kaynakları](https://aka.ms/rai-dashboard)
+
+- Sorumlu Yapay Zeka araç setini keşfedin: [Github](https://github.com/microsoft/responsible-ai-toolbox)
+
+- Microsoft’un RAI kaynak merkezi: [Sorumlu Yapay Zeka Kaynakları – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+
+- Microsoft’un FATE araştırma grubu: [FATE: Yapay Zekada Adalet, Hesap Verebilirlik, Şeffaflık ve Etik - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+
+## Ödev
+
+[RAI panosunu keşfedin](assignment.md)
+
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

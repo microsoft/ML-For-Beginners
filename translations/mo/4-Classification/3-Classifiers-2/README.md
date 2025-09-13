@@ -1,44 +1,53 @@
-# Cuisine classifiers 2
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-06T09:17:21+00:00",
+  "source_file": "4-Classification/3-Classifiers-2/README.md",
+  "language_code": "mo"
+}
+-->
+# 美食分類器 2
 
-Dans cette deuxième leçon de classification, vous explorerez davantage de manières de classifier des données numériques. Vous apprendrez également les conséquences du choix d'un classificateur plutôt qu'un autre.
+在這第二堂分類課中，您將探索更多分類數據的方法，並了解選擇不同分類器的影響。
 
-## [Quiz pré-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-### Prérequis
+### 前置條件
 
-Nous partons du principe que vous avez terminé les leçons précédentes et que vous disposez d'un ensemble de données nettoyé dans votre dossier `data` appelé _cleaned_cuisines.csv_ à la racine de ce dossier de 4 leçons.
+我們假設您已完成前面的課程，並在這個四堂課的資料夾根目錄中的 `data` 資料夾內擁有一個名為 _cleaned_cuisines.csv_ 的清理後數據集。
 
-### Préparation
+### 準備工作
 
-Nous avons chargé votre fichier _notebook.ipynb_ avec l'ensemble de données nettoyé et l'avons divisé en dataframes X et y, prêtes pour le processus de construction du modèle.
+我們已將您的 _notebook.ipynb_ 文件載入清理後的數據集，並將其分為 X 和 y 數據框，準備進行模型構建。
 
-## Une carte de classification
+## 分類地圖
 
-Auparavant, vous avez appris les différentes options dont vous disposez pour classifier des données en utilisant la feuille de triche de Microsoft. Scikit-learn propose une feuille de triche similaire, mais plus détaillée, qui peut vous aider à affiner vos estimateurs (un autre terme pour classificateurs) :
+之前，您已學習如何使用 Microsoft 的速查表來分類數據。Scikit-learn 提供了一個類似但更細緻的速查表，可以進一步幫助您縮小估算器（分類器的另一個術語）的選擇範圍：
 
-![ML Map from Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.mo.png)
-> Astuce : [visitez cette carte en ligne](https://scikit-learn.org/stable/tutorial/machine_learning_map/) et cliquez le long du chemin pour lire la documentation.
+![Scikit-learn 的機器學習地圖](../../../../4-Classification/3-Classifiers-2/images/map.png)  
+> 提示：[在線查看此地圖](https://scikit-learn.org/stable/tutorial/machine_learning_map/)，並點擊路徑以閱讀相關文檔。
 
-### Le plan
+### 計劃
 
-Cette carte est très utile une fois que vous avez une bonne compréhension de vos données, car vous pouvez "marcher" le long de ses chemins jusqu'à une décision :
+當您對數據有清晰的理解時，這張地圖非常有幫助，因為您可以沿著它的路徑進行決策：
 
-- Nous avons >50 échantillons
-- Nous voulons prédire une catégorie
-- Nous avons des données étiquetées
-- Nous avons moins de 100K échantillons
-- ✨ Nous pouvons choisir un SVC Linéaire
-- Si cela ne fonctionne pas, puisque nous avons des données numériques
-    - Nous pouvons essayer un ✨ Classificateur KNeighbors 
-      - Si cela ne fonctionne pas, essayez ✨ SVC et ✨ Classificateurs en Ensemble
+- 我們有超過 50 個樣本
+- 我們想要預測一個類別
+- 我們有標籤數據
+- 我們的樣本少於 10 萬
+- ✨ 我們可以選擇 Linear SVC
+- 如果這不起作用，因為我們有數值數據
+    - 我們可以嘗試 ✨ KNeighbors Classifier
+      - 如果這也不起作用，嘗試 ✨ SVC 和 ✨ Ensemble Classifiers
 
-C'est un chemin très utile à suivre.
+這是一條非常有幫助的路徑。
 
-## Exercice - diviser les données
+## 練習 - 分割數據
 
-En suivant ce chemin, nous devrions commencer par importer certaines bibliothèques à utiliser.
+按照這條路徑，我們應該從導入一些需要的庫開始。
 
-1. Importez les bibliothèques nécessaires :
+1. 導入所需的庫：
 
     ```python
     from sklearn.neighbors import KNeighborsClassifier
@@ -50,21 +59,21 @@ En suivant ce chemin, nous devrions commencer par importer certaines bibliothèq
     import numpy as np
     ```
 
-1. Divisez vos données d'entraînement et de test :
+2. 分割您的訓練和測試數據：
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Classificateur SVC Linéaire
+## Linear SVC 分類器
 
-Le clustering par Support-Vector (SVC) est un enfant de la famille des machines à vecteurs de support, une technique d'apprentissage automatique (en savoir plus sur ces techniques ci-dessous). Dans cette méthode, vous pouvez choisir un "noyau" pour décider comment regrouper les étiquettes. Le paramètre 'C' fait référence à la 'régularisation', qui régule l'influence des paramètres. Le noyau peut être l'un des [plusieurs](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) ; ici, nous le définissons sur 'linéaire' pour nous assurer que nous tirons parti du SVC linéaire. La probabilité par défaut est 'fausse' ; ici, nous la définissons sur 'vraie' pour obtenir des estimations de probabilité. Nous fixons l'état aléatoire à '0' pour mélanger les données afin d'obtenir des probabilités.
+支持向量聚類（SVC）是支持向量機（SVM）家族中的一員。通過這種方法，您可以選擇一個「核函數」來決定如何聚類標籤。「C」參數指的是「正則化」，用於調節參數的影響。核函數可以是[多種選項](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)之一；在這裡，我們將其設置為「linear」，以確保使用線性 SVC。預設情況下，概率為「false」；在這裡，我們將其設置為「true」，以獲取概率估計。我們將隨機狀態設置為「0」，以便打亂數據以獲取概率。
 
-### Exercice - appliquer un SVC linéaire
+### 練習 - 應用線性 SVC
 
-Commencez par créer un tableau de classificateurs. Vous ajouterez progressivement à ce tableau au fur et à mesure que nous testerons. 
+從創建分類器數組開始。隨著測試的進行，您將逐步向該數組添加內容。
 
-1. Commencez avec un SVC Linéaire :
+1. 從 Linear SVC 開始：
 
     ```python
     C = 10
@@ -74,7 +83,7 @@ Commencez par créer un tableau de classificateurs. Vous ajouterez progressiveme
     }
     ```
 
-2. Entraînez votre modèle en utilisant le SVC Linéaire et imprimez un rapport :
+2. 使用 Linear SVC 訓練模型並打印報告：
 
     ```python
     n_classifiers = len(classifiers)
@@ -88,7 +97,7 @@ Commencez par créer un tableau de classificateurs. Vous ajouterez progressiveme
         print(classification_report(y_test,y_pred))
     ```
 
-    Le résultat est plutôt bon :
+    結果相當不錯：
 
     ```output
     Accuracy (train) for Linear SVC: 78.6% 
@@ -105,21 +114,21 @@ Commencez par créer un tableau de classificateurs. Vous ajouterez progressiveme
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-## Classificateur K-Neighbors
+## K-Neighbors 分類器
 
-K-Neighbors fait partie de la famille des méthodes "voisins" de l'apprentissage automatique, qui peuvent être utilisées pour l'apprentissage supervisé et non supervisé. Dans cette méthode, un nombre prédéfini de points est créé et des données sont rassemblées autour de ces points de manière à ce que des étiquettes généralisées puissent être prédites pour les données.
+K-Neighbors 屬於「鄰居」家族的機器學習方法，可用於監督學習和非監督學習。在這種方法中，預定義了一些點，並在這些點周圍收集數據，以便為數據預測通用標籤。
 
-### Exercice - appliquer le classificateur K-Neighbors
+### 練習 - 應用 K-Neighbors 分類器
 
-Le classificateur précédent était bon et a bien fonctionné avec les données, mais peut-être pouvons-nous obtenir une meilleure précision. Essayez un classificateur K-Neighbors.
+之前的分類器表現不錯，與數據配合良好，但也許我們可以獲得更好的準確性。嘗試使用 K-Neighbors 分類器。
 
-1. Ajoutez une ligne à votre tableau de classificateurs (ajoutez une virgule après l'élément SVC Linéaire) :
+1. 在分類器數組中添加一行（在 Linear SVC 項目後添加逗號）：
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
     ```
 
-    Le résultat est un peu moins bon :
+    結果稍微差了一些：
 
     ```output
     Accuracy (train) for KNN classifier: 73.8% 
@@ -136,23 +145,23 @@ Le classificateur précédent était bon et a bien fonctionné avec les données
     weighted avg       0.76      0.74      0.74      1199
     ```
 
-    ✅ En savoir plus sur [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
+    ✅ 了解更多 [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
 
-## Classificateur à Vecteurs de Support
+## 支持向量分類器
 
-Les classificateurs à Vecteurs de Support font partie de la famille des [Machines à Vecteurs de Support](https://wikipedia.org/wiki/Support-vector_machine), qui sont utilisées pour des tâches de classification et de régression. Les SVM "cartographient les exemples d'entraînement à des points dans l'espace" pour maximiser la distance entre deux catégories. Les données suivantes sont cartographiées dans cet espace afin que leur catégorie puisse être prédite.
+支持向量分類器屬於 [支持向量機](https://wikipedia.org/wiki/Support-vector_machine) 家族的機器學習方法，用於分類和回歸任務。SVM 將訓練樣本映射到空間中的點，以最大化兩個類別之間的距離。隨後的數據被映射到這個空間中，以便預測其類別。
 
-### Exercice - appliquer un Classificateur à Vecteurs de Support
+### 練習 - 應用支持向量分類器
 
-Essayons d'obtenir une précision un peu meilleure avec un Classificateur à Vecteurs de Support.
+讓我們嘗試使用支持向量分類器來獲得更好的準確性。
 
-1. Ajoutez une virgule après l'élément K-Neighbors, puis ajoutez cette ligne :
+1. 在 K-Neighbors 項目後添加逗號，然後添加以下行：
 
     ```python
     'SVC': SVC(),
     ```
 
-    Le résultat est plutôt bon !
+    結果相當不錯！
 
     ```output
     Accuracy (train) for SVC: 83.2% 
@@ -169,18 +178,18 @@ Essayons d'obtenir une précision un peu meilleure avec un Classificateur à Vec
     weighted avg       0.84      0.83      0.83      1199
     ```
 
-    ✅ En savoir plus sur [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm)
+    ✅ 了解更多 [支持向量](https://scikit-learn.org/stable/modules/svm.html#svm)
 
-## Classificateurs en Ensemble
+## 集成分類器
 
-Suivons le chemin jusqu'à la fin, même si le test précédent était assez bon. Essayons quelques 'Classificateurs en Ensemble', en particulier Random Forest et AdaBoost :
+即使之前的測試結果已經相當不錯，我們還是沿著路徑走到最後，嘗試一些「集成分類器」，特別是隨機森林和 AdaBoost：
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
   'ADA': AdaBoostClassifier(n_estimators=100)
 ```
 
-Le résultat est très bon, surtout pour Random Forest :
+結果非常好，特別是隨機森林：
 
 ```output
 Accuracy (train) for RFST: 84.5% 
@@ -210,28 +219,31 @@ Accuracy (train) for ADA: 72.4%
 weighted avg       0.73      0.72      0.72      1199
 ```
 
-✅ En savoir plus sur [Classificateurs en Ensemble](https://scikit-learn.org/stable/modules/ensemble.html)
+✅ 了解更多 [集成分類器](https://scikit-learn.org/stable/modules/ensemble.html)
 
-Cette méthode d'apprentissage automatique "combine les prédictions de plusieurs estimateurs de base" pour améliorer la qualité du modèle. Dans notre exemple, nous avons utilisé des arbres aléatoires et AdaBoost. 
+這種機器學習方法「結合了多個基估算器的預測」，以提高模型的質量。在我們的例子中，我們使用了隨機森林和 AdaBoost。
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), une méthode de moyenne, construit une 'forêt' d' 'arbres de décision' infusée de hasard pour éviter le surapprentissage. Le paramètre n_estimators est défini sur le nombre d'arbres.
+- [隨機森林](https://scikit-learn.org/stable/modules/ensemble.html#forest)，一種平均方法，構建了一個隨機性注入的「決策樹森林」，以避免過擬合。n_estimators 參數設置為樹的數量。
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) ajuste un classificateur à un ensemble de données, puis ajuste des copies de ce classificateur au même ensemble de données. Il se concentre sur les poids des éléments mal classés et ajuste l'ajustement pour le prochain classificateur afin de corriger.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) 將分類器擬合到數據集，然後將該分類器的副本擬合到相同數據集。它專注於錯誤分類項的權重，並調整下一個分類器的擬合以進行修正。
 
 ---
 
-## 🚀Défi
+## 🚀 挑戰
 
-Chacune de ces techniques possède un grand nombre de paramètres que vous pouvez ajuster. Recherchez les paramètres par défaut de chacun et réfléchissez à ce que l'ajustement de ces paramètres signifierait pour la qualité du modèle.
+這些技術中的每一種都有大量參數可以調整。研究每種技術的默認參數，並思考調整這些參數對模型質量的影響。
 
-## [Quiz post-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revue & Auto-apprentissage
+## 回顧與自學
 
-Il y a beaucoup de jargon dans ces leçons, alors prenez un moment pour passer en revue [cette liste](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) de terminologie utile !
+這些課程中有很多術語，花點時間回顧[這份列表](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott)中的有用術語！
 
-## Devoir 
+## 作業
 
-[Jeu de paramètres](assignment.md)
+[參數調整](assignment.md)
 
-I'm sorry, but I can't translate text into "mo" as it is not a recognized language or code. If you meant a specific language, please clarify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

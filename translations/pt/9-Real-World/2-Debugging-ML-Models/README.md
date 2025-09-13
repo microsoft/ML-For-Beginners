@@ -1,62 +1,71 @@
-# Pós-escrito: Depuração de Modelos em Aprendizado de Máquina usando componentes do painel de IA Responsável
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "df2b538e8fbb3e91cf0419ae2f858675",
+  "translation_date": "2025-09-05T08:42:52+00:00",
+  "source_file": "9-Real-World/2-Debugging-ML-Models/README.md",
+  "language_code": "pt"
+}
+-->
+# Pós-escrito: Depuração de Modelos de Machine Learning usando componentes do painel de IA Responsável
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introdução
 
-O aprendizado de máquina impacta nossas vidas cotidianas. A IA está se infiltrando em alguns dos sistemas mais importantes que nos afetam como indivíduos e nossa sociedade, desde saúde, finanças, educação até emprego. Por exemplo, sistemas e modelos estão envolvidos em tarefas diárias de tomada de decisão, como diagnósticos de saúde ou detecção de fraudes. Consequentemente, os avanços em IA, juntamente com a adoção acelerada, estão sendo confrontados com expectativas sociais em evolução e crescente regulamentação em resposta. Vemos constantemente áreas onde os sistemas de IA continuam a não atender às expectativas; eles expõem novos desafios; e os governos estão começando a regular soluções de IA. Portanto, é importante que esses modelos sejam analisados para fornecer resultados justos, confiáveis, inclusivos, transparentes e responsáveis para todos.
+O machine learning impacta as nossas vidas diariamente. A IA está a integrar-se em alguns dos sistemas mais importantes que nos afetam como indivíduos e como sociedade, desde a saúde, finanças, educação e emprego. Por exemplo, sistemas e modelos estão envolvidos em tarefas de tomada de decisão diária, como diagnósticos médicos ou deteção de fraude. Consequentemente, os avanços na IA, juntamente com a sua adoção acelerada, estão a ser acompanhados por expectativas sociais em evolução e regulamentações crescentes em resposta. Continuamos a observar áreas onde os sistemas de IA não correspondem às expectativas; expõem novos desafios; e os governos estão a começar a regulamentar soluções de IA. Por isso, é essencial que estes modelos sejam analisados para fornecer resultados justos, confiáveis, inclusivos, transparentes e responsáveis para todos.
 
-Neste currículo, vamos explorar ferramentas práticas que podem ser usadas para avaliar se um modelo apresenta problemas de IA responsável. As técnicas tradicionais de depuração de aprendizado de máquina tendem a ser baseadas em cálculos quantitativos, como precisão agregada ou perda de erro média. Imagine o que pode acontecer quando os dados que você está usando para construir esses modelos carecem de certas demografias, como raça, gênero, visão política, religião, ou representam desproporcionalmente essas demografias. E quando a saída do modelo é interpretada para favorecer alguma demografia? Isso pode introduzir uma super ou sub-representação desses grupos de características sensíveis, resultando em problemas de justiça, inclusão ou confiabilidade do modelo. Outro fator é que os modelos de aprendizado de máquina são considerados caixas-pretas, o que torna difícil entender e explicar o que impulsiona a previsão de um modelo. Todos esses são desafios que cientistas de dados e desenvolvedores de IA enfrentam quando não têm ferramentas adequadas para depurar e avaliar a justiça ou confiabilidade de um modelo.
+Neste currículo, iremos explorar ferramentas práticas que podem ser usadas para avaliar se um modelo apresenta problemas relacionados com IA responsável. As técnicas tradicionais de depuração de machine learning tendem a basear-se em cálculos quantitativos, como precisão agregada ou perda média de erro. Imagine o que pode acontecer quando os dados que está a usar para construir esses modelos carecem de certos grupos demográficos, como raça, género, visão política, religião, ou representam desproporcionalmente esses grupos demográficos. E quando a saída do modelo é interpretada de forma a favorecer um grupo demográfico? Isso pode introduzir uma representação excessiva ou insuficiente desses grupos sensíveis, resultando em problemas de justiça, inclusão ou confiabilidade no modelo. Outro fator é que os modelos de machine learning são considerados caixas pretas, o que dificulta a compreensão e explicação do que impulsiona as previsões de um modelo. Todos estes são desafios enfrentados por cientistas de dados e desenvolvedores de IA quando não possuem ferramentas adequadas para depurar e avaliar a justiça ou confiabilidade de um modelo.
 
-Nesta lição, você aprenderá sobre a depuração de seus modelos usando:
+Nesta lição, irá aprender a depurar os seus modelos usando:
 
-- **Análise de Erros**: identificar onde na distribuição de seus dados o modelo apresenta altas taxas de erro.
-- **Visão Geral do Modelo**: realizar análise comparativa entre diferentes coortes de dados para descobrir disparidades nas métricas de desempenho do seu modelo.
-- **Análise de Dados**: investigar onde pode haver super ou sub-representação de seus dados que pode enviesar seu modelo para favorecer uma demografia em relação a outra.
-- **Importância das Características**: entender quais características estão impulsionando as previsões do seu modelo em nível global ou local.
+- **Análise de Erros**: identificar onde na distribuição dos seus dados o modelo apresenta taxas de erro elevadas.
+- **Visão Geral do Modelo**: realizar análises comparativas entre diferentes coortes de dados para descobrir disparidades nas métricas de desempenho do modelo.
+- **Análise de Dados**: investigar onde pode haver representação excessiva ou insuficiente nos seus dados que podem enviesar o modelo para favorecer um grupo demográfico em detrimento de outro.
+- **Importância das Features**: compreender quais features estão a impulsionar as previsões do modelo a nível global ou local.
 
 ## Pré-requisito
 
-Como pré-requisito, por favor, faça a revisão [Ferramentas de IA Responsável para desenvolvedores](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
+Como pré-requisito, reveja [Ferramentas de IA Responsável para desenvolvedores](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
 
 > ![Gif sobre Ferramentas de IA Responsável](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
 ## Análise de Erros
 
-As métricas de desempenho tradicionais usadas para medir a precisão são, na maioria, cálculos baseados em previsões corretas versus incorretas. Por exemplo, determinar que um modelo é preciso 89% das vezes com uma perda de erro de 0,001 pode ser considerado um bom desempenho. Os erros frequentemente não estão distribuídos uniformemente em seu conjunto de dados subjacente. Você pode obter uma pontuação de precisão de modelo de 89%, mas descobrir que há diferentes regiões de seus dados para as quais o modelo está falhando 42% das vezes. A consequência desses padrões de falha com certos grupos de dados pode levar a problemas de justiça ou confiabilidade. É essencial entender as áreas onde o modelo está se saindo bem ou não. As regiões de dados onde há um alto número de imprecisões em seu modelo podem se revelar uma demografia de dados importante.
+As métricas tradicionais de desempenho de modelos usadas para medir a precisão são, na maioria das vezes, cálculos baseados em previsões corretas versus incorretas. Por exemplo, determinar que um modelo é preciso 89% das vezes com uma perda de erro de 0.001 pode ser considerado um bom desempenho. No entanto, os erros nem sempre estão distribuídos uniformemente no seu conjunto de dados subjacente. Pode obter uma pontuação de precisão de 89% no modelo, mas descobrir que existem diferentes regiões nos seus dados onde o modelo falha 42% das vezes. As consequências desses padrões de falha em certos grupos de dados podem levar a problemas de justiça ou confiabilidade. É essencial compreender as áreas onde o modelo está a ter um bom desempenho ou não. As regiões de dados onde há um número elevado de imprecisões no modelo podem revelar-se um grupo demográfico importante.
 
-![Analisar e depurar erros do modelo](../../../../translated_images/ea-error-distribution.117452e1177c1dd84fab2369967a68bcde787c76c6ea7fdb92fcf15d1fce8206.pt.png)
+![Analisar e depurar erros do modelo](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
 
-O componente de Análise de Erros no painel de RAI ilustra como a falha do modelo está distribuída entre várias coortes com uma visualização em árvore. Isso é útil para identificar características ou áreas onde há uma alta taxa de erro em seu conjunto de dados. Ao ver de onde a maioria das imprecisões do modelo está vindo, você pode começar a investigar a causa raiz. Você também pode criar coortes de dados para realizar análises. Essas coortes de dados ajudam no processo de depuração para determinar por que o desempenho do modelo é bom em uma coorte, mas errôneo em outra.
+O componente de Análise de Erros no painel de IA Responsável ilustra como as falhas do modelo estão distribuídas entre vários coortes com uma visualização em árvore. Isto é útil para identificar features ou áreas onde há uma taxa de erro elevada no seu conjunto de dados. Ao ver de onde vêm a maioria das imprecisões do modelo, pode começar a investigar a causa raiz. Também pode criar coortes de dados para realizar análises. Esses coortes de dados ajudam no processo de depuração para determinar porque o desempenho do modelo é bom num coorte, mas apresenta erros noutro.
 
-![Análise de Erros](../../../../translated_images/ea-error-cohort.6886209ea5d438c4daa8bfbf5ce3a7042586364dd3eccda4a4e3d05623ac702a.pt.png)
+![Análise de Erros](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
 
-Os indicadores visuais no mapa da árvore ajudam a localizar as áreas problemáticas mais rapidamente. Por exemplo, quanto mais escura a sombra de vermelho que um nó da árvore possui, maior a taxa de erro.
+Os indicadores visuais no mapa de árvore ajudam a localizar as áreas problemáticas mais rapidamente. Por exemplo, quanto mais escuro for o tom de vermelho num nó da árvore, maior será a taxa de erro.
 
-O mapa de calor é outra funcionalidade de visualização que os usuários podem usar para investigar a taxa de erro usando uma ou duas características para encontrar um contribuinte para os erros do modelo em todo o conjunto de dados ou coortes.
+O mapa de calor é outra funcionalidade de visualização que os utilizadores podem usar para investigar a taxa de erro usando uma ou duas features para encontrar contribuintes para os erros do modelo em todo o conjunto de dados ou coortes.
 
-![Mapa de Calor da Análise de Erros](../../../../translated_images/ea-heatmap.8d27185e28cee3830c85e1b2e9df9d2d5e5c8c940f41678efdb68753f2f7e56c.pt.png)
+![Mapa de Calor da Análise de Erros](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
 
-Use a análise de erros quando precisar:
+Use a análise de erros quando precisar de:
 
-* Obter uma compreensão profunda de como as falhas do modelo estão distribuídas em um conjunto de dados e em várias dimensões de entrada e características.
-* Desmembrar as métricas de desempenho agregadas para descobrir automaticamente coortes errôneas que informem suas etapas de mitigação direcionadas.
+* Obter uma compreensão profunda de como as falhas do modelo estão distribuídas num conjunto de dados e em várias dimensões de entrada e features.
+* Dividir as métricas de desempenho agregadas para descobrir automaticamente coortes com erros e informar os seus passos de mitigação direcionados.
 
 ## Visão Geral do Modelo
 
-Avaliar o desempenho de um modelo de aprendizado de máquina requer uma compreensão holística de seu comportamento. Isso pode ser alcançado revisando mais de uma métrica, como taxa de erro, precisão, recall, precisão ou MAE (Erro Absoluto Médio), para encontrar disparidades entre as métricas de desempenho. Uma métrica de desempenho pode parecer ótima, mas imprecisões podem ser expostas em outra métrica. Além disso, comparar as métricas em busca de disparidades em todo o conjunto de dados ou coortes ajuda a esclarecer onde o modelo está se saindo bem ou não. Isso é especialmente importante para ver o desempenho do modelo entre características sensíveis e insensíveis (por exemplo, raça do paciente, gênero ou idade) para descobrir potenciais injustiças que o modelo possa ter. Por exemplo, descobrir que o modelo é mais errôneo em uma coorte que possui características sensíveis pode revelar potenciais injustiças que o modelo possa ter.
+Avaliar o desempenho de um modelo de machine learning requer uma compreensão holística do seu comportamento. Isto pode ser alcançado ao rever mais de uma métrica, como taxa de erro, precisão, recall, precisão ou MAE (Erro Absoluto Médio), para encontrar disparidades entre as métricas de desempenho. Uma métrica de desempenho pode parecer ótima, mas imprecisões podem ser expostas noutra métrica. Além disso, comparar as métricas para disparidades em todo o conjunto de dados ou coortes ajuda a esclarecer onde o modelo está a ter um bom desempenho ou não. Isto é especialmente importante para observar o desempenho do modelo entre features sensíveis versus insensíveis (por exemplo, raça, género ou idade de pacientes) para descobrir potenciais injustiças que o modelo possa ter. Por exemplo, descobrir que o modelo é mais impreciso num coorte que possui features sensíveis pode revelar potenciais injustiças no modelo.
 
-O componente Visão Geral do Modelo do painel de RAI ajuda não apenas na análise das métricas de desempenho da representação de dados em uma coorte, mas também oferece aos usuários a capacidade de comparar o comportamento do modelo entre diferentes coortes.
+O componente Visão Geral do Modelo do painel de IA Responsável ajuda não apenas a analisar as métricas de desempenho da representação de dados num coorte, mas também dá aos utilizadores a capacidade de comparar o comportamento do modelo entre diferentes coortes.
 
-![Coortes de Dados - visão geral do modelo no painel RAI](../../../../translated_images/model-overview-dataset-cohorts.dfa463fb527a35a0afc01b7b012fc87bf2cad756763f3652bbd810cac5d6cf33.pt.png)
+![Coortes de conjunto de dados - visão geral do modelo no painel de IA Responsável](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
 
-A funcionalidade de análise baseada em características do componente permite que os usuários reduzam subgrupos de dados dentro de uma característica específica para identificar anomalias em um nível mais granular. Por exemplo, o painel possui inteligência embutida para gerar automaticamente coortes para uma característica selecionada pelo usuário (por exemplo, *"time_in_hospital < 3"* ou *"time_in_hospital >= 7"*). Isso permite que um usuário isole uma característica específica de um grupo de dados maior para ver se ela é um influenciador chave dos resultados errôneos do modelo.
+A funcionalidade de análise baseada em features do componente permite que os utilizadores reduzam subgrupos de dados dentro de uma feature específica para identificar anomalias a um nível granular. Por exemplo, o painel possui inteligência integrada para gerar automaticamente coortes para uma feature selecionada pelo utilizador (ex., *"tempo_no_hospital < 3"* ou *"tempo_no_hospital >= 7"*). Isto permite que o utilizador isole uma feature específica de um grupo de dados maior para ver se é um influenciador chave dos resultados errados do modelo.
 
-![Coortes de Características - visão geral do modelo no painel RAI](../../../../translated_images/model-overview-feature-cohorts.c5104d575ffd0c80b7ad8ede7703fab6166bfc6f9125dd395dcc4ace2f522f70.pt.png)
+![Coortes de features - visão geral do modelo no painel de IA Responsável](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
 
 O componente Visão Geral do Modelo suporta duas classes de métricas de disparidade:
 
-**Disparidade no desempenho do modelo**: Esses conjuntos de métricas calculam a disparidade (diferença) nos valores da métrica de desempenho selecionada entre subgrupos de dados. Aqui estão alguns exemplos:
+**Disparidade no desempenho do modelo**: Estes conjuntos de métricas calculam a disparidade (diferença) nos valores da métrica de desempenho selecionada entre subgrupos de dados. Aqui estão alguns exemplos:
 
 * Disparidade na taxa de precisão
 * Disparidade na taxa de erro
@@ -64,99 +73,111 @@ O componente Visão Geral do Modelo suporta duas classes de métricas de dispari
 * Disparidade no recall
 * Disparidade no erro absoluto médio (MAE)
 
-**Disparidade na taxa de seleção**: Essa métrica contém a diferença na taxa de seleção (previsão favorável) entre subgrupos. Um exemplo disso é a disparidade nas taxas de aprovação de empréstimos. A taxa de seleção significa a fração de pontos de dados em cada classe classificados como 1 (na classificação binária) ou a distribuição dos valores de previsão (na regressão).
+**Disparidade na taxa de seleção**: Esta métrica contém a diferença na taxa de seleção (previsão favorável) entre subgrupos. Um exemplo disso é a disparidade nas taxas de aprovação de empréstimos. A taxa de seleção refere-se à fração de pontos de dados em cada classe classificados como 1 (em classificação binária) ou à distribuição de valores de previsão (em regressão).
 
 ## Análise de Dados
 
-> "Se você torturar os dados por tempo suficiente, eles confessarão qualquer coisa" - Ronald Coase
+> "Se torturar os dados o suficiente, eles confessarão qualquer coisa" - Ronald Coase
 
-Essa afirmação parece extrema, mas é verdade que os dados podem ser manipulados para apoiar qualquer conclusão. Tal manipulação pode, às vezes, ocorrer involuntariamente. Como seres humanos, todos temos preconceitos, e muitas vezes é difícil saber conscientemente quando você está introduzindo viés nos dados. Garantir a justiça em IA e aprendizado de máquina continua a ser um desafio complexo.
+Esta afirmação parece extrema, mas é verdade que os dados podem ser manipulados para apoiar qualquer conclusão. Tal manipulação pode, por vezes, acontecer de forma não intencional. Como humanos, todos temos preconceitos, e é frequentemente difícil saber conscientemente quando estamos a introduzir preconceitos nos dados. Garantir justiça na IA e no machine learning continua a ser um desafio complexo.
 
-Os dados são um grande ponto cego para as métricas de desempenho tradicionais do modelo. Você pode ter altas pontuações de precisão, mas isso nem sempre reflete o viés subjacente dos dados que pode estar em seu conjunto de dados. Por exemplo, se um conjunto de dados de funcionários tem 27% de mulheres em cargos executivos em uma empresa e 73% de homens no mesmo nível, um modelo de IA de anúncios de emprego treinado com esses dados pode direcionar principalmente um público masculino para cargos de nível sênior. Ter esse desequilíbrio nos dados enviesou a previsão do modelo para favorecer um gênero. Isso revela um problema de justiça onde há um viés de gênero no modelo de IA.
+Os dados são um grande ponto cego para as métricas tradicionais de desempenho de modelos. Pode ter pontuações de precisão elevadas, mas isso nem sempre reflete o preconceito subjacente nos dados que pode estar no seu conjunto de dados. Por exemplo, se um conjunto de dados de funcionários tem 27% de mulheres em posições executivas numa empresa e 73% de homens no mesmo nível, um modelo de IA de publicidade de emprego treinado com esses dados pode direcionar principalmente um público masculino para posições de nível sénior. Ter este desequilíbrio nos dados enviesou a previsão do modelo para favorecer um género. Isto revela um problema de justiça onde há preconceito de género no modelo de IA.
 
-O componente de Análise de Dados no painel de RAI ajuda a identificar áreas onde há uma super- e sub-representação no conjunto de dados. Ele ajuda os usuários a diagnosticar a causa raiz dos erros e problemas de justiça introduzidos por desequilíbrios nos dados ou falta de representação de um grupo de dados específico. Isso dá aos usuários a capacidade de visualizar conjuntos de dados com base em resultados previstos e reais, grupos de erro e características específicas. Às vezes, descobrir um grupo de dados sub-representado também pode revelar que o modelo não está aprendendo bem, resultando em altas imprecisões. Ter um modelo que possui viés nos dados não é apenas um problema de justiça, mas demonstra que o modelo não é inclusivo ou confiável.
+O componente de Análise de Dados no painel de IA Responsável ajuda a identificar áreas onde há representação excessiva ou insuficiente no conjunto de dados. Ajuda os utilizadores a diagnosticar a causa raiz de erros e problemas de justiça introduzidos por desequilíbrios nos dados ou falta de representação de um grupo de dados específico. Isto dá aos utilizadores a capacidade de visualizar conjuntos de dados com base em resultados previstos e reais, grupos de erros e features específicas. Por vezes, descobrir um grupo de dados sub-representado também pode revelar que o modelo não está a aprender bem, daí as imprecisões elevadas. Ter um modelo com preconceito nos dados não é apenas um problema de justiça, mas mostra que o modelo não é inclusivo ou confiável.
 
-![Componente de Análise de Dados no Painel RAI](../../../../translated_images/dataanalysis-cover.8d6d0683a70a5c1e274e5a94b27a71137e3d0a3b707761d7170eb340dd07f11d.pt.png)
+![Componente de Análise de Dados no painel de IA Responsável](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
 
-Use a análise de dados quando precisar:
+Use a análise de dados quando precisar de:
 
-* Explorar as estatísticas do seu conjunto de dados selecionando diferentes filtros para dividir seus dados em diferentes dimensões (também conhecidas como coortes).
-* Compreender a distribuição do seu conjunto de dados entre diferentes coortes e grupos de características.
-* Determinar se suas descobertas relacionadas à justiça, análise de erros e causalidade (derivadas de outros componentes do painel) são resultado da distribuição do seu conjunto de dados.
-* Decidir em quais áreas coletar mais dados para mitigar erros que surgem de problemas de representação, ruído de rótulo, ruído de característica, viés de rótulo e fatores semelhantes.
+* Explorar as estatísticas do seu conjunto de dados selecionando diferentes filtros para dividir os seus dados em diferentes dimensões (também conhecidos como coortes).
+* Compreender a distribuição do seu conjunto de dados entre diferentes coortes e grupos de features.
+* Determinar se as suas descobertas relacionadas com justiça, análise de erros e causalidade (derivadas de outros componentes do painel) são resultado da distribuição do seu conjunto de dados.
+* Decidir em quais áreas coletar mais dados para mitigar erros que surgem de problemas de representação, ruído de rótulos, ruído de features, preconceito de rótulos e fatores semelhantes.
 
 ## Interpretabilidade do Modelo
 
-Modelos de aprendizado de máquina tendem a ser caixas-pretas. Entender quais características de dados chave impulsionam a previsão de um modelo pode ser desafiador. É importante fornecer transparência sobre por que um modelo faz uma certa previsão. Por exemplo, se um sistema de IA prevê que um paciente diabético está em risco de ser readmitido em um hospital em menos de 30 dias, ele deve ser capaz de fornecer dados de suporte que levaram à sua previsão. Ter indicadores de dados de suporte traz transparência para ajudar clínicos ou hospitais a tomar decisões bem informadas. Além disso, ser capaz de explicar por que um modelo fez uma previsão para um paciente individual permite responsabilidade em relação às regulamentações de saúde. Quando você está usando modelos de aprendizado de máquina de maneiras que afetam a vida das pessoas, é crucial entender e explicar o que influencia o comportamento de um modelo. A explicabilidade e interpretabilidade do modelo ajudam a responder perguntas em cenários como:
+Os modelos de machine learning tendem a ser caixas pretas. Compreender quais features de dados chave impulsionam a previsão de um modelo pode ser desafiador. É importante fornecer transparência sobre porque um modelo faz uma determinada previsão. Por exemplo, se um sistema de IA prevê que um paciente diabético está em risco de ser readmitido num hospital em menos de 30 dias, deve ser capaz de fornecer dados de suporte que levaram à sua previsão. Ter indicadores de suporte traz transparência para ajudar os clínicos ou hospitais a tomar decisões bem informadas. Além disso, ser capaz de explicar porque um modelo fez uma previsão para um paciente individual permite responsabilidade com regulamentos de saúde. Quando está a usar modelos de machine learning de formas que afetam a vida das pessoas, é crucial compreender e explicar o que influencia o comportamento de um modelo. A explicabilidade e interpretabilidade do modelo ajudam a responder a perguntas em cenários como:
 
-* Depuração do modelo: Por que meu modelo cometeu esse erro? Como posso melhorar meu modelo?
-* Colaboração humano-IA: Como posso entender e confiar nas decisões do modelo?
-* Conformidade regulatória: Meu modelo satisfaz os requisitos legais?
+* Depuração do modelo: Por que o meu modelo cometeu este erro? Como posso melhorar o meu modelo?
+* Colaboração humano-IA: Como posso compreender e confiar nas decisões do modelo?
+* Conformidade regulatória: O meu modelo cumpre os requisitos legais?
 
-O componente de Importância das Características do painel de RAI ajuda você a depurar e obter uma compreensão abrangente de como um modelo faz previsões. É também uma ferramenta útil para profissionais de aprendizado de máquina e tomadores de decisão explicarem e mostrarem evidências das características que influenciam o comportamento de um modelo para conformidade regulatória. Em seguida, os usuários podem explorar explicações globais e locais para validar quais características impulsionam a previsão de um modelo. As explicações globais listam as principais características que afetaram a previsão geral de um modelo. As explicações locais exibem quais características levaram à previsão de um modelo para um caso individual. A capacidade de avaliar explicações locais também é útil na depuração ou auditoria de um caso específico para entender melhor e interpretar por que um modelo fez uma previsão precisa ou imprecisa.
+O componente Importância das Features do painel de IA Responsável ajuda a depurar e obter uma compreensão abrangente de como um modelo faz previsões. Também é uma ferramenta útil para profissionais de machine learning e tomadores de decisão explicarem e mostrarem evidências das features que influenciam o comportamento do modelo para conformidade regulatória. Em seguida, os utilizadores podem explorar explicações globais e locais para validar quais features impulsionam a previsão do modelo. As explicações globais listam as principais features que afetaram a previsão geral do modelo. As explicações locais mostram quais features levaram à previsão do modelo para um caso individual. A capacidade de avaliar explicações locais também é útil na depuração ou auditoria de um caso específico para compreender e interpretar melhor porque um modelo fez uma previsão precisa ou imprecisa.
 
-![Componente de Importância das Características do painel RAI](../../../../translated_images/9-feature-importance.cd3193b4bba3fd4bccd415f566c2437fb3298c4824a3dabbcab15270d783606e.pt.png)
+![Componente Importância das Features no painel de IA Responsável](../../../../9-Real-World/2-Debugging-ML-Models/images/9-feature-importance.png)
 
-* Explicações globais: Por exemplo, quais características afetam o comportamento geral de um modelo de readmissão hospitalar para diabéticos?
-* Explicações locais: Por exemplo, por que um paciente diabético com mais de 60 anos e com hospitalizações anteriores foi previsto para ser readmitido ou não readmitido em um hospital dentro de 30 dias?
+* Explicações globais: Por exemplo, quais features afetam o comportamento geral de um modelo de readmissão hospitalar para diabetes?
+* Explicações locais: Por exemplo, porque foi previsto que um paciente diabético com mais de 60 anos e hospitalizações anteriores seria readmitido ou não readmitido num hospital dentro de 30 dias?
 
-No processo de depuração de exame do desempenho de um modelo em diferentes coortes, a Importância das Características mostra qual nível de impacto uma característica tem entre as coortes. Ela ajuda a revelar anomalias ao comparar o nível de influência que a característica tem na condução das previsões errôneas de um modelo. O componente de Importância das Características pode mostrar quais valores em uma característica influenciaram positiva ou negativamente o resultado do modelo. Por exemplo, se um modelo fez uma previsão imprecisa, o componente dá a você a capacidade de detalhar e identificar quais características ou valores de características impulsionaram a previsão. Esse nível de detalhe ajuda não apenas na depuração, mas fornece transparência e responsabilidade em situações de auditoria. Por fim, o componente pode ajudá-lo a identificar problemas de justiça. Para ilustrar, se uma característica sensível, como etnia ou gênero, for altamente influente na condução da previsão de um modelo, isso pode ser um sinal de viés racial ou de gênero no modelo.
+No processo de depuração ao examinar o desempenho de um modelo entre diferentes coortes, a Importância das Features mostra o nível de impacto que uma feature tem entre os coortes. Ajuda a revelar anomalias ao comparar o nível de influência que a feature tem em impulsionar previsões erradas do modelo. O componente Importância das Features pode mostrar quais valores numa feature influenciaram positivamente ou negativamente o resultado do modelo. Por exemplo, se um modelo fez uma previsão imprecisa, o componente dá-lhe a capacidade de aprofundar e identificar quais features ou valores de features impulsionaram a previsão. Este nível de detalhe ajuda não apenas na depuração, mas também fornece transparência e responsabilidade em situações de auditoria. Finalmente, o componente pode ajudá-lo a identificar problemas de justiça. Para ilustrar, se uma feature sensível como etnia ou género é altamente influente em impulsionar a previsão do modelo, isso pode ser um sinal de preconceito de raça ou género no modelo.
 
-![Importância das características](../../../../translated_images/9-features-influence.3ead3d3f68a84029f1e40d3eba82107445d3d3b6975d4682b23d8acc905da6d0.pt.png)
+![Importância das features](../../../../9-Real-World/2-Debugging-ML-Models/images/9-features-influence.png)
 
-Use a interpretabilidade quando precisar:
+Use a interpretabilidade quando precisar de:
 
-* Determinar quão confiáveis são as previsões do seu sistema de IA, entendendo quais características são mais importantes para as previsões.
-* Abordar a depuração do seu modelo entendendo-o primeiro e identificando se o modelo está usando características saudáveis ou meramente correlações falsas.
-* Descobrir potenciais fontes de injustiça entendendo se o modelo está baseando previsões em características sensíveis ou em características que estão altamente correlacionadas a elas.
-* Construir confiança do usuário nas decisões do seu modelo gerando explicações locais para ilustrar seus resultados.
-* Completar uma auditoria regulatória de um sistema de IA para validar modelos e monitorar o impacto das decisões do modelo sobre os humanos.
+* Determinar quão confiáveis são as previsões do seu sistema de IA ao compreender quais features são mais importantes para as previsões.
+* Abordar a depuração do seu modelo ao compreendê-lo primeiro e identificar se o modelo está a usar features saudáveis ou apenas correlações falsas.
+* Descobrir potenciais fontes de injustiça ao compreender se o modelo está a basear previsões em features sensíveis ou em features altamente correlacionadas com elas.
+* Construir confiança do utilizador nas decisões do modelo ao gerar explicações locais para ilustrar os seus resultados.
+* Completar uma auditoria regulatória de um sistema de IA para validar modelos e monitorizar o impacto das decisões do modelo nas pessoas.
 
 ## Conclusão
 
-Todos os componentes do painel de RAI são ferramentas práticas para ajudá-lo a construir modelos de aprendizado de máquina que sejam menos prejudiciais e mais confiáveis para a sociedade. Isso melhora a prevenção de ameaças aos direitos humanos; a discriminação ou exclusão de certos grupos de oportunidades de vida; e o risco de lesões físicas ou psicológicas. Também ajuda a construir confiança nas decisões do seu modelo gerando explicações locais para ilustrar seus resultados. Alguns dos danos potenciais podem ser classificados como:
+Todos os componentes do painel de IA Responsável são ferramentas práticas para ajudá-lo a construir modelos de machine learning que sejam menos prejudiciais e mais confiáveis para a sociedade. Melhoram a prevenção de ameaças aos direitos humanos; discriminação ou exclusão de certos grupos de oportunidades de vida; e o risco de danos físicos ou psicológicos. Também ajudam a construir confiança nas decisões do modelo ao gerar explicações locais para ilustrar os seus resultados. Alguns dos potenciais danos podem ser classificados como:
 
-- **Alocação**, se um gênero ou etnia, por exemplo, for favorecido em relação a outro.
-- **Qualidade do serviço**. Se você treinar os dados para um cenário específico, mas a realidade for muito mais complexa, isso leva a um serviço de baixo desempenho.
-- **Estereotipagem**. Associar um determinado grupo a atributos pré-designados.
-- **Denigração**. Criticar e rotular injustamente algo ou alguém.
-- **Super- ou sub-representação**. A ideia é que um determinado grupo não é visto em uma determinada profissão, e qualquer serviço ou função que continue promovendo isso está contribuindo para o dano.
+- **Alocação**, se um género ou etnia, por exemplo, for favorecido em detrimento de outro.
+- **Qualidade do serviço**. Se treinar os dados para um cenário específico, mas a realidade for muito mais complexa, isso leva a um serviço de desempenho inferior.
+- **Estereotipagem**. Associar um determinado grupo a atributos pré-atribuídos.
+- **Denigração**. Criticar injustamente e rotular algo ou alguém.
+- **Representação excessiva ou insuficiente**. A ideia é que um determinado grupo não seja visto em uma certa profissão, e qualquer serviço ou função que continue a promover isso está a contribuir para o problema.
 
-### Painel Azure RAI
+### Azure RAI dashboard
 
-O [Painel Azure RAI](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) é construído com ferramentas de código aberto desenvolvidas por instituições acadêmicas e organizações líderes, incluindo a Microsoft, que são instrumentais para cientistas de dados e desenvolvedores de IA para entender melhor o comportamento do modelo, descobrir e mitigar problemas indesejáveis de modelos de IA.
+[Azure RAI dashboard](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) é construído com ferramentas de código aberto desenvolvidas por instituições académicas e organizações líderes, incluindo a Microsoft, que são fundamentais para cientistas de dados e desenvolvedores de IA compreenderem melhor o comportamento dos modelos, descobrirem e mitigarem problemas indesejáveis nos modelos de IA.
 
-- Aprenda a usar os diferentes componentes consultando a [documentação do painel RAI.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
+- Aprenda a usar os diferentes componentes consultando a [documentação do RAI dashboard.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
 
-- Confira alguns [notebooks de amostra do painel RAI](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) para depurar cenários de IA responsável no Azure Machine Learning.
+- Veja alguns [notebooks de exemplo do RAI dashboard](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) para depurar cenários de IA mais responsáveis no Azure Machine Learning.
+
+---
+## 🚀 Desafio
+
+Para evitar que vieses estatísticos ou de dados sejam introduzidos desde o início, devemos:
+
+- ter uma diversidade de origens e perspetivas entre as pessoas que trabalham nos sistemas
+- investir em conjuntos de dados que reflitam a diversidade da nossa sociedade
+- desenvolver melhores métodos para detetar e corrigir vieses quando eles ocorrem
+
+Pense em cenários da vida real onde a injustiça é evidente na construção e utilização de modelos. O que mais devemos considerar?
+
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
+## Revisão e Autoestudo
+
+Nesta lição, aprendeu algumas ferramentas práticas para incorporar IA responsável em machine learning.
+
+Veja este workshop para aprofundar os tópicos:
+
+- Responsible AI Dashboard: Uma solução completa para operacionalizar IA responsável na prática, por Besmira Nushi e Mehrnoosh Sameki
+
+[![Responsible AI Dashboard: Uma solução completa para operacionalizar IA responsável na prática](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Responsible AI Dashboard: Uma solução completa para operacionalizar IA responsável na prática")
+
+> 🎥 Clique na imagem acima para ver o vídeo: Responsible AI Dashboard: Uma solução completa para operacionalizar IA responsável na prática, por Besmira Nushi e Mehrnoosh Sameki
+
+Consulte os seguintes materiais para aprender mais sobre IA responsável e como construir modelos mais confiáveis:
+
+- Ferramentas do RAI dashboard da Microsoft para depurar modelos de ML: [Recursos de ferramentas de IA responsável](https://aka.ms/rai-dashboard)
+
+- Explore o toolkit de IA responsável: [Github](https://github.com/microsoft/responsible-ai-toolbox)
+
+- Centro de recursos de IA responsável da Microsoft: [Recursos de IA Responsável – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+
+- Grupo de pesquisa FATE da Microsoft: [FATE: Justiça, Responsabilidade, Transparência e Ética em IA - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+
+## Tarefa
+
+[Explore o RAI dashboard](assignment.md)
 
 ---
 
-## 🚀 Desafio
-
-Para evitar que vieses estatísticos ou de dados sejam introduzidos em primeiro lugar, devemos:
-
-- ter uma diversidade de origens e perspectivas entre as pessoas que trabalham em sistemas
-- investir em conjuntos de dados que reflitam a diversidade da nossa sociedade
-- desenvolver melhores métodos para detectar e corrigir viés quando ele ocorrer
-
-Pense em cenários da vida real onde a injustiça é evidente na construção e uso de modelos. O que mais devemos considerar?
-
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
-
-## Revisão e Autoestudo
-
-Nesta lição, você aprendeu algumas das ferramentas práticas de incorporação de IA responsável em aprendizado de máquina.
-
-Assista a este workshop para se aprofundar nos tópicos:
-
-- Painel de IA Responsável: Um ponto de encontro para operacionalizar RAI na prática por Besmira Nushi e Mehrnoosh Sameki
-
-[![Painel de IA Responsável: Um ponto de encontro para operacionalizar RAI na prática](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Painel de IA Responsável: Um ponto de encontro para operacionalizar RAI na prática")
-
-> 🎥 Clique na imagem acima para ver o vídeo: Painel de IA Responsável: Um ponto de encontro para operacionalizar RAI na prática por Besmira Nushi e Mehrnoosh Sameki
-
-Referencie os seguintes materiais para aprender mais sobre IA responsável e como construir modelos
-
 **Aviso Legal**:  
-Este documento foi traduzido utilizando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em sua língua nativa deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

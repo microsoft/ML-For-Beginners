@@ -1,87 +1,96 @@
-# Pengenalan kepada pemprosesan bahasa semulajadi
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-05T20:37:22+00:00",
+  "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
+  "language_code": "ms"
+}
+-->
+# Pengenalan kepada pemprosesan bahasa semula jadi
 
-Pelajaran ini merangkumi sejarah ringkas dan konsep penting dalam *pemprosesan bahasa semulajadi*, satu cabang daripada *linguistik komputasi*.
+Pelajaran ini merangkumi sejarah ringkas dan konsep penting tentang *pemprosesan bahasa semula jadi*, satu cabang daripada *linguistik komputer*.
 
-## [Kuiz pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Kuiz pra-kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Pengenalan
 
-NLP, seperti yang biasa dikenali, adalah salah satu bidang yang paling terkenal di mana pembelajaran mesin telah digunakan dan diterapkan dalam perisian pengeluaran.
+NLP, seperti yang biasa dikenali, adalah salah satu bidang yang paling terkenal di mana pembelajaran mesin telah diterapkan dan digunakan dalam perisian pengeluaran.
 
-✅ Bolehkah anda memikirkan perisian yang anda gunakan setiap hari yang mungkin mempunyai beberapa NLP di dalamnya? Bagaimana dengan program pemprosesan kata atau aplikasi mudah alih yang anda gunakan secara kerap?
+✅ Bolehkah anda memikirkan perisian yang anda gunakan setiap hari yang mungkin mempunyai elemen NLP? Bagaimana pula dengan program pemprosesan kata atau aplikasi mudah alih yang anda gunakan secara berkala?
 
 Anda akan belajar tentang:
 
-- **Idea tentang bahasa**. Bagaimana bahasa berkembang dan apakah bidang kajian utama.
-- **Definisi dan konsep**. Anda juga akan belajar definisi dan konsep tentang bagaimana komputer memproses teks, termasuk penguraian, tatabahasa, dan mengenal pasti kata nama dan kata kerja. Terdapat beberapa tugas pengekodan dalam pelajaran ini, dan beberapa konsep penting diperkenalkan yang anda akan belajar untuk kod kemudian dalam pelajaran seterusnya.
+- **Idea tentang bahasa**. Bagaimana bahasa berkembang dan apakah bidang utama kajian.
+- **Definisi dan konsep**. Anda juga akan mempelajari definisi dan konsep tentang bagaimana komputer memproses teks, termasuk penguraian, tatabahasa, dan mengenal pasti kata nama dan kata kerja. Terdapat beberapa tugas pengekodan dalam pelajaran ini, dan beberapa konsep penting diperkenalkan yang akan anda pelajari untuk kod dalam pelajaran seterusnya.
 
-## Linguistik komputasi
+## Linguistik komputer
 
-Linguistik komputasi adalah bidang penyelidikan dan pembangunan selama beberapa dekad yang mengkaji bagaimana komputer boleh bekerja dengan, dan bahkan memahami, menterjemah, dan berkomunikasi dengan bahasa. Pemprosesan bahasa semulajadi (NLP) adalah bidang berkaitan yang memberi tumpuan kepada bagaimana komputer boleh memproses bahasa 'semulajadi', atau bahasa manusia.
+Linguistik komputer adalah bidang penyelidikan dan pembangunan selama beberapa dekad yang mengkaji bagaimana komputer boleh bekerja dengan, dan bahkan memahami, menterjemah, serta berkomunikasi dengan bahasa. Pemprosesan bahasa semula jadi (NLP) adalah bidang berkaitan yang memberi tumpuan kepada bagaimana komputer boleh memproses bahasa 'semula jadi', atau bahasa manusia.
 
-### Contoh - pendiktean telefon
+### Contoh - pendikte telefon
 
-Jika anda pernah mendikte kepada telefon anda daripada menaip atau bertanya kepada pembantu maya soalan, ucapan anda telah ditukar kepada bentuk teks dan kemudian diproses atau *diuraikan* dari bahasa yang anda gunakan. Kata kunci yang dikesan kemudian diproses ke dalam format yang telefon atau pembantu boleh faham dan bertindak balas.
+Jika anda pernah mendikte kepada telefon anda daripada menaip atau bertanya kepada pembantu maya soalan, ucapan anda telah ditukar kepada bentuk teks dan kemudian diproses atau *diuraikan* daripada bahasa yang anda gunakan. Kata kunci yang dikesan kemudian diproses ke dalam format yang telefon atau pembantu boleh fahami dan bertindak balas.
 
-![pemahaman](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.ms.png)
+![pemahaman](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
 > Pemahaman linguistik sebenar adalah sukar! Imej oleh [Jen Looper](https://twitter.com/jenlooper)
 
-### Bagaimana teknologi ini dibuat mungkin?
+### Bagaimana teknologi ini menjadi mungkin?
 
-Ini mungkin kerana seseorang menulis program komputer untuk melakukannya. Beberapa dekad yang lalu, beberapa penulis fiksyen sains meramalkan bahawa orang akan kebanyakannya bercakap dengan komputer mereka, dan komputer akan sentiasa memahami dengan tepat apa yang mereka maksudkan. Malangnya, ia ternyata menjadi masalah yang lebih sukar daripada yang dibayangkan oleh ramai, dan walaupun ia adalah masalah yang lebih difahami hari ini, terdapat cabaran yang ketara dalam mencapai pemprosesan bahasa semulajadi yang 'sempurna' apabila ia berkaitan dengan memahami makna ayat. Ini adalah masalah yang sangat sukar apabila ia berkaitan dengan memahami humor atau mengesan emosi seperti sindiran dalam ayat.
+Ini menjadi mungkin kerana seseorang telah menulis program komputer untuk melakukannya. Beberapa dekad yang lalu, beberapa penulis fiksyen sains meramalkan bahawa manusia akan lebih banyak bercakap dengan komputer mereka, dan komputer akan sentiasa memahami dengan tepat apa yang dimaksudkan. Malangnya, ia ternyata menjadi masalah yang lebih sukar daripada yang dibayangkan oleh ramai orang, dan walaupun ia adalah masalah yang lebih difahami hari ini, terdapat cabaran besar dalam mencapai pemprosesan bahasa semula jadi yang 'sempurna' apabila ia berkaitan dengan memahami maksud ayat. Ini adalah masalah yang sangat sukar apabila ia berkaitan dengan memahami humor atau mengesan emosi seperti sindiran dalam ayat.
 
-Pada ketika ini, anda mungkin mengingati kelas sekolah di mana guru meliputi bahagian tatabahasa dalam ayat. Di sesetengah negara, pelajar diajar tatabahasa dan linguistik sebagai subjek khusus, tetapi di banyak negara, topik-topik ini dimasukkan sebagai sebahagian daripada pembelajaran bahasa: sama ada bahasa pertama anda di sekolah rendah (belajar membaca dan menulis) dan mungkin bahasa kedua di sekolah menengah. Jangan risau jika anda bukan pakar dalam membezakan kata nama daripada kata kerja atau kata keterangan daripada kata sifat!
+Pada ketika ini, anda mungkin teringat kelas sekolah di mana guru mengajar bahagian tatabahasa dalam ayat. Di beberapa negara, pelajar diajar tatabahasa dan linguistik sebagai subjek khusus, tetapi di banyak negara, topik ini termasuk sebagai sebahagian daripada pembelajaran bahasa: sama ada bahasa pertama anda di sekolah rendah (belajar membaca dan menulis) dan mungkin bahasa kedua di sekolah menengah. Jangan risau jika anda bukan pakar dalam membezakan kata nama daripada kata kerja atau kata keterangan daripada kata sifat!
 
-Jika anda bergelut dengan perbezaan antara *masa kini mudah* dan *masa kini progresif*, anda tidak bersendirian. Ini adalah perkara yang mencabar bagi ramai orang, bahkan penutur asli bahasa. Berita baiknya adalah bahawa komputer sangat baik dalam menerapkan peraturan formal, dan anda akan belajar untuk menulis kod yang boleh *menguraikan* ayat serta manusia. Cabaran yang lebih besar yang anda akan kaji kemudian ialah memahami *makna*, dan *sentimen*, sesuatu ayat.
+Jika anda bergelut dengan perbezaan antara *present simple* dan *present progressive*, anda tidak keseorangan. Ini adalah perkara yang mencabar bagi ramai orang, termasuk penutur asli sesuatu bahasa. Berita baiknya ialah komputer sangat baik dalam menerapkan peraturan formal, dan anda akan belajar menulis kod yang boleh *menguraikan* ayat sebaik manusia. Cabaran yang lebih besar yang akan anda kaji kemudian ialah memahami *maksud* dan *sentimen* sesuatu ayat.
 
 ## Prasyarat
 
-Untuk pelajaran ini, prasyarat utama adalah dapat membaca dan memahami bahasa pelajaran ini. Tiada masalah matematik atau persamaan untuk diselesaikan. Walaupun pengarang asal menulis pelajaran ini dalam bahasa Inggeris, ia juga diterjemahkan ke dalam bahasa lain, jadi anda mungkin sedang membaca terjemahan. Terdapat contoh di mana beberapa bahasa yang berbeza digunakan (untuk membandingkan peraturan tatabahasa yang berbeza dari bahasa yang berbeza). Ini *tidak* diterjemahkan, tetapi teks penjelasan diterjemahkan, jadi maknanya harus jelas.
+Untuk pelajaran ini, prasyarat utama adalah dapat membaca dan memahami bahasa pelajaran ini. Tiada masalah matematik atau persamaan untuk diselesaikan. Walaupun penulis asal menulis pelajaran ini dalam bahasa Inggeris, ia juga diterjemahkan ke dalam bahasa lain, jadi anda mungkin sedang membaca terjemahan. Terdapat contoh di mana beberapa bahasa yang berbeza digunakan (untuk membandingkan peraturan tatabahasa yang berbeza bagi bahasa yang berbeza). Ini *tidak* diterjemahkan, tetapi teks penjelasan diterjemahkan, jadi maksudnya seharusnya jelas.
 
 Untuk tugas pengekodan, anda akan menggunakan Python dan contoh-contohnya menggunakan Python 3.8.
 
 Dalam bahagian ini, anda akan memerlukan, dan menggunakan:
 
-- **Pemahaman Python 3**. Pemahaman bahasa pengaturcaraan dalam Python 3, pelajaran ini menggunakan input, gelung, pembacaan fail, array.
-- **Visual Studio Code + sambungan**. Kami akan menggunakan Visual Studio Code dan sambungan Python. Anda juga boleh menggunakan IDE Python pilihan anda.
-- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) adalah perpustakaan pemprosesan teks yang dipermudahkan untuk Python. Ikuti arahan di laman TextBlob untuk memasangnya pada sistem anda (pasang juga korpora, seperti yang ditunjukkan di bawah):
+- **Pemahaman Python 3**. Pemahaman bahasa pengaturcaraan dalam Python 3, pelajaran ini menggunakan input, gelung, pembacaan fail, dan array.
+- **Visual Studio Code + sambungan**. Kami akan menggunakan Visual Studio Code dan sambungan Pythonnya. Anda juga boleh menggunakan IDE Python pilihan anda.
+- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) adalah pustaka pemprosesan teks yang dipermudahkan untuk Python. Ikuti arahan di laman TextBlob untuk memasangnya pada sistem anda (pasang korpora juga, seperti yang ditunjukkan di bawah):
 
    ```bash
    pip install -U textblob
    python -m textblob.download_corpora
    ```
 
-> 💡 Tip: Anda boleh menjalankan Python secara langsung dalam persekitaran VS Code. Semak [dokumentasi](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) untuk maklumat lanjut.
+> 💡 Petua: Anda boleh menjalankan Python secara langsung dalam persekitaran VS Code. Semak [dokumen](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) untuk maklumat lanjut.
 
-## Bercakap dengan mesin
+## Berbicara dengan mesin
 
-Sejarah mencuba untuk membuat komputer memahami bahasa manusia kembali beberapa dekad, dan salah seorang saintis terawal yang mempertimbangkan pemprosesan bahasa semulajadi adalah *Alan Turing*.
+Sejarah usaha untuk membuat komputer memahami bahasa manusia telah berlangsung selama beberapa dekad, dan salah seorang saintis terawal yang mempertimbangkan pemprosesan bahasa semula jadi ialah *Alan Turing*.
 
 ### Ujian 'Turing'
 
-Ketika Turing sedang meneliti *kecerdasan buatan* pada tahun 1950-an, dia mempertimbangkan jika ujian perbualan boleh diberikan kepada seorang manusia dan komputer (melalui surat-menyurat yang ditaip) di mana manusia dalam perbualan itu tidak pasti sama ada mereka sedang berbual dengan manusia lain atau komputer.
+Apabila Turing sedang menyelidik *kecerdasan buatan* pada tahun 1950-an, beliau mempertimbangkan sama ada ujian perbualan boleh diberikan kepada manusia dan komputer (melalui korespondensi bertulis) di mana manusia dalam perbualan itu tidak pasti sama ada mereka sedang berbual dengan manusia lain atau komputer.
 
-Jika, selepas tempoh perbualan tertentu, manusia tidak dapat menentukan bahawa jawapan itu dari komputer atau tidak, maka bolehkah komputer dikatakan *berfikir*?
+Jika, selepas tempoh perbualan tertentu, manusia tidak dapat menentukan sama ada jawapan itu daripada komputer atau tidak, maka bolehkah komputer itu dikatakan *berfikir*?
 
 ### Inspirasi - 'permainan tiruan'
 
-Idea untuk ini datang dari permainan pesta yang dipanggil *The Imitation Game* di mana seorang penyiasat berada sendirian dalam bilik dan ditugaskan untuk menentukan siapa daripada dua orang (di bilik lain) adalah lelaki dan wanita masing-masing. Penyiasat boleh menghantar nota, dan mesti cuba memikirkan soalan di mana jawapan bertulis mendedahkan jantina orang misteri itu. Sudah tentu, pemain di bilik lain cuba menipu penyiasat dengan menjawab soalan dengan cara yang mengelirukan atau mengelirukan penyiasat, sambil memberikan penampilan menjawab dengan jujur.
+Idea ini datang daripada permainan parti yang dipanggil *The Imitation Game* di mana seorang penyiasat berada sendirian di dalam bilik dan ditugaskan untuk menentukan siapa di antara dua orang (di bilik lain) adalah lelaki dan perempuan masing-masing. Penyiasat boleh menghantar nota, dan mesti cuba memikirkan soalan di mana jawapan bertulis mendedahkan jantina orang misteri. Sudah tentu, pemain di bilik lain cuba mengelirukan penyiasat dengan menjawab soalan sedemikian rupa untuk mengelirukan atau mengelirukan penyiasat, sambil juga memberikan penampilan menjawab dengan jujur.
 
 ### Membangunkan Eliza
 
-Pada tahun 1960-an, seorang saintis MIT bernama *Joseph Weizenbaum* membangunkan [*Eliza*](https://wikipedia.org/wiki/ELIZA), seorang 'terapis' komputer yang akan menanyakan soalan kepada manusia dan memberikan penampilan memahami jawapan mereka. Walau bagaimanapun, walaupun Eliza boleh menguraikan ayat dan mengenal pasti beberapa struktur tatabahasa dan kata kunci untuk memberikan jawapan yang munasabah, ia tidak boleh dikatakan *memahami* ayat itu. Jika Eliza diberi ayat yang mengikuti format "**I am** <u>sedih</u>" ia mungkin menyusun semula dan menggantikan kata-kata dalam ayat untuk membentuk jawapan "Berapa lama **anda telah** <u>sedih</u>". 
+Pada tahun 1960-an, seorang saintis MIT bernama *Joseph Weizenbaum* membangunkan [*Eliza*](https://wikipedia.org/wiki/ELIZA), seorang 'terapis' komputer yang akan bertanya soalan kepada manusia dan memberikan penampilan memahami jawapan mereka. Walau bagaimanapun, walaupun Eliza boleh menguraikan ayat dan mengenal pasti struktur tatabahasa tertentu dan kata kunci untuk memberikan jawapan yang munasabah, ia tidak boleh dikatakan *memahami* ayat tersebut. Jika Eliza diberikan ayat dengan format "**Saya** <u>sedih</u>", ia mungkin menyusun semula dan menggantikan kata-kata dalam ayat untuk membentuk jawapan "Berapa lama **anda telah** <u>sedih</u>". 
 
-Ini memberikan kesan bahawa Eliza memahami kenyataan itu dan menanyakan soalan susulan, sedangkan sebenarnya, ia hanya mengubah masa dan menambah beberapa kata. Jika Eliza tidak dapat mengenal pasti kata kunci yang ia mempunyai jawapan untuk, ia akan memberikan jawapan rawak yang boleh digunakan untuk banyak kenyataan yang berbeza. Eliza boleh dengan mudah ditipu, contohnya jika pengguna menulis "**Anda adalah** sebuah <u>basikal</u>" ia mungkin menjawab dengan "Berapa lama **saya telah** sebuah <u>basikal</u>?", bukannya jawapan yang lebih beralasan.
+Ini memberikan gambaran bahawa Eliza memahami kenyataan itu dan sedang bertanya soalan susulan, sedangkan sebenarnya, ia hanya menukar masa dan menambah beberapa perkataan. Jika Eliza tidak dapat mengenal pasti kata kunci yang mempunyai jawapan, ia sebaliknya akan memberikan jawapan rawak yang boleh digunakan untuk banyak kenyataan yang berbeza. Eliza boleh dengan mudah dikelirukan, contohnya jika pengguna menulis "**Anda adalah** sebuah <u>basikal</u>", ia mungkin menjawab "Berapa lama **saya telah** sebuah <u>basikal</u>?", bukannya jawapan yang lebih munasabah.
 
 [![Berbual dengan Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Berbual dengan Eliza")
 
 > 🎥 Klik imej di atas untuk video tentang program ELIZA asal
 
-> Nota: Anda boleh membaca keterangan asal [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) yang diterbitkan pada tahun 1966 jika anda mempunyai akaun ACM. Sebagai alternatif, baca tentang Eliza di [wikipedia](https://wikipedia.org/wiki/ELIZA)
+> Nota: Anda boleh membaca penerangan asal tentang [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) yang diterbitkan pada tahun 1966 jika anda mempunyai akaun ACM. Sebagai alternatif, baca tentang Eliza di [wikipedia](https://wikipedia.org/wiki/ELIZA)
 
-## Latihan - mengekod bot perbualan asas
+## Latihan - pengekodan bot perbualan asas
 
-Bot perbualan, seperti Eliza, adalah program yang meminta input pengguna dan kelihatan memahami dan memberi respons dengan bijak. Tidak seperti Eliza, bot kita tidak akan mempunyai beberapa peraturan yang memberikan penampilan mempunyai perbualan pintar. Sebaliknya, bot kita hanya akan mempunyai satu kebolehan, iaitu untuk meneruskan perbualan dengan respons rawak yang mungkin berfungsi dalam hampir mana-mana perbualan remeh.
+Bot perbualan, seperti Eliza, adalah program yang mendapatkan input pengguna dan kelihatan memahami serta bertindak balas dengan bijak. Tidak seperti Eliza, bot kita tidak akan mempunyai beberapa peraturan yang memberikan penampilan perbualan yang bijak. Sebaliknya, bot kita hanya akan mempunyai satu keupayaan, iaitu meneruskan perbualan dengan jawapan rawak yang mungkin berfungsi dalam hampir mana-mana perbualan remeh.
 
 ### Rancangan
 
@@ -90,16 +99,16 @@ Langkah-langkah anda semasa membina bot perbualan:
 1. Cetak arahan yang menasihati pengguna cara berinteraksi dengan bot
 2. Mulakan gelung
    1. Terima input pengguna
-   2. Jika pengguna meminta untuk keluar, maka keluar
-   3. Proses input pengguna dan tentukan respons (dalam kes ini, respons adalah pilihan rawak daripada senarai kemungkinan respons generik)
-   4. Cetak respons
-3. kembali ke langkah 2
+   2. Jika pengguna meminta keluar, maka keluar
+   3. Proses input pengguna dan tentukan jawapan (dalam kes ini, jawapan adalah pilihan rawak daripada senarai kemungkinan jawapan generik)
+   4. Cetak jawapan
+3. Kembali ke langkah 2
 
 ### Membina bot
 
-Mari kita buat bot seterusnya. Kita akan mulakan dengan mendefinisikan beberapa frasa.
+Mari kita bina bot seterusnya. Kita akan mulakan dengan mendefinisikan beberapa frasa.
 
-1. Buat bot ini sendiri dalam Python dengan respons rawak berikut:
+1. Cipta bot ini sendiri dalam Python dengan jawapan rawak berikut:
 
     ```python
     random_responses = ["That is quite interesting, please tell me more.",
@@ -110,7 +119,7 @@ Mari kita buat bot seterusnya. Kita akan mulakan dengan mendefinisikan beberapa 
                         "Did you catch the game last night?"]
     ```
 
-    Berikut adalah beberapa output contoh untuk panduan anda (input pengguna pada baris yang bermula dengan `>`):
+    Berikut adalah beberapa output contoh untuk panduan anda (input pengguna adalah pada baris yang bermula dengan `>`):
 
     ```output
     Hello, I am Marvin, the simple robot.
@@ -137,32 +146,34 @@ Mari kita buat bot seterusnya. Kita akan mulakan dengan mendefinisikan beberapa 
 
     ✅ Berhenti dan pertimbangkan
 
-    1. Adakah anda fikir respons rawak akan 'menipu' seseorang untuk berfikir bahawa bot sebenarnya memahami mereka?
-    2. Apakah ciri-ciri yang perlu ada pada bot untuk menjadi lebih berkesan?
-    3. Jika bot benar-benar boleh 'memahami' makna ayat, adakah ia perlu 'mengingati' makna ayat-ayat sebelumnya dalam perbualan juga?
+    1. Adakah anda fikir jawapan rawak akan 'mengelirukan' seseorang untuk berfikir bahawa bot sebenarnya memahami mereka?
+    2. Apakah ciri yang diperlukan oleh bot untuk menjadi lebih berkesan?
+    3. Jika bot benar-benar boleh 'memahami' maksud ayat, adakah ia perlu 'mengingati' maksud ayat sebelumnya dalam perbualan juga?
 
 ---
 
 ## 🚀Cabaran
 
-Pilih salah satu elemen "berhenti dan pertimbangkan" di atas dan sama ada cuba melaksanakannya dalam kod atau tulis penyelesaian di atas kertas menggunakan pseudokod.
+Pilih salah satu elemen "berhenti dan pertimbangkan" di atas dan cuba melaksanakannya dalam kod atau tulis penyelesaian di atas kertas menggunakan pseudokod.
 
-Dalam pelajaran seterusnya, anda akan belajar tentang beberapa pendekatan lain untuk menguraikan bahasa semulajadi dan pembelajaran mesin.
+Dalam pelajaran seterusnya, anda akan belajar tentang beberapa pendekatan lain untuk menguraikan bahasa semula jadi dan pembelajaran mesin.
 
-## [Kuiz pasca-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Kuiz pasca-kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## Kajian Semula & Kajian Sendiri
+## Ulasan & Kajian Kendiri
 
-Lihat rujukan di bawah sebagai peluang bacaan lanjut.
+Lihat rujukan di bawah sebagai peluang pembacaan lanjut.
 
 ### Rujukan
 
-1. Schubert, Lenhart, "Linguistik Komputasi", *The Stanford Encyclopedia of Philosophy* (Edisi Musim Bunga 2020), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
+1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
 2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
 
 ## Tugasan 
 
-[Cari bot](assignment.md)
+[Carian bot](assignment.md)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

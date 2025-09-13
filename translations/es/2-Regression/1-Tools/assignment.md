@@ -1,16 +1,27 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "74a5cf83e4ebc302afbcbc4f418afd0a",
+  "translation_date": "2025-09-03T22:36:25+00:00",
+  "source_file": "2-Regression/1-Tools/assignment.md",
+  "language_code": "es"
+}
+-->
 # Regresión con Scikit-learn
 
 ## Instrucciones
 
-Echa un vistazo al [dataset de Linnerud](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_linnerud.html#sklearn.datasets.load_linnerud) en Scikit-learn. Este dataset tiene múltiples [objetivos](https://scikit-learn.org/stable/datasets/toy_dataset.html#linnerrud-dataset): 'Consiste en tres variables de ejercicio (datos) y tres variables fisiológicas (objetivo) recolectadas de veinte hombres de mediana edad en un club de fitness'.
+Echa un vistazo al [conjunto de datos Linnerud](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_linnerud.html#sklearn.datasets.load_linnerud) en Scikit-learn. Este conjunto de datos tiene múltiples [objetivos](https://scikit-learn.org/stable/datasets/toy_dataset.html#linnerrud-dataset): 'Consiste en tres variables de ejercicio (datos) y tres variables fisiológicas (objetivo) recopiladas de veinte hombres de mediana edad en un club de fitness'.
 
-En tus propias palabras, describe cómo crear un modelo de Regresión que trace la relación entre la circunferencia de la cintura y cuántos abdominales se logran. Haz lo mismo para los otros puntos de datos en este conjunto de datos.
+Con tus propias palabras, describe cómo crear un modelo de regresión que grafique la relación entre la circunferencia de la cintura y la cantidad de abdominales realizados. Haz lo mismo para los otros puntos de datos en este conjunto de datos.
 
-## Rubrica
+## Rúbrica
 
 | Criterios                      | Ejemplar                            | Adecuado                      | Necesita Mejorar           |
-| ------------------------------ | ----------------------------------- | ----------------------------- | -------------------------- |
-| Enviar un párrafo descriptivo  | Se envía un párrafo bien escrito    | Se envían algunas oraciones   | No se proporciona descripción |
+| ------------------------------ | ------------------------------------ | ----------------------------- | -------------------------- |
+| Enviar un párrafo descriptivo  | Se envía un párrafo bien redactado  | Se envían unas pocas oraciones | No se proporciona descripción |
 
-**Descargo de responsabilidad**:
-Este documento ha sido traducido utilizando servicios de traducción automática basados en IA. Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción humana profesional. No nos hacemos responsables de ningún malentendido o interpretación errónea que surja del uso de esta traducción.
+---
+
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

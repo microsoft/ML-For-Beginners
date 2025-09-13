@@ -1,57 +1,66 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-05T08:52:17+00:00",
+  "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
+  "language_code": "pt"
+}
+-->
 # Introdução ao processamento de linguagem natural
 
-Esta lição cobre uma breve história e conceitos importantes de *processamento de linguagem natural*, um subcampo da *linguística computacional*.
+Esta lição aborda uma breve história e conceitos importantes do *processamento de linguagem natural* (PLN), um subcampo da *linguística computacional*.
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introdução
 
-O PLN, como é comumente conhecido, é uma das áreas mais conhecidas onde o aprendizado de máquina foi aplicado e utilizado em software de produção.
+O PLN, como é comumente conhecido, é uma das áreas mais conhecidas onde o aprendizado de máquina foi aplicado e utilizado em softwares de produção.
 
-✅ Você consegue pensar em algum software que usa todos os dias e que provavelmente tem algum PLN embutido? E quanto aos seus programas de processamento de texto ou aplicativos móveis que você usa regularmente?
+✅ Consegue pensar em algum software que utiliza diariamente e que provavelmente tem algum PLN integrado? E os seus programas de processamento de texto ou as aplicações móveis que usa regularmente?
 
 Você aprenderá sobre:
 
-- **A ideia de idiomas**. Como as línguas se desenvolveram e quais foram as principais áreas de estudo.
-- **Definição e conceitos**. Você também aprenderá definições e conceitos sobre como os computadores processam texto, incluindo análise sintática, gramática e identificação de substantivos e verbos. Existem algumas tarefas de codificação nesta lição, e vários conceitos importantes são introduzidos que você aprenderá a codificar mais adiante nas próximas lições.
+- **A ideia de línguas**. Como as línguas se desenvolveram e quais foram as principais áreas de estudo.
+- **Definição e conceitos**. Também aprenderá definições e conceitos sobre como os computadores processam texto, incluindo análise sintática, gramática e identificação de substantivos e verbos. Há algumas tarefas de codificação nesta lição, e vários conceitos importantes são introduzidos, que você aprenderá a programar nas próximas lições.
 
 ## Linguística computacional
 
-A linguística computacional é uma área de pesquisa e desenvolvimento ao longo de muitas décadas que estuda como os computadores podem trabalhar com, e até mesmo entender, traduzir e se comunicar em línguas. O processamento de linguagem natural (PLN) é um campo relacionado focado em como os computadores podem processar línguas 'naturais', ou humanas.
+A linguística computacional é uma área de pesquisa e desenvolvimento que, ao longo de muitas décadas, estuda como os computadores podem trabalhar com línguas, compreendê-las, traduzi-las e até mesmo se comunicar com elas. O processamento de linguagem natural (PLN) é um campo relacionado, focado em como os computadores podem processar línguas "naturais", ou seja, humanas.
 
-### Exemplo - ditado por telefone
+### Exemplo - ditado no telemóvel
 
-Se você já ditou algo para o seu telefone em vez de digitar ou fez uma pergunta a um assistente virtual, sua fala foi convertida em forma de texto e depois processada ou *analisada* a partir da língua que você falou. As palavras-chave detectadas foram então processadas em um formato que o telefone ou assistente poderia entender e agir.
+Se alguma vez ditou algo para o seu telemóvel em vez de escrever ou fez uma pergunta a um assistente virtual, a sua fala foi convertida em texto e depois processada ou *analisada* a partir da língua que falou. As palavras-chave detectadas foram então processadas num formato que o telemóvel ou assistente pudesse compreender e agir.
 
-![compreensão](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.pt.png)
-> A verdadeira compreensão linguística é difícil! Imagem de [Jen Looper](https://twitter.com/jenlooper)
+![compreensão](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
+> Compreensão linguística real é difícil! Imagem por [Jen Looper](https://twitter.com/jenlooper)
 
-### Como essa tecnologia é possível?
+### Como é que esta tecnologia é possível?
 
-Isso é possível porque alguém escreveu um programa de computador para fazer isso. Algumas décadas atrás, alguns escritores de ficção científica previram que as pessoas falariam principalmente com seus computadores, e os computadores sempre entenderiam exatamente o que elas queriam dizer. Infelizmente, acabou sendo um problema mais difícil do que muitos imaginavam, e embora hoje seja um problema muito melhor compreendido, existem desafios significativos para alcançar um processamento de linguagem natural 'perfeito' quando se trata de entender o significado de uma frase. Este é um problema particularmente difícil quando se trata de entender humor ou detectar emoções, como sarcasmo, em uma frase.
+Isto é possível porque alguém escreveu um programa de computador para o fazer. Há algumas décadas, alguns escritores de ficção científica previram que as pessoas falariam principalmente com os seus computadores, e que os computadores entenderiam sempre exatamente o que elas queriam dizer. Infelizmente, revelou-se um problema mais difícil do que muitos imaginavam e, embora hoje seja um problema muito mais bem compreendido, ainda existem desafios significativos para alcançar um processamento de linguagem natural "perfeito" no que diz respeito a compreender o significado de uma frase. Este é um problema particularmente difícil quando se trata de entender humor ou detectar emoções como sarcasmo numa frase.
 
-Neste ponto, você pode estar se lembrando das aulas da escola em que o professor abordava as partes da gramática em uma frase. Em alguns países, os alunos aprendem gramática e linguística como uma disciplina dedicada, mas em muitos, esses tópicos estão incluídos como parte do aprendizado de uma língua: seja sua primeira língua na escola primária (aprendendo a ler e escrever) e talvez uma segunda língua no ensino secundário, ou no ensino médio. Não se preocupe se você não é um especialista em diferenciar substantivos de verbos ou advérbios de adjetivos!
+Neste momento, talvez se lembre das aulas escolares em que o professor abordava as partes da gramática numa frase. Em alguns países, os alunos aprendem gramática e linguística como uma disciplina dedicada, mas em muitos, esses tópicos estão incluídos como parte do aprendizado de uma língua: seja a sua primeira língua na escola primária (aprendendo a ler e escrever) ou talvez uma segunda língua no ensino secundário. Não se preocupe se não for um especialista em diferenciar substantivos de verbos ou advérbios de adjetivos!
 
-Se você tem dificuldades em entender a diferença entre o *presente simples* e o *presente contínuo*, você não está sozinho. Isso é um desafio para muitas pessoas, até mesmo falantes nativos de uma língua. A boa notícia é que os computadores são realmente bons em aplicar regras formais, e você aprenderá a escrever código que pode *analisar* uma frase tão bem quanto um humano. O desafio maior que você examinará mais tarde é entender o *significado* e o *sentimento* de uma frase.
+Se tem dificuldade em distinguir entre o *presente simples* e o *presente contínuo*, não está sozinho. Isso é um desafio para muitas pessoas, mesmo falantes nativos de uma língua. A boa notícia é que os computadores são muito bons em aplicar regras formais, e você aprenderá a escrever código que pode *analisar* uma frase tão bem quanto um humano. O maior desafio que examinará mais tarde é compreender o *significado* e o *sentimento* de uma frase.
 
 ## Pré-requisitos
 
-Para esta lição, o principal pré-requisito é ser capaz de ler e entender a língua desta lição. Não há problemas matemáticos ou equações para resolver. Embora o autor original tenha escrito esta lição em inglês, ela também foi traduzida para outras línguas, então você pode estar lendo uma tradução. Existem exemplos onde um número de línguas diferentes é usado (para comparar as diferentes regras gramaticais de diferentes línguas). Estes *não* são traduzidos, mas o texto explicativo é, então o significado deve estar claro.
+Para esta lição, o principal pré-requisito é ser capaz de ler e compreender a língua desta lição. Não há problemas matemáticos ou equações para resolver. Embora o autor original tenha escrito esta lição em inglês, ela também foi traduzida para outras línguas, então pode estar a ler uma tradução. Há exemplos onde são usados vários idiomas diferentes (para comparar as diferentes regras gramaticais de diferentes línguas). Estes *não* são traduzidos, mas o texto explicativo é, então o significado deve ser claro.
 
-Para as tarefas de codificação, você usará Python e os exemplos estão utilizando Python 3.8.
+Para as tarefas de codificação, usará Python e os exemplos utilizam Python 3.8.
 
-Nesta seção, você precisará, e usará:
+Nesta seção, precisará e usará:
 
-- **Compreensão do Python 3**. Compreensão da linguagem de programação em Python 3, esta lição utiliza entrada, loops, leitura de arquivos, arrays.
-- **Visual Studio Code + extensão**. Usaremos o Visual Studio Code e sua extensão Python. Você também pode usar um IDE Python de sua escolha.
-- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) é uma biblioteca de processamento de texto simplificada para Python. Siga as instruções no site do TextBlob para instalá-lo em seu sistema (instale os corpora também, conforme mostrado abaixo):
+- **Compreensão de Python 3**. Compreensão da linguagem de programação Python 3, esta lição utiliza entrada, loops, leitura de ficheiros e arrays.
+- **Visual Studio Code + extensão**. Usaremos o Visual Studio Code e sua extensão para Python. Também pode usar um IDE de Python à sua escolha.
+- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) é uma biblioteca simplificada de processamento de texto para Python. Siga as instruções no site do TextBlob para instalá-lo no seu sistema (instale também os corpora, conforme mostrado abaixo):
 
    ```bash
    pip install -U textblob
    python -m textblob.download_corpora
    ```
 
-> 💡 Dica: Você pode executar Python diretamente em ambientes do VS Code. Consulte a [documentação](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) para mais informações.
+> 💡 Dica: Pode executar Python diretamente em ambientes do VS Code. Consulte a [documentação](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) para mais informações.
 
 ## Conversando com máquinas
 
@@ -59,47 +68,47 @@ A história de tentar fazer os computadores entenderem a linguagem humana remont
 
 ### O 'teste de Turing'
 
-Quando Turing estava pesquisando *inteligência artificial* na década de 1950, ele considerou se um teste de conversa poderia ser dado a um humano e a um computador (por meio de correspondência digitada) onde o humano na conversa não tinha certeza se estava conversando com outro humano ou com um computador.
+Quando Turing estava a pesquisar *inteligência artificial* na década de 1950, ele considerou se um teste de conversação poderia ser dado a um humano e a um computador (via correspondência escrita) onde o humano na conversa não tivesse certeza se estava a conversar com outro humano ou com um computador.
 
-Se, após um certo tempo de conversa, o humano não pudesse determinar se as respostas eram de um computador ou não, poderia-se dizer que o computador estava *pensando*?
+Se, após um certo tempo de conversa, o humano não conseguisse determinar se as respostas vinham de um computador ou não, então poderia dizer-se que o computador estava *a pensar*?
 
 ### A inspiração - 'o jogo da imitação'
 
-A ideia para isso veio de um jogo de festa chamado *O Jogo da Imitacão* onde um interrogador está sozinho em uma sala e encarregado de determinar qual das duas pessoas (em outra sala) é do sexo masculino e qual é do sexo feminino, respectivamente. O interrogador pode enviar notas e deve tentar pensar em perguntas onde as respostas escritas revelem o gênero da pessoa misteriosa. É claro que os jogadores na outra sala estão tentando enganar o interrogador, respondendo perguntas de uma forma que possa induzi-lo ao erro ou confundi-lo, enquanto também dão a aparência de responder honestamente.
+A ideia para isso veio de um jogo de festa chamado *O Jogo da Imitação*, onde um interrogador está sozinho numa sala e tem a tarefa de determinar quais das duas pessoas (noutra sala) são homem e mulher, respetivamente. O interrogador pode enviar notas e deve tentar pensar em perguntas cujas respostas escritas revelem o género da pessoa misteriosa. Claro, os jogadores na outra sala tentam enganar o interrogador, respondendo de forma a confundir ou induzir em erro, enquanto dão a aparência de responder honestamente.
 
 ### Desenvolvendo Eliza
 
-Na década de 1960, um cientista do MIT chamado *Joseph Weizenbaum* desenvolveu [*Eliza*](https://wikipedia.org/wiki/ELIZA), um 'terapeuta' de computador que faria perguntas ao humano e daria a aparência de entender suas respostas. No entanto, embora Eliza pudesse analisar uma frase e identificar certos construtos gramaticais e palavras-chave para dar uma resposta razoável, não se poderia dizer que ela *entendia* a frase. Se Eliza fosse apresentada com uma frase seguindo o formato "**Eu estou** <u>triste</u>", ela poderia reorganizar e substituir palavras na frase para formar a resposta "Há quanto tempo você **está** <u>triste</u>?".
+Na década de 1960, um cientista do MIT chamado *Joseph Weizenbaum* desenvolveu [*Eliza*](https://wikipedia.org/wiki/ELIZA), uma "terapeuta" computorizada que fazia perguntas ao humano e dava a impressão de entender as suas respostas. No entanto, embora Eliza pudesse analisar uma frase e identificar certos construtos gramaticais e palavras-chave para dar uma resposta razoável, não se podia dizer que *entendia* a frase. Se Eliza recebesse uma frase no formato "**Eu estou** <u>triste</u>", poderia reorganizar e substituir palavras na frase para formar a resposta "Há quanto tempo **você está** <u>triste</u>". 
 
-Isso dava a impressão de que Eliza entendia a afirmação e estava fazendo uma pergunta de seguimento, enquanto na realidade, ela estava apenas mudando o tempo verbal e adicionando algumas palavras. Se Eliza não conseguisse identificar uma palavra-chave para a qual tinha uma resposta, ela daria uma resposta aleatória que poderia ser aplicável a muitas afirmações diferentes. Eliza poderia ser facilmente enganada; por exemplo, se um usuário escrevesse "**Você é** uma <u>bicicleta</u>", ela poderia responder com "Há quanto tempo **eu sou** uma <u>bicicleta</u>?", em vez de uma resposta mais razoável.
+Isso dava a impressão de que Eliza entendia a declaração e estava a fazer uma pergunta de seguimento, enquanto na realidade estava apenas a mudar o tempo verbal e a adicionar algumas palavras. Se Eliza não conseguisse identificar uma palavra-chave para a qual tivesse uma resposta, daria uma resposta aleatória que poderia ser aplicável a muitas declarações diferentes. Eliza podia ser facilmente enganada, por exemplo, se um utilizador escrevesse "**Você é** uma <u>bicicleta</u>", ela poderia responder "Há quanto tempo **eu sou** uma <u>bicicleta</u>?", em vez de uma resposta mais razoável.
 
 [![Conversando com Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Conversando com Eliza")
 
-> 🎥 Clique na imagem acima para assistir a um vídeo sobre o programa original ELIZA
+> 🎥 Clique na imagem acima para um vídeo sobre o programa original ELIZA
 
-> Nota: Você pode ler a descrição original de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publicada em 1966 se tiver uma conta da ACM. Alternativamente, leia sobre Eliza na [wikipedia](https://wikipedia.org/wiki/ELIZA)
+> Nota: Pode ler a descrição original de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publicada em 1966 se tiver uma conta ACM. Alternativamente, leia sobre Eliza na [wikipedia](https://wikipedia.org/wiki/ELIZA)
 
-## Exercício - codificando um bot conversacional básico
+## Exercício - programar um bot de conversação básico
 
-Um bot conversacional, como Eliza, é um programa que provoca a entrada do usuário e parece entender e responder de forma inteligente. Ao contrário de Eliza, nosso bot não terá várias regras que lhe conferem a aparência de ter uma conversa inteligente. Em vez disso, nosso bot terá apenas uma habilidade, que é manter a conversa com respostas aleatórias que podem funcionar em quase qualquer conversa trivial.
+Um bot de conversação, como Eliza, é um programa que solicita a entrada do utilizador e parece entender e responder de forma inteligente. Ao contrário de Eliza, o nosso bot não terá várias regras que lhe dão a aparência de uma conversa inteligente. Em vez disso, o nosso bot terá apenas uma habilidade: manter a conversa com respostas aleatórias que possam funcionar em quase qualquer conversa trivial.
 
 ### O plano
 
-Seus passos ao construir um bot conversacional:
+Os seus passos ao construir um bot de conversação:
 
-1. Imprima instruções aconselhando o usuário sobre como interagir com o bot
-2. Inicie um loop
-   1. Aceite a entrada do usuário
-   2. Se o usuário pediu para sair, então saia
-   3. Processem a entrada do usuário e determine a resposta (neste caso, a resposta é uma escolha aleatória de uma lista de possíveis respostas genéricas)
-   4. Imprima a resposta
-3. volte ao passo 2
+1. Imprimir instruções a aconselhar o utilizador sobre como interagir com o bot
+2. Iniciar um loop
+   1. Aceitar a entrada do utilizador
+   2. Se o utilizador pedir para sair, então sair
+   3. Processar a entrada do utilizador e determinar a resposta (neste caso, a resposta é uma escolha aleatória de uma lista de possíveis respostas genéricas)
+   4. Imprimir a resposta
+3. Voltar ao passo 2
 
 ### Construindo o bot
 
-Vamos criar o bot a seguir. Começaremos definindo algumas frases.
+Vamos criar o bot a seguir. Começaremos por definir algumas frases.
 
-1. Crie este bot você mesmo em Python com as seguintes respostas aleatórias:
+1. Crie este bot em Python com as seguintes respostas aleatórias:
 
     ```python
     random_responses = ["That is quite interesting, please tell me more.",
@@ -110,7 +119,7 @@ Vamos criar o bot a seguir. Começaremos definindo algumas frases.
                         "Did you catch the game last night?"]
     ```
 
-    Aqui está uma saída de exemplo para guiá-lo (a entrada do usuário está nas linhas que começam com `>`):
+    Aqui está um exemplo de saída para orientar (a entrada do utilizador está nas linhas que começam com `>`):
 
     ```output
     Hello, I am Marvin, the simple robot.
@@ -135,34 +144,36 @@ Vamos criar o bot a seguir. Começaremos definindo algumas frases.
 
     Uma possível solução para a tarefa está [aqui](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py)
 
-    ✅ Pare e considere
+    ✅ Pare e reflita
 
-    1. Você acha que as respostas aleatórias poderiam 'enganar' alguém a pensar que o bot realmente o entendia?
+    1. Acha que as respostas aleatórias poderiam "enganar" alguém a pensar que o bot realmente o entende?
     2. Que recursos o bot precisaria para ser mais eficaz?
-    3. Se um bot realmente pudesse 'entender' o significado de uma frase, ele precisaria 'lembrar' o significado de frases anteriores em uma conversa também?
+    3. Se um bot pudesse realmente "entender" o significado de uma frase, precisaria "lembrar-se" do significado das frases anteriores numa conversa também?
 
 ---
 
 ## 🚀Desafio
 
-Escolha um dos elementos "pare e considere" acima e tente implementá-los em código ou escreva uma solução no papel usando pseudocódigo.
+Escolha um dos elementos de "pare e reflita" acima e tente implementá-lo em código ou escreva uma solução no papel usando pseudocódigo.
 
-Na próxima lição, você aprenderá sobre várias outras abordagens para a análise de linguagem natural e aprendizado de máquina.
+Na próxima lição, aprenderá sobre várias outras abordagens para analisar linguagem natural e aprendizado de máquina.
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisão & Autoestudo
+## Revisão e autoestudo
 
-Dê uma olhada nas referências abaixo como oportunidades de leitura adicional.
+Consulte as referências abaixo como oportunidades de leitura adicional.
 
 ### Referências
 
-1. Schubert, Lenhart, "Linguística Computacional", *A Enciclopédia de Filosofia de Stanford* (Edição da Primavera de 2020), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
-2. Universidade de Princeton "Sobre o WordNet." [WordNet](https://wordnet.princeton.edu/). Universidade de Princeton. 2010.
+1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
+2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
 
-## Tarefa
+## Tarefa 
 
-[Pesquise um bot](assignment.md)
+[Procure um bot](assignment.md)
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido utilizando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional feita por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas decorrentes do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

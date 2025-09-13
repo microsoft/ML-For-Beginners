@@ -1,32 +1,41 @@
-# Prévision de séries temporelles avec le régressor à vecteurs de support
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-06T09:10:20+00:00",
+  "source_file": "7-TimeSeries/3-SVR/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用支持向量回歸進行時間序列預測
 
-Dans la leçon précédente, vous avez appris à utiliser le modèle ARIMA pour faire des prédictions de séries temporelles. Maintenant, vous allez explorer le modèle de régressor à vecteurs de support, qui est un modèle de régression utilisé pour prédire des données continues.
+在上一課中，你學習了如何使用 ARIMA 模型進行時間序列預測。現在，我們將探討支持向量回歸（Support Vector Regressor，SVR）模型，這是一種用於預測連續數據的回歸模型。
 
-## [Quiz avant la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/) 
 
-## Introduction
+## 介紹
 
-Dans cette leçon, vous découvrirez une méthode spécifique pour construire des modèles avec [**SVM** : **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) pour la régression, ou **SVR : Support Vector Regressor**. 
+在本課中，你將學習如何使用[**SVM**：**支持向量機**](https://en.wikipedia.org/wiki/Support-vector_machine)進行回歸，也就是**SVR：支持向量回歸**。
 
-### SVR dans le contexte des séries temporelles [^1]
+### SVR 在時間序列中的應用 [^1]
 
-Avant de comprendre l'importance de SVR dans la prédiction de séries temporelles, voici quelques concepts clés que vous devez connaître :
+在理解 SVR 在時間序列預測中的重要性之前，以下是一些你需要了解的重要概念：
 
-- **Régression :** Technique d'apprentissage supervisé pour prédire des valeurs continues à partir d'un ensemble donné d'entrées. L'idée est d'ajuster une courbe (ou une ligne) dans l'espace des caractéristiques qui contient le maximum de points de données. [Cliquez ici](https://en.wikipedia.org/wiki/Regression_analysis) pour plus d'informations.
-- **Support Vector Machine (SVM) :** Un type de modèle d'apprentissage automatique supervisé utilisé pour la classification, la régression et la détection des valeurs aberrantes. Le modèle est un hyperplan dans l'espace des caractéristiques, qui, dans le cas de la classification, agit comme une frontière, et dans le cas de la régression, agit comme la ligne de meilleur ajustement. Dans SVM, une fonction noyau est généralement utilisée pour transformer le jeu de données dans un espace de dimensions plus élevées, afin qu'elles puissent être facilement séparables. [Cliquez ici](https://en.wikipedia.org/wiki/Support-vector_machine) pour plus d'informations sur les SVM.
-- **Support Vector Regressor (SVR) :** Un type de SVM, pour trouver la ligne de meilleur ajustement (qui dans le cas de SVM est un hyperplan) qui contient le maximum de points de données.
+- **回歸：** 一種監督式學習技術，用於根據給定的輸入集預測連續值。其核心思想是找到特徵空間中包含最多數據點的曲線（或直線）。[點擊這裡](https://en.wikipedia.org/wiki/Regression_analysis)了解更多資訊。
+- **支持向量機（SVM）：** 一種監督式機器學習模型，用於分類、回歸和異常檢測。該模型在特徵空間中是一個超平面，分類時作為邊界，回歸時作為最佳擬合線。在 SVM 中，通常使用核函數將數據集轉換到更高維度的空間，以便更容易分離。[點擊這裡](https://en.wikipedia.org/wiki/Support-vector_machine)了解更多關於 SVM 的資訊。
+- **支持向量回歸（SVR）：** SVM 的一種，用於找到最佳擬合線（在 SVM 中是超平面），以包含最多的數據點。
 
-### Pourquoi SVR ? [^1]
+### 為什麼選擇 SVR？ [^1]
 
-Dans la dernière leçon, vous avez appris sur ARIMA, qui est une méthode statistique linéaire très réussie pour prévoir des données de séries temporelles. Cependant, dans de nombreux cas, les données de séries temporelles présentent une *non-linéarité*, qui ne peut pas être modélisée par des modèles linéaires. Dans de tels cas, la capacité de SVM à prendre en compte la non-linéarité dans les données pour les tâches de régression rend SVR efficace pour la prévision de séries temporelles.
+在上一課中，你學習了 ARIMA，它是一種非常成功的統計線性方法，用於時間序列數據的預測。然而，在許多情況下，時間序列數據具有*非線性*特性，這些特性無法通過線性模型映射。在這種情況下，SVM 在回歸任務中考慮數據非線性的能力使得 SVR 在時間序列預測中非常成功。
 
-## Exercice - construire un modèle SVR
+## 練習 - 構建 SVR 模型
 
-Les premières étapes de préparation des données sont les mêmes que celles de la leçon précédente sur [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
+數據準備的前幾步與上一課 [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA) 的步驟相同。
 
-Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) dans cette leçon et trouvez le fichier [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb).[^2]
+打開本課中的 [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) 資料夾，找到 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb) 文件。[^2]
 
-1. Exécutez le notebook et importez les bibliothèques nécessaires :  [^2]
+1. 運行 notebook 並導入必要的庫：[^2]
 
    ```python
    import sys
@@ -47,13 +56,13 @@ Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tre
    from common.utils import load_data, mape
    ```
 
-2. Chargez les données à partir du fichier `/data/energy.csv` dans un dataframe Pandas et jetez un œil :  [^2]
+2. 從 `/data/energy.csv` 文件中加載數據到 Pandas dataframe，並查看數據：[^2]
 
    ```python
    energy = load_data('../../data')[['load']]
    ```
 
-3. Tracez toutes les données d'énergie disponibles de janvier 2012 à décembre 2014 : [^2]
+3. 繪製 2012 年 1 月至 2014 年 12 月的所有能源數據：[^2]
 
    ```python
    energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -62,22 +71,22 @@ Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tre
    plt.show()
    ```
 
-   ![données complètes](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.mo.png)
+   ![完整數據](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
-   Maintenant, construisons notre modèle SVR.
+   現在，讓我們構建 SVR 模型。
 
-### Créer des ensembles de données d'entraînement et de test
+### 創建訓練和測試數據集
 
-Maintenant que vos données sont chargées, vous pouvez les séparer en ensembles d'entraînement et de test. Ensuite, vous allez remodeler les données pour créer un ensemble de données basé sur des étapes temporelles qui sera nécessaire pour le SVR. Vous entraînerez votre modèle sur l'ensemble d'entraînement. Une fois que le modèle a terminé son entraînement, vous évaluerez sa précision sur l'ensemble d'entraînement, l'ensemble de test, puis sur l'ensemble de données complet pour voir la performance globale. Vous devez vous assurer que l'ensemble de test couvre une période ultérieure par rapport à l'ensemble d'entraînement pour garantir que le modèle ne tire pas d'informations de périodes futures [^2] (une situation connue sous le nom de *Surapprentissage*).
+現在數據已加載，你可以將其分為訓練集和測試集。接著，你需要重塑數據以創建基於時間步長的數據集，這是 SVR 所需的。你將在訓練集上訓練模型。模型訓練完成後，你將在訓練集、測試集以及完整數據集上評估其準確性，以查看整體性能。需要確保測試集涵蓋的時間段晚於訓練集，以避免模型從未來時間段中獲取資訊 [^2]（這種情況稱為*過擬合*）。
 
-1. Allouez une période de deux mois du 1er septembre au 31 octobre 2014 à l'ensemble d'entraînement. L'ensemble de test comprendra la période de deux mois du 1er novembre au 31 décembre 2014 : [^2]
+1. 將 2014 年 9 月 1 日至 10 月 31 日的兩個月分配給訓練集。測試集包括 2014 年 11 月 1 日至 12 月 31 日的兩個月：[^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
    test_start_dt = '2014-12-30 00:00:00'
    ```
 
-2. Visualisez les différences : [^2]
+2. 可視化差異：[^2]
 
    ```python
    energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -88,13 +97,13 @@ Maintenant que vos données sont chargées, vous pouvez les séparer en ensemble
    plt.show()
    ```
 
-   ![données d'entraînement et de test](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.mo.png)
+   ![訓練和測試數據](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
-### Préparer les données pour l'entraînement
+### 為訓練準備數據
 
-Maintenant, vous devez préparer les données pour l'entraînement en effectuant un filtrage et une mise à l'échelle de vos données. Filtrez votre ensemble de données pour n'inclure que les périodes de temps et les colonnes dont vous avez besoin, et mettez à l'échelle pour garantir que les données sont projetées dans l'intervalle 0,1.
+現在，你需要通過篩選和縮放數據來準備訓練數據。篩選數據集以僅包含所需的時間段和列，並縮放數據以確保其投影在 0 到 1 的區間內。
 
-1. Filtrez l'ensemble de données original pour inclure uniquement les périodes de temps mentionnées par ensemble et n'incluez que la colonne nécessaire 'load' ainsi que la date : [^2]
+1. 篩選原始數據集以僅包含上述時間段的數據集，以及僅包含所需的列 'load' 和日期：[^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -109,22 +118,22 @@ Maintenant, vous devez préparer les données pour l'entraînement en effectuant
    Test data shape:  (48, 1)
    ```
    
-2. Mettez à l'échelle les données d'entraînement pour qu'elles soient dans la plage (0, 1) : [^2]
+2. 將訓練數據縮放到範圍 (0, 1)：[^2]
 
    ```python
    scaler = MinMaxScaler()
    train['load'] = scaler.fit_transform(train)
    ```
    
-4. Maintenant, mettez à l'échelle les données de test : [^2]
+4. 現在，縮放測試數據：[^2]
 
    ```python
    test['load'] = scaler.transform(test)
    ```
 
-### Créer des données avec des étapes temporelles [^1]
+### 創建基於時間步長的數據 [^1]
 
-Pour le SVR, vous transformez les données d'entrée pour qu'elles soient sous la forme `[batch, timesteps]`. So, you reshape the existing `train_data` and `test_data` de sorte qu'il y ait une nouvelle dimension qui fait référence aux étapes temporelles. 
+對於 SVR，你需要將輸入數據轉換為 `[batch, timesteps]` 的形式。因此，你需要重塑現有的 `train_data` 和 `test_data`，以便新增一個維度表示時間步長。
 
 ```python
 # Converting to numpy arrays
@@ -132,13 +141,13 @@ train_data = train.values
 test_data = test.values
 ```
 
-Pour cet exemple, nous prenons `timesteps = 5`. Ainsi, les entrées du modèle sont les données pour les 4 premières étapes temporelles, et la sortie sera les données pour la 5ème étape temporelle.
+在此示例中，我們取 `timesteps = 5`。因此，模型的輸入是前 4 個時間步長的數據，輸出是第 5 個時間步長的數據。
 
 ```python
 timesteps=5
 ```
 
-Conversion des données d'entraînement en tenseur 2D à l'aide de la compréhension de liste imbriquée :
+使用嵌套列表推導式將訓練數據轉換為 2D 張量：
 
 ```python
 train_data_timesteps=np.array([[j for j in train_data[i:i+timesteps]] for i in range(0,len(train_data)-timesteps+1)])[:,:,0]
@@ -149,7 +158,7 @@ train_data_timesteps.shape
 (1412, 5)
 ```
 
-Conversion des données de test en tenseur 2D :
+將測試數據轉換為 2D 張量：
 
 ```python
 test_data_timesteps=np.array([[j for j in test_data[i:i+timesteps]] for i in range(0,len(test_data)-timesteps+1)])[:,:,0]
@@ -160,7 +169,7 @@ test_data_timesteps.shape
 (44, 5)
 ```
 
-Sélection des entrées et sorties des données d'entraînement et de test :
+選擇訓練和測試數據的輸入和輸出：
 
 ```python
 x_train, y_train = train_data_timesteps[:,:timesteps-1],train_data_timesteps[:,[timesteps-1]]
@@ -175,21 +184,21 @@ print(x_test.shape, y_test.shape)
 (44, 4) (44, 1)
 ```
 
-### Implémenter SVR [^1]
+### 實現 SVR [^1]
 
-Il est maintenant temps d'implémenter SVR. Pour en savoir plus sur cette implémentation, vous pouvez consulter [cette documentation](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Pour notre implémentation, nous suivons ces étapes :
+現在是時候實現 SVR 了。要了解更多有關此實現的資訊，你可以參考[此文件](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)。在我們的實現中，我們遵循以下步驟：
 
-1. Définir le modèle en appelant `SVR()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
-  2. Prepare the model for the training data by calling the `fit()` function
-  3. Make predictions calling the `predict()` fonction
+1. 通過調用 `SVR()` 並傳入模型超參數：kernel、gamma、c 和 epsilon 來定義模型
+2. 通過調用 `fit()` 函數準備訓練數據的模型
+3. 通過調用 `predict()` 函數進行預測
 
-Maintenant, nous créons un modèle SVR. Ici, nous utilisons le [noyau RBF](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), et définissons les hyperparamètres gamma, C et epsilon respectivement à 0.5, 10 et 0.05.
+現在我們創建一個 SVR 模型。在此，我們使用 [RBF 核函數](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel)，並將超參數 gamma、C 和 epsilon 分別設置為 0.5、10 和 0.05。
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
 ```
 
-#### Ajuster le modèle sur les données d'entraînement [^1]
+#### 在訓練數據上擬合模型 [^1]
 
 ```python
 model.fit(x_train, y_train[:,0])
@@ -200,7 +209,7 @@ SVR(C=10, cache_size=200, coef0=0.0, degree=3, epsilon=0.05, gamma=0.5,
     kernel='rbf', max_iter=-1, shrinking=True, tol=0.001, verbose=False)
 ```
 
-#### Faire des prédictions avec le modèle [^1]
+#### 進行模型預測 [^1]
 
 ```python
 y_train_pred = model.predict(x_train).reshape(-1,1)
@@ -213,13 +222,13 @@ print(y_train_pred.shape, y_test_pred.shape)
 (1412, 1) (44, 1)
 ```
 
-Vous avez construit votre SVR ! Maintenant, nous devons l'évaluer.
+你已經構建了 SVR！現在我們需要評估它。
 
-### Évaluer votre modèle [^1]
+### 評估你的模型 [^1]
 
-Pour l'évaluation, nous allons d'abord remettre les données à leur échelle d'origine. Ensuite, pour vérifier la performance, nous tracerons le graphique des séries temporelles originales et prédites, et nous imprimerons également le résultat MAPE.
+為了評估，首先我們將數據縮放回原始比例。然後，為了檢查性能，我們將繪製原始和預測的時間序列圖，並打印 MAPE 結果。
 
-Mettez à l'échelle les sorties prédites et originales :
+將預測和原始輸出縮放：
 
 ```python
 # Scaling the predictions
@@ -237,9 +246,9 @@ y_test = scaler.inverse_transform(y_test)
 print(len(y_train), len(y_test))
 ```
 
-#### Vérifier la performance du modèle sur les données d'entraînement et de test [^1]
+#### 檢查模型在訓練和測試數據上的性能 [^1]
 
-Nous extrayons les horodatages de l'ensemble de données pour les afficher sur l'axe x de notre graphique. Notez que nous utilisons les premiers ```timesteps-1``` valeurs comme entrée pour la première sortie, donc les horodatages pour la sortie commenceront après cela.
+我們從數據集中提取時間戳，以顯示在圖表的 x 軸上。注意，我們使用前 ```timesteps-1``` 個值作為第一個輸出的輸入，因此輸出的時間戳將從那之後開始。
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -252,7 +261,7 @@ print(len(train_timestamps), len(test_timestamps))
 1412 44
 ```
 
-Tracez les prédictions pour les données d'entraînement :
+繪製訓練數據的預測：
 
 ```python
 plt.figure(figsize=(25,6))
@@ -264,9 +273,9 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![prédiction des données d'entraînement](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.mo.png)
+![訓練數據預測](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
-Imprimez le MAPE pour les données d'entraînement
+打印訓練數據的 MAPE
 
 ```python
 print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
@@ -276,7 +285,7 @@ print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
 MAPE for training data: 1.7195710200875551 %
 ```
 
-Tracez les prédictions pour les données de test
+繪製測試數據的預測
 
 ```python
 plt.figure(figsize=(10,3))
@@ -287,9 +296,9 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![prédiction des données de test](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.mo.png)
+![測試數據預測](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
-Imprimez le MAPE pour les données de test
+打印測試數據的 MAPE
 
 ```python
 print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
@@ -299,9 +308,9 @@ print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
 MAPE for testing data:  1.2623790187854018 %
 ```
 
-🏆 Vous avez obtenu un très bon résultat sur l'ensemble de test !
+🏆 你在測試數據集上取得了非常好的結果！
 
-### Vérifier la performance du modèle sur l'ensemble de données complet [^1]
+### 檢查模型在完整數據集上的性能 [^1]
 
 ```python
 # Extracting load values as numpy array
@@ -343,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![prédiction des données complètes](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.mo.png)
+![完整數據預測](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -353,29 +362,32 @@ print('MAPE: ', mape(Y_pred, Y)*100, '%')
 MAPE:  2.0572089029888656 %
 ```
 
-🏆 De très beaux graphiques, montrant un modèle avec une bonne précision. Bien joué !
+🏆 非常棒的圖表，顯示出模型具有良好的準確性。做得好！
 
 ---
 
-## 🚀Défi
+## 🚀挑戰
 
-- Essayez de modifier les hyperparamètres (gamma, C, epsilon) lors de la création du modèle et évaluez les données pour voir quel ensemble d'hyperparamètres donne les meilleurs résultats sur les données de test. Pour en savoir plus sur ces hyperparamètres, vous pouvez vous référer au document [ici](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
-- Essayez d'utiliser différentes fonctions noyau pour le modèle et analysez leurs performances sur l'ensemble de données. Un document utile peut être trouvé [ici](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
-- Essayez d'utiliser différentes valeurs pour `timesteps` afin que le modèle puisse se retourner pour faire des prédictions.
+- 嘗試在創建模型時調整超參數（gamma、C、epsilon），並在數據上進行評估，以查看哪組超參數在測試數據上表現最佳。要了解更多關於這些超參數的資訊，你可以參考[此文件](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel)。 
+- 嘗試使用不同的核函數進行模型訓練，並分析它們在數據集上的表現。相關文件可以在[這裡](https://scikit-learn.org/stable/modules/svm.html#kernel-functions)找到。
+- 嘗試為模型使用不同的 `timesteps` 值，讓模型回溯以進行預測。
 
-## [Quiz après la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revue & Auto-apprentissage
+## 回顧與自學
 
-Cette leçon avait pour but d'introduire l'application de SVR pour la prévision de séries temporelles. Pour en savoir plus sur SVR, vous pouvez consulter [ce blog](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Cette [documentation sur scikit-learn](https://scikit-learn.org/stable/modules/svm.html) fournit une explication plus complète sur les SVM en général, les [SVR](https://scikit-learn.org/stable/modules/svm.html#regression) et également d'autres détails d'implémentation tels que les différentes [fonctions noyau](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) qui peuvent être utilisées, ainsi que leurs paramètres.
+本課旨在介紹 SVR 在時間序列預測中的應用。要了解更多關於 SVR 的資訊，你可以參考[這篇博客](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/)。此[scikit-learn 文件](https://scikit-learn.org/stable/modules/svm.html)提供了更全面的解釋，包括 SVM 的一般概念、[SVR](https://scikit-learn.org/stable/modules/svm.html#regression)，以及其他實現細節，例如可用的不同[核函數](https://scikit-learn.org/stable/modules/svm.html#kernel-functions)及其參數。
 
-## Devoir
+## 作業
 
-[Un nouveau modèle SVR](assignment.md)
+[一個新的 SVR 模型](assignment.md)
 
-## Crédits
+## 致謝
 
-[^1]: Le texte, le code et la sortie dans cette section ont été contribué par [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
-[^2]: Le texte, le code et la sortie dans cette section ont été pris de [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
+[^1]: 本節中的文字、代碼和輸出由 [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD) 貢獻
+[^2]: 本節中的文字、代碼和輸出取自 [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
 
-I'm sorry, but I cannot assist with that.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。

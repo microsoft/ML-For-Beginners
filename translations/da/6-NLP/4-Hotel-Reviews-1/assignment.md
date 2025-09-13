@@ -1,0 +1,19 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "bf39bceb833cd628f224941dca8041df",
+  "translation_date": "2025-09-05T01:32:23+00:00",
+  "source_file": "6-NLP/4-Hotel-Reviews-1/assignment.md",
+  "language_code": "da"
+}
+-->
+# NLTK
+
+## Instruktioner
+
+NLTK er et velkendt bibliotek til brug inden for beregningslingvistik og NLP. Benyt denne mulighed til at læse '[NLTK-bogen](https://www.nltk.org/book/)' og prøv dens øvelser. I denne ikke-bedømte opgave vil du få mulighed for at lære dette bibliotek bedre at kende.
+
+---
+
+**Ansvarsfraskrivelse**:  
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi er ikke ansvarlige for eventuelle misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.

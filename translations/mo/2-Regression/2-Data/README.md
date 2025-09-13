@@ -1,62 +1,71 @@
-# Build a regression model using Scikit-learn: prepare and visualize data
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "7c077988328ebfe33b24d07945f16eca",
+  "translation_date": "2025-09-06T09:08:43+00:00",
+  "source_file": "2-Regression/2-Data/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用 Scikit-learn 建立回歸模型：準備並視覺化數據
 
-![Data visualization infographic](../../../../translated_images/data-visualization.54e56dded7c1a804d00d027543f2881cb32da73aeadda2d4a4f10f3497526114.mo.png)
+![數據視覺化資訊圖表](../../../../2-Regression/2-Data/images/data-visualization.png)
 
-Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+資訊圖表由 [Dasani Madipalli](https://twitter.com/dasani_decoded) 製作
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [This lesson is available in R!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
+> ### [本課程也提供 R 版本！](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
-## Introduction
+## 簡介
 
-Maintenant que vous avez les outils nécessaires pour commencer à aborder la construction de modèles d'apprentissage automatique avec Scikit-learn, vous êtes prêt à commencer à poser des questions sur vos données. En travaillant avec des données et en appliquant des solutions ML, il est très important de savoir poser la bonne question pour débloquer correctement le potentiel de votre ensemble de données.
+現在您已經準備好使用 Scikit-learn 開始建立機器學習模型，您可以開始向數據提出問題了。在處理數據並應用機器學習解決方案時，了解如何提出正確的問題以充分發揮數據的潛力是非常重要的。
 
-Dans cette leçon, vous apprendrez :
+在本課程中，您將學到：
 
-- Comment préparer vos données pour la construction de modèles.
-- Comment utiliser Matplotlib pour la visualisation des données.
+- 如何為模型建立準備數據。
+- 如何使用 Matplotlib 進行數據視覺化。
 
-## Poser la bonne question sur vos données
+## 向數據提出正確的問題
 
-La question à laquelle vous devez répondre déterminera quel type d'algorithmes d'apprentissage automatique vous allez utiliser. Et la qualité de la réponse que vous obtiendrez dépendra fortement de la nature de vos données.
+您需要回答的問題將決定您使用哪種類型的機器學習算法。而您得到答案的質量將在很大程度上取決於數據的性質。
 
-Jetez un œil aux [données](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) fournies pour cette leçon. Vous pouvez ouvrir ce fichier .csv dans VS Code. Une rapide inspection montre immédiatement qu'il y a des blancs et un mélange de chaînes de caractères et de données numériques. Il y a aussi une colonne étrange appelée 'Package' où les données sont un mélange de 'sacs', 'bacs' et d'autres valeurs. Les données, en fait, sont un peu en désordre.
+看看本課程提供的[數據](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv)。您可以在 VS Code 中打開這個 .csv 文件。快速瀏覽後，您會發現其中有空白值，並且混合了字符串和數字數據。此外，還有一個名為 "Package" 的奇怪列，其中的數據混合了 "sacks"、"bins" 和其他值。事實上，這些數據有些混亂。
 
-[![ML for beginners - How to Analyze and Clean a Dataset](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML for beginners - How to Analyze and Clean a Dataset")
+[![機器學習初學者 - 如何分析和清理數據集](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "機器學習初學者 - 如何分析和清理數據集")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une courte vidéo montrant comment préparer les données pour cette leçon.
+> 🎥 點擊上方圖片觀看一段短片，了解如何準備本課程的數據。
 
-En fait, il n'est pas très courant de recevoir un ensemble de données qui soit complètement prêt à l'emploi pour créer un modèle ML. Dans cette leçon, vous apprendrez à préparer un ensemble de données brut en utilisant des bibliothèques Python standard. Vous apprendrez également diverses techniques pour visualiser les données.
+事實上，很少能直接獲得完全準備好的數據集來建立機器學習模型。在本課程中，您將學習如何使用標準 Python 庫準備原始數據集。您還將學習各種視覺化數據的技術。
 
-## Étude de cas : 'le marché des citrouilles'
+## 案例研究：'南瓜市場'
 
-Dans ce dossier, vous trouverez un fichier .csv dans le dossier racine `data` appelé [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) qui contient 1757 lignes de données sur le marché des citrouilles, triées par ville. Il s'agit de données brutes extraites des [Rapports Standards des Marchés de Cultures Spécialisées](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribués par le Département de l'Agriculture des États-Unis.
+在此文件夾中，您會在根目錄的 `data` 文件夾中找到一個名為 [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) 的 .csv 文件，其中包含 1757 行有關南瓜市場的數據，按城市分組。這是從美國農業部發布的[特殊作物終端市場標準報告](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice)中提取的原始數據。
 
-### Préparation des données
+### 準備數據
 
-Ces données sont dans le domaine public. Elles peuvent être téléchargées dans plusieurs fichiers séparés, par ville, depuis le site Web de l'USDA. Pour éviter trop de fichiers séparés, nous avons concaténé toutes les données des villes dans une seule feuille de calcul, donc nous avons déjà un peu _préparé_ les données. Ensuite, examinons de plus près les données.
+這些數據屬於公共領域。它可以從 USDA 網站下載，按城市分成多個文件。為了避免過多的文件，我們已將所有城市數據合併到一個電子表格中，因此我們已經對數據進行了一些_準備_。接下來，讓我們仔細看看這些數據。
 
-### Les données sur les citrouilles - premières conclusions
+### 南瓜數據 - 初步結論
 
-Que remarquez-vous à propos de ces données ? Vous avez déjà vu qu'il y a un mélange de chaînes, de nombres, de blancs et de valeurs étranges que vous devez comprendre.
+您對這些數據有什麼看法？您可能已經注意到其中混合了字符串、數字、空白值和一些奇怪的值，這些都需要進一步理解。
 
-Quelle question pouvez-vous poser à partir de ces données, en utilisant une technique de régression ? Que diriez-vous de "Prédire le prix d'une citrouille à vendre pendant un mois donné". En regardant à nouveau les données, il y a quelques modifications que vous devez apporter pour créer la structure de données nécessaire à cette tâche.
+使用回歸技術，您可以向這些數據提出什麼問題？例如："預測某個月份出售的南瓜價格"。再次查看數據，您需要進行一些更改以創建適合此任務的數據結構。
 
-## Exercice - analyser les données sur les citrouilles
+## 練習 - 分析南瓜數據
 
-Utilisons [Pandas](https://pandas.pydata.org/), (le nom signifie `Python Data Analysis`) un outil très utile pour structurer les données, pour analyser et préparer ces données sur les citrouilles.
+讓我們使用 [Pandas](https://pandas.pydata.org/)（名稱代表 `Python Data Analysis`），這是一個非常有用的工具，用於整理數據，來分析和準備這些南瓜數據。
 
-### D'abord, vérifiez les dates manquantes
+### 首先，檢查是否有缺失日期
 
-Vous devrez d'abord prendre des mesures pour vérifier les dates manquantes :
+您需要首先檢查是否有缺失日期：
 
-1. Convertissez les dates au format mois (ce sont des dates américaines, donc le format est `MM/DD/YYYY`).
-2. Extrayez le mois dans une nouvelle colonne.
+1. 將日期轉換為月份格式（這些是美國日期，格式為 `MM/DD/YYYY`）。
+2. 提取月份到新列。
 
-Ouvrez le fichier _notebook.ipynb_ dans Visual Studio Code et importez la feuille de calcul dans un nouveau dataframe Pandas.
+在 Visual Studio Code 中打開 _notebook.ipynb_ 文件，並將電子表格導入到新的 Pandas dataframe 中。
 
-1. Utilisez la fonction `head()` pour afficher les cinq premières lignes.
+1. 使用 `head()` 函數查看前五行。
 
     ```python
     import pandas as pd
@@ -64,30 +73,30 @@ Ouvrez le fichier _notebook.ipynb_ dans Visual Studio Code et importez la feuill
     pumpkins.head()
     ```
 
-    ✅ Quelle fonction utiliseriez-vous pour afficher les cinq dernières lignes ?
+    ✅ 您會使用什麼函數來查看最後五行？
 
-1. Vérifiez s'il y a des données manquantes dans le dataframe actuel :
+1. 檢查當前 dataframe 中是否有缺失數據：
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    Il y a des données manquantes, mais cela ne devrait peut-être pas poser de problème pour la tâche à accomplir.
+    有缺失數據，但可能對當前任務影響不大。
 
-1. Pour faciliter le travail avec votre dataframe, sélectionnez uniquement les colonnes dont vous avez besoin, en utilisant `loc` function which extracts from the original dataframe a group of rows (passed as first parameter) and columns (passed as second parameter). The expression `:` dans le cas ci-dessous signifie "toutes les lignes".
+1. 為了使 dataframe 更易於操作，使用 `loc` 函數選擇您需要的列。`loc` 函數從原始 dataframe 中提取一組行（作為第一個參數）和列（作為第二個參數）。以下表達式中的 `:` 表示 "所有行"。
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
     pumpkins = pumpkins.loc[:, columns_to_select]
     ```
 
-### Deuxièmement, déterminez le prix moyen d'une citrouille
+### 其次，確定南瓜的平均價格
 
-Réfléchissez à la manière de déterminer le prix moyen d'une citrouille dans un mois donné. Quelles colonnes choisiriez-vous pour cette tâche ? Indice : vous aurez besoin de 3 colonnes.
+思考如何確定某個月份南瓜的平均價格。您會選擇哪些列來完成此任務？提示：您需要 3 列。
 
-Solution : prenez la moyenne des colonnes `Low Price` and `High Price` pour remplir la nouvelle colonne Prix, et convertissez la colonne Date pour n'afficher que le mois. Heureusement, selon la vérification ci-dessus, il n'y a pas de données manquantes pour les dates ou les prix.
+解決方案：取 `Low Price` 和 `High Price` 列的平均值來填充新的 Price 列，並將 Date 列轉換為僅顯示月份。幸運的是，根據上述檢查，日期和價格沒有缺失數據。
 
-1. Pour calculer la moyenne, ajoutez le code suivant :
+1. 要計算平均值，添加以下代碼：
 
     ```python
     price = (pumpkins['Low Price'] + pumpkins['High Price']) / 2
@@ -96,37 +105,37 @@ Solution : prenez la moyenne des colonnes `Low Price` and `High Price` pour remp
 
     ```
 
-   ✅ N'hésitez pas à imprimer les données que vous souhaitez vérifier en utilisant `print(month)`.
+   ✅ 隨時使用 `print(month)` 打印任何您想檢查的數據。
 
-2. Maintenant, copiez vos données converties dans un nouveau dataframe Pandas :
+2. 現在，將轉換後的數據複製到新的 Pandas dataframe 中：
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Imprimer votre dataframe vous montrera un ensemble de données propre et ordonné sur lequel vous pourrez construire votre nouveau modèle de régression.
+    打印出您的 dataframe，您將看到一個乾淨整潔的數據集，您可以基於此建立新的回歸模型。
 
-### Mais attendez ! Il y a quelque chose d'étrange ici
+### 等等！這裡有些奇怪的地方
 
-Si vous regardez la colonne `Package` column, pumpkins are sold in many different configurations. Some are sold in '1 1/9 bushel' measures, and some in '1/2 bushel' measures, some per pumpkin, some per pound, and some in big boxes with varying widths.
+如果您查看 `Package` 列，南瓜以多種不同的配置出售。有些以 "1 1/9 bushel" 測量，有些以 "1/2 bushel" 測量，有些按南瓜個數出售，有些按磅出售，還有些以不同寬度的大箱出售。
 
-> Pumpkins seem very hard to weigh consistently
+> 南瓜似乎很難一致地稱重
 
-Digging into the original data, it's interesting that anything with `Unit of Sale` equalling 'EACH' or 'PER BIN' also have the `Package` type per inch, per bin, or 'each'. Pumpkins seem to be very hard to weigh consistently, so let's filter them by selecting only pumpkins with the string 'bushel' in their `Package`.
+深入研究原始數據，發現 `Unit of Sale` 為 "EACH" 或 "PER BIN" 的項目，其 `Package` 類型也為每英寸、每箱或 "each"。南瓜似乎很難一致地稱重，因此讓我們通過選擇 `Package` 列中包含 "bushel" 字符串的南瓜來進行篩選。
 
-1. Ajoutez un filtre en haut du fichier, sous l'importation initiale du .csv :
+1. 在文件頂部的初始 .csv 導入下添加篩選器：
 
     ```python
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    Si vous imprimez les données maintenant, vous pouvez voir que vous n'obtenez que les 415 lignes de données contenant des citrouilles par le boisseau.
+    如果您現在打印數據，您會看到只有大約 415 行數據包含以 bushel 為單位的南瓜。
 
-### Mais attendez ! Il y a une chose de plus à faire
+### 等等！還有一件事需要做
 
-Avez-vous remarqué que la quantité de boisseaux varie par ligne ? Vous devez normaliser les prix afin de montrer le prix par boisseau, donc faites quelques calculs pour le standardiser.
+您是否注意到每行的 bushel 數量不同？您需要標準化定價，以顯示每 bushel 的價格，因此需要進行一些數學運算來標準化。
 
-1. Ajoutez ces lignes après le bloc créant le dataframe new_pumpkins :
+1. 在創建 new_pumpkins dataframe 的代碼塊後添加以下行：
 
     ```python
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1 1/9'), 'Price'] = price/(1 + 1/9)
@@ -134,38 +143,38 @@ Avez-vous remarqué que la quantité de boisseaux varie par ligne ? Vous devez n
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ Selon [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), le poids d'un boisseau dépend du type de produit, car c'est une mesure de volume. "Un boisseau de tomates, par exemple, est censé peser 56 livres... Les feuilles et les légumes prennent plus de place avec moins de poids, donc un boisseau d'épinards ne pèse que 20 livres." C'est assez compliqué ! Ne nous embêtons pas à faire une conversion de boisseau en livres, et plutôt à établir le prix par boisseau. Tout cet examen des boisseaux de citrouilles montre cependant à quel point il est très important de comprendre la nature de vos données !
+✅ 根據 [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308)，bushel 的重量取決於農產品的類型，因為它是一種體積測量。"例如，一 bushel 的番茄應該重 56 磅... 葉子和綠色蔬菜佔用更多空間但重量較輕，因此一 bushel 的菠菜僅重 20 磅。" 這一切都相當複雜！我們不需要進行 bushel 到磅的轉換，而是直接按 bushel 定價。然而，所有這些對南瓜 bushel 的研究表明，了解數據的性質是多麼重要！
 
-Maintenant, vous pouvez analyser le prix par unité en fonction de leur mesure en boisseaux. Si vous imprimez les données une fois de plus, vous pouvez voir comment c'est standardisé.
+現在，您可以根據 bushel 測量分析每單位的定價。如果您再次打印數據，您可以看到它已被標準化。
 
-✅ Avez-vous remarqué que les citrouilles vendues par demi-boisseau sont très chères ? Pouvez-vous deviner pourquoi ? Indice : les petites citrouilles sont beaucoup plus chères que les grandes, probablement parce qu'il y en a beaucoup plus par boisseau, étant donné l'espace inutilisé occupé par une grande citrouille creuse.
+✅ 您是否注意到按半 bushel 出售的南瓜非常昂貴？您能找出原因嗎？提示：小南瓜比大南瓜更昂貴，可能是因為每 bushel 中有更多的小南瓜，而大南瓜的空心部分佔用了更多空間。
 
-## Stratégies de visualisation
+## 視覺化策略
 
-Une partie du rôle du data scientist est de démontrer la qualité et la nature des données avec lesquelles ils travaillent. Pour ce faire, ils créent souvent des visualisations intéressantes, ou des graphiques, montrant différents aspects des données. De cette manière, ils peuvent montrer visuellement les relations et les lacunes qui seraient autrement difficiles à découvrir.
+數據科學家的部分職責是展示他們正在處理的數據的質量和性質。為此，他們通常會創建有趣的視覺化，例如圖表、折線圖和柱狀圖，展示數據的不同方面。通過這種方式，他們能夠直觀地展示數據中難以察覺的關係和差距。
 
-[![ML for beginners - How to Visualize Data with Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML for beginners - How to Visualize Data with Matplotlib")
+[![機器學習初學者 - 如何使用 Matplotlib 視覺化數據](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "機器學習初學者 - 如何使用 Matplotlib 視覺化數據")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une courte vidéo montrant comment visualiser les données pour cette leçon.
+> 🎥 點擊上方圖片觀看一段短片，了解如何視覺化本課程的數據。
 
-Les visualisations peuvent également aider à déterminer la technique d'apprentissage automatique la plus appropriée pour les données. Un nuage de points qui semble suivre une ligne, par exemple, indique que les données sont un bon candidat pour un exercice de régression linéaire.
+視覺化還可以幫助確定最適合數據的機器學習技術。例如，似乎遵循一條線的散點圖表明該數據非常適合線性回歸練習。
 
-Une bibliothèque de visualisation de données qui fonctionne bien dans les notebooks Jupyter est [Matplotlib](https://matplotlib.org/) (que vous avez également vue dans la leçon précédente).
+一個在 Jupyter notebook 中效果良好的數據視覺化庫是 [Matplotlib](https://matplotlib.org/)（您在上一課中也見過）。
 
-> Obtenez plus d'expérience avec la visualisation des données dans [ces tutoriels](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
+> 在[這些教程](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott)中獲得更多數據視覺化的經驗。
 
-## Exercice - expérimentez avec Matplotlib
+## 練習 - 嘗試使用 Matplotlib
 
-Essayez de créer quelques graphiques de base pour afficher le nouveau dataframe que vous venez de créer. Que montrerait un graphique linéaire de base ?
+嘗試創建一些基本圖表來顯示您剛剛創建的新 dataframe。基本折線圖會顯示什麼？
 
-1. Importez Matplotlib en haut du fichier, sous l'importation de Pandas :
+1. 在文件頂部的 Pandas 導入下導入 Matplotlib：
 
     ```python
     import matplotlib.pyplot as plt
     ```
 
-1. Relancez l'ensemble du notebook pour le rafraîchir.
-1. En bas du notebook, ajoutez une cellule pour tracer les données sous forme de boîte :
+1. 重新運行整個 notebook 以刷新。
+1. 在 notebook 底部添加一個單元格，將數據繪製為框圖：
 
     ```python
     price = new_pumpkins.Price
@@ -174,41 +183,44 @@ Essayez de créer quelques graphiques de base pour afficher le nouveau dataframe
     plt.show()
     ```
 
-    ![Un nuage de points montrant la relation entre le prix et le mois](../../../../translated_images/scatterplot.b6868f44cbd2051c6680ccdbb1510697d06a3ff6cd4abda656f5009c0ed4e3fc.mo.png)
+    ![顯示價格與月份關係的散點圖](../../../../2-Regression/2-Data/images/scatterplot.png)
 
-    Est-ce un graphique utile ? Y a-t-il quelque chose qui vous surprend ?
+    這是一個有用的圖表嗎？有什麼讓您感到驚訝嗎？
 
-    Ce n'est pas particulièrement utile car tout ce qu'il fait, c'est afficher vos données sous forme de points dispersés dans un mois donné.
+    它並不是特別有用，因為它僅僅顯示了某個月份的數據分佈。
 
-### Rendez-le utile
+### 使其更有用
 
-Pour que les graphiques affichent des données utiles, vous devez généralement regrouper les données d'une manière ou d'une autre. Essayons de créer un graphique où l'axe des y montre les mois et les données démontrent la distribution des données.
+要使圖表顯示有用的數據，通常需要以某種方式對數據進行分組。讓我們嘗試創建一個圖表，其中 y 軸顯示月份，數據展示數據的分佈。
 
-1. Ajoutez une cellule pour créer un graphique à barres groupées :
+1. 添加一個單元格以創建分組柱狀圖：
 
     ```python
     new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Un graphique à barres montrant la relation entre le prix et le mois](../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.mo.png)
+    ![顯示價格與月份關係的柱狀圖](../../../../2-Regression/2-Data/images/barchart.png)
 
-    C'est une visualisation de données plus utile ! Il semble indiquer que le prix le plus élevé des citrouilles se produit en septembre et octobre. Cela correspond-il à vos attentes ? Pourquoi ou pourquoi pas ?
+    這是一個更有用的數據視覺化！它似乎表明南瓜的最高價格出現在九月和十月。這符合您的預期嗎？為什麼？
 
 ---
 
-## 🚀Défi
+## 🚀挑戰
 
-Explorez les différents types de visualisations que Matplotlib propose. Quels types sont les plus appropriés pour les problèmes de régression ?
+探索 Matplotlib 提供的不同類型的視覺化。哪些類型最適合回歸問題？
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Révision & Auto-apprentissage
+## 回顧與自學
 
-Examinez les nombreuses façons de visualiser les données. Dressez une liste des différentes bibliothèques disponibles et notez lesquelles sont les meilleures pour des types de tâches données, par exemple, les visualisations 2D contre les visualisations 3D. Que découvrez-vous ?
+看看數據視覺化的多種方式。列出可用的各種庫，並記錄哪些庫最適合特定類型的任務，例如 2D 視覺化與 3D 視覺化。您發現了什麼？
 
-## Devoir
+## 作業
 
-[Exploration de la visualisation](assignment.md)
+[探索視覺化](assignment.md)
 
-I'm sorry, but I can't translate the text into "mo" as it appears to refer to a language or dialect that I don't recognize. If you meant a specific language or if "mo" stands for a particular translation style, please provide more details so I can assist you better.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

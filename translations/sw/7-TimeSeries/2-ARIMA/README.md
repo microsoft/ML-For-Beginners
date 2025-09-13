@@ -1,44 +1,53 @@
-# Utabiri wa mfululizo wa muda na ARIMA
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T15:28:13+00:00",
+  "source_file": "7-TimeSeries/2-ARIMA/README.md",
+  "language_code": "sw"
+}
+-->
+# Utabiri wa mfululizo wa muda kwa kutumia ARIMA
 
-Katika somo lililopita, ulijifunza kidogo kuhusu utabiri wa mfululizo wa muda na kupakia seti ya data inayoonyesha mabadiliko ya mzigo wa umeme kwa kipindi cha muda.
+Katika somo lililopita, ulijifunza kidogo kuhusu utabiri wa mfululizo wa muda na ukapakia seti ya data inayoonyesha mabadiliko ya mzigo wa umeme kwa kipindi fulani cha muda.
 
 [![Utangulizi wa ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Utangulizi wa ARIMA")
 
 > 🎥 Bofya picha hapo juu kwa video: Utangulizi mfupi wa mifano ya ARIMA. Mfano umefanywa kwa R, lakini dhana ni za ulimwengu wote.
 
-## [Jaribio la kabla ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Jaribio la kabla ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Utangulizi
 
-Katika somo hili, utagundua njia maalum ya kujenga mifano na [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Mifano ya ARIMA inafaa hasa kwa data inayoonyesha [kutokuwa na msimamo](https://wikipedia.org/wiki/Stationary_process).
+Katika somo hili, utagundua njia maalum ya kujenga mifano kwa kutumia [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Mifano ya ARIMA inafaa hasa kwa data inayoonyesha [kutokuwa na stationarity](https://wikipedia.org/wiki/Stationary_process).
 
 ## Dhana za jumla
 
-Ili kuweza kufanya kazi na ARIMA, kuna dhana kadhaa unazohitaji kujua:
+Ili uweze kufanya kazi na ARIMA, kuna dhana kadhaa unazohitaji kujua:
 
-- 🎓 **Ukimya**. Kutoka muktadha wa takwimu, ukimya unahusu data ambayo usambazaji wake haukabadilika inapohamishwa kwa muda. Data isiyo na ukimya, basi, inaonyesha mabadiliko kutokana na mwenendo ambao lazima ubadilishwe ili kuchambuliwa. Msimu, kwa mfano, unaweza kuanzisha mabadiliko katika data na inaweza kuondolewa kwa mchakato wa 'seasonal-differencing'.
+- 🎓 **Stationarity**. Katika muktadha wa takwimu, stationarity inahusu data ambayo usambazaji wake hauwezi kubadilika inapohamishwa kwa muda. Data isiyo na stationarity, basi, inaonyesha mabadiliko kutokana na mwenendo ambayo lazima ibadilishwe ili kuchambuliwa. Msimu, kwa mfano, unaweza kuleta mabadiliko katika data na inaweza kuondolewa kwa mchakato wa 'seasonal-differencing'.
 
-- 🎓 **[Kutoa tofauti](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Kutoa tofauti data, tena kutoka muktadha wa takwimu, inahusu mchakato wa kubadilisha data isiyo na ukimya ili kuifanya kuwa na ukimya kwa kuondoa mwenendo wake usiokuwa na msimamo. "Kutoa tofauti kunatoa mabadiliko katika kiwango cha mfululizo wa muda, kuondoa mwenendo na msimu na hivyo kuleta usawa wa wastani wa mfululizo wa muda." [Karatasi ya Shixiong et al](https://arxiv.org/abs/1904.07632)
+- 🎓 **[Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Differencing ya data, tena kutoka muktadha wa takwimu, inahusu mchakato wa kubadilisha data isiyo na stationarity ili kuifanya iwe stationary kwa kuondoa mwenendo wake usio wa mara kwa mara. "Differencing huondoa mabadiliko katika kiwango cha mfululizo wa muda, kuondoa mwenendo na msimu na hivyo kuimarisha wastani wa mfululizo wa muda." [Karatasi ya Shixiong et al](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA katika muktadha wa mfululizo wa muda
 
-Hebu tuvunje sehemu za ARIMA ili kuelewa vyema jinsi inavyotusaidia kuunda mifano ya mfululizo wa muda na kutusaidia kufanya utabiri dhidi yake.
+Hebu tuchambue sehemu za ARIMA ili kuelewa vyema jinsi inavyotusaidia kuunda mifano ya mfululizo wa muda na kutusaidia kufanya utabiri dhidi yake.
 
-- **AR - kwa AutoRegressive**. Mifano ya autoregressive, kama jina linavyopendekeza, huangalia 'nyuma' kwa wakati kuchambua thamani za awali katika data yako na kufanya mawazo juu yao. Thamani hizi za awali huitwa 'lags'. Mfano ungekuwa data inayoonyesha mauzo ya kila mwezi ya penseli. Kila jumla ya mauzo ya mwezi ingechukuliwa kama 'kigezo kinachoendelea' katika seti ya data. Mfano huu umejengwa kama "kigezo kinachoendelea cha maslahi kinatabiriwa kwa thamani zake za nyuma (yaani, za awali)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - kwa AutoRegressive**. Mifano ya autoregressive, kama jina linavyopendekeza, huangalia 'nyuma' kwa muda ili kuchambua thamani za awali katika data yako na kufanya dhana kuhusu thamani hizo. Thamani hizi za awali zinaitwa 'lags'. Mfano ungekuwa data inayoonyesha mauzo ya kila mwezi ya penseli. Jumla ya mauzo ya kila mwezi ingechukuliwa kama 'kigezo kinachobadilika' katika seti ya data. Mfano huu unajengwa kama "kigezo kinachobadilika cha maslahi kinatabiriwa kwa thamani zake za awali zilizocheleweshwa (yaani, za awali)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - kwa Integrated**. Tofauti na mifano ya 'ARMA', 'I' katika ARIMA inahusu kipengele chake cha *[integrated](https://wikipedia.org/wiki/Order_of_integration)*. Data inakuwa 'integrated' wakati hatua za kutoa tofauti zinapotumika ili kuondoa kutokuwa na ukimya.
+- **I - kwa Integrated**. Tofauti na mifano inayofanana ya 'ARMA', 'I' katika ARIMA inahusu kipengele chake cha *[integrated](https://wikipedia.org/wiki/Order_of_integration)*. Data inakuwa 'integrated' wakati hatua za differencing zinatumika ili kuondoa kutokuwa na stationarity.
 
-- **MA - kwa Moving Average**. Kipengele cha [moving-average](https://wikipedia.org/wiki/Moving-average_model) cha mfano huu kinahusu kigezo cha pato kinachobainishwa kwa kuchunguza thamani za sasa na za awali za lags.
+- **MA - kwa Moving Average**. Kipengele cha [moving-average](https://wikipedia.org/wiki/Moving-average_model) cha mfano huu kinahusu kigezo cha matokeo ambacho kinaamuliwa kwa kuzingatia thamani za sasa na za awali za lags.
 
-Bottom line: ARIMA inatumika kufanya mfano uendane na aina maalum ya data ya mfululizo wa muda kwa karibu iwezekanavyo.
+Kwa ufupi: ARIMA hutumika kuunda mfano unaofaa zaidi kwa aina maalum ya data ya mfululizo wa muda.
 
-## Zoezi - kujenga mfano wa ARIMA
+## Zoezi - unda mfano wa ARIMA
 
-Fungua folda ya [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) katika somo hili na upate faili ya [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb).
+Fungua folda [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) katika somo hili na pata faili [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb).
 
-1. Endesha notebook kupakia maktaba ya `statsmodels` ya Python; utahitaji hii kwa mifano ya ARIMA.
+1. Endesha notebook ili kupakia maktaba ya Python `statsmodels`; utahitaji hii kwa mifano ya ARIMA.
 
-1. Pakia maktaba muhimu
+1. Pakia maktaba muhimu.
 
 1. Sasa, pakia maktaba zaidi zinazofaa kwa kuchora data:
 
@@ -63,14 +72,14 @@ Fungua folda ya [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. Pakia data kutoka faili la `/data/energy.csv` ndani ya dataframe ya Pandas na uangalie:
+1. Pakia data kutoka faili `/data/energy.csv` kwenye dataframe ya Pandas na uitazame:
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. Chora data yote ya nishati inayopatikana kutoka Januari 2012 hadi Desemba 2014. Hakutakuwa na mshangao kwani tuliiona data hii katika somo lililopita:
+1. Chora data yote ya nishati inayopatikana kutoka Januari 2012 hadi Desemba 2014. Hakutakuwa na mshangao kwani tuliona data hii katika somo lililopita:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -83,16 +92,16 @@ Fungua folda ya [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/
 
 ### Unda seti za mafunzo na majaribio
 
-Sasa data yako imepakiwa, unaweza kuigawa katika seti za mafunzo na majaribio. Utafundisha mfano wako kwenye seti ya mafunzo. Kama kawaida, baada ya mfano kumaliza mafunzo, utapima usahihi wake kwa kutumia seti ya majaribio. Unahitaji kuhakikisha kuwa seti ya majaribio inashughulikia kipindi cha baadaye kutoka seti ya mafunzo ili kuhakikisha kuwa mfano haupati taarifa kutoka vipindi vya baadaye.
+Sasa data yako imepakiwa, unaweza kuigawanya katika seti za mafunzo na majaribio. Utaufundisha mfano wako kwenye seti ya mafunzo. Kama kawaida, baada ya mfano kumaliza mafunzo, utatathmini usahihi wake kwa kutumia seti ya majaribio. Unahitaji kuhakikisha kuwa seti ya majaribio inashughulikia kipindi cha baadaye kutoka seti ya mafunzo ili kuhakikisha kuwa mfano haupati taarifa kutoka vipindi vya baadaye.
 
-1. Gawa kipindi cha miezi miwili kutoka Septemba 1 hadi Oktoba 31, 2014 kwa seti ya mafunzo. Seti ya majaribio itajumuisha kipindi cha miezi miwili cha Novemba 1 hadi Desemba 31, 2014:
+1. Toa kipindi cha miezi miwili kutoka Septemba 1 hadi Oktoba 31, 2014 kwa seti ya mafunzo. Seti ya majaribio itajumuisha kipindi cha miezi miwili kutoka Novemba 1 hadi Desemba 31, 2014:
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Kwa kuwa data hii inaonyesha matumizi ya nishati ya kila siku, kuna muundo wenye nguvu wa msimu, lakini matumizi ni sawa zaidi na matumizi ya siku za hivi karibuni.
+    Kwa kuwa data hii inaonyesha matumizi ya nishati ya kila siku, kuna muundo wa msimu wenye nguvu, lakini matumizi yanafanana zaidi na matumizi ya siku za hivi karibuni.
 
 1. Onyesha tofauti:
 
@@ -105,17 +114,17 @@ Sasa data yako imepakiwa, unaweza kuigawa katika seti za mafunzo na majaribio. U
     plt.show()
     ```
 
-    ![data ya mafunzo na majaribio](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.sw.png)
+    ![data ya mafunzo na majaribio](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    Kwa hiyo, kutumia dirisha ndogo ya muda kwa mafunzo ya data inapaswa kutosha.
+    Kwa hivyo, kutumia dirisha ndogo ya muda kwa mafunzo ya data inapaswa kutosha.
 
-    > Note: Kwa kuwa kazi tunayoyotumia kufaa mfano wa ARIMA hutumia uthibitishaji wa ndani-sampuli wakati wa kufaa, tutaacha data ya uthibitishaji.
+    > Kumbuka: Kwa kuwa kazi tunayotumia kufaa mfano wa ARIMA hutumia uthibitishaji wa ndani ya sampuli wakati wa kufaa, tutapuuza data ya uthibitishaji.
 
 ### Andaa data kwa mafunzo
 
-Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yako. Chuja seti yako ya data ili kujumuisha tu vipindi vya muda vilivyotajwa na safu ambazo unahitaji, na kupima ili kuhakikisha data inatolewa katika kipimo cha 0,1.
+Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na upimaji wa data yako. Chuja seti yako ya data ili kujumuisha tu vipindi vya muda na safu ulizohitaji, na upimaji ili kuhakikisha data inaonyeshwa katika kipimo cha 0,1.
 
-1. Chuja seti asili ya data kujumuisha tu vipindi vya muda vilivyotajwa kwa kila seti na kujumuisha tu safu inayohitajika 'mzigo' pamoja na tarehe:
+1. Chuja seti ya data ya awali ili kujumuisha tu vipindi vya muda vilivyotajwa kwa kila seti na kujumuisha tu safu inayohitajika 'load' pamoja na tarehe:
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -132,7 +141,7 @@ Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yak
     Test data shape:  (48, 1)
     ```
 
-1. Pima data kuwa katika kipimo (0, 1).
+1. Pima data ili iwe katika kipimo cha (0, 1).
 
     ```python
     scaler = MinMaxScaler()
@@ -140,7 +149,7 @@ Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yak
     train.head(10)
     ```
 
-1. Onyesha data asili dhidi ya data iliyopimwa:
+1. Onyesha data ya awali dhidi ya data iliyopimwa:
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,15 +157,15 @@ Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yak
     plt.show()
     ```
 
-    ![asili](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.sw.png)
+    ![awali](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
-    > Data asili
+    > Data ya awali
 
-    ![iliyopimwa](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.sw.png)
+    ![iliyopimwa](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
     > Data iliyopimwa
 
-1. Sasa kwa kuwa umekalibu data iliyopimwa, unaweza kupima data ya majaribio:
+1. Sasa kwa kuwa umepima data iliyopimwa, unaweza kupima data ya majaribio:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -165,23 +174,23 @@ Sasa, unahitaji kuandaa data kwa mafunzo kwa kufanya uchujaji na kupima data yak
 
 ### Tekeleza ARIMA
 
-Ni wakati wa kutekeleza ARIMA! Sasa utatumia maktaba ya `statsmodels` uliyoisakinisha awali.
+Ni wakati wa kutekeleza ARIMA! Sasa utatumia maktaba ya `statsmodels` ambayo uliweka awali.
 
-Sasa unahitaji kufuata hatua kadhaa
+Sasa unahitaji kufuata hatua kadhaa:
 
-   1. Fafanua mfano kwa kupiga `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters.
-   2. Prepare the model for the training data by calling the fit() function.
-   3. Make predictions calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast.
+   1. Fafanua mfano kwa kupiga `SARIMAX()` na kupitisha vigezo vya mfano: vigezo vya p, d, na q, na vigezo vya P, D, na Q.
+   2. Andaa mfano kwa data ya mafunzo kwa kupiga kazi ya fit().
+   3. Fanya utabiri kwa kupiga kazi ya `forecast()` na kutaja idadi ya hatua (horizon) za kutabiri.
 
-> 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
+> 🎓 Vigezo hivi vyote ni vya nini? Katika mfano wa ARIMA kuna vigezo 3 vinavyotumika kusaidia kuunda vipengele vikuu vya mfululizo wa muda: msimu, mwenendo, na kelele. Vigezo hivi ni:
 
-`p`: the parameter associated with the auto-regressive aspect of the model, which incorporates *past* values.
-`d`: the parameter associated with the integrated part of the model, which affects the amount of *differencing* (🎓 remember differencing 👆?) to apply to a time series.
-`q`: the parameter associated with the moving-average part of the model.
+`p`: kigezo kinachohusiana na kipengele cha autoregressive cha mfano, ambacho kinajumuisha thamani za *zamani*.
+`d`: kigezo kinachohusiana na kipengele cha integrated cha mfano, ambacho kinaathiri kiwango cha *differencing* (🎓 kumbuka differencing 👆?) kinachotumika kwa mfululizo wa muda.
+`q`: kigezo kinachohusiana na kipengele cha moving-average cha mfano.
 
-> Note: If your data has a seasonal aspect - which this one does - , we use a seasonal ARIMA model (SARIMA). In that case you need to use another set of parameters: `P`, `D`, and `Q` which describe the same associations as `p`, `d`, and `q`, lakini zinaendana na vipengele vya msimu wa mfano.
+> Kumbuka: Ikiwa data yako ina kipengele cha msimu - ambacho data hii inacho - , tunatumia mfano wa ARIMA wa msimu (SARIMA). Katika hali hiyo unahitaji kutumia seti nyingine ya vigezo: `P`, `D`, na `Q` vinavyoelezea uhusiano sawa na `p`, `d`, na `q`, lakini vinahusiana na vipengele vya msimu vya mfano.
 
-1. Anza kwa kuweka thamani yako ya upeo wa muda. Hebu jaribu masaa 3:
+1. Anza kwa kuweka thamani yako ya horizon unayopendelea. Hebu jaribu masaa 3:
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -189,9 +198,9 @@ Sasa unahitaji kufuata hatua kadhaa
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Kuchagua thamani bora kwa vigezo vya mfano wa ARIMA kunaweza kuwa changamoto kwani ni jambo la kibinafsi na linachukua muda. Unaweza kufikiria kutumia maktaba ya `auto_arima()` function from the [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
+    Kuchagua thamani bora kwa vigezo vya mfano wa ARIMA inaweza kuwa changamoto kwani ni ya kibinafsi na inachukua muda. Unaweza kuzingatia kutumia kazi ya `auto_arima()` kutoka maktaba ya [`pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
 
-1. Kwa sasa jaribu uteuzi wa mwongozo ili kupata mfano mzuri.
+1. Kwa sasa jaribu chaguo za mwongozo ili kupata mfano mzuri.
 
     ```python
     order = (4, 1, 0)
@@ -205,21 +214,21 @@ Sasa unahitaji kufuata hatua kadhaa
 
     Jedwali la matokeo linachapishwa.
 
-Umejenga mfano wako wa kwanza! Sasa tunahitaji kupata njia ya kuipima.
+Umeunda mfano wako wa kwanza! Sasa tunahitaji kupata njia ya kuutathmini.
 
-### Pima mfano wako
+### Tathmini mfano wako
 
-Ili kupima mfano wako, unaweza kufanya uthibitishaji wa `walk forward`. Kwa vitendo, mifano ya mfululizo wa muda hufundishwa tena kila wakati data mpya inapopatikana. Hii inaruhusu mfano kufanya utabiri bora kwa kila hatua ya muda.
+Ili kutathmini mfano wako, unaweza kufanya uthibitishaji unaoitwa `walk forward`. Kwa vitendo, mifano ya mfululizo wa muda hufundishwa upya kila wakati data mpya inapatikana. Hii inaruhusu mfano kufanya utabiri bora zaidi kwa kila hatua ya muda.
 
-Kuanzia mwanzo wa mfululizo wa muda kwa kutumia mbinu hii, fundisha mfano kwenye seti ya mafunzo. Kisha fanya utabiri kwenye hatua inayofuata ya muda. Utabiri unakaguliwa dhidi ya thamani inayojulikana. Seti ya mafunzo kisha inapanuliwa kujumuisha thamani inayojulikana na mchakato unarudiwa.
+Kuanzia mwanzo wa mfululizo wa muda kwa kutumia mbinu hii, fundisha mfano kwenye seti ya mafunzo. Kisha fanya utabiri kwa hatua inayofuata ya muda. Utabiri unatathminiwa dhidi ya thamani inayojulikana. Seti ya mafunzo kisha inapanuliwa kujumuisha thamani inayojulikana na mchakato unarudiwa.
 
-> Note: Unapaswa kuweka dirisha la seti ya mafunzo imara kwa mafunzo bora zaidi ili kwamba kila wakati unapoongeza uchunguzi mpya kwenye seti ya mafunzo, unatoa uchunguzi kutoka mwanzo wa seti.
+> Kumbuka: Unapaswa kuweka dirisha la seti ya mafunzo likiwa thabiti kwa mafunzo yenye ufanisi zaidi ili kila wakati unapoongeza uchunguzi mpya kwenye seti ya mafunzo, unatoa uchunguzi kutoka mwanzo wa seti.
 
-Mchakato huu hutoa makadirio thabiti zaidi ya jinsi mfano utakavyofanya kazi kwa vitendo. Hata hivyo, inakuja na gharama ya kompyuta ya kuunda mifano mingi sana. Hii inakubalika ikiwa data ni ndogo au ikiwa mfano ni rahisi, lakini inaweza kuwa tatizo kwa kiwango kikubwa.
+Mchakato huu hutoa makadirio thabiti zaidi ya jinsi mfano utakavyofanya kazi kwa vitendo. Hata hivyo, inakuja na gharama ya hesabu ya kuunda mifano mingi. Hii inakubalika ikiwa data ni ndogo au ikiwa mfano ni rahisi, lakini inaweza kuwa tatizo kwa kiwango kikubwa.
 
-Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya mfululizo wa muda na inapendekezwa kwa miradi yako mwenyewe.
+Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya mfululizo wa muda na kinapendekezwa kwa miradi yako mwenyewe.
 
-1. Kwanza, unda hatua ya data ya majaribio kwa kila hatua ya HORIZON.
+1. Kwanza, unda data ya majaribio kwa kila hatua ya HORIZON.
 
     ```python
     test_shifted = test.copy()
@@ -231,7 +240,7 @@ Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya m
     test_shifted.head(5)
     ```
 
-    |            |          | mzigo | mzigo+1 | mzigo+2 |
+    |            |          | load | load+1 | load+2 |
     | ---------- | -------- | ---- | ------ | ------ |
     | 2014-12-30 | 00:00:00 | 0.33 | 0.29   | 0.27   |
     | 2014-12-30 | 01:00:00 | 0.29 | 0.27   | 0.27   |
@@ -239,9 +248,9 @@ Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya m
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    Data inahamishwa kwa usawa kulingana na hatua yake ya upeo wa muda.
+    Data inahamishwa kwa usawa kulingana na hatua yake ya horizon.
 
-1. Fanya utabiri kwenye data yako ya majaribio kwa kutumia mbinu hii ya dirisha linalosonga katika kitanzi cha ukubwa wa urefu wa data ya majaribio:
+1. Fanya utabiri kwenye data yako ya majaribio kwa kutumia mbinu hii ya dirisha linalosonga katika mzunguko wa ukubwa wa urefu wa data ya majaribio:
 
     ```python
     %%time
@@ -271,7 +280,7 @@ Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya m
         print(t+1, ': predicted =', yhat, 'expected =', obs)
     ```
 
-    Unaweza kuona mafunzo yakitokea:
+    Unaweza kuona mafunzo yakifanyika:
 
     ```output
     2014-12-30 00:00:00
@@ -296,7 +305,7 @@ Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya m
     ```
 
     Matokeo
-    |     |            | timestamp | h   | utabiri | halisi   |
+    |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
     | 1   | 2014-12-30 | 01:00:00  | t+1 | 2,955.53   | 2,935.00 |
@@ -304,20 +313,20 @@ Uthibitishaji wa walk-forward ni kiwango cha dhahabu cha tathmini ya mifano ya m
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-
-    Angalia utabiri wa data ya kila saa, ikilinganishwa na mzigo halisi. Je, ni sahihi kiasi gani?
+    Angalia utabiri wa data ya kila saa, ukilinganisha na mzigo halisi. Je, ni sahihi kiasi gani?
 
 ### Angalia usahihi wa mfano
 
-Angalia usahihi wa mfano wako kwa kupima kosa la asilimia ya wastani wa upungufu (MAPE) juu ya utabiri wote.
-
-> **🧮 Nionyeshe hisabati**
+Angalia usahihi wa mfano wako kwa kujaribu kosa la asilimia ya wastani (MAPE) kwa utabiri wote.
+> **🧮 Onyesha hesabu**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.sw.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) hutumika kuonyesha usahihi wa utabiri kama uwiano unaofafanuliwa na fomula hapo juu. Tofauti kati ya actual<sub>t</sub> na predicted<sub>t</sub> inagawanywa na actual<sub>t</sub>. "Thamani ya absolute katika hesabu hii inajumlishwa kwa kila hatua ya utabiri wa muda na kugawanywa na idadi ya pointi zilizofaa n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
-
-1. Eleza equation katika code:
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) hutumika kuonyesha usahihi wa utabiri kama uwiano unaofafanuliwa na fomula iliyo juu. Tofauti kati ya halisi  
+na iliyotabiriwa  
+inagawanywa na halisi.  
+"Thamani ya absolute katika hesabu hii hujumlishwa kwa kila nukta iliyotabiriwa kwa wakati na kugawanywa na idadi ya nukta zilizolingana n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+1. Eleza hesabu katika msimbo:
 
     ```python
     if(HORIZON > 1):
@@ -343,9 +352,9 @@ Angalia usahihi wa mfano wako kwa kupima kosa la asilimia ya wastani wa upungufu
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    Nambari ya chini ni bora: fikiria kwamba utabiri ambao una MAPE ya 10 ni mbali kwa 10%.
+    Nambari ndogo nzuri ni bora: fikiria kwamba utabiri wenye MAPE ya 10 unakosea kwa 10%.
 
-1. Lakini kama kawaida, ni rahisi kuona aina hii ya kipimo cha usahihi kwa macho, kwa hivyo hebu tuichore:
+1. Lakini kama kawaida, ni rahisi kuona kipimo cha usahihi wa aina hii kwa njia ya kuona, kwa hivyo hebu tuweke grafu:
 
     ```python
      if(HORIZON == 1):
@@ -373,25 +382,27 @@ Angalia usahihi wa mfano wako kwa kupima kosa la asilimia ya wastani wa upungufu
     plt.show()
     ```
 
-    ![mfano wa mfululizo wa muda](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.sw.png)
+    ![mfano wa mfululizo wa muda](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 Mchoro mzuri sana, unaoonyesha mfano wenye usahihi mzuri. Hongera!
+🏆 Grafu nzuri sana, ikionyesha mfano wenye usahihi mzuri. Hongera!
 
 ---
 
 ## 🚀Changamoto
 
-Chunguza njia za kupima usahihi wa Mfano wa Mfululizo wa Muda. Tumegusia MAPE katika somo hili, lakini je, kuna njia nyingine unazoweza kutumia? Tafiti na uzichambue. Hati ya kusaidia inaweza kupatikana [hapa](https://otexts.com/fpp2/accuracy.html)
+Chunguza njia za kupima usahihi wa Mfano wa Mfululizo wa Muda. Tumegusia MAPE katika somo hili, lakini kuna njia nyingine unazoweza kutumia? Fanya utafiti na uzitambue. Hati ya msaada inaweza kupatikana [hapa](https://otexts.com/fpp2/accuracy.html)
 
-## [Jaribio la baada ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Jaribio baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujisomea
+## Mapitio & Kujifunza Binafsi
 
-Somo hili linagusa tu misingi ya Utabiri wa Mfululizo wa Muda na ARIMA. Chukua muda wa kuongeza maarifa yako kwa kuchimba zaidi katika [repo hii](https://microsoft.github.io/forecasting/) na aina zake mbalimbali za mifano ili kujifunza njia nyingine za kujenga mifano ya Mfululizo wa Muda.
+Somo hili linagusia tu misingi ya Utabiri wa Mfululizo wa Muda kwa kutumia ARIMA. Chukua muda wa kuimarisha maarifa yako kwa kuchunguza [hifadhi hii](https://microsoft.github.io/forecasting/) na aina zake mbalimbali za mifano ili kujifunza njia nyingine za kujenga mifano ya Mfululizo wa Muda.
 
 ## Kazi
 
 [Mfano mpya wa ARIMA](assignment.md)
 
-**Kanusho**: 
-Hati hii imetafsiriwa kwa kutumia huduma za kutafsiri za AI zinazotegemea mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati asilia katika lugha yake ya asili inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa habari muhimu, tafsiri ya kitaalamu ya kibinadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

@@ -1,32 +1,41 @@
-# 小车杆平衡
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-05T09:09:36+00:00",
+  "source_file": "8-Reinforcement/2-Gym/README.md",
+  "language_code": "zh"
+}
+-->
+# CartPole 滑行
 
-在前一课中我们解决的问题看起来像是一个玩具问题，似乎并不适用于实际场景。但事实并非如此，因为许多现实世界的问题也有类似的场景，包括下棋或围棋。它们是相似的，因为我们也有一个带有给定规则的棋盘和一个**离散状态**。
+我们在上一课中解决的问题可能看起来像一个玩具问题，似乎与现实生活场景无关。但事实并非如此，因为许多现实世界的问题也具有类似的场景——包括下棋或围棋。这些问题类似，因为我们也有一个带有规则的棋盘和一个**离散状态**。
 
-## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [课前测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 介绍
 
-在本课中，我们将把Q学习的相同原理应用到一个**连续状态**的问题上，即由一个或多个实数给定的状态。我们将处理以下问题：
+在本课中，我们将把 Q-Learning 的相同原理应用于一个具有**连续状态**的问题，即状态由一个或多个实数表示。我们将处理以下问题：
 
-> **问题**：如果彼得想要逃离狼，他需要能够更快地移动。我们将看看彼得如何学习滑冰，特别是如何通过Q学习保持平衡。
+> **问题**：如果彼得想要逃离狼的追捕，他需要能够移动得更快。我们将看到彼得如何通过 Q-Learning 学习滑行，特别是保持平衡。
 
-![大逃亡！](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.zh.png)
+![伟大的逃亡！](../../../../8-Reinforcement/2-Gym/images/escape.png)
 
-> 彼得和他的朋友们想出妙招逃离狼！图片来自 [Jen Looper](https://twitter.com/jenlooper)
+> 彼得和他的朋友们发挥创意逃离狼的追捕！图片由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-我们将使用一种称为**小车杆**问题的简化平衡版本。在小车杆世界中，我们有一个可以左右移动的水平滑块，目标是让垂直杆在滑块上保持平衡。
+我们将使用一种称为 **CartPole** 的简化平衡问题。在 CartPole 世界中，我们有一个可以左右移动的水平滑块，目标是让滑块顶部的垂直杆保持平衡。
 
-## 先决条件
+## 前置知识
 
-在本课中，我们将使用一个名为**OpenAI Gym**的库来模拟不同的**环境**。你可以在本地运行本课的代码（例如在Visual Studio Code中），在这种情况下，模拟将会在一个新窗口中打开。当在线运行代码时，你可能需要对代码进行一些调整，如[这里](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7)所述。
+在本课中，我们将使用一个名为 **OpenAI Gym** 的库来模拟不同的**环境**。你可以在本地运行本课的代码（例如在 Visual Studio Code 中），此时模拟会在新窗口中打开。如果在线运行代码，你可能需要对代码进行一些调整，具体描述见[这里](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7)。
 
 ## OpenAI Gym
 
-在前一课中，游戏的规则和状态由我们自己定义的`Board`类给出。这里我们将使用一个特殊的**模拟环境**，它将模拟平衡杆背后的物理现象。训练强化学习算法最流行的模拟环境之一是由[OpenAI](https://openai.com/)维护的[Gym](https://gym.openai.com/)。通过使用这个gym，我们可以创建从小车杆模拟到Atari游戏的不同**环境**。
+在上一课中，游戏规则和状态由我们自己定义的 `Board` 类提供。在这里，我们将使用一个特殊的**模拟环境**，它会模拟平衡杆的物理过程。训练强化学习算法最流行的模拟环境之一是 [Gym](https://gym.openai.com/)，由 [OpenAI](https://openai.com/) 维护。通过使用这个 Gym，我们可以创建不同的**环境**，从 CartPole 模拟到 Atari 游戏。
 
-> **注意**：你可以在[这里](https://gym.openai.com/envs/#classic_control)查看OpenAI Gym提供的其他环境。
+> **注意**：你可以在 OpenAI Gym 中查看其他可用的环境 [这里](https://gym.openai.com/envs/#classic_control)。
 
-首先，让我们安装gym并导入所需的库（代码块1）：
+首先，让我们安装 Gym 并导入所需的库（代码块 1）：
 
 ```python
 import sys
@@ -38,13 +47,13 @@ import numpy as np
 import random
 ```
 
-## 练习 - 初始化一个小车杆环境
+## 练习 - 初始化一个 CartPole 环境
 
-要处理小车杆平衡问题，我们需要初始化相应的环境。每个环境都与一个：
+要处理 CartPole 平衡问题，我们需要初始化相应的环境。每个环境都与以下内容相关联：
 
-- **观察空间**相关，定义我们从环境中接收的信息结构。对于小车杆问题，我们接收杆的位置、速度和其他一些值。
+- **观察空间**：定义我们从环境中接收到的信息结构。对于 CartPole 问题，我们接收到杆的位置、速度以及其他一些值。
 
-- **动作空间**相关，定义可能的动作。在我们的案例中，动作空间是离散的，由两个动作组成 - **左**和**右**。（代码块2）
+- **动作空间**：定义可能的动作。在我们的例子中，动作空间是离散的，由两个动作组成——**左**和**右**。（代码块 2）
 
 1. 要初始化，请输入以下代码：
 
@@ -55,11 +64,11 @@ import random
     print(env.action_space.sample())
     ```
 
-要查看环境如何工作，让我们运行一个100步的简短模拟。在每一步，我们提供一个要采取的动作 - 在此模拟中，我们只是随机选择一个来自`action_space`的动作。
+为了了解环境如何工作，让我们运行一个短暂的模拟，持续 100 步。在每一步中，我们提供一个动作——在这个模拟中，我们只是随机选择一个来自 `action_space` 的动作。
 
-1. 运行下面的代码，看看会导致什么结果。
+1. 运行以下代码并查看结果。
 
-    ✅ 记住，最好在本地Python安装中运行此代码！（代码块3）
+    ✅ 请记住，最好在本地 Python 安装中运行此代码！（代码块 3）
 
     ```python
     env.reset()
@@ -70,11 +79,11 @@ import random
     env.close()
     ```
 
-    你应该会看到类似这样的图像：
+    你应该会看到类似于以下图片的内容：
 
-    ![无法平衡的小车杆](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
+    ![未平衡的 CartPole](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. 在模拟过程中，我们需要获取观察值以决定如何行动。事实上，step函数返回当前的观察值、奖励函数和一个表示是否继续模拟的完成标志：（代码块4）
+1. 在模拟过程中，我们需要获取观察值以决定如何行动。实际上，`step` 函数会返回当前的观察值、奖励函数以及一个表示是否继续模拟的完成标志：（代码块 4）
 
     ```python
     env.reset()
@@ -87,7 +96,7 @@ import random
     env.close()
     ```
 
-    你将在笔记本输出中看到类似这样的内容：
+    你将在笔记本输出中看到类似以下的内容：
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -106,37 +115,37 @@ import random
     - 杆的角度
     - 杆的旋转速率
 
-1. 获取这些数字的最小值和最大值：（代码块5）
+1. 获取这些数值的最小值和最大值：（代码块 5）
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    你可能还会注意到，每一步模拟的奖励值总是1。这是因为我们的目标是尽可能长时间地生存，即尽可能长时间地保持杆在合理的垂直位置。
+    你可能还会注意到，每次模拟步骤的奖励值始终为 1。这是因为我们的目标是尽可能长时间地保持杆在合理的垂直位置。
 
-    ✅ 实际上，如果我们能在100次连续试验中平均获得195的奖励，小车杆模拟就被认为是解决了。
+    ✅ 实际上，如果我们在 100 次连续试验中平均奖励达到 195，则认为 CartPole 模拟问题已解决。
 
 ## 状态离散化
 
-在Q学习中，我们需要构建Q表，定义在每个状态下该做什么。为了能够做到这一点，我们需要状态是**离散的**，更准确地说，它应该包含有限数量的离散值。因此，我们需要以某种方式**离散化**我们的观察值，将它们映射到有限的状态集合。
+在 Q-Learning 中，我们需要构建 Q-Table 来定义在每个状态下的行动。为了做到这一点，我们需要状态是**离散的**，更确切地说，它应该包含有限数量的离散值。因此，我们需要以某种方式**离散化**我们的观察值，将它们映射到有限的状态集合。
 
 有几种方法可以做到这一点：
 
-- **划分为箱子**。如果我们知道某个值的区间，我们可以将该区间划分为多个**箱子**，然后用它所属的箱子编号替换该值。这可以使用numpy的[`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html)方法来完成。在这种情况下，我们将准确知道状态的大小，因为它将取决于我们为数字化选择的箱子数量。
-  
-✅ 我们可以使用线性插值将值带到某个有限区间（例如，从-20到20），然后通过四舍五入将数字转换为整数。这给了我们对状态大小的控制稍微少一些，特别是如果我们不知道输入值的确切范围。例如，在我们的例子中，4个值中的2个没有上/下限，这可能导致无限数量的状态。
+- **划分为区间**。如果我们知道某个值的范围，我们可以将这个范围划分为若干**区间**，然后用该值所属的区间编号替换原值。这可以使用 numpy 的 [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) 方法来完成。在这种情况下，我们将准确知道状态的大小，因为它将取决于我们为离散化选择的区间数量。
 
-在我们的例子中，我们将使用第二种方法。正如你可能稍后注意到的，尽管没有明确的上/下限，这些值很少会取到某些有限区间之外的值，因此那些具有极端值的状态将非常罕见。
+✅ 我们可以使用线性插值将值映射到某个有限区间（例如，从 -20 到 20），然后通过四舍五入将数字转换为整数。这种方法对状态大小的控制稍弱，特别是当我们不知道输入值的确切范围时。例如，在我们的例子中，观察值中的 4 个值中有 2 个没有上下界，这可能导致状态数量无限。
 
-1. 这是一个函数，它将从我们的模型中获取观察值并生成一个包含4个整数值的元组：（代码块6）
+在我们的例子中，我们将采用第二种方法。正如你稍后可能注意到的，尽管没有明确的上下界，这些值很少会超出某些有限区间，因此具有极端值的状态将非常罕见。
+
+1. 以下是一个函数，它将从模型中获取观察值并生成一个包含 4 个整数值的元组：（代码块 6）
 
     ```python
     def discretize(x):
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. 让我们还探索另一种使用箱子的离散化方法：（代码块7）
+1. 我们还可以探索另一种使用区间的离散化方法：（代码块 7）
 
     ```python
     def create_bins(i,num):
@@ -152,9 +161,9 @@ import random
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. 现在让我们运行一个简短的模拟并观察这些离散的环境值。随意尝试`discretize` and `discretize_bins`，看看是否有差异。
+1. 现在让我们运行一个短暂的模拟并观察这些离散化的环境值。可以尝试 `discretize` 和 `discretize_bins`，看看是否有区别。
 
-    ✅ discretize_bins返回箱子编号，这是从0开始的。因此，对于接近0的输入变量值，它返回区间中间的数字（10）。在discretize中，我们不关心输出值的范围，允许它们为负，因此状态值没有偏移，0对应于0。（代码块8）
+    ✅ `discretize_bins` 返回区间编号，从 0 开始。因此，对于输入变量值接近 0 的情况，它返回区间中间的编号（10）。在 `discretize` 中，我们没有关心输出值的范围，允许它们为负，因此状态值没有偏移，0 对应于 0。（代码块 8）
 
     ```python
     env.reset()
@@ -168,15 +177,15 @@ import random
     env.close()
     ```
 
-    ✅ 如果你想查看环境的执行情况，请取消注释以env.render开头的行。否则，你可以在后台执行它，这样更快。在我们的Q学习过程中，我们将使用这种“隐形”执行。
+    ✅ 如果你想查看环境如何执行，可以取消注释以 `env.render` 开头的行。否则，你可以在后台执行，这样速度更快。在我们的 Q-Learning 过程中，我们将使用这种“不可见”的执行方式。
 
-## Q表结构
+## Q-Table 结构
 
-在前一课中，状态是从0到8的简单数对，因此用形状为8x8x2的numpy张量表示Q表是方便的。如果我们使用箱子离散化，状态向量的大小也是已知的，所以我们可以使用相同的方法，用形状为20x20x10x10x2的数组表示状态（这里2是动作空间的维度，前面的维度对应于我们为观察空间中的每个参数选择的箱子数量）。
+在上一课中，状态是一个简单的数字对，从 0 到 8，因此用形状为 8x8x2 的 numpy 张量表示 Q-Table 很方便。如果我们使用区间离散化，状态向量的大小也是已知的，因此我们可以使用相同的方法，用形状为 20x20x10x10x2 的数组表示状态（这里的 2 是动作空间的维度，前几个维度对应于我们为观察空间中每个参数选择的区间数量）。
 
-然而，有时观察空间的确切维度是不知道的。在`discretize`函数的情况下，我们可能永远无法确定我们的状态是否保持在某些限制内，因为某些原始值没有限制。因此，我们将使用一种稍微不同的方法，用字典表示Q表。
+然而，有时观察空间的精确维度是未知的。在使用 `discretize` 函数的情况下，我们可能无法确定状态是否保持在某些限制范围内，因为某些原始值是没有界限的。因此，我们将使用稍微不同的方法，用字典表示 Q-Table。
 
-1. 使用对*(state,action)*作为字典键，值对应于Q表条目值。（代码块9）
+1. 使用 *(state, action)* 对作为字典键，值对应于 Q-Table 的条目值。（代码块 9）
 
     ```python
     Q = {}
@@ -186,13 +195,13 @@ import random
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    这里我们还定义了一个函数`qvalues()`，它返回给定状态对应于所有可能动作的Q表值列表。如果Q表中没有该条目，我们将返回0作为默认值。
+    在这里我们还定义了一个函数 `qvalues()`，它返回给定状态对应于所有可能动作的 Q-Table 值列表。如果 Q-Table 中没有该条目，我们将返回默认值 0。
 
-## 开始Q学习
+## 开始 Q-Learning
 
-现在我们准备教彼得保持平衡了！
+现在我们准备教彼得如何保持平衡了！
 
-1. 首先，让我们设置一些超参数：（代码块10）
+1. 首先，让我们设置一些超参数：（代码块 10）
 
     ```python
     # hyperparameters
@@ -201,23 +210,23 @@ import random
     epsilon = 0.90
     ```
 
-    这里，`alpha` is the **learning rate** that defines to which extent we should adjust the current values of Q-Table at each step. In the previous lesson we started with 1, and then decreased `alpha` to lower values during training. In this example we will keep it constant just for simplicity, and you can experiment with adjusting `alpha` values later.
+    这里，`alpha` 是**学习率**，定义了我们在每一步中应该在多大程度上调整 Q-Table 的当前值。在上一课中，我们从 1 开始，然后在训练过程中将 `alpha` 降低到较低的值。在这个例子中，为了简单起见，我们将保持它不变，你可以稍后尝试调整 `alpha` 值。
 
-    `gamma` is the **discount factor** that shows to which extent we should prioritize future reward over current reward.
+    `gamma` 是**折扣因子**，表示我们应该在多大程度上优先考虑未来奖励而不是当前奖励。
 
-    `epsilon` is the **exploration/exploitation factor** that determines whether we should prefer exploration to exploitation or vice versa. In our algorithm, we will in `epsilon` percent of the cases select the next action according to Q-Table values, and in the remaining number of cases we will execute a random action. This will allow us to explore areas of the search space that we have never seen before. 
+    `epsilon` 是**探索/利用因子**，决定我们是否应该更倾向于探索还是利用。在我们的算法中，我们将在 `epsilon` 百分比的情况下根据 Q-Table 值选择下一个动作，而在剩余情况下执行随机动作。这将允许我们探索以前从未见过的搜索空间区域。
 
-    ✅ In terms of balancing - choosing random action (exploration) would act as a random punch in the wrong direction, and the pole would have to learn how to recover the balance from those "mistakes"
+    ✅ 在平衡方面——选择随机动作（探索）就像是一个随机的错误方向的推力，杆需要学习如何从这些“错误”中恢复平衡。
 
-### Improve the algorithm
+### 改进算法
 
-We can also make two improvements to our algorithm from the previous lesson:
+我们还可以对上一课的算法进行两项改进：
 
-- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
-  
-- **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
+- **计算平均累计奖励**，在多次模拟中进行。我们将每 5000 次迭代打印一次进度，并在这段时间内对累计奖励进行平均。这意味着如果我们获得超过 195 分——我们可以认为问题已经解决，质量甚至高于要求。
 
-1. Collect all cumulative rewards at each simulation at `rewards`向量以便进一步绘图。（代码块11）
+- **计算最大平均累计结果**，`Qmax`，并存储对应于该结果的 Q-Table。当你运行训练时，你会注意到有时平均累计结果开始下降，我们希望保留训练过程中观察到的最佳模型对应的 Q-Table 值。
+
+1. 在每次模拟中将所有累计奖励收集到 `rewards` 向量中，以便进一步绘图。（代码块 11）
 
     ```python
     def probs(v,eps=1e-4):
@@ -260,23 +269,23 @@ We can also make two improvements to our algorithm from the previous lesson:
 
 你可能从这些结果中注意到：
 
-- **接近我们的目标**。我们非常接近实现目标，即在100+次连续运行模拟中获得195的累计奖励，或者我们实际上已经实现了！即使我们得到较小的数字，我们也不知道，因为我们平均超过5000次运行，而正式标准仅需要100次运行。
-  
-- **奖励开始下降**。有时奖励开始下降，这意味着我们可能用使情况变得更糟的新值“破坏”了Q表中已经学习到的值。
+- **接近目标**。我们非常接近实现目标，即在 100 次以上的连续模拟中获得 195 的累计奖励，或者我们实际上已经实现了！即使我们获得较小的数字，我们仍然不知道，因为我们平均了 5000 次运行，而正式标准只需要 100 次运行。
 
-如果我们绘制训练进度，这一观察结果会更加明显。
+- **奖励开始下降**。有时奖励开始下降，这意味着我们可能会用使情况变得更糟的新值“破坏” Q-Table 中已经学习到的值。
+
+如果我们绘制训练进度，这种观察会更加清晰。
 
 ## 绘制训练进度
 
-在训练过程中，我们已经将每次迭代的累计奖励值收集到`rewards`向量中。以下是我们将其与迭代次数一起绘制时的样子：
+在训练过程中，我们将每次迭代的累计奖励值收集到 `rewards` 向量中。以下是将其与迭代次数绘制在一起的样子：
 
 ```python
 plt.plot(rewards)
 ```
 
-![原始进度](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.zh.png)
+![原始进度](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
-从这个图表中，我们无法判断任何事情，因为由于随机训练过程的性质，训练会话的长度变化很大。为了使这个图表更有意义，我们可以计算一系列实验的**移动平均值**，比如100。这可以方便地使用`np.convolve`完成：（代码块12）
+从这个图表中无法看出任何信息，因为由于随机训练过程的性质，训练会话的长度变化很大。为了让这个图表更有意义，我们可以计算一系列实验的**运行平均值**，比如 100 次。这可以使用 `np.convolve` 方便地完成：（代码块 12）
 
 ```python
 def running_average(x,window):
@@ -285,23 +294,21 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![训练进度](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.zh.png)
+![训练进度](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
 ## 调整超参数
 
 为了使学习更加稳定，有必要在训练过程中调整一些超参数。特别是：
 
-- **对于学习率**，`alpha`, we may start with values close to 1, and then keep decreasing the parameter. With time, we will be getting good probability values in the Q-Table, and thus we should be adjusting them slightly, and not overwriting completely with new values.
+- **学习率** `alpha`，我们可以从接近 1 的值开始，然后逐渐降低该参数。随着时间的推移，我们将在 Q-Table 中获得良好的概率值，因此我们应该稍微调整它们，而不是完全用新值覆盖。
 
-- **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`，并上升到几乎1。
+- **增加 epsilon**。我们可能希望慢慢增加 `epsilon`，以便减少探索，更多地利用。可能合理的是从较低的 `epsilon` 值开始，然后逐渐增加到接近 1。
+> **任务 1**：尝试调整超参数的值，看看是否能获得更高的累计奖励。你的得分是否超过了195？
+> **任务 2**：为了正式解决这个问题，你需要在连续100次运行中获得195的平均奖励。在训练过程中进行测量，并确保你已经正式解决了这个问题！
 
-> **任务1**：尝试调整超参数值，看看是否能获得更高的累计奖励。你能达到195以上吗？
+## 查看结果的实际表现
 
-> **任务2**：要正式解决这个问题，你需要在100次连续运行中获得195的平均奖励。在训练过程中测量这一点，并确保你已经正式解决了这个问题！
-
-## 查看结果
-
-实际上看到训练模型的行为会很有趣。让我们运行模拟，并按照训练期间的相同动作选择策略，根据Q表中的概率分布进行采样：（代码块13）
+观察训练好的模型如何表现会非常有趣。让我们运行模拟，并遵循与训练时相同的动作选择策略，根据Q表中的概率分布进行采样：（代码块13）
 
 ```python
 obs = env.reset()
@@ -315,28 +322,30 @@ while not done:
 env.close()
 ```
 
-你应该会看到类似这样的图像：
+你应该会看到类似这样的画面：
 
-![平衡的小车杆](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
+![一个保持平衡的Cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
 ---
 
 ## 🚀挑战
 
-> **任务3**：这里，我们使用的是Q表的最终副本，这可能不是最好的。记住我们已经将表现最好的Q表存储在`Qbest` variable! Try the same example with the best-performing Q-Table by copying `Qbest` over to `Q` and see if you notice the difference.
+> **任务 3**：在这里，我们使用的是Q表的最终版本，但它可能不是表现最好的版本。记住，我们已经将表现最好的Q表存储在变量`Qbest`中！尝试用表现最好的Q表替换当前的Q表，看看是否能观察到差异。
 
-> **Task 4**: Here we were not selecting the best action on each step, but rather sampling with corresponding probability distribution. Would it make more sense to always select the best action, with the highest Q-Table value? This can be done by using `np.argmax`函数来找到对应于最高Q表值的动作编号。实现这一策略，看看它是否改善了平衡。
+> **任务 4**：在这里，我们并没有在每一步选择最佳动作，而是根据对应的概率分布进行采样。是否总是选择具有最高Q表值的最佳动作会更合理？这可以通过使用`np.argmax`函数找到对应于最高Q表值的动作编号来实现。尝试实施这种策略，看看是否能改善平衡效果。
 
-## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [课后测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 作业
-[训练一辆山地车](assignment.md)
+[训练一个山地车](assignment.md)
 
-## 结论
+## 总结
 
-我们现在已经学会了如何通过提供定义游戏期望状态的奖励函数，并给他们机会智能地探索搜索空间，来训练智能体以取得良好的结果。我们已经成功地在离散和连续环境中应用了Q学习算法，但动作仍然是离散的。
+我们现在已经学会了如何通过提供一个定义游戏目标状态的奖励函数，并让智能体有机会智能地探索搜索空间，来训练智能体以获得良好的结果。我们成功地在离散和连续环境中应用了Q学习算法，但动作是离散的。
 
-重要的是还要研究动作状态也是连续的情况，以及观察空间更复杂的情况，例如来自Atari游戏屏幕的图像。在这些问题中，我们通常需要使用更强大的机器学习技术，例如神经网络，以取得良好的结果。这些更高级的话题是我们即将到来的更高级AI课程的主题。
+研究动作状态也是连续的情况，以及观察空间更复杂的情况（例如来自Atari游戏屏幕的图像）也很重要。在这些问题中，我们通常需要使用更强大的机器学习技术，例如神经网络，以获得良好的结果。这些更高级的主题将是我们即将推出的高级AI课程的内容。
 
-**免责声明**：
-本文档是使用基于机器的人工智能翻译服务翻译的。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应将原文档的母语版本视为权威来源。对于关键信息，建议进行专业的人工翻译。我们不对使用此翻译所产生的任何误解或误释承担责任。
+---
+
+**免责声明**：  
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。因使用本翻译而导致的任何误解或误读，我们概不负责。

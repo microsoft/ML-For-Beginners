@@ -1,6 +1,15 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "6d130dffca5db70d7e615f926cb1ad4c",
+  "translation_date": "2025-09-03T23:47:39+00:00",
+  "source_file": "quiz-app/README.md",
+  "language_code": "fr"
+}
+-->
 # Quiz
 
-Ces quiz sont les quiz pré- et post-conférence pour le programme ML sur https://aka.ms/ml-beginners
+Ces quiz sont les quiz avant et après les cours pour le programme ML disponible sur https://aka.ms/ml-beginners
 
 ## Configuration du projet
 
@@ -8,19 +17,19 @@ Ces quiz sont les quiz pré- et post-conférence pour le programme ML sur https:
 npm install
 ```
 
-### Compile et recharge à chaud pour le développement
+### Compilation et rechargement à chaud pour le développement
 
 ```
 npm run serve
 ```
 
-### Compile et minifie pour la production
+### Compilation et minification pour la production
 
 ```
 npm run build
 ```
 
-### Lint et corrige les fichiers
+### Analyse et correction des fichiers
 
 ```
 npm run lint
@@ -36,48 +45,49 @@ Crédits : Merci à la version originale de cette application de quiz : https://
 
 Voici un guide étape par étape pour vous aider à démarrer :
 
-1. Forkez un dépôt GitHub  
-Assurez-vous que le code de votre application web statique est dans votre dépôt GitHub. Forkez ce dépôt.
+1. Forker un dépôt GitHub  
+Assurez-vous que le code de votre application web statique se trouve dans votre dépôt GitHub. Forkez ce dépôt.
 
-2. Créez une application web statique Azure  
+2. Créer une application web statique Azure  
 - Créez un [compte Azure](http://azure.microsoft.com)  
-- Allez sur le [portail Azure](https://portal.azure.com)  
-- Cliquez sur « Créer une ressource » et recherchez « Application web statique ».  
+- Accédez au [portail Azure](https://portal.azure.com)  
+- Cliquez sur « Créer une ressource » et recherchez « Application Web Statique ».  
 - Cliquez sur « Créer ».
 
-3. Configurez l'application web statique  
-- Bases : Abonnement : Sélectionnez votre abonnement Azure.  
-- Groupe de ressources : Créez un nouveau groupe de ressources ou utilisez un existant.  
-- Nom : Fournissez un nom pour votre application web statique.  
-- Région : Choisissez la région la plus proche de vos utilisateurs.
+3. Configurer l'application web statique  
+- Bases :  
+  - Abonnement : Sélectionnez votre abonnement Azure.  
+  - Groupe de ressources : Créez un nouveau groupe de ressources ou utilisez-en un existant.  
+  - Nom : Donnez un nom à votre application web statique.  
+  - Région : Choisissez la région la plus proche de vos utilisateurs.
 
 - #### Détails du déploiement :  
-- Source : Sélectionnez « GitHub ».  
-- Compte GitHub : Autorisez Azure à accéder à votre compte GitHub.  
-- Organisation : Sélectionnez votre organisation GitHub.  
-- Dépôt : Choisissez le dépôt contenant votre application web statique.  
-- Branche : Sélectionnez la branche à partir de laquelle vous souhaitez déployer.
+  - Source : Sélectionnez « GitHub ».  
+  - Compte GitHub : Autorisez Azure à accéder à votre compte GitHub.  
+  - Organisation : Sélectionnez votre organisation GitHub.  
+  - Dépôt : Choisissez le dépôt contenant votre application web statique.  
+  - Branche : Sélectionnez la branche à partir de laquelle vous souhaitez déployer.
 
 - #### Détails de la construction :  
-- Préréglages de construction : Choisissez le framework avec lequel votre application est construite (par exemple, React, Angular, Vue, etc.).  
-- Emplacement de l'application : Spécifiez le dossier contenant le code de votre application (par exemple, / s'il est à la racine).  
-- Emplacement de l'API : Si vous avez une API, spécifiez son emplacement (optionnel).  
-- Emplacement de sortie : Spécifiez le dossier où la sortie de la construction est générée (par exemple, build ou dist).
+  - Préréglages de construction : Choisissez le framework avec lequel votre application est construite (par exemple, React, Angular, Vue, etc.).  
+  - Emplacement de l'application : Spécifiez le dossier contenant le code de votre application (par exemple, / si c’est à la racine).  
+  - Emplacement de l'API : Si vous avez une API, spécifiez son emplacement (optionnel).  
+  - Emplacement de sortie : Spécifiez le dossier où la sortie de la construction est générée (par exemple, build ou dist).
 
-4. Examinez et créez  
-Examinez vos paramètres et cliquez sur « Créer ». Azure mettra en place les ressources nécessaires et créera un workflow GitHub Actions dans votre dépôt.
+4. Réviser et créer  
+Révisez vos paramètres et cliquez sur « Créer ». Azure configurera les ressources nécessaires et créera un workflow GitHub Actions dans votre dépôt.
 
 5. Workflow GitHub Actions  
-Azure créera automatiquement un fichier de workflow GitHub Actions dans votre dépôt (.github/workflows/azure-static-web-apps-<name>.yml). Ce workflow gérera le processus de construction et de déploiement.
+Azure créera automatiquement un fichier de workflow GitHub Actions dans votre dépôt (.github/workflows/azure-static-web-apps-<nom>.yml). Ce workflow gérera le processus de construction et de déploiement.
 
-6. Surveillez le déploiement  
-Allez dans l'onglet « Actions » de votre dépôt GitHub.  
-Vous devriez voir un workflow en cours d'exécution. Ce workflow construira et déploiera votre application web statique sur Azure.  
-Une fois le workflow terminé, votre application sera en ligne à l'URL Azure fournie.
+6. Surveiller le déploiement  
+Accédez à l’onglet « Actions » dans votre dépôt GitHub.  
+Vous devriez voir un workflow en cours d’exécution. Ce workflow construira et déploiera votre application web statique sur Azure.  
+Une fois le workflow terminé, votre application sera en ligne à l’URL Azure fournie.
 
 ### Exemple de fichier de workflow
 
-Voici un exemple de ce à quoi le fichier de workflow GitHub Actions pourrait ressembler :  
+Voici un exemple de ce à quoi pourrait ressembler le fichier de workflow GitHub Actions :  
 name: Azure Static Web Apps CI/CD  
 ```
 on:
@@ -109,7 +119,9 @@ jobs:
 
 ### Ressources supplémentaires  
 - [Documentation des applications web statiques Azure](https://learn.microsoft.com/azure/static-web-apps/getting-started)  
-- [Documentation des actions GitHub](https://docs.github.com/actions/use-cases-and-examples/deploying/deploying-to-azure-static-web-app)
+- [Documentation GitHub Actions](https://docs.github.com/actions/use-cases-and-examples/deploying/deploying-to-azure-static-web-app)  
+
+---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide de services de traduction automatisée par IA. Bien que nous visons à garantir l'exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue native doit être considéré comme la source autorisée. Pour des informations critiques, une traduction humaine professionnelle est recommandée. Nous ne sommes pas responsables des malentendus ou des interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

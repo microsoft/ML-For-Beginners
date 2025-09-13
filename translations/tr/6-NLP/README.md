@@ -1,15 +1,24 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1eb379dc2d0c9940b320732d16083778",
+  "translation_date": "2025-09-06T08:05:39+00:00",
+  "source_file": "6-NLP/README.md",
+  "language_code": "tr"
+}
+-->
 # Doğal Dil İşleme ile Başlarken
 
-Doğal dil işleme (NLP), bir bilgisayar programının insan dilini konuşulduğu ve yazıldığı gibi anlaması yeteneğidir -- doğal dil olarak adlandırılır. Bu, yapay zekanın (AI) bir bileşenidir. NLP, 50 yılı aşkın bir süredir var olup dilbilim alanında kökleri vardır. Tüm alan, makinelerin insan dilini anlamasına ve işlemesine yardımcı olmaya yöneliktir. Bu, yazım denetimi veya makine çevirisi gibi görevleri yerine getirmek için kullanılabilir. Tıp araştırmaları, arama motorları ve iş zekası gibi birçok alanda çeşitli gerçek dünya uygulamaları bulunmaktadır.
+Doğal dil işleme (NLP), bir bilgisayar programının insan dilini konuşulduğu ve yazıldığı haliyle anlaması yeteneğidir -- doğal dil olarak adlandırılır. Bu, yapay zekanın (AI) bir bileşenidir. NLP, 50 yıldan uzun süredir varlığını sürdürmekte ve dilbilim alanında köklere sahiptir. Tüm alan, makinelerin insan dilini anlamasına ve işlemesine yardımcı olmaya yöneliktir. Bu, yazım denetimi veya makine çevirisi gibi görevleri gerçekleştirmek için kullanılabilir. Tıp araştırmaları, arama motorları ve iş zekası gibi birçok alanda gerçek dünya uygulamalarına sahiptir.
 
-## Bölgesel Konu: Avrupa Dilleri ve Edebiyatı ve Avrupa'nın Romantik Otelleri ❤️
+## Bölgesel Konu: Avrupa dilleri ve edebiyatı ve Avrupa'nın romantik otelleri ❤️
 
-Bu müfredat bölümünde, makine öğreniminin en yaygın kullanımlarından biri olan doğal dil işlemeye (NLP) giriş yapacaksınız. Hesaplamalı dilbilimden türetilen bu yapay zeka kategorisi, insanlar ve makineler arasında sesli veya metinsel iletişim yoluyla bir köprü görevi görür.
+Bu müfredat bölümünde, makine öğreniminin en yaygın kullanım alanlarından biri olan doğal dil işleme (NLP) ile tanışacaksınız. Hesaplamalı dilbilimden türetilen bu yapay zeka kategorisi, sesli veya metinsel iletişim yoluyla insanlar ve makineler arasında bir köprü görevi görür.
 
-Bu derslerde, küçük konuşma botları oluşturarak makine öğreniminin bu konuşmaları nasıl giderek daha 'akıllı' hale getirdiğini öğrenerek NLP'nin temellerini öğreneceğiz. Zaman içinde geriye giderek Jane Austen'in 1813'te yayımlanan klasik romanı **Gurur ve Önyargı**'dan Elizabeth Bennett ve Bay Darcy ile sohbet edeceksiniz. Ardından, Avrupa'daki otel yorumları üzerinden duygu analizi yapmayı öğrenerek bilginizi daha da geliştireceksiniz.
+Bu derslerde, küçük sohbet botları oluşturarak NLP'nin temellerini öğreneceğiz ve makine öğreniminin bu sohbetleri nasıl giderek daha 'akıllı' hale getirdiğini keşfedeceğiz. Zaman içinde geriye yolculuk yaparak, Jane Austen'ın 1813 yılında yayımlanan klasik romanı **Gurur ve Önyargı**'dan Elizabeth Bennett ve Bay Darcy ile sohbet edeceksiniz. Ardından, Avrupa'daki otel yorumları üzerinden duygu analizi öğrenerek bilginizi daha da geliştireceksiniz.
 
-![Gurur ve Önyargı kitabı ve çay](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.tr.jpg)
-> Fotoğraf: <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a>, <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> üzerinden
+![Gurur ve Önyargı kitabı ve çay](../../../6-NLP/images/p&p.jpg)
+> Fotoğraf: <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> tarafından <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Dersler
 
@@ -23,5 +32,7 @@ Bu derslerde, küçük konuşma botları oluşturarak makine öğreniminin bu ko
 
 Bu doğal dil işleme dersleri ☕ ile [Stephen Howell](https://twitter.com/Howell_MSFT) tarafından yazılmıştır.
 
-**Feragatname**:
-Bu belge, makine tabanlı AI çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi tavsiye edilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluğu sağlamak için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.

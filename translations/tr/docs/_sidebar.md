@@ -1,3 +1,12 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "68dd06c685f6ce840e0acfa313352e7c",
+  "translation_date": "2025-09-06T07:52:38+00:00",
+  "source_file": "docs/_sidebar.md",
+  "language_code": "tr"
+}
+-->
 - Giriş
   - [Makine Öğrenimine Giriş](../1-Introduction/1-intro-to-ML/README.md)
   - [Makine Öğreniminin Tarihi](../1-Introduction/2-history-of-ML/README.md)
@@ -5,12 +14,12 @@
   - [ML Teknikleri](../1-Introduction/4-techniques-of-ML/README.md)
 
 - Regresyon
-  - [Araçlar](../2-Regression/1-Tools/README.md)
+  - [İşin Araçları](../2-Regression/1-Tools/README.md)
   - [Veri](../2-Regression/2-Data/README.md)
   - [Doğrusal Regresyon](../2-Regression/3-Linear/README.md)
   - [Lojistik Regresyon](../2-Regression/4-Logistic/README.md)
 
-- Web Uygulaması Oluşturma
+- Bir Web Uygulaması Oluştur
   - [Web Uygulaması](../3-Web-App/1-Web-App/README.md)
 
 - Sınıflandırma
@@ -20,10 +29,10 @@
   - [Uygulamalı ML](../4-Classification/4-Applied/README.md)
 
 - Kümeleme
-  - [Verilerinizi Görselleştirin](../5-Clustering/1-Visualize/README.md)
+  - [Verinizi Görselleştirin](../5-Clustering/1-Visualize/README.md)
   - [K-Means](../5-Clustering/2-K-Means/README.md)
 
-- NLP
+- Doğal Dil İşleme (NLP)
   - [NLP'ye Giriş](../6-NLP/1-Introduction-to-NLP/README.md)
   - [NLP Görevleri](../6-NLP/2-Tasks/README.md)
   - [Çeviri ve Duygu Analizi](../6-NLP/3-Translation-Sentiment/README.md)
@@ -36,11 +45,13 @@
   - [SVR](../7-TimeSeries/3-SVR/README.md)
 
 - Pekiştirmeli Öğrenme
-  - [Q-Learning](../8-Reinforcement/1-QLearning/README.md)
+  - [Q-Öğrenme](../8-Reinforcement/1-QLearning/README.md)
   - [Gym](../8-Reinforcement/2-Gym/README.md)
 
 - Gerçek Dünya ML
   - [Uygulamalar](../9-Real-World/1-Applications/README.md)
 
-**Feragatname**:
-Bu belge, makine tabanlı AI çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

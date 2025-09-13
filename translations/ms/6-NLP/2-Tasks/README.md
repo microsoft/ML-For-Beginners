@@ -1,46 +1,55 @@
-# Tugas dan Teknik Pemprosesan Bahasa Semulajadi yang Biasa
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "5f3cb462e3122e1afe7ab0050ccf2bd3",
+  "translation_date": "2025-09-05T20:27:18+00:00",
+  "source_file": "6-NLP/2-Tasks/README.md",
+  "language_code": "ms"
+}
+-->
+# Tugas Pemprosesan Bahasa Semula Jadi dan Teknik-Tekniknya
 
-Untuk kebanyakan tugas *pemprosesan bahasa semulajadi*, teks yang hendak diproses mesti dipecahkan, diperiksa, dan hasilnya disimpan atau dirujuk silang dengan peraturan dan set data. Tugas-tugas ini membolehkan pengaturcara untuk mendapatkan _makna_ atau _niat_ atau hanya _kekerapan_ istilah dan kata dalam teks.
+Untuk kebanyakan *tugas pemprosesan bahasa semula jadi*, teks yang akan diproses mesti dipecahkan, diperiksa, dan hasilnya disimpan atau dirujuk silang dengan peraturan dan set data. Tugas-tugas ini membolehkan pengaturcara mendapatkan _makna_ atau _niat_ atau hanya _kekerapan_ istilah dan perkataan dalam teks.
 
-## [Kuiz pra-kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
+## [Kuiz Pra-Kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-Mari kita terokai teknik-teknik biasa yang digunakan dalam memproses teks. Digabungkan dengan pembelajaran mesin, teknik-teknik ini membantu anda menganalisis sejumlah besar teks dengan efisien. Sebelum menerapkan ML kepada tugas-tugas ini, mari kita fahami masalah yang dihadapi oleh pakar NLP.
+Mari kita terokai teknik-teknik biasa yang digunakan dalam pemprosesan teks. Digabungkan dengan pembelajaran mesin, teknik-teknik ini membantu anda menganalisis sejumlah besar teks dengan cekap. Sebelum menerapkan ML kepada tugas-tugas ini, mari kita fahami masalah yang dihadapi oleh pakar NLP.
 
-## Tugas biasa dalam NLP
+## Tugas-Tugas Biasa dalam NLP
 
-Terdapat pelbagai cara untuk menganalisis teks yang anda sedang kerjakan. Terdapat tugas-tugas yang boleh anda lakukan dan melalui tugas-tugas ini anda dapat memahami teks dan membuat kesimpulan. Biasanya anda menjalankan tugas-tugas ini secara berurutan.
+Terdapat pelbagai cara untuk menganalisis teks yang sedang anda kerjakan. Terdapat tugas-tugas yang boleh anda laksanakan dan melalui tugas-tugas ini anda dapat memahami teks dan membuat kesimpulan. Biasanya, anda melaksanakan tugas-tugas ini secara berurutan.
 
 ### Tokenisasi
 
-Mungkin perkara pertama yang perlu dilakukan oleh kebanyakan algoritma NLP adalah memecahkan teks kepada token, atau kata-kata. Walaupun ini kedengaran mudah, perlu mengambil kira tanda baca dan pembatas kata dan ayat dari pelbagai bahasa boleh membuatnya rumit. Anda mungkin perlu menggunakan pelbagai kaedah untuk menentukan sempadan.
+Kemungkinan besar perkara pertama yang perlu dilakukan oleh kebanyakan algoritma NLP ialah memecahkan teks kepada token, atau perkataan. Walaupun ini kedengaran mudah, mengambil kira tanda baca dan pemisah perkataan serta ayat dalam pelbagai bahasa boleh menjadi rumit. Anda mungkin perlu menggunakan pelbagai kaedah untuk menentukan sempadan.
 
-![tokenization](../../../../translated_images/tokenization.1641a160c66cd2d93d4524e8114e93158a9ce0eba3ecf117bae318e8a6ad3487.ms.png)
-> Tokenisasi ayat dari **Pride and Prejudice**. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
+![tokenization](../../../../6-NLP/2-Tasks/images/tokenization.png)
+> Tokenisasi ayat daripada **Pride and Prejudice**. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
-### Embeddings
+### Embedding
 
-[Word embeddings](https://wikipedia.org/wiki/Word_embedding) adalah cara untuk menukar data teks anda secara numerik. Embeddings dilakukan dengan cara supaya kata-kata yang mempunyai makna serupa atau kata-kata yang digunakan bersama berkumpul bersama.
+[Word embeddings](https://wikipedia.org/wiki/Word_embedding) adalah cara untuk menukar data teks anda kepada bentuk numerik. Embedding dilakukan dengan cara supaya perkataan yang mempunyai makna serupa atau perkataan yang digunakan bersama-sama berkumpul bersama.
 
-![word embeddings](../../../../translated_images/embedding.2cf8953c4b3101d188c2f61a5de5b6f53caaa5ad4ed99236d42bc3b6bd6a1fe2.ms.png)
+![word embeddings](../../../../6-NLP/2-Tasks/images/embedding.png)
 > "I have the highest respect for your nerves, they are my old friends." - Word embeddings untuk ayat dalam **Pride and Prejudice**. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
-✅ Cuba [alat menarik ini](https://projector.tensorflow.org/) untuk bereksperimen dengan word embeddings. Mengklik pada satu kata menunjukkan kumpulan kata-kata yang serupa: 'toy' berkumpul dengan 'disney', 'lego', 'playstation', dan 'console'.
+✅ Cuba [alat menarik ini](https://projector.tensorflow.org/) untuk bereksperimen dengan word embeddings. Klik pada satu perkataan menunjukkan kumpulan perkataan serupa: 'toy' berkumpul dengan 'disney', 'lego', 'playstation', dan 'console'.
 
 ### Parsing & Tagging Bahagian Ucapan
 
-Setiap kata yang telah ditokenkan boleh ditandakan sebagai bahagian ucapan - kata nama, kata kerja, atau kata sifat. Ayat `the quick red fox jumped over the lazy brown dog` mungkin ditandakan POS sebagai fox = kata nama, jumped = kata kerja.
+Setiap perkataan yang telah ditokenkan boleh ditandai sebagai bahagian ucapan - kata nama, kata kerja, atau kata sifat. Ayat `the quick red fox jumped over the lazy brown dog` mungkin ditandai POS sebagai fox = kata nama, jumped = kata kerja.
 
-![parsing](../../../../translated_images/parse.d0c5bbe1106eae8fe7d60a183cd1736c8b6cec907f38000366535f84f3036101.ms.png)
+![parsing](../../../../6-NLP/2-Tasks/images/parse.png)
 
-> Parsing ayat dari **Pride and Prejudice**. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
+> Parsing ayat daripada **Pride and Prejudice**. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
-Parsing adalah mengenali kata-kata yang berkaitan antara satu sama lain dalam satu ayat - sebagai contoh `the quick red fox jumped` adalah urutan kata sifat-kata nama-kata kerja yang berasingan dari urutan `lazy brown dog`.  
+Parsing ialah mengenal pasti perkataan yang berkaitan antara satu sama lain dalam ayat - contohnya `the quick red fox jumped` ialah urutan kata sifat-kata nama-kata kerja yang berasingan daripada urutan `lazy brown dog`.
 
-### Kekerapan Kata dan Frasa
+### Kekerapan Perkataan dan Frasa
 
-Prosedur yang berguna apabila menganalisis sejumlah besar teks adalah membina kamus setiap kata atau frasa yang menarik dan seberapa kerap ia muncul. Frasa `the quick red fox jumped over the lazy brown dog` mempunyai kekerapan kata 2 untuk the.
+Prosedur yang berguna semasa menganalisis sejumlah besar teks ialah membina kamus setiap perkataan atau frasa yang menarik dan berapa kerap ia muncul. Frasa `the quick red fox jumped over the lazy brown dog` mempunyai kekerapan perkataan sebanyak 2 untuk the.
 
-Mari kita lihat contoh teks di mana kita mengira kekerapan kata. Puisi Rudyard Kipling The Winners mengandungi ayat berikut:
+Mari kita lihat contoh teks di mana kita mengira kekerapan perkataan. Puisi Rudyard Kipling, The Winners, mengandungi ayat berikut:
 
 ```output
 What the moral? Who rides may read.
@@ -51,13 +60,13 @@ Down to Gehenna or up to the Throne,
 He travels the fastest who travels alone.
 ```
 
-Oleh kerana kekerapan frasa boleh tidak sensitif huruf besar atau sensitif huruf besar seperti yang diperlukan, frasa `a friend` has a frequency of 2 and `the` has a frequency of 6, and `travels` adalah 2.
+Oleh kerana kekerapan frasa boleh sensitif huruf besar atau tidak sensitif huruf besar seperti yang diperlukan, frasa `a friend` mempunyai kekerapan sebanyak 2 dan `the` mempunyai kekerapan sebanyak 6, dan `travels` ialah 2.
 
 ### N-grams
 
-Teks boleh dipecahkan kepada urutan kata dengan panjang yang ditetapkan, satu kata (unigram), dua kata (bigrams), tiga kata (trigrams) atau sebarang bilangan kata (n-grams).
+Teks boleh dipecahkan kepada urutan perkataan dengan panjang tertentu, satu perkataan (unigram), dua perkataan (bigram), tiga perkataan (trigram) atau sebarang bilangan perkataan (n-grams).
 
-Sebagai contoh `the quick red fox jumped over the lazy brown dog` dengan skor n-gram 2 menghasilkan n-grams berikut:
+Sebagai contoh, `the quick red fox jumped over the lazy brown dog` dengan skor n-gram sebanyak 2 menghasilkan n-grams berikut:
 
 1. the quick 
 2. quick red 
@@ -69,7 +78,7 @@ Sebagai contoh `the quick red fox jumped over the lazy brown dog` dengan skor n-
 8. lazy brown 
 9. brown dog
 
-Ia mungkin lebih mudah untuk membayangkannya sebagai kotak gelongsor di atas ayat. Ini adalah untuk n-grams 3 kata, n-gram adalah tebal dalam setiap ayat:
+Ia mungkin lebih mudah untuk menggambarkannya sebagai kotak gelongsor di atas ayat. Berikut ialah n-grams untuk 3 perkataan, n-gram ditunjukkan dalam huruf tebal dalam setiap ayat:
 
 1.   <u>**the quick red**</u> fox jumped over the lazy brown dog
 2.   the **<u>quick red fox</u>** jumped over the lazy brown dog
@@ -82,49 +91,49 @@ Ia mungkin lebih mudah untuk membayangkannya sebagai kotak gelongsor di atas aya
 
 ![n-grams sliding window](../../../../6-NLP/2-Tasks/images/n-grams.gif)
 
-> Nilai N-gram 3: Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
+> Nilai N-gram sebanyak 3: Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
 ### Ekstraksi Frasa Kata Nama
 
-Dalam kebanyakan ayat, terdapat kata nama yang menjadi subjek, atau objek ayat. Dalam bahasa Inggeris, ia sering boleh dikenal pasti sebagai mempunyai 'a' atau 'an' atau 'the' sebelum ia. Mengenal pasti subjek atau objek ayat dengan 'mengekstrak frasa kata nama' adalah tugas biasa dalam NLP apabila cuba memahami makna ayat.
+Dalam kebanyakan ayat, terdapat kata nama yang menjadi subjek atau objek ayat. Dalam bahasa Inggeris, ia sering dapat dikenalpasti dengan 'a', 'an', atau 'the' yang mendahuluinya. Mengenalpasti subjek atau objek ayat dengan 'mengekstrak frasa kata nama' adalah tugas biasa dalam NLP apabila cuba memahami makna ayat.
 
-✅ Dalam ayat "I cannot fix on the hour, or the spot, or the look or the words, which laid the foundation. It is too long ago. I was in the middle before I knew that I had begun.", bolehkah anda mengenal pasti frasa kata nama?
+✅ Dalam ayat "I cannot fix on the hour, or the spot, or the look or the words, which laid the foundation. It is too long ago. I was in the middle before I knew that I had begun.", bolehkah anda mengenalpasti frasa kata nama?
 
 Dalam ayat `the quick red fox jumped over the lazy brown dog` terdapat 2 frasa kata nama: **quick red fox** dan **lazy brown dog**.
 
 ### Analisis Sentimen
 
-Satu ayat atau teks boleh dianalisis untuk sentimen, atau betapa *positif* atau *negatif* ia. Sentimen diukur dalam *polariti* dan *objektiviti/subjektiviti*. Polariti diukur dari -1.0 hingga 1.0 (negatif ke positif) dan 0.0 hingga 1.0 (paling objektif ke paling subjektif).
+Satu ayat atau teks boleh dianalisis untuk sentimen, atau betapa *positif* atau *negatif*nya ia. Sentimen diukur dalam *polariti* dan *objektiviti/subjektiviti*. Polariti diukur dari -1.0 hingga 1.0 (negatif ke positif) dan 0.0 hingga 1.0 (paling objektif ke paling subjektif).
 
-✅ Kemudian anda akan belajar bahawa terdapat pelbagai cara untuk menentukan sentimen menggunakan pembelajaran mesin, tetapi satu cara adalah mempunyai senarai kata dan frasa yang dikategorikan sebagai positif atau negatif oleh pakar manusia dan menerapkan model itu kepada teks untuk mengira skor polariti. Bolehkah anda melihat bagaimana ini berfungsi dalam beberapa keadaan dan kurang baik dalam keadaan lain?
+✅ Nanti anda akan belajar bahawa terdapat pelbagai cara untuk menentukan sentimen menggunakan pembelajaran mesin, tetapi satu cara ialah mempunyai senarai perkataan dan frasa yang dikategorikan sebagai positif atau negatif oleh pakar manusia dan menerapkan model itu kepada teks untuk mengira skor polariti. Bolehkah anda melihat bagaimana ini berfungsi dalam beberapa keadaan dan kurang berfungsi dalam keadaan lain?
 
 ### Infleksi
 
-Infleksi membolehkan anda mengambil satu kata dan mendapatkan bentuk tunggal atau jamak kata tersebut.
+Infleksi membolehkan anda mengambil satu perkataan dan mendapatkan bentuk tunggal atau jamak perkataan tersebut.
 
 ### Lematisasi
 
-*Lema* adalah akar atau kata kepala untuk satu set kata, contohnya *flew*, *flies*, *flying* mempunyai lema kata kerja *fly*.
+*Lemma* ialah akar atau kata dasar untuk satu set perkataan, contohnya *flew*, *flies*, *flying* mempunyai lemma kata kerja *fly*.
 
-Terdapat juga pangkalan data yang berguna untuk penyelidik NLP, terutamanya:
+Terdapat juga pangkalan data berguna yang tersedia untuk penyelidik NLP, terutamanya:
 
 ### WordNet
 
-[WordNet](https://wordnet.princeton.edu/) adalah pangkalan data kata, sinonim, antonim dan banyak butiran lain untuk setiap kata dalam pelbagai bahasa. Ia sangat berguna apabila cuba membina terjemahan, pemeriksa ejaan, atau alat bahasa dari sebarang jenis.
+[WordNet](https://wordnet.princeton.edu/) ialah pangkalan data perkataan, sinonim, antonim dan banyak butiran lain untuk setiap perkataan dalam pelbagai bahasa. Ia sangat berguna apabila cuba membina terjemahan, pemeriksa ejaan, atau alat bahasa dari sebarang jenis.
 
 ## Perpustakaan NLP
 
-Nasib baik, anda tidak perlu membina semua teknik ini sendiri, kerana terdapat perpustakaan Python yang sangat baik yang menjadikannya lebih mudah diakses oleh pembangun yang tidak pakar dalam pemprosesan bahasa semulajadi atau pembelajaran mesin. Pelajaran seterusnya termasuk lebih banyak contoh ini, tetapi di sini anda akan belajar beberapa contoh berguna untuk membantu anda dengan tugas seterusnya.
+Nasib baik, anda tidak perlu membina semua teknik ini sendiri, kerana terdapat perpustakaan Python yang sangat baik tersedia yang menjadikannya lebih mudah diakses oleh pembangun yang tidak pakar dalam pemprosesan bahasa semula jadi atau pembelajaran mesin. Pelajaran seterusnya termasuk lebih banyak contoh ini, tetapi di sini anda akan belajar beberapa contoh berguna untuk membantu anda dengan tugas seterusnya.
 
-### Latihan - menggunakan `TextBlob` library
+### Latihan - menggunakan perpustakaan `TextBlob`
 
-Let's use a library called TextBlob as it contains helpful APIs for tackling these types of tasks. TextBlob "stands on the giant shoulders of [NLTK](https://nltk.org) and [pattern](https://github.com/clips/pattern), and plays nicely with both." It has a considerable amount of ML embedded in its API.
+Mari gunakan perpustakaan bernama TextBlob kerana ia mengandungi API yang berguna untuk menangani jenis tugas ini. TextBlob "berdiri di atas bahu gergasi [NLTK](https://nltk.org) dan [pattern](https://github.com/clips/pattern), dan berfungsi dengan baik dengan kedua-duanya." Ia mempunyai sejumlah besar ML yang tertanam dalam API-nya.
 
-> Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers 
+> Nota: Panduan [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) yang berguna tersedia untuk TextBlob yang disyorkan untuk pembangun Python berpengalaman 
 
-When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases. 
+Apabila cuba mengenalpasti *noun phrases*, TextBlob menawarkan beberapa pilihan ekstraktor untuk mencari frasa kata nama. 
 
-1. Take a look at `ConllExtractor`.
+1. Lihat `ConllExtractor`.
 
     ```python
     from textblob import TextBlob
@@ -138,24 +147,24 @@ When attempting to identify *noun phrases*, TextBlob offers several options of e
     np = user_input_blob.noun_phrases                                    
     ```
 
-    > Apa yang berlaku di sini? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) adalah "Pengestrak frasa kata nama yang menggunakan parsing chunk yang dilatih dengan korpus latihan ConLL-2000." ConLL-2000 merujuk kepada Persidangan Pembelajaran Bahasa Semulajadi Komputasi tahun 2000. Setiap tahun persidangan tersebut mengadakan bengkel untuk menangani masalah NLP yang sukar, dan pada tahun 2000 ia adalah chunking kata nama. Model ini dilatih pada Wall Street Journal, dengan "bahagian 15-18 sebagai data latihan (211727 token) dan bahagian 20 sebagai data ujian (47377 token)". Anda boleh melihat prosedur yang digunakan [di sini](https://www.clips.uantwerpen.be/conll2000/chunking/) dan [hasilnya](https://ifarm.nl/erikt/research/np-chunking.html).
+    > Apa yang sedang berlaku di sini? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) ialah "Ekstraktor frasa kata nama yang menggunakan chunk parsing yang dilatih dengan korpus latihan ConLL-2000." ConLL-2000 merujuk kepada Persidangan Pembelajaran Bahasa Semula Jadi Komputasi pada tahun 2000. Setiap tahun persidangan itu mengadakan bengkel untuk menangani masalah NLP yang sukar, dan pada tahun 2000 ia adalah noun chunking. Model dilatih pada Wall Street Journal, dengan "bahagian 15-18 sebagai data latihan (211727 token) dan bahagian 20 sebagai data ujian (47377 token)". Anda boleh melihat prosedur yang digunakan [di sini](https://www.clips.uantwerpen.be/conll2000/chunking/) dan [hasilnya](https://ifarm.nl/erikt/research/np-chunking.html).
 
 ### Cabaran - meningkatkan bot anda dengan NLP
 
-Dalam pelajaran sebelumnya anda membina bot Q&A yang sangat mudah. Sekarang, anda akan membuat Marvin lebih simpatik dengan menganalisis input anda untuk sentimen dan mencetak respons yang sesuai dengan sentimen tersebut. Anda juga perlu mengenal pasti `noun_phrase` dan bertanya mengenainya.
+Dalam pelajaran sebelumnya anda telah membina bot Q&A yang sangat ringkas. Sekarang, anda akan menjadikan Marvin lebih bersimpati dengan menganalisis input anda untuk sentimen dan mencetak respons yang sesuai dengan sentimen tersebut. Anda juga perlu mengenalpasti `noun_phrase` dan bertanya mengenainya.
 
 Langkah-langkah anda semasa membina bot perbualan yang lebih baik:
 
-1. Cetak arahan yang memberi nasihat kepada pengguna cara berinteraksi dengan bot
+1. Cetak arahan yang menasihati pengguna cara berinteraksi dengan bot
 2. Mulakan gelung 
    1. Terima input pengguna
    2. Jika pengguna meminta untuk keluar, maka keluar
    3. Proses input pengguna dan tentukan respons sentimen yang sesuai
-   4. Jika frasa kata nama dikesan dalam sentimen, jamakkan ia dan minta input lanjut mengenai topik tersebut
+   4. Jika frasa kata nama dikesan dalam sentimen, jadikan ia bentuk jamak dan minta input lanjut mengenai topik tersebut
    5. Cetak respons
-3. kembali ke langkah 2
+3. Kembali ke langkah 2
 
-Berikut adalah snippet kod untuk menentukan sentimen menggunakan TextBlob. Perhatikan hanya terdapat empat *gradien* respons sentimen (anda boleh mempunyai lebih banyak jika anda suka):
+Berikut ialah petikan kod untuk menentukan sentimen menggunakan TextBlob. Perhatikan bahawa terdapat hanya empat *gradien* respons sentimen (anda boleh mempunyai lebih banyak jika anda mahu):
 
 ```python
 if user_input_blob.polarity <= -0.5:
@@ -168,7 +177,7 @@ elif user_input_blob.polarity <= 1:
   response = "Wow, that sounds great. "
 ```
 
-Berikut adalah beberapa output contoh untuk membimbing anda (input pengguna adalah pada baris yang bermula dengan >):
+Berikut ialah beberapa output contoh untuk panduan anda (input pengguna berada pada baris yang bermula dengan >):
 
 ```output
 Hello, I am Marvin, the friendly robot.
@@ -189,29 +198,31 @@ It was nice talking to you, goodbye!
 
 Satu penyelesaian yang mungkin untuk tugas ini adalah [di sini](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/2-Tasks/solution/bot.py)
 
-✅ Semak Pengetahuan
+✅ Pemeriksaan Pengetahuan
 
-1. Adakah anda fikir respons yang simpatik akan 'menipu' seseorang untuk berfikir bahawa bot sebenarnya memahami mereka?
-2. Adakah mengenal pasti frasa kata nama menjadikan bot lebih 'boleh dipercayai'?
-3. Mengapa mengekstrak 'frasa kata nama' dari ayat merupakan perkara yang berguna untuk dilakukan?
+1. Adakah anda fikir respons yang bersimpati akan 'menipu' seseorang untuk berfikir bahawa bot itu benar-benar memahami mereka?
+2. Adakah mengenalpasti frasa kata nama menjadikan bot lebih 'boleh dipercayai'?
+3. Mengapa mengekstrak 'frasa kata nama' daripada ayat adalah perkara yang berguna untuk dilakukan?
 
 ---
 
-Laksanakan bot dalam semak pengetahuan sebelumnya dan uji pada seorang rakan. Bolehkah ia menipu mereka? Bolehkah anda menjadikan bot anda lebih 'boleh dipercayai'?
+Laksanakan bot dalam pemeriksaan pengetahuan sebelumnya dan uji pada rakan. Bolehkah ia menipu mereka? Bolehkah anda menjadikan bot anda lebih 'boleh dipercayai'?
 
 ## 🚀Cabaran
 
-Ambil satu tugas dalam semak pengetahuan sebelumnya dan cuba melaksanakannya. Uji bot pada seorang rakan. Bolehkah ia menipu mereka? Bolehkah anda menjadikan bot anda lebih 'boleh dipercayai'?
+Ambil satu tugas dalam pemeriksaan pengetahuan sebelumnya dan cuba laksanakannya. Uji bot pada rakan. Bolehkah ia menipu mereka? Bolehkah anda menjadikan bot anda lebih 'boleh dipercayai'?
 
-## [Kuiz pasca-kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [Kuiz Pasca-Kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## Kajian & Kajian Kendiri
+## Ulasan & Kajian Kendiri
 
-Dalam beberapa pelajaran berikutnya, anda akan belajar lebih lanjut mengenai analisis sentimen. Selidiki teknik menarik ini dalam artikel seperti ini di [KDNuggets](https://www.kdnuggets.com/tag/nlp)
+Dalam beberapa pelajaran seterusnya anda akan belajar lebih lanjut tentang analisis sentimen. Kajilah teknik menarik ini dalam artikel seperti di [KDNuggets](https://www.kdnuggets.com/tag/nlp)
 
 ## Tugasan 
 
-[Buat bot bercakap balik](assignment.md)
+[Make a bot talk back](assignment.md)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

@@ -1,14 +1,25 @@
-# Tentando Novamente a Regressão
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "8af40209a41494068c1f42b14c0b450d",
+  "translation_date": "2025-09-03T16:34:59+00:00",
+  "source_file": "2-Regression/4-Logistic/assignment.md",
+  "language_code": "pt"
+}
+-->
+# Repetir uma Regressão
 
 ## Instruções
 
-Na lição, você usou um subconjunto dos dados de abóbora. Agora, volte para os dados originais e tente usar todos eles, limpos e padronizados, para construir um modelo de Regressão Logística.
+Na aula, utilizaste um subconjunto dos dados de abóbora. Agora, volta aos dados originais e tenta usar todos eles, limpos e padronizados, para construir um modelo de Regressão Logística.
 
 ## Rubrica
 
-| Critérios | Exemplar                                                               | Adequado                                                    | Necessita Melhorias                                         |
-| --------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-|           | Um caderno é apresentado com um modelo bem explicado e de bom desempenho | Um caderno é apresentado com um modelo que tem desempenho mínimo | Um caderno é apresentado com um modelo de baixo desempenho ou nenhum |
+| Critério  | Exemplar                                                               | Adequado                                                     | Necessita Melhorias                                         |
+| --------- | ---------------------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+|           | Um notebook é apresentado com um modelo bem explicado e com bom desempenho | Um notebook é apresentado com um modelo que tem desempenho mínimo | Um notebook é apresentado com um modelo de baixo desempenho ou nenhum |
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido utilizando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas decorrentes do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

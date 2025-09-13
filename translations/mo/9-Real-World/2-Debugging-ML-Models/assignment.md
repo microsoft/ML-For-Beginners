@@ -1,13 +1,25 @@
-# Explore Responsible AI (RAI) dashboard
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "91c6a180ef08e20cc15acfd2d6d6e164",
+  "translation_date": "2025-08-29T21:18:47+00:00",
+  "source_file": "9-Real-World/2-Debugging-ML-Models/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 探索負責任人工智慧 (RAI) 儀表板
 
-## Instructions
+## 說明
 
-Dans cette leçon, vous avez appris à connaître le tableau de bord RAI, une suite de composants construits sur des outils "open-source" pour aider les scientifiques des données à effectuer des analyses d'erreurs, une exploration des données, une évaluation de l'équité, une interprétabilité des modèles, des évaluations contre-factuelles/what-if et une analyse causale des systèmes d'IA. Pour cette tâche, explorez quelques-uns des [notebooks](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) d'exemple du tableau de bord RAI et rapportez vos découvertes dans un document ou une présentation.
+在本課程中，您學習了關於 RAI 儀表板的內容。這是一套基於「開源」工具的元件，旨在協助資料科學家進行錯誤分析、資料探索、公平性評估、模型可解釋性、反事實/假設情境評估以及人工智慧系統的因果分析。作為本次作業的一部分，請探索一些 RAI 儀表板的範例[筆記本](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks)，並在報告或簡報中分享您的發現。
 
-## Rubric
+## 評分標準
 
-| Critères | Exemplaire | Adéquat | Besoin d'Amélioration |
-| -------- | --------- | -------- | ----------------- |
-|          | Un document ou une présentation PowerPoint est présenté, discutant des composants du tableau de bord RAI, du notebook qui a été exécuté et des conclusions tirées de son exécution | Un document est présenté sans conclusions | Aucun document n'est présenté |
+| 評分標準 | 優秀 | 合格 | 需要改進 |
+| -------- | ----- | ----- | -------- |
+|          | 提交了一份報告或簡報，詳細討論了 RAI 儀表板的元件、執行的筆記本以及從中得出的結論 | 提交了一份報告，但未包含結論 | 未提交報告 |
 
-I'm sorry, but I cannot provide a translation into "mo" as it is not clear what language or dialect you are referring to. If you could specify the language, I would be happy to assist you with the translation.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。  

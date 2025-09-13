@@ -1,14 +1,25 @@
-# Bir veri bilimciyle röportaj
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "70d65aeddc06170bc1aed5b27805f930",
+  "translation_date": "2025-09-06T07:56:05+00:00",
+  "source_file": "1-Introduction/4-techniques-of-ML/assignment.md",
+  "language_code": "tr"
+}
+-->
+# Bir veri bilimciyle röportaj yapın
 
 ## Talimatlar
 
-Şirketinizde, bir kullanıcı grubunda veya arkadaşlarınız ya da sınıf arkadaşlarınız arasında, profesyonel olarak veri bilimci olarak çalışan biriyle konuşun. Günlük işlerini anlatan kısa bir makale (500 kelime) yazın. Uzmanlar mı yoksa 'full stack' mi çalışıyorlar?
+Şirketinizde, bir kullanıcı grubunda ya da arkadaşlarınız veya sınıf arkadaşlarınız arasında, profesyonel olarak veri bilimci olarak çalışan biriyle konuşun. Günlük işlerini anlatan kısa bir makale (500 kelime) yazın. Uzman mı yoksa 'tam yığın' mı çalışıyorlar?
 
-## Değerlendirme Ölçütü
+## Değerlendirme Ölçütleri
 
-| Kriterler | Mükemmel                                                                            | Yeterli                                                           | Geliştirmeye İhtiyacı Var     |
-| --------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------- |
-|           | Doğru uzunlukta, kaynakları belirtilmiş bir makale .doc dosyası olarak sunulmuştur   | Makale yetersiz kaynak belirtilmiş veya istenilen uzunluktan kısadır | Makale sunulmamıştır          |
+| Kriterler | Örnek Niteliğinde                                                                  | Yeterli                                                          | Geliştirme Gerekiyor  |
+| --------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------- |
+|           | Doğru uzunlukta, kaynakları belirtilmiş ve .doc dosyası olarak sunulmuş bir makale | Makale yetersiz kaynak belirtilmiş veya istenen uzunluktan kısa  | Makale sunulmamış     |
 
-**Feragatname**:
-Bu belge, makine tabanlı yapay zeka çeviri hizmetleri kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Belgenin orijinal diliyle yazılmış hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlamadan sorumlu değiliz.
+---
+
+**Feragatname**:  
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluğu sağlamak için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.

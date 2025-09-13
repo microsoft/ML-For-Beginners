@@ -1,26 +1,37 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "b37de02054fa6c0438ede6fabe1fdfb8",
+  "translation_date": "2025-09-03T16:15:32+00:00",
+  "source_file": "for-teachers.md",
+  "language_code": "pt"
+}
+-->
 ## Para Educadores
 
-Você gostaria de usar este currículo em sua sala de aula? Fique à vontade!
+Gostaria de usar este currículo na sua sala de aula? Fique à vontade!
 
-Na verdade, você pode usá-lo dentro do próprio GitHub utilizando o GitHub Classroom.
+Na verdade, pode utilizá-lo diretamente no GitHub, através do GitHub Classroom.
 
-Para fazer isso, faça um fork deste repositório. Você precisará criar um repositório para cada lição, então será necessário extrair cada pasta em um repositório separado. Dessa forma, o [GitHub Classroom](https://classroom.github.com/classrooms) pode identificar cada lição separadamente.
+Para isso, faça um fork deste repositório. Vai precisar criar um repositório para cada aula, então será necessário extrair cada pasta para um repositório separado. Dessa forma, [GitHub Classroom](https://classroom.github.com/classrooms) poderá identificar cada aula individualmente.
 
-Estas [instruções completas](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) lhe darão uma ideia de como configurar sua sala de aula.
+Estas [instruções completas](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) irão ajudá-lo a configurar a sua sala de aula.
 
-## Usando o repositório como está
+## Utilizar o repositório como está
 
-Se você gostaria de usar este repositório como ele está atualmente, sem usar o GitHub Classroom, isso também pode ser feito. Você precisaria se comunicar com seus alunos sobre qual lição trabalhar em conjunto.
+Se preferir usar este repositório no formato atual, sem recorrer ao GitHub Classroom, isso também é possível. Apenas precisará comunicar aos seus alunos qual aula devem trabalhar em conjunto.
 
-Em um formato online (Zoom, Teams ou outro), você pode formar salas de discussão para os questionários e orientar os alunos para ajudá-los a se prepararem para aprender. Em seguida, convide os alunos para os questionários e envie suas respostas como 'issues' em um determinado momento. Você pode fazer o mesmo com as tarefas, se desejar que os alunos trabalhem colaborativamente de forma aberta.
+Num formato online (Zoom, Teams ou outro), pode criar salas de grupo para os questionários e orientar os alunos para que estejam prontos para aprender. Depois, convide os alunos a realizar os questionários e submeter as respostas como 'issues' num momento específico. Pode fazer o mesmo com os trabalhos, caso deseje que os alunos colaborem de forma aberta.
 
-Se preferir um formato mais privado, peça aos seus alunos que façam um fork do currículo, lição por lição, para seus próprios repositórios GitHub como repositórios privados e lhe dêem acesso. Assim, eles podem completar questionários e tarefas de forma privada e enviá-los para você através de issues no seu repositório da sala de aula.
+Se preferir um formato mais privado, peça aos seus alunos para fazerem fork do currículo, aula por aula, para os seus próprios repositórios GitHub como repositórios privados, e conceda-lhe acesso. Assim, poderão completar os questionários e trabalhos de forma privada e submetê-los através de issues no repositório da sua sala de aula.
 
-Existem muitas maneiras de fazer isso funcionar em um formato de sala de aula online. Por favor, nos avise o que funciona melhor para você!
+Existem várias formas de fazer isto funcionar num formato de sala de aula online. Por favor, informe-nos sobre o que funciona melhor para si!
 
-## Por favor, compartilhe seus pensamentos!
+## Partilhe connosco a sua opinião!
 
-Queremos que este currículo funcione para você e seus alunos. Por favor, nos dê [feedback](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
+Queremos que este currículo funcione para si e para os seus alunos. Por favor, envie-nos o seu [feedback](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido utilizando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas resultantes do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante ter em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

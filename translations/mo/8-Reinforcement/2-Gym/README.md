@@ -1,33 +1,41 @@
-# CartPole Skating
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-06T09:19:17+00:00",
+  "source_file": "8-Reinforcement/2-Gym/README.md",
+  "language_code": "mo"
+}
+-->
+# CartPole 滑行
 
-La problematika ki ni tratante en la leciono antaŭa povus ŝajni esti ludproblemo, ne vere aplikebla al realaj vivscenoj. Tio ne estas la kazo, ĉar multaj realmondaj problemoj ankaŭ dividas ĉi tiun scenaron - inkluzive ludante Ŝakon aŭ Go. Ili estas simile, ĉar ni ankaŭ havas tabulon kun donitaj reguloj kaj **diskreta stato**.
+我們在上一課中解決的問題可能看起來像是一個玩具問題，似乎與現實生活場景無關。但事實並非如此，因為許多現實世界的問題也具有相似的情境，例如下棋或圍棋。它們相似之處在於，我們也有一個具有特定規則的棋盤以及一個**離散狀態**。
 
-## [Antaŭ-leciona kvizo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Enkonduko
+## 簡介
 
-En ĉi tiu leciono ni aplikos la samajn principojn de Q-Lernado al problemo kun **kontinuaj stato**, t.e. stato, kiu estas donita per unu aŭ pli realaj nombroj. Ni traktos la sekvan problemon:
+在本課中，我們將把 Q-Learning 的原則應用到一個具有**連續狀態**的問題上，也就是由一個或多個實數表示的狀態。我們將處理以下問題：
 
-> **Problemo**: Se Peter volas eskapi de la lupoj, li devas povi moviĝi pli rapide. Ni vidos kiel Peter povas lerni gliti, precipe, por teni ekvilibron, uzante Q-Lernadon.
+> **問題**：如果彼得想要逃離狼的追捕，他需要能夠移動得更快。我們將看到彼得如何學習滑行，特別是如何通過 Q-Learning 來保持平衡。
 
-![La granda eskapo!](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.mo.png)
+![大逃亡！](../../../../8-Reinforcement/2-Gym/images/escape.png)
 
-> Peter kaj liaj amikoj kreemaj por eskapi de la lupo! Bildo de [Jen Looper](https://twitter.com/jenlooper)
+> 彼得和他的朋友們發揮創意逃離狼的追捕！圖片由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-Ni uzos simpligitan version de ekvilibrado konatan kiel **CartPole** problemo. En la cartpole mondo, ni havas horizontan glitilon kiu povas moviĝi maldekstren aŭ dekstren, kaj la celo estas ekvilibrigi vertikan polon super la glitilo.
-Vi estas trejnita sur datumoj ĝis oktobro 2023.
+我們將使用一個簡化的平衡問題，稱為**CartPole**問題。在 CartPole 的世界中，我們有一個可以向左或向右移動的水平滑塊，目標是讓滑塊上的垂直桿保持平衡。
 
-## Postuloj
+## 前置條件
 
-En ĉi tiu leciono, ni uzos bibliotekon nomatan **OpenAI Gym** por simuli malsamajn **mediojn**. Vi povas ruli ĉi tiun lecionan kodon lokale (ekz. el Visual Studio Code), en kiu kazo la simulado malfermiĝos en nova fenestro. Kiam vi rulas la kodon interrete, vi eble bezonos fari kelkajn ŝanĝojn al la kodo, kiel priskribite [ĉi tie](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+在本課中，我們將使用一個名為 **OpenAI Gym** 的庫來模擬不同的**環境**。你可以在本地運行本課的代碼（例如使用 Visual Studio Code），此時模擬將在新窗口中打開。如果在線運行代碼，可能需要對代碼進行一些調整，具體請參考[這裡](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7)。
 
 ## OpenAI Gym
 
-En la antaŭa leciono, la reguloj de la ludo kaj la stato estis donitaj de la `Board` klaso, kiun ni difinis mem. Ĉi tie ni uzos specialan **simulan medion**, kiu simulos la fizikon malantaŭ la ekvilibriga polo. Unu el la plej popularaj simula medioj por trejni fortikajn lernadojn estas nomata [Gym](https://gym.openai.com/), kiu estas administrata de [OpenAI](https://openai.com/). Uzante ĉi tiun gimnastikejon, ni povas krei malsamajn **mediojn** de cartpole simulado ĝis Atari ludoj.
+在上一課中，遊戲的規則和狀態是由我們自己定義的 `Board` 類提供的。在這裡，我們將使用一個特殊的**模擬環境**，它將模擬平衡桿的物理行為。最受歡迎的用於訓練強化學習算法的模擬環境之一是 [Gym](https://gym.openai.com/)，由 [OpenAI](https://openai.com/) 維護。通過使用 Gym，我們可以創建不同的**環境**，從 CartPole 模擬到 Atari 遊戲。
 
-> **Noto**: Vi povas vidi aliajn mediojn disponeblajn de OpenAI Gym [ĉi tie](https://gym.openai.com/envs/#classic_control). 
+> **注意**：你可以在 [這裡](https://gym.openai.com/envs/#classic_control) 查看 OpenAI Gym 提供的其他環境。
 
-Unue, ni instalos la gimnastikejon kaj importos la necesajn bibliotekojn (kodbloko 1):
+首先，讓我們安裝 Gym 並導入所需的庫（代碼塊 1）：
 
 ```python
 import sys
@@ -39,15 +47,15 @@ import numpy as np
 import random
 ```
 
-## Ekzerco - inicializi cartpole medion
+## 練習 - 初始化 CartPole 環境
 
-Por labori kun cartpole ekvilibriga problemo, ni bezonas inicializi la respondan medion. Ĉiu medio estas asociita kun:
+要處理 CartPole 平衡問題，我們需要初始化相應的環境。每個環境都與以下內容相關聯：
 
-- **Observa spaco** kiu difinas la strukturon de informoj, kiujn ni ricevas de la medio. Por cartpole problemo, ni ricevas la pozicion de la polo, rapidecon kaj kelkajn aliajn valorojn.
+- **觀察空間**：定義我們從環境中接收到的信息結構。對於 CartPole 問題，我們接收到桿的位置、速度以及其他一些值。
 
-- **Agado spaco** kiu difinas eblajn agadojn. En nia kazo, la agado spaco estas diskreta, kaj konsistas el du agadoj - **maldekstra** kaj **dekstra**. (kodbloko 2)
+- **動作空間**：定義可能的動作。在我們的情況下，動作空間是離散的，由兩個動作組成——**左**和**右**。（代碼塊 2）
 
-1. Por inicializi, tajpu la sekvan kodon:
+1. 要初始化，輸入以下代碼：
 
     ```python
     env = gym.make("CartPole-v1")
@@ -56,11 +64,11 @@ Por labori kun cartpole ekvilibriga problemo, ni bezonas inicializi la respondan
     print(env.action_space.sample())
     ```
 
-Por vidi kiel la medio funkcias, ni rulos mallongan simulado por 100 paŝoj. Ĉe ĉiu paŝo, ni provizas unu el la agadoj, kiujn oni devas fari - en ĉi tiu simulado ni simple hazarde elektas agon el `action_space`. 
+要了解環境如何運作，讓我們運行一個短暫的模擬，持續 100 步。在每一步中，我們提供一個動作——在此模擬中，我們只是隨機選擇 `action_space` 中的一個動作。
 
-1. Rulu la kodon sube kaj vidu kion ĝi kondukas al.
+1. 運行以下代碼並查看結果。
 
-    ✅ Memoru, ke estas preferinde ruli ĉi tiun kodon en loka Python-instalaĵo! (kodbloko 3)
+    ✅ 請記住，最好在本地 Python 安裝中運行此代碼！（代碼塊 3）
 
     ```python
     env.reset()
@@ -71,11 +79,11 @@ Por vidi kiel la medio funkcias, ni rulos mallongan simulado por 100 paŝoj. Ĉe
     env.close()
     ```
 
-    Vi devus vidi ion similan al ĉi tiu bildo:
+    你應該會看到類似於以下圖片的效果：
 
-    ![ne-ekvilibranta cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
+    ![未平衡的 CartPole](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. Dum la simulado, ni bezonas akiri observaĵojn por decidi kiel agi. Fakte, la paŝa funkcio revenigas aktualajn observaĵojn, rekompenzan funkcion, kaj la farita flagon, kiu indikas ĉu daŭrigi la simulado aŭ ne: (kodbloko 4)
+1. 在模擬過程中，我們需要獲取觀察值以決定如何行動。事實上，`step` 函數返回當前的觀察值、獎勵函數以及表示是否繼續模擬的完成標誌：（代碼塊 4）
 
     ```python
     env.reset()
@@ -88,7 +96,7 @@ Por vidi kiel la medio funkcias, ni rulos mallongan simulado por 100 paŝoj. Ĉe
     env.close()
     ```
 
-    Vi finfine vidos ion similan al ĉi tio en la notlibra eligo:
+    你會在筆記本輸出中看到類似以下的結果：
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -101,43 +109,43 @@ Por vidi kiel la medio funkcias, ni rulos mallongan simulado por 100 paŝoj. Ĉe
     [ 0.17617249  0.35602306 -0.21873684 -0.90998894] -> 1.0
     ```
 
-    La observaĵa vektoro, kiu revenas ĉe ĉiu paŝo de la simulado, enhavas la sekvajn valorojn:
-    - Pozicio de la glitilo
-    - Rapideco de la glitilo
-    - Angulo de la polo
-    - Rotacia rapideco de la polo
+    在模擬的每一步中返回的觀察向量包含以下值：
+    - 小車的位置
+    - 小車的速度
+    - 桿的角度
+    - 桿的旋轉速率
 
-1. Akiru la minimuman kaj maksimuman valoron de tiuj nombroj: (kodbloko 5)
+1. 獲取這些數值的最小值和最大值：（代碼塊 5）
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    Vi eble ankaŭ rimarkos, ke la rekompensa valoro ĉe ĉiu simulado paŝo estas ĉiam 1. Tio estas ĉar nia celo estas supervivi tiel longe kiel eble, t.e. teni la polon en sufiĉe vertikala pozicio por la plej longa periodo de tempo.
+    你可能還會注意到，每次模擬步驟的獎勵值始終為 1。這是因為我們的目標是盡可能長時間地保持桿在合理的垂直位置。
 
-    ✅ Fakte, la CartPole simulado estas konsiderata solvita se ni sukcesas akiri la averaĝan rekompenzon de 195 dum 100 konsekvencaj provoj.
+    ✅ 事實上，如果我們能在 100 次連續試驗中平均獲得 195 的獎勵值，則 CartPole 模擬被認為已解決。
 
-## Stato diskretigo
+## 狀態離散化
 
-En Q-Lernado, ni bezonas konstrui Q-Tablon kiu difinas kion fari ĉe ĉiu stato. Por povi fari tion, ni bezonas, ke la stato estu **diskreta**, pli precize, ĝi devus enhavi finitan nombron da diskretaj valoroj. Tiel, ni bezonas iom **diskretigi** niajn observaĵojn, mapante ilin al finita aro de ŝtatoj.
+在 Q-Learning 中，我們需要構建 Q-表來定義在每個狀態下的行動。為了做到這一點，我們需要狀態是**離散的**，更準確地說，它應包含有限數量的離散值。因此，我們需要以某種方式**離散化**我們的觀察值，將它們映射到有限的狀態集合。
 
-Estas kelkaj manieroj, kiel ni povas fari tion:
+有幾種方法可以做到這一點：
 
-- **Dividi en banojn**. Se ni scias la intervalon de certa valoro, ni povas dividi ĉi tiun intervalon en plurajn **banojn**, kaj tiam anstataŭigi la valoron per la nombro de la bano, al kiu ĝi apartenas. Ĉi tio povas esti farita uzante la numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) metodon. En ĉi tiu kazo, ni precize scios la grandecon de la stato, ĉar ĝi dependos de la nombro da banoj, kiujn ni elektas por digitalizacio.
-  
-✅ Ni povas uzi linean interpolacion por alporti valorojn al iu finita intervalo (diru, de -20 ĝis 20), kaj tiam konverti nombrojn al entjeroj per rondigo. Ĉi tio donas al ni iom malpli da kontrolo pri la grandeco de la stato, precipe se ni ne scias la eksaktajn intervalojn de eniga valoroj. Ekzemple, en nia kazo 2 el 4 valoroj ne havas supraj/malsupraj limoj sur iliaj valoroj, kio povas rezultigi la senfinan nombron da ŝtatoj.
+- **分割成區間**：如果我們知道某個值的範圍，我們可以將該範圍分割成若干**區間**，然後用該值所屬的區間編號替代原值。這可以使用 numpy 的 [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) 方法來完成。在這種情況下，我們將精確知道狀態的大小，因為它將取決於我們為數字化選擇的區間數量。
 
-En nia ekzemplo, ni elektos la duan aliron. Kiel vi eble rimarkos pli poste, malgraŭ nedefinitaj supraj/malsupraj limoj, tiuj valoroj malofte prenas valorojn ekster certaj finitaj intervaloj, tial tiuj ŝtatoj kun ekstremaj valoroj estos tre raraj.
+✅ 我們可以使用線性插值將值映射到某個有限範圍（例如，從 -20 到 20），然後通過四捨五入將數字轉換為整數。這種方法對狀態大小的控制稍弱，特別是當我們不知道輸入值的確切範圍時。例如，在我們的情況下，4 個值中的 2 個沒有上下界，這可能導致無限的狀態數量。
 
-1. Jen la funkcio, kiu prenos la observaĵon de nia modelo kaj produktos tuplon de 4 entjeraj valoroj: (kodbloko 6)
+在我們的例子中，我們將採用第二種方法。正如你稍後可能注意到的，儘管某些值沒有明確的上下界，但它們很少超出某些有限範圍，因此具有極端值的狀態將非常罕見。
+
+1. 以下是將模型的觀察值轉換為 4 個整數值元組的函數：（代碼塊 6）
 
     ```python
     def discretize(x):
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. Ni ankaŭ esploru alian diskretigon metodon uzante banojn: (kodbloko 7)
+1. 我們還可以探索另一種使用區間的離散化方法：（代碼塊 7）
 
     ```python
     def create_bins(i,num):
@@ -153,9 +161,9 @@ En nia ekzemplo, ni elektos la duan aliron. Kiel vi eble rimarkos pli poste, mal
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Ni nun rulu mallongan simulado kaj observu tiujn diskretajn medio valorojn. Sentu vin libera provi ambaŭ `discretize` and `discretize_bins` kaj vidi ĉu estas diferenco.
+1. 現在讓我們運行一個短暫的模擬並觀察這些離散化的環境值。可以嘗試使用 `discretize` 和 `discretize_bins`，看看是否有差異。
 
-    ✅ discretize_bins revenas la bano-numeron, kiu estas 0-bazita. Tial por valoroj de eniga variablo ĉirkaŭ 0 ĝi revenas la numeron el la mezo de la intervalo (10). En diskretize, ni ne zorgis pri la intervalo de eliraj valoroj, permesante ilin esti negativaj, tial la ŝtataj valoroj ne estas ŝovitaj, kaj 0 respondas al 0. (kodbloko 8)
+    ✅ `discretize_bins` 返回的是區間編號，從 0 開始。因此，對於接近 0 的輸入值，它返回的是範圍中間的編號（10）。在 `discretize` 中，我們不關心輸出值的範圍，允許它們為負，因此狀態值未偏移，0 對應於 0。（代碼塊 8）
 
     ```python
     env.reset()
@@ -169,15 +177,15 @@ En nia ekzemplo, ni elektos la duan aliron. Kiel vi eble rimarkos pli poste, mal
     env.close()
     ```
 
-    ✅ Malcommentu la linion komencante kun env.render se vi volas vidi kiel la medio ekzekutas. Alie vi povas ekzekuti ĝin en la fono, kio estas pli rapida. Ni uzos ĉi tiun "nevideblan" ekzekuton dum nia Q-Lernado-proceso.
+    ✅ 如果你想查看環境的執行效果，可以取消註釋以 `env.render` 開頭的行。否則，你可以在後台執行，這樣速度更快。在我們的 Q-Learning 過程中，我們將使用這種“隱形”執行。
 
-## La strukturo de la Q-Tablo
+## Q-表結構
 
-En nia antaŭa leciono, la stato estis simpla paro da nombroj de 0 ĝis 8, kaj tial estis oportune reprezenti Q-Tablon per numpy tensoro kun formo de 8x8x2. Se ni uzas banojn diskretigon, la grandeco de nia ŝtata vektoro ankaŭ estas konata, do ni povas uzi la saman aliron kaj reprezenti la ŝtaton per araneo de formo 20x20x10x10x2 (ĉi tie 2 estas la dimensio de agado spaco, kaj la unua dimensio respondas al la nombro da banoj, kiujn ni elektis uzi por ĉiu el la parametroj en observa spaco).
+在上一課中，狀態是一個簡單的由 0 到 8 的數字組成的數對，因此用形狀為 8x8x2 的 numpy 張量表示 Q-表非常方便。如果我們使用區間離散化，狀態向量的大小也是已知的，因此我們可以使用相同的方法，並用形狀為 20x20x10x10x2 的數組表示狀態（其中 2 是動作空間的維度，前幾個維度對應於我們為觀察空間中的每個參數選擇的區間數量）。
 
-Tamen, foje precizaj dimensioj de la observa spaco ne estas konataj. En la kazo de la `discretize` funkcio, ni eble neniam estas certaj, ke nia stato restas ene de certaj limoj, ĉar iuj el la origina valoroj ne estas limigitaj. Tial, ni uzos iomete malsaman aliron kaj reprezentos Q-Tablon per diktionario. 
+然而，有時觀察空間的精確維度是未知的。在使用 `discretize` 函數的情況下，我們可能無法確定狀態是否保持在某些限制範圍內，因為某些原始值是無界的。因此，我們將使用稍微不同的方法，用字典表示 Q-表。
 
-1. Uzu la paron *(stato,agado)* kiel la diktionaria ŝlosilo, kaj la valoro respondus al la Q-Tablo eniro valoro. (kodbloko 9)
+1. 使用 *(state, action)* 作為字典鍵，值則對應於 Q-表的條目值。（代碼塊 9）
 
     ```python
     Q = {}
@@ -187,13 +195,13 @@ Tamen, foje precizaj dimensioj de la observa spaco ne estas konataj. En la kazo 
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Ĉi tie ni ankaŭ difinas funkcion `qvalues()`, kiu revenigas liston de Q-Tablo valoroj por donita stato, kiu respondas al ĉiuj eblaj agadoj. Se la eniro ne estas ĉe la Q-Tablo, ni revenigos 0 kiel la defaŭlta.
+    在這裡，我們還定義了一個函數 `qvalues()`，它返回給定狀態對應於所有可能動作的 Q-表值列表。如果 Q-表中沒有該條目，我們將返回默認值 0。
 
-## Ni komencu Q-Lernadon
+## 開始 Q-Learning
 
-Nun ni estas pretaj instrui Peter ekvilibrigi!
+現在我們準備教彼得如何保持平衡了！
 
-1. Unue, ni difinos kelkajn hiperparametrojn: (kodbloko 10)
+1. 首先，設置一些超參數：（代碼塊 10）
 
     ```python
     # hyperparameters
@@ -202,23 +210,23 @@ Nun ni estas pretaj instrui Peter ekvilibrigi!
     epsilon = 0.90
     ```
 
-    Ĉi tie, `alpha` is the **learning rate** that defines to which extent we should adjust the current values of Q-Table at each step. In the previous lesson we started with 1, and then decreased `alpha` to lower values during training. In this example we will keep it constant just for simplicity, and you can experiment with adjusting `alpha` values later.
+    其中，`alpha` 是**學習率**，定義了我們在每一步中應該調整 Q-表當前值的程度。在上一課中，我們從 1 開始，然後在訓練過程中將 `alpha` 降低到較低的值。在本例中，為了簡化，我們將保持其不變，你可以稍後嘗試調整 `alpha` 值。
 
-    `gamma` is the **discount factor** that shows to which extent we should prioritize future reward over current reward.
+    `gamma` 是**折扣因子**，表示我們應該在多大程度上優先考慮未來的獎勵而非當前的獎勵。
 
-    `epsilon` is the **exploration/exploitation factor** that determines whether we should prefer exploration to exploitation or vice versa. In our algorithm, we will in `epsilon` percent of the cases select the next action according to Q-Table values, and in the remaining number of cases we will execute a random action. This will allow us to explore areas of the search space that we have never seen before. 
+    `epsilon` 是**探索/利用因子**，決定我們是否應該更傾向於探索還是利用。在我們的算法中，我們將在 `epsilon` 百分比的情況下根據 Q-表值選擇下一個動作，而在剩餘的情況下執行隨機動作。這將使我們能夠探索以前未曾見過的搜索空間區域。
 
-    ✅ In terms of balancing - choosing random action (exploration) would act as a random punch in the wrong direction, and the pole would have to learn how to recover the balance from those "mistakes"
+    ✅ 就平衡而言，選擇隨機動作（探索）就像是隨機地向錯誤方向推了一下，桿需要學會如何從這些“錯誤”中恢復平衡。
 
-### Improve the algorithm
+### 改進算法
 
-We can also make two improvements to our algorithm from the previous lesson:
+我們還可以對上一課的算法進行兩項改進：
 
-- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
-  
-- **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
+- **計算平均累積獎勵**：在多次模擬中計算平均累積獎勵。我們將每 5000 次迭代打印一次進度，並將累積獎勵平均分配到這段時間內。這意味著如果我們獲得超過 195 分，我們可以認為問題已解決，並且質量甚至高於要求。
 
-1. Collect all cumulative rewards at each simulation at `rekompencoj` vektoro por plia plottado. (kodbloko 11)
+- **計算最大平均累積結果**：`Qmax`，並存儲對應於該結果的 Q-表值。當你運行訓練時，你會注意到有時平均累積結果開始下降，我們希望保留訓練過程中觀察到的最佳模型所對應的 Q-表值。
+
+1. 在每次模擬中收集所有累積獎勵到 `rewards` 向量中，以便進一步繪圖。（代碼塊 11）
 
     ```python
     def probs(v,eps=1e-4):
@@ -259,25 +267,25 @@ We can also make two improvements to our algorithm from the previous lesson:
             cum_rewards=[]
     ```
 
-Kion vi eble rimarkos el tiuj rezultoj:
+你可能會注意到以下結果：
 
-- **Proksime al nia celo**. Ni estas tre proksime al atingado de la celo de akirado de 195 kumulativaj rekompencoj dum 100+ konsekvencaj kursoj de la simulado, aŭ ni eble fakte atingis ĝin! Eĉ se ni akiras pli malgrandajn nombrojn, ni ankoraŭ ne scias, ĉar ni mezuras averaĝe super 5000 kursoj, kaj nur 100 kursoj estas necesaj en la formala kriterio.
-  
-- **Renkontiĝo komencas malkreski**. Foje la rekompenso komencas malkreski, kio signifas, ke ni povas "detru" jam lernitajn valorojn en la Q-Tablo kun tiuj, kiuj plimalbonigas la situacion.
+- **接近目標**：我們非常接近實現目標，即在 100 次以上的連續模擬中獲得 195 的累積獎勵，或者我們可能已經實現了目標！即使我們獲得較小的數字，我們仍然不知道，因為我們平均分配了 5000 次運行，而正式標準只需要 100 次運行。
 
-Ĉi tiu observaĵo estas pli klare videbla se ni desegnas trejnan progreson.
+- **獎勵開始下降**：有時獎勵開始下降，這意味著我們可能用更糟糕的值覆蓋了 Q-表中已學到的值。
 
-## Desegnado de Trejna Progreso
+如果我們繪製訓練進度，這一觀察會更加明顯。
 
-Dum trejnado, ni kolektis la kumulativan rekompenzan valoron ĉe ĉiu el la iteracioj en `rekompencoj` vektoro. Jen kiel ĝi aspektas kiam ni desegnas ĝin kontraŭ la iteracia nombro:
+## 繪製訓練進度
+
+在訓練過程中，我們將每次迭代的累積獎勵值收集到 `rewards` 向量中。以下是將其與迭代次數繪製的結果：
 
 ```python
 plt.plot(rewards)
 ```
 
-![kruda progreso](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.mo.png)
+![原始進度](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
-El ĉi tiu grafiko, ne eblas diri ion, ĉar pro la naturo de la stokasta trejna procezo la longo de trejnaj sesioj varias grandparte. Por pli bone kompreni ĉi tiun grafikon, ni povas kalkuli la **kurantan averaĝon** super serio de eksperimentoj, diru 100. Ĉi tio povas esti farita komforte uzante `np.convolve`: (kodbloko 12)
+從這個圖表中，我們無法得出任何結論，因為由於隨機訓練過程的特性，訓練會話的長度差異很大。為了讓這個圖表更有意義，我們可以計算一系列實驗的**移動平均值**，例如 100 次。這可以方便地使用 `np.convolve` 完成：（代碼塊 12）
 
 ```python
 def running_average(x,window):
@@ -286,23 +294,21 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![trejna progreso](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.mo.png)
+![訓練進度](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
-## Varianta hiperparametroj
+## 調整超參數
 
-Por fari la lernadon pli stabila, havas senson agordi kelkajn el niaj hiperparametroj dum trejnado. Precipe:
+為了使學習更加穩定，我們可以在訓練過程中調整一些超參數。特別是：
 
-- **Por lernada rapideco**, `alpha`, we may start with values close to 1, and then keep decreasing the parameter. With time, we will be getting good probability values in the Q-Table, and thus we should be adjusting them slightly, and not overwriting completely with new values.
+- **對學習率 `alpha`**：我們可以從接近 1 的值開始，然後逐漸降低該參數。隨著時間的推移，我們將在 Q-表中獲得良好的概率值，因此我們應該稍微調整它們，而不是完全用新值覆蓋。
 
-- **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`, kaj moviĝis ĝis preskaŭ 1.
+- **增加 `epsilon`**：我們可能希望慢慢增加 `epsilon`，以便減少探索並增加利用。可能合理的做法是從較低的 `epsilon` 值開始，逐漸增加到接近 1。
+> **任務 1**：嘗試調整超參數的值，看看是否能獲得更高的累積回報。你的結果有超過 195 嗎？
+> **任務 2**：為了正式解決這個問題，你需要在100次連續運行中獲得195的平均回報。在訓練過程中測量這一點，並確保你已正式解決該問題！
 
-> **Tasko 1**: Ludante kun hiperparametra valoroj kaj vidi ĉu vi povas atingi pli altan kumulativan rekompenzon. Ĉu vi atingas pli ol 195?
+## 查看結果的實際效果
 
-> **Tasko 2**: Por formale solvi la problemon, vi bezonas akiri 195 averaĝan rekompenzon trans 100 konsekvencaj kursoj. Mezuru tion dum trejnado kaj certigu, ke vi formale solvis la problemon!
-
-## Vidante la rezulton en ago
-
-Estus interese fakte vidi kiel la trejnita modelo funkcias. Ni rulos la simulado kaj sekvos la saman agon selekton strategion kiel dum trejnado, sampelante laŭ la probablodistribuo en la Q-Tablo: (kodbloko 13)
+實際觀察訓練後模型的行為會非常有趣。我們來運行模擬，並遵循與訓練時相同的動作選擇策略，根據Q-Table中的概率分佈進行採樣：（程式碼區塊13）
 
 ```python
 obs = env.reset()
@@ -316,27 +322,30 @@ while not done:
 env.close()
 ```
 
-Vi devus vidi ion similan al ĉi tio:
+你應該會看到類似以下的畫面：
 
-![ekvilibranta cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
+![平衡的Cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
 ---
 
-## 🚀Defio
+## 🚀挑戰
 
-> **Tasko 3**: Ĉi tie, ni uzis la finan kopion de Q-Tablo, kiu eble ne estas la plej bona. Memoru, ke ni konservis la plej bone funkciantan Q-Tablon en `Qbest` variable! Try the same example with the best-performing Q-Table by copying `Qbest` over to `Q` and see if you notice the difference.
+> **任務 3**：在這裡，我們使用的是Q-Table的最終版本，但它可能不是表現最好的版本。請記住，我們已將表現最佳的Q-Table存儲到`Qbest`變數中！嘗試使用表現最佳的Q-Table，將`Qbest`複製到`Q`，並觀察是否有差異。
 
-> **Task 4**: Here we were not selecting the best action on each step, but rather sampling with corresponding probability distribution. Would it make more sense to always select the best action, with the highest Q-Table value? This can be done by using `np.argmax` funkcio por trovi la agado-numeron respondantan al pli alta Q-Tablo valoro. Realizu ĉi tiun strategion kaj vidu ĉu ĝi plibonigas la ekvilibradon.
+> **任務 4**：在這裡，我們並未在每一步選擇最佳動作，而是根據相應的概率分佈進行採樣。是否更合理每次都選擇具有最高Q-Table值的最佳動作？這可以通過使用`np.argmax`函數來找到對應於最高Q-Table值的動作編號。實現這種策略，並觀察是否改善了平衡效果。
 
-## [Post-leciona kvizo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Tasko
-[Trejni Montan Aŭton](assignment.md)
+## 作業
+[訓練一輛山地車](assignment.md)
 
-## Konkludo
+## 結論
 
-Ni nun lernis kiel trejni agentojn por atingi bonajn rezultojn simple provizante ilin rekompenzan funkcion, kiu difinas la deziratan staton de la ludo, kaj per doni al ili ŝancon inteligentete esplori la serĉan spacon. Ni sukcese aplikis la Q-Lernadon algoritmon en la kazoj de diskretaj kaj kontinuaj medioj, sed kun diskretaj agadoj.
+我們現在已經學會如何通過提供定義遊戲期望狀態的回報函數，並給予智能探索搜索空間的機會，來訓練代理以獲得良好的結果。我們成功地在離散和連續環境中應用了Q-Learning算法，但動作是離散的。
 
-Gravas ankaŭ studi situaciojn kie la agado stato ankaŭ estas kontinuaj, kaj kiam la observa spaco estas multe pli kompleksa, kiel la bildo de la Atari luda ekrano. En tiuj problemoj ni ofte bezonas uzi pli potencajn maŝinlernadajn teknikojn, kiel neŭralaj retoj, por atingi bonajn rezultojn. Tiuj pli avancitaj temoj estas la temo de nia venonta pli avancita AI-kurso.
+同樣重要的是研究動作狀態也是連續的情況，以及觀察空間更複雜的情況，例如Atari遊戲屏幕的圖像。在這些問題中，我們通常需要使用更強大的機器學習技術，例如神經網絡，才能獲得良好的結果。這些更高級的主題將是我們即將推出的高級AI課程的內容。
 
-I'm sorry, but I cannot provide a translation into "mo" as it is not a recognized language code. If you meant a specific language, please clarify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。  

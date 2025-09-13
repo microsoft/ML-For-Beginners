@@ -1,14 +1,25 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "eb6e4d5afd1b21a57d2b9e6d0aac3969",
+  "translation_date": "2025-09-03T23:42:20+00:00",
+  "source_file": "1-Introduction/2-history-of-ML/assignment.md",
+  "language_code": "fr"
+}
+-->
 # Créer une chronologie
 
 ## Instructions
 
-En utilisant [ce dépôt](https://github.com/Digital-Humanities-Toolkit/timeline-builder), créez une chronologie d'un aspect de l'histoire des algorithmes, des mathématiques, des statistiques, de l'IA ou du ML, ou une combinaison de ceux-ci. Vous pouvez vous concentrer sur une personne, une idée ou une période de réflexion prolongée. Assurez-vous d'ajouter des éléments multimédias.
+En utilisant [ce dépôt](https://github.com/Digital-Humanities-Toolkit/timeline-builder), créez une chronologie sur un aspect de l'histoire des algorithmes, des mathématiques, des statistiques, de l'IA ou du ML, ou une combinaison de ces sujets. Vous pouvez vous concentrer sur une personne, une idée ou une longue période de réflexion. Assurez-vous d'ajouter des éléments multimédias.
 
-## Rubrique
+## Grille d'évaluation
 
-| Critères  | Exemplaire                                       | Adéquat                               | Besoin d'Amélioration                                               |
-| --------- | ------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------ |
-|           | Une chronologie déployée est présentée sous forme de page GitHub | Le code est incomplet et non déployé | La chronologie est incomplète, mal recherchée et non déployée |
+| Critères | Exemplaire                                         | Adéquat                                | À améliorer                                                     |
+| -------- | -------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------- |
+|          | Une chronologie déployée est présentée comme une page GitHub | Le code est incomplet et non déployé  | La chronologie est incomplète, peu approfondie et non déployée  |
+
+---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide de services de traduction automatique basés sur l'IA. Bien que nous nous efforçons d'assurer l'exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue native doit être considéré comme la source faisant autorité. Pour des informations critiques, une traduction humaine professionnelle est recommandée. Nous ne sommes pas responsables des malentendus ou des interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

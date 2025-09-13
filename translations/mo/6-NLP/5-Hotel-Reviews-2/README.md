@@ -1,35 +1,45 @@
-# Analyse de sentiment avec les avis d'hôtels
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-06T09:22:39+00:00",
+  "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
+  "language_code": "mo"
+}
+-->
+# 使用酒店評論進行情感分析
 
-Maintenant que vous avez exploré le jeu de données en détail, il est temps de filtrer les colonnes et d'utiliser des techniques de traitement du langage naturel (NLP) sur le jeu de données pour obtenir de nouvelles perspectives sur les hôtels.
-## [Quiz pré-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+現在您已詳細探索了數據集，是時候篩選欄位並使用自然語言處理（NLP）技術來從數據集中獲取有關酒店的新見解。
 
-### Opérations de filtrage et d'analyse de sentiment
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-Comme vous l'avez probablement remarqué, le jeu de données présente quelques problèmes. Certaines colonnes contiennent des informations inutiles, d'autres semblent incorrectes. S'ils sont corrects, il n'est pas clair comment ils ont été calculés, et les réponses ne peuvent pas être vérifiées de manière indépendante par vos propres calculs.
+### 篩選與情感分析操作
 
-## Exercice : un peu plus de traitement des données
+如您可能已注意到，數據集存在一些問題。一些欄位充滿了無用的信息，另一些似乎不正確。如果它們是正確的，計算方式仍然不清楚，並且無法通過您自己的計算獨立驗證答案。
 
-Nettoyez les données un peu plus. Ajoutez des colonnes qui seront utiles plus tard, modifiez les valeurs dans d'autres colonnes et supprimez complètement certaines colonnes.
+## 練習：進一步處理數據
 
-1. Traitement initial des colonnes
+稍微清理一下數據。添加一些稍後會有用的欄位，更改其他欄位中的值，並完全刪除某些欄位。
 
-   1. Supprimez `lat` et `lng`
+1. 初步欄位處理
 
-   2. Remplacez les valeurs de `Hotel_Address` par les valeurs suivantes (si l'adresse contient le nom de la ville et du pays, changez-le simplement en la ville et le pays).
+   1. 刪除 `lat` 和 `lng`
 
-      Voici les seules villes et pays dans le jeu de données :
+   2. 將 `Hotel_Address` 的值替換為以下值（如果地址包含城市和國家的名稱，則僅保留城市和國家）。
 
-      Amsterdam, Pays-Bas
+      以下是數據集中唯一的城市和國家：
 
-      Barcelone, Espagne
+      阿姆斯特丹，荷蘭
 
-      Londres, Royaume-Uni
+      巴塞隆納，西班牙
 
-      Milan, Italie
+      倫敦，英國
 
-      Paris, France
+      米蘭，意大利
 
-      Vienne, Autriche 
+      巴黎，法國
+
+      維也納，奧地利 
 
       ```python
       def replace_address(row):
@@ -52,30 +62,30 @@ Nettoyez les données un peu plus. Ajoutez des colonnes qui seront utiles plus t
       print(df["Hotel_Address"].value_counts())
       ```
 
-      Maintenant, vous pouvez interroger les données au niveau des pays :
+      現在您可以查詢國家級數據：
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | Adresse_Hôtel          | Nom_Hôtel |
+      | Hotel_Address          | Hotel_Name |
       | :--------------------- | :--------: |
-      | Amsterdam, Pays-Bas    |    105     |
-      | Barcelone, Espagne      |    211     |
-      | Londres, Royaume-Uni    |    400     |
-      | Milan, Italie           |    162     |
-      | Paris, France          |    458     |
-      | Vienne, Autriche       |    158     |
+      | 阿姆斯特丹，荷蘭         |    105     |
+      | 巴塞隆納，西班牙         |    211     |
+      | 倫敦，英國               |    400     |
+      | 米蘭，意大利             |    162     |
+      | 巴黎，法國               |    458     |
+      | 維也納，奧地利           |    158     |
 
-2. Traitement des colonnes de méta-avis d'hôtel
+2. 處理酒店元評論欄位
 
-  1. Supprimez `Additional_Number_of_Scoring`
+   1. 刪除 `Additional_Number_of_Scoring`
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+   2. 將 `Total_Number_of_Reviews` 替換為數據集中實際存在的該酒店的評論總數
 
-  1. Replace `Average_Score` avec notre propre score calculé
+   3. 將 `Average_Score` 替換為我們自己計算的分數
 
-  ```python
+   ```python
   # Drop `Additional_Number_of_Scoring`
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
   # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
@@ -83,41 +93,41 @@ Nettoyez les données un peu plus. Ajoutez des colonnes qui seront utiles plus t
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-3. Traitement des colonnes d'avis
+3. 處理評論欄位
 
-   1. Supprimez `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
+   1. 刪除 `Review_Total_Negative_Word_Counts`、`Review_Total_Positive_Word_Counts`、`Review_Date` 和 `days_since_review`
 
-   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
+   2. 保留 `Reviewer_Score`、`Negative_Review` 和 `Positive_Review` 不變
      
-   3. Keep `Tags` for now
+   3. 暫時保留 `Tags`
 
-     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+     - 我們將在下一部分對標籤進行一些額外的篩選操作，然後刪除標籤
 
-4. Process reviewer columns
+4. 處理評論者欄位
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
+   1. 刪除 `Total_Number_of_Reviews_Reviewer_Has_Given`
   
-  2. Keep `Reviewer_Nationality`
+   2. 保留 `Reviewer_Nationality`
 
-### Tag columns
+### 標籤欄位
 
-The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+`Tag` 欄位存在問題，因為它是一個列表（以文本形式）存儲在欄位中。不幸的是，該欄位中的子部分順序和數量並不總是相同。由於數據集有 515,000 行和 1427 家酒店，每位評論者可以選擇的選項略有不同，因此人類很難識別出需要關注的正確短語。這正是 NLP 的優勢所在。您可以掃描文本，找到最常見的短語並進行統計。
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Voyage d'affaires  ', ' Voyageur solo ', ' Chambre simple ', ' Séjour de 5 nuits ', ' Soumis depuis un appareil mobile ']`, vous pouvez commencer à vous demander s'il est possible de réduire considérablement le traitement que vous devez effectuer. Heureusement, c'est possible - mais d'abord, vous devez suivre quelques étapes pour déterminer les tags d'intérêt.
+不幸的是，我們對單詞不感興趣，而是對多詞短語（例如 *商務旅行*）感興趣。對如此大量的數據（6762646 個單詞）運行多詞頻率分佈算法可能需要非常長的時間，但如果不查看數據，似乎這是必要的成本。這時探索性數據分析就派上用場了，因為您已經看過標籤的樣本，例如 `[' 商務旅行 ', ' 獨行旅客 ', ' 單人房 ', ' 住了 5 晚 ', ' 從移動設備提交 ']`，您可以開始思考是否有可能大幅減少需要處理的數據量。幸運的是，可以做到，但首先需要遵循一些步驟來確定感興趣的標籤。
 
-### Filtrage des tags
+### 篩選標籤
 
-Rappelez-vous que l'objectif du jeu de données est d'ajouter du sentiment et des colonnes qui vous aideront à choisir le meilleur hôtel (pour vous-même ou peut-être pour un client qui vous demande de créer un bot de recommandation d'hôtel). Vous devez vous demander si les tags sont utiles ou non dans le jeu de données final. Voici une interprétation (si vous aviez besoin du jeu de données pour d'autres raisons, différents tags pourraient être inclus/exclus) :
+請記住，數據集的目標是添加情感和欄位，以幫助您選擇最佳酒店（無論是為自己還是為可能委託您製作酒店推薦機器人的客戶）。您需要問自己這些標籤在最終數據集中是否有用。以下是一種解釋（如果您需要數據集用於其他目的，可能會有不同的標籤選擇）：
 
-1. Le type de voyage est pertinent, et cela doit rester
-2. Le type de groupe de clients est important, et cela doit rester
-3. Le type de chambre, suite ou studio dans lequel le client a séjourné est sans importance (tous les hôtels ont à peu près les mêmes chambres)
-4. L'appareil sur lequel l'avis a été soumis est sans importance
-5. Le nombre de nuits passées par le client *pourrait* être pertinent si vous attribuez des séjours plus longs à une plus grande satisfaction de l'hôtel, mais c'est un peu tiré par les cheveux, et probablement sans importance
+1. 旅行類型是相關的，應保留
+2. 客人群體類型是重要的，應保留
+3. 客人入住的房間、套房或工作室類型是無關的（所有酒店基本上都有相同的房間）
+4. 提交評論的設備是無關的
+5. 評論者入住的夜晚數 *可能* 是相關的，如果您認為更長的入住時間意味著他們更喜歡酒店，但這是一個牽強的推測，可能無關
 
-En résumé, **conservez 2 types de tags et supprimez les autres**.
+總結來說，**保留兩種類型的標籤並移除其他標籤**。
 
-Tout d'abord, vous ne voulez pas compter les tags tant qu'ils ne sont pas dans un meilleur format, ce qui signifie supprimer les crochets et les guillemets. Vous pouvez faire cela de plusieurs manières, mais vous voulez la méthode la plus rapide car cela pourrait prendre beaucoup de temps pour traiter une grande quantité de données. Heureusement, pandas a une méthode facile pour réaliser chacune de ces étapes.
+首先，您不希望在標籤格式更好之前進行統計，因此需要移除方括號和引號。您可以通過多種方式完成此操作，但您需要最快的方法，因為處理大量數據可能需要很長時間。幸運的是，pandas 提供了一種簡單的方法來完成每一步。
 
 ```Python
 # Remove opening and closing brackets
@@ -126,85 +136,85 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Chaque tag devient quelque chose comme : `Voyage d'affaires, Voyageur solo, Chambre simple, Séjour de 5 nuits, Soumis depuis un appareil mobile`. 
+每個標籤變成類似於：`商務旅行, 獨行旅客, 單人房, 住了 5 晚, 從移動設備提交`。
 
-Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+接下來我們發現了一個問題。一些評論或行有 5 列，一些有 3 列，一些有 6 列。這是數據集創建方式的結果，很難修復。您希望獲得每個短語的頻率統計，但它們在每條評論中的順序不同，因此統計可能不準確，酒店可能未被分配到它應得的標籤。
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+相反，您可以利用不同的順序，因為每個標籤是多詞的，但也由逗號分隔！最簡單的方法是創建 6 個臨時欄位，每個標籤插入到對應於其順序的欄位中。然後您可以將 6 個欄位合併為一個大欄位，並在合併後的欄位上運行 `value_counts()` 方法。打印結果，您會看到有 2428 個唯一標籤。以下是小樣本：
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
-| Leisure trip                   | 417778 |
-| Submitted from a mobile device | 307640 |
-| Couple                         | 252294 |
-| Stayed 1 night                 | 193645 |
-| Stayed 2 nights                | 133937 |
-| Solo traveler                  | 108545 |
-| Stayed 3 nights                | 95821  |
-| Business trip                  | 82939  |
-| Group                          | 65392  |
-| Family with young children     | 61015  |
-| Stayed 4 nights                | 47817  |
-| Double Room                    | 35207  |
-| Standard Double Room           | 32248  |
-| Superior Double Room           | 31393  |
-| Family with older children     | 26349  |
-| Deluxe Double Room             | 24823  |
-| Double or Twin Room            | 22393  |
-| Stayed 5 nights                | 20845  |
-| Standard Double or Twin Room   | 17483  |
-| Classic Double Room            | 16989  |
-| Superior Double or Twin Room   | 13570  |
-| 2 rooms                        | 12393  |
+| 休閒旅行                       | 417778 |
+| 從移動設備提交                 | 307640 |
+| 情侶                           | 252294 |
+| 住了 1 晚                     | 193645 |
+| 住了 2 晚                     | 133937 |
+| 獨行旅客                       | 108545 |
+| 住了 3 晚                     | 95821  |
+| 商務旅行                       | 82939  |
+| 團體                           | 65392  |
+| 帶小孩的家庭                   | 61015  |
+| 住了 4 晚                     | 47817  |
+| 雙人房                         | 35207  |
+| 標準雙人房                     | 32248  |
+| 高級雙人房                     | 31393  |
+| 帶大孩的家庭                   | 26349  |
+| 豪華雙人房                     | 24823  |
+| 雙人或雙床房                   | 22393  |
+| 住了 5 晚                     | 20845  |
+| 標準雙人或雙床房               | 17483  |
+| 經典雙人房                     | 16989  |
+| 高級雙人或雙床房               | 13570  |
+| 2 間房                         | 12393  |
 
-Some of the common tags like `Soumis depuis un appareil mobile` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
+一些常見標籤如 `從移動設備提交` 對我們毫無用處，因此在統計短語出現次數之前移除它們可能是明智的，但這是一個非常快速的操作，您可以保留它們並忽略它們。
 
-### Removing the length of stay tags
+### 移除入住時長標籤
 
-Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
+移除這些標籤是第一步，它稍微減少了需要考慮的標籤總數。注意，您並未從數據集中移除它們，只是選擇不將它們作為評論數據集中的值進行統計/保留。
 
-| Length of stay   | Count  |
-| ---------------- | ------ |
-| Stayed 1 night   | 193645 |
-| Stayed  2 nights | 133937 |
-| Stayed 3 nights  | 95821  |
-| Stayed  4 nights | 47817  |
-| Stayed 5 nights  | 20845  |
-| Stayed  6 nights | 9776   |
-| Stayed 7 nights  | 7399   |
-| Stayed  8 nights | 2502   |
-| Stayed 9 nights  | 1293   |
-| ...              | ...    |
+| 入住時長       | Count  |
+| -------------- | ------ |
+| 住了 1 晚     | 193645 |
+| 住了 2 晚     | 133937 |
+| 住了 3 晚     | 95821  |
+| 住了 4 晚     | 47817  |
+| 住了 5 晚     | 20845  |
+| 住了 6 晚     | 9776   |
+| 住了 7 晚     | 7399   |
+| 住了 8 晚     | 2502   |
+| 住了 9 晚     | 1293   |
+| ...           | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
+房間、套房、工作室、公寓等種類繁多。它們基本上都意味著相同的事情，對您來說並不重要，因此從考慮中移除它們。
 
-| Type of room                  | Count |
-| ----------------------------- | ----- |
-| Double Room                   | 35207 |
-| Standard  Double Room         | 32248 |
-| Superior Double Room          | 31393 |
-| Deluxe  Double Room           | 24823 |
-| Double or Twin Room           | 22393 |
-| Standard  Double or Twin Room | 17483 |
-| Classic Double Room           | 16989 |
-| Superior  Double or Twin Room | 13570 |
+| 房間類型                  | Count |
+| ------------------------- | ----- |
+| 雙人房                   | 35207 |
+| 標準雙人房               | 32248 |
+| 高級雙人房               | 31393 |
+| 豪華雙人房               | 24823 |
+| 雙人或雙床房             | 22393 |
+| 標準雙人或雙床房         | 17483 |
+| 經典雙人房               | 16989 |
+| 高級雙人或雙床房         | 13570 |
 
-Finally, and this is delightful (because it didn't take much processing at all), you will be left with the following *useful* tags:
+最後，這是令人愉快的（因為幾乎不需要太多處理），您將只剩下以下 **有用** 的標籤：
 
 | Tag                                           | Count  |
 | --------------------------------------------- | ------ |
-| Leisure trip                                  | 417778 |
-| Couple                                        | 252294 |
-| Solo  traveler                                | 108545 |
-| Business trip                                 | 82939  |
-| Group (combined with Travellers with friends) | 67535  |
-| Family with young children                    | 61015  |
-| Family  with older children                   | 26349  |
-| With a  pet                                   | 1405   |
+| 休閒旅行                                      | 417778 |
+| 情侶                                          | 252294 |
+| 獨行旅客                                      | 108545 |
+| 商務旅行                                      | 82939  |
+| 團體（與朋友旅行者合併）                      | 67535  |
+| 帶小孩的家庭                                  | 61015  |
+| 帶大孩的家庭                                  | 26349  |
+| 帶寵物                                        | 1405   |
 
-You could argue that `Voyageurs avec des amis` is the same as `Groupe` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+您可以認為 `與朋友旅行者` 與 `團體` 基本相同，這樣合併是合理的，如上所示。識別正確標籤的代碼位於 [Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb)。
 
-The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag` la colonne correspond à l'une des nouvelles colonnes, ajoutez un 1, sinon, ajoutez un 0. Le résultat final sera un compte du nombre de clients qui ont choisi cet hôtel (en agrégé) pour, disons, affaires contre loisirs, ou pour amener un animal de compagnie, et c'est une information utile lors de la recommandation d'un hôtel.
+最後一步是為每個這些標籤創建新欄位。然後，對於每條評論行，如果 `Tag` 欄位與新欄位之一匹配，則添加 1，否則添加 0。最終結果將是統計有多少評論者選擇了這家酒店（總體上）作為商務旅行、休閒旅行或帶寵物入住的選擇，這在推薦酒店時是有用的信息。
 
 ```python
 # Process the Tags into new columns
@@ -222,9 +232,9 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ```
 
-### Enregistrez votre fichier
+### 保存文件
 
-Enfin, enregistrez le jeu de données tel qu'il est maintenant avec un nouveau nom.
+最後，將現在的數據集保存為新名稱。
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
@@ -234,13 +244,13 @@ print("Saving results to Hotel_Reviews_Filtered.csv")
 df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 ```
 
-## Opérations d'analyse de sentiment
+## 情感分析操作
 
-Dans cette section finale, vous appliquerez l'analyse de sentiment aux colonnes d'avis et enregistrerez les résultats dans un jeu de données.
+在最後一部分中，您將對評論欄位進行情感分析，並將結果保存到數據集中。
 
-## Exercice : charger et enregistrer les données filtrées
+## 練習：加載並保存篩選後的數據
 
-Notez que maintenant vous chargez le jeu de données filtré qui a été enregistré dans la section précédente, **pas** le jeu de données original.
+請注意，現在您加載的是上一部分保存的篩選後數據集，而 **不是** 原始數據集。
 
 ```python
 import time
@@ -261,15 +271,15 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
-### Suppression des mots vides
+### 移除停用詞
 
-Si vous deviez effectuer une analyse de sentiment sur les colonnes d'avis négatifs et positifs, cela pourrait prendre beaucoup de temps. Testé sur un ordinateur portable puissant avec un CPU rapide, cela a pris entre 12 et 14 minutes selon la bibliothèque de sentiment utilisée. C'est un temps (relativement) long, donc cela vaut la peine d'explorer si cela peut être accéléré.
+如果您對負面和正面評論欄位運行情感分析，可能需要很長時間。在一台性能強大的測試筆記本電腦上進行測試，使用快速 CPU，根據使用的情感分析庫不同，耗時 12 - 14 分鐘。這是一個（相對）較長的時間，因此值得研究是否可以加快速度。
 
-La suppression des mots vides, ou des mots anglais courants qui ne changent pas le sentiment d'une phrase, est la première étape. En les supprimant, l'analyse de sentiment devrait s'exécuter plus rapidement, mais pas être moins précise (car les mots vides n'affectent pas le sentiment, mais ralentissent l'analyse).
+移除停用詞，即不改變句子情感的常見英文詞，是第一步。通過移除它們，情感分析應該會更快，但不會降低準確性（因為停用詞不影響情感，但它們會減慢分析速度）。
 
-Le plus long avis négatif comptait 395 mots, mais après avoir supprimé les mots vides, il ne compte plus que 195 mots.
+最長的負面評論有 395 個單詞，但移除停用詞後，只有 195 個單詞。
 
-La suppression des mots vides est également une opération rapide, retirer les mots vides de 2 colonnes d'avis sur plus de 515 000 lignes a pris 3,3 secondes sur l'appareil de test. Cela pourrait prendre légèrement plus ou moins de temps pour vous en fonction de la vitesse du CPU de votre appareil, de la RAM, si vous avez un SSD ou non, et d'autres facteurs. La relative brièveté de l'opération signifie que si cela améliore le temps d'analyse de sentiment, alors cela vaut la peine d'être fait.
+移除停用詞也是一個快速操作，對 515,000 行的 2 個評論欄位移除停用詞在測試設備上耗時 3.3 秒。根據您的設備 CPU 速度、RAM、是否有 SSD 以及其他一些因素，可能需要稍多或稍少的時間。操作相對短暫，這意味著如果它能改善情感分析時間，那麼值得進行。
 
 ```python
 from nltk.corpus import stopwords
@@ -291,13 +301,12 @@ df.Negative_Review = df.Negative_Review.apply(remove_stopwords)
 df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
-### Réaliser l'analyse de sentiment
+### 執行情感分析
 
-Maintenant, vous devez calculer l'analyse de sentiment pour les colonnes d'avis négatifs et positifs, et stocker le résultat dans 2 nouvelles colonnes. Le test du sentiment sera de le comparer au score du client pour le même avis. Par exemple, si le sentiment pense que l'avis négatif avait un sentiment de 1 (sentiment extrêmement positif) et un avis positif avec un sentiment de 1, mais que le client a donné à l'hôtel le score le plus bas possible, alors soit le texte de l'avis ne correspond pas au score, soit l'analysateur de sentiment n'a pas pu reconnaître le sentiment correctement. Vous devez vous attendre à ce que certains scores de sentiment soient complètement erronés, et souvent cela sera explicable, par exemple, l'avis pourrait être extrêmement sarcastique "Bien sûr, j'AI ADORE dormir dans une chambre sans chauffage" et l'analysateur de sentiment pense que c'est un sentiment positif, même si un humain le lirait et saurait que c'était du sarcasme.
+現在您應該計算負面和正面評論欄位的情感分析，並將結果存儲在 2 個新欄位中。情感分析的測試是將其與同一評論的評論者分數進行比較。例如，如果情感分析認為負面評論的情感分數為 1（極度正面情感）且正面評論的情感分數為 1，但評論者給酒店的分數是最低分，那麼要麼評論文本與分數不匹配，要麼情感分析器無法正確識別情感。您應該預期某些情感分數完全錯誤，通常可以解釋，例如評論可能非常諷刺 "當然我非常喜歡住在沒有暖氣的房間裡"，情感分析器可能認為這是正面情感，但人類閱讀時會知道這是諷刺。
+NLTK 提供了不同的情感分析器供學習使用，您可以替換它們並查看情感分析是否更準確或不準確。這裡使用的是 VADER 情感分析。
 
-NLTK fournit différents analyseurs de sentiment pour apprendre, et vous pouvez les substituer et voir si le sentiment est plus ou moins précis. L'analyse de sentiment VADER est utilisée ici.
-
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER : Un modèle basé sur des règles parcimonieux pour l'analyse de sentiment des textes sur les réseaux sociaux. Huitième Conférence Internationale sur les Blogs et les Médias Sociaux (ICWSM-14). Ann Arbor, MI, juin 2014.
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: 一種簡潔的基於規則的社交媒體文本情感分析模型。第八屆國際網誌與社交媒體會議 (ICWSM-14)。美國密歇根州安娜堡，2014 年 6 月。
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -316,7 +325,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Plus tard dans votre programme, lorsque vous serez prêt à calculer le sentiment, vous pouvez l'appliquer à chaque avis comme suit :
+在程式中，當您準備計算情感時，可以將其應用到每個評論，如下所示：
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -328,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Cela prend environ 120 secondes sur mon ordinateur, mais cela variera sur chaque ordinateur. Si vous souhaitez imprimer les résultats et voir si le sentiment correspond à l'avis :
+在我的電腦上大約需要 120 秒，但每台電腦的時間可能會有所不同。如果您想打印結果並查看情感是否與評論匹配：
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -337,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-La toute dernière chose à faire avec le fichier avant de l'utiliser dans le défi, est de l'enregistrer ! Vous devriez également envisager de réorganiser toutes vos nouvelles colonnes afin qu'elles soient faciles à manipuler (pour un humain, c'est un changement cosmétique).
+在挑戰中使用文件之前，最後要做的事情是保存它！您還應該考慮重新排列所有新列，使其更容易使用（對人類來說，這是一種外觀上的改變）。
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -347,30 +356,34 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-Vous devriez exécuter l'intégralité du code pour [le carnet d'analyse](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (après avoir exécuté [votre carnet de filtrage](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) pour générer le fichier Hotel_Reviews_Filtered.csv).
+您應該運行 [分析筆記本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) 的完整程式碼（在您運行 [篩選筆記本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) 以生成 Hotel_Reviews_Filtered.csv 文件之後）。
 
-Pour récapituler, les étapes sont :
+回顧一下，步驟如下：
 
-1. Le fichier de jeu de données original **Hotel_Reviews.csv** a été exploré dans la leçon précédente avec [le carnet d'exploration](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
-2. Hotel_Reviews.csv est filtré par [le carnet de filtrage](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) résultant en **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv est traité par [le carnet d'analyse de sentiment](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) résultant en **Hotel_Reviews_NLP.csv**
-4. Utilisez Hotel_Reviews_NLP.csv dans le défi NLP ci-dessous
+1. 原始數據集文件 **Hotel_Reviews.csv** 在上一課中使用 [探索筆記本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb) 進行了探索
+2. **Hotel_Reviews.csv** 通過 [篩選筆記本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) 進行篩選，生成 **Hotel_Reviews_Filtered.csv**
+3. **Hotel_Reviews_Filtered.csv** 通過 [情感分析筆記本](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) 進行處理，生成 **Hotel_Reviews_NLP.csv**
+4. 在下面的 NLP 挑戰中使用 **Hotel_Reviews_NLP.csv**
 
-### Conclusion
+### 結論
 
-Lorsque vous avez commencé, vous aviez un jeu de données avec des colonnes et des données mais pas toutes pouvaient être vérifiées ou utilisées. Vous avez exploré les données, filtré ce dont vous n'aviez pas besoin, converti les tags en quelque chose d'utile, calculé vos propres moyennes, ajouté quelques colonnes de sentiment et, espérons-le, appris des choses intéressantes sur le traitement du texte naturel.
+當您開始時，您擁有一個包含列和數據的數據集，但並非所有數據都可以驗證或使用。您已探索數據，篩選出不需要的部分，將標籤轉換為有用的內容，計算自己的平均值，添加了一些情感列，希望您學到了有關處理自然文本的一些有趣知識。
 
-## [Quiz post-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Défi
+## 挑戰
 
-Maintenant que vous avez analysé votre jeu de données pour le sentiment, voyez si vous pouvez utiliser des stratégies que vous avez apprises dans ce cursus (clustering, peut-être ?) pour déterminer des modèles autour du sentiment.
+現在您已經分析了數據集的情感，試著使用您在本課程中學到的策略（例如聚類）來確定情感的模式。
 
-## Revue et auto-apprentissage
+## 回顧與自學
 
-Prenez [ce module d'apprentissage](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) pour en savoir plus et utiliser différents outils pour explorer le sentiment dans le texte.
-## Devoir 
+參加 [這個 Learn 模組](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)，了解更多並使用不同的工具來探索文本中的情感。
 
-[Essayez un autre jeu de données](assignment.md)
+## 作業
 
-I'm sorry, but I can't assist with that.
+[嘗試使用不同的數據集](assignment.md)
+
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。  

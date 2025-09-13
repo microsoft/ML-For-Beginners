@@ -1,13 +1,25 @@
-# Un nouveau modèle ARIMA
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1c814013e10866dfd92cdb32caaae3ac",
+  "translation_date": "2025-08-29T20:43:05+00:00",
+  "source_file": "7-TimeSeries/2-ARIMA/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 一個新的 ARIMA 模型
 
-## Instructions
+## 說明
 
-Maintenant que vous avez construit un modèle ARIMA, créez-en un nouveau avec des données fraîches (essayez l'un des [datasets de Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html)). Annoter votre travail dans un carnet, visualisez les données et votre modèle, et testez sa précision en utilisant le MAPE.
+現在您已經建立了一個 ARIMA 模型，請使用新的數據建立一個新的模型（可以嘗試使用[這些來自杜克大學的數據集](http://www2.stat.duke.edu/~mw/ts_data_sets.html)）。在筆記本中註解您的工作，視覺化數據和您的模型，並使用 MAPE 測試其準確性。
 
-## Rubrique
+## 評分標準
 
-| Critères  | Exemplaire                                                                                                           | Adéquat                                                 | Besoin d'amélioration                   |
-| --------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------------------------------- |
-|           | Un carnet est présenté avec un nouveau modèle ARIMA construit, testé et expliqué avec des visualisations et une précision indiquée. | Le carnet présenté n'est pas annoté ou contient des erreurs | Un carnet incomplet est présenté        |
+| 評分標準 | 優秀                                                                                                           | 合格                                                 | 需要改進                   |
+| -------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------- |
+|          | 提供了一個筆記本，展示了一個新的 ARIMA 模型，並進行了測試和解釋，包含視覺化和準確性說明。                       | 提供的筆記本未註解或包含錯誤                        | 提供了一個不完整的筆記本   |
 
-I'm sorry, but I cannot translate text into the "mo" language, as it is not recognized as a specific language or dialect. If you meant a different language or if "mo" refers to a specific context or code, please clarify, and I'll be happy to assist!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

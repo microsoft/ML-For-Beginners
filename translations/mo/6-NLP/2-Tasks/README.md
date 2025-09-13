@@ -1,46 +1,55 @@
-# Zwa twazibwe twazibuzi z'ubumenyi bw'ikinyarwanda n'ubuhanga
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "5f3cb462e3122e1afe7ab0050ccf2bd3",
+  "translation_date": "2025-09-06T09:20:02+00:00",
+  "source_file": "6-NLP/2-Tasks/README.md",
+  "language_code": "mo"
+}
+-->
+# 常見自然語言處理任務與技術
 
-Kuri benshi mu mirimo y' *ikinyarwanda*, inyandiko igomba gusesengurwa, ikagenzurwa, kandi ibisubizo bigashyirwa mu bubiko cyangwa bigahuzwa n'amategeko n'ibisobanuro. Izi mirimo, zifasha umwanditsi gusobanukirwa _ibisobanuro_ cyangwa _intego_ cyangwa se _ubwiyongere_ bw'amagambo n'ibisobanuro mu nyandiko.
+對於大多數*自然語言處理*任務，需將待處理的文本拆解、分析，並將結果存儲或與規則和數據集進行交叉參照。這些任務使程式設計師能夠推導出文本中的_含義_、_意圖_或僅僅是_詞語頻率_。
 
-## [Ikizamini mbere y'amasomo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-Reka dusuzume uburyo busanzwe bukoreshwa mu gusesengura inyandiko. Bifatanyije n'ubumenyi bw'ibyuma, ubu buryo bufasha gusesengura ingano nini y'inyandiko mu buryo bwihuse. Ariko mbere yo gukoresha ML muri izi mirimo, reka dusobanukirwe n'ibibazo byahuye n'umuhanga mu ikinyarwanda.
+讓我們來探索處理文本時常用的技術。結合機器學習，這些技術能幫助你高效地分析大量文本。然而，在將機器學習應用於這些任務之前，我們需要了解自然語言處理專家所面臨的問題。
 
-## Imirimo isanzwe muri NLP
+## 自然語言處理的常見任務
 
-Hariho inzira nyinshi zo gusesengura inyandiko urimo gukora. Hari imirimo ushobora gukora kandi binyuze muri izi mirimo ushobora kumva neza inyandiko no gufata ibyemezo. Usanga ukora izi mirimo mu buryo bw'urutonde.
+分析文本有多種方式。你可以執行一些任務，通過這些任務來理解文本並得出結論。通常這些任務是按順序進行的。
 
-### Gutandukanya amagambo (Tokenization)
+### 分詞（Tokenization）
 
-Ahari, ikintu cya mbere most algorithms za NLP zigomba gukora ni ugutandukanya inyandiko mu magambo, cyangwa ibimenyetso. Nubwo ibi bisa n'ibyoroshye, gufata mu mutwe ibimenyetso n'imikoreshereze itandukanye y'amagambo n'ibimenyetso by'amagambo birashobora kubangamira. Ushobora gukenera gukoresha uburyo butandukanye mu kumenya ibimenyetso.
+大多數自然語言處理算法的第一步可能是將文本拆分為詞元或單詞。雖然這聽起來很簡單，但考慮到標點符號以及不同語言的單詞和句子分隔符，這可能會變得相當棘手。你可能需要使用多種方法來確定分界。
 
-![gutandukanya amagambo](../../../../translated_images/tokenization.1641a160c66cd2d93d4524e8114e93158a9ce0eba3ecf117bae318e8a6ad3487.mo.png)
-> Gutandukanya interuro iva mu **Pride and Prejudice**. Infographic na [Jen Looper](https://twitter.com/jenlooper)
+![分詞](../../../../6-NLP/2-Tasks/images/tokenization.png)
+> 從**傲慢與偏見**中分詞的示例。資訊圖由 [Jen Looper](https://twitter.com/jenlooper) 製作
 
-### Ibisobanuro (Embeddings)
+### 嵌入（Embeddings）
 
-[Ibisobanuro by'amagambo](https://wikipedia.org/wiki/Word_embedding) ni uburyo bwo guhindura amakuru y'inyandiko mu mibare. Ibisobanuro bikorwa mu buryo bwatuma amagambo afite ibisobanuro bisa cyangwa amagambo akoresha hamwe ahurira hamwe.
+[詞嵌入](https://wikipedia.org/wiki/Word_embedding)是一種將文本數據轉換為數字形式的方法。嵌入的方式使得具有相似含義或經常一起使用的詞語聚集在一起。
 
-![ibisobanuro by'amagambo](../../../../translated_images/embedding.2cf8953c4b3101d188c2f61a5de5b6f53caaa5ad4ed99236d42bc3b6bd6a1fe2.mo.png)
-> "Nifitemo icyubahiro kinini ku miryango yawe, ni inshuti zanjye za kera." - Ibisobanuro by'amagambo ku nteruro mu **Pride and Prejudice**. Infographic na [Jen Looper](https://twitter.com/jenlooper)
+![詞嵌入](../../../../6-NLP/2-Tasks/images/embedding.png)
+> "我對你的神經非常尊重，它們是我的老朋友。" - **傲慢與偏見**中的句子詞嵌入示例。資訊圖由 [Jen Looper](https://twitter.com/jenlooper) 製作
 
-✅ Gerageza [iki gikoresho gishimishije](https://projector.tensorflow.org/) kugirango wigerageze ku bisobanuro by'amagambo. Kanda ku jambo rimwe bigaragaza amatsinda y'amagambo ahuye: 'igikinisho' ihurira na 'disney', 'lego', 'playstation', na 'console'.
+✅ 試試[這個有趣的工具](https://projector.tensorflow.org/)，用來實驗詞嵌入。點擊一個詞可以看到相似詞的聚集，例如：'toy' 與 'disney'、'lego'、'playstation' 和 'console' 聚集在一起。
 
-### Gusesengura & Gushyira ikimenyetso ku gice cy'ijambo (Parsing & Part-of-speech Tagging)
+### 解析與詞性標註（Parsing & Part-of-speech Tagging）
 
-Buri jambo ryatandukanyijwe rishobora gushyirwa ikimenyetso nk'igice cy'ijambo - izina, igikorwa, cyangwa ijambo ry'ibisobanuro. Interuro `the quick red fox jumped over the lazy brown dog` ishobora gushyirwa ikimenyetso nka fox = izina, jumped = igikorwa.
+每個被分詞的詞都可以被標註為詞性，例如名詞、動詞或形容詞。句子 `the quick red fox jumped over the lazy brown dog` 可能被詞性標註為 fox = 名詞，jumped = 動詞。
 
-![gusesengura](../../../../translated_images/parse.d0c5bbe1106eae8fe7d60a183cd1736c8b6cec907f38000366535f84f3036101.mo.png)
+![解析](../../../../6-NLP/2-Tasks/images/parse.png)
 
-> Gusesengura interuro iva mu **Pride and Prejudice**. Infographic na [Jen Looper](https://twitter.com/jenlooper)
+> 從**傲慢與偏見**中解析句子的示例。資訊圖由 [Jen Looper](https://twitter.com/jenlooper) 製作
 
-Gusesengura ni ugutahura amagambo ahuye mu nteruro - urugero `the quick red fox jumped` ni urutonde rw'ijambo-izina-igikorwa ruri mu rundi rutonde rwa `lazy brown dog`.
+解析是識別句子中哪些詞語彼此相關，例如 `the quick red fox jumped` 是形容詞-名詞-動詞序列，與 `lazy brown dog` 序列分開。
 
-### Imibare y'amagambo n'ibisobanuro (Word and Phrase Frequencies)
+### 詞語與短語頻率
 
-Uburyo bwiza mu gusesengura ingano nini y'inyandiko ni ugukora inyandiko y'amagambo cyangwa ibisobanuro byose bifite akamaro n'ukuntu bigaragara kenshi. Ibisobanuro `the quick red fox jumped over the lazy brown dog` bifite imibare y'amagambo 2 ku the.
+分析大量文本時，一個有用的步驟是建立一個字典，記錄每個感興趣的詞語或短語及其出現頻率。句子 `the quick red fox jumped over the lazy brown dog` 中，詞語 "the" 的頻率為 2。
 
-Reka turebe urugero rw'inyandiko aho tubara imibare y'amagambo. Umuvugo wa Rudyard Kipling, The Winners, ufite iyi nteruro ikurikira:
+讓我們看一段文本，計算詞語頻率。拉迪亞德·吉卜林的詩《The Winners》中有以下詩句：
 
 ```output
 What the moral? Who rides may read.
@@ -51,13 +60,13 @@ Down to Gehenna or up to the Throne,
 He travels the fastest who travels alone.
 ```
 
-Nk'uko imibare y'ibisobanuro ishobora kuba itita ku nyuguti cyangwa ikita ku nyuguti nk'uko bikenewe, igitekerezo `umukunzi` has a frequency of 2 and `the` has a frequency of 6, and `travels` ni 2.
+由於短語頻率可以根據需要設置為大小寫敏感或不敏感，短語 `a friend` 的頻率為 2，`the` 的頻率為 6，`travels` 的頻率為 2。
 
 ### N-grams
 
-Inyandiko ishobora gutandukanywa mu nteruro z'amagambo z'uburebure buteganyijwe, ijambo rimwe (unigram), amagambo abiri (bigrams), amagambo atatu (trigrams) cyangwa umubare uwo ari wo wose w'amagambo (n-grams).
+文本可以被拆分為固定長度的詞語序列，例如單詞（unigram）、兩個詞（bigram）、三個詞（trigram）或任意數量的詞（n-grams）。
 
-Urugero `the quick red fox jumped over the lazy brown dog` hamwe n'amanota ya n-gram 2 atanga n-grams zikurikira:
+例如，句子 `the quick red fox jumped over the lazy brown dog` 的 n-gram 值為 2，生成以下 n-grams：
 
 1. the quick 
 2. quick red 
@@ -69,7 +78,7 @@ Urugero `the quick red fox jumped over the lazy brown dog` hamwe n'amanota ya n-
 8. lazy brown 
 9. brown dog
 
-Birashoboka ko byaba byoroshye kubibona nk'ikibaho kizamuka ku nteruro. Dore uko bimeze ku n-grams z'amagambo 3, n-gram iri mu buryo bwereranye mu nteruro zose:
+可以將其視為句子上的滑動框。以下是 n-gram 值為 3 的示例，每個句子中的 n-gram 用粗體表示：
 
 1.   <u>**the quick red**</u> fox jumped over the lazy brown dog
 2.   the **<u>quick red fox</u>** jumped over the lazy brown dog
@@ -80,51 +89,51 @@ Birashoboka ko byaba byoroshye kubibona nk'ikibaho kizamuka ku nteruro. Dore uko
 7.   the quick red fox jumped over <u>**the lazy brown**</u> dog
 8.   the quick red fox jumped over the **<u>lazy brown dog</u>**
 
-![n-grams sliding window](../../../../6-NLP/2-Tasks/images/n-grams.gif)
+![n-grams 滑動窗口](../../../../6-NLP/2-Tasks/images/n-grams.gif)
 
-> Agaciro ka n-gram 3: Infographic na [Jen Looper](https://twitter.com/jenlooper)
+> N-gram 值為 3 的示例。資訊圖由 [Jen Looper](https://twitter.com/jenlooper) 製作
 
-### Gukuramo ibice by'amagambo (Noun phrase Extraction)
+### 名詞短語提取
 
-Mu nteruro nyinshi, hari ijambo ry'izina ari ryo nsanganyamatsiko cyangwa ikintu cy'iyo nteruro. Mu Cyongereza, akenshi bigaragara ko rifite 'a' cyangwa 'an' cyangwa 'the' ribiranga. Kumenya nsanganyamatsiko cyangwa ikintu cy'iyo nteruro binyuze mu 'gukuramo igice cy'ijambo' ni umurimo usanzwe muri NLP mu gihe ushaka gusobanukirwa n'ibisobanuro by'iyo nteruro.
+在大多數句子中，存在一個名詞作為主語或賓語。在英文中，通常可以通過其前面是否有 'a'、'an' 或 'the' 來識別。提取名詞短語是自然語言處理中常見的任務，用於理解句子的含義。
 
-✅ Mu nteruro "Sinshobora kuzuza ku isaha, cyangwa ahantu, cyangwa uko bigaragara cyangwa amagambo, byashyizeho umusingi. Byarashize igihe kinini. Nari hagati mbere y'uko menya ko natangiye.", ushobora kubona ibice by'amagambo?
+✅ 在句子 "I cannot fix on the hour, or the spot, or the look or the words, which laid the foundation. It is too long ago. I was in the middle before I knew that I had begun." 中，你能識別出名詞短語嗎？
 
-Mu nteruro `the quick red fox jumped over the lazy brown dog` hari ibice 2 by'amagambo: **quick red fox** na **lazy brown dog**.
+在句子 `the quick red fox jumped over the lazy brown dog` 中，有兩個名詞短語：**quick red fox** 和 **lazy brown dog**。
 
-### Gusesengura ibyiyumvo (Sentiment analysis)
+### 情感分析
 
-Interuro cyangwa inyandiko irashobora gusesengurwa ku byiyumvo, cyangwa ukuntu *byiza* cyangwa *bibi* biri. Ibyiyumvo bipimwa mu *polarity* na *objectivity/subjectivity*. Polarity ipimwa kuva -1.0 kugeza 1.0 (bibi kugeza byiza) na 0.0 kugeza 1.0 (iby'ukuri cyane kugeza ibya nyakuri).
+可以分析句子或文本的情感，判斷其*正面*或*負面*程度。情感通過*極性*和*客觀性/主觀性*來衡量。極性範圍從 -1.0 到 1.0（負面到正面），客觀性範圍從 0.0 到 1.0（最客觀到最主觀）。
 
-✅ Nyuma uziga ko hariho inzira zitandukanye zo gupima ibyiyumvo ukoresheje ubumenyi bw'ibyuma, ariko imwe mu nzira ni ugufite urutonde rw'amagambo n'ibisobanuro byashyizwe mu byiciro nk'ibya byiza cyangwa bibi n'uko ushyira uwo murongo ku nyandiko kugirango ubare amanota ya polarity. Ushobora kubona uko ibi byakora mu bihe bimwe ariko bikaba bitagenda neza mu bindi?
+✅ 稍後你會學到使用機器學習來判斷情感的不同方法，但其中一種方法是由人工專家將詞語和短語分類為正面或負面，並將該模型應用於文本以計算極性分數。你能看出這種方法在某些情況下有效，而在其他情況下效果不佳嗎？
 
-### Guhindura (Inflection)
+### 詞形變化（Inflection）
 
-Guhindura bigufasha gufata ijambo no kubona iryo mu buryo bumwe cyangwa bwinshi bw'ijambo.
+詞形變化使你能夠獲得詞語的單數或複數形式。
 
-### Guhindura (Lemmatization)
+### 詞形還原（Lemmatization）
 
-*Lemma* ni ijambo rihamye cyangwa umuyoboro w'amagambo, urugero *flew*, *flies*, *flying* bifite lemma y'igikorwa *fly*.
+*詞形還原*是指將一組詞語還原到其根詞或詞幹，例如 *flew*、*flies*、*flying* 的詞形還原為動詞 *fly*。
 
-Hariho kandi amakuru akomeye aboneka ku mushakashatsi mu ikinyarwanda, cyane cyane:
+此外，還有一些對自然語言處理研究者非常有用的數據庫，例如：
 
 ### WordNet
 
-[WordNet](https://wordnet.princeton.edu/) ni database y'amagambo, imvugo, ibinyuranyo n'ibindi byinshi ku ijambo ryose mu ndimi nyinshi. Ni ingenzi cyane mu gihe wigerageza kubaka ibisobanuro, gupima imyandikire, cyangwa ibikoresho by'ururimi ubwo ari bwo bwose.
+[WordNet](https://wordnet.princeton.edu/) 是一個包含詞語、同義詞、反義詞及其他詳細信息的數據庫，涵蓋多種語言。它在構建翻譯、拼寫檢查器或任何類型的語言工具時非常有用。
 
-## Imbuga za NLP
+## 自然語言處理庫
 
-Birashimishije, ntugomba kubaka ubu buryo bwose wenyine, kuko hari imbuga za Python nziza ziboneka zifasha abashakashatsi batari abahanga mu ikinyarwanda cyangwa mu bumenyi bw'ibyuma. Amasomo akurikira azatanga ingero nyinshi z'izi, ariko hano uziga ingero z'ingenzi zigufasha mu mirimo ikurikira.
+幸運的是，你不需要自己構建所有這些技術，因為有一些出色的 Python 庫使非自然語言處理或機器學習專家也能輕鬆使用。接下來的課程中會包含更多示例，但在這裡你將學到一些有用的例子，幫助你完成下一個任務。
 
-### Umugoroba - ukoresheje `TextBlob` library
+### 練習 - 使用 `TextBlob` 庫
 
-Let's use a library called TextBlob as it contains helpful APIs for tackling these types of tasks. TextBlob "stands on the giant shoulders of [NLTK](https://nltk.org) and [pattern](https://github.com/clips/pattern), and plays nicely with both." It has a considerable amount of ML embedded in its API.
+讓我們使用一個名為 TextBlob 的庫，它包含了處理這些任務的有用 API。TextBlob "基於 [NLTK](https://nltk.org) 和 [pattern](https://github.com/clips/pattern)，並與它們良好兼容。" 它的 API 中嵌入了大量機器學習功能。
 
-> Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers 
+> 注意：對於有經驗的 Python 開發者，推薦使用 TextBlob 的[快速入門指南](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart)
 
-When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases. 
+在嘗試識別*名詞短語*時，TextBlob 提供了多種提取器選項來找到名詞短語。
 
-1. Take a look at `ConllExtractor`.
+1. 看看 `ConllExtractor`。
 
     ```python
     from textblob import TextBlob
@@ -138,24 +147,24 @@ When attempting to identify *noun phrases*, TextBlob offers several options of e
     np = user_input_blob.noun_phrases                                    
     ```
 
-    > Ibyo biri hano ni ibiki? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) ni "Igikoresho cyo gukuramo ibice by'amagambo gikoreshwa mu gusesengura ibice by'ijambo byatojwe na ConLL-2000 training corpus." ConLL-2000 ivuga ku nama y'Umwaka wa 2000 ku Ikoranabuhanga ry'Ikirimi Gikoresha. Buri mwaka iyo nama yakiriye inama yo gukemura ikibazo gikomeye cya NLP, kandi mu mwaka wa 2000 cyari igikorwa cy'amagambo. Icyitegererezo cyatojwe ku Igitabo cy'Ikirangantego, hamwe na "ibice 15-18 nk'ibikoresho byo gutoza (211727 tokens) na gice 20 nk'ibikoresho byo kugerageza (47377 tokens)". Ushobora kureba uburyo bwakoreshejwe [hano](https://www.clips.uantwerpen.be/conll2000/chunking/) n' [ibyavuye mu bushakashatsi](https://ifarm.nl/erikt/research/np-chunking.html).
+    > 這裡發生了什麼？[ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) 是 "一個使用基於 ConLL-2000 訓練語料庫的塊解析進行名詞短語提取的工具。" ConLL-2000 指的是 2000 年的計算自然語言學習會議。每年會議都會舉辦一個研討會來解決棘手的自然語言處理問題，而在 2000 年的主題是名詞短語解析。一個模型基於《華爾街日報》進行訓練，"使用第 15-18 節作為訓練數據（211727 個詞元），第 20 節作為測試數據（47377 個詞元）"。你可以查看使用的程序[這裡](https://www.clips.uantwerpen.be/conll2000/chunking/)以及[結果](https://ifarm.nl/erikt/research/np-chunking.html)。
 
-### Inseko - kunoza bot yawe ukoresheje NLP
+### 挑戰 - 使用自然語言處理改進你的機器人
 
-Mu isomo ryabanje, wubakaga bot y'ibibazo n'ibisubizo byoroheje. Ubu, uzaha Marvin urukundo ruke byihariye mu gusesengura ibyo umukozi atanga ku byiyumvo no gutanga igisubizo gihuye n'ibyo byiyumvo. Uzanasabwa kumenya `noun_phrase` no kubaza kuri yo.
+在上一課中，你構建了一個非常簡單的問答機器人。現在，你將讓 Marvin 更具同理心，通過分析輸入的情感並打印出匹配情感的回應。你還需要識別一個 `noun_phrase` 並詢問相關話題。
 
-Intambwe zawe mu kubaka bot y'ikiganiro irushijeho kuba nziza:
+構建更好的對話機器人的步驟：
 
-1. Andika amabwiriza asaba umukozi uburyo bwo kuganira na bot
-2. Tangira uruzinduko 
-   1. Accept user input
-   2. Niba umukozi yasabye kuva, noneho uve
-   3. Gusesengura ibyo umukozi atanga no kumenya igisubizo cy'ibiyumvo
-   4. Niba igice cy'amagambo cyabonetse mu byiyumvo, kora ku buryo bwinshi kandi ubaze ibibazo kuri icyo gitekerezo
-   5. Andika igisubizo
-3. subira ku ntambwe ya 2
+1. 打印指示，告知用戶如何與機器人互動
+2. 開始循環 
+   1. 接收用戶輸入
+   2. 如果用戶要求退出，則退出
+   3. 處理用戶輸入並確定適當的情感回應
+   4. 如果在情感中檢測到名詞短語，將其複數化並詢問該話題的更多信息
+   5. 打印回應
+3. 返回步驟 2
 
-Dore igice cy'ikodi cyo gusesengura ibyiyumvo ukoresheje TextBlob. Menya ko hariho gusa *ingero* enye z'ibiyumvo (ushobora kugira nyinshi niba ubishaka):
+以下是使用 TextBlob 確定情感的程式碼片段。注意，只有四種*情感梯度*的回應（如果你願意，可以設置更多）：
 
 ```python
 if user_input_blob.polarity <= -0.5:
@@ -168,7 +177,7 @@ elif user_input_blob.polarity <= 1:
   response = "Wow, that sounds great. "
 ```
 
-Dore bimwe mu bisubizo by'icyitegererezo kugirango bigufashe (ibyo umukozi atanga biri ku murongo utangirana na >):
+以下是一些示例輸出（用戶輸入以 > 開頭）：
 
 ```output
 Hello, I am Marvin, the friendly robot.
@@ -187,30 +196,33 @@ Hmm, that's not great. Can you tell me more about old hounddogs?
 It was nice talking to you, goodbye!
 ```
 
-Icyifuzo kimwe gishoboka kuri iki gikorwa kiri [hano](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/2-Tasks/solution/bot.py)
+任務的一個可能解決方案在[這裡](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/2-Tasks/solution/bot.py)
 
-✅ Ikizamini cy'Ubumenyi
+✅ 知識檢查
 
-1. Ese utekereza ko ibisubizo by'urukundo byakora 'ubujura' ku muntu kugira ngo atekereze ko bot yamenye neza ibyo yavuze?
-2. Ese kumenya igice cy'amagambo bituma bot iba 'inyabugingo'?
-3. Kuki gukuramo 'igice cy'amagambo' mu nteruro ari igikorwa cy'ingirakamaro?
+1. 你認為同理心的回應能否“欺騙”某人，使其認為機器人真的理解他們？
+2. 識別名詞短語是否讓機器人更“可信”？
+3. 為什麼從句子中提取“名詞短語”是一件有用的事情？
 
 ---
 
-Shyira mu bikorwa bot mu kizamini cy'ubumenyi kandi uyigerageze ku nshuti. Ese ishobora kuyibeshya? Ese ushobora gutuma bot yawe iba 'inyabugingo' kurushaho?
+實現上述知識檢查中的機器人，並測試它與朋友的互動。它能欺騙他們嗎？你能讓你的機器人更“可信”嗎？
 
-## 🚀Inseko
+## 🚀挑戰
 
-Fata igikorwa mu kizamini cy'ubumenyi kandi ugerageze kubishyira mu bikorwa. Gerageza bot ku nshuti. Ese ishobora kuyibeshya? Ese ushobora gutuma bot yawe iba 'inyabugingo' kurushaho?
+選擇知識檢查中的一項任務並嘗試實現它。測試機器人與朋友的互動。它能欺騙他們嗎？你能讓你的機器人更“可信”嗎？
 
-## [Ikizamini nyuma y'amasomo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Isuzuma & Kwiga ku giti cyawe
+## 回顧與自學
 
-Mu masomo akurikira uziga byinshi ku gusesengura ibyiyumvo. Kora ubushakashatsi kuri ubu buryo bushimishije mu nyandiko nk'izi ku [KDNuggets](https://www.kdnuggets.com/tag/nlp)
+在接下來的幾課中，你將學到更多關於情感分析的內容。研究這項有趣技術的文章，例如 [KDNuggets](https://www.kdnuggets.com/tag/nlp) 上的文章。
 
-## Inshingano 
+## 作業 
 
-[Shyira bot ikiganiro](assignment.md)
+[讓機器人回應](assignment.md)
 
-I'm sorry, but I cannot translate the text into "mo" as it does not specify a recognized language or dialect. If you meant a specific language, please clarify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

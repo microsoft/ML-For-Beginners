@@ -1,146 +1,157 @@
-# Postscript: Apprentissage automatique dans le monde réel
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "83320d6b6994909e35d830cebf214039",
+  "translation_date": "2025-09-06T09:12:11+00:00",
+  "source_file": "9-Real-World/1-Applications/README.md",
+  "language_code": "mo"
+}
+-->
+# 後記：機器學習在現實世界中的應用
 
-![Résumé de l'apprentissage automatique dans le monde réel sous forme de croquis](../../../../translated_images/ml-realworld.26ee2746716155771f8076598b6145e6533fe4a9e2e465ea745f46648cbf1b84.mo.png)
-> Croquis par [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![機器學習在現實世界中的應用摘要](../../../../sketchnotes/ml-realworld.png)  
+> 手繪筆記由 [Tomomi Imura](https://www.twitter.com/girlie_mac) 提供
 
-Dans ce programme, vous avez appris de nombreuses façons de préparer des données pour l'entraînement et de créer des modèles d'apprentissage automatique. Vous avez construit une série de modèles classiques de régression, de regroupement, de classification, de traitement du langage naturel et de séries temporelles. Félicitations ! Maintenant, vous vous demandez peut-être à quoi cela sert... quelles sont les applications concrètes de ces modèles ?
+在這門課程中，你學習了許多準備數據進行訓練以及建立機器學習模型的方法。你構建了一系列經典的回歸、聚類、分類、自然語言處理以及時間序列模型。恭喜你！現在，你可能會好奇這些模型的實際用途是什麼……這些模型在現實世界中的應用是什麼？
 
-Bien qu'un grand intérêt pour l'industrie ait été suscité par l'IA, qui s'appuie généralement sur l'apprentissage profond, il existe encore des applications précieuses pour les modèles classiques d'apprentissage automatique. Vous pourriez même utiliser certaines de ces applications aujourd'hui ! Dans cette leçon, vous explorerez comment huit industries différentes et domaines d'expertise utilisent ces types de modèles pour rendre leurs applications plus performantes, fiables, intelligentes et précieuses pour les utilisateurs.
+雖然業界對通常利用深度學習的人工智慧（AI）充滿興趣，但經典的機器學習模型仍然有其價值。事實上，你今天可能已經在使用其中一些應用！在這節課中，你將探索八個不同產業和專業領域如何利用這些模型來提升應用的效能、可靠性、智能性以及對用戶的價值。
 
-## [Quiz pré-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/49/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## 💰 Finance
+## 💰 金融
 
-Le secteur financier offre de nombreuses opportunités pour l'apprentissage automatique. De nombreux problèmes dans ce domaine peuvent être modélisés et résolus à l'aide de l'apprentissage automatique.
+金融領域提供了許多機器學習的應用機會。這個領域中的許多問題都適合用機器學習來建模和解決。
 
-### Détection de fraude par carte de crédit
+### 信用卡詐欺檢測
 
-Nous avons appris sur [le regroupement k-means](../../5-Clustering/2-K-Means/README.md) plus tôt dans le cours, mais comment peut-il être utilisé pour résoudre des problèmes liés à la fraude par carte de crédit ?
+我們在課程中學習了 [k-means 聚類](../../5-Clustering/2-K-Means/README.md)，但它如何用於解決信用卡詐欺相關的問題呢？
 
-Le regroupement k-means est utile lors d'une technique de détection de fraude par carte de crédit appelée **détection d'outliers**. Les outliers, ou déviations dans les observations d'un ensemble de données, peuvent nous indiquer si une carte de crédit est utilisée de manière normale ou si quelque chose d'inhabituel se produit. Comme indiqué dans le document lié ci-dessous, vous pouvez trier les données de carte de crédit en utilisant un algorithme de regroupement k-means et assigner chaque transaction à un groupe en fonction de son apparence en tant qu'outlier. Ensuite, vous pouvez évaluer les groupes les plus risqués pour les transactions frauduleuses par rapport aux transactions légitimes.
-[Référence](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf)
+k-means 聚類在一種稱為**異常檢測**的信用卡詐欺檢測技術中非常有用。異常值，或者說數據集中的偏差，可以幫助我們判斷信用卡的使用是否正常，或者是否有異常情況發生。根據以下論文所述，你可以使用 k-means 聚類算法對信用卡數據進行分類，並根據每筆交易的異常程度將其分配到不同的群組。接著，你可以評估最具風險的群組，以區分詐欺交易和合法交易。  
+[參考資料](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf)
 
-### Gestion de patrimoine
+### 財富管理
 
-Dans la gestion de patrimoine, un individu ou une entreprise gère des investissements au nom de ses clients. Leur travail consiste à maintenir et à faire croître la richesse à long terme, il est donc essentiel de choisir des investissements qui performe bien.
+在財富管理中，個人或公司代表客戶處理投資。他們的工作是長期維持和增長財富，因此選擇表現良好的投資至關重要。
 
-Une façon d'évaluer comment un investissement particulier performe est d'utiliser la régression statistique. [La régression linéaire](../../2-Regression/1-Tools/README.md) est un outil précieux pour comprendre comment un fonds performe par rapport à un certain critère de référence. Nous pouvons également déduire si les résultats de la régression sont statistiquement significatifs, ou dans quelle mesure ils affecteraient les investissements d'un client. Vous pourriez même élargir davantage votre analyse en utilisant la régression multiple, où des facteurs de risque supplémentaires peuvent être pris en compte. Pour un exemple de la façon dont cela fonctionnerait pour un fonds spécifique, consultez le document ci-dessous sur l'évaluation de la performance des fonds à l'aide de la régression.
-[Référence](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/)
+評估特定投資表現的一種方法是使用統計回歸。[線性回歸](../../2-Regression/1-Tools/README.md) 是一種有價值的工具，可以幫助我們了解某基金相對於基準的表現。我們還可以推斷回歸結果是否具有統計顯著性，或者它們對客戶投資的影響程度。你甚至可以進一步擴展分析，使用多元回歸來考慮額外的風險因素。以下論文提供了一個具體基金如何利用回歸評估表現的例子。  
+[參考資料](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/)
 
-## 🎓 Éducation
+## 🎓 教育
 
-Le secteur de l'éducation est également un domaine très intéressant où l'apprentissage automatique peut être appliqué. Il existe des problèmes intéressants à résoudre, tels que la détection de tricherie lors des tests ou des essais, ou la gestion des biais, qu'ils soient intentionnels ou non, dans le processus de correction.
+教育領域也是機器學習應用的一個非常有趣的領域。在這裡可以解決許多有趣的問題，例如檢測考試或作文中的作弊行為，或者管理糾正過程中的偏見（無論是有意還是無意）。
 
-### Prédiction du comportement des étudiants
+### 預測學生行為
 
-[Coursera](https://coursera.com), un fournisseur de cours en ligne, a un excellent blog technique où ils discutent de nombreuses décisions d'ingénierie. Dans cette étude de cas, ils ont tracé une ligne de régression pour essayer d'explorer toute corrélation entre un faible NPS (Net Promoter Score) et la rétention ou l'abandon de cours.
-[Référence](https://medium.com/coursera-engineering/controlled-regression-quantifying-the-impact-of-course-quality-on-learner-retention-31f956bd592a)
+[Coursera](https://coursera.com)，一家線上開放課程提供商，在其技術博客中討論了許多工程決策。在這個案例研究中，他們繪製了一條回歸線，試圖探索低 NPS（淨推薦值）評分與課程保留率或退課率之間的相關性。  
+[參考資料](https://medium.com/coursera-engineering/controlled-regression-quantifying-the-impact-of-course-quality-on-learner-retention-31f956bd592a)
 
-### Atténuation des biais
+### 減少偏見
 
-[Grammarly](https://grammarly.com), un assistant d'écriture qui vérifie les fautes d'orthographe et de grammaire, utilise des [systèmes de traitement du langage naturel](../../6-NLP/README.md) sophistiqués dans ses produits. Ils ont publié une étude de cas intéressante sur leur blog technique sur la façon dont ils ont traité le biais de genre dans l'apprentissage automatique, que vous avez appris dans notre [leçon d'introduction à l'équité](../../1-Introduction/3-fairness/README.md).
-[Référence](https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/)
+[Grammarly](https://grammarly.com)，一款檢查拼寫和語法錯誤的寫作助手，在其技術博客中發表了一篇有趣的案例研究，討論了如何處理機器學習中的性別偏見問題。你可以在我們的[公平性入門課程](../../1-Introduction/3-fairness/README.md)中學到相關知識。  
+[參考資料](https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/)
 
-## 👜 Vente au détail
+## 👜 零售
 
-Le secteur de la vente au détail peut certainement bénéficier de l'utilisation de l'apprentissage automatique, que ce soit pour créer un meilleur parcours client ou pour gérer l'inventaire de manière optimale.
+零售業可以從機器學習的應用中獲益匪淺，從創造更好的客戶旅程到以最佳方式管理庫存。
 
-### Personnalisation du parcours client
+### 個性化客戶旅程
 
-Chez Wayfair, une entreprise qui vend des articles pour la maison comme des meubles, aider les clients à trouver les bons produits pour leurs goûts et besoins est primordial. Dans cet article, des ingénieurs de l'entreprise décrivent comment ils utilisent l'apprentissage automatique et le traitement du langage naturel pour "mettre en avant les bons résultats pour les clients". Notamment, leur moteur d'intention de requête a été conçu pour utiliser l'extraction d'entités, l'entraînement de classificateurs, l'extraction d'actifs et d'opinions, ainsi que l'étiquetage des sentiments sur les avis des clients. C'est un cas classique de la façon dont le traitement du langage naturel fonctionne dans le commerce en ligne.
-[Référence](https://www.aboutwayfair.com/tech-innovation/how-we-use-machine-learning-and-natural-language-processing-to-empower-search)
+在 Wayfair，一家銷售家具等家居用品的公司，幫助客戶找到符合其品味和需求的產品至關重要。在這篇文章中，該公司的工程師描述了他們如何使用機器學習和 NLP（自然語言處理）來「為客戶提供合適的搜索結果」。值得注意的是，他們的查詢意圖引擎使用了實體提取、分類器訓練、資產和意見提取以及客戶評論的情感標記。這是 NLP 在線上零售中的經典應用案例。  
+[參考資料](https://www.aboutwayfair.com/tech-innovation/how-we-use-machine-learning-and-natural-language-processing-to-empower-search)
 
-### Gestion des stocks
+### 庫存管理
 
-Des entreprises innovantes et agiles comme [StitchFix](https://stitchfix.com), un service de boîte qui expédie des vêtements aux consommateurs, s'appuient fortement sur l'apprentissage automatique pour les recommandations et la gestion des stocks. En fait, leurs équipes de stylisme travaillent ensemble avec leurs équipes de marchandisage : "l'un de nos data scientists a expérimenté avec un algorithme génétique et l'a appliqué à l'habillement pour prédire ce qui serait un article de vêtement réussi qui n'existe pas aujourd'hui. Nous avons présenté cela à l'équipe de marchandisage et maintenant ils peuvent l'utiliser comme un outil."
-[Référence](https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/)
+像 [StitchFix](https://stitchfix.com) 這樣創新且靈活的公司，一家向消費者寄送服裝的盒裝服務公司，嚴重依賴機器學習進行推薦和庫存管理。他們的造型團隊與商品團隊密切合作：「我們的一位數據科學家嘗試使用遺傳算法，並將其應用於服裝，預測出今天不存在但可能成功的服裝。我們將這一工具提供給商品團隊，現在他們可以使用它作為工具。」  
+[參考資料](https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/)
 
-## 🏥 Santé
+## 🏥 醫療保健
 
-Le secteur de la santé peut tirer parti de l'apprentissage automatique pour optimiser les tâches de recherche et également résoudre des problèmes logistiques comme la réadmission des patients ou l'arrêt de la propagation des maladies.
+醫療保健領域可以利用機器學習來優化研究任務以及解決物流問題，例如患者再入院管理或疾病傳播的阻止。
 
-### Gestion des essais cliniques
+### 臨床試驗管理
 
-La toxicité dans les essais cliniques est une préoccupation majeure pour les fabricants de médicaments. Quelle quantité de toxicité est tolérable ? Dans cette étude, l'analyse de diverses méthodes d'essai clinique a conduit au développement d'une nouvelle approche pour prédire les résultats des essais cliniques. Plus précisément, ils ont pu utiliser des forêts aléatoires pour produire un [classificateur](../../4-Classification/README.md) capable de distinguer entre des groupes de médicaments.
-[Référence](https://www.sciencedirect.com/science/article/pii/S2451945616302914)
+臨床試驗中的毒性是藥物製造商的一大關注點。多少毒性是可容忍的？在這項研究中，通過分析各種臨床試驗方法，開發了一種新的方法來預測臨床試驗結果的可能性。具體來說，他們使用隨機森林生成了一個[分類器](../../4-Classification/README.md)，能夠區分不同藥物群組。  
+[參考資料](https://www.sciencedirect.com/science/article/pii/S2451945616302914)
 
-### Gestion des réadmissions hospitalières
+### 醫院再入院管理
 
-Les soins hospitaliers sont coûteux, surtout lorsque les patients doivent être réadmis. Cet article discute d'une entreprise qui utilise l'apprentissage automatique pour prédire le potentiel de réadmission en utilisant des algorithmes de [regroupement](../../5-Clustering/README.md). Ces groupes aident les analystes à "découvrir des groupes de réadmissions qui peuvent partager une cause commune".
-[Référence](https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning)
+醫院護理成本高昂，尤其是當患者需要再次入院時。這篇論文討論了一家公司如何利用機器學習通過[聚類](../../5-Clustering/README.md)算法來預測再入院的可能性。這些群組幫助分析師「發現可能有共同原因的再入院群組」。  
+[參考資料](https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning)
 
-### Gestion des maladies
+### 疾病管理
 
-La récente pandémie a mis en lumière les façons dont l'apprentissage automatique peut aider à stopper la propagation des maladies. Dans cet article, vous reconnaîtrez l'utilisation d'ARIMA, de courbes logistiques, de régression linéaire et de SARIMA. "Ce travail est une tentative de calculer le taux de propagation de ce virus et donc de prédire les décès, les guérisons et les cas confirmés, afin de mieux nous préparer et de survivre."
-[Référence](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/)
+最近的疫情突顯了機器學習在阻止疾病傳播方面的作用。在這篇文章中，你會看到 ARIMA、邏輯曲線、線性回歸和 SARIMA 的應用。「這項工作試圖計算病毒的傳播速度，並預測死亡、康復和確診病例，以幫助我們更好地準備和應對。」  
+[參考資料](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/)
 
-## 🌲 Écologie et technologies vertes
+## 🌲 生態與綠色科技
 
-La nature et l'écologie consistent en de nombreux systèmes sensibles où l'interaction entre les animaux et la nature est mise en avant. Il est important de pouvoir mesurer ces systèmes avec précision et d'agir de manière appropriée si quelque chose se produit, comme un incendie de forêt ou une baisse de la population animale.
+自然與生態由許多敏感的系統組成，動物與自然之間的相互作用尤為重要。能夠準確測量這些系統並在發生問題時採取適當行動（例如森林火災或動物數量下降）至關重要。
 
-### Gestion des forêts
+### 森林管理
 
-Vous avez appris sur [l'apprentissage par renforcement](../../8-Reinforcement/README.md) dans des leçons précédentes. Cela peut être très utile pour essayer de prédire des motifs dans la nature. En particulier, cela peut être utilisé pour suivre des problèmes écologiques comme les incendies de forêt et la propagation d'espèces envahissantes. Au Canada, un groupe de chercheurs a utilisé l'apprentissage par renforcement pour construire des modèles de dynamique des incendies de forêt à partir d'images satellites. En utilisant un processus d'expansion spatiale (SSP) innovant, ils ont envisagé un incendie de forêt comme "l'agent à toute cellule dans le paysage." "L'ensemble des actions que le feu peut prendre à partir d'un emplacement à un moment donné inclut la propagation vers le nord, le sud, l'est ou l'ouest ou ne pas se propager."
+你在之前的課程中學習了[強化學習](../../8-Reinforcement/README.md)。它在預測自然模式時非常有用。特別是，它可以用於追蹤生態問題，例如森林火災和入侵物種的擴散。在加拿大，一組研究人員使用強化學習從衛星圖像中構建了森林火災動態模型。他們使用了一種創新的「空間擴散過程（SSP）」，將森林火災視為「景觀中任何單元格的代理」。  
+[參考資料](https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full)
 
-Cette approche inverse la configuration habituelle de l'apprentissage par renforcement puisque la dynamique du processus de décision de Markov (MDP) correspondant est une fonction connue pour la propagation immédiate des incendies de forêt." Lisez-en plus sur les algorithmes classiques utilisés par ce groupe au lien ci-dessous.
-[Référence](https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full)
+### 動物運動感測
 
-### Détection de mouvement des animaux
+雖然深度學習在視覺追蹤動物運動方面帶來了革命性變化（你可以在[這裡](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott)構建自己的北極熊追蹤器），但經典的機器學習在這項任務中仍有一席之地。
 
-Bien que l'apprentissage profond ait créé une révolution dans le suivi visuel des mouvements des animaux (vous pouvez construire votre propre [suiveur d'ours polaire](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott) ici), l'apprentissage automatique classique a encore sa place dans cette tâche.
+用於追蹤農場動物運動的感測器和物聯網技術利用了這類視覺處理，但更基本的機器學習技術對數據預處理非常有用。例如，在這篇論文中，研究人員使用各種分類器算法監測和分析羊的姿勢。你可能會認出第 335 頁上的 ROC 曲線。  
+[參考資料](https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf)
 
-Les capteurs pour suivre les mouvements des animaux de ferme et l'IoT utilisent ce type de traitement visuel, mais des techniques d'apprentissage automatique plus basiques sont utiles pour prétraiter les données. Par exemple, dans cet article, les postures des moutons ont été surveillées et analysées à l'aide de divers algorithmes de classification. Vous pourriez reconnaître la courbe ROC à la page 335.
-[Référence](https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf)
+### ⚡️ 能源管理
 
-### ⚡️ Gestion de l'énergie
+在我們的[時間序列預測](../../7-TimeSeries/README.md)課程中，我們提到了利用智慧停車計時器來根據供需為城鎮創造收入的概念。這篇文章詳細討論了如何結合聚類、回歸和時間序列預測來幫助預測愛爾蘭未來的能源使用，基於智慧計量技術。  
+[參考資料](https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf)
 
-Dans nos leçons sur [la prévision des séries temporelles](../../7-TimeSeries/README.md), nous avons invoqué le concept de parcmètres intelligents pour générer des revenus pour une ville en comprenant l'offre et la demande. Cet article discute en détail de la façon dont le regroupement, la régression et la prévision des séries temporelles se combinent pour aider à prédire la consommation future d'énergie en Irlande, sur la base de la mesure intelligente.
-[Référence](https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf)
+## 💼 保險
 
-## 💼 Assurance
+保險業是另一個利用機器學習構建和優化可行財務及精算模型的領域。
 
-Le secteur de l'assurance est un autre secteur qui utilise l'apprentissage automatique pour construire et optimiser des modèles financiers et actuariels viables.
+### 波動性管理
 
-### Gestion de la volatilité
+MetLife，一家人壽保險提供商，公開了他們如何分析和減少財務模型中的波動性。在這篇文章中，你會看到二元和序數分類的可視化，以及預測的可視化。  
+[參考資料](https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf)
 
-MetLife, un fournisseur d'assurance-vie, est transparent sur la manière dont il analyse et atténue la volatilité dans ses modèles financiers. Dans cet article, vous remarquerez des visualisations de classification binaire et ordinale. Vous découvrirez également des visualisations de prévision.
-[Référence](https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf)
+## 🎨 藝術、文化與文學
 
-## 🎨 Arts, culture et littérature
+在藝術領域，例如新聞業，有許多有趣的問題。例如，檢測假新聞是一個巨大的挑戰，因為它已被證明會影響人們的觀點，甚至顛覆民主。博物館也可以利用機器學習，從發現文物之間的聯繫到資源規劃。
 
-Dans les arts, par exemple dans le journalisme, il existe de nombreux problèmes intéressants. La détection de fausses nouvelles est un énorme problème car il a été prouvé qu'elle influence l'opinion des gens et même renverse des démocraties. Les musées peuvent également bénéficier de l'utilisation de l'apprentissage automatique dans tout, depuis la recherche de liens entre des artefacts jusqu'à la planification des ressources.
+### 假新聞檢測
 
-### Détection de fausses nouvelles
+在當今媒體中，檢測假新聞已成為一場貓捉老鼠的遊戲。在這篇文章中，研究人員建議測試並部署最佳模型，該系統結合了我們學過的多種機器學習技術：「該系統基於自然語言處理來提取數據特徵，然後使用這些特徵訓練機器學習分類器，例如 Naive Bayes、支持向量機（SVM）、隨機森林（RF）、隨機梯度下降（SGD）和邏輯回歸（LR）。」  
+[參考資料](https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf)
 
-Détecter les fausses nouvelles est devenu un jeu du chat et de la souris dans les médias d'aujourd'hui. Dans cet article, des chercheurs suggèrent qu'un système combinant plusieurs des techniques d'apprentissage automatique que nous avons étudiées peut être testé et que le meilleur modèle peut être déployé : "Ce système est basé sur le traitement du langage naturel pour extraire des caractéristiques des données, puis ces caractéristiques sont utilisées pour l'entraînement de classificateurs d'apprentissage automatique tels que Naive Bayes, Machine à vecteurs de support (SVM), Forêt aléatoire (RF), Descente de gradient stochastique (SGD) et Régression logistique (LR)."
-[Référence](https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf)
+這篇文章展示了如何結合不同的機器學習領域來產生有趣的結果，幫助阻止假新聞的傳播和造成的實際損害；在這個案例中，動機是阻止關於 COVID 治療的謠言引發的暴力事件。
 
-Cet article montre comment la combinaison de différents domaines de l'apprentissage automatique peut produire des résultats intéressants qui peuvent aider à arrêter la propagation de fausses nouvelles et à créer de réels dommages ; dans ce cas, l'impulsion était la propagation de rumeurs sur les traitements COVID qui incitaient à la violence de masse.
+### 博物館機器學習
 
-### Apprentissage automatique dans les musées
+博物館正處於人工智慧革命的前沿，隨著技術的進步，編目和數字化收藏以及發現文物之間的聯繫變得更加容易。像 [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) 這樣的項目正在幫助解開無法訪問的收藏（例如梵蒂岡檔案館）的奧秘。但博物館的商業方面也受益於機器學習模型。
 
-Les musées sont à l'aube d'une révolution de l'IA dans laquelle le catalogage et la numérisation des collections et la recherche de liens entre les artefacts deviennent plus faciles à mesure que la technologie progresse. Des projets tels que [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) aident à déverrouiller les mystères des collections inaccessibles comme les Archives du Vatican. Mais l'aspect commercial des musées bénéficie également des modèles d'apprentissage automatique.
+例如，芝加哥藝術博物館建立了模型來預測觀眾的興趣以及他們何時會參觀展覽。目標是每次用戶參觀博物館時，創造個性化和最佳化的參觀體驗。「在 2017 財年，該模型以 1% 的準確度預測了參觀人數和門票收入，」芝加哥藝術博物館高級副總裁 Andrew Simnick 說道。  
+[參考資料](https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices)
 
-Par exemple, l'Art Institute of Chicago a construit des modèles pour prédire quels publics sont intéressés et quand ils assisteront aux expositions. L'objectif est de créer des expériences de visite individualisées et optimisées chaque fois que l'utilisateur visite le musée. "Au cours de l'exercice fiscal 2017, le modèle a prédit la fréquentation et les admissions avec une précision de 1 pour cent, déclare Andrew Simnick, vice-président senior de l'Art Institute."
-# 🏷 Marketing
+## 🏷 行銷
 
-### Customer segmentation
+### 客戶分群
 
-Les stratégies de marketing les plus efficaces ciblent les clients de différentes manières en fonction de divers regroupements. Dans cet article, les utilisations des algorithmes de clustering sont discutées pour soutenir le marketing différencié. Le marketing différencié aide les entreprises à améliorer la reconnaissance de la marque, à atteindre plus de clients et à générer plus de revenus.
-[Reference](https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/)
+最有效的行銷策略是根據不同的群組以不同的方式針對客戶。在這篇文章中，討論了使用聚類算法來支持差異化行銷的應用。差異化行銷幫助公司提高品牌認知度、觸及更多客戶並賺取更多收入。  
+[參考資料](https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/)
 
-## 🚀 Challenge
+## 🚀 挑戰
 
-Identifiez un autre secteur qui bénéficie de certaines des techniques que vous avez apprises dans ce programme, et découvrez comment il utilise l'apprentissage automatique (ML).
+找出另一個受益於本課程中所學技術的領域，並探索它如何使用機器學習。
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/50/)
+## 回顧與自學
 
-## Review & Self Study
+Wayfair 的數據科學團隊有幾部有趣的影片，介紹他們如何在公司中使用機器學習。值得[看看](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)！
 
-L'équipe de science des données de Wayfair a plusieurs vidéos intéressantes sur la manière dont elle utilise le ML dans son entreprise. Cela vaut la peine de [jeter un œil](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos) !
+## 作業
 
-## Assignment
+[機器學習尋寶遊戲](assignment.md)
 
-[A ML scavenger hunt](assignment.md)
+---
 
-I'm sorry, but I can't translate text into "mo" as it is not a recognized language code. If you meant a specific language, please clarify which language you would like the text translated into, and I'll be happy to assist!
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。  

@@ -1,46 +1,55 @@
-# ARIMAを使った時系列予測
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-06T09:28:34+00:00",
+  "source_file": "7-TimeSeries/2-ARIMA/README.md",
+  "language_code": "ja"
+}
+-->
+# ARIMAによる時系列予測
 
-前のレッスンでは、時系列予測について少し学び、ある期間における電力負荷の変動を示すデータセットを読み込みました。
+前のレッスンでは、時系列予測について少し学び、一定期間にわたる電力負荷の変動を示すデータセットを読み込みました。
 
-[![ARIMAの紹介](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "ARIMAの紹介")
+[![ARIMAの概要](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "ARIMAの概要")
 
-> 🎥 上の画像をクリックしてビデオを見る: ARIMAモデルの簡単な紹介。例はRで行われていますが、概念は普遍的です。
+> 🎥 上の画像をクリックすると動画が再生されます: ARIMAモデルの簡単な紹介。例はRで行われていますが、概念は普遍的です。
 
-## [講義前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [講義前のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
 ## はじめに
 
-このレッスンでは、[ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)を使ってモデルを構築する具体的な方法を学びます。ARIMAモデルは、[非定常性](https://wikipedia.org/wiki/Stationary_process)を示すデータに特に適しています。
+このレッスンでは、[ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)を使用してモデルを構築する具体的な方法を学びます。ARIMAモデルは、[非定常性](https://wikipedia.org/wiki/Stationary_process)を示すデータに特に適しています。
 
-## 一般的な概念
+## 基本概念
 
-ARIMAを使うためには、いくつか知っておくべき概念があります：
+ARIMAを使用するためには、いくつかの重要な概念を理解しておく必要があります。
 
-- 🎓 **定常性**。統計的な文脈では、定常性とは、時間をシフトしても分布が変わらないデータを指します。非定常データは、分析のために変換が必要な傾向による変動を示します。例えば、季節性はデータに変動をもたらし、「季節差分」というプロセスで除去できます。
+- 🎓 **定常性**: 統計的な観点から、定常性とは時間が経過しても分布が変化しないデータを指します。一方、非定常データはトレンドによる変動を示し、分析するためには変換が必要です。例えば季節性はデータに変動をもたらし、「季節差分」を行うことで排除できます。
 
-- 🎓 **[差分](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**。統計的な文脈でデータを差分化するとは、非定常データを定常化するためにその非一定の傾向を取り除くプロセスを指します。「差分は時系列のレベルの変化を取り除き、傾向と季節性を排除し、結果として時系列の平均を安定させます。」[Shixiongらの論文](https://arxiv.org/abs/1904.07632)
+- 🎓 **[差分](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**: 差分とは、非定常データを定常データに変換するプロセスを指します。これにより、データの非定常なトレンドが除去されます。「差分は時系列のレベル変化を除去し、トレンドや季節性を排除することで時系列の平均を安定化させます。」[Shixiongらの論文](https://arxiv.org/abs/1904.07632)
 
-## 時系列におけるARIMA
+## 時系列におけるARIMAの役割
 
-ARIMAの各部分を解説し、時系列をどのようにモデル化し、予測に役立てるかを理解しましょう。
+ARIMAの各部分を分解して、時系列データをモデル化し、予測を行う方法を理解しましょう。
 
-- **AR - 自己回帰**。自己回帰モデルは、その名前が示すように、過去のデータを分析して仮定を立てます。これらの過去の値は「ラグ」と呼ばれます。例えば、月ごとの鉛筆の販売データがあるとします。各月の販売総数はデータセットの「進化変数」とみなされます。このモデルは「興味のある進化変数がそのラグ（すなわち、前の値）に回帰される」として構築されます。[wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - 自己回帰 (AutoRegressive)**: 自己回帰モデルは名前の通り、過去のデータを分析して仮定を立てます。これらの過去の値は「ラグ」と呼ばれます。例えば、鉛筆の月別販売データがある場合、各月の販売総数はデータセット内の「進化する変数」として扱われます。このモデルは「関心のある進化する変数が自身のラグ（つまり過去の値）に回帰する」として構築されます。[wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - 統合**。類似の'ARMA'モデルとは異なり、ARIMAの'I'はその*[統合](https://wikipedia.org/wiki/Order_of_integration)*側面を指します。データは非定常性を排除するために差分ステップが適用されると「統合」されます。
+- **I - 統合 (Integrated)**: ARIMAの「I」は、データが差分処理を通じて非定常性を排除することで「統合」されることを指します。これはARMAモデルとの違いです。
 
-- **MA - 移動平均**。このモデルの[移動平均](https://wikipedia.org/wiki/Moving-average_model)側面は、現在および過去のラグの値を観察することによって決定される出力変数を指します。
+- **MA - 移動平均 (Moving Average)**: [移動平均](https://wikipedia.org/wiki/Moving-average_model)は、現在および過去のラグ値を観察することで出力変数を決定するモデルの側面を指します。
 
-結論: ARIMAは、時系列データの特殊な形式にできるだけ近づけるためにモデルを作成するために使用されます。
+要するに、ARIMAは時系列データの特殊な形式にできるだけ近づけるようにモデルを構築するために使用されます。
 
-## 演習 - ARIMAモデルの構築
+## 演習 - ARIMAモデルを構築する
 
 このレッスンの[_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working)フォルダーを開き、[_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb)ファイルを見つけてください。
 
-1. ノートブックを実行して`statsmodels` Pythonライブラリを読み込みます。これはARIMAモデルに必要です。
+1. ノートブックを実行してPythonライブラリ`statsmodels`を読み込みます。これはARIMAモデルに必要です。
 
 1. 必要なライブラリを読み込む
 
-1. データをプロットするために便利なライブラリをいくつか読み込みます：
+1. 次に、データのプロットに便利なライブラリをいくつか読み込みます:
 
     ```python
     import os
@@ -63,14 +72,14 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. `/data/energy.csv`ファイルからデータをPandasデータフレームに読み込み、確認します：
+1. `/data/energy.csv`ファイルからデータをPandasデータフレームに読み込み、内容を確認します:
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. 2012年1月から2014年12月までの全てのエネルギーデータをプロットします。前のレッスンで見たデータなので驚くことはないでしょう：
+1. 2012年1月から2014年12月までのエネルギーデータをすべてプロットします。前のレッスンでこのデータを見たので驚きはないはずです:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -79,22 +88,22 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     plt.show()
     ```
 
-    では、モデルを構築しましょう！
+    では、モデルを構築してみましょう！
 
-### トレーニングとテストデータセットの作成
+### トレーニングとテストデータセットを作成する
 
-データが読み込まれたので、トレーニングセットとテストセットに分けます。トレーニングセットでモデルをトレーニングします。通常、モデルのトレーニングが終了したら、テストセットを使用してその精度を評価します。モデルが将来の時間帯から情報を得ないようにするために、テストセットがトレーニングセットよりも後の期間をカバーしていることを確認する必要があります。
+データが読み込まれたので、トレーニングセットとテストセットに分割します。トレーニングセットでモデルを訓練し、訓練後にテストセットを使用してモデルの精度を評価します。トレーニングセットが未来の時間帯の情報を取得しないように、テストセットがトレーニングセットより後の期間をカバーする必要があります。
 
-1. 2014年9月1日から10月31日までの2か月間をトレーニングセットに割り当てます。テストセットには2014年11月1日から12月31日までの2か月間が含まれます：
+1. 2014年9月1日から10月31日までの2か月間をトレーニングセットに割り当てます。テストセットには2014年11月1日から12月31日までの2か月間を含めます:
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    このデータは日々のエネルギー消費を反映しているため、強い季節的パターンがありますが、消費は最近の日々の消費に最も似ています。
+    このデータはエネルギーの1日ごとの消費量を反映しているため、強い季節的パターンがありますが、消費量は最近の日々の消費量に最も類似しています。
 
-1. 差異を視覚化します：
+1. 差異を視覚化します:
 
     ```python
     energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -105,17 +114,17 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     plt.show()
     ```
 
-    ![トレーニングとテストデータ](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.ja.png)
+    ![トレーニングとテストデータ](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    したがって、データのトレーニングには比較的小さな時間枠を使用することが適切です。
+    したがって、データをトレーニングするために比較的小さな時間枠を使用するだけで十分です。
 
-    > 注: ARIMAモデルをフィットさせるために使用する関数はフィッティング中にインサンプル検証を行うため、検証データは省略します。
+    > 注意: ARIMAモデルをフィットさせる関数はフィッティング中にインサンプル検証を使用するため、検証データは省略します。
 
 ### トレーニングのためのデータ準備
 
-次に、データをフィルタリングおよびスケーリングしてトレーニングの準備をします。必要な期間と列のみを含むようにデータセットをフィルタリングし、データが0から1の範囲に投影されるようにスケーリングします。
+次に、データをフィルタリングしてスケーリングすることでトレーニングの準備をします。必要な期間と列のみを含むようにデータセットをフィルタリングし、データが0から1の範囲に投影されるようにスケーリングします。
 
-1. 元のデータセットをフィルタリングし、前述の期間ごとのセットと、必要な列「load」と日付のみを含むようにします：
+1. 元のデータセットをフィルタリングして、前述の期間ごとのセットと必要な列「load」と日付のみを含むようにします:
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -125,7 +134,7 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     print('Test data shape: ', test.shape)
     ```
 
-    データの形状を確認できます：
+    データの形状を確認できます:
 
     ```output
     Training data shape:  (1416, 1)
@@ -140,7 +149,7 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     train.head(10)
     ```
 
-1. 元のデータとスケーリングされたデータを視覚化します：
+1. 元のデータとスケーリングされたデータを視覚化します:
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,15 +157,15 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     plt.show()
     ```
 
-    ![元のデータ](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.ja.png)
+    ![元のデータ](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > 元のデータ
 
-    ![スケーリングされたデータ](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.ja.png)
+    ![スケーリングされたデータ](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
     > スケーリングされたデータ
 
-1. スケーリングされたデータをキャリブレーションしたので、テストデータをスケーリングします：
+1. スケーリングされたデータを調整したので、テストデータもスケーリングします:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -165,23 +174,23 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
 
 ### ARIMAの実装
 
-いよいよARIMAの実装です！先ほどインストールした`statsmodels`ライブラリを使用します。
+いよいよARIMAを実装する時です！先ほどインストールした`statsmodels`ライブラリを使用します。
 
-次にいくつかのステップを実行する必要があります
+次の手順を実行します:
 
-   1. `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters.
-   2. Prepare the model for the training data by calling the fit() function.
-   3. Make predictions calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast.
+1. モデルを定義するために`SARIMAX()`を呼び出し、モデルパラメータ（p, d, qおよびP, D, Q）を渡します。
+2. トレーニングデータに対してモデルを準備するために`fit()`関数を呼び出します。
+3. `forecast()`関数を呼び出して予測を行い、予測するステップ数（ホライゾン）を指定します。
 
-> 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
+> 🎓 これらのパラメータは何のためにあるのでしょうか？ARIMAモデルには、時系列の主要な側面（季節性、トレンド、ノイズ）をモデル化するために使用される3つのパラメータがあります:
 
-`p`: the parameter associated with the auto-regressive aspect of the model, which incorporates *past* values.
-`d`: the parameter associated with the integrated part of the model, which affects the amount of *differencing* (🎓 remember differencing 👆?) to apply to a time series.
-`q`: the parameter associated with the moving-average part of the model.
+`p`: モデルの自己回帰部分に関連するパラメータで、過去の値を組み込みます。
+`d`: モデルの統合部分に関連するパラメータで、時系列に適用する差分の量を決定します。
+`q`: モデルの移動平均部分に関連するパラメータ。
 
-> Note: If your data has a seasonal aspect - which this one does - , we use a seasonal ARIMA model (SARIMA). In that case you need to use another set of parameters: `P`, `D`, and `Q` which describe the same associations as `p`, `d`, and `q`を呼び出してモデルを定義しますが、これはモデルの季節成分に対応します。
+> 注意: データに季節的な側面がある場合（このデータにはあります）、季節的ARIMAモデル（SARIMA）を使用します。その場合、`p`, `d`, `q`に対応する季節的なコンポーネントを記述するために`P`, `D`, `Q`という別のパラメータセットを使用します。
 
-1. 好みのホライズン値を設定します。3時間を試してみましょう：
+1. まず、ホライゾン値を設定します。3時間を試してみましょう:
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -189,9 +198,9 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    ARIMAモデルのパラメータの最適な値を選択するのは難しい場合があります。これは主観的であり、時間がかかるためです。`auto_arima()` function from the [`pyramid`ライブラリ](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html)を使用することを検討するかもしれません。
+    ARIMAモデルのパラメータの最適な値を選択するのは主観的で時間がかかる場合があります。[`pyramid`ライブラリ](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html)の`auto_arima()`関数を使用することを検討してもよいでしょう。
 
-1. まずは手動でいくつかの選択を試して、良いモデルを見つけます。
+1. とりあえず手動でいくつかの選択を試して良いモデルを見つけてみましょう。
 
     ```python
     order = (4, 1, 0)
@@ -205,21 +214,21 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
 
     結果の表が表示されます。
 
-最初のモデルを構築しました！次に、これを評価する方法を見つける必要があります。
+最初のモデルを構築しました！次に、モデルを評価する方法を見つける必要があります。
 
 ### モデルの評価
 
-モデルを評価するために、いわゆる`ウォークフォワード`検証を実行できます。実際には、新しいデータが利用可能になるたびに時系列モデルは再トレーニングされます。これにより、モデルは各時点で最適な予測を行うことができます。
+モデルを評価するには、いわゆる`ウォークフォワード`検証を実行します。実際には、時系列モデルは新しいデータが利用可能になるたびに再トレーニングされます。これにより、各タイムステップで最適な予測を行うことができます。
 
-この技術を使用して時系列の最初から始め、トレーニングデータセットでモデルをトレーニングします。その後、次の時点で予測を行います。予測は既知の値と比較されます。トレーニングセットは既知の値を含むように拡張され、このプロセスが繰り返されます。
+この技術を使用して時系列の最初から始め、トレーニングデータセットでモデルを訓練します。その後、次のタイムステップで予測を行います。予測は既知の値と比較して評価されます。トレーニングセットは既知の値を含むように拡張され、このプロセスが繰り返されます。
 
-> 注: トレーニングセットウィンドウを固定して効率的なトレーニングを行うために、新しい観測値をトレーニングセットに追加するたびに、セットの最初から観測値を削除します。
+> 注意: トレーニングセットのウィンドウを固定して効率的なトレーニングを行うことをお勧めします。新しい観測値をトレーニングセットに追加するたびに、セットの最初の観測値を削除します。
 
-このプロセスは、モデルが実際にどのように動作するかのより堅牢な推定を提供します。ただし、多くのモデルを作成する計算コストがかかります。データが小さい場合やモデルがシンプルな場合は許容範囲ですが、スケールが大きい場合は問題になる可能性があります。
+このプロセスは、モデルが実際にどのように機能するかをより堅牢に推定します。ただし、多くのモデルを作成する計算コストがかかります。データが小さい場合やモデルが単純な場合は許容されますが、大規模な場合は問題になる可能性があります。
 
-ウォークフォワード検証は時系列モデルの評価のゴールドスタンダードであり、独自のプロジェクトに推奨されます。
+ウォークフォワード検証は時系列モデル評価のゴールドスタンダードであり、独自のプロジェクトで推奨されます。
 
-1. まず、各ホライズンステップのテストデータポイントを作成します。
+1. まず、各ホライゾンステップに対してテストデータポイントを作成します。
 
     ```python
     test_shifted = test.copy()
@@ -239,9 +248,9 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    データはホライズンポイントに従って水平方向にシフトされます。
+    データはホライゾンポイントに応じて水平にシフトされます。
 
-1. このスライディングウィンドウアプローチを使用して、テストデータで予測を行い、テストデータの長さのループで実行します：
+1. テストデータに対してスライディングウィンドウアプローチを使用して予測を行います。ループのサイズはテストデータの長さです:
 
     ```python
     %%time
@@ -271,7 +280,7 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
         print(t+1, ': predicted =', yhat, 'expected =', obs)
     ```
 
-    トレーニングが行われるのを観察できます：
+    トレーニングが進行している様子を確認できます:
 
     ```output
     2014-12-30 00:00:00
@@ -284,7 +293,7 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     3 : predicted = [0.27 0.28 0.32] expected = [0.2739480752014323, 0.26812891674127126, 0.3025962399283795]
     ```
 
-1. 予測と実際の負荷を比較します：
+1. 予測値を実際の負荷と比較します:
 
     ```python
     eval_df = pd.DataFrame(predictions, columns=['t+'+str(t) for t in range(1, HORIZON+1)])
@@ -304,20 +313,19 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-
-    時間ごとのデータの予測を観察し、実際の負荷と比較します。どれくらい正確ですか？
+    時間ごとのデータの予測値を実際の負荷と比較します。この精度はどの程度でしょうか？
 
 ### モデルの精度を確認する
 
-全ての予測に対して平均絶対誤差率（MAPE）をテストしてモデルの精度を確認します。
-
-> **🧮 数学を見せて**
+モデルの精度を確認するには、すべての予測に対して平均絶対誤差率（MAPE）をテストします。
+> **🧮 数学を見てみよう**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.ja.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/)は、上記の式で定義される比率として予測精度を示すために使用されます。実際値<sub>t</sub>と予測値<sub>t</sub>の差を実際値<sub>t</sub>で割ります。「この計算の絶対値は、予測されたすべての時点で合計され、フィットされたポイントの数nで割られます。」[wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
-
-1. 式をコードで表現します：
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) は、上記の式で定義される比率として予測精度を示すために使用されます。実際の値と予測値の差を実際の値で割ります。
+>
+> 「この計算における絶対値は、予測されたすべての時点で合計され、フィットされた点の数 n で割られます。」 [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+1. コードで方程式を表現する:
 
     ```python
     if(HORIZON > 1):
@@ -325,15 +333,15 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
         print(eval_df.groupby('h')['APE'].mean())
     ```
 
-1. 1ステップのMAPEを計算します：
+1. 1ステップのMAPEを計算する:
 
     ```python
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
     ```
 
-    1ステップ予測MAPE:  0.5570581332313952 %
+    1ステップ予測のMAPE:  0.5570581332313952 %
 
-1. 複数ステップ予測のMAPEを表示します：
+1. マルチステップ予測のMAPEを表示する:
 
     ```python
     print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
@@ -343,9 +351,9 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    低い数値が良い: 予測のMAPEが10であれば、10%の誤差があることを意味します。
+    低い数値が理想的です: MAPEが10の場合、予測が10%ずれていることを意味します。
 
-1. しかし、いつものように、このような精度の測定を視覚的に見る方が簡単ですので、プロットしてみましょう：
+1. しかし、いつものように、このような精度の測定は視覚的に確認する方が簡単です。では、プロットしてみましょう:
 
     ```python
      if(HORIZON == 1):
@@ -373,25 +381,27 @@ ARIMAの各部分を解説し、時系列をどのようにモデル化し、予
     plt.show()
     ```
 
-    ![時系列モデル](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.ja.png)
+    ![時系列モデル](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 非常に良いプロットで、良い精度のモデルを示しています。よくできました！
+🏆 とても良いプロットですね。精度の高いモデルを示しています。素晴らしい！
 
 ---
 
 ## 🚀チャレンジ
 
-時系列モデルの精度をテストする方法を掘り下げてみましょう。このレッスンではMAPEに触れましたが、他に使用できる方法はありますか？それらを調査して注釈を付けてください。役立つドキュメントは[こちら](https://otexts.com/fpp2/accuracy.html)にあります。
+時系列モデルの精度をテストする方法を掘り下げてみましょう。このレッスンではMAPEについて触れましたが、他に使用できる方法はありますか？調査して注釈を付けてみてください。役立つドキュメントは[こちら](https://otexts.com/fpp2/accuracy.html)にあります。
 
-## [講義後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [講義後のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
-## レビューと自習
+## 復習と自己学習
 
-このレッスンでは、ARIMAを使った時系列予測の基本に触れました。時間をかけて[このリポジトリ](https://microsoft.github.io/forecasting/)とそのさまざまなモデルタイプを掘り下げ、他の時系列モデルの構築方法を学んでください。
+このレッスンではARIMAを使用した時系列予測の基本のみを扱っています。時間をかけて知識を深め、[このリポジトリ](https://microsoft.github.io/forecasting/)とそのさまざまなモデルタイプを調べて、時系列モデルを構築する他の方法を学んでみてください。
 
 ## 課題
 
 [新しいARIMAモデル](assignment.md)
 
-**免責事項**:
-この文書は機械ベースのAI翻訳サービスを使用して翻訳されています。正確さを期すために努めていますが、自動翻訳には誤りや不正確さが含まれる場合があります。原文の言語で記載された元の文書を権威ある情報源と見なしてください。重要な情報については、専門の人間による翻訳をお勧めします。この翻訳の使用に起因する誤解や誤解釈について、当社は一切の責任を負いません。
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期すよう努めておりますが、自動翻訳には誤りや不正確な表現が含まれる可能性があります。元の言語で記載された原文が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用に起因する誤解や誤認について、当社は一切の責任を負いません。

@@ -1,14 +1,25 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1d7583e8046dacbb0c056d5ba0a71b16",
+  "translation_date": "2025-09-03T22:03:25+00:00",
+  "source_file": "6-NLP/1-Introduction-to-NLP/assignment.md",
+  "language_code": "de"
+}
+-->
 # Suche nach einem Bot
 
 ## Anweisungen
 
-Bots sind überall. Ihre Aufgabe: Finden Sie einen und nehmen Sie ihn an! Sie können sie auf Webseiten, in Bankanwendungen und am Telefon finden, zum Beispiel wenn Sie Finanzdienstleistungsunternehmen für Beratung oder Kontoinformationen anrufen. Analysieren Sie den Bot und sehen Sie, ob Sie ihn verwirren können. Wenn Sie den Bot verwirren können, warum glauben Sie, dass das passiert ist? Schreiben Sie ein kurzes Papier über Ihre Erfahrungen.
+Bots sind überall. Deine Aufgabe: Finde einen und adoptiere ihn! Du kannst sie auf Websites, in Banking-Anwendungen und am Telefon finden, zum Beispiel wenn du Finanzdienstleistungsunternehmen für Beratung oder Kontoinformationen anrufst. Analysiere den Bot und versuche, ihn zu verwirren. Wenn es dir gelingt, den Bot zu verwirren, warum glaubst du, dass das passiert ist? Schreibe eine kurze Arbeit über deine Erfahrungen.
 
-## Bewertungsrichtlinien
+## Bewertungskriterien
 
-| Kriterien | Vorbildlich                                                                                                 | Angemessen                                   | Verbesserungsbedarf    |
-| --------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------- |
-|           | Ein vollständiges Papier ist geschrieben, das die vermutete Bot-Architektur erklärt und Ihre Erfahrungen damit umreißt | Ein Papier ist unvollständig oder nicht gut recherchiert | Kein Papier wird eingereicht |
+| Kriterien | Vorbildlich                                                                                                  | Angemessen                                   | Verbesserungswürdig   |
+| --------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------- | --------------------- |
+|           | Eine vollständige Seite wird geschrieben, die die vermutete Bot-Architektur erklärt und deine Erfahrungen beschreibt | Die Arbeit ist unvollständig oder nicht gut recherchiert | Keine Arbeit wird eingereicht |
+
+---
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mithilfe von KI-gestützten Übersetzungsdiensten maschinell übersetzt. Obwohl wir uns um Genauigkeit bemühen, sollten Sie sich bewusst sein, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als die maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.

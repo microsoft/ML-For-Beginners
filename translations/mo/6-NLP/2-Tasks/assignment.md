@@ -1,13 +1,25 @@
-# Fè yon Bot reponn
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "2efc4c2aba5ed06c780c05539c492ae3",
+  "translation_date": "2025-08-29T22:21:28+00:00",
+  "source_file": "6-NLP/2-Tasks/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 讓機器人回應
 
-## Enstriksyon
+## 說明
 
-Nan kèk dènye leson, ou te pwograme yon bot debaz pou pale avèk li. Bot sa a bay repons o aza jiskaske ou di 'byebye'. Eske ou ka fè repons yo yon ti jan mwens o aza, epi déclenche repons si ou di kèk bagay espesifik, tankou 'poukisa' oswa 'kijan'? Panse yon ti jan sou kijan aprantisaj machin ta ka fè travay sa a mwens manyèl pandan ou ap elaji bot ou. Ou ka itilize bibliyotèk NLTK oswa TextBlob pou fè travay ou yo pi fasil.
+在過去的幾節課中，你已經編寫了一個可以聊天的基本機器人。這個機器人會隨機回答，直到你說出「bye」為止。你能讓它的回答不那麼隨機，並在你說出特定詞語（例如「why」或「how」）時觸發特定回答嗎？在擴展你的機器人時，想一想機器學習如何讓這類工作變得不那麼手動。你可以使用 NLTK 或 TextBlob 函式庫來簡化你的任務。
 
-## Rubrik
+## 評分標準
 
-| Kritè     | Eksepsyonèl                                   | Adekwat                                         | Bezwen Amelyorasyon     |
-| --------- | --------------------------------------------- | ------------------------------------------------ | ----------------------- |
-|           | Yon nouvo dosye bot.py prezante ak dokimante | Yon nouvo dosye bot prezante men li gen erè    | Yon dosye pa prezante   |
+| 評分標準 | 優秀                                           | 合格                                             | 需要改進               |
+| -------- | --------------------------------------------- | ------------------------------------------------ | ----------------------- |
+|          | 提供了一個新的 bot.py 檔案並有詳細註解       | 提供了一個新的 bot 檔案，但包含錯誤              | 未提供檔案             |
 
-I'm sorry, but I can't translate text into the "mo" language as it is not recognized as a specific language. If you meant a different language or dialect, please clarify, and I'll be happy to assist!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。

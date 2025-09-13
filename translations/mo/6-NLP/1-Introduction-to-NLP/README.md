@@ -1,105 +1,114 @@
-# Introduction à la traitement du langage naturel
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-06T09:21:34+00:00",
+  "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
+  "language_code": "mo"
+}
+-->
+# 自然語言處理簡介
 
-Cette leçon couvre une brève histoire et des concepts importants du *traitement du langage naturel*, un sous-domaine de la *linguistique computationnelle*.
+本課程涵蓋了*自然語言處理*（NLP）這一*計算語言學*的子領域的簡短歷史及重要概念。
 
-## [Quiz pré-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Introduction
+## 簡介
 
-Le traitement du langage naturel, ou NLP, est l'un des domaines les plus connus où l'apprentissage automatique a été appliqué et utilisé dans des logiciels de production.
+NLP（自然語言處理）是機器學習應用最廣泛的領域之一，並已被用於生產軟件中。
 
-✅ Pouvez-vous penser à un logiciel que vous utilisez chaque jour et qui a probablement un peu de NLP intégré ? Que diriez-vous de vos programmes de traitement de texte ou des applications mobiles que vous utilisez régulièrement ?
+✅ 你能想到每天使用的軟件中可能嵌入了某些 NLP 技術嗎？例如你經常使用的文字處理程序或手機應用？
 
-Vous apprendrez à propos de :
+你將學習以下內容：
 
-- **L'idée des langues**. Comment les langues se sont développées et quels ont été les principaux domaines d'étude.
-- **Définitions et concepts**. Vous apprendrez également des définitions et des concepts sur la manière dont les ordinateurs traitent le texte, y compris l'analyse syntaxique, la grammaire, et l'identification des noms et des verbes. Il y a quelques tâches de codage dans cette leçon, et plusieurs concepts importants sont introduits que vous apprendrez à coder plus tard dans les prochaines leçons.
+- **語言的概念**：了解語言的發展以及主要的研究領域。
+- **定義與概念**：學習計算機如何處理文本的定義與概念，包括解析、語法以及識別名詞和動詞。本課程中有一些編程任務，並引入了幾個重要概念，這些概念將在後續課程中進一步學習如何編程。
 
-## Linguistique computationnelle
+## 計算語言學
 
-La linguistique computationnelle est un domaine de recherche et de développement qui s'étend sur de nombreuses décennies et qui étudie comment les ordinateurs peuvent travailler avec, et même comprendre, traduire et communiquer avec les langues. Le traitement du langage naturel (NLP) est un domaine connexe axé sur la façon dont les ordinateurs peuvent traiter des langues 'naturelles', ou humaines.
+計算語言學是一個研究領域，經過數十年的發展，研究計算機如何與語言互動，甚至理解、翻譯和交流。自然語言處理（NLP）是一個相關領域，專注於計算機如何處理“自然”或人類語言。
 
-### Exemple - dictée vocale
+### 示例 - 手機語音輸入
 
-Si vous avez déjà dicté à votre téléphone au lieu de taper ou posé une question à un assistant virtuel, votre discours a été converti en texte et ensuite traité ou *analysé* à partir de la langue que vous avez parlée. Les mots-clés détectés ont ensuite été traités dans un format que le téléphone ou l'assistant pouvait comprendre et sur lequel il pouvait agir.
+如果你曾經使用手機語音輸入而不是打字，或者向虛擬助手提問，那麼你的語音已被轉換為文本形式，然後被處理或*解析*成你所說的語言。檢測到的關鍵詞隨後被處理成手機或助手可以理解並執行的格式。
 
-![compréhension](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.mo.png)
-> La véritable compréhension linguistique est difficile ! Image par [Jen Looper](https://twitter.com/jenlooper)
+![理解](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
+> 真正的語言理解非常困難！圖片來源：[Jen Looper](https://twitter.com/jenlooper)
 
-### Comment cette technologie est-elle rendue possible ?
+### 這項技術如何實現？
 
-Cela est possible parce que quelqu'un a écrit un programme informatique pour le faire. Il y a quelques décennies, certains écrivains de science-fiction ont prédit que les gens parleraient principalement à leurs ordinateurs, et que les ordinateurs comprendraient toujours exactement ce qu'ils voulaient dire. Malheureusement, cela s'est avéré être un problème plus difficile que beaucoup ne l'imaginaient, et bien que ce soit un problème beaucoup mieux compris aujourd'hui, il existe des défis significatifs pour atteindre un traitement du langage naturel 'parfait' en ce qui concerne la compréhension du sens d'une phrase. C'est un problème particulièrement difficile quand il s'agit de comprendre l'humour ou de détecter des émotions telles que le sarcasme dans une phrase.
+這是通過某人編寫的計算機程序實現的。幾十年前，一些科幻作家預測人們將主要通過語音與計算機交流，而計算機將始終準確理解人們的意思。不幸的是，這個問題比許多人想像的要困難得多。儘管今天對這個問題的理解已經大大提高，但在實現“完美”的自然語言處理以理解句子的含義方面仍然存在重大挑戰。尤其是在理解幽默或檢測句子中的情感（如諷刺）時，這是一個特別困難的問題。
 
-À ce stade, vous vous souvenez peut-être des cours d'école où l'enseignant couvrait les parties de la grammaire dans une phrase. Dans certains pays, les étudiants apprennent la grammaire et la linguistique comme une matière dédiée, mais dans beaucoup d'autres, ces sujets sont inclus dans l'apprentissage d'une langue : soit votre langue maternelle à l'école primaire (apprendre à lire et à écrire) et peut-être une seconde langue au post-primaire, ou au lycée. Ne vous inquiétez pas si vous n'êtes pas un expert pour différencier les noms des verbes ou les adverbes des adjectifs !
+此時，你可能會回憶起學校課堂上老師講解句子語法部分的情景。在某些國家，學生會專門學習語法和語言學，而在許多國家，這些主題是語言學習的一部分：在小學學習母語（學習閱讀和寫作），可能在中學或高中學習第二語言。如果你不擅長區分名詞和動詞或副詞和形容詞，不必擔心！
 
-Si vous avez du mal avec la différence entre le *présent simple* et le *présent progressif*, vous n'êtes pas seul. C'est une chose difficile pour beaucoup de gens, même pour les locuteurs natifs d'une langue. La bonne nouvelle est que les ordinateurs sont très bons pour appliquer des règles formelles, et vous apprendrez à écrire du code qui peut *analyser* une phrase aussi bien qu'un humain. Le plus grand défi que vous examinerez plus tard est de comprendre le *sens* et le *sentiment* d'une phrase.
+如果你對*一般現在時*和*現在進行時*的區別感到困惑，你並不孤單。即使是母語使用者，這對許多人來說也是一個挑戰。好消息是，計算機非常擅長應用正式規則，你將學習編寫代碼來像人類一樣*解析*句子。更大的挑戰是理解句子的*含義*和*情感*，這將在後續課程中探討。
 
-## Prérequis
+## 先決條件
 
-Pour cette leçon, le principal prérequis est d'être capable de lire et de comprendre la langue de cette leçon. Il n'y a pas de problèmes mathématiques ou d'équations à résoudre. Bien que l'auteur original ait écrit cette leçon en anglais, elle est également traduite dans d'autres langues, donc vous pourriez lire une traduction. Il y a des exemples où un certain nombre de langues différentes sont utilisées (pour comparer les différentes règles grammaticales de différentes langues). Celles-ci ne sont *pas* traduites, mais le texte explicatif l'est, donc le sens devrait être clair.
+本課程的主要先決條件是能夠閱讀和理解本課程的語言。課程中沒有數學問題或方程需要解決。雖然原作者以英文撰寫了本課程，但它也被翻譯成其他語言，因此你可能正在閱讀翻譯版本。課程中有一些使用不同語言的示例（用於比較不同語言的語法規則）。這些示例*未被翻譯*，但解釋性文本已被翻譯，因此含義應該是清晰的。
 
-Pour les tâches de codage, vous utiliserez Python et les exemples utilisent Python 3.8.
+在編程任務中，你將使用 Python，示例使用的是 Python 3.8。
 
-Dans cette section, vous aurez besoin, et utiliserez :
+在本節中，你需要並使用以下工具：
 
-- **Compréhension de Python 3**. Compréhension du langage de programmation en Python 3, cette leçon utilise des entrées, des boucles, la lecture de fichiers, des tableaux.
-- **Visual Studio Code + extension**. Nous utiliserons Visual Studio Code et son extension Python. Vous pouvez également utiliser un IDE Python de votre choix.
-- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) est une bibliothèque de traitement de texte simplifiée pour Python. Suivez les instructions sur le site de TextBlob pour l'installer sur votre système (installez également les corpus, comme indiqué ci-dessous) :
+- **Python 3 理解能力**：理解 Python 3 編程語言，本課程使用輸入、循環、文件讀取和數組。
+- **Visual Studio Code + 擴展**：我們將使用 Visual Studio Code 及其 Python 擴展。你也可以選擇使用其他 Python IDE。
+- **TextBlob**：[TextBlob](https://github.com/sloria/TextBlob) 是一個簡化的 Python 文本處理庫。按照 TextBlob 網站上的說明將其安裝到你的系統上（同時安裝語料庫，如下所示）：
 
    ```bash
    pip install -U textblob
    python -m textblob.download_corpora
    ```
 
-> 💡 Conseil : Vous pouvez exécuter Python directement dans les environnements VS Code. Consultez la [documentation](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) pour plus d'informations.
+> 💡 提示：你可以直接在 VS Code 環境中運行 Python。查看[文檔](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott)了解更多信息。
 
-## Parler aux machines
+## 與機器對話
 
-L'histoire de la tentative de faire comprendre aux ordinateurs le langage humain remonte à des décennies, et l'un des premiers scientifiques à envisager le traitement du langage naturel était *Alan Turing*.
+讓計算機理解人類語言的歷史可以追溯到幾十年前，最早考慮自然語言處理的科學家之一是*艾倫·圖靈*。
 
-### Le 'test de Turing'
+### “圖靈測試”
 
-Lorsque Turing faisait des recherches sur l'*intelligence artificielle* dans les années 1950, il a envisagé qu'un test de conversation puisse être donné à un humain et à un ordinateur (via une correspondance tapée) où l'humain dans la conversation n'était pas sûr s'il conversait avec un autre humain ou un ordinateur.
+當圖靈在1950年代研究*人工智能*時，他提出了一個對話測試：通過打字通信，讓人類與計算機進行對話，並判斷自己是否在與另一個人類或計算機交流。
 
-Si, après une certaine durée de conversation, l'humain ne pouvait pas déterminer que les réponses provenaient d'un ordinateur ou non, alors l'ordinateur pouvait-il être dit *pensant* ?
+如果在一定時間的對話後，人類無法確定回答是來自計算機還是人類，那麼是否可以說計算機在*思考*？
 
-### L'inspiration - 'le jeu de l'imitation'
+### 靈感來源 - “模仿遊戲”
 
-L'idée de cela vient d'un jeu de société appelé *Le Jeu de l'Imitation* où un interrogateur est seul dans une pièce et chargé de déterminer lequel de deux personnes (dans une autre pièce) est un homme et lequel est une femme. L'interrogateur peut envoyer des notes et doit essayer de penser à des questions où les réponses écrites révèlent le genre de la personne mystérieuse. Bien sûr, les joueurs dans l'autre pièce essaient de tromper l'interrogateur en répondant aux questions de manière à induire en erreur ou à confondre l'interrogateur, tout en donnant également l'apparence de répondre honnêtement.
+這個想法來自一個派對遊戲，叫做*模仿遊戲*。在遊戲中，一名審問者獨自待在一個房間裡，試圖判斷另一個房間中的兩個人分別是男性還是女性。審問者可以發送問題，並試圖設計問題以通過書面回答揭示神秘人物的性別。當然，另一個房間中的玩家試圖通過回答問題來誤導或混淆審問者，同時也要表現得像是在誠實回答。
 
-### Développer Eliza
+### 開發 Eliza
 
-Dans les années 1960, un scientifique du MIT nommé *Joseph Weizenbaum* a développé [*Eliza*](https://wikipedia.org/wiki/ELIZA), un 'thérapeute' informatique qui posait des questions à l'humain et donnait l'apparence de comprendre ses réponses. Cependant, bien qu'Eliza puisse analyser une phrase et identifier certaines constructions grammaticales et mots-clés pour donner une réponse raisonnable, il ne pouvait pas être dit qu'elle *comprenait* la phrase. Si Eliza était présentée avec une phrase suivant le format "**Je suis** <u>triste</u>", elle pourrait réarranger et substituer des mots dans la phrase pour former la réponse "Depuis combien de temps **es-tu** <u>triste</u> ?".
+在1960年代，麻省理工學院的科學家*約瑟夫·魏岑鮑姆*開發了[*Eliza*](https://wikipedia.org/wiki/ELIZA)，一個電腦“治療師”，它會向人類提問並表現出理解其回答的樣子。然而，雖然 Eliza 能夠解析句子並識別某些語法結構和關鍵詞以給出合理的回答，但它並不能說是*理解*句子。如果 Eliza 接收到一個句子格式為“**我很** <u>難過</u>”，它可能會重新排列並替換句子中的某些詞語，形成回答“你**有多久** <u>難過</u>”。
 
-Cela donnait l'impression qu'Eliza comprenait l'énoncé et posait une question de suivi, alors qu'en réalité, elle changeait le temps et ajoutait quelques mots. Si Eliza ne pouvait pas identifier un mot-clé pour lequel elle avait une réponse, elle donnerait plutôt une réponse aléatoire qui pourrait être applicable à de nombreuses déclarations différentes. Eliza pouvait être facilement trompée, par exemple si un utilisateur écrivait "**Tu es** un <u>bicyclette</u>", elle pourrait répondre "Depuis combien de temps **je suis** un <u>bicyclette</u> ?", au lieu d'une réponse plus réfléchie.
+這給人一種 Eliza 理解了陳述並提出了後續問題的印象，而實際上，它只是改變了時態並添加了一些詞語。如果 Eliza 無法識別它有回應的關鍵詞，它會給出一個隨機回答，這可能適用於許多不同的陳述。例如，如果用戶寫道“**你是**一個<u>自行車</u>”，它可能會回答“我**有多久**是一個<u>自行車</u>？”而不是更合理的回答。
 
-[![Discuter avec Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Discuter avec Eliza")
+[![與 Eliza 對話](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "與 Eliza 對話")
 
-> 🎥 Cliquez sur l'image ci-dessus pour une vidéo sur le programme ELIZA original
+> 🎥 點擊上方圖片觀看原始 ELIZA 程式的視頻
 
-> Note : Vous pouvez lire la description originale de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publiée en 1966 si vous avez un compte ACM. Alternativement, lisez à propos d'Eliza sur [wikipedia](https://wikipedia.org/wiki/ELIZA)
+> 注意：如果你有 ACM 帳戶，可以閱讀1966年發表的 [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) 原始描述。或者，請參閱 [wikipedia](https://wikipedia.org/wiki/ELIZA) 上的 Eliza 介紹。
 
-## Exercice - coder un bot conversationnel de base
+## 練習 - 編寫一個基本的對話機器人
 
-Un bot conversationnel, comme Eliza, est un programme qui sollicite l'entrée de l'utilisateur et semble comprendre et répondre de manière intelligente. Contrairement à Eliza, notre bot n'aura pas plusieurs règles lui donnant l'apparence d'avoir une conversation intelligente. Au lieu de cela, notre bot n'aura qu'une seule capacité, celle de maintenir la conversation avec des réponses aléatoires qui pourraient fonctionner dans presque n'importe quelle conversation triviale.
+對話機器人（如 Eliza）是一個程序，它能引導用戶輸入並看似理解並智能地回應。與 Eliza 不同，我們的機器人不會有多條規則來表現出智能對話的樣子。相反，我們的機器人只有一個功能，即通過隨機回應來保持對話進行，這些回應可能適用於幾乎任何簡單的對話。
 
-### Le plan
+### 計劃
 
-Vos étapes lors de la création d'un bot conversationnel :
+構建對話機器人的步驟：
 
-1. Imprimez des instructions conseillant à l'utilisateur comment interagir avec le bot
-2. Commencez une boucle
-   1. Acceptez l'entrée de l'utilisateur
-   2. Si l'utilisateur a demandé à sortir, alors sortez
-   3. Traitez l'entrée de l'utilisateur et déterminez la réponse (dans ce cas, la réponse est un choix aléatoire dans une liste de réponses génériques possibles)
-   4. Imprimez la réponse
-3. revenez à l'étape 2
+1. 打印指示，告知用戶如何與機器人互動
+2. 開始循環
+   1. 接受用戶輸入
+   2. 如果用戶要求退出，則退出
+   3. 處理用戶輸入並確定回應（在本例中，回應是從可能的通用回應列表中隨機選擇）
+   4. 打印回應
+3. 返回步驟2
 
-### Construire le bot
+### 構建機器人
 
-Créons le bot ensuite. Commençons par définir quelques phrases.
+接下來，我們將創建機器人。首先定義一些短語。
 
-1. Créez ce bot vous-même en Python avec les réponses aléatoires suivantes :
+1. 使用以下隨機回應在 Python 中創建此機器人：
 
     ```python
     random_responses = ["That is quite interesting, please tell me more.",
@@ -110,7 +119,7 @@ Créons le bot ensuite. Commençons par définir quelques phrases.
                         "Did you catch the game last night?"]
     ```
 
-    Voici un exemple de sortie pour vous guider (l'entrée utilisateur est sur les lignes commençant par `>`):
+    以下是一些示例輸出（用戶輸入以 `>` 開頭）：
 
     ```output
     Hello, I am Marvin, the simple robot.
@@ -133,35 +142,38 @@ Créons le bot ensuite. Commençons par définir quelques phrases.
     It was nice talking to you, goodbye!
     ```
 
-    Une solution possible à la tâche est [ici](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py)
+    任務的一個可能解決方案在[這裡](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py)
 
-    ✅ Arrêtez-vous et réfléchissez
+    ✅ 停下來思考
 
-    1. Pensez-vous que les réponses aléatoires pourraient 'tromper' quelqu'un en pensant que le bot les comprenait réellement ?
-    2. Quelles caractéristiques le bot aurait-il besoin d'avoir pour être plus efficace ?
-    3. Si un bot pouvait vraiment 'comprendre' le sens d'une phrase, aurait-il besoin de 'se souvenir' du sens des phrases précédentes dans une conversation également ?
+    1. 你認為隨機回應能否“欺騙”某人，使其認為機器人真的理解了他們？
+    2. 機器人需要哪些功能才能更有效？
+    3. 如果機器人真的能“理解”句子的含義，它是否需要“記住”對話中前幾句的含義？
 
 ---
 
-## 🚀Défi
+## 🚀挑戰
 
-Choisissez l'un des éléments "arrêtez-vous et réfléchissez" ci-dessus et essayez soit de les mettre en œuvre dans le code, soit d'écrire une solution sur papier en utilisant du pseudocode.
+選擇上述“停下來思考”中的一個元素，嘗試用代碼實現它，或者用紙筆寫出解決方案的偽代碼。
 
-Dans la prochaine leçon, vous apprendrez un certain nombre d'autres approches pour analyser le langage naturel et l'apprentissage automatique.
+在下一課中，你將學習其他解析自然語言和機器學習的方法。
 
-## [Quiz post-conférence](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revue & Auto-étude
+## 回顧與自學
 
-Jetez un œil aux références ci-dessous comme opportunités de lecture supplémentaire.
+查看以下參考資料，作為進一步學習的機會。
 
-### Références
+### 參考資料
 
-1. Schubert, Lenhart, "Linguistique computationnelle", *L'Encyclopédie de Stanford de la philosophie* (Édition du printemps 2020), Edward N. Zalta (éd.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
-2. Université de Princeton "À propos de WordNet." [WordNet](https://wordnet.princeton.edu/). Université de Princeton. 2010.
+1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
+2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
 
-## Devoir 
+## 作業 
 
-[Recherchez un bot](assignment.md)
+[尋找一個機器人](assignment.md)
 
-I'm sorry, but I cannot translate the text into "mo" as I don't have information about a language or dialect with that designation. If you meant a specific language or dialect, please clarify, and I'll be happy to help!
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

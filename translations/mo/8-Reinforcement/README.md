@@ -1,55 +1,67 @@
-# Introduction to reinforcement learning
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "20ca019012b1725de956681d036d8b18",
+  "translation_date": "2025-08-29T22:02:15+00:00",
+  "source_file": "8-Reinforcement/README.md",
+  "language_code": "mo"
+}
+-->
+# 強化學習簡介
 
-Reinforcement learning, RL, est considéré comme l'un des paradigmes fondamentaux de l'apprentissage automatique, aux côtés de l'apprentissage supervisé et de l'apprentissage non supervisé. L'RL est axé sur la prise de décisions : fournir les bonnes décisions ou, du moins, apprendre d'elles.
+強化學習（Reinforcement Learning，RL）被視為與監督學習和非監督學習並列的基本機器學習範式之一。RL 的核心在於決策：做出正確的決策，或者至少從中學習。
 
-Imaginez que vous avez un environnement simulé comme le marché boursier. Que se passe-t-il si vous imposez une réglementation donnée ? A-t-elle un effet positif ou négatif ? Si quelque chose de négatif se produit, vous devez prendre ce _renforcement négatif_, apprendre de cela, et changer de cap. Si le résultat est positif, vous devez capitaliser sur ce _renforcement positif_.
+想像一下你有一個模擬環境，例如股市。如果你施加某項規定，會發生什麼？它會產生正面還是負面的影響？如果發生負面影響，你需要接受這種_負面強化_，從中學習並改變方向。如果結果是正面的，你需要基於這種_正面強化_繼續努力。
 
-![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.mo.png)
+![彼得與狼](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.mo.png)
 
-> Peter et ses amis doivent échapper au loup affamé ! Image par [Jen Looper](https://twitter.com/jenlooper)
+> 彼得和他的朋友們需要逃離飢餓的狼！圖片來源：[Jen Looper](https://twitter.com/jenlooper)
 
-## Sujet régional : Pierre et le Loup (Russie)
+## 區域主題：彼得與狼（俄羅斯）
 
-[Peter and the Wolf](https://en.wikipedia.org/wiki/Peter_and_the_Wolf) est un conte musical écrit par un compositeur russe [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). C'est l'histoire du jeune pionnier Pierre, qui sort courageusement de chez lui pour se rendre dans la clairière de la forêt afin de chasser le loup. Dans cette section, nous allons entraîner des algorithmes d'apprentissage automatique qui aideront Pierre :
+[彼得與狼](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)是一部由俄羅斯作曲家[謝爾蓋·普羅科菲耶夫](https://en.wikipedia.org/wiki/Sergei_Prokofiev)創作的音樂童話。這是一個關於年輕的先鋒彼得的故事，他勇敢地走出家門，來到森林空地追捕狼。在本節中，我們將訓練機器學習算法來幫助彼得：
 
-- **Explorer** la zone environnante et construire une carte de navigation optimale
-- **Apprendre** à utiliser un skateboard et à s'y équilibrer, afin de se déplacer plus rapidement.
+- **探索**周圍地區並建立最佳導航地圖
+- **學習**如何使用滑板並保持平衡，以便更快地移動。
 
-[![Peter and the Wolf](https://img.youtube.com/vi/Fmi5zHg4QSM/0.jpg)](https://www.youtube.com/watch?v=Fmi5zHg4QSM)
+[![彼得與狼](https://img.youtube.com/vi/Fmi5zHg4QSM/0.jpg)](https://www.youtube.com/watch?v=Fmi5zHg4QSM)
 
-> 🎥 Cliquez sur l'image ci-dessus pour écouter Pierre et le Loup de Prokofiev
+> 🎥 點擊上方圖片收聽普羅科菲耶夫的《彼得與狼》
 
-## Apprentissage par renforcement
+## 強化學習
 
-Dans les sections précédentes, vous avez vu deux exemples de problèmes d'apprentissage automatique :
+在之前的章節中，你已經看到兩個機器學習問題的例子：
 
-- **Supervisé**, où nous avons des ensembles de données qui suggèrent des solutions types au problème que nous voulons résoudre. [Classification](../4-Classification/README.md) et [régression](../2-Regression/README.md) sont des tâches d'apprentissage supervisé.
-- **Non supervisé**, dans lequel nous n'avons pas de données d'entraînement étiquetées. L'exemple principal de l'apprentissage non supervisé est [Clustering](../5-Clustering/README.md).
+- **監督學習**，我們擁有建議問題解決方案的數據集。[分類](../4-Classification/README.md)和[回歸](../2-Regression/README.md)是監督學習任務。
+- **非監督學習**，我們沒有標記的訓練數據。非監督學習的主要例子是[聚類](../5-Clustering/README.md)。
 
-Dans cette section, nous allons vous présenter un nouveau type de problème d'apprentissage qui ne nécessite pas de données d'entraînement étiquetées. Il existe plusieurs types de tels problèmes :
+在本節中，我們將介紹一種不需要標記訓練數據的新型學習問題。有幾種類型的此類問題：
 
-- **[Apprentissage semi-supervisé](https://wikipedia.org/wiki/Semi-supervised_learning)**, où nous avons beaucoup de données non étiquetées qui peuvent être utilisées pour préformer le modèle.
-- **[Apprentissage par renforcement](https://wikipedia.org/wiki/Reinforcement_learning)**, dans lequel un agent apprend comment se comporter en réalisant des expériences dans un environnement simulé.
+- **[半監督學習](https://wikipedia.org/wiki/Semi-supervised_learning)**，我們擁有大量未標記的數據，可以用來預訓練模型。
+- **[強化學習](https://wikipedia.org/wiki/Reinforcement_learning)**，代理通過在某些模擬環境中進行實驗來學習如何行為。
 
-### Exemple - jeu vidéo
+### 示例 - 電腦遊戲
 
-Supposons que vous vouliez apprendre à un ordinateur à jouer à un jeu, comme les échecs, ou [Super Mario](https://wikipedia.org/wiki/Super_Mario). Pour que l'ordinateur puisse jouer à un jeu, nous devons lui faire prédire quel mouvement effectuer dans chacun des états du jeu. Bien que cela puisse sembler être un problème de classification, ce n'est pas le cas - car nous n'avons pas un ensemble de données avec des états et des actions correspondantes. Bien que nous puissions avoir certaines données comme des parties d'échecs existantes ou des enregistrements de joueurs jouant à Super Mario, il est probable que ces données ne couvrent pas suffisamment un nombre assez important d'états possibles.
+假設你想教電腦玩遊戲，例如象棋或[超級瑪利歐](https://wikipedia.org/wiki/Super_Mario)。為了讓電腦玩遊戲，我們需要它在每個遊戲狀態下預測應該採取的行動。雖然這看起來像是一個分類問題，但事實並非如此——因為我們沒有包含狀態和相應行動的數據集。雖然我們可能擁有一些數據，例如現有的象棋比賽或玩家玩超級瑪利歐的錄像，但這些數據可能不足以涵蓋足夠多的可能狀態。
 
-Au lieu de chercher des données de jeu existantes, **l'apprentissage par renforcement** (RL) repose sur l'idée de *faire jouer l'ordinateur* plusieurs fois et d'observer le résultat. Ainsi, pour appliquer l'apprentissage par renforcement, nous avons besoin de deux choses :
+與其尋找現有的遊戲數據，**強化學習**（RL）的核心理念是讓電腦玩很多次並觀察結果。因此，要應用強化學習，我們需要兩樣東西：
 
-- **Un environnement** et **un simulateur** qui nous permettent de jouer à un jeu plusieurs fois. Ce simulateur définirait toutes les règles du jeu ainsi que les états et actions possibles.
+- **一個環境**和**一個模擬器**，允許我們多次玩遊戲。這個模擬器會定義所有的遊戲規則以及可能的狀態和行動。
 
-- **Une fonction de récompense**, qui nous indiquerait à quel point nous avons bien agi à chaque mouvement ou jeu.
+- **一個獎勵函數**，告訴我們每次移動或遊戲過程中的表現如何。
 
-La principale différence entre les autres types d'apprentissage automatique et l'RL est qu'en RL, nous ne savons généralement pas si nous gagnons ou perdons jusqu'à ce que nous terminions le jeu. Ainsi, nous ne pouvons pas dire si un certain mouvement est bon ou non - nous ne recevons une récompense qu'à la fin du jeu. Et notre objectif est de concevoir des algorithmes qui nous permettront d'entraîner un modèle dans des conditions incertaines. Nous allons apprendre un algorithme RL appelé **Q-learning**.
+強化學習與其他類型的機器學習的主要區別在於，在 RL 中，我們通常不知道自己是否贏了或輸了，直到遊戲結束。因此，我們無法判斷某個單獨的行動是否是好的——我們只有在遊戲結束時才會收到獎勵。我們的目標是設計算法，使我們能夠在不確定的條件下訓練模型。我們將學習一種名為**Q-learning**的 RL 算法。
 
-## Leçons
+## 課程
 
-1. [Introduction à l'apprentissage par renforcement et au Q-Learning](1-QLearning/README.md)
-2. [Utiliser un environnement de simulation de gym](2-Gym/README.md)
+1. [強化學習與 Q-Learning 簡介](1-QLearning/README.md)
+2. [使用 gym 模擬環境](2-Gym/README.md)
 
-## Crédits
+## 致謝
 
-"Introduction à l'apprentissage par renforcement" a été écrit avec ♥️ par [Dmitry Soshnikov](http://soshnikov.com)
+《強化學習簡介》由 [Dmitry Soshnikov](http://soshnikov.com) 用 ♥️ 編寫。
 
-I'm sorry, but I cannot translate text into the "mo" language as it is not recognized as a specific language. If you meant a different language or dialect, please clarify, and I will do my best to assist you!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

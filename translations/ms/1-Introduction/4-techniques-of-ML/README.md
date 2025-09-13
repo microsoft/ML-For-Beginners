@@ -1,121 +1,132 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "9d91f3af3758fdd4569fb410575995ef",
+  "translation_date": "2025-09-05T19:36:47+00:00",
+  "source_file": "1-Introduction/4-techniques-of-ML/README.md",
+  "language_code": "ms"
+}
+-->
 # Teknik Pembelajaran Mesin
 
-Proses membangun, menggunakan, dan memelihara model pembelajaran mesin dan data yang mereka gunakan sangat berbeda dari banyak alur kerja pengembangan lainnya. Dalam pelajaran ini, kita akan mengurai proses tersebut, dan menjelaskan teknik utama yang perlu Anda ketahui. Anda akan:
+Proses membina, menggunakan, dan mengekalkan model pembelajaran mesin serta data yang digunakan adalah sangat berbeza daripada banyak aliran kerja pembangunan lain. Dalam pelajaran ini, kita akan menjelaskan proses tersebut dan menggariskan teknik utama yang perlu anda ketahui. Anda akan:
 
-- Memahami proses yang mendasari pembelajaran mesin pada tingkat tinggi.
-- Menjelajahi konsep dasar seperti 'model', 'prediksi', dan 'data pelatihan'.
+- Memahami proses yang mendasari pembelajaran mesin pada tahap tinggi.
+- Meneroka konsep asas seperti 'model', 'ramalan', dan 'data latihan'.
 
-## [Kuis Pra-Kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/)
+## [Kuiz pra-pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
 [![ML untuk pemula - Teknik Pembelajaran Mesin](https://img.youtube.com/vi/4NGM0U2ZSHU/0.jpg)](https://youtu.be/4NGM0U2ZSHU "ML untuk pemula - Teknik Pembelajaran Mesin")
 
-> 🎥 Klik gambar di atas untuk video singkat yang membahas pelajaran ini.
+> 🎥 Klik imej di atas untuk video pendek yang menerangkan pelajaran ini.
 
 ## Pengenalan
 
-Secara garis besar, seni menciptakan proses pembelajaran mesin (ML) terdiri dari beberapa langkah:
+Secara umum, seni mencipta proses pembelajaran mesin (ML) terdiri daripada beberapa langkah:
 
-1. **Tentukan pertanyaan**. Sebagian besar proses ML dimulai dengan mengajukan pertanyaan yang tidak dapat dijawab oleh program kondisional sederhana atau mesin berbasis aturan. Pertanyaan-pertanyaan ini sering kali berputar di sekitar prediksi berdasarkan kumpulan data.
-2. **Kumpulkan dan siapkan data**. Untuk dapat menjawab pertanyaan Anda, Anda memerlukan data. Kualitas dan, kadang-kadang, kuantitas data Anda akan menentukan seberapa baik Anda dapat menjawab pertanyaan awal Anda. Visualisasi data adalah aspek penting dari fase ini. Fase ini juga mencakup pembagian data menjadi kelompok pelatihan dan pengujian untuk membangun model.
-3. **Pilih metode pelatihan**. Tergantung pada pertanyaan Anda dan sifat data Anda, Anda perlu memilih bagaimana Anda ingin melatih model untuk mencerminkan data Anda dengan baik dan membuat prediksi yang akurat. Ini adalah bagian dari proses ML Anda yang membutuhkan keahlian khusus dan, sering kali, banyak percobaan.
-4. **Latih model**. Menggunakan data pelatihan Anda, Anda akan menggunakan berbagai algoritma untuk melatih model agar mengenali pola dalam data. Model mungkin memanfaatkan bobot internal yang dapat disesuaikan untuk memprioritaskan bagian data tertentu daripada yang lain untuk membangun model yang lebih baik.
-5. **Evaluasi model**. Anda menggunakan data yang belum pernah dilihat sebelumnya (data pengujian Anda) dari kumpulan yang dikumpulkan untuk melihat bagaimana kinerja model.
-6. **Penyetelan parameter**. Berdasarkan kinerja model Anda, Anda dapat mengulangi proses menggunakan parameter yang berbeda, atau variabel, yang mengontrol perilaku algoritma yang digunakan untuk melatih model.
-7. **Prediksi**. Gunakan input baru untuk menguji akurasi model Anda.
+1. **Tentukan soalan**. Kebanyakan proses ML bermula dengan menanyakan soalan yang tidak dapat dijawab oleh program bersyarat atau enjin berasaskan peraturan yang mudah. Soalan-soalan ini sering berkisar pada ramalan berdasarkan koleksi data.
+2. **Kumpul dan sediakan data**. Untuk menjawab soalan anda, anda memerlukan data. Kualiti dan, kadangkala, kuantiti data anda akan menentukan sejauh mana anda dapat menjawab soalan awal anda. Memvisualkan data adalah aspek penting dalam fasa ini. Fasa ini juga termasuk membahagikan data kepada kumpulan latihan dan ujian untuk membina model.
+3. **Pilih kaedah latihan**. Bergantung pada soalan anda dan sifat data anda, anda perlu memilih cara untuk melatih model agar mencerminkan data anda dengan baik dan membuat ramalan yang tepat. Bahagian proses ML ini memerlukan kepakaran khusus dan, sering kali, sejumlah besar eksperimen.
+4. **Latih model**. Menggunakan data latihan anda, anda akan menggunakan pelbagai algoritma untuk melatih model agar mengenali pola dalam data. Model mungkin menggunakan berat dalaman yang boleh disesuaikan untuk memberi keutamaan kepada bahagian tertentu data berbanding yang lain untuk membina model yang lebih baik.
+5. **Nilai model**. Anda menggunakan data yang belum pernah dilihat sebelumnya (data ujian anda) daripada set yang dikumpulkan untuk melihat bagaimana prestasi model.
+6. **Penalaan parameter**. Berdasarkan prestasi model anda, anda boleh mengulangi proses menggunakan parameter atau pembolehubah yang berbeza yang mengawal tingkah laku algoritma yang digunakan untuk melatih model.
+7. **Ramalkan**. Gunakan input baru untuk menguji ketepatan model anda.
 
-## Pertanyaan apa yang harus diajukan
+## Soalan yang perlu ditanya
 
-Komputer sangat mahir dalam menemukan pola tersembunyi dalam data. Utilitas ini sangat membantu bagi para peneliti yang memiliki pertanyaan tentang domain tertentu yang tidak dapat dijawab dengan mudah dengan membuat mesin berbasis aturan kondisional. Diberikan tugas aktuaria, misalnya, seorang ilmuwan data mungkin dapat membangun aturan buatan tangan tentang kematian perokok vs non-perokok.
+Komputer sangat mahir dalam menemui pola tersembunyi dalam data. Kegunaan ini sangat membantu penyelidik yang mempunyai soalan tentang domain tertentu yang tidak dapat dijawab dengan mudah dengan mencipta enjin peraturan bersyarat. Sebagai contoh, dalam tugas aktuari, seorang saintis data mungkin dapat membina peraturan buatan tangan tentang kadar kematian perokok berbanding bukan perokok.
 
-Namun, ketika banyak variabel lain dimasukkan ke dalam persamaan, model ML mungkin lebih efisien untuk memprediksi tingkat kematian di masa depan berdasarkan riwayat kesehatan masa lalu. Contoh yang lebih ceria mungkin adalah membuat prediksi cuaca untuk bulan April di lokasi tertentu berdasarkan data yang mencakup garis lintang, garis bujur, perubahan iklim, kedekatan dengan laut, pola aliran jet, dan lainnya.
+Namun, apabila banyak pembolehubah lain dimasukkan ke dalam persamaan, model ML mungkin lebih efisien untuk meramalkan kadar kematian masa depan berdasarkan sejarah kesihatan masa lalu. Contoh yang lebih ceria mungkin membuat ramalan cuaca untuk bulan April di lokasi tertentu berdasarkan data yang merangkumi latitud, longitud, perubahan iklim, jarak ke laut, pola aliran jet, dan banyak lagi.
 
-✅ [Slide deck](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf) ini tentang model cuaca menawarkan perspektif historis untuk menggunakan ML dalam analisis cuaca.  
+✅ [Slide ini](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf) tentang model cuaca menawarkan perspektif sejarah untuk menggunakan ML dalam analisis cuaca.  
 
-## Tugas Pra-Pembangunan
+## Tugas sebelum membina
 
-Sebelum mulai membangun model Anda, ada beberapa tugas yang perlu Anda selesaikan. Untuk menguji pertanyaan Anda dan membentuk hipotesis berdasarkan prediksi model, Anda perlu mengidentifikasi dan mengkonfigurasi beberapa elemen.
+Sebelum memulakan pembinaan model anda, terdapat beberapa tugas yang perlu anda selesaikan. Untuk menguji soalan anda dan membentuk hipotesis berdasarkan ramalan model, anda perlu mengenal pasti dan mengkonfigurasi beberapa elemen.
 
 ### Data
 
-Untuk dapat menjawab pertanyaan Anda dengan kepastian apa pun, Anda memerlukan sejumlah data yang tepat. Ada dua hal yang perlu Anda lakukan pada titik ini:
+Untuk menjawab soalan anda dengan sebarang kepastian, anda memerlukan sejumlah data yang mencukupi dan jenis yang betul. Terdapat dua perkara yang perlu dilakukan pada tahap ini:
 
-- **Kumpulkan data**. Mengingat pelajaran sebelumnya tentang keadilan dalam analisis data, kumpulkan data Anda dengan hati-hati. Sadarilah sumber data ini, bias bawaan yang mungkin dimilikinya, dan dokumentasikan asal-usulnya.
-- **Siapkan data**. Ada beberapa langkah dalam proses persiapan data. Anda mungkin perlu menggabungkan data dan menormalkannya jika berasal dari berbagai sumber. Anda dapat meningkatkan kualitas dan kuantitas data melalui berbagai metode seperti mengubah string menjadi angka (seperti yang kita lakukan dalam [Clustering](../../5-Clustering/1-Visualize/README.md)). Anda juga dapat menghasilkan data baru, berdasarkan yang asli (seperti yang kita lakukan dalam [Classification](../../4-Classification/1-Introduction/README.md)). Anda dapat membersihkan dan mengedit data (seperti yang akan kita lakukan sebelum pelajaran [Web App](../../3-Web-App/README.md)). Terakhir, Anda mungkin juga perlu mengacak dan mengocoknya, tergantung pada teknik pelatihan Anda.
+- **Kumpul data**. Mengambil kira pelajaran sebelumnya tentang keadilan dalam analisis data, kumpulkan data anda dengan berhati-hati. Sedar akan sumber data ini, sebarang bias yang mungkin ada, dan dokumentasikan asal usulnya.
+- **Sediakan data**. Terdapat beberapa langkah dalam proses penyediaan data. Anda mungkin perlu menggabungkan data dan menormalkannya jika ia berasal dari sumber yang pelbagai. Anda boleh meningkatkan kualiti dan kuantiti data melalui pelbagai kaedah seperti menukar string kepada nombor (seperti yang kita lakukan dalam [Pengelompokan](../../5-Clustering/1-Visualize/README.md)). Anda juga boleh menghasilkan data baru berdasarkan data asal (seperti yang kita lakukan dalam [Klasifikasi](../../4-Classification/1-Introduction/README.md)). Anda boleh membersihkan dan mengedit data (seperti yang akan kita lakukan sebelum pelajaran [Aplikasi Web](../../3-Web-App/README.md)). Akhirnya, anda mungkin juga perlu mengacak dan mencampurkannya, bergantung pada teknik latihan anda.
 
-✅ Setelah mengumpulkan dan memproses data Anda, luangkan waktu untuk melihat apakah bentuknya akan memungkinkan Anda menjawab pertanyaan yang dimaksud. Mungkin data tersebut tidak akan berkinerja baik dalam tugas yang diberikan, seperti yang kita temukan dalam pelajaran [Clustering](../../5-Clustering/1-Visualize/README.md)!
+✅ Selepas mengumpul dan memproses data anda, luangkan masa untuk melihat sama ada bentuknya akan membolehkan anda menangani soalan yang dimaksudkan. Mungkin data tersebut tidak akan berfungsi dengan baik dalam tugas yang diberikan, seperti yang kita temui dalam pelajaran [Pengelompokan](../../5-Clustering/1-Visualize/README.md)!
 
-### Fitur dan Target
+### Ciri dan Sasaran
 
-[Fitur](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) adalah properti terukur dari data Anda. Dalam banyak dataset, itu diekspresikan sebagai tajuk kolom seperti 'tanggal', 'ukuran', atau 'warna'. Variabel fitur Anda, biasanya diwakili sebagai `X` dalam kode, mewakili variabel input yang akan digunakan untuk melatih model.
+[Ciri](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) adalah sifat yang boleh diukur daripada data anda. Dalam banyak set data, ia dinyatakan sebagai tajuk lajur seperti 'tarikh', 'saiz', atau 'warna'. Pembolehubah ciri anda, biasanya diwakili sebagai `X` dalam kod, mewakili pembolehubah input yang akan digunakan untuk melatih model.
 
-Target adalah hal yang Anda coba prediksi. Target biasanya diwakili sebagai `y` dalam kode, mewakili jawaban atas pertanyaan yang Anda coba ajukan dari data Anda: pada bulan Desember, warna **apa** labu yang akan paling murah? di San Francisco, lingkungan mana yang akan memiliki harga **real estate** terbaik? Kadang-kadang target juga disebut sebagai atribut label.
+Sasaran adalah perkara yang anda cuba ramalkan. Sasaran, biasanya diwakili sebagai `y` dalam kod, mewakili jawapan kepada soalan yang anda cuba tanyakan kepada data anda: pada bulan Disember, **warna** labu mana yang akan paling murah? Di San Francisco, kawasan kejiranan mana yang akan mempunyai **harga** hartanah terbaik? Kadangkala sasaran juga dirujuk sebagai atribut label.
 
-### Memilih variabel fitur Anda
+### Memilih pembolehubah ciri anda
 
-🎓 **Pemilihan Fitur dan Ekstraksi Fitur** Bagaimana Anda tahu variabel mana yang harus dipilih saat membangun model? Anda mungkin akan melalui proses pemilihan fitur atau ekstraksi fitur untuk memilih variabel yang tepat untuk model yang paling berkinerja. Namun, mereka tidak sama: "Ekstraksi fitur membuat fitur baru dari fungsi fitur asli, sedangkan pemilihan fitur mengembalikan subset dari fitur." ([sumber](https://wikipedia.org/wiki/Feature_selection))
+🎓 **Pemilihan Ciri dan Ekstraksi Ciri** Bagaimana anda tahu pembolehubah mana yang perlu dipilih semasa membina model? Anda mungkin akan melalui proses pemilihan ciri atau ekstraksi ciri untuk memilih pembolehubah yang betul untuk model yang paling berprestasi. Walau bagaimanapun, mereka tidak sama: "Ekstraksi ciri mencipta ciri baru daripada fungsi ciri asal, manakala pemilihan ciri mengembalikan subset ciri." ([sumber](https://wikipedia.org/wiki/Feature_selection))
 
-### Visualisasikan data Anda
+### Visualkan data anda
 
-Aspek penting dari alat ilmuwan data adalah kekuatan untuk memvisualisasikan data menggunakan beberapa pustaka yang sangat baik seperti Seaborn atau MatPlotLib. Mewakili data Anda secara visual mungkin memungkinkan Anda menemukan korelasi tersembunyi yang dapat Anda manfaatkan. Visualisasi Anda mungkin juga membantu Anda menemukan bias atau data yang tidak seimbang (seperti yang kita temukan dalam [Classification](../../4-Classification/2-Classifiers-1/README.md)).
+Aspek penting dalam alat saintis data adalah kuasa untuk memvisualkan data menggunakan beberapa pustaka yang sangat baik seperti Seaborn atau MatPlotLib. Mewakili data anda secara visual mungkin membolehkan anda menemui korelasi tersembunyi yang boleh anda manfaatkan. Visualisasi anda juga mungkin membantu anda menemui bias atau data yang tidak seimbang (seperti yang kita temui dalam [Klasifikasi](../../4-Classification/2-Classifiers-1/README.md)).
 
-### Membagi dataset Anda
+### Bahagikan set data anda
 
-Sebelum pelatihan, Anda perlu membagi dataset Anda menjadi dua atau lebih bagian dengan ukuran yang tidak sama yang masih mewakili data dengan baik.
+Sebelum latihan, anda perlu membahagikan set data anda kepada dua atau lebih bahagian yang tidak sama saiz tetapi masih mewakili data dengan baik.
 
-- **Pelatihan**. Bagian dataset ini cocok dengan model Anda untuk melatihnya. Set ini merupakan mayoritas dari dataset asli.
-- **Pengujian**. Dataset pengujian adalah kelompok data independen, sering kali dikumpulkan dari data asli, yang Anda gunakan untuk mengonfirmasi kinerja model yang dibangun.
-- **Validasi**. Set validasi adalah kelompok contoh independen yang lebih kecil yang Anda gunakan untuk menyetel hyperparameter model, atau arsitektur, untuk meningkatkan model. Tergantung pada ukuran data Anda dan pertanyaan yang Anda ajukan, Anda mungkin tidak perlu membangun set ketiga ini (seperti yang kami catat dalam [Peramalan Deret Waktu](../../7-TimeSeries/1-Introduction/README.md)).
+- **Latihan**. Bahagian set data ini digunakan untuk melatih model anda. Set ini membentuk sebahagian besar daripada set data asal.
+- **Ujian**. Set ujian adalah kumpulan data bebas, sering kali diambil daripada data asal, yang anda gunakan untuk mengesahkan prestasi model yang dibina.
+- **Pengesahan**. Set pengesahan adalah kumpulan contoh bebas yang lebih kecil yang anda gunakan untuk menala parameter hiper model, atau seni bina, untuk meningkatkan model. Bergantung pada saiz data anda dan soalan yang anda tanyakan, anda mungkin tidak perlu membina set ketiga ini (seperti yang kita perhatikan dalam [Ramalan Siri Masa](../../7-TimeSeries/1-Introduction/README.md)).
 
-## Membangun model
+## Membina model
 
-Menggunakan data pelatihan Anda, tujuan Anda adalah membangun model, atau representasi statistik dari data Anda, menggunakan berbagai algoritma untuk **melatih**nya. Melatih model mengeksposnya ke data dan memungkinkan model membuat asumsi tentang pola yang dirasakannya, memvalidasi, dan menerima atau menolak.
+Menggunakan data latihan anda, matlamat anda adalah untuk membina model, atau representasi statistik data anda, menggunakan pelbagai algoritma untuk **melatih**nya. Melatih model mendedahkannya kepada data dan membolehkan ia membuat andaian tentang pola yang ditemui, disahkan, dan diterima atau ditolak.
 
-### Tentukan metode pelatihan
+### Tentukan kaedah latihan
 
-Tergantung pada pertanyaan Anda dan sifat data Anda, Anda akan memilih metode untuk melatihnya. Melalui [dokumentasi Scikit-learn](https://scikit-learn.org/stable/user_guide.html) - yang kita gunakan dalam kursus ini - Anda dapat menjelajahi banyak cara untuk melatih model. Tergantung pada pengalaman Anda, Anda mungkin harus mencoba beberapa metode berbeda untuk membangun model terbaik. Anda kemungkinan besar akan melalui proses di mana ilmuwan data mengevaluasi kinerja model dengan memberinya data yang belum terlihat, memeriksa akurasi, bias, dan masalah penurunan kualitas lainnya, dan memilih metode pelatihan yang paling tepat untuk tugas yang ada.
+Bergantung pada soalan anda dan sifat data anda, anda akan memilih kaedah untuk melatihnya. Melalui [dokumentasi Scikit-learn](https://scikit-learn.org/stable/user_guide.html) - yang kita gunakan dalam kursus ini - anda boleh meneroka banyak cara untuk melatih model. Bergantung pada pengalaman anda, anda mungkin perlu mencuba beberapa kaedah yang berbeza untuk membina model terbaik. Anda mungkin akan melalui proses di mana saintis data menilai prestasi model dengan memberinya data yang belum dilihat, memeriksa ketepatan, bias, dan isu lain yang merosakkan kualiti, serta memilih kaedah latihan yang paling sesuai untuk tugas yang diberikan.
 
-### Melatih model
+### Latih model
 
-Dengan data pelatihan Anda, Anda siap untuk 'memasangkannya' untuk membuat model. Anda akan melihat bahwa di banyak pustaka ML Anda akan menemukan kode 'model.fit' - saat inilah Anda mengirimkan variabel fitur Anda sebagai array nilai (biasanya 'X') dan variabel target (biasanya 'y').
+Dengan data latihan anda, anda bersedia untuk 'memasangkannya' untuk mencipta model. Anda akan perasan bahawa dalam banyak pustaka ML, anda akan menemui kod 'model.fit' - pada masa ini anda menghantar pembolehubah ciri anda sebagai array nilai (biasanya 'X') dan pembolehubah sasaran (biasanya 'y').
 
-### Evaluasi model
+### Nilai model
 
-Setelah proses pelatihan selesai (bisa memakan banyak iterasi, atau 'epoch', untuk melatih model besar), Anda akan dapat mengevaluasi kualitas model dengan menggunakan data pengujian untuk mengukur kinerjanya. Data ini adalah subset dari data asli yang belum pernah dianalisis oleh model sebelumnya. Anda dapat mencetak tabel metrik tentang kualitas model Anda.
+Setelah proses latihan selesai (ia boleh mengambil banyak iterasi, atau 'epoch', untuk melatih model besar), anda akan dapat menilai kualiti model dengan menggunakan data ujian untuk mengukur prestasinya. Data ini adalah subset daripada data asal yang belum dianalisis oleh model. Anda boleh mencetak jadual metrik tentang kualiti model anda.
 
-🎓 **Pemasangan Model**
+🎓 **Pemasangan model**
 
-Dalam konteks pembelajaran mesin, pemasangan model mengacu pada akurasi fungsi dasar model saat mencoba menganalisis data yang tidak dikenalnya.
+Dalam konteks pembelajaran mesin, pemasangan model merujuk kepada ketepatan fungsi asas model semasa ia cuba menganalisis data yang tidak dikenali.
 
-🎓 **Underfitting** dan **overfitting** adalah masalah umum yang menurunkan kualitas model, karena model cocok baik tidak cukup baik atau terlalu baik. Ini menyebabkan model membuat prediksi yang terlalu selaras atau terlalu longgar dengan data pelatihannya. Model yang overfit memprediksi data pelatihan terlalu baik karena telah mempelajari detail dan kebisingan data dengan terlalu baik. Model yang underfit tidak akurat karena tidak dapat menganalisis data pelatihannya maupun data yang belum pernah 'dilihatnya' dengan akurat.
+🎓 **Underfitting** dan **overfitting** adalah masalah biasa yang merosakkan kualiti model, kerana model sama ada tidak cukup baik atau terlalu baik. Ini menyebabkan model membuat ramalan yang terlalu selaras atau terlalu longgar dengan data latihannya. Model yang terlalu sesuai meramalkan data latihan terlalu baik kerana ia telah mempelajari butiran dan bunyi data terlalu baik. Model yang kurang sesuai tidak tepat kerana ia tidak dapat menganalisis data latihannya atau data yang belum 'dilihat' dengan tepat.
 
-![model overfitting](../../../../translated_images/overfitting.1c132d92bfd93cb63240baf63ebdf82c30e30a0a44e1ad49861b82ff600c2b5c.ms.png)
+![model overfitting](../../../../1-Introduction/4-techniques-of-ML/images/overfitting.png)
 > Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
-## Penyetelan parameter
+## Penalaan parameter
 
-Setelah pelatihan awal Anda selesai, amati kualitas model dan pertimbangkan untuk meningkatkannya dengan menyesuaikan 'hyperparameter'-nya. Baca lebih lanjut tentang prosesnya [dalam dokumentasi](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott).
+Setelah latihan awal anda selesai, perhatikan kualiti model dan pertimbangkan untuk meningkatkannya dengan menyesuaikan 'parameter hiper'nya. Baca lebih lanjut tentang proses ini [dalam dokumentasi](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott).
 
-## Prediksi
+## Ramalan
 
-Ini adalah saat di mana Anda dapat menggunakan data yang benar-benar baru untuk menguji akurasi model Anda. Dalam pengaturan ML 'terapan', di mana Anda membangun aset web untuk menggunakan model dalam produksi, proses ini mungkin melibatkan pengumpulan input pengguna (misalnya, menekan tombol) untuk menetapkan variabel dan mengirimkannya ke model untuk inferensi, atau evaluasi.
+Ini adalah saat di mana anda boleh menggunakan data yang benar-benar baru untuk menguji ketepatan model anda. Dalam tetapan ML 'terapan', di mana anda membina aset web untuk menggunakan model dalam pengeluaran, proses ini mungkin melibatkan pengumpulan input pengguna (tekanan butang, sebagai contoh) untuk menetapkan pembolehubah dan menghantarnya kepada model untuk inferens, atau penilaian.
 
-Dalam pelajaran-pelajaran ini, Anda akan menemukan cara menggunakan langkah-langkah ini untuk mempersiapkan, membangun, menguji, mengevaluasi, dan memprediksi - semua gerakan seorang ilmuwan data dan lebih banyak lagi, saat Anda maju dalam perjalanan Anda untuk menjadi seorang insinyur ML 'full stack'.
+Dalam pelajaran ini, anda akan menemui cara menggunakan langkah-langkah ini untuk menyediakan, membina, menguji, menilai, dan meramalkan - semua gerakan seorang saintis data dan banyak lagi, semasa anda maju dalam perjalanan anda untuk menjadi jurutera ML 'full stack'.
 
 ---
 
-## 🚀Tantangan
+## 🚀Cabaran
 
-Buat bagan alur yang mencerminkan langkah-langkah seorang praktisi ML. Di mana Anda melihat diri Anda saat ini dalam proses? Di mana Anda memprediksi Anda akan menemukan kesulitan? Apa yang tampaknya mudah bagi Anda?
+Lukiskan carta alir yang mencerminkan langkah-langkah seorang pengamal ML. Di mana anda melihat diri anda sekarang dalam proses ini? Di mana anda meramalkan anda akan menghadapi kesukaran? Apa yang kelihatan mudah bagi anda?
 
-## [Kuis Pasca-Kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/8/)
+## [Kuiz selepas pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
-## Tinjauan & Studi Mandiri
+## Ulasan & Kajian Kendiri
 
-Cari wawancara dengan ilmuwan data yang membahas pekerjaan harian mereka secara online. Berikut [salah satunya](https://www.youtube.com/watch?v=Z3IjgbbCEfs).
+Cari dalam talian untuk temu bual dengan saintis data yang membincangkan kerja harian mereka. Berikut adalah [satu](https://www.youtube.com/watch?v=Z3IjgbbCEfs).
 
-## Tugas
+## Tugasan
 
-[Wawancarai seorang ilmuwan data](assignment.md)
+[Temu bual seorang saintis data](assignment.md)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional disarankan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

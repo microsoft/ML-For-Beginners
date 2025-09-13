@@ -1,16 +1,25 @@
-# Pengenalan kepada Ramalan Siri Masa
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
+  "translation_date": "2025-09-05T18:58:11+00:00",
+  "source_file": "7-TimeSeries/README.md",
+  "language_code": "ms"
+}
+-->
+# Pengenalan kepada ramalan siri masa
 
-Apa itu ramalan siri masa? Ia mengenai meramalkan peristiwa masa depan dengan menganalisis trend masa lalu.
+Apakah ramalan siri masa? Ia adalah tentang meramalkan peristiwa masa depan dengan menganalisis trend masa lalu.
 
 ## Topik serantau: penggunaan elektrik di seluruh dunia ✨
 
-Dalam dua pelajaran ini, anda akan diperkenalkan kepada ramalan siri masa, satu bidang pembelajaran mesin yang kurang dikenali tetapi sangat berharga untuk aplikasi industri dan perniagaan, antara bidang lain. Walaupun rangkaian neural boleh digunakan untuk meningkatkan kegunaan model-model ini, kita akan mengkajinya dalam konteks pembelajaran mesin klasik kerana model membantu meramalkan prestasi masa depan berdasarkan masa lalu.
+Dalam dua pelajaran ini, anda akan diperkenalkan kepada ramalan siri masa, satu bidang pembelajaran mesin yang agak kurang dikenali tetapi sangat berharga untuk aplikasi industri dan perniagaan, serta bidang lain. Walaupun rangkaian neural boleh digunakan untuk meningkatkan kegunaan model-model ini, kita akan mengkajinya dalam konteks pembelajaran mesin klasik kerana model membantu meramalkan prestasi masa depan berdasarkan data masa lalu.
 
-Fokus serantau kita adalah penggunaan elektrik di dunia, satu set data yang menarik untuk mempelajari tentang ramalan penggunaan kuasa masa depan berdasarkan corak beban masa lalu. Anda boleh melihat bagaimana jenis ramalan ini sangat berguna dalam persekitaran perniagaan.
+Fokus serantau kita adalah penggunaan elektrik di seluruh dunia, satu set data yang menarik untuk mempelajari cara meramalkan penggunaan kuasa masa depan berdasarkan corak beban masa lalu. Anda boleh melihat bagaimana jenis ramalan ini sangat berguna dalam persekitaran perniagaan.
 
-![grid elektrik](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ms.jpg)
+![grid elektrik](../../../7-TimeSeries/images/electric-grid.jpg)
 
-Foto oleh [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) menara elektrik di jalan raya di Rajasthan di [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Foto oleh [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) menampilkan menara elektrik di jalan raya Rajasthan di [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Pelajaran
 
@@ -20,7 +29,9 @@ Foto oleh [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unspl
 
 ## Kredit
 
-"Pengenalan kepada ramalan siri masa" ditulis dengan ⚡️ oleh [Francesca Lazzeri](https://twitter.com/frlazzeri) dan [Jen Looper](https://twitter.com/jenlooper). Notebook pertama kali muncul dalam talian di [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) yang asalnya ditulis oleh Francesca Lazzeri. Pelajaran SVR ditulis oleh [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
+"Pengenalan kepada ramalan siri masa" ditulis dengan ⚡️ oleh [Francesca Lazzeri](https://twitter.com/frlazzeri) dan [Jen Looper](https://twitter.com/jenlooper). Notebook ini pertama kali muncul dalam talian di [repo Azure "Deep Learning For Time Series"](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) yang asalnya ditulis oleh Francesca Lazzeri. Pelajaran SVR ditulis oleh [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

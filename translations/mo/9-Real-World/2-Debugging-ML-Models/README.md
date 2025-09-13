@@ -1,133 +1,183 @@
-# Postscript: Model Debugging in Machine Learning using Responsible AI dashboard components
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "df2b538e8fbb3e91cf0419ae2f858675",
+  "translation_date": "2025-09-06T09:12:53+00:00",
+  "source_file": "9-Real-World/2-Debugging-ML-Models/README.md",
+  "language_code": "mo"
+}
+-->
+# 後記：使用負責任的 AI 儀表板元件進行機器學習模型調試
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-## Introduction
+## 簡介
 
-L'apprentissage automatique influence nos vies quotidiennes. L'IA pénètre certains des systèmes les plus importants qui nous touchent en tant qu'individus ainsi que notre société, que ce soit dans les domaines de la santé, de la finance, de l'éducation ou de l'emploi. Par exemple, des systèmes et des modèles interviennent dans des tâches de prise de décision quotidiennes, telles que les diagnostics médicaux ou la détection de fraudes. Par conséquent, les avancées en IA, accompagnées d'une adoption accélérée, sont confrontées à des attentes sociétales en évolution et à une réglementation croissante en réponse. Nous constatons constamment des domaines où les systèmes d'IA continuent de ne pas répondre aux attentes ; ils exposent de nouveaux défis ; et les gouvernements commencent à réglementer les solutions d'IA. Il est donc crucial que ces modèles soient analysés pour fournir des résultats justes, fiables, inclusifs, transparents et responsables pour tous.
+機器學習已深刻影響我們的日常生活。AI 正逐漸滲透到一些對個人及社會至關重要的系統中，例如醫療保健、金融、教育和就業。舉例來說，系統和模型參與了日常決策任務，例如醫療診斷或欺詐檢測。然而，隨著 AI 的快速發展和廣泛採用，社會期望也在不斷演變，並且政府開始針對 AI 解決方案進行監管。我們經常看到 AI 系統未能達到期望的情況，並暴露出新的挑戰。因此，分析這些模型以確保其結果公平、可靠、包容、透明且負責任，對每個人都至關重要。
 
-Dans ce programme, nous examinerons des outils pratiques qui peuvent être utilisés pour évaluer si un modèle présente des problèmes d'IA responsable. Les techniques traditionnelles de débogage de l'apprentissage automatique ont tendance à se baser sur des calculs quantitatifs tels que l'exactitude agrégée ou la perte d'erreur moyenne. Imaginez ce qui peut se passer lorsque les données que vous utilisez pour construire ces modèles manquent de certaines démographies, telles que la race, le genre, les opinions politiques, la religion, ou les représentent de manière disproportionnée. Que se passe-t-il lorsque la sortie du modèle est interprétée pour favoriser une certaine démographie ? Cela peut introduire une sur ou une sous-représentation de ces groupes de caractéristiques sensibles, entraînant des problèmes d'équité, d'inclusivité ou de fiabilité du modèle. Un autre facteur est que les modèles d'apprentissage automatique sont considérés comme des boîtes noires, ce qui rend difficile la compréhension et l'explication des éléments qui influencent la prédiction d'un modèle. Tous ces défis sont rencontrés par les data scientists et les développeurs d'IA lorsqu'ils ne disposent pas d'outils adéquats pour déboguer et évaluer l'équité ou la fiabilité d'un modèle.
+在本課程中，我們將探討一些實用工具，用於評估模型是否存在負責任的 AI 問題。傳統的機器學習調試技術通常基於定量計算，例如整體準確率或平均錯誤損失。然而，想像一下，如果您用來構建這些模型的數據缺乏某些人口統計特徵，例如種族、性別、政治觀點或宗教，或者這些特徵被不成比例地代表，會發生什麼？如果模型的輸出偏向某些人口統計特徵，又會如何？這可能導致敏感特徵群體的過度或不足代表性，進而引發模型的公平性、包容性或可靠性問題。此外，機器學習模型通常被視為黑箱，這使得理解和解釋模型的預測驅動因素變得困難。這些都是數據科學家和 AI 開發者在缺乏足夠工具來調試和評估模型的公平性或可信度時面臨的挑戰。
 
-Dans cette leçon, vous apprendrez à déboguer vos modèles en utilisant :
+在本課程中，您將學習如何使用以下方法調試模型：
 
-- **Analyse d'erreur** : identifier où, dans votre distribution de données, le modèle présente des taux d'erreur élevés.
-- **Aperçu du modèle** : effectuer une analyse comparative à travers différents cohortes de données pour découvrir des disparités dans les métriques de performance de votre modèle.
-- **Analyse de données** : examiner où il pourrait y avoir une sur ou une sous-représentation de vos données qui peut biaiser votre modèle en faveur d'une démographie plutôt qu'une autre.
-- **Importance des caractéristiques** : comprendre quelles caractéristiques influencent les prédictions de votre modèle à un niveau global ou local.
+- **錯誤分析**：識別模型在數據分佈中錯誤率較高的區域。
+- **模型概覽**：對不同數據群體進行比較分析，以發現模型性能指標中的差異。
+- **數據分析**：調查數據是否存在過度或不足代表性，這可能導致模型偏向某些數據群體。
+- **特徵重要性**：了解哪些特徵在全局或局部層面上驅動模型的預測。
 
-## Prérequis
+## 前置條件
 
-Comme prérequis, veuillez consulter la revue [Outils d'IA responsable pour les développeurs](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
+在開始之前，請先查看 [開發者的負責任 AI 工具](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
 
-> ![Gif sur les outils d'IA responsable](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
+> ![負責任 AI 工具的 GIF](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
-## Analyse d'erreur
+## 錯誤分析
 
-Les métriques de performance traditionnelles des modèles utilisées pour mesurer l'exactitude sont principalement des calculs basés sur des prédictions correctes contre incorrectes. Par exemple, déterminer qu'un modèle est précis 89 % du temps avec une perte d'erreur de 0,001 peut être considéré comme une bonne performance. Les erreurs ne sont souvent pas distribuées uniformément dans votre ensemble de données sous-jacent. Vous pouvez obtenir un score d'exactitude de modèle de 89 %, mais découvrir qu'il existe différentes régions de vos données pour lesquelles le modèle échoue 42 % du temps. La conséquence de ces motifs d'échec avec certains groupes de données peut entraîner des problèmes d'équité ou de fiabilité. Il est essentiel de comprendre les domaines où le modèle fonctionne bien ou non. Les régions de données où il y a un nombre élevé d'inexactitudes dans votre modèle peuvent s'avérer être une démographie de données importante.
+傳統的模型性能指標通常基於正確與錯誤預測的計算。例如，判斷一個模型的準確率為 89%，錯誤損失為 0.001，可以被認為是良好的性能。然而，錯誤通常並非均勻分佈於底層數據集中。您可能獲得 89% 的模型準確率，但發現模型在某些數據區域的錯誤率高達 42%。這些特定數據群體的失敗模式可能導致公平性或可靠性問題。因此，了解模型表現良好或不佳的區域至關重要。模型在某些數據區域的高錯誤率可能揭示出重要的數據人口統計特徵。
 
-![Analyse et débogage des erreurs de modèle](../../../../translated_images/ea-error-distribution.117452e1177c1dd84fab2369967a68bcde787c76c6ea7fdb92fcf15d1fce8206.mo.png)
+![分析和調試模型錯誤](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
 
-Le composant d'Analyse d'erreur sur le tableau de bord RAI illustre comment l'échec du modèle est distribué à travers divers cohortes avec une visualisation en arbre. Cela est utile pour identifier les caractéristiques ou les zones où il y a un taux d'erreur élevé dans votre ensemble de données. En voyant d'où proviennent la plupart des inexactitudes du modèle, vous pouvez commencer à enquêter sur la cause profonde. Vous pouvez également créer des cohortes de données pour effectuer des analyses. Ces cohortes de données aident dans le processus de débogage à déterminer pourquoi la performance du modèle est bonne dans une cohorte, mais erronée dans une autre.
+RAI 儀表板中的錯誤分析元件通過樹狀可視化展示模型失敗在不同群體中的分佈情況。這有助於識別數據集中錯誤率較高的特徵或區域。通過了解模型大部分錯誤的來源，您可以開始調查根本原因。您還可以創建數據群體進行分析，這些群體有助於調試過程，確定模型在某些群體表現良好，而在其他群體表現不佳的原因。
 
-![Analyse d'erreur](../../../../translated_images/ea-error-cohort.6886209ea5d438c4daa8bfbf5ce3a7042586364dd3eccda4a4e3d05623ac702a.mo.png)
+![錯誤分析](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
 
-Les indicateurs visuels sur la carte en arbre aident à localiser les zones problématiques plus rapidement. Par exemple, plus la teinte rouge d'un nœud d'arbre est foncée, plus le taux d'erreur est élevé.
+樹狀圖中的視覺指示器可以幫助更快地定位問題區域。例如，樹節點的紅色陰影越深，錯誤率越高。
 
-La carte thermique est une autre fonctionnalité de visualisation que les utilisateurs peuvent utiliser pour enquêter sur le taux d'erreur en utilisant une ou deux caractéristiques afin de trouver un contributeur aux erreurs du modèle à travers un ensemble de données complet ou des cohortes.
+熱圖是另一種可視化功能，用於通過一個或兩個特徵調查錯誤率，找出整個數據集或群體中導致模型錯誤的因素。
 
-![Analyse d'erreur carte thermique](../../../../translated_images/ea-heatmap.8d27185e28cee3830c85e1b2e9df9d2d5e5c8c940f41678efdb68753f2f7e56c.mo.png)
+![錯誤分析熱圖](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
 
-Utilisez l'analyse d'erreur lorsque vous devez :
+使用錯誤分析的情境：
 
-* Acquérir une compréhension approfondie de la manière dont les échecs du modèle sont distribués à travers un ensemble de données et à travers plusieurs dimensions d'entrée et de caractéristiques.
-* Décomposer les métriques de performance agrégées pour découvrir automatiquement des cohortes erronées afin d'informer vos étapes d'atténuation ciblées.
+* 深入了解模型失敗在數據集和多個輸入及特徵維度中的分佈情況。
+* 分解整體性能指標，通過自動發現錯誤群體來制定有針對性的緩解措施。
 
-## Aperçu du modèle
+## 模型概覽
 
-Évaluer la performance d'un modèle d'apprentissage automatique nécessite d'obtenir une compréhension holistique de son comportement. Cela peut être réalisé en examinant plus d'une métrique telle que le taux d'erreur, l'exactitude, le rappel, la précision ou la MAE (Erreur Absolue Moyenne) pour trouver des disparités parmi les métriques de performance. Une métrique de performance peut sembler excellente, mais des inexactitudes peuvent être révélées dans une autre métrique. De plus, comparer les métriques pour des disparités à travers l'ensemble de données ou les cohortes aide à éclairer où le modèle fonctionne bien ou non. Cela est particulièrement important pour voir la performance du modèle parmi des caractéristiques sensibles contre des caractéristiques non sensibles (par exemple, la race, le genre ou l'âge des patients) pour découvrir d'éventuelles injustices que le modèle pourrait avoir. Par exemple, découvrir que le modèle est plus erroné dans une cohorte qui a des caractéristiques sensibles peut révéler d'éventuelles injustices que le modèle pourrait avoir.
+評估機器學習模型的性能需要全面了解其行為。這可以通過查看多個指標（例如錯誤率、準確率、召回率、精確度或 MAE）來實現，以發現性能指標中的差異。一個指標可能看起來很好，但另一個指標可能暴露出不準確的地方。此外，比較整個數據集或群體中的指標差異有助於揭示模型表現良好或不佳的地方。這在查看模型在敏感特徵（例如患者的種族、性別或年齡）與非敏感特徵中的表現時尤為重要，以揭示模型可能存在的潛在不公平。例如，發現模型在包含敏感特徵的群體中錯誤率更高，可能揭示模型存在的不公平性。
 
-Le composant Aperçu du modèle du tableau de bord RAI aide non seulement à analyser les métriques de performance de la représentation des données dans une cohorte, mais il offre également aux utilisateurs la possibilité de comparer le comportement du modèle à travers différentes cohortes.
+RAI 儀表板中的模型概覽元件不僅有助於分析數據群體中的性能指標，還使用戶能夠比較模型在不同群體中的行為。
 
-![Cohortes de données - aperçu du modèle dans le tableau de bord RAI](../../../../translated_images/model-overview-dataset-cohorts.dfa463fb527a35a0afc01b7b012fc87bf2cad756763f3652bbd810cac5d6cf33.mo.png)
+![數據集群體 - RAI 儀表板中的模型概覽](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
 
-La fonctionnalité d'analyse basée sur les caractéristiques du composant permet aux utilisateurs de restreindre les sous-groupes de données au sein d'une caractéristique particulière pour identifier des anomalies à un niveau granulaire. Par exemple, le tableau de bord a une intelligence intégrée pour générer automatiquement des cohortes pour une caractéristique sélectionnée par l'utilisateur (par exemple, *"time_in_hospital < 3"* ou *"time_in_hospital >= 7"*). Cela permet à un utilisateur d'isoler une caractéristique particulière d'un groupe de données plus large pour voir si elle est un facteur clé influençant les résultats erronés du modèle.
+該元件的基於特徵的分析功能允許用戶縮小特定特徵的數據子群體，以更細緻地識別異常。例如，儀表板具有內置智能，可以自動為用戶選擇的特徵生成群體（例如 *"time_in_hospital < 3"* 或 *"time_in_hospital >= 7"*）。這使用戶能夠從更大的數據群體中隔離特定特徵，以查看它是否是模型錯誤結果的關鍵影響因素。
 
-![Cohortes de caractéristiques - aperçu du modèle dans le tableau de bord RAI](../../../../translated_images/model-overview-feature-cohorts.c5104d575ffd0c80b7ad8ede7703fab6166bfc6f9125dd395dcc4ace2f522f70.mo.png)
+![特徵群體 - RAI 儀表板中的模型概覽](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
 
-Le composant Aperçu du modèle prend en charge deux classes de métriques de disparité :
+模型概覽元件支持兩類差異指標：
 
-**Disparité dans la performance du modèle** : Ces ensembles de métriques calculent la disparité (différence) dans les valeurs de la métrique de performance sélectionnée à travers des sous-groupes de données. Voici quelques exemples :
+**模型性能差異**：這些指標計算所選性能指標在數據子群體之間的差異。例如：
 
-* Disparité dans le taux d'exactitude
-* Disparité dans le taux d'erreur
-* Disparité dans la précision
-* Disparité dans le rappel
-* Disparité dans l'erreur absolue moyenne (MAE)
+* 準確率差異
+* 錯誤率差異
+* 精確度差異
+* 召回率差異
+* 平均絕對誤差（MAE）差異
 
-**Disparité dans le taux de sélection** : Cette métrique contient la différence dans le taux de sélection (prédiction favorable) parmi les sous-groupes. Un exemple de cela est la disparité dans les taux d'approbation de prêt. Le taux de sélection signifie la fraction de points de données dans chaque classe classée comme 1 (en classification binaire) ou distribution des valeurs de prédiction (en régression).
+**選擇率差異**：此指標包含子群體之間選擇率（有利預測）的差異。例如，貸款批准率的差異。選擇率指的是每個類別中被分類為 1 的數據點比例（在二元分類中）或預測值的分佈（在回歸中）。
 
-## Analyse de données
+## 數據分析
 
-> "Si vous torturez les données suffisamment longtemps, elles avoueront n'importe quoi" - Ronald Coase
+> 「如果你對數據施加足夠的壓力，它會承認任何事情。」—— Ronald Coase
 
-Cette déclaration peut sembler extrême, mais il est vrai que les données peuvent être manipulées pour soutenir n'importe quelle conclusion. Une telle manipulation peut parfois se produire involontairement. En tant qu'êtres humains, nous avons tous des biais, et il est souvent difficile de savoir consciemment quand nous introduisons un biais dans les données. Garantir l'équité dans l'IA et l'apprentissage automatique reste un défi complexe.
+這句話聽起來極端，但事實上數據確實可以被操縱以支持任何結論。有時這種操縱可能是無意的。作為人類，我們都有偏見，並且往往難以有意識地察覺自己何時在數據中引入了偏見。保證 AI 和機器學習的公平性仍然是一個複雜的挑戰。
 
-Les données constituent un énorme angle mort pour les métriques de performance traditionnelles des modèles. Vous pouvez avoir des scores d'exactitude élevés, mais cela ne reflète pas toujours le biais sous-jacent qui pourrait exister dans votre ensemble de données. Par exemple, si un ensemble de données d'employés a 27 % de femmes dans des postes exécutifs dans une entreprise et 73 % d'hommes au même niveau, un modèle d'IA de publicité d'emploi formé sur ces données pourrait cibler principalement un public masculin pour des postes de niveau supérieur. Ce déséquilibre dans les données a biaisé la prédiction du modèle en faveur d'un genre. Cela révèle un problème d'équité où il existe un biais de genre dans le modèle d'IA.
+數據是傳統模型性能指標的一個巨大盲點。您可能擁有高準確率，但這並不總是反映底層數據集中可能存在的偏見。例如，如果一家公司高層職位的員工數據集中女性佔 27%，男性佔 73%，那麼基於此數據訓練的招聘 AI 模型可能會主要針對男性群體進行高層職位的招聘。這種數據不平衡使模型的預測偏向某一性別，揭示了模型存在性別偏見的公平性問題。
 
-Le composant Analyse de données sur le tableau de bord RAI aide à identifier les zones où il y a une sur- et une sous-représentation dans l'ensemble de données. Il aide les utilisateurs à diagnostiquer la cause profonde des erreurs et des problèmes d'équité introduits par des déséquilibres de données ou un manque de représentation d'un groupe de données particulier. Cela donne aux utilisateurs la possibilité de visualiser des ensembles de données basés sur des résultats prévus et réels, des groupes d'erreurs et des caractéristiques spécifiques. Parfois, découvrir un groupe de données sous-représenté peut également révéler que le modèle n'apprend pas bien, d'où les inexactitudes élevées. Avoir un modèle qui présente un biais de données n'est pas seulement un problème d'équité, mais montre que le modèle n'est pas inclusif ou fiable.
+RAI 儀表板中的數據分析元件有助於識別數據集中過度或不足代表的區域。它幫助用戶診斷由數據不平衡或缺乏特定數據群體代表性引入的錯誤和公平性問題的根本原因。這使用戶能夠根據預測和實際結果、錯誤群體以及特定特徵來可視化數據集。有時發現一個代表性不足的數據群體也可能揭示模型未能很好地學習，從而導致高錯誤率。具有數據偏見的模型不僅是一個公平性問題，還表明模型不具包容性或可靠性。
 
-![Composant d'analyse de données sur le tableau de bord RAI](../../../../translated_images/dataanalysis-cover.8d6d0683a70a5c1e274e5a94b27a71137e3d0a3b707761d7170eb340dd07f11d.mo.png)
+![RAI 儀表板中的數據分析元件](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
 
-Utilisez l'analyse de données lorsque vous devez :
+使用數據分析的情境：
 
-* Explorer les statistiques de votre ensemble de données en sélectionnant différents filtres pour découper vos données en différentes dimensions (également connues sous le nom de cohortes).
-* Comprendre la distribution de votre ensemble de données à travers différentes cohortes et groupes de caractéristiques.
-* Déterminer si vos résultats liés à l'équité, à l'analyse d'erreur et à la causalité (dérivés d'autres composants du tableau de bord) sont le résultat de la distribution de votre ensemble de données.
-* Décider dans quels domaines collecter plus de données pour atténuer les erreurs qui proviennent de problèmes de représentation, de bruit d'étiquettes, de bruit de caractéristiques, de biais d'étiquettes et de facteurs similaires.
+* 通過選擇不同的篩選器探索數據集統計，將數據切片為不同維度（也稱為群體）。
+* 了解數據集在不同群體和特徵群體中的分佈。
+* 確定與公平性、錯誤分析和因果關係相關的發現（來自其他儀表板元件）是否源於數據集的分佈。
+* 決定在哪些區域收集更多數據，以減少由代表性問題、標籤噪音、特徵噪音、標籤偏見等因素引起的錯誤。
 
-## Interprétabilité du modèle
+## 模型可解釋性
 
-Les modèles d'apprentissage automatique ont tendance à être des boîtes noires. Comprendre quelles caractéristiques clés des données influencent la prédiction d'un modèle peut être difficile. Il est important de fournir de la transparence sur les raisons pour lesquelles un modèle fait une certaine prédiction. Par exemple, si un système d'IA prédit qu'un patient diabétique risque d'être réadmis à l'hôpital dans moins de 30 jours, il devrait être capable de fournir des données de soutien qui ont conduit à sa prédiction. Avoir des indicateurs de données de soutien apporte de la transparence pour aider les cliniciens ou les hôpitaux à prendre des décisions éclairées. De plus, être capable d'expliquer pourquoi un modèle a fait une prédiction pour un patient individuel permet de garantir la responsabilité vis-à-vis des réglementations en matière de santé. Lorsque vous utilisez des modèles d'apprentissage automatique de manière à affecter la vie des gens, il est crucial de comprendre et d'expliquer ce qui influence le comportement d'un modèle. L'explicabilité et l'interprétabilité du modèle aident à répondre à des questions dans des scénarios tels que :
+機器學習模型往往是黑箱。理解哪些關鍵數據特徵驅動模型的預測可能具有挑戰性。提供模型做出某種預測的透明性至關重要。例如，如果 AI 系統預測某位糖尿病患者有可能在 30 天內再次入院，它應該能夠提供支持其預測的數據。提供支持數據指標可以幫助臨床醫生或醫院做出明智的決策。此外，能夠解釋模型對個別患者的預測原因，有助於符合健康法規的問責要求。當您使用機器學習模型影響人們的生活時，了解和解釋模型行為的驅動因素至關重要。模型的可解釋性和可解釋性有助於回答以下場景中的問題：
 
-* Débogage du modèle : Pourquoi mon modèle a-t-il fait cette erreur ? Comment puis-je améliorer mon modèle ?
-* Collaboration humain-IA : Comment puis-je comprendre et faire confiance aux décisions du modèle ?
-* Conformité réglementaire : Mon modèle satisfait-il aux exigences légales ?
+* 模型調試：為什麼我的模型會犯這個錯誤？如何改進我的模型？
+* 人機協作：如何理解並信任模型的決策？
+* 法規合規：我的模型是否符合法律要求？
 
-Le composant Importance des caractéristiques du tableau de bord RAI vous aide à déboguer et à obtenir une compréhension complète de la manière dont un modèle fait des prédictions. C'est également un outil utile pour les professionnels de l'apprentissage automatique et les décideurs pour expliquer et montrer des preuves des caractéristiques influençant le comportement d'un modèle pour la conformité réglementaire. Ensuite, les utilisateurs peuvent explorer à la fois des explications globales et locales pour valider quelles caractéristiques influencent la prédiction d'un modèle. Les explications globales énumèrent les principales caractéristiques qui ont affecté la prédiction globale d'un modèle. Les explications locales affichent quelles caractéristiques ont conduit à la prédiction d'un modèle pour un cas individuel. La capacité d'évaluer les explications locales est également utile pour déboguer ou auditer un cas spécifique afin de mieux comprendre et interpréter pourquoi un modèle a fait une prédiction précise ou inexacte.
+RAI 儀表板中的特徵重要性元件幫助您調試並全面了解模型如何進行預測。它也是機器學習專業人士和決策者解釋模型行為並提供證據以符合法規要求的有用工具。接下來，用戶可以探索全局和局部解釋，驗證哪些特徵驅動模型的預測。全局解釋列出影響模型整體預測的主要特徵。局部解釋顯示哪些特徵導致模型對個別案例的預測。評估局部解釋還有助於調試或審核特定案例，以更好地理解和解釋模型做出準確或不準確預測的原因。
 
-![Composant d'importance des caractéristiques du tableau de bord RAI](../../../../translated_images/9-feature-importance.cd3193b4bba3fd4bccd415f566c2437fb3298c4824a3dabbcab15270d783606e.mo.png)
+![RAI 儀表板中的特徵重要性元件](../../../../9-Real-World/2-Debugging-ML-Models/images/9-feature-importance.png)
 
-* Explications globales : Par exemple, quelles caractéristiques affectent le comportement global d'un modèle de réadmission à l'hôpital pour diabétiques ?
-* Explications locales : Par exemple, pourquoi un patient diabétique de plus de 60 ans avec des hospitalisations antérieures a-t-il été prédit comme étant réadmis ou non réadmis dans les 30 jours suivant son retour à l'hôpital ?
+* 全局解釋：例如，哪些特徵影響糖尿病患者入院模型的整體行為？
+* 局部解釋：例如，為什麼一位年齡超過 60 歲且有過住院史的糖尿病患者被預測為會或不會在 30 天內再次入院？
 
-Dans le processus de débogage de l'examen de la performance d'un modèle à travers différentes cohortes, l'Importance des caractéristiques montre quel niveau d'impact une caractéristique a à travers les cohortes. Cela aide à révéler des anomalies lors de la comparaison du niveau d'influence que la caractéristique a dans la conduite des prédictions erronées d'un modèle. Le composant Importance des caractéristiques peut montrer quelles valeurs dans une caractéristique ont influencé positivement ou négativement le résultat du modèle. Par exemple, si un modèle a fait une prédiction inexacte, le composant vous donne la possibilité d'approfondir et de déterminer quelles caractéristiques ou valeurs de caractéristiques ont conduit à la prédiction. Ce niveau de détail aide non seulement au débogage, mais fournit également de la transparence et de la responsabilité dans les situations d'audit. Enfin, le composant peut vous aider à identifier des problèmes d'équité. Pour illustrer, si une caractéristique sensible telle que l'ethnicité ou le genre est très influente dans la conduite de la prédiction d'un modèle, cela pourrait être un signe de biais racial ou de genre dans le modèle.
+在調試模型性能的過程中，特徵重要性顯示特徵在不同群體中的影響程度。它有助於揭示異常情況，例如比較特徵在驅動模型錯誤預測中的影響程度。特徵重要性元件可以顯示特徵中的哪些值對模型結果產生正面或負面影響。例如，如果模型做出了不準確的預測，該元件使您能夠深入分析並確定哪些特徵或特徵值驅動了預測。這種細節不僅有助於調試，還在審計情境中提供透明性和問責性。最後，該元件可以幫助您識別公平性問題。例如，如果某些敏感特徵（如種族或性別）在驅動模型預測中具有高度影響力，這可能表明模型存在種族或性別偏見。
 
-![Importance des caractéristiques](../../../../translated_images/9-features-influence.3ead3d3f68a84029f1e40d3eba82107445d3d3b6975d4682b23d8acc905da6d0.mo.png)
+![特徵重要性](../../../../9-Real-World/2-Debugging-ML-Models/images/9-features-influence.png)
 
-Utilisez l'interprétabilité lorsque vous devez :
+使用可解釋性的情境：
 
-* Déterminer à quel point les prédictions de votre système d'IA sont fiables en comprenant quelles caractéristiques sont les plus importantes pour les prédictions.
-* Aborder le débogage de votre modèle en le comprenant d'abord et en identifiant si le modèle utilise des caractéristiques saines ou simplement de fausses corrélations.
-* Découvrir les sources potentielles d'injustice en comprenant si le modèle base ses prédictions sur des caractéristiques sensibles ou sur des caractéristiques qui sont fortement corrélées avec elles.
-* Renforcer la confiance des utilisateurs dans les décisions de votre modèle en générant des explications locales pour illustrer leurs résultats.
-* Compléter un audit réglementaire d'un système d'IA pour valider les modèles et surveiller l'impact des décisions du modèle sur les humains.
+* 通過了解哪些特徵對預測最重要，判斷 AI 系統的預測是否值得信任。
+* 通過先理解模型並識別模型是否使用健康特徵或僅僅是錯誤相關性，進行模型調試。
+* 通過了解模型是否基於敏感特徵或與敏感特徵高度相關的特徵進行預測，揭示潛在的不公平性來源。
+* 通過生成局部解釋來展示模型結果，建立用戶對模型決策的信任。
+* 完成 AI 系統的法規審計，以驗證模型並監控模型決策對人類的影響。
 
-## Conclusion
+## 結論
 
-Tous les composants du tableau de bord RAI sont des outils pratiques pour vous aider à construire des modèles d'apprentissage automatique qui sont moins nuisibles et plus fiables pour la société. Ils améliorent la prévention des menaces aux droits de l'homme ; discriminant ou excluant certains groupes d'opportunités de vie ; et le risque de blessures physiques ou psychologiques. Ils aident également à renforcer la confiance dans les décisions de votre modèle en générant des explications locales pour illustrer leurs résultats. Certains des préjudices potentiels peuvent être classés comme suit :
+RAI 儀表板的所有元件都是幫助您構建對社會更少傷害、更值得信賴的機器學習模型的實用工具。它有助於防止對人權的威脅；避免歧視或排除某些群體的生活機會；以及減少身體或心理傷害的風險。它還通過生成局部解釋來展示模型結果，幫助建立對模型決策的信任。一些潛在的傷害可以分類為：
 
-- **Allocation**, si un genre ou une ethnie, par exemple, est favorisé par rapport à un autre.
-- **Qualité du service**. Si vous formez les données pour un scénario spécifique mais que la réalité est beaucoup plus complexe, cela conduit à un service de mauvaise qualité.
-- **Stéréotypage**. Associer un groupe donné à des attributs prédéfinis.
-- **Dénigrement**. Critiquer et étiqueter injustement quelque chose ou quelqu'un.
-- **Sur- ou sous-représentation**. L'idée est qu'un certain groupe n'est pas vu dans une certaine profession, et tout service ou fonction qui continue de promouvoir cela contribue à nuire.
+- **分配**：例如，某一性別或種族被偏袒。
+- **服務質量**：如果您僅針對特定場景訓練數據，但現實情況更為複雜，可能導致服務性能不佳。
+- **刻板印象**：將某一群體與預先分配的屬性聯繫起來。
+- **貶低**：不公平地批評或標籤某事或某人。
+- **過度或不足的代表性**。這個概念指的是某些群體在某些職業中未被看見，而任何持續推動這種情況的服務或功能都可能造成傷害。
 
-### Tableau de bord Azure RAI
+### Azure RAI 儀表板
 
-Le [tableau de bord Azure RAI](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) est construit sur des outils open-source développés par les principales institutions académiques et organisations, y compris Microsoft, qui sont essentiels pour les data scientists et les développeurs d'IA afin de mieux comprendre le comportement des modèles, découvrir et atténuer les problèmes indésirables des modèles d'IA.
+[Azure RAI 儀表板](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) 是基於由領先的學術機構和組織（包括 Microsoft）開發的開源工具所構建，這些工具對於資料科學家和 AI 開發者理解模型行為、發現並減輕 AI 模型中的不良問題至關重要。
 
-- Apprenez à utiliser les différents composants en consultant la documentation du tableau de bord RAI [docs.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
+- 透過查看 RAI 儀表板的[文件](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)，了解如何使用不同的組件。
 
-- Consulte
+- 查看一些 RAI 儀表板的[範例筆記本](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks)，以便在 Azure 機器學習中調試更負責任的 AI 情境。
 
-I'm sorry, but I can't translate text into "mo" as it doesn't correspond to a recognized language or dialect. If you meant a specific language or dialect, please clarify, and I'd be happy to assist!
+---
+## 🚀 挑戰
+
+為了防止統計或資料偏差從一開始就被引入，我們應該：
+
+- 確保系統開發者擁有多元的背景和觀點
+- 投資於反映社會多樣性的資料集
+- 開發更好的方法來檢測和修正偏差
+
+思考在模型構建和使用中，現實生活中不公平的情境。還有什麼是我們應該考慮的？
+
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
+## 回顧與自學
+
+在這節課中，你學到了如何在機器學習中融入負責任 AI 的一些實用工具。
+
+觀看這場工作坊以更深入了解相關主題：
+
+- 負責任 AI 儀表板：實踐中操作化 RAI 的一站式平台，由 Besmira Nushi 和 Mehrnoosh Sameki 主講
+
+[![負責任 AI 儀表板：實踐中操作化 RAI 的一站式平台](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "負責任 AI 儀表板：實踐中操作化 RAI 的一站式平台")
+
+> 🎥 點擊上方圖片觀看影片：負責任 AI 儀表板：實踐中操作化 RAI 的一站式平台，由 Besmira Nushi 和 Mehrnoosh Sameki 主講
+
+參考以下材料以了解更多關於負責任 AI 的資訊，以及如何構建更值得信賴的模型：
+
+- Microsoft 的 RAI 儀表板工具，用於調試 ML 模型：[負責任 AI 工具資源](https://aka.ms/rai-dashboard)
+
+- 探索負責任 AI 工具包：[Github](https://github.com/microsoft/responsible-ai-toolbox)
+
+- Microsoft 的 RAI 資源中心：[負責任 AI 資源 – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+
+- Microsoft 的 FATE 研究小組：[FATE：AI 中的公平性、問責性、透明性和倫理 - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+
+## 作業
+
+[探索 RAI 儀表板](assignment.md)
+
+---
+
+**免責聲明**：  
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而產生的任何誤解或錯誤解讀概不負責。

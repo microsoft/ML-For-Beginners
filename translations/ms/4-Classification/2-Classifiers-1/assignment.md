@@ -1,12 +1,23 @@
-# Mengkaji Penyelesai
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "de6025f96841498b0577e9d1aee18d1f",
+  "translation_date": "2025-09-05T19:52:51+00:00",
+  "source_file": "4-Classification/2-Classifiers-1/assignment.md",
+  "language_code": "ms"
+}
+-->
+# Kajian tentang penyelesai masalah
 ## Arahan
 
-Dalam pelajaran ini, anda telah mempelajari tentang pelbagai penyelesai yang memadankan algoritma dengan proses pembelajaran mesin untuk mencipta model yang tepat. Telusuri penyelesai yang disenaraikan dalam pelajaran dan pilih dua. Dengan kata-kata anda sendiri, bandingkan dan bezakan dua penyelesai ini. Jenis masalah apa yang mereka selesaikan? Bagaimana mereka bekerja dengan pelbagai struktur data? Mengapa anda akan memilih satu berbanding yang lain?
+Dalam pelajaran ini, anda telah mempelajari tentang pelbagai penyelesai masalah yang menggabungkan algoritma dengan proses pembelajaran mesin untuk mencipta model yang tepat. Teliti penyelesai masalah yang disenaraikan dalam pelajaran dan pilih dua daripadanya. Dengan kata-kata anda sendiri, bandingkan dan bezakan kedua-dua penyelesai masalah ini. Masalah jenis apa yang mereka selesaikan? Bagaimana mereka berfungsi dengan pelbagai struktur data? Mengapa anda memilih satu berbanding yang lain? 
 ## Rubrik
 
-| Kriteria | Cemerlang                                                                                      | Memadai                                         | Perlu Peningkatan            |
+| Kriteria | Cemerlang                                                                                      | Memadai                                         | Perlu Penambahbaikan         |
 | -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------------------- |
-|          | Fail .doc disampaikan dengan dua perenggan, satu untuk setiap penyelesai, membandingkan mereka dengan teliti. | Fail .doc disampaikan dengan hanya satu perenggan | Tugasan tidak lengkap |
+|          | Fail .doc disediakan dengan dua perenggan, satu untuk setiap penyelesai masalah, membandingkan mereka dengan teliti. | Fail .doc disediakan dengan hanya satu perenggan | Tugasan tidak lengkap        |
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

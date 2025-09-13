@@ -1,62 +1,71 @@
-# Construa um modelo de regressão usando Scikit-learn: prepare e visualize os dados
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "7c077988328ebfe33b24d07945f16eca",
+  "translation_date": "2025-09-05T08:38:38+00:00",
+  "source_file": "2-Regression/2-Data/README.md",
+  "language_code": "pt"
+}
+-->
+# Construir um modelo de regressão usando Scikit-learn: preparar e visualizar dados
 
-![Infográfico de visualização de dados](../../../../translated_images/data-visualization.54e56dded7c1a804d00d027543f2881cb32da73aeadda2d4a4f10f3497526114.pt.png)
+![Infográfico de visualização de dados](../../../../2-Regression/2-Data/images/data-visualization.png)
 
 Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Esta lição está disponível em R!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
 ## Introdução
 
-Agora que você está equipado com as ferramentas necessárias para começar a enfrentar a construção de modelos de aprendizado de máquina com Scikit-learn, você está pronto para começar a fazer perguntas sobre seus dados. Ao trabalhar com dados e aplicar soluções de ML, é muito importante entender como fazer a pergunta certa para desbloquear adequadamente os potenciais do seu conjunto de dados.
+Agora que já está equipado com as ferramentas necessárias para começar a construir modelos de machine learning com Scikit-learn, está pronto para começar a fazer perguntas aos seus dados. Ao trabalhar com dados e aplicar soluções de ML, é muito importante saber como formular a pergunta certa para desbloquear adequadamente o potencial do seu conjunto de dados.
 
-Nesta lição, você aprenderá:
+Nesta lição, irá aprender:
 
-- Como preparar seus dados para a construção do modelo.
+- Como preparar os seus dados para a construção de modelos.
 - Como usar o Matplotlib para visualização de dados.
 
-## Fazendo a pergunta certa sobre seus dados
+## Fazer a pergunta certa aos seus dados
 
-A pergunta que você precisa responder determinará quais tipos de algoritmos de ML você irá utilizar. E a qualidade da resposta que você obtém dependerá fortemente da natureza dos seus dados.
+A pergunta que precisa de responder determinará o tipo de algoritmos de ML que irá utilizar. E a qualidade da resposta que obtém dependerá muito da natureza dos seus dados.
 
-Dê uma olhada nos [dados](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) fornecidos para esta lição. Você pode abrir este arquivo .csv no VS Code. Uma rápida olhada imediatamente mostra que há campos em branco e uma mistura de strings e dados numéricos. Também há uma coluna estranha chamada 'Package' onde os dados são uma mistura de 'sacos', 'caixas' e outros valores. Os dados, na verdade, estão um pouco bagunçados.
+Veja os [dados](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) fornecidos para esta lição. Pode abrir este ficheiro .csv no VS Code. Uma rápida análise mostra imediatamente que há espaços em branco e uma mistura de dados em formato texto e numérico. Há também uma coluna estranha chamada 'Package', onde os dados são uma mistura entre 'sacks', 'bins' e outros valores. Os dados, na verdade, estão um pouco desorganizados.
 
-[![ML para iniciantes - Como Analisar e Limpar um Conjunto de Dados](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML para iniciantes - Como Analisar e Limpar um Conjunto de Dados")
+[![ML para iniciantes - Como analisar e limpar um conjunto de dados](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML para iniciantes - Como analisar e limpar um conjunto de dados")
 
-> 🎥 Clique na imagem acima para um vídeo curto que mostra como preparar os dados para esta lição.
+> 🎥 Clique na imagem acima para assistir a um vídeo curto sobre como preparar os dados para esta lição.
 
-Na verdade, não é muito comum receber um conjunto de dados que esteja completamente pronto para ser usado na criação de um modelo de ML. Nesta lição, você aprenderá como preparar um conjunto de dados bruto usando bibliotecas padrão do Python. Você também aprenderá várias técnicas para visualizar os dados.
+De facto, não é muito comum receber um conjunto de dados completamente pronto para criar um modelo de ML diretamente. Nesta lição, irá aprender como preparar um conjunto de dados bruto usando bibliotecas padrão do Python. Também aprenderá várias técnicas para visualizar os dados.
 
 ## Estudo de caso: 'o mercado de abóboras'
 
-Nesta pasta, você encontrará um arquivo .csv na pasta raiz `data` chamado [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), que inclui 1757 linhas de dados sobre o mercado de abóboras, organizados em grupos por cidade. Estes são dados brutos extraídos dos [Relatórios Padrão dos Mercados de Produtos Especiais](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuídos pelo Departamento de Agricultura dos Estados Unidos.
+Nesta pasta encontrará um ficheiro .csv na pasta raiz `data` chamado [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), que inclui 1757 linhas de dados sobre o mercado de abóboras, organizados por cidade. Estes são dados brutos extraídos dos [Relatórios Padrão dos Mercados de Culturas Especiais](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuídos pelo Departamento de Agricultura dos Estados Unidos.
 
-### Preparando os dados
+### Preparar os dados
 
-Esses dados estão no domínio público. Eles podem ser baixados em muitos arquivos separados, por cidade, no site do USDA. Para evitar muitos arquivos separados, nós concatenamos todos os dados das cidades em uma única planilha, assim já _preparamos_ os dados um pouco. A seguir, vamos dar uma olhada mais de perto nos dados.
+Estes dados estão em domínio público. Podem ser descarregados em vários ficheiros separados, por cidade, no site do USDA. Para evitar muitos ficheiros separados, concatenámos todos os dados das cidades num único ficheiro, portanto já _preparámos_ os dados um pouco. Agora, vamos analisar os dados mais de perto.
 
-### Os dados das abóboras - conclusões iniciais
+### Os dados das abóboras - primeiras conclusões
 
-O que você nota sobre esses dados? Você já viu que há uma mistura de strings, números, campos em branco e valores estranhos que você precisa entender.
+O que nota sobre estes dados? Já viu que há uma mistura de texto, números, espaços em branco e valores estranhos que precisa de interpretar.
 
-Que pergunta você pode fazer sobre esses dados, usando uma técnica de Regressão? Que tal "Prever o preço de uma abóbora à venda durante um determinado mês". Olhando novamente para os dados, há algumas mudanças que você precisa fazer para criar a estrutura de dados necessária para a tarefa.
+Que pergunta pode fazer a estes dados, usando uma técnica de regressão? Que tal "Prever o preço de uma abóbora à venda durante um determinado mês"? Olhando novamente para os dados, há algumas alterações que precisa de fazer para criar a estrutura de dados necessária para esta tarefa.
 
 ## Exercício - analisar os dados das abóboras
 
-Vamos usar [Pandas](https://pandas.pydata.org/), (o nome se refere a `Python Data Analysis`) uma ferramenta muito útil para moldar dados, para analisar e preparar esses dados de abóbora.
+Vamos usar o [Pandas](https://pandas.pydata.org/) (o nome significa `Python Data Analysis`), uma ferramenta muito útil para moldar dados, para analisar e preparar estes dados das abóboras.
 
-### Primeiro, verifique as datas ausentes
+### Primeiro, verificar datas em falta
 
-Você precisará primeiro tomar medidas para verificar as datas ausentes:
+Primeiro, precisará de tomar medidas para verificar se há datas em falta:
 
-1. Converta as datas para um formato de mês (essas são datas dos EUA, então o formato é `MM/DD/YYYY`).
-2. Extraia o mês para uma nova coluna.
+1. Converter as datas para um formato de mês (estas são datas dos EUA, então o formato é `MM/DD/YYYY`).
+2. Extrair o mês para uma nova coluna.
 
-Abra o arquivo _notebook.ipynb_ no Visual Studio Code e importe a planilha para um novo dataframe do Pandas.
+Abra o ficheiro _notebook.ipynb_ no Visual Studio Code e importe a folha de cálculo para um novo dataframe do Pandas.
 
-1. Use a função `head()` para visualizar as cinco primeiras linhas.
+1. Use a função `head()` para visualizar as primeiras cinco linhas.
 
     ```python
     import pandas as pd
@@ -64,28 +73,28 @@ Abra o arquivo _notebook.ipynb_ no Visual Studio Code e importe a planilha para 
     pumpkins.head()
     ```
 
-    ✅ Que função você usaria para visualizar as últimas cinco linhas?
+    ✅ Que função usaria para visualizar as últimas cinco linhas?
 
-1. Verifique se há dados ausentes no dataframe atual:
+1. Verifique se há dados em falta no dataframe atual:
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    Há dados ausentes, mas talvez isso não importe para a tarefa em questão.
+    Há dados em falta, mas talvez isso não seja relevante para a tarefa em questão.
 
-1. Para tornar seu dataframe mais fácil de trabalhar, selecione apenas as colunas que você precisa, usando `loc` function which extracts from the original dataframe a group of rows (passed as first parameter) and columns (passed as second parameter). The expression `:` no caso abaixo significa "todas as linhas".
+1. Para tornar o seu dataframe mais fácil de trabalhar, selecione apenas as colunas necessárias, usando a função `loc`, que extrai do dataframe original um grupo de linhas (passado como primeiro parâmetro) e colunas (passado como segundo parâmetro). A expressão `:` no caso abaixo significa "todas as linhas".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
     pumpkins = pumpkins.loc[:, columns_to_select]
     ```
 
-### Segundo, determine o preço médio da abóbora
+### Segundo, determinar o preço médio da abóbora
 
-Pense em como determinar o preço médio de uma abóbora em um determinado mês. Quais colunas você escolheria para essa tarefa? Dica: você precisará de 3 colunas.
+Pense em como determinar o preço médio de uma abóbora num determinado mês. Que colunas escolheria para esta tarefa? Dica: precisará de 3 colunas.
 
-Solução: tire a média das colunas `Low Price` and `High Price` para preencher a nova coluna de Preço e converta a coluna de Data para mostrar apenas o mês. Felizmente, de acordo com a verificação acima, não há dados ausentes para datas ou preços.
+Solução: calcule a média das colunas `Low Price` e `High Price` para preencher a nova coluna Price e converta a coluna Date para mostrar apenas o mês. Felizmente, de acordo com a verificação acima, não há dados em falta para datas ou preços.
 
 1. Para calcular a média, adicione o seguinte código:
 
@@ -96,37 +105,37 @@ Solução: tire a média das colunas `Low Price` and `High Price` para preencher
 
     ```
 
-   ✅ Sinta-se à vontade para imprimir quaisquer dados que você gostaria de verificar usando `print(month)`.
+   ✅ Sinta-se à vontade para imprimir quaisquer dados que queira verificar usando `print(month)`.
 
-2. Agora, copie seus dados convertidos para um novo dataframe do Pandas:
+2. Agora, copie os seus dados convertidos para um novo dataframe do Pandas:
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Imprimir seu dataframe mostrará um conjunto de dados limpo e organizado sobre o qual você pode construir seu novo modelo de regressão.
+    Ao imprimir o seu dataframe, verá um conjunto de dados limpo e organizado, no qual pode construir o seu novo modelo de regressão.
 
 ### Mas espere! Há algo estranho aqui
 
-Se você olhar a coluna `Package` column, pumpkins are sold in many different configurations. Some are sold in '1 1/9 bushel' measures, and some in '1/2 bushel' measures, some per pumpkin, some per pound, and some in big boxes with varying widths.
+Se olhar para a coluna `Package`, verá que as abóboras são vendidas em muitas configurações diferentes. Algumas são vendidas em medidas de '1 1/9 bushel', outras em '1/2 bushel', algumas por abóbora, outras por peso, e algumas em grandes caixas com larguras variadas.
 
-> Pumpkins seem very hard to weigh consistently
+> Parece que as abóboras são muito difíceis de pesar de forma consistente
 
-Digging into the original data, it's interesting that anything with `Unit of Sale` equalling 'EACH' or 'PER BIN' also have the `Package` type per inch, per bin, or 'each'. Pumpkins seem to be very hard to weigh consistently, so let's filter them by selecting only pumpkins with the string 'bushel' in their `Package`.
+Ao analisar os dados originais, é interessante notar que qualquer coisa com `Unit of Sale` igual a 'EACH' ou 'PER BIN' também tem o tipo `Package` por polegada, por bin ou 'each'. Parece que as abóboras são muito difíceis de pesar de forma consistente, então vamos filtrá-las selecionando apenas abóboras com a string 'bushel' na coluna `Package`.
 
-1. Adicione um filtro no topo do arquivo, abaixo da importação inicial do .csv:
+1. Adicione um filtro no topo do ficheiro, sob a importação inicial do .csv:
 
     ```python
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    Se você imprimir os dados agora, verá que está obtendo apenas cerca de 415 linhas de dados contendo abóboras por alqueire.
+    Se imprimir os dados agora, verá que está a obter apenas cerca de 415 linhas de dados contendo abóboras por bushel.
 
 ### Mas espere! Há mais uma coisa a fazer
 
-Você notou que a quantidade de alqueire varia por linha? Você precisa normalizar o preço para mostrar o preço por alqueire, então faça algumas contas para padronizá-lo.
+Notou que a quantidade de bushel varia por linha? Precisa de normalizar os preços para mostrar o preço por bushel, então faça alguns cálculos para padronizá-lo.
 
-1. Adicione estas linhas após o bloco que cria o novo dataframe de novas_abóboras:
+1. Adicione estas linhas após o bloco que cria o dataframe new_pumpkins:
 
     ```python
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1 1/9'), 'Price'] = price/(1 + 1/9)
@@ -134,38 +143,38 @@ Você notou que a quantidade de alqueire varia por linha? Você precisa normaliz
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ De acordo com [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), o peso de um alqueire depende do tipo de produto, já que é uma medida de volume. "Um alqueire de tomates, por exemplo, deve pesar 56 libras... Folhas e verduras ocupam mais espaço com menos peso, então um alqueire de espinafre pesa apenas 20 libras." É tudo bastante complicado! Vamos não nos preocupar com a conversão de alqueire para libras e, em vez disso, precificar por alqueire. Todo esse estudo sobre alqueires de abóboras, no entanto, mostra o quão importante é entender a natureza dos seus dados!
+✅ De acordo com [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), o peso de um bushel depende do tipo de produto, pois é uma medida de volume. "Um bushel de tomates, por exemplo, deve pesar 56 libras... Folhas e verduras ocupam mais espaço com menos peso, então um bushel de espinafre pesa apenas 20 libras." É tudo bastante complicado! Vamos evitar fazer uma conversão de bushel para libra e, em vez disso, calcular o preço por bushel. Todo este estudo sobre bushels de abóboras, no entanto, mostra como é muito importante entender a natureza dos seus dados!
 
-Agora, você pode analisar o preço por unidade com base na medida de alqueire. Se você imprimir os dados mais uma vez, poderá ver como está padronizado.
+Agora, pode analisar o preço por unidade com base na medida de bushel. Se imprimir os dados mais uma vez, verá como estão padronizados.
 
-✅ Você notou que as abóboras vendidas por meio alqueire são muito caras? Você consegue descobrir por quê? Dica: pequenas abóboras são muito mais caras do que as grandes, provavelmente porque há muito mais delas por alqueire, dada a quantidade de espaço não utilizado ocupada por uma grande abóbora oca.
+✅ Reparou que as abóboras vendidas por meio bushel são muito caras? Consegue descobrir porquê? Dica: abóboras pequenas são muito mais caras do que grandes, provavelmente porque há muito mais delas por bushel, dado o espaço não utilizado ocupado por uma grande abóbora oca para torta.
 
 ## Estratégias de Visualização
 
-Parte do papel do cientista de dados é demonstrar a qualidade e a natureza dos dados com os quais estão trabalhando. Para fazer isso, eles costumam criar visualizações interessantes, ou gráficos, mostrando diferentes aspectos dos dados. Dessa forma, eles conseguem mostrar visualmente relacionamentos e lacunas que, de outra forma, seriam difíceis de descobrir.
+Parte do papel do cientista de dados é demonstrar a qualidade e a natureza dos dados com os quais está a trabalhar. Para isso, frequentemente criam visualizações interessantes, como gráficos, diagramas e tabelas, mostrando diferentes aspetos dos dados. Desta forma, conseguem mostrar visualmente relações e lacunas que, de outra forma, seriam difíceis de identificar.
 
-[![ML para iniciantes - Como Visualizar Dados com Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML para iniciantes - Como Visualizar Dados com Matplotlib")
+[![ML para iniciantes - Como visualizar dados com Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML para iniciantes - Como visualizar dados com Matplotlib")
 
-> 🎥 Clique na imagem acima para um vídeo curto que mostra como visualizar os dados para esta lição.
+> 🎥 Clique na imagem acima para assistir a um vídeo curto sobre como visualizar os dados para esta lição.
 
-As visualizações também podem ajudar a determinar a técnica de aprendizado de máquina mais apropriada para os dados. Um gráfico de dispersão que parece seguir uma linha, por exemplo, indica que os dados são um bom candidato para um exercício de regressão linear.
+As visualizações também podem ajudar a determinar a técnica de machine learning mais apropriada para os dados. Um gráfico de dispersão que parece seguir uma linha, por exemplo, indica que os dados são bons candidatos para um exercício de regressão linear.
 
-Uma biblioteca de visualização de dados que funciona bem em notebooks Jupyter é [Matplotlib](https://matplotlib.org/) (que você também viu na lição anterior).
+Uma biblioteca de visualização de dados que funciona bem em notebooks Jupyter é [Matplotlib](https://matplotlib.org/) (que também viu na lição anterior).
 
-> Obtenha mais experiência com visualização de dados em [esses tutoriais](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
+> Obtenha mais experiência com visualização de dados nestes [tutoriais](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
-## Exercício - experimente com Matplotlib
+## Exercício - experimentar com Matplotlib
 
-Tente criar alguns gráficos básicos para exibir o novo dataframe que você acabou de criar. O que um gráfico de linhas básico mostraria?
+Tente criar alguns gráficos básicos para exibir o novo dataframe que acabou de criar. O que um gráfico de linha básico mostraria?
 
-1. Importe o Matplotlib no topo do arquivo, abaixo da importação do Pandas:
+1. Importe o Matplotlib no topo do ficheiro, sob a importação do Pandas:
 
     ```python
     import matplotlib.pyplot as plt
     ```
 
 1. Execute novamente todo o notebook para atualizar.
-1. Na parte inferior do notebook, adicione uma célula para plotar os dados como um box:
+1. No final do notebook, adicione uma célula para plotar os dados como um boxplot:
 
     ```python
     price = new_pumpkins.Price
@@ -174,26 +183,26 @@ Tente criar alguns gráficos básicos para exibir o novo dataframe que você aca
     plt.show()
     ```
 
-    ![Um gráfico de dispersão mostrando a relação preço-mês](../../../../translated_images/scatterplot.b6868f44cbd2051c6680ccdbb1510697d06a3ff6cd4abda656f5009c0ed4e3fc.pt.png)
+    ![Um gráfico de dispersão mostrando a relação entre preço e mês](../../../../2-Regression/2-Data/images/scatterplot.png)
 
-    Este é um gráfico útil? Há algo nele que te surpreende?
+    Este gráfico é útil? Há algo nele que o surpreenda?
 
-    Não é particularmente útil, pois tudo o que faz é exibir seus dados como uma dispersão de pontos em um determinado mês.
+    Não é particularmente útil, pois apenas exibe os seus dados como uma dispersão de pontos num determinado mês.
 
-### Torne-o útil
+### Torná-lo útil
 
-Para que os gráficos exibam dados úteis, geralmente é necessário agrupar os dados de alguma forma. Vamos tentar criar um gráfico onde o eixo y mostra os meses e os dados demonstram a distribuição dos dados.
+Para que os gráficos exibam dados úteis, geralmente é necessário agrupar os dados de alguma forma. Vamos tentar criar um gráfico onde o eixo y mostra os meses e os dados demonstram a distribuição.
 
-1. Adicione uma célula para criar um gráfico de barras agrupadas:
+1. Adicione uma célula para criar um gráfico de barras agrupado:
 
     ```python
     new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Um gráfico de barras mostrando a relação preço-mês](../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.pt.png)
+    ![Um gráfico de barras mostrando a relação entre preço e mês](../../../../2-Regression/2-Data/images/barchart.png)
 
-    Esta é uma visualização de dados mais útil! Parece indicar que o preço mais alto das abóboras ocorre em setembro e outubro. Isso atende à sua expectativa? Por que ou por que não?
+    Este é um gráfico de visualização de dados mais útil! Parece indicar que o preço mais alto das abóboras ocorre em setembro e outubro. Isso corresponde às suas expectativas? Porquê ou porquê não?
 
 ---
 
@@ -201,15 +210,17 @@ Para que os gráficos exibam dados úteis, geralmente é necessário agrupar os 
 
 Explore os diferentes tipos de visualização que o Matplotlib oferece. Quais tipos são mais apropriados para problemas de regressão?
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisão e Estudo Pessoal
+## Revisão & Autoestudo
 
-Dê uma olhada nas muitas maneiras de visualizar dados. Faça uma lista das várias bibliotecas disponíveis e observe quais são melhores para determinados tipos de tarefas, por exemplo, visualizações 2D vs. 3D. O que você descobre?
+Explore as várias formas de visualizar dados. Faça uma lista das diferentes bibliotecas disponíveis e anote quais são melhores para determinados tipos de tarefas, por exemplo, visualizações 2D vs. visualizações 3D. O que descobre?
 
 ## Tarefa
 
-[Explorando visualização](assignment.md)
+[Explorar visualização](assignment.md)
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido usando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em sua língua nativa deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações erradas decorrentes do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

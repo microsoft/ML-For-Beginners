@@ -1,57 +1,66 @@
-# 料理推薦Webアプリを作成しよう
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-06T09:37:03+00:00",
+  "source_file": "4-Classification/4-Applied/README.md",
+  "language_code": "ja"
+}
+-->
+# 料理推薦ウェブアプリを作成する
 
-このレッスンでは、以前のレッスンで学んだ技術と、このシリーズ全体で使用されているおいしい料理データセットを使用して、分類モデルを構築します。さらに、保存したモデルを使用する小さなWebアプリを構築し、OnnxのWebランタイムを活用します。
+このレッスンでは、これまでのレッスンで学んだ技術を活用し、美味しい料理データセットを使用して分類モデルを構築します。また、保存したモデルを使用する小さなウェブアプリを作成し、Onnxのウェブランタイムを活用します。
 
-機械学習の最も実用的な用途の一つは推薦システムの構築であり、今日からその方向に一歩を踏み出すことができます！
+機械学習の最も実用的な用途の1つは推薦システムの構築です。今日はその第一歩を踏み出しましょう！
 
-[![このWebアプリのプレゼンテーション](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
+[![このウェブアプリを紹介](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
-> 🎥 上の画像をクリックしてビデオを見る: Jen Looperが分類された料理データを使用してWebアプリを構築します
+> 🎥 上の画像をクリックすると動画が再生されます: Jen Looperが分類された料理データを使用してウェブアプリを構築します
 
-## [レッスン前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [講義前クイズ](https://ff-quizzes.netlify.app/en/ml/)
 
 このレッスンで学ぶこと:
 
-- モデルを構築してOnnxモデルとして保存する方法
-- Netronを使用してモデルを検査する方法
-- 推論のためにWebアプリでモデルを使用する方法
+- モデルを構築し、Onnxモデルとして保存する方法
+- Netronを使用してモデルを確認する方法
+- ウェブアプリでモデルを使用して推論を行う方法
 
-## モデルを構築しよう
+## モデルを構築する
 
-ビジネスシステムにこれらの技術を活用するためには、応用機械学習システムを構築することが重要です。Onnxを使用することで、Webアプリケーション内でモデルを使用し（必要に応じてオフラインコンテキストでも使用可能）、JavaScriptアプリケーションで使用することができます。
+応用機械学習システムを構築することは、これらの技術をビジネスシステムに活用する重要な部分です。Onnxを使用することで、ウェブアプリケーション内でモデルを使用し、必要に応じてオフライン環境でも利用できます。
 
-[前のレッスン](../../3-Web-App/1-Web-App/README.md)では、UFO目撃情報についての回帰モデルを構築し、それをFlaskアプリで使用しました。このアーキテクチャは非常に有用ですが、フルスタックのPythonアプリであり、JavaScriptアプリケーションを使用する要件があるかもしれません。
+[前のレッスン](../../3-Web-App/1-Web-App/README.md)では、UFO目撃情報に関する回帰モデルを構築し、「ピクル化」してFlaskアプリで使用しました。このアーキテクチャは非常に有用ですが、フルスタックのPythonアプリであり、要件によってはJavaScriptアプリケーションを使用する必要がある場合があります。
 
-このレッスンでは、推論のための基本的なJavaScriptベースのシステムを構築できます。しかし、まずモデルを訓練し、Onnxで使用するために変換する必要があります。
+このレッスンでは、推論のための基本的なJavaScriptベースのシステムを構築します。ただし、まずモデルをトレーニングし、Onnxで使用できるように変換する必要があります。
 
-## 演習 - 分類モデルを訓練しよう
+## 演習 - 分類モデルをトレーニングする
 
-まず、使用したクリーンな料理データセットを使用して分類モデルを訓練します。
+まず、以前使用したクリーンな料理データセットを使用して分類モデルをトレーニングします。
 
-1. 有用なライブラリをインポートすることから始めます：
+1. 便利なライブラリをインポートします:
 
     ```python
     !pip install skl2onnx
     import pandas as pd 
     ```
 
-    Scikit-learnモデルをOnnx形式に変換するために '[skl2onnx](https://onnx.ai/sklearn-onnx/)' が必要です。
+    Scikit-learnモデルをOnnx形式に変換するために、'[skl2onnx](https://onnx.ai/sklearn-onnx/)'が必要です。
 
-1. 次に、前のレッスンと同じ方法でデータを処理し、`read_csv()`を使用してCSVファイルを読み込みます：
+1. 前のレッスンと同様に、`read_csv()`を使用してCSVファイルを読み込みます:
 
     ```python
     data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
-1. 不要な最初の2列を削除し、残りのデータを 'X' として保存します：
+1. 最初の2つの不要な列を削除し、残りのデータを「X」として保存します:
 
     ```python
     X = data.iloc[:,2:]
     X.head()
     ```
 
-1. ラベルを 'y' として保存します：
+1. ラベルを「y」として保存します:
 
     ```python
     y = data[['cuisine']]
@@ -59,11 +68,11 @@
     
     ```
 
-### 訓練ルーチンを開始しよう
+### トレーニングルーチンを開始する
 
-'SVC' ライブラリを使用します。これは高い精度を持っています。
+精度が良い「SVC」ライブラリを使用します。
 
-1. Scikit-learnから適切なライブラリをインポートします：
+1. Scikit-learnから適切なライブラリをインポートします:
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -72,32 +81,32 @@
     from sklearn.metrics import accuracy_score,precision_score,confusion_matrix,classification_report
     ```
 
-1. 訓練セットとテストセットを分けます：
+1. トレーニングセットとテストセットを分割します:
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
     ```
 
-1. 前のレッスンで行ったように、SVC分類モデルを構築します：
+1. 前のレッスンと同様にSVC分類モデルを構築します:
 
     ```python
     model = SVC(kernel='linear', C=10, probability=True,random_state=0)
     model.fit(X_train,y_train.values.ravel())
     ```
 
-1. 次に、`predict()`を呼び出してモデルをテストします：
+1. 次に、`predict()`を呼び出してモデルをテストします:
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-1. モデルの品質を確認するために分類レポートを出力します：
+1. 分類レポートを出力してモデルの品質を確認します:
 
     ```python
     print(classification_report(y_test,y_pred))
     ```
 
-    以前見たように、精度は良好です：
+    以前見たように、精度は良好です:
 
     ```output
                     precision    recall  f1-score   support
@@ -113,11 +122,11 @@
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-### モデルをOnnxに変換しよう
+### モデルをOnnxに変換する
 
-適切なテンソル数で変換を行うことを確認してください。このデータセットには380の成分が記載されているため、`FloatTensorType`にその数を記載する必要があります：
+適切なテンソル数で変換を行うことを確認してください。このデータセットには380の材料がリストされているため、`FloatTensorType`にその数を記載する必要があります。
 
-1. 380のテンソル数を使用して変換します。
+1. テンソル数380で変換します。
 
     ```python
     from skl2onnx import convert_sklearn
@@ -127,7 +136,7 @@
     options = {id(model): {'nocl': True, 'zipmap': False}}
     ```
 
-1. onxを作成し、ファイル **model.onnx** として保存します：
+1. **model.onnx**というファイルとして保存します:
 
     ```python
     onx = convert_sklearn(model, initial_types=initial_type, options=options)
@@ -135,25 +144,25 @@
         f.write(onx.SerializeToString())
     ```
 
-    > Note、変換スクリプトに[オプション](https://onnx.ai/sklearn-onnx/parameterized.html)を渡すことができます。この場合、'nocl'をTrue、'zipmap'をFalseに設定しました。これは分類モデルなので、辞書のリストを生成するZipMapを削除するオプションがあります（必要ありません）。`nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'. 
+    > 注意: 変換スクリプトに[オプション](https://onnx.ai/sklearn-onnx/parameterized.html)を渡すことができます。この場合、「nocl」をTrue、「zipmap」をFalseに設定しました。このモデルは分類モデルであるため、辞書のリストを生成するZipMapを削除するオプションがあります（不要）。「nocl」はモデルにクラス情報を含めるかどうかを指します。「nocl」をTrueに設定してモデルのサイズを縮小します。
 
-Running the entire notebook will now build an Onnx model and save it to this folder.
+ノートブック全体を実行すると、Onnxモデルが構築され、このフォルダに保存されます。
 
-## View your model
+## モデルを確認する
 
-Onnx models are not very visible in Visual Studio code, but there's a very good free software that many researchers use to visualize the model to ensure that it is properly built. Download [Netron](https://github.com/lutzroeder/Netron) and  open your model.onnx file. You can see your simple model visualized, with its 380 inputs and classifier listed:
+OnnxモデルはVisual Studio Codeではあまり視覚的に確認できませんが、多くの研究者が使用する非常に優れた無料ソフトウェアがあります。モデルが正しく構築されていることを確認するために[Netron](https://github.com/lutzroeder/Netron)をダウンロードし、model.onnxファイルを開きます。380の入力と分類器がリストされたシンプルなモデルが視覚化されます:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.ja.png)
+![Netronの視覚化](../../../../4-Classification/4-Applied/images/netron.png)
 
-Netron is a helpful tool to view your models.
+Netronはモデルを確認するための便利なツールです。
 
-Now you are ready to use this neat model in a web app. Let's build an app that will come in handy when you look in your refrigerator and try to figure out which combination of your leftover ingredients you can use to cook a given cuisine, as determined by your model.
+これで、この便利なモデルをウェブアプリで使用する準備が整いました。冷蔵庫を見て、残り物の材料の組み合わせでどの料理を作れるかをモデルで判断するアプリを作りましょう。
 
-## Build a recommender web application
+## 推薦ウェブアプリを構築する
 
-You can use your model directly in a web app. This architecture also allows you to run it locally and even offline if needed. Start by creating an `index.html` file in the same folder where you stored your `model.onnx`ファイル。
+モデルを直接ウェブアプリで使用できます。このアーキテクチャにより、ローカルで実行したり、必要に応じてオフラインでも使用できます。`model.onnx`ファイルを保存したのと同じフォルダに`index.html`ファイルを作成することから始めます。
 
-1. このファイル _index.html_ に次のマークアップを追加します：
+1. このファイル _index.html_ に以下のマークアップを追加します:
 
     ```html
     <!DOCTYPE html>
@@ -167,7 +176,7 @@ You can use your model directly in a web app. This architecture also allows you 
     </html>
     ```
 
-1. 次に、`body`タグ内で、いくつかの成分を反映するチェックボックスのリストを表示するための少しのマークアップを追加します：
+1. 次に、`body`タグ内で、いくつかの材料を反映するチェックボックスのリストを表示するためのマークアップを追加します:
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -212,19 +221,19 @@ You can use your model directly in a web app. This architecture also allows you 
             </div> 
     ```
 
-    各チェックボックスには値が与えられています。これは、データセットに従って成分が見つかるインデックスを反映しています。例えば、リンゴはこのアルファベット順のリストの5番目の列を占めるため、その値は'4'です（0から数え始めます）。[成分スプレッドシート](../../../../4-Classification/data/ingredient_indexes.csv)を参照して、特定の成分のインデックスを確認できます。
+    各チェックボックスには値が設定されています。これはデータセットに基づいて材料が見つかるインデックスを反映しています。例えば、Appleはこのアルファベット順のリストで5番目の列にあり、カウントが0から始まるため、その値は「4」です。[材料スプレッドシート](../../../../4-Classification/data/ingredient_indexes.csv)を参照して、特定の材料のインデックスを確認できます。
 
-    index.htmlファイルでの作業を続け、最終的な閉じタグ`</div>`の後にモデルを呼び出すスクリプトブロックを追加します。
+    index.htmlファイルで作業を続け、最後の閉じタグ`</div>`の後にスクリプトブロックを追加してモデルを呼び出します。
 
-1. まず、[Onnxランタイム](https://www.onnxruntime.ai/)をインポートします：
+1. まず、[Onnx Runtime](https://www.onnxruntime.ai/)をインポートします:
 
     ```html
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Onnxランタイムは、幅広いハードウェアプラットフォームでOnnxモデルを実行できるようにするために使用され、最適化と使用するためのAPIを提供します。
+    > Onnx Runtimeは、幅広いハードウェアプラットフォームでOnnxモデルを実行できるようにするために使用され、最適化やAPIを提供します。
 
-1. ランタイムが設定されたら、それを呼び出します：
+1. Runtimeが設定されたら、呼び出します:
 
     ```html
     <script>
@@ -276,42 +285,45 @@ You can use your model directly in a web app. This architecture also allows you 
     </script>
     ```
 
-このコードでは、いくつかのことが行われています：
+このコードでは、以下のことが行われています:
 
-1. モデルに送信するために、成分チェックボックスがチェックされているかどうかに応じて設定される380の可能な値（1または0）の配列を作成しました。
-2. チェックボックスの配列を作成し、それらがチェックされているかどうかを決定する方法を`init` function that is called when the application starts. When a checkbox is checked, the `ingredients` array is altered to reflect the chosen ingredient.
-3. You created a `testCheckboxes` function that checks whether any checkbox was checked.
-4. You use `startInference` function when the button is pressed and, if any checkbox is checked, you start inference.
-5. The inference routine includes:
-   1. Setting up an asynchronous load of the model
-   2. Creating a Tensor structure to send to the model
-   3. Creating 'feeds' that reflects the `float_input` input that you created when training your model (you can use Netron to verify that name)
-   4. Sending these 'feeds' to the model and waiting for a response
+1. 380の可能な値（1または0）の配列を作成し、材料のチェックボックスがチェックされているかどうかに応じてモデルに送信します。
+2. チェックボックスの配列を作成し、アプリケーションが開始されたときに呼び出される`init`関数でチェックされているかどうかを確認します。チェックボックスがチェックされると、`ingredients`配列が選択された材料を反映するように変更されます。
+3. チェックボックスがチェックされているかどうかを確認する`testCheckboxes`関数を作成します。
+4. ボタンが押されたときに`startInference`関数を使用し、チェックボックスがチェックされている場合は推論を開始します。
+5. 推論ルーチンには以下が含まれます:
+   1. モデルの非同期ロードを設定
+   2. モデルに送信するテンソル構造を作成
+   3. トレーニング時に作成した`float_input`入力を反映する「feeds」を作成（Netronを使用して名前を確認できます）
+   4. これらの「feeds」をモデルに送信し、応答を待つ
 
-## Test your application
+## アプリケーションをテストする
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server`プロンプトで。ローカルホストが開き、Webアプリを見ることができます。さまざまな成分に基づいてどの料理が推奨されるかを確認してください：
+Visual Studio Codeのターミナルセッションを開き、index.htmlファイルがあるフォルダに移動します。[http-server](https://www.npmjs.com/package/http-server)がグローバルにインストールされていることを確認し、プロンプトで`http-server`と入力します。ローカルホストが開き、ウェブアプリを表示できます。さまざまな材料に基づいてどの料理が推薦されるかを確認してください:
 
-![成分Webアプリ](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.ja.png)
+![材料ウェブアプリ](../../../../4-Classification/4-Applied/images/web-app.png)
 
-おめでとうございます、いくつかのフィールドを持つ「推薦」Webアプリを作成しました。このシステムを構築するために時間をかけてください！
+おめでとうございます！いくつかのフィールドを持つ「推薦」ウェブアプリを作成しました。このシステムを構築する時間を取ってください！
+
 ## 🚀チャレンジ
 
-Webアプリは非常にミニマルなので、[ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv)データの成分とそのインデックスを使用して引き続き構築してください。どのような風味の組み合わせが特定の国の料理を作るのに役立ちますか？
+ウェブアプリは非常にシンプルなので、[ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv)データの材料とそのインデックスを使用してさらに構築してください。どの味の組み合わせが特定の国の料理を作るのに適しているでしょうか？
 
-## [レッスン後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [講義後クイズ](https://ff-quizzes.netlify.app/en/ml/)
 
-## レビューと自己学習
+## 復習と自己学習
 
-このレッスンでは、食材の推薦システムの作成の有用性について簡単に触れましたが、この分野のMLアプリケーションには多くの例があります。これらのシステムがどのように構築されているかについてもっと読んでください：
+このレッスンでは、食品材料の推薦システムを作成することの有用性に触れただけですが、この分野の機械学習アプリケーションには豊富な例があります。これらのシステムがどのように構築されるかについてさらに読んでみてください:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
 - https://www.technologyreview.com/2015/03/23/168831/everything-is-a-recommendation/
 
-## 課題 
+## 課題
 
 [新しい推薦システムを構築する](assignment.md)
 
-**免責事項**:
-この文書は、機械ベースのAI翻訳サービスを使用して翻訳されています。正確性を期すために努力していますが、自動翻訳には誤りや不正確さが含まれる場合があります。元の言語での原文を権威ある情報源と見なすべきです。重要な情報については、専門の人間による翻訳をお勧めします。この翻訳の使用に起因する誤解や誤解について、当社は責任を負いません。
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確さが含まれる可能性があります。元の言語で記載された原文が正式な情報源と見なされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤認について、当社は一切の責任を負いません。

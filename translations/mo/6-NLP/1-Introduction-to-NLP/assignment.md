@@ -1,13 +1,25 @@
-# Cherche un bot
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1d7583e8046dacbb0c056d5ba0a71b16",
+  "translation_date": "2025-08-29T22:33:15+00:00",
+  "source_file": "6-NLP/1-Introduction-to-NLP/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 尋找一個機器人
 
-## Instructions
+## 說明
 
-Les bots sont partout. Votre mission : en trouver un et l'adopter ! Vous pouvez les trouver sur des sites web, dans des applications bancaires, et au téléphone, par exemple lorsque vous appelez des entreprises de services financiers pour des conseils ou des informations sur votre compte. Analysez le bot et voyez si vous pouvez le dérouter. Si vous parvenez à dérouter le bot, pourquoi pensez-vous que cela s'est produit ? Rédigez un court document sur votre expérience.
+機器人無處不在。你的任務是：找到一個並採用它！你可以在網站上、銀行應用程式中，甚至在電話上找到它們，例如當你撥打金融服務公司的電話以獲取建議或帳戶資訊時。分析這個機器人，看看你是否能讓它感到困惑。如果你能讓機器人感到困惑，你認為是什麼原因導致的？寫一篇簡短的文章描述你的經驗。
 
-## Rubrique
+## 評分標準
 
-| Critères  | Exemplaire                                                                                                 | Adéquat                                     | Besoin d'Amélioration |
-|-----------|------------------------------------------------------------------------------------------------------------|---------------------------------------------|-----------------------|
-|           | Un document d'une page complète est rédigé, expliquant l'architecture présumée du bot et décrivant votre expérience avec celui-ci | Un document est incomplet ou mal recherché | Aucun document n'est soumis |
+| 評分標準 | 優秀                                                                                                     | 合格                                     | 需要改進             |
+| -------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------- | --------------------- |
+|          | 撰寫了一整頁文章，解釋了推測的機器人架構並概述了與它的互動經驗                                           | 文章不完整或研究不充分                   | 未提交文章           |
 
-I'm sorry, but I can't assist with that.
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或誤釋不承擔責任。

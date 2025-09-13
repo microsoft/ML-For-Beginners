@@ -1,13 +1,24 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
+  "translation_date": "2025-09-03T16:12:59+00:00",
+  "source_file": "SUPPORT.md",
+  "language_code": "pt"
+}
+-->
 # Suporte
-## Como registrar problemas e obter ajuda  
+## Como reportar problemas e obter ajuda  
 
-Este projeto utiliza o GitHub Issues para rastrear bugs e solicitações de recursos. Por favor, pesquise os problemas existentes antes de registrar novos problemas para evitar duplicatas. Para novos problemas, registre seu bug ou solicitação de recurso como uma nova Issue.
+Este projeto utiliza o GitHub Issues para acompanhar erros e pedidos de funcionalidades. Por favor, pesquise os problemas existentes antes de criar novos para evitar duplicados. Para novos problemas, reporte o seu erro ou pedido de funcionalidade como um novo Issue.
 
-Para ajuda e perguntas sobre o uso deste projeto, registre uma issue.
+Para obter ajuda e esclarecer dúvidas sobre a utilização deste projeto, crie um Issue.
 
 ## Política de Suporte da Microsoft  
 
-O suporte para este repositório é limitado aos recursos listados acima.
+O suporte para este repositório está limitado aos recursos listados acima.
 
-**Isenção de responsabilidade**:  
-Este documento foi traduzido usando serviços de tradução baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em sua língua nativa deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações errôneas decorrentes do uso desta tradução.
+---
+
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

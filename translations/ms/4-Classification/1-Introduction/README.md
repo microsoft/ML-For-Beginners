@@ -1,65 +1,76 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "aaf391d922bd6de5efba871d514c6d47",
+  "translation_date": "2025-09-05T19:59:55+00:00",
+  "source_file": "4-Classification/1-Introduction/README.md",
+  "language_code": "ms"
+}
+-->
 # Pengenalan kepada klasifikasi
 
-Dalam empat pelajaran ini, anda akan meneroka fokus asas pembelajaran mesin klasik - _klasifikasi_. Kami akan melalui penggunaan pelbagai algoritma klasifikasi dengan set data tentang semua masakan hebat di Asia dan India. Harap anda lapar!
+Dalam empat pelajaran ini, anda akan meneroka fokus asas pembelajaran mesin klasik - _klasifikasi_. Kita akan menggunakan pelbagai algoritma klasifikasi dengan dataset tentang semua masakan hebat dari Asia dan India. Semoga anda lapar!
 
-![just a pinch!](../../../../translated_images/pinch.1b035ec9ba7e0d408313b551b60c721c9c290b2dd2094115bc87e6ddacd114c9.ms.png)
+![hanya secubit!](../../../../4-Classification/1-Introduction/images/pinch.png)
 
 > Raikan masakan pan-Asia dalam pelajaran ini! Imej oleh [Jen Looper](https://twitter.com/jenlooper)
 
-Klasifikasi adalah satu bentuk [pembelajaran berarah](https://wikipedia.org/wiki/Supervised_learning) yang banyak persamaannya dengan teknik regresi. Jika pembelajaran mesin adalah tentang meramal nilai atau nama kepada sesuatu dengan menggunakan set data, maka klasifikasi umumnya terbahagi kepada dua kumpulan: _klasifikasi binari_ dan _klasifikasi berbilang kelas_.
+Klasifikasi adalah satu bentuk [pembelajaran terkawal](https://wikipedia.org/wiki/Supervised_learning) yang mempunyai banyak persamaan dengan teknik regresi. Jika pembelajaran mesin berkaitan dengan meramalkan nilai atau nama sesuatu menggunakan dataset, maka klasifikasi biasanya terbahagi kepada dua kumpulan: _klasifikasi binari_ dan _klasifikasi pelbagai kelas_.
 
 [![Pengenalan kepada klasifikasi](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Pengenalan kepada klasifikasi")
 
+> 🎥 Klik imej di atas untuk video: John Guttag dari MIT memperkenalkan klasifikasi
+
 Ingat:
 
-- **Regresi linear** membantu anda meramal hubungan antara pembolehubah dan membuat ramalan tepat di mana titik data baru akan jatuh dalam hubungan dengan garis tersebut. Jadi, anda boleh meramal _berapa harga labu pada bulan September vs. Disember_, sebagai contoh.
-- **Regresi logistik** membantu anda menemui "kategori binari": pada titik harga ini, _adakah labu ini oren atau tidak-oren_?
+- **Regresi linear** membantu anda meramalkan hubungan antara pemboleh ubah dan membuat ramalan tepat tentang di mana titik data baru akan berada dalam hubungan dengan garis tersebut. Sebagai contoh, anda boleh meramalkan _berapa harga labu pada bulan September berbanding Disember_.
+- **Regresi logistik** membantu anda menemui "kategori binari": pada titik harga ini, _adakah labu ini berwarna oren atau tidak-oren_?
 
-Klasifikasi menggunakan pelbagai algoritma untuk menentukan cara lain dalam menentukan label atau kelas sesuatu titik data. Mari kita bekerja dengan data masakan ini untuk melihat sama ada, dengan memerhatikan sekumpulan bahan, kita boleh menentukan asal usul masakannya.
+Klasifikasi menggunakan pelbagai algoritma untuk menentukan cara lain dalam menentukan label atau kelas titik data. Mari kita bekerja dengan data masakan ini untuk melihat sama ada, dengan memerhatikan sekumpulan bahan, kita boleh menentukan asal-usul masakannya.
 
-## [Kuiz pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/)
+## [Kuiz pra-pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Pelajaran ini tersedia dalam R!](../../../../4-Classification/1-Introduction/solution/R/lesson_10.html)
 
 ### Pengenalan
 
-Klasifikasi adalah salah satu aktiviti asas penyelidik pembelajaran mesin dan saintis data. Dari klasifikasi asas nilai binari ("adakah emel ini spam atau tidak?"), kepada klasifikasi dan segmentasi imej yang kompleks menggunakan visi komputer, adalah selalu berguna untuk dapat menyusun data ke dalam kelas dan bertanya soalan mengenainya.
+Klasifikasi adalah salah satu aktiviti asas bagi penyelidik pembelajaran mesin dan saintis data. Daripada klasifikasi asas nilai binari ("adakah e-mel ini spam atau tidak?"), kepada klasifikasi imej kompleks dan segmentasi menggunakan penglihatan komputer, sentiasa berguna untuk dapat menyusun data ke dalam kelas dan bertanya soalan mengenainya.
 
-Untuk menyatakan proses ini dengan cara yang lebih saintifik, kaedah klasifikasi anda mencipta model ramalan yang membolehkan anda memetakan hubungan antara pembolehubah input kepada pembolehubah output.
+Untuk menyatakan proses ini dengan cara yang lebih saintifik, kaedah klasifikasi anda mencipta model ramalan yang membolehkan anda memetakan hubungan antara pemboleh ubah input kepada pemboleh ubah output.
 
-![klasifikasi binari vs. berbilang kelas](../../../../translated_images/binary-multiclass.b56d0c86c81105a697dddd82242c1d11e4d78b7afefea07a44627a0f1111c1a9.ms.png)
+![klasifikasi binari vs. pelbagai kelas](../../../../4-Classification/1-Introduction/images/binary-multiclass.png)
 
-> Masalah binari vs. berbilang kelas untuk algoritma klasifikasi untuk diatasi. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
+> Masalah binari vs. pelbagai kelas untuk algoritma klasifikasi. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
-Sebelum memulakan proses membersihkan data, memvisualisasikannya, dan menyiapkannya untuk tugas ML kita, mari kita belajar sedikit tentang pelbagai cara pembelajaran mesin boleh digunakan untuk mengklasifikasikan data.
+Sebelum memulakan proses membersihkan data, memvisualisasikannya, dan menyediakan data untuk tugas ML kita, mari kita belajar sedikit tentang pelbagai cara pembelajaran mesin boleh digunakan untuk mengklasifikasikan data.
 
-Diperoleh daripada [statistik](https://wikipedia.org/wiki/Statistical_classification), klasifikasi menggunakan pembelajaran mesin klasik menggunakan ciri-ciri, seperti `smoker`, `weight`, dan `age` untuk menentukan _kemungkinan mengembangkan penyakit X_. Sebagai teknik pembelajaran berarah yang serupa dengan latihan regresi yang anda lakukan sebelum ini, data anda dilabelkan dan algoritma ML menggunakan label tersebut untuk mengklasifikasikan dan meramal kelas (atau 'ciri-ciri') satu set data dan menetapkannya kepada satu kumpulan atau hasil.
+Berasal daripada [statistik](https://wikipedia.org/wiki/Statistical_classification), klasifikasi menggunakan pembelajaran mesin klasik menggunakan ciri-ciri seperti `smoker`, `weight`, dan `age` untuk menentukan _kemungkinan menghidap penyakit X_. Sebagai teknik pembelajaran terkawal yang serupa dengan latihan regresi yang anda lakukan sebelum ini, data anda dilabelkan dan algoritma ML menggunakan label tersebut untuk mengklasifikasikan dan meramalkan kelas (atau 'ciri') dataset dan menetapkannya kepada kumpulan atau hasil.
 
-✅ Luangkan masa sejenak untuk membayangkan set data tentang masakan. Apakah yang boleh dijawab oleh model berbilang kelas? Apakah yang boleh dijawab oleh model binari? Bagaimana jika anda ingin menentukan sama ada sesuatu masakan mungkin menggunakan fenugreek? Bagaimana jika anda ingin melihat jika, dengan pemberian beg runcit penuh dengan bunga lawang, artichoke, kembang kol, dan lobak pedas, anda boleh mencipta hidangan India yang tipikal?
+✅ Luangkan masa untuk membayangkan dataset tentang masakan. Apakah yang boleh dijawab oleh model pelbagai kelas? Apakah yang boleh dijawab oleh model binari? Bagaimana jika anda ingin menentukan sama ada sesuatu masakan cenderung menggunakan fenugreek? Bagaimana jika anda ingin melihat sama ada, dengan kehadiran beg runcit penuh dengan bunga lawang, artichoke, kembang kol, dan lobak pedas, anda boleh mencipta hidangan India yang tipikal?
 
-[![Bakul misteri gila](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Bakul misteri gila")
+[![Bakul misteri yang gila](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Bakul misteri yang gila")
 
-> 🎥 Klik imej di atas untuk video. Premis keseluruhan rancangan 'Chopped' adalah 'bakul misteri' di mana chef perlu membuat hidangan daripada pilihan bahan yang rawak. Pasti model ML akan membantu!
+> 🎥 Klik imej di atas untuk video. Premis utama rancangan 'Chopped' adalah 'bakul misteri' di mana chef perlu membuat hidangan daripada pilihan bahan yang rawak. Pasti model ML akan membantu!
 
 ## Hello 'classifier'
 
-Soalan yang ingin kita tanya tentang set data masakan ini sebenarnya adalah soalan **berbilang kelas**, kerana kita mempunyai beberapa masakan kebangsaan yang berpotensi untuk bekerja dengannya. Diberikan sekumpulan bahan, kelas manakah yang akan data ini sesuai?
+Soalan yang ingin kita tanyakan kepada dataset masakan ini sebenarnya adalah soalan **pelbagai kelas**, kerana kita mempunyai beberapa kemungkinan masakan kebangsaan untuk diterokai. Berdasarkan sekumpulan bahan, kelas mana daripada banyak kelas ini yang sesuai dengan data?
 
-Scikit-learn menawarkan beberapa algoritma yang berbeza untuk digunakan untuk mengklasifikasikan data, bergantung kepada jenis masalah yang anda ingin selesaikan. Dalam dua pelajaran seterusnya, anda akan belajar tentang beberapa algoritma ini.
+Scikit-learn menawarkan beberapa algoritma berbeza untuk digunakan bagi mengklasifikasikan data, bergantung kepada jenis masalah yang ingin anda selesaikan. Dalam dua pelajaran seterusnya, anda akan belajar tentang beberapa algoritma ini.
 
 ## Latihan - bersihkan dan seimbangkan data anda
 
-Tugas pertama yang perlu dilakukan, sebelum memulakan projek ini, adalah membersihkan dan **mengimbangkan** data anda untuk mendapatkan hasil yang lebih baik. Mulakan dengan fail _notebook.ipynb_ kosong di akar folder ini.
+Tugas pertama sebelum memulakan projek ini adalah membersihkan dan **menyeimbangkan** data anda untuk mendapatkan hasil yang lebih baik. Mulakan dengan fail kosong _notebook.ipynb_ dalam root folder ini.
 
-Perkara pertama yang perlu dipasang adalah [imblearn](https://imbalanced-learn.org/stable/). Ini adalah pakej Scikit-learn yang akan membolehkan anda mengimbangkan data dengan lebih baik (anda akan belajar lebih lanjut tentang tugas ini sebentar lagi).
+Perkara pertama yang perlu dipasang ialah [imblearn](https://imbalanced-learn.org/stable/). Ini adalah pakej Scikit-learn yang akan membolehkan anda menyeimbangkan data dengan lebih baik (anda akan belajar lebih lanjut tentang tugas ini sebentar lagi).
 
-1. Untuk memasang `imblearn`, jalankan `pip install`, seperti ini:
+1. Untuk memasang `imblearn`, jalankan `pip install`, seperti berikut:
 
     ```python
     pip install imblearn
     ```
 
-1. Import pakej yang anda perlukan untuk mengimport data anda dan memvisualisasikannya, juga import `SMOTE` dari `imblearn`.
+1. Import pakej yang anda perlukan untuk mengimport data anda dan memvisualisasikannya, juga import `SMOTE` daripada `imblearn`.
 
     ```python
     import pandas as pd
@@ -69,17 +80,17 @@ Perkara pertama yang perlu dipasang adalah [imblearn](https://imbalanced-learn.o
     from imblearn.over_sampling import SMOTE
     ```
 
-    Sekarang anda telah bersedia untuk membaca import data seterusnya.
+    Sekarang anda sudah bersedia untuk membaca dan mengimport data seterusnya.
 
-1. Tugas seterusnya adalah untuk mengimport data:
+1. Tugas seterusnya adalah mengimport data:
 
     ```python
     df  = pd.read_csv('../data/cuisines.csv')
     ```
 
-   Menggunakan `read_csv()` will read the content of the csv file _cusines.csv_ and place it in the variable `df`.
+   Menggunakan `read_csv()` akan membaca kandungan fail csv _cusines.csv_ dan meletakkannya dalam pemboleh ubah `df`.
 
-1. Semak bentuk data:
+1. Periksa bentuk data:
 
     ```python
     df.head()
@@ -103,7 +114,7 @@ Perkara pertama yang perlu dipasang adalah [imblearn](https://imbalanced-learn.o
     df.info()
     ```
 
-    Output anda kelihatan seperti ini:
+    Output anda menyerupai:
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -115,7 +126,7 @@ Perkara pertama yang perlu dipasang adalah [imblearn](https://imbalanced-learn.o
 
 ## Latihan - belajar tentang masakan
 
-Sekarang kerja mula menjadi lebih menarik. Mari kita temui pengedaran data, per masakan 
+Sekarang kerja mula menjadi lebih menarik. Mari kita temui pengagihan data, mengikut masakan.
 
 1. Plot data sebagai bar dengan memanggil `barh()`:
 
@@ -123,11 +134,11 @@ Sekarang kerja mula menjadi lebih menarik. Mari kita temui pengedaran data, per 
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![pengedaran data masakan](../../../../translated_images/cuisine-dist.d0cc2d551abe5c25f83d73a5f560927e4a061e9a4560bac1e97d35682ef3ca6d.ms.png)
+    ![pengagihan data masakan](../../../../4-Classification/1-Introduction/images/cuisine-dist.png)
 
-    Terdapat bilangan masakan yang terhad, tetapi pengedaran data tidak sekata. Anda boleh membetulkannya! Sebelum berbuat demikian, teroka sedikit lagi. 
+    Terdapat bilangan masakan yang terhad, tetapi pengagihan data tidak sekata. Anda boleh membetulkannya! Sebelum melakukannya, terokai sedikit lagi.
 
-1. Ketahui berapa banyak data yang tersedia per masakan dan cetak:
+1. Ketahui berapa banyak data yang tersedia bagi setiap masakan dan cetak:
 
     ```python
     thai_df = df[(df.cuisine == "thai")]
@@ -143,7 +154,7 @@ Sekarang kerja mula menjadi lebih menarik. Mari kita temui pengedaran data, per 
     print(f'korean df: {korean_df.shape}')
     ```
 
-    output kelihatan seperti ini:
+    Output kelihatan seperti ini:
 
     ```output
     thai df: (289, 385)
@@ -155,9 +166,9 @@ Sekarang kerja mula menjadi lebih menarik. Mari kita temui pengedaran data, per 
 
 ## Menemui bahan-bahan
 
-Sekarang anda boleh menggali lebih mendalam ke dalam data dan belajar apakah bahan-bahan tipikal per masakan. Anda harus membersihkan data berulang yang mencipta kekeliruan antara masakan, jadi mari kita belajar tentang masalah ini.
+Sekarang anda boleh menyelami data dengan lebih mendalam dan mengetahui apakah bahan-bahan tipikal bagi setiap masakan. Anda harus membersihkan data berulang yang mencipta kekeliruan antara masakan, jadi mari kita belajar tentang masalah ini.
 
-1. Cipta fungsi `create_ingredient()` dalam Python untuk mencipta dataframe bahan. Fungsi ini akan bermula dengan menjatuhkan lajur yang tidak berguna dan menyusun bahan mengikut kiraannya:
+1. Cipta fungsi `create_ingredient()` dalam Python untuk mencipta dataframe bahan. Fungsi ini akan bermula dengan membuang lajur yang tidak membantu dan menyusun bahan mengikut kiraannya:
 
     ```python
     def create_ingredient_df(df):
@@ -170,14 +181,14 @@ Sekarang anda boleh menggali lebih mendalam ke dalam data dan belajar apakah bah
 
    Sekarang anda boleh menggunakan fungsi itu untuk mendapatkan idea tentang sepuluh bahan paling popular mengikut masakan.
 
-1. Panggil `create_ingredient()` and plot it calling `barh()`:
+1. Panggil `create_ingredient()` dan plot dengan memanggil `barh()`:
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thai](../../../../translated_images/thai.0269dbab2e78bd38a132067759fe980008bdb80b6d778e5313448dbe12bed846.ms.png)
+    ![thai](../../../../4-Classification/1-Introduction/images/thai.png)
 
 1. Lakukan perkara yang sama untuk data Jepun:
 
@@ -186,36 +197,36 @@ Sekarang anda boleh menggali lebih mendalam ke dalam data dan belajar apakah bah
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japanese](../../../../translated_images/japanese.30260486f2a05c463c8faa62ebe7b38f0961ed293bd9a6db8eef5d3f0cf17155.ms.png)
+    ![jepun](../../../../4-Classification/1-Introduction/images/japanese.png)
 
-1. Sekarang untuk bahan-bahan Cina:
+1. Sekarang untuk bahan Cina:
 
     ```python
     chinese_ingredient_df = create_ingredient_df(chinese_df)
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinese](../../../../translated_images/chinese.e62cafa5309f111afd1b54490336daf4e927ce32bed837069a0b7ce481dfae8d.ms.png)
+    ![cina](../../../../4-Classification/1-Introduction/images/chinese.png)
 
-1. Plot bahan-bahan India:
+1. Plot bahan India:
 
     ```python
     indian_ingredient_df = create_ingredient_df(indian_df)
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indian](../../../../translated_images/indian.2c4292002af1a1f97a4a24fec6b1459ee8ff616c3822ae56bb62b9903e192af6.ms.png)
+    ![india](../../../../4-Classification/1-Introduction/images/indian.png)
 
-1. Akhir sekali, plot bahan-bahan Korea:
+1. Akhir sekali, plot bahan Korea:
 
     ```python
     korean_ingredient_df = create_ingredient_df(korean_df)
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korean](../../../../translated_images/korean.4a4f0274f3d9805a65e61f05597eeaad8620b03be23a2c0a705c023f65fad2c0.ms.png)
+    ![korea](../../../../4-Classification/1-Introduction/images/korean.png)
 
-1. Sekarang, jatuhkan bahan-bahan yang paling biasa yang mencipta kekeliruan antara masakan yang berbeza, dengan memanggil `drop()`: 
+1. Sekarang, buang bahan yang paling biasa yang mencipta kekeliruan antara masakan yang berbeza, dengan memanggil `drop()`:
 
    Semua orang suka nasi, bawang putih dan halia!
 
@@ -225,20 +236,20 @@ Sekarang anda boleh menggali lebih mendalam ke dalam data dan belajar apakah bah
     feature_df.head()
     ```
 
-## Imbangkan set data
+## Seimbangkan dataset
 
-Sekarang anda telah membersihkan data, gunakan [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Teknik Over-sampling Minoriti Sintetik" - untuk mengimbangkannya.
+Sekarang setelah anda membersihkan data, gunakan [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Teknik Pengambilan Sampel Lebihan Minoriti Sintetik" - untuk menyeimbangkannya.
 
-1. Panggil `fit_resample()`, strategi ini menjana sampel baru dengan interpolasi.
+1. Panggil `fit_resample()`, strategi ini menjana sampel baru melalui interpolasi.
 
     ```python
     oversample = SMOTE()
     transformed_feature_df, transformed_label_df = oversample.fit_resample(feature_df, labels_df)
     ```
 
-    Dengan mengimbangkan data anda, anda akan mendapat hasil yang lebih baik apabila mengklasifikasikannya. Fikirkan tentang klasifikasi binari. Jika kebanyakan data anda adalah satu kelas, model ML akan meramalkan kelas itu dengan lebih kerap, hanya kerana terdapat lebih banyak data untuknya. Mengimbangkan data mengambil sebarang data yang tidak seimbang dan membantu menghilangkan ketidakseimbangan ini. 
+    Dengan menyeimbangkan data anda, anda akan mendapat hasil yang lebih baik semasa mengklasifikasikannya. Fikirkan tentang klasifikasi binari. Jika kebanyakan data anda adalah satu kelas, model ML akan meramalkan kelas itu lebih kerap, hanya kerana terdapat lebih banyak data untuknya. Menyeimbangkan data mengambil data yang berat sebelah dan membantu menghapuskan ketidakseimbangan ini.
 
-1. Sekarang anda boleh menyemak bilangan label per bahan:
+1. Sekarang anda boleh memeriksa bilangan label bagi setiap bahan:
 
     ```python
     print(f'new label count: {transformed_label_df.value_counts()}')
@@ -262,15 +273,15 @@ Sekarang anda telah membersihkan data, gunakan [SMOTE](https://imbalanced-learn.
     Name: cuisine, dtype: int64
     ```
 
-    Data ini kemas dan bersih, seimbang, dan sangat lazat! 
+    Data kini bersih, seimbang, dan sangat lazat!
 
-1. Langkah terakhir adalah menyimpan data yang seimbang, termasuk label dan ciri-ciri, ke dalam dataframe baru yang boleh dieksport ke dalam fail:
+1. Langkah terakhir adalah menyimpan data yang seimbang, termasuk label dan ciri, ke dalam dataframe baru yang boleh dieksport ke fail:
 
     ```python
     transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
     ```
 
-1. Anda boleh melihat data sekali lagi menggunakan `transformed_df.head()` and `transformed_df.info()`. Simpan salinan data ini untuk digunakan dalam pelajaran masa depan:
+1. Anda boleh melihat data sekali lagi menggunakan `transformed_df.head()` dan `transformed_df.info()`. Simpan salinan data ini untuk digunakan dalam pelajaran masa depan:
 
     ```python
     transformed_df.head()
@@ -278,23 +289,25 @@ Sekarang anda telah membersihkan data, gunakan [SMOTE](https://imbalanced-learn.
     transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
-    CSV baru ini kini boleh didapati di folder data akar.
+    CSV segar ini kini boleh didapati dalam folder data root.
 
 ---
 
 ## 🚀Cabaran
 
-Kurikulum ini mengandungi beberapa set data yang menarik. Gali melalui folder `data` dan lihat jika ada yang mengandungi set data yang sesuai untuk klasifikasi binari atau berbilang kelas? Apakah soalan yang akan anda tanya tentang set data ini?
+Kurikulum ini mengandungi beberapa dataset yang menarik. Terokai folder `data` dan lihat sama ada terdapat dataset yang sesuai untuk klasifikasi binari atau pelbagai kelas? Apakah soalan yang akan anda tanyakan kepada dataset ini?
 
-## [Kuiz selepas ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/)
+## [Kuiz pasca-pelajaran](https://ff-quizzes.netlify.app/en/ml/)
 
-## Ulasan & Kajian Sendiri
+## Kajian & Pembelajaran Kendiri
 
-Teroka API SMOTE. Apakah kes penggunaan yang terbaik digunakan? Apakah masalah yang diselesaikannya?
+Terokai API SMOTE. Apakah kes penggunaan yang paling sesuai untuknya? Apakah masalah yang diselesaikannya?
 
 ## Tugasan 
 
-[Teroka kaedah klasifikasi](assignment.md)
+[Terokai kaedah klasifikasi](assignment.md)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

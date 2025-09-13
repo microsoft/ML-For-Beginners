@@ -1,32 +1,41 @@
-# Jenga Programu ya Mapendekezo ya Vyakula
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-05T16:20:37+00:00",
+  "source_file": "4-Classification/4-Applied/README.md",
+  "language_code": "sw"
+}
+-->
+# Jenga Programu ya Wavuti ya Mapendekezo ya Vyakula
 
-Katika somo hili, utajenga mfano wa uainishaji ukitumia baadhi ya mbinu ulizojifunza katika masomo yaliyopita na kwa kutumia seti ya data ya vyakula vitamu iliyotumika katika mfululizo huu. Aidha, utajenga programu ndogo ya wavuti kutumia mfano uliowekwa, kwa kutumia Onnx's web runtime.
+Katika somo hili, utajenga mfano wa uainishaji kwa kutumia baadhi ya mbinu ulizojifunza katika masomo ya awali na kwa kutumia seti ya data ya vyakula vitamu iliyotumika katika mfululizo huu. Zaidi ya hayo, utajenga programu ndogo ya wavuti kutumia mfano uliosajiliwa, ukitumia Onnx's web runtime.
 
-Moja ya matumizi muhimu ya kujifunza kwa mashine ni kujenga mifumo ya mapendekezo, na unaweza kuchukua hatua ya kwanza katika mwelekeo huo leo!
+Moja ya matumizi muhimu ya kujifunza kwa mashine ni kujenga mifumo ya mapendekezo, na leo unaweza kuchukua hatua ya kwanza kuelekea mwelekeo huo!
 
 [![Kuonyesha programu hii ya wavuti](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
-> 🎥 Bofya picha hapo juu kwa video: Jen Looper anajenga programu ya wavuti kutumia data ya vyakula vilivyowekwa
+> 🎥 Bofya picha hapo juu kwa video: Jen Looper anajenga programu ya wavuti kwa kutumia data ya vyakula vilivyowekwa daraja
 
-## [Jaribio la kabla ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Jaribio la kabla ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
 Katika somo hili utajifunza:
 
-- Jinsi ya kujenga mfano na kuihifadhi kama mfano wa Onnx
+- Jinsi ya kujenga mfano na kuuhifadhi kama mfano wa Onnx
 - Jinsi ya kutumia Netron kukagua mfano
-- Jinsi ya kutumia mfano wako katika programu ya wavuti kwa utabiri
+- Jinsi ya kutumia mfano wako katika programu ya wavuti kwa ajili ya utabiri
 
 ## Jenga mfano wako
 
-Kujenga mifumo ya ML inayotumika ni sehemu muhimu ya kutumia teknolojia hizi kwa mifumo ya biashara yako. Unaweza kutumia mifano ndani ya programu zako za wavuti (na hivyo kuzitumia katika muktadha wa nje ya mtandao ikiwa inahitajika) kwa kutumia Onnx.
+Kujenga mifumo ya ML inayotumika ni sehemu muhimu ya kutumia teknolojia hizi katika mifumo ya biashara yako. Unaweza kutumia mifano ndani ya programu zako za wavuti (na hivyo kuitumia katika muktadha wa nje ya mtandao ikiwa inahitajika) kwa kutumia Onnx.
 
-Katika [somo la awali](../../3-Web-App/1-Web-App/README.md), ulijenga mfano wa Regression kuhusu kuona UFO, "pickled" na kuutumia katika programu ya Flask. Wakati usanifu huu ni muhimu sana kujua, ni programu kamili ya Python, na mahitaji yako yanaweza kujumuisha matumizi ya programu ya JavaScript.
+Katika [somo la awali](../../3-Web-App/1-Web-App/README.md), ulijenga mfano wa Regression kuhusu matukio ya UFO, "ukapickle" na kuutumia katika programu ya Flask. Ingawa usanifu huu ni muhimu kujua, ni programu kamili ya Python, na mahitaji yako yanaweza kujumuisha matumizi ya programu ya JavaScript.
 
-Katika somo hili, unaweza kujenga mfumo wa msingi wa JavaScript kwa utabiri. Kwanza, hata hivyo, unahitaji kufundisha mfano na kuubadilisha kwa matumizi na Onnx.
+Katika somo hili, unaweza kujenga mfumo wa msingi wa JavaScript kwa ajili ya utabiri. Kwanza, hata hivyo, unahitaji kufundisha mfano na kuubadilisha kwa matumizi na Onnx.
 
 ## Zoezi - fundisha mfano wa uainishaji
 
-Kwanza, fundisha mfano wa uainishaji ukitumia seti ya data ya vyakula iliyosafishwa tuliyotumia.
+Kwanza, fundisha mfano wa uainishaji kwa kutumia seti ya data ya vyakula vilivyotakaswa tuliyotumia.
 
 1. Anza kwa kuingiza maktaba muhimu:
 
@@ -37,7 +46,7 @@ Kwanza, fundisha mfano wa uainishaji ukitumia seti ya data ya vyakula iliyosafis
 
     Unahitaji '[skl2onnx](https://onnx.ai/sklearn-onnx/)' kusaidia kubadilisha mfano wako wa Scikit-learn kuwa muundo wa Onnx.
 
-1. Kisha, fanya kazi na data yako kwa njia ile ile uliyofanya katika masomo yaliyopita, kwa kusoma faili ya CSV ukitumia `read_csv()`:
+1. Kisha, fanya kazi na data yako kwa njia ile ile ulivyofanya katika masomo ya awali, kwa kusoma faili ya CSV kwa kutumia `read_csv()`:
 
     ```python
     data = pd.read_csv('../data/cleaned_cuisines.csv')
@@ -59,7 +68,7 @@ Kwanza, fundisha mfano wa uainishaji ukitumia seti ya data ya vyakula iliyosafis
     
     ```
 
-### Anza mchakato wa mafunzo
+### Anza utaratibu wa mafunzo
 
 Tutatumia maktaba ya 'SVC' ambayo ina usahihi mzuri.
 
@@ -78,26 +87,26 @@ Tutatumia maktaba ya 'SVC' ambayo ina usahihi mzuri.
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
     ```
 
-1. Jenga mfano wa Uainishaji wa SVC kama ulivyofanya katika somo lililopita:
+1. Jenga mfano wa Uainishaji wa SVC kama ulivyofanya katika somo la awali:
 
     ```python
     model = SVC(kernel='linear', C=10, probability=True,random_state=0)
     model.fit(X_train,y_train.values.ravel())
     ```
 
-1. Sasa, jaribu mfano wako, ukipiga `predict()`:
+1. Sasa, jaribu mfano wako, ukitumia `predict()`:
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-1. Chapisha ripoti ya uainishaji ili kuangalia ubora wa mfano:
+1. Chapisha ripoti ya uainishaji ili kukagua ubora wa mfano:
 
     ```python
     print(classification_report(y_test,y_pred))
     ```
 
-    Kama tulivyoona hapo awali, usahihi ni mzuri:
+    Kama tulivyoona awali, usahihi ni mzuri:
 
     ```output
                     precision    recall  f1-score   support
@@ -115,9 +124,9 @@ Tutatumia maktaba ya 'SVC' ambayo ina usahihi mzuri.
 
 ### Badilisha mfano wako kuwa Onnx
 
-Hakikisha unafanya ubadilishaji na idadi sahihi ya Tensor. Seti hii ya data ina viungo 380 vilivyotajwa, kwa hivyo unahitaji kubainisha idadi hiyo katika `FloatTensorType`:
+Hakikisha kufanya ubadilishaji kwa idadi sahihi ya Tensor. Seti hii ya data ina viungo 380 vilivyoorodheshwa, kwa hivyo unahitaji kuandika idadi hiyo katika `FloatTensorType`:
 
-1. Badilisha ukitumia idadi ya tensor ya 380.
+1. Badilisha kwa kutumia idadi ya tensor ya 380.
 
     ```python
     from skl2onnx import convert_sklearn
@@ -135,25 +144,25 @@ Hakikisha unafanya ubadilishaji na idadi sahihi ya Tensor. Seti hii ya data ina 
         f.write(onx.SerializeToString())
     ```
 
-    > Kumbuka, unaweza kupitisha [chaguzi](https://onnx.ai/sklearn-onnx/parameterized.html) katika hati yako ya ubadilishaji. Katika kesi hii, tulipitisha 'nocl' kuwa Kweli na 'zipmap' kuwa Uongo. Kwa kuwa huu ni mfano wa uainishaji, una chaguo la kuondoa ZipMap ambayo hutoa orodha ya kamusi (si lazima). `nocl` refers to class information being included in the model. Reduce your model's size by setting `nocl` to 'True'. 
+    > Kumbuka, unaweza kupitisha [chaguzi](https://onnx.ai/sklearn-onnx/parameterized.html) katika script yako ya ubadilishaji. Katika kesi hii, tulipitisha 'nocl' kuwa True na 'zipmap' kuwa False. Kwa kuwa huu ni mfano wa uainishaji, una chaguo la kuondoa ZipMap ambayo inazalisha orodha ya kamusi (sio lazima). `nocl` inahusu taarifa za darasa kujumuishwa katika mfano. Punguza ukubwa wa mfano wako kwa kuweka `nocl` kuwa 'True'.
 
-Running the entire notebook will now build an Onnx model and save it to this folder.
+Kuendesha daftari nzima sasa kutajenga mfano wa Onnx na kuuhifadhi kwenye folda hii.
 
-## View your model
+## Tazama mfano wako
 
-Onnx models are not very visible in Visual Studio code, but there's a very good free software that many researchers use to visualize the model to ensure that it is properly built. Download [Netron](https://github.com/lutzroeder/Netron) and  open your model.onnx file. You can see your simple model visualized, with its 380 inputs and classifier listed:
+Mifano ya Onnx si rahisi kuonekana katika Visual Studio Code, lakini kuna programu nzuri ya bure ambayo watafiti wengi hutumia kuona mfano ili kuhakikisha kuwa umejengwa vizuri. Pakua [Netron](https://github.com/lutzroeder/Netron) na fungua faili yako ya model.onnx. Unaweza kuona mfano wako rahisi ukiwa umeonyeshwa, na viingizo vyake 380 na uainishaji vilivyoorodheshwa:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.sw.png)
+![Netron visual](../../../../4-Classification/4-Applied/images/netron.png)
 
-Netron is a helpful tool to view your models.
+Netron ni zana muhimu ya kutazama mifano yako.
 
-Now you are ready to use this neat model in a web app. Let's build an app that will come in handy when you look in your refrigerator and try to figure out which combination of your leftover ingredients you can use to cook a given cuisine, as determined by your model.
+Sasa uko tayari kutumia mfano huu mzuri katika programu ya wavuti. Hebu tujenge programu ambayo itakuwa muhimu unapochunguza jokofu lako na kujaribu kugundua mchanganyiko wa viungo vilivyobaki ambavyo unaweza kutumia kupika chakula fulani, kama ilivyoamuliwa na mfano wako.
 
-## Build a recommender web application
+## Jenga programu ya wavuti ya mapendekezo
 
-You can use your model directly in a web app. This architecture also allows you to run it locally and even offline if needed. Start by creating an `index.html` file in the same folder where you stored your `model.onnx` faili.
+Unaweza kutumia mfano wako moja kwa moja katika programu ya wavuti. Usanifu huu pia hukuruhusu kuendesha programu hiyo kwa ndani na hata nje ya mtandao ikiwa inahitajika. Anza kwa kuunda faili `index.html` katika folda ile ile ambapo ulihifadhi faili yako ya `model.onnx`.
 
-1. Katika faili hii _index.html_, ongeza alama zifuatazo:
+1. Katika faili hii _index.html_, ongeza markup ifuatayo:
 
     ```html
     <!DOCTYPE html>
@@ -167,7 +176,7 @@ You can use your model directly in a web app. This architecture also allows you 
     </html>
     ```
 
-1. Sasa, ukifanya kazi ndani ya vitambulisho vya `body`, ongeza alama kidogo kuonyesha orodha ya visanduku vya kukagua vinavyoakisi baadhi ya viungo:
+1. Sasa, ukifanya kazi ndani ya vitambulisho vya `body`, ongeza markup kidogo kuonyesha orodha ya visanduku vya kuangalia vinavyoonyesha baadhi ya viungo:
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -212,9 +221,9 @@ You can use your model directly in a web app. This architecture also allows you 
             </div> 
     ```
 
-    Angalia kwamba kila kisanduku cha kukagua kimepewa thamani. Hii inaonyesha index ambapo kiungo kinapatikana kulingana na seti ya data. Apple, kwa mfano, katika orodha hii ya alfabeti, inachukua safu ya tano, kwa hivyo thamani yake ni '4' kwa kuwa tunaanza kuhesabu kutoka 0. Unaweza kushauriana na [spreadsheet ya viungo](../../../../4-Classification/data/ingredient_indexes.csv) kugundua index ya kiungo fulani.
+    Kumbuka kwamba kila kisanduku cha kuangalia kimepewa thamani. Hii inaonyesha index ambapo kiungo kinapatikana kulingana na seti ya data. Apple, kwa mfano, katika orodha hii ya alfabeti, inachukua safu ya tano, kwa hivyo thamani yake ni '4' kwa kuwa tunaanza kuhesabu kutoka 0. Unaweza kushauriana na [spreadsheet ya viungo](../../../../4-Classification/data/ingredient_indexes.csv) kugundua index ya kiungo fulani.
 
-    Ukiendelea na kazi yako katika faili ya index.html, ongeza kizuizi cha hati ambapo mfano unaitwa baada ya kufunga mwisho `</div>`.
+    Ukiendelea kufanya kazi katika faili ya index.html, ongeza block ya script ambapo mfano unaitwa baada ya kufunga mwisho `</div>`.
 
 1. Kwanza, ingiza [Onnx Runtime](https://www.onnxruntime.ai/):
 
@@ -222,9 +231,9 @@ You can use your model directly in a web app. This architecture also allows you 
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Onnx Runtime inatumika kuwezesha kuendesha mifano yako ya Onnx kwenye majukwaa mbalimbali ya vifaa, ikiwa ni pamoja na uboreshaji na API ya kutumia.
+    > Onnx Runtime hutumika kuwezesha kuendesha mifano yako ya Onnx kwenye anuwai ya majukwaa ya vifaa, ikiwa ni pamoja na uboreshaji na API ya kutumia.
 
-1. Mara Runtime inapowekwa, unaweza kuipiga:
+1. Mara Runtime iko mahali, unaweza kuuita:
 
     ```html
     <script>
@@ -278,32 +287,32 @@ You can use your model directly in a web app. This architecture also allows you 
 
 Katika msimbo huu, kuna mambo kadhaa yanayotokea:
 
-1. Uliunda safu ya thamani 380 zinazowezekana (1 au 0) kuwekwa na kutumwa kwa mfano kwa utabiri, kulingana na kama kisanduku cha kukagua kiungo kimechaguliwa.
-2. Uliunda safu ya visanduku vya kukagua na njia ya kubaini kama vilikuwa vimechaguliwa katika `init` function that is called when the application starts. When a checkbox is checked, the `ingredients` array is altered to reflect the chosen ingredient.
-3. You created a `testCheckboxes` function that checks whether any checkbox was checked.
-4. You use `startInference` function when the button is pressed and, if any checkbox is checked, you start inference.
-5. The inference routine includes:
-   1. Setting up an asynchronous load of the model
-   2. Creating a Tensor structure to send to the model
-   3. Creating 'feeds' that reflects the `float_input` input that you created when training your model (you can use Netron to verify that name)
-   4. Sending these 'feeds' to the model and waiting for a response
+1. Uliunda safu ya thamani 380 zinazowezekana (1 au 0) kuwekwa na kutumwa kwa mfano kwa utabiri, kulingana na kama kisanduku cha kuangalia kimechaguliwa.
+2. Uliunda safu ya visanduku vya kuangalia na njia ya kuamua kama vilichaguliwa katika kazi ya `init` ambayo inaitwa wakati programu inaanza. Wakati kisanduku cha kuangalia kinachaguliwa, safu ya `ingredients` hubadilishwa kuonyesha kiungo kilichochaguliwa.
+3. Uliunda kazi ya `testCheckboxes` ambayo hukagua kama kisanduku chochote cha kuangalia kilichaguliwa.
+4. Unatumia kazi ya `startInference` wakati kitufe kinapobanwa, na, ikiwa kisanduku chochote cha kuangalia kimechaguliwa, unaanza utabiri.
+5. Utaratibu wa utabiri unajumuisha:
+   1. Kuweka upakiaji wa mfano kwa njia ya asynchronous
+   2. Kuunda muundo wa Tensor kutumwa kwa mfano
+   3. Kuunda 'feeds' zinazoonyesha `float_input` uliounda wakati wa kufundisha mfano wako (unaweza kutumia Netron kuthibitisha jina hilo)
+   4. Kutuma 'feeds' hizi kwa mfano na kusubiri majibu
 
-## Test your application
+## Jaribu programu yako
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server` kwenye prompt. Localhost inapaswa kufunguka na unaweza kuona programu yako ya wavuti. Angalia ni chakula gani kinachopendekezwa kulingana na viungo mbalimbali:
+Fungua kikao cha terminal katika Visual Studio Code kwenye folda ambapo faili yako ya index.html iko. Hakikisha kuwa una [http-server](https://www.npmjs.com/package/http-server) imewekwa kimataifa, na andika `http-server` kwenye prompt. Seva ya localhost inapaswa kufunguka na unaweza kuona programu yako ya wavuti. Angalia ni chakula gani kinapendekezwa kulingana na viungo mbalimbali:
 
-![programu ya wavuti ya viungo](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.sw.png)
+![programu ya wavuti ya viungo](../../../../4-Classification/4-Applied/images/web-app.png)
 
-Hongera, umeunda programu ya wavuti ya 'mapendekezo' na sehemu chache. Chukua muda kujenga mfumo huu zaidi!
+Hongera, umeunda programu ya wavuti ya 'mapendekezo' yenye sehemu chache. Chukua muda kujenga mfumo huu zaidi!
 ## 🚀Changamoto
 
-Programu yako ya wavuti ni ndogo sana, kwa hivyo endelea kuijenga ukitumia viungo na fahirisi zao kutoka kwa data ya [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). Ni mchanganyiko gani wa ladha hufanya chakula cha kitaifa fulani?
+Programu yako ya wavuti ni ya msingi sana, kwa hivyo endelea kuijenga kwa kutumia viungo na index zao kutoka data ya [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). Ni mchanganyiko gani wa ladha unafanya kazi kuunda chakula cha kitaifa fulani?
 
-## [Jaribio la baada ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Jaribio la baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujisomea
+## Mapitio na Kujisomea
 
-Wakati somo hili limegusia tu matumizi ya kujenga mfumo wa mapendekezo kwa viungo vya chakula, eneo hili la matumizi ya ML lina mifano mingi. Soma zaidi kuhusu jinsi mifumo hii inavyojengwa:
+Ingawa somo hili limegusia tu matumizi ya kujenga mfumo wa mapendekezo kwa viungo vya chakula, eneo hili la matumizi ya ML lina mifano mingi tajiri. Soma zaidi kuhusu jinsi mifumo hii inavyojengwa:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
@@ -311,7 +320,9 @@ Wakati somo hili limegusia tu matumizi ya kujenga mfumo wa mapendekezo kwa viung
 
 ## Kazi 
 
-[Jenga kipendekezo kipya](assignment.md)
+[Jenga mfumo mpya wa mapendekezo](assignment.md)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI za mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upotovu. Hati asili katika lugha yake ya asili inapaswa kuzingatiwa kuwa chanzo cha mamlaka. Kwa habari muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

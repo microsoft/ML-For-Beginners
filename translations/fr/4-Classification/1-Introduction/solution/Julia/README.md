@@ -1,4 +1,15 @@
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "a39c15d63f3b2795ee2284a82b986b93",
+  "translation_date": "2025-09-04T00:04:30+00:00",
+  "source_file": "4-Classification/1-Introduction/solution/Julia/README.md",
+  "language_code": "fr"
+}
+-->
 
+
+---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide de services de traduction automatisée par intelligence artificielle. Bien que nous nous efforçons d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue native doit être considéré comme la source faisant autorité. Pour des informations critiques, une traduction professionnelle par un humain est recommandée. Nous ne sommes pas responsables des malentendus ou des interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

@@ -1,14 +1,25 @@
-# Crie um recomendador
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "799ed651e2af0a7cad17c6268db11578",
+  "translation_date": "2025-09-03T18:08:58+00:00",
+  "source_file": "4-Classification/4-Applied/assignment.md",
+  "language_code": "pt"
+}
+-->
+# Construir um recomendador
 
 ## Instruções
 
-Com base nos exercícios desta lição, você agora sabe como construir um aplicativo web baseado em JavaScript usando o Onnx Runtime e um modelo Onnx convertido. Experimente criar um novo recomendador usando dados dessas lições ou de outras fontes (dê os créditos, por favor). Você pode criar um recomendador de animais de estimação com base em vários atributos de personalidade, ou um recomendador de gêneros musicais com base no humor de uma pessoa. Seja criativo!
+Com base nos exercícios desta lição, agora sabe como criar uma aplicação web em JavaScript utilizando Onnx Runtime e um modelo Onnx convertido. Experimente criar um novo recomendador usando dados destas lições ou obtidos de outras fontes (dê crédito, por favor). Pode criar, por exemplo, um recomendador de animais de estimação com base em vários atributos de personalidade, ou um recomendador de géneros musicais baseado no estado de espírito de uma pessoa. Seja criativo!
 
-## Rubrica
+## Critérios de Avaliação
 
-| Critério | Exemplar                                                               | Adequado                             | Necessita de Melhorias            |
-| -------- | ---------------------------------------------------------------------- | ------------------------------------ | --------------------------------- |
-|          | Um aplicativo web e um notebook são apresentados, ambos bem documentados e funcionando | Um dos dois está faltando ou com falhas | Ambos estão faltando ou com falhas |
+| Critérios | Exemplar                                                              | Adequado                              | Necessita de Melhorias            |
+| --------- | --------------------------------------------------------------------- | ------------------------------------- | --------------------------------- |
+|           | Uma aplicação web e um notebook são apresentados, ambos bem documentados e funcionais | Um dos dois está em falta ou apresenta falhas | Ambos estão em falta ou apresentam falhas |
+
+---
 
 **Aviso Legal**:  
-Este documento foi traduzido usando serviços de tradução automática baseados em IA. Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em sua língua nativa deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações erradas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

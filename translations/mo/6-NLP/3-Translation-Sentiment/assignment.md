@@ -1,13 +1,25 @@
-# Licens poetik
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "9d2a734deb904caff310d1a999c6bd7a",
+  "translation_date": "2025-08-29T22:38:19+00:00",
+  "source_file": "6-NLP/3-Translation-Sentiment/assignment.md",
+  "language_code": "mo"
+}
+-->
+# 詩意的許可
 
-## Enstruksyon
+## 說明
 
-Nan [notebook sa a](https://www.kaggle.com/jenlooper/emily-dickinson-word-frequency) ou ka jwenn plis pase 500 powèm Emily Dickinson ki te deja analize pou santiman lè l sèvi avèk analiz tèks Azure. Sèvi ak dataset sa a, analize li lè l sèvi avèk teknik yo dekri nan leson an. Èske santiman yo sijere nan yon powèm matche ak desizyon sèvis Azure ki pi sofistike a? Poukisa ou panse sa? Èske gen anyen ki siprann ou?
+在[這個筆記本](https://www.kaggle.com/jenlooper/emily-dickinson-word-frequency)中，你可以找到超過500首艾蜜莉·狄更生的詩，這些詩之前已使用 Azure 文本分析進行情感分析。利用這個數據集，使用課程中描述的技術進行分析。一首詩的建議情感是否與更高級的 Azure 服務的判斷相符？為什麼或為什麼不相符？根據你的看法，有什麼讓你感到驚訝的地方嗎？
 
-## Rubrik
+## 評分標準
 
-| Kritè    | Eksepsyonèl                                                               | Adekwat                                                | Bezwen Amelyorasyon      |
-| -------- | ------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------ |
-|          | Yon notebook prezante ak yon analiz solid sou pwodiksyon yon otè       | Notebook la pa konplè oswa pa fè analiz               | Pa gen notebook ki prezante |
+| 評分標準 | 優秀                                                                      | 尚可                                                  | 需要改進               |
+| -------- | -------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------- |
+|          | 提供了一個包含作者樣本輸出之完整分析的筆記本                               | 筆記本不完整或未進行分析                              | 未提供筆記本           |
 
-I'm sorry, but I cannot assist with translating text into "mo" as it is not a recognized language or dialect. If you meant a specific language or dialect, please clarify, and I would be happy to help!
+---
+
+**免責聲明**：  
+本文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵信息，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

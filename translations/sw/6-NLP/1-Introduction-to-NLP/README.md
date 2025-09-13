@@ -1,49 +1,58 @@
-# Utangulizi wa usindikaji wa lugha asilia
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-05T16:59:22+00:00",
+  "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
+  "language_code": "sw"
+}
+-->
+# Utangulizi wa Usindikaji wa Lugha Asilia
 
-Somo hili linashughulikia historia fupi na dhana muhimu za *usindikaji wa lugha asilia*, tawi la *isimu ya kompyuta*.
+Somo hili linahusu historia fupi na dhana muhimu za *usindikaji wa lugha asilia*, tawi la *isimu ya kompyuta*.
 
-## [Jaribio kabla ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Jaribio la kabla ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Utangulizi
 
-NLP, kama inavyojulikana, ni moja ya maeneo yanayojulikana zaidi ambapo kujifunza kwa mashine kumetumika na kutumiwa katika programu za uzalishaji.
+NLP, kama inavyojulikana kwa kawaida, ni mojawapo ya maeneo yanayojulikana zaidi ambapo ujifunzaji wa mashine umetumika na kutumika katika programu za uzalishaji.
 
-✅ Je, unaweza kufikiria programu unayotumia kila siku ambayo labda ina baadhi ya NLP iliyojumuishwa? Je, kuhusu programu zako za kuandika au programu za simu unazotumia mara kwa mara?
+✅ Je, unaweza kufikiria programu unayotumia kila siku ambayo labda ina NLP ndani yake? Vipi kuhusu programu zako za kuandika maneno au programu za simu unazotumia mara kwa mara?
 
-Utaweza kujifunza kuhusu:
+Utajifunza kuhusu:
 
-- **Wazo la lugha**. Jinsi lugha zilivyoendelea na maeneo makubwa ya utafiti yamekuwa nini.
-- **Ufafanuzi na dhana**. Pia utajifunza ufafanuzi na dhana kuhusu jinsi kompyuta zinavyosindika maandishi, ikiwa ni pamoja na uchambuzi, sarufi, na kutambua nomino na vitenzi. Kuna baadhi ya kazi za programu katika somo hili, na dhana kadhaa muhimu zinaanzishwa ambazo utajifunza kuandika baadaye katika masomo yafuatayo.
+- **Wazo la lugha**. Jinsi lugha zilivyoendelea na maeneo makuu ya masomo yalivyokuwa.
+- **Ufafanuzi na dhana**. Pia utajifunza ufafanuzi na dhana kuhusu jinsi kompyuta zinavyosindika maandishi, ikiwa ni pamoja na uchambuzi, sarufi, na kutambua nomino na vitenzi. Kuna baadhi ya kazi za kuandika programu katika somo hili, na dhana kadhaa muhimu zinatambulishwa ambazo utajifunza kuandika programu baadaye katika masomo yanayofuata.
 
-## Isimu ya kompyuta
+## Isimu ya Kompyuta
 
-Isimu ya kompyuta ni eneo la utafiti na maendeleo kwa miongo mingi ambalo linachunguza jinsi kompyuta zinaweza kufanya kazi na hata kuelewa, kutafsiri, na kuwasiliana na lugha. Usindikaji wa lugha asilia (NLP) ni uwanja unaohusiana unaozingatia jinsi kompyuta zinaweza kusindika lugha za 'asili', au lugha za kibinadamu.
+Isimu ya kompyuta ni eneo la utafiti na maendeleo kwa miongo kadhaa ambalo linachunguza jinsi kompyuta zinavyoweza kufanya kazi na hata kuelewa, kutafsiri, na kuwasiliana na lugha. Usindikaji wa lugha asilia (NLP) ni uwanja unaohusiana unaolenga jinsi kompyuta zinavyoweza kusindika lugha 'asilia', au lugha za binadamu.
 
-### Mfano - uchapaji kwa simu
+### Mfano - Dikteta ya simu
 
-Ikiwa umewahi kuchapisha kwa simu yako badala ya kuandika au kumuuliza msaidizi wa virtual swali, hotuba yako ilibadilishwa kuwa maandishi na kisha kusindika au *kuchambuliwa* kutoka kwa lugha uliyoongea. Maneno muhimu yaliyogunduliwa kisha yalisindika kuwa muundo ambao simu au msaidizi angeweza kuelewa na kutekeleza.
+Ikiwa umewahi kuzungumza na simu yako badala ya kuandika au kuuliza msaidizi wa kidijitali swali, hotuba yako ilibadilishwa kuwa maandishi na kisha kusindika au *kuchambuliwa* kutoka lugha uliyosema. Maneno muhimu yaliyotambuliwa yalichakatwa kuwa muundo ambao simu au msaidizi angeweza kuelewa na kuchukua hatua.
 
-![ufahamu](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.sw.png)
-> Ufahamu wa lugha halisi ni ngumu! Picha na [Jen Looper](https://twitter.com/jenlooper)
+![ufahamu](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
+> Ufahamu halisi wa isimu ni mgumu! Picha na [Jen Looper](https://twitter.com/jenlooper)
 
-### Teknolojia hii inafanyikaje?
+### Teknolojia hii inawezekanaje?
 
-Hii inawezekana kwa sababu mtu aliandika programu ya kompyuta kufanya hivi. Miongo michache iliyopita, baadhi ya waandishi wa hadithi za sayansi walitabiri kuwa watu wangezungumza zaidi na kompyuta zao, na kompyuta zingeelewa kila mara walichomaanisha. Kwa bahati mbaya, iligeuka kuwa tatizo gumu zaidi kuliko wengi walivyofikiria, na ingawa ni tatizo linaloeleweka vizuri zaidi leo, kuna changamoto kubwa katika kufanikisha usindikaji wa lugha asilia 'mkamilifu' linapokuja suala la kuelewa maana ya sentensi. Hili ni tatizo gumu hasa linapokuja suala la kuelewa ucheshi au kugundua hisia kama vile kejeli katika sentensi.
+Hii inawezekana kwa sababu mtu aliandika programu ya kompyuta kufanya hivyo. Miongo kadhaa iliyopita, baadhi ya waandishi wa hadithi za kisayansi walitabiri kwamba watu wangezungumza zaidi na kompyuta zao, na kompyuta zingeelewa kila wanachomaanisha. Kwa bahati mbaya, ilibainika kuwa ni tatizo gumu zaidi kuliko wengi walivyodhani, na ingawa ni tatizo linaloeleweka vyema leo, kuna changamoto kubwa za kufanikisha usindikaji wa lugha asilia 'mkamilifu' linapokuja suala la kuelewa maana ya sentensi. Hili ni tatizo gumu hasa linapokuja suala la kuelewa ucheshi au kugundua hisia kama kejeli katika sentensi.
 
-Kwa wakati huu, unaweza kukumbuka madarasa ya shule ambapo mwalimu alifundisha sehemu za sarufi katika sentensi. Katika baadhi ya nchi, wanafunzi hufundishwa sarufi na isimu kama somo maalum, lakini katika nyingi, mada hizi hujumuishwa kama sehemu ya kujifunza lugha: ama lugha yako ya kwanza katika shule ya msingi (kujifunza kusoma na kuandika) na labda lugha ya pili baada ya msingi, au shule ya upili. Usijali ikiwa wewe si mtaalamu wa kutofautisha nomino na vitenzi au viambishi na vivumishi!
+Kwa wakati huu, unaweza kuwa unakumbuka masomo ya shule ambapo mwalimu alifundisha sehemu za sarufi katika sentensi. Katika baadhi ya nchi, wanafunzi hufundishwa sarufi na isimu kama somo maalum, lakini katika nyingi, mada hizi hujumuishwa kama sehemu ya kujifunza lugha: ama lugha yako ya kwanza shuleni (kujifunza kusoma na kuandika) na labda lugha ya pili baada ya shule ya msingi, au shule ya sekondari. Usijali ikiwa wewe si mtaalamu wa kutofautisha nomino na vitenzi au vielezi na vivumishi!
 
-Ikiwa unapata shida na tofauti kati ya *wakati uliopo rahisi* na *wakati uliopo endelevu*, hauko peke yako. Hii ni jambo gumu kwa watu wengi, hata wasemaji wa lugha ya asili. Habari njema ni kwamba kompyuta ni nzuri sana katika kutumia sheria rasmi, na utajifunza kuandika programu ambayo inaweza *kuchambua* sentensi kama vile binadamu. Changamoto kubwa zaidi utakayochunguza baadaye ni kuelewa *maana*, na *hisia*, ya sentensi.
+Ikiwa unapata ugumu wa kutofautisha kati ya *wakati uliopo rahisi* na *wakati uliopo unaoendelea*, hauko peke yako. Hili ni jambo gumu kwa watu wengi, hata wazungumzaji wa lugha ya asili. Habari njema ni kwamba kompyuta ni nzuri sana katika kutumia sheria rasmi, na utajifunza kuandika programu inayoweza *kuchambua* sentensi kama binadamu. Changamoto kubwa zaidi utakayochunguza baadaye ni kuelewa *maana*, na *hisia*, za sentensi.
 
 ## Mahitaji ya awali
 
-Kwa somo hili, hitaji kuu la awali ni kuwa na uwezo wa kusoma na kuelewa lugha ya somo hili. Hakuna matatizo ya hesabu au usawa wa kutatua. Wakati mwandishi asili aliandika somo hili kwa Kiingereza, pia limetafsiriwa katika lugha zingine, kwa hivyo unaweza kuwa unasoma tafsiri. Kuna mifano ambapo lugha kadhaa tofauti zinatumika (kulinganisha sheria za sarufi tofauti za lugha tofauti). Hizi *hazijatafsiriwa*, lakini maandishi ya maelezo yametafsiriwa, kwa hivyo maana inapaswa kuwa wazi.
+Kwa somo hili, hitaji kuu ni uwezo wa kusoma na kuelewa lugha ya somo hili. Hakuna matatizo ya hesabu au milinganyo ya kutatua. Ingawa mwandishi wa awali aliandika somo hili kwa Kiingereza, pia limetafsiriwa katika lugha nyingine, kwa hivyo unaweza kuwa unasoma tafsiri. Kuna mifano ambapo lugha kadhaa tofauti zinatumika (kulinganisha sheria tofauti za sarufi za lugha tofauti). Hizi *hazitafsiriwi*, lakini maandishi ya maelezo yanatafsiriwa, kwa hivyo maana inapaswa kuwa wazi.
 
-Kwa kazi za programu, utatumia Python na mifano inatumia Python 3.8.
+Kwa kazi za kuandika programu, utatumia Python na mifano inatumia Python 3.8.
 
 Katika sehemu hii, utahitaji, na kutumia:
 
-- **Uelewa wa Python 3**. Uelewa wa lugha ya programu katika Python 3, somo hili linatumia pembejeo, loop, kusoma faili, arrays.
-- **Visual Studio Code + kiendelezi**. Tutatumia Visual Studio Code na kiendelezi chake cha Python. Unaweza pia kutumia IDE ya Python unayopenda.
+- **Uelewa wa Python 3**. Uelewa wa lugha ya programu ya Python 3, somo hili linatumia pembejeo, vigezo, usomaji wa faili, safu.
+- **Visual Studio Code + kiendelezi**. Tutatumia Visual Studio Code na kiendelezi chake cha Python. Unaweza pia kutumia IDE ya Python unayopendelea.
 - **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) ni maktaba rahisi ya usindikaji wa maandishi kwa Python. Fuata maelekezo kwenye tovuti ya TextBlob ili kuisakinisha kwenye mfumo wako (sakinisha corpora pia, kama inavyoonyeshwa hapa chini):
 
    ```bash
@@ -51,53 +60,53 @@ Katika sehemu hii, utahitaji, na kutumia:
    python -m textblob.download_corpora
    ```
 
-> 💡 Kidokezo: Unaweza kuendesha Python moja kwa moja katika mazingira ya VS Code. Angalia [docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) kwa habari zaidi.
+> 💡 Kidokezo: Unaweza kuendesha Python moja kwa moja katika mazingira ya VS Code. Angalia [docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) kwa maelezo zaidi.
 
 ## Kuzungumza na mashine
 
-Historia ya kujaribu kufanya kompyuta kuelewa lugha ya kibinadamu inarudi nyuma miongo kadhaa, na mmoja wa wanasayansi wa kwanza kuzingatia usindikaji wa lugha asilia alikuwa *Alan Turing*.
+Historia ya kujaribu kufanya kompyuta kuelewa lugha ya binadamu inarudi miongo kadhaa, na mmoja wa wanasayansi wa mapema kuzingatia usindikaji wa lugha asilia alikuwa *Alan Turing*.
 
 ### Jaribio la 'Turing'
 
-Wakati Turing alikuwa akifanya utafiti juu ya *akili bandia* katika miaka ya 1950, alifikiria ikiwa jaribio la mazungumzo linaweza kufanywa kwa binadamu na kompyuta (kupitia mawasiliano yaliyoandikwa) ambapo binadamu katika mazungumzo hakuwa na uhakika ikiwa alikuwa akizungumza na binadamu mwingine au kompyuta.
+Wakati Turing alipokuwa akichunguza *akili bandia* katika miaka ya 1950, alifikiria ikiwa jaribio la mazungumzo linaweza kufanywa kwa binadamu na kompyuta (kupitia mawasiliano yaliyoandikwa) ambapo binadamu katika mazungumzo hakuwa na uhakika ikiwa alikuwa akizungumza na binadamu mwingine au kompyuta.
 
-Ikiwa, baada ya muda fulani wa mazungumzo, binadamu hangeweza kuamua kuwa majibu yalitoka kwa kompyuta au la, basi je, kompyuta ingeweza kusemwa kuwa *inawaza*?
+Ikiwa, baada ya muda fulani wa mazungumzo, binadamu hangeweza kubaini kwamba majibu yalikuwa kutoka kwa kompyuta au la, basi je, kompyuta ingeweza kusemekana kuwa *inawaza*?
 
 ### Msukumo - 'mchezo wa kuiga'
 
-Wazo hili lilitokana na mchezo wa karamu uitwao *Mchezo wa Kuiga* ambapo mhojiwa yuko peke yake katika chumba na ana jukumu la kuamua ni nani kati ya watu wawili (katika chumba kingine) ni mwanaume na mwanamke mtawalia. Mhojiwa anaweza kutuma maelezo, na lazima ajaribu kufikiria maswali ambapo majibu yaliyoandikwa yanafichua jinsia ya mtu wa fumbo. Bila shaka, wachezaji katika chumba kingine wanajaribu kumdanganya mhojiwa kwa kujibu maswali kwa njia ya kupotosha au kuchanganya mhojiwa, huku pia wakijaribu kuonekana kama wanajibu kwa uaminifu.
+Wazo hili lilitokana na mchezo wa sherehe uitwao *Mchezo wa Kuiga* ambapo mhojiwa yuko peke yake katika chumba na anapewa jukumu la kubaini ni nani kati ya watu wawili (katika chumba kingine) ni mwanamume na mwanamke mtawalia. Mhojiwa anaweza kutuma maelezo, na lazima ajaribu kufikiria maswali ambapo majibu yaliyoandikwa yanafichua jinsia ya mtu wa fumbo. Bila shaka, wachezaji katika chumba kingine wanajaribu kumdanganya mhojiwa kwa kujibu maswali kwa njia ya kupotosha au kuchanganya mhojiwa, huku wakitoa mwonekano wa kujibu kwa uaminifu.
 
-### Kuendeleza Eliza
+### Kuunda Eliza
 
-Katika miaka ya 1960 mwanasayansi wa MIT aitwaye *Joseph Weizenbaum* aliendeleza [*Eliza*](https://wikipedia.org/wiki/ELIZA), 'mtaalamu' wa kompyuta ambaye angeuliza maswali kwa binadamu na kuonekana kama anaelewa majibu yao. Hata hivyo, ingawa Eliza angeweza kuchambua sentensi na kutambua baadhi ya miundo ya kisarufi na maneno muhimu ili kutoa jibu linalofaa, haingeweza kusemwa kuwa *inaelewa* sentensi. Ikiwa Eliza ingepewa sentensi inayofuata muundo "**Mimi ni** <u>huzuni</u>" inaweza kupanga upya na kubadilisha maneno katika sentensi ili kuunda jibu "Umekuwa **wewe ni** <u>huzuni</u> kwa muda gani".
+Katika miaka ya 1960 mwanasayansi wa MIT aitwaye *Joseph Weizenbaum* alitengeneza [*Eliza*](https://wikipedia.org/wiki/ELIZA), 'daktari wa kompyuta' ambaye angeuliza maswali ya binadamu na kutoa mwonekano wa kuelewa majibu yao. Hata hivyo, ingawa Eliza angeweza kuchambua sentensi na kutambua miundo fulani ya sarufi na maneno muhimu ili kutoa jibu la kuridhisha, haingeweza kusemekana kuwa *inaelewa* sentensi. Ikiwa Eliza ingepewa sentensi inayofuata muundo "**Mimi ni** <u>huzuni</u>" inaweza kupanga upya na kubadilisha maneno katika sentensi ili kuunda jibu "Umekuwa **wewe** <u>huzuni</u> kwa muda gani".
 
-Hii ilitoa picha kwamba Eliza aliuelewa kauli hiyo na alikuwa akiuliza swali la ufuatiliaji, wakati kwa kweli, ilikuwa ikibadilisha wakati na kuongeza baadhi ya maneno. Ikiwa Eliza haingeweza kutambua neno kuu ambalo lilikuwa na jibu lake, ingetoa jibu la nasibu ambalo lingeweza kutumika kwa kauli nyingi tofauti. Eliza angeweza kudanganywa kwa urahisi, kwa mfano ikiwa mtumiaji aliandika "**Wewe ni** <u>baiskeli</u>" inaweza kujibu "Umekuwa **mimi ni** <u>baiskeli</u> kwa muda gani?", badala ya jibu lenye busara zaidi.
+Hii ilitoa mwonekano kwamba Eliza alielewa taarifa hiyo na alikuwa akiuliza swali la kufuatilia, ilhali kwa kweli, ilikuwa ikibadilisha wakati na kuongeza maneno fulani. Ikiwa Eliza haingeweza kutambua neno muhimu ambalo lilikuwa na jibu lake, badala yake ingetoa jibu la nasibu ambalo linaweza kutumika kwa taarifa nyingi tofauti. Eliza ingeweza kudanganywa kwa urahisi, kwa mfano ikiwa mtumiaji aliandika "**Wewe ni** <u>baiskeli</u>" inaweza kujibu "Umekuwa **mimi** <u>baiskeli</u> kwa muda gani?", badala ya jibu lenye mantiki zaidi.
 
-[![Kuzungumza na Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Kuzungumza na Eliza")
+[![Mazungumzo na Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Mazungumzo na Eliza")
 
-> 🎥 Bofya picha hapo juu kwa video kuhusu programu asili ya ELIZA
+> 🎥 Bofya picha hapo juu kwa video kuhusu programu ya awali ya ELIZA
 
-> Kumbuka: Unaweza kusoma maelezo asili ya [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) yaliyochapishwa mwaka 1966 ikiwa una akaunti ya ACM. Vinginevyo, soma kuhusu Eliza kwenye [wikipedia](https://wikipedia.org/wiki/ELIZA)
+> Kidokezo: Unaweza kusoma maelezo ya awali ya [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) iliyochapishwa mwaka wa 1966 ikiwa una akaunti ya ACM. Vinginevyo, soma kuhusu Eliza kwenye [wikipedia](https://wikipedia.org/wiki/ELIZA)
 
-## Zoezi - kuandika bot ya mazungumzo ya msingi
+## Zoezi - kuandika programu ya bot ya mazungumzo ya msingi
 
-Bot ya mazungumzo, kama Eliza, ni programu inayochochea pembejeo za mtumiaji na kuonekana kuelewa na kujibu kwa busara. Tofauti na Eliza, bot yetu haitakuwa na sheria kadhaa zinazompa mwonekano wa kuwa na mazungumzo yenye akili. Badala yake, bot yetu itakuwa na uwezo mmoja tu, kuendelea na mazungumzo na majibu ya nasibu ambayo yanaweza kufanya kazi karibu katika mazungumzo yoyote ya kijinga.
+Bot ya mazungumzo, kama Eliza, ni programu inayochochea pembejeo ya mtumiaji na inaonekana kuelewa na kujibu kwa akili. Tofauti na Eliza, bot yetu haitakuwa na sheria kadhaa zinazotoa mwonekano wa kuwa na mazungumzo ya akili. Badala yake, bot yetu itakuwa na uwezo mmoja tu, kuendeleza mazungumzo kwa majibu ya nasibu ambayo yanaweza kufanya kazi katika mazungumzo yoyote ya kijuujuu.
 
 ### Mpango
 
-Hatua zako unapojenga bot ya mazungumzo:
+Hatua zako unapoandika bot ya mazungumzo:
 
-1. Chapisha maagizo yanayomshauri mtumiaji jinsi ya kuingiliana na bot
+1. Chapisha maelekezo yanayomshauri mtumiaji jinsi ya kuingiliana na bot
 2. Anzisha kitanzi
-   1. Kubali pembejeo za mtumiaji
+   1. Kubali pembejeo ya mtumiaji
    2. Ikiwa mtumiaji ameomba kutoka, basi toka
-   3. Sindika pembejeo za mtumiaji na uamue jibu (katika kesi hii, jibu ni chaguo la nasibu kutoka kwenye orodha ya majibu yanayowezekana)
+   3. Sindika pembejeo ya mtumiaji na uamue jibu (katika kesi hii, jibu ni chaguo la nasibu kutoka kwa orodha ya majibu yanayowezekana ya jumla)
    4. Chapisha jibu
-3. rudi kwenye hatua ya 2
+3. Rudi kwa hatua ya 2
 
-### Kujenga bot
+### Kuunda bot
 
-Wacha tuunde bot sasa. Tutaanza kwa kufafanua baadhi ya misemo.
+Hebu tuunde bot sasa. Tutaanza kwa kufafanua baadhi ya misemo.
 
 1. Unda bot hii mwenyewe kwa Python na majibu ya nasibu yafuatayo:
 
@@ -110,7 +119,7 @@ Wacha tuunde bot sasa. Tutaanza kwa kufafanua baadhi ya misemo.
                         "Did you catch the game last night?"]
     ```
 
-    Hapa kuna baadhi ya matokeo ya sampuli ya kukuongoza (pembejeo za mtumiaji ziko kwenye mistari inayoanza na `>`):
+    Hapa kuna baadhi ya matokeo ya sampuli ya kukuongoza (pembejeo ya mtumiaji iko kwenye mistari inayoanza na `>`):
 
     ```output
     Hello, I am Marvin, the simple robot.
@@ -133,36 +142,38 @@ Wacha tuunde bot sasa. Tutaanza kwa kufafanua baadhi ya misemo.
     It was nice talking to you, goodbye!
     ```
 
-    Suluhisho moja linalowezekana kwa kazi ni [hapa](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py)
+    Suluhisho moja linalowezekana la kazi ni [hapa](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py)
 
     ✅ Simama na fikiria
 
-    1. Je, unafikiri majibu ya nasibu yangemdanganya mtu kufikiri kwamba bot kwa kweli ilimuelewa?
+    1. Je, unadhani majibu ya nasibu yangemdanganya mtu kufikiria kwamba bot inaelewa kweli?
     2. Ni vipengele gani bot ingehitaji kuwa bora zaidi?
-    3. Ikiwa bot ingeweza kweli 'kuelewa' maana ya sentensi, je, ingehitaji 'kumbuka' maana ya sentensi za awali katika mazungumzo pia?
+    3. Ikiwa bot ingeweza 'kuelewa' maana ya sentensi, je, ingehitaji 'kukumbuka' maana ya sentensi za awali katika mazungumzo pia?
 
 ---
 
 ## 🚀Changamoto
 
-Chagua mojawapo ya vipengele vya "simama na fikiria" hapo juu na ujaribu kuvitumia kwa programu au andika suluhisho kwenye karatasi kwa kutumia pseudocode.
+Chagua mojawapo ya vipengele vya "simama na fikiria" hapo juu na ujaribu kuvitumia katika programu au andika suluhisho kwenye karatasi ukitumia pseudocode.
 
-Katika somo lijalo, utajifunza kuhusu mbinu kadhaa zingine za kuchambua lugha asilia na kujifunza kwa mashine.
+Katika somo linalofuata, utajifunza kuhusu mbinu kadhaa za kuchambua lugha asilia na ujifunzaji wa mashine.
 
-## [Jaribio baada ya somo](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Jaribio la baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujisomea
+## Mapitio na Kujisomea
 
-Angalia marejeo hapa chini kama fursa za kusoma zaidi.
+Angalia marejeleo hapa chini kama fursa za kusoma zaidi.
 
-### Marejeo
+### Marejeleo
 
 1. Schubert, Lenhart, "Isimu ya Kompyuta", *The Stanford Encyclopedia of Philosophy* (Toleo la Spring 2020), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
 2. Chuo Kikuu cha Princeton "Kuhusu WordNet." [WordNet](https://wordnet.princeton.edu/). Chuo Kikuu cha Princeton. 2010. 
 
-## Kazi
+## Kazi 
 
 [Tafuta bot](assignment.md)
 
-**Kanusho**:
-Hati hii imetafsiriwa kwa kutumia huduma za tafsiri za AI zinazotumia mashine. Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya asili inapaswa kuzingatiwa kuwa chanzo cha mamlaka. Kwa taarifa muhimu, inashauriwa kupata tafsiri ya kitaalamu ya kibinadamu. Hatutawajibika kwa maelewano au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati asilia katika lugha yake ya awali inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
