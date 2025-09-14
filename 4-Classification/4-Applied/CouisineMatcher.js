@@ -7,14 +7,11 @@ const checks = [...document.querySelectorAll('.checkbox')];
 
 checks.forEach(check => {
     check.addEventListener('change', function() {
-        // toggle the state of the ingredient
-        // based on the checkbox's value (1 or 0)
         ingredients[check.value] = check.checked ? 1 : 0;
     });
 });
 
 function testCheckboxes() {
-    // validate if at least one checkbox is checked
     return checks.some(check => check.checked);
 }
 
@@ -27,7 +24,6 @@ async function startInference() {
         return;
     }
     try {
-        // create a new session and load the model.
         
         const session = await ort.InferenceSession.create('./model.onnx');
 
