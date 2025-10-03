@@ -1,18 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
-  "translation_date": "2025-09-05T18:34:13+00:00",
+  "original_hash": "09623d7343ff1c26ff4f198c1b2d3176",
+  "translation_date": "2025-10-03T12:14:27+00:00",
   "source_file": "SUPPORT.md",
   "language_code": "vi"
 }
 -->
 # Hỗ trợ
-## Cách báo cáo vấn đề và nhận trợ giúp  
+## Cách gửi vấn đề và nhận trợ giúp  
 
-Dự án này sử dụng GitHub Issues để theo dõi lỗi và yêu cầu tính năng. Vui lòng tìm kiếm các vấn đề đã tồn tại trước khi tạo vấn đề mới để tránh trùng lặp. Đối với các vấn đề mới, hãy báo cáo lỗi hoặc yêu cầu tính năng của bạn dưới dạng một Vấn đề mới.
+Trước khi gửi vấn đề, vui lòng kiểm tra [Hướng dẫn Khắc phục sự cố](TROUBLESHOOTING.md) để tìm giải pháp cho các vấn đề thường gặp liên quan đến cài đặt, thiết lập và chạy bài học.
 
-Để nhận trợ giúp và giải đáp thắc mắc về việc sử dụng dự án này, hãy tạo một vấn đề.
+Dự án này sử dụng GitHub Issues để theo dõi lỗi và yêu cầu tính năng. Vui lòng tìm kiếm các vấn đề đã tồn tại trước khi gửi vấn đề mới để tránh trùng lặp. Đối với các vấn đề mới, hãy gửi lỗi hoặc yêu cầu tính năng của bạn dưới dạng một Issue mới.
+
+Để nhận trợ giúp và giải đáp thắc mắc về việc sử dụng dự án này, bạn cũng có thể:
+- Kiểm tra [Hướng dẫn Khắc phục sự cố](TROUBLESHOOTING.md)
+- Truy cập [Kênh thảo luận Discord #ml-for-beginners](https://aka.ms/foundry/discord)
+- Gửi một Issue
 
 ## Chính sách hỗ trợ của Microsoft  
 
