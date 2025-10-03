@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a54f98da7bbee99ddc62a9e490eef7dc",
-  "translation_date": "2025-09-29T22:02:45+00:00",
+  "original_hash": "708011bfe48ddfb969ec2f606c35ab68",
+  "translation_date": "2025-10-03T10:27:14+00:00",
   "source_file": "README.md",
   "language_code": "sv"
 }
@@ -19,7 +19,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 🌐 Stöd för flera språk  
 
-#### Stöds via GitHub Action (Automatiserat och alltid uppdaterat)  
+#### Stöds via GitHub Action (Automatiserat & Alltid Uppdaterat)  
 
 [Franska](../fr/README.md) | [Spanska](../es/README.md) | [Tyska](../de/README.md) | [Ryska](../ru/README.md) | [Arabiska](../ar/README.md) | [Persiska (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Kinesiska (Förenklad)](../zh/README.md) | [Kinesiska (Traditionell, Macau)](../mo/README.md) | [Kinesiska (Traditionell, Hongkong)](../hk/README.md) | [Kinesiska (Traditionell, Taiwan)](../tw/README.md) | [Japanska](../ja/README.md) | [Koreanska](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portugisiska (Portugal)](../pt/README.md) | [Portugisiska (Brasilien)](../br/README.md) | [Italienska](../it/README.md) | [Polska](../pl/README.md) | [Turkiska](../tr/README.md) | [Grekiska](../el/README.md) | [Thailändska](../th/README.md) | [Svenska](./README.md) | [Danska](../da/README.md) | [Norska](../no/README.md) | [Finska](../fi/README.md) | [Holländska](../nl/README.md) | [Hebreiska](../he/README.md) | [Vietnamesiska](../vi/README.md) | [Indonesiska](../id/README.md) | [Malajiska](../ms/README.md) | [Tagalog (Filippinska)](../tl/README.md) | [Swahili](../sw/README.md) | [Ungerska](../hu/README.md) | [Tjeckiska](../cs/README.md) | [Slovakiska](../sk/README.md) | [Rumänska](../ro/README.md) | [Bulgariska](../bg/README.md) | [Serbiska (Kyrilliska)](../sr/README.md) | [Kroatiska](../hr/README.md) | [Slovenska](../sl/README.md) | [Ukrainska](../uk/README.md) | [Burmesiska (Myanmar)](../my/README.md)  
 
@@ -27,17 +27,17 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![Azure AI Discord](https://dcbadge.limes.pink/api/server/kzRShWzttr)](https://aka.ms/ml4beginners/discord)  
 
-Vi har en pågående Discord-serie om att lära sig med AI. Läs mer och gå med oss på [Learn with AI Series](https://aka.ms/learnwithai/discord) från 18–30 september 2025. Du får tips och tricks om hur du använder GitHub Copilot för datavetenskap.  
+Vi har en Discord-serie om att lära sig med AI på gång. Läs mer och gå med oss på [Learn with AI Series](https://aka.ms/learnwithai/discord) från 18 - 30 september 2025. Du kommer att få tips och tricks om hur du använder GitHub Copilot för datavetenskap.  
 
 ![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.sv.png)  
 
-# Maskininlärning för nybörjare – En kursplan  
+# Maskininlärning för nybörjare - En kursplan  
 
 > 🌍 Res runt i världen medan vi utforskar maskininlärning genom världens kulturer 🌍  
 
-Cloud Advocates på Microsoft är glada att erbjuda en 12-veckors, 26-lektions kursplan om **maskininlärning**. I denna kursplan kommer du att lära dig om det som ibland kallas **klassisk maskininlärning**, främst med hjälp av Scikit-learn som bibliotek och undvika djupinlärning, vilket täcks i vår [AI för nybörjare-kursplan](https://aka.ms/ai4beginners). Kombinera dessa lektioner med vår ['Datavetenskap för nybörjare-kursplan'](https://aka.ms/ds4beginners), också!  
+Cloud Advocates på Microsoft är glada att erbjuda en 12-veckors, 26-lektions kursplan om **maskininlärning**. I denna kursplan kommer du att lära dig om det som ibland kallas **klassisk maskininlärning**, främst med hjälp av Scikit-learn som bibliotek och undvika djupinlärning, vilket täcks i vår [AI för nybörjare-kursplan](https://aka.ms/ai4beginners). Kombinera dessa lektioner med vår ['Datavetenskap för nybörjare'-kursplan](https://aka.ms/ds4beginners), också!  
 
-Res med oss runt i världen när vi tillämpar dessa klassiska tekniker på data från många delar av världen. Varje lektion innehåller quiz före och efter lektionen, skriftliga instruktioner för att slutföra lektionen, en lösning, en uppgift och mer. Vår projektbaserade pedagogik gör att du kan lära dig genom att bygga, ett beprövat sätt för nya färdigheter att fastna.  
+Res med oss runt i världen när vi tillämpar dessa klassiska tekniker på data från många delar av världen. Varje lektion innehåller quiz före och efter lektionen, skriftliga instruktioner för att slutföra lektionen, en lösning, en uppgift och mer. Vår projektbaserade pedagogik låter dig lära dig medan du bygger, ett beprövat sätt för nya färdigheter att "fastna".  
 
 **✍️ Stort tack till våra författare** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu och Amy Boyd  
 
@@ -63,45 +63,45 @@ Följ dessa steg:
 - Ta quizet efter lektionen.  
 - Slutför utmaningen.  
 - Slutför uppgiften.  
-- Efter att ha slutfört en lektionsgrupp, besök [Diskussionsforumet](https://github.com/microsoft/ML-For-Beginners/discussions) och "lär dig högt" genom att fylla i den relevanta PAT-mallen. En 'PAT' är ett Progress Assessment Tool som är en mall du fyller i för att fördjupa ditt lärande. Du kan också reagera på andra PATs så att vi kan lära oss tillsammans.  
+- Efter att ha slutfört en lektionsgrupp, besök [Diskussionsforumet](https://github.com/microsoft/ML-For-Beginners/discussions) och "lär dig högt" genom att fylla i den lämpliga PAT-mallen. En 'PAT' är ett Progress Assessment Tool som är en mall du fyller i för att fördjupa ditt lärande. Du kan också reagera på andra PATs så att vi kan lära oss tillsammans.  
 
 > För vidare studier rekommenderar vi att följa dessa [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) moduler och lärvägar.  
 
 **Lärare**, vi har [inkluderat några förslag](for-teachers.md) på hur man använder denna kursplan.  
 
----
+---  
 
 ## Videogenomgångar  
 
 Vissa av lektionerna finns tillgängliga som korta videor. Du hittar alla dessa in-line i lektionerna, eller på [ML för nybörjare-spellistan på Microsoft Developer YouTube-kanal](https://aka.ms/ml-beginners-videos) genom att klicka på bilden nedan.  
 
-[![ML för nybörjare-banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.sv.png)](https://aka.ms/ml-beginners-videos)  
+[![ML för nybörjare banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.sv.png)](https://aka.ms/ml-beginners-videos)  
 
----
+---  
 
 ## Möt teamet  
 
-[![Promo-video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)  
+[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)  
 
 **Gif av** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)  
 
 > 🎥 Klicka på bilden ovan för en video om projektet och personerna som skapade det!  
 
----
+---  
 
 ## Pedagogik  
 
 Vi har valt två pedagogiska principer när vi byggde denna kursplan: att säkerställa att den är praktisk **projektbaserad** och att den innehåller **frekventa quiz**. Dessutom har denna kursplan ett gemensamt **tema** för att ge den sammanhållning.  
 
-Genom att säkerställa att innehållet är kopplat till projekt görs processen mer engagerande för studenter och koncepten blir lättare att komma ihåg. Dessutom sätter ett quiz med låg insats före en klass studentens intention mot att lära sig ett ämne, medan ett andra quiz efter klassen säkerställer ytterligare retention. Denna kursplan är designad för att vara flexibel och rolig och kan tas i sin helhet eller delvis. Projekten börjar små och blir alltmer komplexa i slutet av den 12-veckors cykeln. Kursplanen inkluderar också ett efterord om verkliga tillämpningar av ML, som kan användas som extra kredit eller som grund för diskussion.  
+Genom att säkerställa att innehållet är kopplat till projekt görs processen mer engagerande för studenter och koncepten kommer att behållas bättre. Dessutom sätter ett låginsatsquiz före en klass studentens intention mot att lära sig ett ämne, medan ett andra quiz efter klassen säkerställer ytterligare retention. Denna kursplan är designad för att vara flexibel och rolig och kan tas i sin helhet eller delvis. Projekten börjar små och blir alltmer komplexa i slutet av den 12-veckors cykeln. Kursplanen inkluderar också ett efterord om verkliga tillämpningar av ML, som kan användas som extra kredit eller som grund för diskussion.  
 
 > Hitta vår [Uppförandekod](CODE_OF_CONDUCT.md), [Bidragsriktlinjer](CONTRIBUTING.md) och [Översättningsriktlinjer](TRANSLATIONS.md). Vi välkomnar din konstruktiva feedback!  
 
-## Varje lektion innehåller  
+## Varje lektion inkluderar  
 
 - valfri sketchnote  
 - valfri kompletterande video  
-- videogenomgång (vissa lektioner)  
+- videogenomgång (vissa lektioner endast)  
 - [quiz före lektionen](https://ff-quizzes.netlify.app/en/ml/)  
 - skriftlig lektion  
 - för projektbaserade lektioner, steg-för-steg-guider om hur man bygger projektet  
@@ -133,7 +133,7 @@ Genom att säkerställa att innehållet är kopplat till projekt görs processen
 |      14       |                   Introduktion till klustring                 |        [Klustring](5-Clustering/README.md)          | Rengör, förbered och visualisera din data; introduktion till klustring                                                           |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
 |      15       |              Utforska nigerianska musiksmaker 🎧              |        [Klustring](5-Clustering/README.md)          | Utforska K-Means klustringsmetod                                                                                                 |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
 |      16       |        Introduktion till naturlig språkbehandling ☕️         |   [Naturlig språkbehandling](6-NLP/README.md)       | Lär dig grunderna i NLP genom att bygga en enkel bot                                                                             |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|      17       |                      Vanliga NLP-uppgifter ☕️                 |   [Naturlig språkbehandling](6-NLP/README.md)       | Fördjupa dina kunskaper i NLP genom att förstå vanliga uppgifter som krävs vid arbete med språkstrukturer                        |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      17       |                      Vanliga NLP-uppgifter ☕️                 |   [Naturlig språkbehandling](6-NLP/README.md)       | Fördjupa dina kunskaper i NLP genom att förstå vanliga uppgifter vid hantering av språkstrukturer                                |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
 |      18       |             Översättning och sentimentanalys ♥️               |   [Naturlig språkbehandling](6-NLP/README.md)       | Översättning och sentimentanalys med Jane Austen                                                                                |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
 |      19       |                  Romantiska hotell i Europa ♥️                |   [Naturlig språkbehandling](6-NLP/README.md)       | Sentimentanalys med hotellrecensioner 1                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
 |      20       |                  Romantiska hotell i Europa ♥️                |   [Naturlig språkbehandling](6-NLP/README.md)       | Sentimentanalys med hotellrecensioner 2                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
@@ -141,7 +141,7 @@ Genom att säkerställa att innehållet är kopplat till projekt görs processen
 |      22       | ⚡️ Världens energiförbrukning ⚡️ - tidsserieprognoser med ARIMA |        [Tidsserier](7-TimeSeries/README.md)         | Tidsserieprognoser med ARIMA                                                                                                     |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
 |      23       |  ⚡️ Världens energiförbrukning ⚡️ - tidsserieprognoser med SVR  |        [Tidsserier](7-TimeSeries/README.md)         | Tidsserieprognoser med Support Vector Regressor                                                                                 |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
 |      24       |             Introduktion till förstärkningsinlärning          | [Förstärkningsinlärning](8-Reinforcement/README.md) | Introduktion till förstärkningsinlärning med Q-Learning                                                                         |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
-|      25       |                 Hjälp Peter att undvika vargen! 🐺            | [Förstärkningsinlärning](8-Reinforcement/README.md) | Förstärkningsinlärning med Gym                                                                                                   |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|      25       |                 Hjälp Peter att undvika vargen! 🐺            | [Förstärkningsinlärning](8-Reinforcement/README.md) | Förstärkningsinlärning med Gym                                                                                                  |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
 |  Postscript   |            Verkliga ML-scenarier och applikationer            |      [ML i verkligheten](9-Real-World/README.md)    | Intressanta och avslöjande verkliga applikationer av klassisk ML                                                                |                                             [Lektion](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
 |  Postscript   |            Modellfelsökning i ML med RAI-dashboard            |      [ML i verkligheten](9-Real-World/README.md)    | Modellfelsökning i maskininlärning med komponenter från Responsible AI-dashboard                                               |                                             [Lektion](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
@@ -149,11 +149,11 @@ Genom att säkerställa att innehållet är kopplat till projekt görs processen
 
 ## Offlineåtkomst
 
-Du kan köra denna dokumentation offline med hjälp av [Docsify](https://docsify.js.org/#/). Forka detta repo, [installera Docsify](https://docsify.js.org/#/quickstart) på din lokala dator och skriv sedan `docsify serve` i rotmappen för detta repo. Webbplatsen kommer att köras på port 3000 på din localhost: `localhost:3000`.
+Du kan köra denna dokumentation offline med [Docsify](https://docsify.js.org/#/). Forka detta repo, [installera Docsify](https://docsify.js.org/#/quickstart) på din lokala dator och skriv sedan `docsify serve` i root-mappen av detta repo. Webbplatsen kommer att serveras på port 3000 på din localhost: `localhost:3000`.
 
 ## PDF:er
 
-Hitta en pdf av läroplanen med länkar [här](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
+Hitta en pdf av kursplanen med länkar [här](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 
 ## 🎒 Andra kurser 
@@ -177,7 +177,17 @@ Vårt team producerar andra kurser! Kolla in:
 - [Bemästra GitHub Copilot för C#/.NET-utvecklare](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers)
 - [Välj ditt eget Copilot-äventyr](https://github.com/microsoft/CopilotAdventures)
 
+## Få hjälp
+
+Om du fastnar eller har frågor om att bygga AI-appar, gå med i:
+
+[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
+
+Om du har produktfeedback eller fel vid byggandet, besök:
+
+[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+
 ---
 
 **Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, bör det noteras att automatiserade översättningar kan innehålla fel eller felaktigheter. Det ursprungliga dokumentet på dess ursprungliga språk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, bör det noteras att automatiserade översättningar kan innehålla fel eller felaktigheter. Det ursprungliga dokumentet på dess originalspråk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
