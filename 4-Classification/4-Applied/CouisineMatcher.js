@@ -1,5 +1,4 @@
 // Test alert message to verify JavaScript is working
-alert('JavaScript is working! CuisineMatcher.js loaded successfully.');
 
 const ingredients = Array(380).fill(0);
     
