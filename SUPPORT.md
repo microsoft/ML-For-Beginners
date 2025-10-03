@@ -9,9 +9,10 @@ feature request as a new Issue.
 
 For help and questions about using this project, you can also:
 - Check the [Troubleshooting Guide](TROUBLESHOOTING.md)
-- Visit our [GitHub Discussions](https://github.com/microsoft/ML-For-Beginners/discussions)
+- Visit our [Discord Discussions #ml-for-beginners channel](https://aka.ms/foundry/discord)
 - File an issue
 
 ## Microsoft Support Policy  
 
 Support for this repository is limited to the resources listed above.
+
