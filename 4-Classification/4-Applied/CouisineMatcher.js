@@ -1,4 +1,4 @@
-// Test alert message to verify JavaScript is working
+// Handles ingredient selection and cuisine prediction using an ONNX model.
 
 const ingredients = Array(380).fill(0);
     
