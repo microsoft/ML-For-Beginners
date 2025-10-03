@@ -40,7 +40,7 @@ async function startInference() {
         alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
 
     } catch (e) {
-        console.log(`failed to inference ONNX model`);
+        console.log(`failed to run inference on ONNX model`);
         console.error(e);
     }
 }
