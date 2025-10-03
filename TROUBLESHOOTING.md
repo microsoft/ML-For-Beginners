@@ -1,6 +1,6 @@
 # Troubleshooting Guide
 
-This guide helps you solve common problems when working with the Machine Learning for Beginners curriculum. If you don't find a solution here, please check our [GitHub Discussions](https://github.com/microsoft/ML-For-Beginners/discussions) or [open an issue](https://github.com/microsoft/ML-For-Beginners/issues).
+This guide helps you solve common problems when working with the Machine Learning for Beginners curriculum. If you don't find a solution here, please check our [Discord Discussions](https://aka.ms/foundry/discord) or [open an issue](https://github.com/microsoft/ML-For-Beginners/issues).
 
 ## Table of Contents
 
@@ -573,7 +573,7 @@ git checkout --ours path/to/file    # Keep your version
 
 ## Additional Resources
 
-- **GitHub Discussions**: [Ask questions and share solutions](https://github.com/microsoft/ML-For-Beginners/discussions)
+- **Discord Discussions**: [Ask questions and share solutions in the #ml-for-beginners channel](https://aka.ms/foundry/discord)
 - **Microsoft Learn**: [ML for Beginners modules](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 - **Video Tutorials**: [YouTube Playlist](https://aka.ms/ml-beginners-videos)
 - **Issue Tracker**: [Report bugs](https://github.com/microsoft/ML-For-Beginners/issues)
@@ -585,7 +585,7 @@ git checkout --ours path/to/file    # Keep your version
 If you've tried the solutions above and still experiencing problems:
 
 1. **Search existing issues**: [GitHub Issues](https://github.com/microsoft/ML-For-Beginners/issues)
-2. **Check discussions**: [GitHub Discussions](https://github.com/microsoft/ML-For-Beginners/discussions)
+2. **Check discussions in Discord**: [Discord Discussions](https://aka.ms/foundry/discord)
 3. **Open a new issue**: Include:
    - Your operating system and version
    - Python/R version
