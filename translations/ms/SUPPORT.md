@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
-  "translation_date": "2025-09-05T18:34:23+00:00",
+  "original_hash": "09623d7343ff1c26ff4f198c1b2d3176",
+  "translation_date": "2025-10-03T12:16:50+00:00",
   "source_file": "SUPPORT.md",
   "language_code": "ms"
 }
@@ -10,9 +10,14 @@ CO_OP_TRANSLATOR_METADATA:
 # Sokongan
 ## Cara untuk melaporkan isu dan mendapatkan bantuan  
 
-Projek ini menggunakan GitHub Issues untuk menjejaki pepijat dan permintaan ciri. Sila cari isu yang sedia ada sebelum melaporkan isu baharu untuk mengelakkan pendua. Untuk isu baharu, laporkan pepijat atau permintaan ciri anda sebagai Isu baharu.
+Sebelum melaporkan isu, sila semak [Panduan Penyelesaian Masalah](TROUBLESHOOTING.md) untuk penyelesaian kepada masalah biasa berkaitan pemasangan, penyediaan, dan menjalankan pelajaran.
 
-Untuk bantuan dan soalan mengenai penggunaan projek ini, laporkan isu.
+Projek ini menggunakan GitHub Issues untuk menjejaki pepijat dan permintaan ciri. Sila cari isu yang sedia ada sebelum melaporkan isu baru untuk mengelakkan pendua. Untuk isu baru, laporkan pepijat atau permintaan ciri anda sebagai Isu baru.
+
+Untuk bantuan dan soalan tentang menggunakan projek ini, anda juga boleh:
+- Semak [Panduan Penyelesaian Masalah](TROUBLESHOOTING.md)
+- Lawati [Saluran Discord #ml-for-beginners](https://aka.ms/foundry/discord)
+- Laporkan isu
 
 ## Polisi Sokongan Microsoft  
 

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
-  "translation_date": "2025-09-05T15:04:48+00:00",
+  "original_hash": "09623d7343ff1c26ff4f198c1b2d3176",
+  "translation_date": "2025-10-03T12:19:16+00:00",
   "source_file": "SUPPORT.md",
   "language_code": "sw"
 }
@@ -10,13 +10,18 @@ CO_OP_TRANSLATOR_METADATA:
 # Msaada
 ## Jinsi ya kuripoti matatizo na kupata msaada  
 
-Mradi huu unatumia GitHub Issues kufuatilia hitilafu na maombi ya vipengele. Tafadhali tafuta matatizo yaliyopo kabla ya kuripoti matatizo mapya ili kuepuka kurudia. Kwa matatizo mapya, ripoti hitilafu yako au ombi la kipengele kama Tatizo jipya.
+Kabla ya kuripoti tatizo, tafadhali angalia [Mwongozo wa Kutatua Matatizo](TROUBLESHOOTING.md) kwa suluhisho za matatizo ya kawaida yanayohusiana na usakinishaji, usanidi, na kuendesha masomo.
 
-Kwa msaada na maswali kuhusu kutumia mradi huu, ripoti tatizo.
+Mradi huu unatumia Masuala ya GitHub kufuatilia hitilafu na maombi ya vipengele. Tafadhali tafuta masuala yaliyopo kabla ya kuripoti masuala mapya ili kuepuka kurudia. Kwa masuala mapya, ripoti hitilafu yako au ombi la kipengele kama suala jipya.
+
+Kwa msaada na maswali kuhusu kutumia mradi huu, unaweza pia:
+- Angalia [Mwongozo wa Kutatua Matatizo](TROUBLESHOOTING.md)
+- Tembelea [Mjadala wa Discord #ml-for-beginners channel](https://aka.ms/foundry/discord)
+- Ripoti suala
 
 ## Sera ya Msaada ya Microsoft  
 
-Msaada kwa hifadhi hii unazingatia tu rasilimali zilizoorodheshwa hapo juu.
+Msaada kwa hifadhi hii ni mdogo kwa rasilimali zilizoorodheshwa hapo juu.
 
 ---
 
