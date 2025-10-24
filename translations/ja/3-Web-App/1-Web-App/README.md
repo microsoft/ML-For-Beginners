@@ -166,7 +166,7 @@ print(model.predict([[50,44,-12]]))
 
 次に、Flaskアプリを構築してモデルを呼び出し、より視覚的に魅力的な方法で結果を返します。
 
-1. _notebook.ipynb_ファイルの隣に**web-app**というフォルダを作成します。その中に_ufo-model.pkl_ファイルを配置します。
+1. _notebook.ipynb_ ファイルの隣に**web-app**というフォルダを作成します。その中に _ufo-model.pkl_ ファイルを配置します。
 
 1. そのフォルダ内にさらに3つのフォルダを作成します: **static** (その中に**css**フォルダを作成)、および**templates**。以下のファイルとディレクトリが揃っているはずです:
 
@@ -181,7 +181,7 @@ print(model.predict([[50,44,-12]]))
 
     ✅ 完成したアプリのビューについてはソリューションフォルダを参照してください
 
-1. 最初に_web-app_フォルダ内に**requirements.txt**ファイルを作成します。JavaScriptアプリの_package.json_のように、このファイルはアプリに必要な依存関係をリストします。**requirements.txt**に以下を追加します:
+1. 最初に _web-app_ フォルダ内に**requirements.txt**ファイルを作成します。JavaScriptアプリの _package.json_ のように、このファイルはアプリに必要な依存関係をリストします。**requirements.txt**に以下を追加します:
 
     ```text
     scikit-learn
@@ -190,13 +190,13 @@ print(model.predict([[50,44,-12]]))
     flask
     ```
 
-1. 次に、このファイルを_web-app_で実行します:
+1. 次に、このファイルを _web-app_ で実行します:
 
     ```bash
     cd web-app
     ```
 
-1. ターミナルで`pip install`と入力し、_requirements.txt_にリストされたライブラリをインストールします:
+1. ターミナルで`pip install`と入力し、_requirements.txt_ にリストされたライブラリをインストールします:
 
     ```bash
     pip install -r requirements.txt
@@ -205,10 +205,10 @@ print(model.predict([[50,44,-12]]))
 1. 次に、アプリを完成させるためにさらに3つのファイルを作成します:
 
     1. ルートに**app.py**を作成します。
-    2. _templates_ディレクトリに**index.html**を作成します。
-    3. _static/css_ディレクトリに**styles.css**を作成します。
+    2. _templates_ ディレクトリに**index.html**を作成します。
+    3. _static/css_ ディレクトリに**styles.css**を作成します。
 
-1. _styles.css_ファイルにいくつかのスタイルを追加します:
+1. _styles.css_ ファイルにいくつかのスタイルを追加します:
 
     ```css
     body {
@@ -242,7 +242,7 @@ print(model.predict([[50,44,-12]]))
     }
     ```
 
-1. 次に、_index.html_ファイルを構築します:
+1. 次に、_index.html_ ファイルを構築します:
 
     ```html
     <!DOCTYPE html>
