@@ -1,127 +1,126 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7a13afb3674838f557d61f8d67e4d5f8",
-  "translation_date": "2025-10-24T08:49:17+00:00",
+  "original_hash": "74da5cc84f2716b6b9944241a141e2f9",
+  "translation_date": "2025-11-18T16:50:13+00:00",
   "source_file": "README.md",
   "language_code": "en"
 }
 -->
-[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)  
+[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)  
+[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)  
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)  
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)  
 
-[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
-[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
-[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)  
+[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)  
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)  
 
-### 🌐 Multi-Language Support
+### 🌐 Multi-Language Support  
 
-#### Supported via GitHub Action (Automated & Always Up-to-Date)
+#### Supported via GitHub Action (Automated & Always Up-to-Date)  
 
-<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
-<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->  
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)  
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->  
 
-#### Join Our Community
+#### Join Our Community  
 
-[![Azure AI Discord](https://dcbadge.limes.pink/api/server/kzRShWzttr)](https://aka.ms/ml4beginners/discord)
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)  
 
-We have a Discord learn with AI series ongoing, learn more and join us at [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You will get tips and tricks of using GitHub Copilot for Data Science.
+We have a Discord learn with AI series ongoing, learn more and join us at [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You will get tips and tricks of using GitHub Copilot for Data Science.  
 
-![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.en.png)
+![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.en.png)  
 
-# Machine Learning for Beginners - A Curriculum
+# Machine Learning for Beginners - A Curriculum  
 
-> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
+> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍  
 
-Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!
+Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!  
 
-Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
+Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.  
 
-**✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu and Amy Boyd
+**✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu and Amy Boyd  
 
-**🎨 Thanks as well to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper
+**🎨 Thanks as well to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper  
 
-**🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers, and content contributors**, notably Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
+**🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers, and content contributors**, notably Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal  
 
-**🤩 Extra gratitude to Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, and Vidushi Gupta for our R lessons!**
+**🤩 Extra gratitude to Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, and Vidushi Gupta for our R lessons!**  
 
-# Getting Started
+# Getting Started  
 
-Follow these steps:
-1. **Fork the Repository**: Click on the "Fork" button at the top-right corner of this page.
-2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+Follow these steps:  
+1. **Fork the Repository**: Click on the "Fork" button at the top-right corner of this page.  
+2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`  
 
-> [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)  
 
-> 🔧 **Need help?** Check our [Troubleshooting Guide](TROUBLESHOOTING.md) for solutions to common issues with installation, setup, and running lessons.
+> 🔧 **Need help?** Check our [Troubleshooting Guide](TROUBLESHOOTING.md) for solutions to common issues with installation, setup, and running lessons.  
 
+**[Students](https://aka.ms/student-page)**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:  
 
-**[Students](https://aka.ms/student-page)**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
+- Start with a pre-lecture quiz.  
+- Read the lecture and complete the activities, pausing and reflecting at each knowledge check.  
+- Try to create the projects by comprehending the lessons rather than running the solution code; however that code is available in the `/solution` folders in each project-oriented lesson.  
+- Take the post-lecture quiz.  
+- Complete the challenge.  
+- Complete the assignment.  
+- After completing a lesson group, visit the [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) and "learn out loud" by filling out the appropriate PAT rubric. A 'PAT' is a Progress Assessment Tool that is a rubric you fill out to further your learning. You can also react to other PATs so we can learn together.  
 
-- Start with a pre-lecture quiz.
-- Read the lecture and complete the activities, pausing and reflecting at each knowledge check.
-- Try to create the projects by comprehending the lessons rather than running the solution code; however that code is available in the `/solution` folders in each project-oriented lesson.
-- Take the post-lecture quiz.
-- Complete the challenge.
-- Complete the assignment.
-- After completing a lesson group, visit the [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) and "learn out loud" by filling out the appropriate PAT rubric. A 'PAT' is a Progress Assessment Tool that is a rubric you fill out to further your learning. You can also react to other PATs so we can learn together.
+> For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules and learning paths.  
 
-> For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules and learning paths.
+**Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum.  
 
-**Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum.
+---  
 
----
+## Video walkthroughs  
 
-## Video walkthroughs
+Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.  
 
-Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.
+[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.en.png)](https://aka.ms/ml-beginners-videos)  
 
-[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.en.png)](https://aka.ms/ml-beginners-videos)
+---  
 
----
+## Meet the Team  
 
-## Meet the Team
+[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)  
 
-[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
+**Gif by** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)  
 
-**Gif by** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+> 🎥 Click the image above for a video about the project and the folks who created it!  
 
-> 🎥 Click the image above for a video about the project and the folks who created it!
+---  
 
----
+## Pedagogy  
 
-## Pedagogy
+We have chosen two pedagogical tenets while building this curriculum: ensuring that it is hands-on **project-based** and that it includes **frequent quizzes**. In addition, this curriculum has a common **theme** to give it cohesion.  
 
-We have chosen two pedagogical tenets while building this curriculum: ensuring that it is hands-on **project-based** and that it includes **frequent quizzes**. In addition, this curriculum has a common **theme** to give it cohesion.
+By ensuring that the content aligns with projects, the process is made more engaging for students and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12-week cycle. This curriculum also includes a postscript on real-world applications of ML, which can be used as extra credit or as a basis for discussion.  
 
-By ensuring that the content aligns with projects, the process is made more engaging for students and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12-week cycle. This curriculum also includes a postscript on real-world applications of ML, which can be used as extra credit or as a basis for discussion.
+> Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), [Translation](TRANSLATIONS.md), and [Troubleshooting](TROUBLESHOOTING.md) guidelines. We welcome your constructive feedback!  
 
-> Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), [Translation](TRANSLATIONS.md), and [Troubleshooting](TROUBLESHOOTING.md) guidelines. We welcome your constructive feedback!
+## Each lesson includes  
 
-## Each lesson includes
+- optional sketchnote  
+- optional supplemental video  
+- video walkthrough (some lessons only)  
+- [pre-lecture warmup quiz](https://ff-quizzes.netlify.app/en/ml/)  
+- written lesson  
+- for project-based lessons, step-by-step guides on how to build the project  
+- knowledge checks  
+- a challenge  
+- supplemental reading  
+- assignment  
+- [post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)  
 
-- optional sketchnote
-- optional supplemental video
-- video walkthrough (some lessons only)
-- [pre-lecture warmup quiz](https://ff-quizzes.netlify.app/en/ml/)
-- written lesson
-- for project-based lessons, step-by-step guides on how to build the project
-- knowledge checks
-- a challenge
-- supplemental reading
-- assignment
-- [post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
+> **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.  
 
-> **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.
+> **A note about quizzes**: All quizzes are contained in [Quiz App folder](../../quiz-app), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder to locally host or deploy to Azure.  
 
-> **A note about quizzes**: All quizzes are contained in [Quiz App folder](../../quiz-app), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder to locally host or deploy to Azure.
-
-| Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
-| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
+| Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |  
+| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |  
 |      01       |                Introduction to machine learning                |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts behind machine learning                                                                                |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
 |      02       |                The History of machine learning                 |      [Introduction](1-Introduction/README.md)       | Learn the history underlying this field                                                                                         |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
 |      03       |                 Fairness and machine learning                  |      [Introduction](1-Introduction/README.md)       | What are the important philosophical issues around fairness that students should consider when building and applying ML models? |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
@@ -200,15 +199,17 @@ Our team produces other courses! Check out:
 
 ## Getting Help  
 
-If you're stuck or have questions about building AI applications, join:  
+If you get stuck or have any questions about building AI apps, join fellow learners and experienced developers in discussions about MCP. It's a supportive community where questions are welcome and knowledge is shared freely.  
 
-[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)  
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)  
 
 If you have product feedback or encounter errors while building, visit:  
 
-[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)  
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)  
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may include errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is advised. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
