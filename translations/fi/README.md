@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "74da5cc84f2716b6b9944241a141e2f9",
-  "translation_date": "2025-11-18T17:34:13+00:00",
+  "original_hash": "c300f2380d9da91b7de8c707f69ce99b",
+  "translation_date": "2025-12-19T11:25:45+00:00",
   "source_file": "README.md",
   "language_code": "fi"
 }
@@ -22,24 +22,24 @@ CO_OP_TRANSLATOR_METADATA:
 #### Tuettu GitHub Actionin kautta (automaattinen ja aina ajan tasalla)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](./README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](./README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 #### Liity yhteisöömme
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Meillä on käynnissä Discordissa AI-oppimissarja, opi lisää ja liity mukaan [Learn with AI Series](https://aka.ms/learnwithai/discord) 18.–30. syyskuuta 2025. Saat vinkkejä ja neuvoja GitHub Copilotin käytöstä data-analytiikassa.
+Meillä on käynnissä Discordin Learn with AI -sarja, opi lisää ja liity mukaan osoitteessa [Learn with AI Series](https://aka.ms/learnwithai/discord) 18.–30. syyskuuta 2025. Saat vinkkejä ja niksejä GitHub Copilotin käyttämiseen Data Scienticessä.
 
 ![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.fi.png)
 
-# Koneoppiminen aloittelijoille - Opetussuunnitelma
+# Koneoppiminen aloittelijoille – Opetussuunnitelma
 
-> 🌍 Matkusta ympäri maailmaa tutustuessasi koneoppimiseen maailman kulttuurien kautta 🌍
+> 🌍 Matkusta ympäri maailmaa tutkiessamme koneoppimista maailman kulttuurien kautta 🌍
 
-Microsoftin Cloud Advocates -tiimi tarjoaa mielellään 12 viikon ja 26 oppitunnin opetussuunnitelman, joka käsittelee **koneoppimista**. Tässä opetussuunnitelmassa opit niin sanottua **klassista koneoppimista**, pääasiassa Scikit-learn-kirjastoa käyttäen ja välttäen syväoppimista, joka käsitellään [AI for Beginners -opetussuunnitelmassa](https://aka.ms/ai4beginners). Yhdistä nämä oppitunnit myös ['Data Science for Beginners' -opetussuunnitelmaan](https://aka.ms/ds4beginners)!
+Microsoftin Cloud Advocates tarjoaa 12 viikon, 26 oppitunnin opetussuunnitelman, joka käsittelee **koneoppimista**. Tässä opetussuunnitelmassa opit niin kutsutusta **klassisen koneoppimisen** menetelmistä, käyttäen pääasiassa Scikit-learn-kirjastoa ja välttäen syväoppimista, joka käsitellään [AI for Beginners -opetussuunnitelmassamme](https://aka.ms/ai4beginners). Yhdistä nämä oppitunnit myös ['Data Science for Beginners' -opetussuunnitelman](https://aka.ms/ds4beginners) kanssa!
 
-Matkusta kanssamme ympäri maailmaa soveltaessamme näitä klassisia tekniikoita eri puolilta maailmaa peräisin olevaan dataan. Jokainen oppitunti sisältää ennen ja jälkeen oppitunnin tehtävät, kirjalliset ohjeet oppitunnin suorittamiseen, ratkaisun, tehtävän ja paljon muuta. Projektipohjainen oppimismetodimme antaa sinulle mahdollisuuden oppia rakentamalla, mikä on todistetusti tehokas tapa omaksua uusia taitoja.
+Matkusta kanssamme ympäri maailmaa soveltaen näitä klassisia menetelmiä monien eri alueiden dataan. Jokainen oppitunti sisältää ennen ja jälkeen oppitunnin tehtävät, kirjalliset ohjeet oppitunnin suorittamiseen, ratkaisun, tehtävän ja muuta. Projektipohjainen opetustapamme mahdollistaa oppimisen rakentamisen kautta, mikä on todistettu tapa saada uudet taidot pysymään.
 
 **✍️ Suuret kiitokset kirjoittajillemme** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu ja Amy Boyd
 
@@ -47,37 +47,37 @@ Matkusta kanssamme ympäri maailmaa soveltaessamme näitä klassisia tekniikoita
 
 **🙏 Erityiskiitokset 🙏 Microsoft Student Ambassador -kirjoittajillemme, arvioijillemme ja sisällöntuottajillemme**, erityisesti Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila ja Snigdha Agarwal
 
-**🤩 Erityiskiitokset Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi ja Vidushi Gupta R-oppitunneistamme!**
+**🤩 Lisäkiitos Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi ja Vidushi Gupta R-oppitunneistamme!**
 
 # Aloittaminen
 
-Noudata näitä ohjeita:
-1. **Forkkaa repositorio**: Klikkaa "Fork"-painiketta tämän sivun oikeassa yläkulmassa.
-2. **Kloonaa repositorio**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+Seuraa näitä ohjeita:
+1. **Forkkaa repositorio**: Klikkaa "Fork" -painiketta tämän sivun oikeassa yläkulmassa.
+2. **Kloonaa repositorio**: `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [löydä kaikki lisäresurssit tähän kurssiin Microsoft Learn -kokoelmastamme](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [löydät kaikki lisäresurssit tälle kurssille Microsoft Learn -kokoelmastamme](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-> 🔧 **Tarvitsetko apua?** Katso [Vianmääritysoppaamme](TROUBLESHOOTING.md) saadaksesi ratkaisuja yleisiin asennus-, asetus- ja oppituntien suorittamisongelmiin.
+> 🔧 **Tarvitsetko apua?** Katso [Vianmääritysohjeistuksemme](TROUBLESHOOTING.md) yleisimpiin asennus-, käyttöönotto- ja oppituntien suorittamisongelmiin.
 
-**[Opiskelijat](https://aka.ms/student-page)**, käyttäkää tätä opetussuunnitelmaa forkkaamalla koko repositorio omaan GitHub-tiliinne ja suorittamalla harjoitukset itsenäisesti tai ryhmässä:
+**[Opiskelijat](https://aka.ms/student-page)**, käyttääksenne tätä opetussuunnitelmaa, forkkaa koko repo omaan GitHub-tiliisi ja suorita harjoitukset itse tai ryhmässä:
 
-- Aloita oppitunnin aloituskyselyllä.
-- Lue oppitunti ja suorita aktiviteetit, pysähtyen ja pohtien jokaisen tietotarkistuksen kohdalla.
-- Yritä luoda projektit ymmärtämällä oppitunnit sen sijaan, että suorittaisit ratkaisukoodin; kuitenkin kyseinen koodi on saatavilla `/solution`-kansioissa jokaisessa projektipohjaisessa oppitunnissa.
-- Suorita oppitunnin jälkeinen kysely.
+- Aloita ennakkotestillä.
+- Lue oppitunti ja suorita tehtävät, pysähdy ja pohdi jokaisen tietotarkistuksen kohdalla.
+- Yritä luoda projektit ymmärtämällä oppitunnit sen sijaan, että suoritat ratkaisukoodin; koodi on kuitenkin saatavilla kunkin projektilähtöisen oppitunnin `/solution`-kansiossa.
+- Tee jälkitesti.
 - Suorita haaste.
-- Suorita tehtävä.
-- Kun olet suorittanut oppituntiryhmän, käy [Keskustelupalstalla](https://github.com/microsoft/ML-For-Beginners/discussions) ja "opettele ääneen" täyttämällä sopiva PAT-arviointityökalu. 'PAT' on edistymisen arviointityökalu, joka on kaavake, jonka täytät oppimisesi edistämiseksi. Voit myös reagoida muiden PAT-arviointeihin, jotta voimme oppia yhdessä.
+- Tee tehtävä.
+- Oppituntiryhmän suorittamisen jälkeen käy [Keskustelualueella](https://github.com/microsoft/ML-For-Beginners/discussions) ja "opiskele ääneen" täyttämällä sopiva PAT-arviointilomake. PAT on edistymisen arviointityökalu, jonka täyttämällä voit edistää oppimistasi. Voit myös reagoida muiden PAT-arviointeihin, jotta voimme oppia yhdessä.
 
 > Jatko-opiskelua varten suosittelemme seuraamaan näitä [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) moduuleja ja oppimispolkuja.
 
-**Opettajat**, olemme [sisällyttäneet joitakin ehdotuksia](for-teachers.md) siitä, miten käyttää tätä opetussuunnitelmaa.
+**Opettajat**, olemme [sisällyttäneet joitakin ehdotuksia](for-teachers.md) tämän opetussuunnitelman käyttämiseen.
 
 ---
 
-## Video-opastukset
+## Videoesittelyt
 
-Osa oppitunneista on saatavilla lyhyinä videoina. Löydät ne kaikki oppituntien sisällä tai [ML for Beginners -soittolistalta Microsoft Developer YouTube -kanavalla](https://aka.ms/ml-beginners-videos) klikkaamalla alla olevaa kuvaa.
+Jotkut oppitunnit ovat saatavilla lyhyinä videoina. Löydät ne kaikki oppituntien yhteydestä tai [ML for Beginners -soittolistalta Microsoft Developerin YouTube-kanavalla](https://aka.ms/ml-beginners-videos) klikkaamalla alla olevaa kuvaa.
 
 [![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.fi.png)](https://aka.ms/ml-beginners-videos)
 
@@ -87,7 +87,7 @@ Osa oppitunneista on saatavilla lyhyinä videoina. Löydät ne kaikki oppituntie
 
 [![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
 
-**Gif by** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+**Gif tekijä** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
 > 🎥 Klikkaa yllä olevaa kuvaa nähdäksesi videon projektista ja sen tekijöistä!
 
@@ -95,121 +95,128 @@ Osa oppitunneista on saatavilla lyhyinä videoina. Löydät ne kaikki oppituntie
 
 ## Pedagogiikka
 
-Olemme valinneet kaksi pedagogista periaatetta tämän opetussuunnitelman rakentamisessa: varmistaa, että se on käytännönläheinen **projektipohjainen** ja että se sisältää **usein kyselyitä**. Lisäksi tämä opetussuunnitelma sisältää yhteisen **teeman**, joka antaa sille yhtenäisyyttä.
+Olemme valinneet kaksi pedagogista periaatetta tämän opetussuunnitelman rakentamiseen: varmistaa, että se on käytännönläheinen **projektipohjainen** ja että se sisältää **usein toistuvia testejä**. Lisäksi opetussuunnitelmalla on yhteinen **teema**, joka antaa sille yhtenäisyyttä.
 
-Varmistamalla, että sisältö liittyy projekteihin, prosessi on opiskelijoille kiinnostavampi ja käsitteiden omaksuminen paranee. Lisäksi matalan kynnyksen kysely ennen oppituntia ohjaa opiskelijan huomion oppimaan aihetta, kun taas toinen kysely oppitunnin jälkeen varmistaa lisämuistamisen. Tämä opetussuunnitelma on suunniteltu joustavaksi ja hauskaksi, ja sitä voi suorittaa kokonaan tai osittain. Projektit alkavat pienistä ja muuttuvat yhä monimutkaisemmiksi 12 viikon jakson loppuun mennessä. Tämä opetussuunnitelma sisältää myös jälkikirjoituksen koneoppimisen todellisista sovelluksista, joita voidaan käyttää lisäpisteinä tai keskustelun pohjana.
+Sisällön linkittäminen projekteihin tekee prosessista opiskelijoille kiinnostavamman ja parantaa käsitteiden omaksumista. Lisäksi matalan panoksen testi ennen luentoa suuntaa opiskelijan aikomuksen oppia aihe, ja toinen testi luennon jälkeen varmistaa paremman muistamisen. Tämä opetussuunnitelma on suunniteltu joustavaksi ja hauskaksi, ja sen voi suorittaa kokonaan tai osittain. Projektit alkavat pieninä ja monimutkaistuvat vähitellen 12 viikon aikana. Opetussuunnitelma sisältää myös jälkikirjoituksen koneoppimisen todellisista sovelluksista, jota voi käyttää lisäpisteinä tai keskustelun pohjana.
 
-> Löydä [Toimintaohjeemme](CODE_OF_CONDUCT.md), [Osallistumisohjeet](CONTRIBUTING.md), [Käännösohjeet](TRANSLATIONS.md) ja [Vianmääritys](TROUBLESHOOTING.md) -ohjeet. Otamme mielellämme vastaan rakentavaa palautettasi!
+> Löydät [käyttäytymissääntömme](CODE_OF_CONDUCT.md), [osallistumisohjeet](CONTRIBUTING.md), [käännösohjeet](TRANSLATIONS.md) ja [vianmääritysohjeet](TROUBLESHOOTING.md). Otamme mielellämme vastaan rakentavaa palautetta!
 
 ## Jokainen oppitunti sisältää
 
-- valinnainen luonnoskuva
-- valinnainen lisävideo
-- video-opastus (vain joissakin oppitunneissa)
-- [lämmittelykysely ennen oppituntia](https://ff-quizzes.netlify.app/en/ml/)
-- kirjallinen oppitunti
+- valinnaisen luonnosmuistiinpanon
+- valinnaisen lisävideon
+- videoesittelyn (vain joissakin oppitunneissa)
+- [ennakkoluentoharjoituksen](https://ff-quizzes.netlify.app/en/ml/)
+- kirjallisen oppitunnin
 - projektipohjaisissa oppitunneissa vaiheittaiset ohjeet projektin rakentamiseen
-- tietotarkistukset
-- haaste
+- tietotarkistuksia
+- haasteen
 - lisälukemista
-- tehtävä
-- [kysely oppitunnin jälkeen](https://ff-quizzes.netlify.app/en/ml/)
+- tehtävän
+- [jälkiluentoharjoituksen](https://ff-quizzes.netlify.app/en/ml/)
 
-> **Huomio kielistä**: Nämä oppitunnit on pääasiassa kirjoitettu Pythonilla, mutta monet ovat saatavilla myös R-kielellä. R-oppitunnin suorittamiseksi siirry `/solution`-kansioon ja etsi R-oppitunnit. Ne sisältävät .rmd-päätteen, joka edustaa **R Markdown** -tiedostoa, joka voidaan yksinkertaisesti määritellä sisältävän `koodilohkoja` (R- tai muilla kielillä) ja `YAML-otsikon` (joka ohjaa, miten tulosteet kuten PDF muotoillaan) `Markdown-dokumentissa`. Näin ollen se toimii esimerkillisenä kirjoituskehyksenä data-analytiikalle, koska sen avulla voit yhdistää koodisi, sen tulokset ja ajatuksesi kirjoittamalla ne Markdowniin. Lisäksi R Markdown -dokumentit voidaan renderöidä tulostusmuotoihin, kuten PDF, HTML tai Word.
+> **Huomautus kielistä**: Nämä oppitunnit on pääasiassa kirjoitettu Pythonilla, mutta monet ovat myös saatavilla R-kielellä. R-oppitunnin suorittamiseksi mene `/solution`-kansioon ja etsi R-oppitunteja. Niissä on .rmd-pääte, joka tarkoittaa **R Markdown** -tiedostoa, joka on yksinkertaisesti määritelty `koodilohkojen` (R:n tai muiden kielten) ja `YAML-otsikon` (joka ohjaa tulosteiden, kuten PDF:n, muotoilua) upotuksena `Markdown-dokumenttiin`. Näin se toimii erinomaisena kirjoituskehyksenä data-analyysille, koska voit yhdistää koodisi, sen tulokset ja ajatuksesi kirjoittamalla ne Markdowniin. Lisäksi R Markdown -dokumentit voidaan renderöidä tulostemuodoiksi kuten PDF, HTML tai Word.
 
-> **Huomio kyselyistä**: Kaikki kyselyt löytyvät [Quiz App -kansiosta](../../quiz-app), yhteensä 52 kyselyä, joissa on kolme kysymystä kussakin. Ne on linkitetty oppituntien sisällä, mutta kyselysovellus voidaan ajaa paikallisesti; seuraa ohjeita `quiz-app`-kansiossa isännöidäksesi tai julkaistaksesi Azureen.
+> **Huomautus testeistä**: Kaikki testit löytyvät [Quiz App -kansiosta](../../quiz-app), yhteensä 52 testiä, joissa jokaisessa on kolme kysymystä. Ne on linkitetty oppitunneista, mutta testiappia voi ajaa myös paikallisesti; seuraa `quiz-app`-kansion ohjeita paikalliseen isännöintiin tai Azureen julkaisuun.
 
 | Oppitunnin numero |                             Aihe                              |                   Oppituntiryhmä                   | Oppimistavoitteet                                                                                                             |                                                              Linkitetty oppitunti                                                               |                        Kirjoittaja                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-|      01       |                Johdatus koneoppimiseen                        |      [Johdanto](1-Introduction/README.md)           | Opi koneoppimisen peruskäsitteet                                                                                               |                                             [Oppitunti](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
-|      02       |                Koneoppimisen historia                         |      [Johdanto](1-Introduction/README.md)           | Opi tämän alan taustalla oleva historia                                                                                       |                                            [Oppitunti](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen ja Amy                      |
-|      03       |                 Reiluus ja koneoppiminen                      |      [Johdanto](1-Introduction/README.md)           | Mitkä ovat tärkeät filosofiset kysymykset reiluudesta, joita opiskelijoiden tulisi pohtia rakentaessaan ja soveltaessaan ML-malleja? |                                              [Oppitunti](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
-|      04       |                Koneoppimisen tekniikat                        |      [Johdanto](1-Introduction/README.md)           | Mitä tekniikoita ML-tutkijat käyttävät rakentaakseen ML-malleja?                                                              |                                          [Oppitunti](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris ja Jen                     |
-|      05       |                   Johdatus regressioon                        |        [Regressio](2-Regression/README.md)          | Aloita Pythonilla ja Scikit-learnilla regressiomallien parissa                                                                |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
-|      06       |                Pohjois-Amerikan kurpitsahinnat 🎃             |        [Regressio](2-Regression/README.md)          | Visualisoi ja siivoa dataa ML-valmistelua varten                                                                              |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
-|      07       |                Pohjois-Amerikan kurpitsahinnat 🎃             |        [Regressio](2-Regression/README.md)          | Rakenna lineaarisia ja polynomisia regressiomalleja                                                                           |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen ja Dmitry • Eric Wanjau       |
-|      08       |                Pohjois-Amerikan kurpitsahinnat 🎃             |        [Regressio](2-Regression/README.md)          | Rakenna logistinen regressiomalli                                                                                            |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
-|      09       |                          Verkkosovellus 🔌                    |           [Verkkosovellus](3-Web-App/README.md)     | Rakenna verkkosovellus käyttämään koulutettua malliasi                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
-|      10       |                 Johdatus luokitteluun                         |    [Luokittelu](4-Classification/README.md)         | Siivoa, valmistele ja visualisoi dataasi; johdatus luokitteluun                                                               | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen ja Cassie • Eric Wanjau |
-|      11       |             Herkulliset aasialaiset ja intialaiset ruoat 🍜   |    [Luokittelu](4-Classification/README.md)         | Johdatus luokittelijoihin                                                                                                     | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen ja Cassie • Eric Wanjau |
-|      12       |             Herkulliset aasialaiset ja intialaiset ruoat 🍜   |    [Luokittelu](4-Classification/README.md)         | Lisää luokittelijoita                                                                                                         | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen ja Cassie • Eric Wanjau |
-|      13       |             Herkulliset aasialaiset ja intialaiset ruoat 🍜   |    [Luokittelu](4-Classification/README.md)         | Rakenna suosittelusovellus mallisi avulla                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
-|      14       |                   Johdatus klusterointiin                     |        [Klusterointi](5-Clustering/README.md)       | Siivoa, valmistele ja visualisoi dataasi; johdatus klusterointiin                                                            |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
-|      15       |              Nigerian musiikkimakujen tutkiminen 🎧           |        [Klusterointi](5-Clustering/README.md)       | Tutki K-Means-klusterointimenetelmää                                                                                         |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
-|      16       |        Johdatus luonnollisen kielen käsittelyyn ☕️           |   [Luonnollisen kielen käsittely](6-NLP/README.md)  | Opi NLP:n perusteet rakentamalla yksinkertainen botti                                                                        |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|      17       |                      Yleiset NLP-tehtävät ☕️                 |   [Luonnollisen kielen käsittely](6-NLP/README.md)  | Syvennä NLP-tietämystäsi ymmärtämällä yleisiä tehtäviä, jotka liittyvät kielen rakenteisiin                                   |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
-|      18       |             Käännös ja sentimenttianalyysi ♥️                |   [Luonnollisen kielen käsittely](6-NLP/README.md)  | Käännös ja sentimenttianalyysi Jane Austenin teosten avulla                                                                  |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
-|      19       |                  Romanttiset hotellit Euroopassa ♥️          |   [Luonnollisen kielen käsittely](6-NLP/README.md)  | Sentimenttianalyysi hotelliarvosteluista, osa 1                                                                              |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
-|      20       |                  Romanttiset hotellit Euroopassa ♥️          |   [Luonnollisen kielen käsittely](6-NLP/README.md)  | Sentimenttianalyysi hotelliarvosteluista, osa 2                                                                              |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
-|      21       |            Johdatus aikasarjojen ennustamiseen               |        [Aikasarjat](7-TimeSeries/README.md)         | Johdatus aikasarjojen ennustamiseen                                                                                          |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
-|      22       | ⚡️ Maailman energiankulutus ⚡️ - aikasarjojen ennustaminen ARIMA-menetelmällä |        [Aikasarjat](7-TimeSeries/README.md)         | Aikasarjojen ennustaminen ARIMA-menetelmällä                                                                                 |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
-|      23       | ⚡️ Maailman energiankulutus ⚡️ - aikasarjojen ennustaminen SVR-menetelmällä |        [Aikasarjat](7-TimeSeries/README.md)         | Aikasarjojen ennustaminen tukivektoriregressorilla                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
-|      24       |             Johdatus vahvistusoppimiseen                     | [Vahvistusoppiminen](8-Reinforcement/README.md)     | Johdatus vahvistusoppimiseen Q-Learning-menetelmällä                                                                         |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
-|      25       |                 Auta Peteriä välttämään susi! 🐺             | [Vahvistusoppiminen](8-Reinforcement/README.md)     | Vahvistusoppiminen Gym-menetelmällä                                                                                          |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
-|  Jälkikirjoitus |            Todelliset ML-skenaariot ja sovellukset          |      [ML luonnossa](9-Real-World/README.md)         | Mielenkiintoisia ja paljastavia klassisen ML:n todellisia sovelluksia                                                        |                                             [Oppitunti](9-Real-World/1-Applications/README.md)                                              |                         Tiimi                         |
-|  Jälkikirjoitus |            Mallin virheenkorjaus ML:ssä RAI-ohjauspaneelin avulla |      [ML luonnossa](9-Real-World/README.md)         | Mallin virheenkorjaus koneoppimisessa vastuullisen AI-ohjauspaneelin komponenttien avulla                                    |                                             [Oppitunti](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
+|      01       |                Johdatus koneoppimiseen                |      [Introduction](1-Introduction/README.md)       | Opi koneoppimisen peruskäsitteet                                                                                |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                Koneoppimisen historia                 |      [Introduction](1-Introduction/README.md)       | Opi tämän alan historia                                                                                         |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
+|      03       |                 Oikeudenmukaisuus ja koneoppiminen                  |      [Introduction](1-Introduction/README.md)       | Mitkä ovat tärkeät filosofiset kysymykset oikeudenmukaisuudesta, jotka opiskelijoiden tulisi ottaa huomioon rakentaessaan ja soveltaessaan ML-malleja? |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|      04       |                Koneoppimisen tekniikat                 |      [Introduction](1-Introduction/README.md)       | Mitä tekniikoita ML-tutkijat käyttävät rakentaakseen ML-malleja?                                                                       |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
+|      05       |                   Johdatus regressioon                   |        [Regression](2-Regression/README.md)         | Aloita Pythonilla ja Scikit-learnillä regressiomallien kanssa                                                                  |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|      06       |                Pohjoisamerikkalaiset kurpitsahinnat 🎃                |        [Regression](2-Regression/README.md)         | Visualisoi ja puhdista dataa ML-valmistelua varten                                                                                  |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|      07       |                Pohjoisamerikkalaiset kurpitsahinnat 🎃                |        [Regression](2-Regression/README.md)         | Rakenna lineaarisia ja polynomisia regressiomalleja                                                                                   |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
+|      08       |                Pohjoisamerikkalaiset kurpitsahinnat 🎃                |        [Regression](2-Regression/README.md)         | Rakenna logistinen regressiomalli                                                                                               |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|      09       |                          Verkkosovellus 🔌                          |           [Web App](3-Web-App/README.md)            | Rakenna verkkosovellus käyttämään koulutettua malliasi                                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|      10       |                 Johdatus luokitteluun                 |    [Classification](4-Classification/README.md)     | Puhdista, valmistele ja visualisoi data; johdatus luokitteluun                                                            | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
+|      11       |             Herkulliset aasialaiset ja intialaiset keittiöt 🍜             |    [Classification](4-Classification/README.md)     | Johdatus luokittelijoihin                                                                                                     | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
+|      12       |             Herkulliset aasialaiset ja intialaiset keittiöt 🍜             |    [Classification](4-Classification/README.md)     | Lisää luokittelijoita                                                                                                                | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
+|      13       |             Herkulliset aasialaiset ja intialaiset keittiöt 🍜             |    [Classification](4-Classification/README.md)     | Rakenna suositusverkkosovellus malliasi käyttäen                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|      14       |                   Johdatus klusterointiin                   |        [Clustering](5-Clustering/README.md)         | Puhdista, valmistele ja visualisoi data; johdatus klusterointiin                                                                |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|      15       |              Tutustu nigerialaiseen musiikkimakuun 🎧              |        [Clustering](5-Clustering/README.md)         | Tutustu K-Means klusterointimenetelmään                                                                                           |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
+|      16       |        Johdatus luonnollisen kielen käsittelyyn ☕️         |   [Natural language processing](6-NLP/README.md)    | Opi NLP:n perusteet rakentamalla yksinkertainen botti                                                                             |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|      17       |                      Yleiset NLP-tehtävät ☕️                      |   [Natural language processing](6-NLP/README.md)    | Syvennä NLP-tietämystäsi ymmärtämällä yleisiä tehtäviä, joita tarvitaan kielen rakenteiden käsittelyssä                          |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      18       |             Käännös ja tunneanalyysi ♥️              |   [Natural language processing](6-NLP/README.md)    | Käännös ja tunneanalyysi Jane Austenin kanssa                                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|      19       |                  Euroopan romanttiset hotellit ♥️                  |   [Natural language processing](6-NLP/README.md)    | Tunneanalyysi hotelliarvosteluilla 1                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|      20       |                  Euroopan romanttiset hotellit ♥️                  |   [Natural language processing](6-NLP/README.md)    | Tunneanalyysi hotelliarvosteluilla 2                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|      21       |            Johdatus aikasarjaennusteisiin             |        [Time series](7-TimeSeries/README.md)        | Johdatus aikasarjaennusteisiin                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|      22       | ⚡️ Maailman sähkönkulutus ⚡️ - aikasarjaennuste ARIMA:lla |        [Time series](7-TimeSeries/README.md)        | Aikasarjaennuste ARIMA-mallilla                                                                                              |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|      23       |  ⚡️ Maailman sähkönkulutus ⚡️ - aikasarjaennuste SVR:llä  |        [Time series](7-TimeSeries/README.md)        | Aikasarjaennuste tukivektoriregressiolla                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|      24       |             Johdatus vahvistusoppimiseen             | [Reinforcement learning](8-Reinforcement/README.md) | Johdatus vahvistusoppimiseen Q-Learningin avulla                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|      25       |                 Auta Peteriä välttämään susi! 🐺                  | [Reinforcement learning](8-Reinforcement/README.md) | Vahvistusoppimisen Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|  Jälkikirjoitus   |            Todelliset ML-skenaariot ja sovellukset            |      [ML in the Wild](9-Real-World/README.md)       | Mielenkiintoisia ja paljastavia todellisen maailman sovelluksia klassisesta ML:stä                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
+|  Jälkikirjoitus   |            Mallin virheenkorjaus ML:ssä RAI-hallintapaneelin avulla          |      [ML in the Wild](9-Real-World/README.md)       | Mallin virheenkorjaus koneoppimisessa Responsible AI -hallintapaneelin komponenteilla                                                              |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
-> [löydä kaikki lisäresurssit tähän kurssiin Microsoft Learn -kokoelmastamme](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [löydä kaikki tämän kurssin lisäresurssit Microsoft Learn -kokoelmastamme](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 ## Offline-käyttö
 
-Voit käyttää tätä dokumentaatiota offline-tilassa käyttämällä [Docsifyä](https://docsify.js.org/#/). Haaroita tämä repo, [asenna Docsify](https://docsify.js.org/#/quickstart) paikalliselle koneellesi ja kirjoita tämän repon juurikansiossa `docsify serve`. Verkkosivusto palvelee portissa 3000 paikallisessa isännässäsi: `localhost:3000`.
+Voit käyttää tätä dokumentaatiota offline-tilassa käyttämällä [Docsify](https://docsify.js.org/#/). Haarauta tämä repositorio, [asenna Docsify](https://docsify.js.org/#/quickstart) paikalliselle koneellesi, ja sitten tämän repositorion juurikansiossa kirjoita `docsify serve`. Verkkosivusto palvellaan portissa 3000 paikallisessa koneessasi: `localhost:3000`.
 
-## PDF:t
+## PDF-tiedostot
 
-Löydä opetussuunnitelman PDF-linkkeineen [täältä](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
+Löydä opetussuunnitelman pdf-linkit [täältä](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 
-## 🎒 Muut kurssit 
+## 🎒 Muut kurssit
 
 Tiimimme tuottaa myös muita kursseja! Tutustu:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
-### Azure / Edge / MCP / Agentit
-[![AZD aloittelijoille](https://img.shields.io/badge/AZD%20aloittelijoille-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Edge AI aloittelijoille](https://img.shields.io/badge/Edge%20AI%20aloittelijoille-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![MCP aloittelijoille](https://img.shields.io/badge/MCP%20aloittelijoille-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI-agentit aloittelijoille](https://img.shields.io/badge/AI-agentit%20aloittelijoille-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+### LangChain
+[![LangChain4j for Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js for Beginners](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+
+---
+
+### Azure / Edge / MCP / Agents
+[![AZD for Beginners](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI for Beginners](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP for Beginners](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Agents for Beginners](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Generatiivisen AI:n sarja
-[![Generatiivinen AI aloittelijoille](https://img.shields.io/badge/Generatiivinen%20AI%20aloittelijoille-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Generatiivinen AI (.NET)](https://img.shields.io/badge/Generatiivinen%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
-[![Generatiivinen AI (Java)](https://img.shields.io/badge/Generatiivinen%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
-[![Generatiivinen AI (JavaScript)](https://img.shields.io/badge/Generatiivinen%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
+### Generatiivisen tekoälyn sarja
+[![Generative AI for Beginners](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
+[![Generatiivinen tekoäly (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
+[![Generatiivinen tekoäly (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Ydinoppiminen
-[![ML aloittelijoille](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)  
-[![Data Science aloittelijoille](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)  
-[![AI aloittelijoille](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)  
-[![Kyberturvallisuus aloittelijoille](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)  
-[![Web-kehitys aloittelijoille](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)  
-[![IoT aloittelijoille](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)  
-[![XR-kehitys aloittelijoille](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)  
+### Perusopiskelu
+[![ML aloittelijoille](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![Data Science aloittelijoille](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![Tekoäly aloittelijoille](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![Kyberturvallisuus aloittelijoille](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![Web-kehitys aloittelijoille](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![IoT aloittelijoille](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![XR-kehitys aloittelijoille](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
+ 
+### Copilot-sarja
+[![Copilot tekoälyn pariohjelmointiin](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot C#/.NET:lle](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Copilot-seikkailu](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+<!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
-### Copilot-sarja  
-[![Copilot AI-pariohjelmointiin](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)  
-[![Copilot C#/.NET:lle](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)  
-[![Copilot-seikkailu](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)  
+## Apua saamaan
 
-## Apua saaminen  
+Jos jäät jumiin tai sinulla on kysyttävää tekoälysovellusten rakentamisesta. Liity muiden oppijoiden ja kokeneiden kehittäjien keskusteluihin MCP:stä. Se on kannustava yhteisö, jossa kysymyksiä saa esittää ja tietoa jaetaan vapaasti.
 
-Jos jäät jumiin tai sinulla on kysymyksiä AI-sovellusten rakentamisesta, liity muiden oppijoiden ja kokeneiden kehittäjien keskusteluihin MCP:stä. Se on tukevainen yhteisö, jossa kysymykset ovat tervetulleita ja tietoa jaetaan vapaasti.  
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)  
+Jos sinulla on palautetta tuotteesta tai kohtaat virheitä rakentamisen aikana, käy:
 
-Jos sinulla on palautetta tuotteesta tai kohtaat virheitä rakentamisen aikana, vieraile:  
-
-[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)  
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinkäsityksistä tai virhetulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
