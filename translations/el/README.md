@@ -1,223 +1,224 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c300f2380d9da91b7de8c707f69ce99b",
-  "translation_date": "2025-12-19T11:13:58+00:00",
+  "original_hash": "5446266b7397d6dc7f3016921479e24b",
+  "translation_date": "2025-12-21T12:05:28+00:00",
   "source_file": "README.md",
   "language_code": "el"
 }
 -->
-[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Άδεια GitHub](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
+[![Συνεισφέροντες GitHub](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
+[![Θέματα GitHub](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
+[![Αιτήματα έλξης GitHub](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
+[![PRs Ευπρόσδεκτα](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
-[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
-[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
+[![Discord Microsoft Foundry](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+[![Παρακολουθητές GitHub](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
+[![Διακλαδώσεις GitHub](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
+[![Αστέρια GitHub](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
-### 🌐 Υποστήριξη Πολλών Γλωσσών
+### 🌐 Υποστήριξη πολλαπλών γλωσσών
 
-#### Υποστηρίζεται μέσω GitHub Action (Αυτοματοποιημένο & Πάντα Ενημερωμένο)
+#### Υποστηρίζεται μέσω GitHub Action (αυτοματοποιημένο & πάντα ενημερωμένο)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Αραβικά](../ar/README.md) | [Μπενγκάλι](../bn/README.md) | [Βουλγαρικά](../bg/README.md) | [Βιρμανικά (Μιανμάρ)](../my/README.md) | [Κινέζικα (Απλοποιημένα)](../zh/README.md) | [Κινέζικα (Παραδοσιακά, Χονγκ Κονγκ)](../hk/README.md) | [Κινέζικα (Παραδοσιακά, Μακάο)](../mo/README.md) | [Κινέζικα (Παραδοσιακά, Ταϊβάν)](../tw/README.md) | [Κροατικά](../hr/README.md) | [Τσέχικα](../cs/README.md) | [Δανέζικα](../da/README.md) | [Ολλανδικά](../nl/README.md) | [Εσθονικά](../et/README.md) | [Φινλανδικά](../fi/README.md) | [Γαλλικά](../fr/README.md) | [Γερμανικά](../de/README.md) | [Ελληνικά](./README.md) | [Εβραϊκά](../he/README.md) | [Χίντι](../hi/README.md) | [Ουγγρικά](../hu/README.md) | [Ινδονησιακά](../id/README.md) | [Ιταλικά](../it/README.md) | [Ιαπωνικά](../ja/README.md) | [Κανάντα](../kn/README.md) | [Κορεατικά](../ko/README.md) | [Λιθουανικά](../lt/README.md) | [Μαλαϊκά](../ms/README.md) | [Μαλαγιαλάμ](../ml/README.md) | [Μαράθι](../mr/README.md) | [Νεπάλι](../ne/README.md) | [Νιγηριανή Πίτζιν](../pcm/README.md) | [Νορβηγικά](../no/README.md) | [Περσικά (Φαρσί)](../fa/README.md) | [Πολωνικά](../pl/README.md) | [Πορτογαλικά (Βραζιλία)](../br/README.md) | [Πορτογαλικά (Πορτογαλία)](../pt/README.md) | [Πουντζάμπι (Γκουρμούκι)](../pa/README.md) | [Ρουμανικά](../ro/README.md) | [Ρωσικά](../ru/README.md) | [Σερβικά (Κυριλλικά)](../sr/README.md) | [Σλοβακικά](../sk/README.md) | [Σλοβενικά](../sl/README.md) | [Ισπανικά](../es/README.md) | [Σουαχίλι](../sw/README.md) | [Σουηδικά](../sv/README.md) | [Ταγκάλογκ (Φιλιππινέζικα)](../tl/README.md) | [Ταμίλ](../ta/README.md) | [Τελούγκου](../te/README.md) | [Ταϊλανδικά](../th/README.md) | [Τουρκικά](../tr/README.md) | [Ουκρανικά](../uk/README.md) | [Ουρντού](../ur/README.md) | [Βιετναμέζικα](../vi/README.md)
+[Αραβικά](../ar/README.md) | [Βεγγαλικά](../bn/README.md) | [Βουλγαρικά](../bg/README.md) | [Βιρμανικά (Μιανμάρ)](../my/README.md) | [Κινέζικα (Απλοποιημένα)](../zh/README.md) | [Κινέζικα (Παραδοσιακά, Χονγκ Κονγκ)](../hk/README.md) | [Κινέζικα (Παραδοσιακά, Μακάο)](../mo/README.md) | [Κινέζικα (Παραδοσιακά, Ταϊβάν)](../tw/README.md) | [Κροατικά](../hr/README.md) | [Τσέχικα](../cs/README.md) | [Δανικά](../da/README.md) | [Ολλανδικά](../nl/README.md) | [Εσθονικά](../et/README.md) | [Φινλανδικά](../fi/README.md) | [Γαλλικά](../fr/README.md) | [Γερμανικά](../de/README.md) | [Ελληνικά](./README.md) | [Εβραϊκά](../he/README.md) | [Χίντι](../hi/README.md) | [Ουγγρικά](../hu/README.md) | [Ινδονησιακά](../id/README.md) | [Ιταλικά](../it/README.md) | [Ιαπωνικά](../ja/README.md) | [Κανάντα](../kn/README.md) | [Κορεατικά](../ko/README.md) | [Λιθουανικά](../lt/README.md) | [Μαλαισιανά](../ms/README.md) | [Μαλαγιάλαμ](../ml/README.md) | [Μαράθι](../mr/README.md) | [Νεπάλ](../ne/README.md) | [Νιγηριανό Πίνγκιν](../pcm/README.md) | [Νορβηγικά](../no/README.md) | [Περσικά (Φαρσί)](../fa/README.md) | [Πολωνικά](../pl/README.md) | [Πορτογαλικά (Βραζιλία)](../br/README.md) | [Πορτογαλικά (Πορτογαλία)](../pt/README.md) | [Παντζαμπικά (Γκουρμούχι)](../pa/README.md) | [Ρουμανικά](../ro/README.md) | [Ρωσικά](../ru/README.md) | [Σερβικά (Κυριλλικά)](../sr/README.md) | [Σλοβακικά](../sk/README.md) | [Σλοβενικά](../sl/README.md) | [Ισπανικά](../es/README.md) | [Σουαχίλι](../sw/README.md) | [Σουηδικά](../sv/README.md) | [Ταγκάλογκ (Φιλιππινέζικα)](../tl/README.md) | [Ταμίλ](../ta/README.md) | [Τελούγκου](../te/README.md) | [Ταϊλανδικά](../th/README.md) | [Τουρκικά](../tr/README.md) | [Ουκρανικά](../uk/README.md) | [Ουρντού](../ur/README.md) | [Βιετναμέζικα](../vi/README.md)
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-#### Ελάτε στην Κοινότητά μας
+#### Γίνετε μέλος της κοινότητάς μας
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+[![Discord Microsoft Foundry](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Έχουμε μια σειρά Discord "Μάθε με AI" σε εξέλιξη, μάθετε περισσότερα και συμμετάσχετε μαζί μας στο [Learn with AI Series](https://aka.ms/learnwithai/discord) από 18 έως 30 Σεπτεμβρίου 2025. Θα λάβετε συμβουλές και κόλπα για τη χρήση του GitHub Copilot για Data Science.
+Διοργανώνουμε μια σειρά Discord "Learn with AI" που συνεχίζεται — μάθετε περισσότερα και γίνετε μέλος στο [Learn with AI Series](https://aka.ms/learnwithai/discord) από 18 - 30 Σεπτεμβρίου 2025. Θα λάβετε συμβουλές και κόλπα για τη χρήση του GitHub Copilot για Data Science.
 
-![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.el.png)
+![Σειρά 'Μάθε με Τεχνητή Νοημοσύνη'](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.el.png)
 
 # Μηχανική Μάθηση για Αρχάριους - Ένα Πρόγραμμα Σπουδών
 
-> 🌍 Ταξιδέψτε σε όλο τον κόσμο καθώς εξερευνούμε τη Μηχανική Μάθηση μέσω των πολιτισμών του κόσμου 🌍
+> 🌍 Ταξιδέψτε γύρω από τον κόσμο καθώς εξερευνούμε τη Μηχανική Μάθηση μέσω των πολιτισμών του κόσμου 🌍
 
-Οι Cloud Advocates της Microsoft είναι στην ευχάριστη θέση να προσφέρουν ένα πρόγραμμα σπουδών 12 εβδομάδων, 26 μαθημάτων, που αφορά τη **Μηχανική Μάθηση**. Σε αυτό το πρόγραμμα, θα μάθετε για ό,τι μερικές φορές ονομάζεται **κλασική μηχανική μάθηση**, χρησιμοποιώντας κυρίως τη βιβλιοθήκη Scikit-learn και αποφεύγοντας τη βαθιά μάθηση, η οποία καλύπτεται στο [πρόγραμμα AI για Αρχάριους](https://aka.ms/ai4beginners). Συνδυάστε αυτά τα μαθήματα με το ['Data Science για Αρχάριους' πρόγραμμα](https://aka.ms/ds4beginners), επίσης!
+Οι Cloud Advocates στη Microsoft με χαρά προσφέρουν ένα πρόγραμμα σπουδών 12 εβδομάδων, 26 μαθημάτων, αποκλειστικά για τη **Μηχανική Μάθηση**. Σε αυτό το πρόγραμμα θα μάθετε ό,τι μερικές φορές ονομάζεται **κλασική μηχανική μάθηση**, χρησιμοποιώντας κυρίως τη βιβλιοθήκη Scikit-learn και αποφεύγοντας το deep learning, το οποίο καλύπτεται στο [πρόγραμμα σπουδών AI για Αρχάριους](https://aka.ms/ai4beginners). Συνδυάστε αυτά τα μαθήματα και με το πρόγραμμα ['Data Science for Beginners'](https://aka.ms/ds4beginners)!
 
-Ταξιδέψτε μαζί μας σε όλο τον κόσμο καθώς εφαρμόζουμε αυτές τις κλασικές τεχνικές σε δεδομένα από πολλές περιοχές του κόσμου. Κάθε μάθημα περιλαμβάνει κουίζ πριν και μετά το μάθημα, γραπτές οδηγίες για την ολοκλήρωση του μαθήματος, λύση, ανάθεση και άλλα. Η παιδαγωγική μας που βασίζεται σε έργα σας επιτρέπει να μαθαίνετε ενώ δημιουργείτε, ένας αποδεδειγμένος τρόπος για να "εγκατασταθούν" νέες δεξιότητες.
+Ταξιδέψτε μαζί μας σε όλο τον κόσμο καθώς εφαρμόζουμε αυτές τις κλασικές τεχνικές σε δεδομένα από πολλές περιοχές του κόσμου. Κάθε μάθημα περιλαμβάνει προ- και μετα- μάθησης κουίζ, γραπτές οδηγίες για την ολοκλήρωση του μαθήματος, μια λύση, μια εργασία και περισσότερα. Η παιδαγωγική μας με βάση τα έργα σας επιτρέπει να μαθαίνετε ενώ χτίζετε, ένας αποδεδειγμένος τρόπος για να "εγκαθίστανται" νέες δεξιότητες.
 
-**✍️ Θερμές ευχαριστίες στους συγγραφείς μας** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu και Amy Boyd
+**✍️ Θερμές ευχαριστίες στους συγγραφείς μας** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu and Amy Boyd
 
 **🎨 Ευχαριστίες επίσης στους εικονογράφους μας** Tomomi Imura, Dasani Madipalli, και Jen Looper
 
-**🙏 Ειδικές ευχαριστίες 🙏 στους Microsoft Student Ambassador συγγραφείς, κριτές και συνεισφέροντες περιεχομένου**, ιδιαίτερα στους Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, και Snigdha Agarwal
+**🙏 Ειδικές ευχαριστίες 🙏 στους Microsoft Student Ambassador συγγραφείς, κριτές και συνεισφέροντες περιεχομένου**, ιδιαιτέρως Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, και Snigdha Agarwal
 
 **🤩 Επιπλέον ευγνωμοσύνη στους Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, και Vidushi Gupta για τα μαθήματα R!**
 
 # Ξεκινώντας
 
 Ακολουθήστε αυτά τα βήματα:
-1. **Κάντε Fork το Αποθετήριο**: Κάντε κλικ στο κουμπί "Fork" στην πάνω δεξιά γωνία αυτής της σελίδας.
-2. **Κλωνοποιήστε το Αποθετήριο**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+1. **Δημιουργήστε Fork του αποθετηρίου**: Κάντε κλικ στο κουμπί "Fork" στην πάνω δεξιά γωνία αυτής της σελίδας.
+2. **Κλωνοποιήστε το αποθετήριο**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [βρείτε όλους τους επιπλέον πόρους για αυτό το μάθημα στη συλλογή μας Microsoft Learn](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [βρείτε όλους τους επιπλέον πόρους για αυτό το μάθημα στη συλλογή Microsoft Learn](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-> 🔧 **Χρειάζεστε βοήθεια;** Ελέγξτε τον [Οδηγό Επίλυσης Προβλημάτων](TROUBLESHOOTING.md) για λύσεις σε κοινά ζητήματα με την εγκατάσταση, τη ρύθμιση και την εκτέλεση μαθημάτων.
+> 🔧 **Χρειάζεστε βοήθεια;** Ελέγξτε τον [Οδηγό αντιμετώπισης προβλημάτων](TROUBLESHOOTING.md) για λύσεις σε κοινά ζητήματα με την εγκατάσταση, τη ρύθμιση και την εκτέλεση μαθημάτων.
 
 
-**[Φοιτητές](https://aka.ms/student-page)**, για να χρησιμοποιήσετε αυτό το πρόγραμμα, κάντε fork ολόκληρο το αποθετήριο στον δικό σας λογαριασμό GitHub και ολοκληρώστε τις ασκήσεις μόνοι σας ή με ομάδα:
+**[Φοιτητές](https://aka.ms/student-page)**, για να χρησιμοποιήσετε αυτό το πρόγραμμα σπουδών, δημιουργήστε fork ολόκληρου του repo στον δικό σας λογαριασμό GitHub και ολοκληρώστε τις ασκήσεις μόνοι σας ή με μια ομάδα:
 
-- Ξεκινήστε με ένα κουίζ προ-διάλεξης.
-- Διαβάστε τη διάλεξη και ολοκληρώστε τις δραστηριότητες, σταματώντας και σκεπτόμενοι σε κάθε έλεγχο γνώσης.
-- Προσπαθήστε να δημιουργήσετε τα έργα κατανοώντας τα μαθήματα αντί να τρέχετε τον κώδικα λύσης· ωστόσο, αυτός ο κώδικας είναι διαθέσιμος στους φακέλους `/solution` σε κάθε μάθημα προσανατολισμένο σε έργο.
-- Κάντε το κουίζ μετά τη διάλεξη.
+- Ξεκινήστε με ένα προ-διάλεξη κουίζ.
+- Διαβάστε τη διάλεξη και ολοκληρώστε τις δραστηριότητες, σταματώντας και αναλογιζόμενοι κάθε έλεγχο γνώσης.
+- Προσπαθήστε να δημιουργήσετε τα έργα κατανοώντας τα μαθήματα αντί να εκτελείτε απλώς τον κώδικα λύσης· ωστόσο, αυτός ο κώδικας είναι διαθέσιμος στους φακέλους /solution σε κάθε μάθημα προσανατολισμένο σε έργα.
+- Πραγματοποιήστε το μετα-διάλεξη κουίζ.
 - Ολοκληρώστε την πρόκληση.
 - Ολοκληρώστε την ανάθεση.
-- Μετά την ολοκλήρωση μιας ομάδας μαθημάτων, επισκεφθείτε το [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) και "μάθετε δυνατά" συμπληρώνοντας το κατάλληλο PAT rubric. Ένα 'PAT' είναι ένα Εργαλείο Αξιολόγησης Προόδου που είναι ένα rubric που συμπληρώνετε για να προωθήσετε τη μάθησή σας. Μπορείτε επίσης να αντιδράσετε σε άλλα PATs ώστε να μάθουμε μαζί.
+- Μετά την ολοκλήρωση μιας ομάδας μαθημάτων, επισκεφτείτε το [Board Συζητήσεων](https://github.com/microsoft/ML-For-Beginners/discussions) και "μάθετε δυνατά" συμπληρώνοντας το κατάλληλο PAT rubric. Ένα 'PAT' είναι ένα Εργαλείο Αξιολόγησης Προόδου που είναι ένα rubric που συμπληρώνετε για να προωθήσετε τη μάθησή σας. Μπορείτε επίσης να αντιδράσετε σε άλλα PATs ώστε να μάθουμε μαζί.
 
-> Για περαιτέρω μελέτη, προτείνουμε να ακολουθήσετε αυτά τα [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) μαθήματα και διαδρομές μάθησης.
+> Για περαιτέρω μελέτη, προτείνουμε να ακολουθήσετε αυτά τα [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules και μονοπάτια εκμάθησης.
 
-**Καθηγητές**, έχουμε [συμπεριλάβει μερικές προτάσεις](for-teachers.md) για το πώς να χρησιμοποιήσετε αυτό το πρόγραμμα.
+**Καθηγητές**, έχουμε [συμπεριλάβει κάποιες προτάσεις](for-teachers.md) για το πώς να χρησιμοποιήσετε αυτό το πρόγραμμα σπουδών.
 
 ---
 
-## Βίντεο περιηγήσεις
+## Οδηγίες με βίντεο
 
-Μερικά από τα μαθήματα είναι διαθέσιμα ως σύντομα βίντεο. Μπορείτε να βρείτε όλα αυτά ενσωματωμένα στα μαθήματα ή στη [λίστα αναπαραγωγής ML for Beginners στο κανάλι Microsoft Developer στο YouTube](https://aka.ms/ml-beginners-videos) κάνοντας κλικ στην εικόνα παρακάτω.
+Μερικά από τα μαθήματα είναι διαθέσιμα ως σύντομα βίντεο. Μπορείτε να τα βρείτε όλα ενσωματωμένα στα μαθήματα, ή στη [playlist ML for Beginners στο κανάλι Microsoft Developer στο YouTube](https://aka.ms/ml-beginners-videos) κάνοντας κλικ στην εικόνα παρακάτω.
 
-[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.el.png)](https://aka.ms/ml-beginners-videos)
+[![Banner 'ML για Αρχάριους'](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.el.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 
 ## Γνωρίστε την Ομάδα
 
-[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
+[![Προωθητικό βίντεο](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
 
 **Gif από** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
-> 🎥 Κάντε κλικ στην παραπάνω εικόνα για ένα βίντεο σχετικά με το έργο και τους ανθρώπους που το δημιούργησαν!
+> 🎥 Κάντε κλικ στην εικόνα παραπάνω για ένα βίντεο σχετικά με το έργο και τα άτομα που το δημιούργησαν!
 
 ---
 
 ## Παιδαγωγική
 
-Έχουμε επιλέξει δύο παιδαγωγικές αρχές κατά την κατασκευή αυτού του προγράμματος: να είναι πρακτικό και **βασισμένο σε έργα** και να περιλαμβάνει **συχνά κουίζ**. Επιπλέον, αυτό το πρόγραμμα έχει ένα κοινό **θέμα** για να του δώσει συνοχή.
+Έχουμε επιλέξει δύο παιδαγωγικές αρχές κατά την κατασκευή αυτού του προγράμματος: να είναι πρακτικό και βασισμένο σε έργα (project-based) και να περιλαμβάνει συχνά κουίζ. Επιπλέον, αυτό το πρόγραμμα έχει ένα κοινό **θέμα** για να του προσδώσει συνοχή.
 
-Εξασφαλίζοντας ότι το περιεχόμενο ευθυγραμμίζεται με τα έργα, η διαδικασία γίνεται πιο ελκυστική για τους μαθητές και η διατήρηση των εννοιών θα αυξηθεί. Επιπλέον, ένα κουίζ χαμηλού ρίσκου πριν από το μάθημα θέτει την πρόθεση του μαθητή προς τη μάθηση ενός θέματος, ενώ ένα δεύτερο κουίζ μετά το μάθημα εξασφαλίζει περαιτέρω διατήρηση. Αυτό το πρόγραμμα σχεδιάστηκε να είναι ευέλικτο και διασκεδαστικό και μπορεί να ληφθεί ολόκληρο ή μεμονωμένα. Τα έργα ξεκινούν μικρά και γίνονται ολοένα και πιο σύνθετα μέχρι το τέλος του 12-εβδομαδιαίου κύκλου. Αυτό το πρόγραμμα περιλαμβάνει επίσης ένα επίμετρο για τις πραγματικές εφαρμογές της ΜΜ, το οποίο μπορεί να χρησιμοποιηθεί ως επιπλέον βαθμός ή ως βάση για συζήτηση.
+Εξασφαλίζοντας ότι το περιεχόμενο ευθυγραμμίζεται με έργα, η διαδικασία γίνεται πιο ελκυστική για τους μαθητές και η διατήρηση των εννοιών θα ενισχυθεί. Επιπλέον, ένα κουίζ χαμηλού ρίσκου πριν από το μάθημα θέτει την πρόθεση του μαθητή προς την εκμάθηση ενός θέματος, ενώ ένα δεύτερο κουίζ μετά το μάθημα εξασφαλίζει περαιτέρω διατήρηση. Αυτό το πρόγραμμα σχεδιάστηκε για να είναι ευέλικτο και διασκεδαστικό και μπορεί να ληφθεί ολόκληρο ή εν μέρει. Τα έργα ξεκινούν μικρά και γίνονται ολοένα και πιο περίπλοκα μέχρι το τέλος του κύκλου των 12 εβδομάδων. Το πρόγραμμα περιλαμβάνει επίσης ένα επίμετρο σχετικά με εφαρμογές της ML στον πραγματικό κόσμο, το οποίο μπορεί να χρησιμοποιηθεί ως επιπλέον πλεονέκτημα βαθμολογίας ή ως βάση για συζήτηση.
 
-> Βρείτε τους [Κανόνες Συμπεριφοράς](CODE_OF_CONDUCT.md), [Συμβολή](CONTRIBUTING.md), [Μετάφραση](TRANSLATIONS.md) και [Οδηγό Επίλυσης Προβλημάτων](TROUBLESHOOTING.md). Καλωσορίζουμε τα εποικοδομητικά σας σχόλια!
+> Βρείτε τον [Κώδικα Συμπεριφοράς](CODE_OF_CONDUCT.md), [Οδηγίες συνεισφοράς](CONTRIBUTING.md), [Μετάφρασης](TRANSLATIONS.md), και [Αντιμετώπισης προβλημάτων](TROUBLESHOOTING.md). Καλωσορίζουμε τα εποικοδομητικά σας σχόλια!
 
 ## Κάθε μάθημα περιλαμβάνει
 
-- προαιρετικό σκίτσο
+- προαιρετικό sketchnote
 - προαιρετικό συμπληρωματικό βίντεο
-- βίντεο περιήγησης (μόνο σε μερικά μαθήματα)
-- [κουίζ προθέρμανσης πριν τη διάλεξη](https://ff-quizzes.netlify.app/en/ml/)
+- οδηγίες βίντεο (σε μερικά μαθήματα μόνο)
+- [προ-διάλεξη κουίζ προθέρμανσης](https://ff-quizzes.netlify.app/en/ml/)
 - γραπτό μάθημα
-- για μαθήματα βασισμένα σε έργα, βήμα-βήμα οδηγίες για το πώς να κατασκευάσετε το έργο
+- για μαθήματα βασισμένα σε έργα, βήμα-βήμα οδηγίες για την κατασκευή του έργου
 - ελέγχους γνώσης
 - μια πρόκληση
 - συμπληρωματική ανάγνωση
 - ανάθεση
-- [κουίζ μετά τη διάλεξη](https://ff-quizzes.netlify.app/en/ml/)
+- [μετα-διάλεξη κουίζ](https://ff-quizzes.netlify.app/en/ml/)
 
-> **Σημείωση για τις γλώσσες**: Αυτά τα μαθήματα είναι κυρίως γραμμένα σε Python, αλλά πολλά είναι επίσης διαθέσιμα σε R. Για να ολοκληρώσετε ένα μάθημα R, πηγαίνετε στο φάκελο `/solution` και αναζητήστε μαθήματα R. Περιλαμβάνουν επέκταση .rmd που αντιπροσωπεύει ένα αρχείο **R Markdown**, το οποίο μπορεί να οριστεί απλά ως ενσωμάτωση `κομματιών κώδικα` (σε R ή άλλες γλώσσες) και `YAML header` (που καθοδηγεί πώς να μορφοποιηθούν οι έξοδοι όπως PDF) σε ένα `Markdown έγγραφο`. Ως εκ τούτου, λειτουργεί ως ένα εξαιρετικό πλαίσιο συγγραφής για την επιστήμη δεδομένων, καθώς σας επιτρέπει να συνδυάσετε τον κώδικά σας, την έξοδό του και τις σκέψεις σας γράφοντάς τες σε Markdown. Επιπλέον, τα έγγραφα R Markdown μπορούν να αποδοθούν σε μορφές εξόδου όπως PDF, HTML ή Word.
+> **Μια σημείωση σχετικά με τις γλώσσες**: Αυτά τα μαθήματα είναι κυρίως γραμμένα σε Python, αλλά πολλά είναι επίσης διαθέσιμα σε R. Για να ολοκληρώσετε ένα μάθημα R, πηγαίνετε στο φάκελο `/solution` και αναζητήστε μαθήματα R. Περιλαμβάνουν την επέκταση .rmd που αντιπροσωπεύει ένα αρχείο **R Markdown** το οποίο μπορεί να οριστεί απλά ως μια ενσωμάτωση `code chunks` (σε R ή άλλες γλώσσες) και ενός `YAML header` (που καθοδηγεί πώς να μορφοποιηθούν οι έξοδοι όπως PDF) σε ένα `Markdown document`. Ως τέτοιο, λειτουργεί ως ένα υποδειγματικό πλαίσιο συγγραφής για data science αφού σας επιτρέπει να συνδυάσετε τον κώδικα σας, την έξοδό του και τις σκέψεις σας γράφοντάς τες σε Markdown. Επιπλέον, έγγραφα R Markdown μπορούν να αποδοθούν σε μορφές εξόδου όπως PDF, HTML, ή Word.
 
-> **Σημείωση για τα κουίζ**: Όλα τα κουίζ περιέχονται στον [φάκελο Quiz App](../../quiz-app), για συνολικά 52 κουίζ με τρεις ερωτήσεις το καθένα. Συνδέονται μέσα στα μαθήματα, αλλά η εφαρμογή κουίζ μπορεί να τρέξει τοπικά· ακολουθήστε τις οδηγίες στον φάκελο `quiz-app` για τοπική φιλοξενία ή ανάπτυξη στο Azure.
+> **Μια σημείωση σχετικά με τα κουίζ**: Όλα τα κουίζ περιέχονται στον [φάκελο Quiz App](../../quiz-app), για συνολικά 52 κουίζ των τριών ερωτήσεων το καθένα. Συνδέονται από μέσα στα μαθήματα αλλά η εφαρμογή κουίζ μπορεί να τρέξει τοπικά· ακολουθήστε τις οδηγίες στον φάκελο `quiz-app` για να το φιλοξενήσετε τοπικά ή να το αναπτύξετε στο Azure.
 
-| Αριθμός Μαθήματος |                             Θέμα                              |                   Ομαδοποίηση Μαθήματος                   | Στόχοι Μάθησης                                                                                                             |                                                              Συνδεδεμένο Μάθημα                                                               |                        Συγγραφέας                        |
+| Αριθμός μαθήματος |                             Θέμα                              |                   Ομαδοποίηση Μαθήματος                   | Στόχοι Μάθησης                                                                                                             |                                                              Συνδεδεμένο Μάθημα                                                               |                        Συγγραφέας                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-|      01       |                Εισαγωγή στη μηχανική μάθηση                   |      [Introduction](1-Introduction/README.md)       | Μάθετε τις βασικές έννοιες πίσω από τη μηχανική μάθηση                                                                          |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
-|      02       |                Η Ιστορία της μηχανικής μάθησης                |      [Introduction](1-Introduction/README.md)       | Μάθετε την ιστορία που βρίσκεται πίσω από αυτόν τον τομέα                                                                       |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
-|      03       |                 Δικαιοσύνη και μηχανική μάθηση                |      [Introduction](1-Introduction/README.md)       | Ποια είναι τα σημαντικά φιλοσοφικά ζητήματα γύρω από τη δικαιοσύνη που πρέπει να λάβουν υπόψη οι μαθητές κατά την κατασκευή και εφαρμογή μοντέλων ML; |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
-|      04       |                Τεχνικές για μηχανική μάθηση                   |      [Introduction](1-Introduction/README.md)       | Ποιες τεχνικές χρησιμοποιούν οι ερευνητές ML για να κατασκευάσουν μοντέλα ML;                                                    |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
-|      05       |                   Εισαγωγή στην παλινδρόμηση                  |        [Regression](2-Regression/README.md)         | Ξεκινήστε με Python και Scikit-learn για μοντέλα παλινδρόμησης                                                                   |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
-|      06       |                Τιμές κολοκύθας στη Βόρεια Αμερική 🎃          |        [Regression](2-Regression/README.md)         | Οπτικοποιήστε και καθαρίστε δεδομένα σε προετοιμασία για ML                                                                     |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
-|      07       |                Τιμές κολοκύθας στη Βόρεια Αμερική 🎃          |        [Regression](2-Regression/README.md)         | Κατασκευάστε γραμμικά και πολυωνυμικά μοντέλα παλινδρόμησης                                                                     |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
-|      08       |                Τιμές κολοκύθας στη Βόρεια Αμερική 🎃          |        [Regression](2-Regression/README.md)         | Κατασκευάστε ένα μοντέλο λογιστικής παλινδρόμησης                                                                               |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
-|      09       |                          Μια Web Εφαρμογή 🔌                   |           [Web App](3-Web-App/README.md)            | Κατασκευάστε μια web εφαρμογή για να χρησιμοποιήσετε το εκπαιδευμένο σας μοντέλο                                               |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
-|      10       |                 Εισαγωγή στην ταξινόμηση                      |    [Classification](4-Classification/README.md)     | Καθαρίστε, προετοιμάστε και οπτικοποιήστε τα δεδομένα σας· εισαγωγή στην ταξινόμηση                                            | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
-|      11       |             Νόστιμες Ασιατικές και Ινδικές κουζίνες 🍜        |    [Classification](4-Classification/README.md)     | Εισαγωγή στους ταξινομητές                                                                                                      | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
-|      12       |             Νόστιμες Ασιατικές και Ινδικές κουζίνες 🍜        |    [Classification](4-Classification/README.md)     | Περισσότεροι ταξινομητές                                                                                                        | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
-|      13       |             Νόστιμες Ασιατικές και Ινδικές κουζίνες 🍜        |    [Classification](4-Classification/README.md)     | Κατασκευάστε μια web εφαρμογή συστάσεων χρησιμοποιώντας το μοντέλο σας                                                          |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
-|      14       |                   Εισαγωγή στον ομαδοποίηση                    |        [Clustering](5-Clustering/README.md)         | Καθαρίστε, προετοιμάστε και οπτικοποιήστε τα δεδομένα σας· Εισαγωγή στην ομαδοποίηση                                           |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
-|      15       |              Εξερεύνηση Νιγηριανών Μουσικών Γούστων 🎧       |        [Clustering](5-Clustering/README.md)         | Εξερευνήστε τη μέθοδο ομαδοποίησης K-Means                                                                                      |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
-|      16       |        Εισαγωγή στην επεξεργασία φυσικής γλώσσας ☕️           |   [Natural language processing](6-NLP/README.md)    | Μάθετε τα βασικά για την NLP κατασκευάζοντας ένα απλό bot                                                                       |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|      17       |                      Κοινές εργασίες NLP ☕️                   |   [Natural language processing](6-NLP/README.md)    | Εμβαθύνετε τις γνώσεις σας στην NLP κατανοώντας κοινές εργασίες που απαιτούνται όταν ασχολείστε με δομές γλώσσας                 |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
-|      18       |             Μετάφραση και ανάλυση συναισθήματος ♥️            |   [Natural language processing](6-NLP/README.md)    | Μετάφραση και ανάλυση συναισθήματος με την Jane Austen                                                                          |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
-|      19       |                  Ρομαντικά ξενοδοχεία της Ευρώπης ♥️          |   [Natural language processing](6-NLP/README.md)    | Ανάλυση συναισθήματος με κριτικές ξενοδοχείων 1                                                                                 |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
-|      20       |                  Ρομαντικά ξενοδοχεία της Ευρώπης ♥️          |   [Natural language processing](6-NLP/README.md)    | Ανάλυση συναισθήματος με κριτικές ξενοδοχείων 2                                                                                 |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
-|      21       |            Εισαγωγή στην πρόβλεψη χρονοσειρών                 |        [Time series](7-TimeSeries/README.md)        | Εισαγωγή στην πρόβλεψη χρονοσειρών                                                                                             |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
-|      22       | ⚡️ Παγκόσμια χρήση ενέργειας ⚡️ - πρόβλεψη χρονοσειρών με ARIMA |        [Time series](7-TimeSeries/README.md)        | Πρόβλεψη χρονοσειρών με ARIMA                                                                                                   |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
-|      23       |  ⚡️ Παγκόσμια χρήση ενέργειας ⚡️ - πρόβλεψη χρονοσειρών με SVR  |        [Time series](7-TimeSeries/README.md)        | Πρόβλεψη χρονοσειρών με Support Vector Regressor                                                                               |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
-|      24       |             Εισαγωγή στην ενισχυτική μάθηση                   | [Reinforcement learning](8-Reinforcement/README.md) | Εισαγωγή στην ενισχυτική μάθηση με Q-Learning                                                                                   |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
-|      25       |                 Βοήθησε τον Πέτρο να αποφύγει τον λύκο! 🐺    | [Reinforcement learning](8-Reinforcement/README.md) | Ενισχυτική μάθηση Gym                                                                                                           |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
-|  Postscript   |            Πραγματικά σενάρια και εφαρμογές ML                 |      [ML in the Wild](9-Real-World/README.md)       | Ενδιαφέρουσες και αποκαλυπτικές πραγματικές εφαρμογές της κλασικής ML                                                           |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
-|  Postscript   |            Εντοπισμός σφαλμάτων μοντέλων ML με το RAI dashboard |      [ML in the Wild](9-Real-World/README.md)       | Εντοπισμός σφαλμάτων μοντέλων στη Μηχανική Μάθηση χρησιμοποιώντας τα στοιχεία του Responsible AI dashboard                      |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
+|      01       |                Εισαγωγή στη μηχανική μάθηση                |      [Εισαγωγή](1-Introduction/README.md)       | Μάθετε τις βασικές έννοιες της μηχανικής μάθησης                                                                                |                                             [Μάθημα](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                Η ιστορία της μηχανικής μάθησης                 |      [Εισαγωγή](1-Introduction/README.md)       | Μάθετε την ιστορία που διέπει αυτόν τον τομέα                                                                                         |                                            [Μάθημα](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
+|      03       |                 Δικαιοσύνη και μηχανική μάθηση                  |      [Εισαγωγή](1-Introduction/README.md)       | Ποια είναι τα σημαντικά φιλοσοφικά ζητήματα γύρω από τη δικαιοσύνη που θα πρέπει να εξετάσουν οι μαθητές κατά την κατασκευή και εφαρμογή μοντέλων μηχανικής μάθησης; |                                              [Μάθημα](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|      04       |                Τεχνικές για τη μηχανική μάθηση                 |      [Εισαγωγή](1-Introduction/README.md)       | Ποιες τεχνικές χρησιμοποιούν οι ερευνητές μηχανικής μάθησης για να δημιουργήσουν μοντέλα μηχανικής μάθησης?                                                                       |                                          [Μάθημα](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
+|      05       |                   Εισαγωγή στην παλινδρόμηση                   |        [Παλινδρόμηση](2-Regression/README.md)         | Ξεκινήστε με Python και Scikit-learn για μοντέλα παλινδρόμησης                                                                  |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|      06       |                Τιμές κολοκύθας στη Βόρεια Αμερική 🎃                |        [Παλινδρόμηση](2-Regression/README.md)         | Οπτικοποιήστε και καθαρίστε δεδομένα προετοιμάζοντας για μηχανική μάθηση                                                                                  |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|      07       |                Τιμές κολοκύθας στη Βόρεια Αμερική 🎃                |        [Παλινδρόμηση](2-Regression/README.md)         | Δημιουργήστε γραμμικά και πολυωνυμικά μοντέλα παλινδρόμησης                                                                                   |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
+|      08       |                Τιμές κολοκύθας στη Βόρεια Αμερική 🎃                |        [Παλινδρόμηση](2-Regression/README.md)         | Δημιουργήστε ένα μοντέλο λογιστικής παλινδρόμησης                                                                                               |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|      09       |                          Μια web εφαρμογή 🔌                          |           [Web Εφαρμογή](3-Web-App/README.md)            | Δημιουργήστε μια web εφαρμογή για να χρησιμοποιήσετε το εκπαιδευμένο σας μοντέλο                                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|      10       |                 Εισαγωγή στην ταξινόμηση                 |    [Ταξινόμηση](4-Classification/README.md)     | Καθαρίστε, προετοιμάστε και οπτικοποιήστε τα δεδομένα σας; εισαγωγή στην ταξινόμηση                                                            | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
+|      11       |             Νόστιμες Ασιατικές και Ινδικές Κουζίνες 🍜             |    [Ταξινόμηση](4-Classification/README.md)     | Εισαγωγή στους ταξινομητές                                                                                                     | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
+|      12       |             Νόστιμες Ασιατικές και Ινδικές Κουζίνες 🍜             |    [Ταξινόμηση](4-Classification/README.md)     | Περισσότεροι ταξινομητές                                                                                                                | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
+|      13       |             Νόστιμες Ασιατικές και Ινδικές Κουζίνες 🍜             |    [Ταξινόμηση](4-Classification/README.md)     | Δημιουργήστε μια web εφαρμογή προτάσεων χρησιμοποιώντας το μοντέλο σας                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|      14       |                   Εισαγωγή στην ομαδοποίηση                   |        [Ομαδοποίηση](5-Clustering/README.md)         | Καθαρίστε, προετοιμάστε και οπτικοποιήστε τα δεδομένα σας; Εισαγωγή στην ομαδοποίηση                                                                |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|      15       |              Εξερεύνηση των μουσικών προτιμήσεων της Νιγηρίας 🎧              |        [Ομαδοποίηση](5-Clustering/README.md)         | Εξερευνήστε τη μέθοδο ομαδοποίησης K-Means                                                                                           |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
+|      16       |        Εισαγωγή στην επεξεργασία φυσικής γλώσσας ☕️         |   [Επεξεργασία φυσικής γλώσσας](6-NLP/README.md)    | Μάθετε τα βασικά της επεξεργασίας φυσικής γλώσσας δημιουργώντας ένα απλό bot                                                                             |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|      17       |                      Συνήθεις εργασίες επεξεργασίας φυσικής γλώσσας ☕️                      |   [Επεξεργασία φυσικής γλώσσας](6-NLP/README.md)    | Βαθύνετε τις γνώσεις σας στην επεξεργασία φυσικής γλώσσας κατανοώντας τις συνηθισμένες εργασίες που απαιτούνται όταν ασχολείστε με δομές γλώσσας                          |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      18       |             Μετάφραση και ανάλυση συναισθήματος ♥️              |   [Επεξεργασία φυσικής γλώσσας](6-NLP/README.md)    | Μετάφραση και ανάλυση συναισθήματος με έργα της Jane Austen                                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|      19       |                  Ρομαντικά ξενοδοχεία της Ευρώπης ♥️                  |   [Επεξεργασία φυσικής γλώσσας](6-NLP/README.md)    | Ανάλυση συναισθήματος με κριτικές ξενοδοχείων 1                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|      20       |                  Ρομαντικά ξενοδοχεία της Ευρώπης ♥️                  |   [Επεξεργασία φυσικής γλώσσας](6-NLP/README.md)    | Ανάλυση συναισθήματος με κριτικές ξενοδοχείων 2                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|      21       |            Εισαγωγή στην πρόβλεψη χρονοσειρών             |        [Χρονοσειρές](7-TimeSeries/README.md)        | Εισαγωγή στην πρόβλεψη χρονοσειρών                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|      22       | ⚡️ Κατανάλωση ρεύματος παγκοσμίως ⚡️ - πρόβλεψη χρονοσειρών με ARIMA |        [Χρονοσειρές](7-TimeSeries/README.md)        | Πρόβλεψη χρονοσειρών με ARIMA                                                                                              |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|      23       |  ⚡️ Κατανάλωση ρεύματος παγκοσμίως ⚡️ - πρόβλεψη χρονοσειρών με SVR  |        [Χρονοσειρές](7-TimeSeries/README.md)        | Πρόβλεψη χρονοσειρών με Support Vector Regressor                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|      24       |             Εισαγωγή στην ενισχυτική μάθηση             | [Ενισχυτική μάθηση](8-Reinforcement/README.md) | Εισαγωγή στην ενισχυτική μάθηση με Q-Learning                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|      25       |                 Βοηθήστε τον Peter να αποφύγει τον λύκο! 🐺                  | [Ενισχυτική μάθηση](8-Reinforcement/README.md) | Ενισχυτική μάθηση - Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|  Υστερόγραφο   |            Σενάρια μηχανικής μάθησης στον πραγματικό κόσμο και εφαρμογές            |      [Μηχανική μάθηση στην Πράξη](9-Real-World/README.md)       | Ενδιαφέρουσες και αποκαλυπτικές εφαρμογές της κλασικής μηχανικής μάθησης στον πραγματικό κόσμο                                                               |                                             [Μάθημα](9-Real-World/1-Applications/README.md)                                              |                         Ομάδα                         |
+|  Υστερόγραφο   |            Αποσφαλμάτωση μοντέλων στη Μηχανική Μάθηση χρησιμοποιώντας το RAI dashboard          |      [Μηχανική μάθηση στην Πράξη](9-Real-World/README.md)       | Αποσφαλμάτωση μοντέλων στη Μηχανική Μάθηση χρησιμοποιώντας στοιχεία του Responsible AI dashboard                                                              |                                             [Μάθημα](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
-> [βρείτε όλους τους επιπλέον πόρους για αυτό το μάθημα στη συλλογή Microsoft Learn](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [Βρείτε όλους τους επιπλέον πόρους για αυτό το μάθημα στη συλλογή Microsoft Learn μας](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 ## Πρόσβαση εκτός σύνδεσης
 
-Μπορείτε να εκτελέσετε αυτήν την τεκμηρίωση εκτός σύνδεσης χρησιμοποιώντας το [Docsify](https://docsify.js.org/#/). Κάντε fork αυτό το αποθετήριο, [εγκαταστήστε το Docsify](https://docsify.js.org/#/quickstart) στον τοπικό σας υπολογιστή και στη συνέχεια στον ριζικό φάκελο αυτού του αποθετηρίου, πληκτρολογήστε `docsify serve`. Η ιστοσελίδα θα σερβιριστεί στην πόρτα 3000 στο localhost σας: `localhost:3000`.
+Μπορείτε να εκτελέσετε αυτήν την τεκμηρίωση εκτός σύνδεσης χρησιμοποιώντας [Docsify](https://docsify.js.org/#/). Fork this repo, [εγκαταστήστε Docsify](https://docsify.js.org/#/quickstart) on your local machine, and then in the root folder of this repo, type `docsify serve`. The website will be served on port 3000 on your localhost: `localhost:3000`.
 
-## PDF
+## Αρχεία PDF
 
 Βρείτε ένα pdf του προγράμματος σπουδών με συνδέσμους [εδώ](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 
-## 🎒 Άλλα Μαθήματα
+## 🎒 Άλλα Μαθήματα 
 
-Η ομάδα μας παράγει και άλλα μαθήματα! Δείτε:
+Η ομάδα μας δημιουργεί και άλλα μαθήματα! Δείτε:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
-[![LangChain4j for Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
-[![LangChain.js for Beginners](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain4j για Αρχάριους](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js για Αρχάριους](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
 
 ---
 
 ### Azure / Edge / MCP / Agents
-[![AZD for Beginners](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Edge AI for Beginners](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![MCP for Beginners](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI Agents for Beginners](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AZD για Αρχάριους](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI για Αρχάριους](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP για Αρχάριους](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Agents για Αρχάριους](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Σειρά Generative AI
-[![Generative AI for Beginners](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+### Generative AI Series
+[![Generative AI για Αρχάριους](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
 [![Generative AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
-[![Generative AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
-[![Generative AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
+[![Γενετική ΤΝ (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
+[![Γενετική ΤΝ (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Βασική Μάθηση
-[![ML for Beginners](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
-[![Data Science for Beginners](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI for Beginners](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-[![Cybersecurity for Beginners](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-[![Web Dev for Beginners](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![IoT for Beginners](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-[![XR Development for Beginners](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+### Βασική Εκπαίδευση
+[![Μηχανική Μάθηση για Αρχάριους](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![Επιστήμη Δεδομένων για Αρχάριους](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![Τεχνητή Νοημοσύνη για Αρχάριους](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![Κυβερνοασφάλεια για Αρχάριους](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![Ανάπτυξη Ιστού για Αρχάριους](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![IoT για Αρχάριους](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![Ανάπτυξη XR για Αρχάριους](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### Σειρά Copilot
-[![Copilot for AI Paired Programming](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
-[![Copilot for C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-[![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+[![Copilot για Ζευγαρωμένο Προγραμματισμό με ΤΝ](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot για C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Περιπέτεια Copilot](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
 ## Λήψη Βοήθειας
 
-Εάν κολλήσετε ή έχετε οποιεσδήποτε ερωτήσεις σχετικά με την κατασκευή εφαρμογών AI. Ενταχθείτε σε άλλους μαθητές και έμπειρους προγραμματιστές σε συζητήσεις για το MCP. Είναι μια υποστηρικτική κοινότητα όπου οι ερωτήσεις είναι ευπρόσδεκτες και η γνώση μοιράζεται ελεύθερα.
+Αν κολλήσετε ή έχετε οποιεσδήποτε ερωτήσεις σχετικά με την ανάπτυξη εφαρμογών ΤΝ. Ενταχθείτε με άλλους μαθητευόμενους και έμπειρους προγραμματιστές σε συζητήσεις για το MCP. Είναι μια υποστηρικτική κοινότητα όπου οι ερωτήσεις είναι ευπρόσδεκτες και η γνώση μοιράζεται ελεύθερα.
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+[![Discord του Microsoft Foundry](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Εάν έχετε σχόλια για το προϊόν ή σφάλματα κατά την κατασκευή, επισκεφθείτε:
+Αν έχετε σχόλια προϊόντος ή σφάλματα κατά τη διάρκεια της ανάπτυξης, επισκεφθείτε:
 
-[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+[![Φόρουμ Αναπτυκτών Microsoft Foundry](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Αποποίηση ευθυνών**:  
-Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης AI [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που επιδιώκουμε την ακρίβεια, παρακαλούμε να λάβετε υπόψη ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+**Αποποίηση ευθυνών**:
+Το παρόν έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης με τεχνητή νοημοσύνη [Co-op Translator](https://github.com/Azure/co-op-translator). Παρά τις προσπάθειές μας για ακρίβεια, παρακαλούμε λάβετε υπόψη ότι οι αυτοματοποιημένες μεταφράσεις ενδέχεται να περιέχουν σφάλματα ή ανακρίβειες. Το πρωτότυπο έγγραφο στη γλώσσα του πρέπει να θεωρείται η επίσημη πηγή. Για κρίσιμες πληροφορίες συνιστάται επαγγελματική μετάφραση από ανθρώπινο μεταφραστή. Δεν ευθυνόμαστε για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
