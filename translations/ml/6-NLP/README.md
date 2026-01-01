@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ഈ പാഠങ്ങളിൽ നാം ചെറിയ സംഭാഷണ ബോട്ടുകൾ നിർമ്മിച്ച് NLPയുടെ അടിസ്ഥാനങ്ങൾ പഠിക്കും, യന്ത്രം പഠനം ഈ സംഭാഷണങ്ങളെ കൂടുതൽ 'സ്മാർട്ട്' ആക്കുന്നതിൽ എങ്ങനെ സഹായിക്കുന്നുവെന്ന് മനസ്സിലാക്കും. 1813-ൽ പ്രസിദ്ധീകരിച്ച ജെയിൻ ഓസ്റ്റന്റെ ക്ലാസിക് നോവൽ **പ്രൈഡ് ആൻഡ് പ്രെജുഡിസ്**-ലെ എലിസബത്ത് ബെനെറ്റ്, മിസ്റ്റർ ഡാർസി എന്നിവരുമായി സംഭാഷണം നടത്താൻ നിങ്ങൾ കാലയാത്ര നടത്തും. തുടർന്ന്, യൂറോപ്പിലെ ഹോട്ടൽ അവലോകനങ്ങളിലൂടെ സന്റിമെന്റ് അനാലിസിസ് പഠിച്ച് നിങ്ങളുടെ അറിവ് വർദ്ധിപ്പിക്കും.
 
-![Pride and Prejudice book and tea](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.ml.jpg)
+![Pride and Prejudice book and tea](../../../translated_images/p&p.279f1c49ecd88941.ml.jpg)
 > ഫോട്ടോ <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> ൽ നിന്നാണ്
   
 ## പാഠങ്ങൾ

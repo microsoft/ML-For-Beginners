@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 നോർത്ത് അമേരിക്കയിൽ, ഹാലോവീൻക്കായി പംപ്കിനുകൾ ഭയങ്കരമായ മുഖങ്ങളായി മുറിക്കുന്നു. ഈ ആകർഷകമായ പച്ചക്കറികളെ കുറിച്ച് കൂടുതൽ കണ്ടെത്താം!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.ml.jpg)
+![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.ml.jpg)
 > ഫോട്ടോ <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ബെത്ത് ട്യൂട്ഷ്മാൻ</a> <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">അൺസ്പ്ലാഷിൽ</a>
   
 ## നിങ്ങൾ പഠിക്കാനിരിക്കുന്നതെന്ത്

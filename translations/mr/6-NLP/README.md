@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 या धड्यांमध्ये आपण NLP चे मूलभूत तत्त्व शिकू, जिथे लहान संवादात्मक बॉट्स तयार करून मशीन लर्निंग कसे या संवादांना अधिकाधिक 'स्मार्ट' बनवते हे समजून घेऊ. तुम्ही भूतकाळात प्रवास कराल, जेन ऑस्टेनच्या १८१३ मध्ये प्रकाशित झालेल्या **Pride and Prejudice** या क्लासिक कादंबरीतील एलिझाबेथ बेनेट आणि मिस्टर डार्सी यांच्याशी संवाद साधाल. त्यानंतर, युरोपमधील हॉटेल पुनरावलोकनांद्वारे भावना विश्लेषण शिकून तुमचे ज्ञान वाढवाल.
 
-![Pride and Prejudice पुस्तक आणि चहा](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.mr.jpg)
+![Pride and Prejudice पुस्तक आणि चहा](../../../translated_images/p&p.279f1c49ecd88941.mr.jpg)
 > फोटो <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> यांनी <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> वरून घेतला आहे
   
 ## धडे

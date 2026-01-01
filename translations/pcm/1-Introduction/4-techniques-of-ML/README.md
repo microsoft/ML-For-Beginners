@@ -97,7 +97,7 @@ For machine learning, model fitting mean how accurate di model function dey as e
 
 🎓 **Underfitting** and **overfitting** na common problems wey dey reduce di quality of di model, as di model fit no fit well or e fit too fit. Dis one dey make di model predictions either too close or too far from di training data. Overfit model dey predict training data too well because e don sabi di details and noise of di data too much. Underfit model no dey accurate because e no fit analyze di training data or di data wey e never see well.
 
-![overfitting model](../../../../translated_images/overfitting.1c132d92bfd93cb63240baf63ebdf82c30e30a0a44e1ad49861b82ff600c2b5c.pcm.png)
+![overfitting model](../../../../translated_images/overfitting.1c132d92bfd93cb6.pcm.png)
 > Infographic by [Jen Looper](https://twitter.com/jenlooper)
 
 ## Parameter tuning

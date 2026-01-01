@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 उत्तर अमेरिकेत, कद्दू हॅलोविनसाठी भीतीदायक चेहऱ्यांमध्ये कोरले जातात. चला या आकर्षक भाजीपाल्याबद्दल अधिक जाणून घेऊया!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.mr.jpg)
+![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.mr.jpg)
 > फोटो <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">बेथ टॉयचमन</a> यांनी Unsplash वर <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> वर दिला आहे.
 
 ## तुम्ही काय शिकाल

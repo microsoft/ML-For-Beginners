@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਏਸ਼ੀਆ ਅਤੇ ਭਾਰਤ ਵਿੱਚ, ਖਾਣੇ ਦੀਆਂ ਰਿਵਾਇਤਾਂ ਬਹੁਤ ਹੀ ਵੱਖ-ਵੱਖ ਅਤੇ ਸੁਆਦਿਸ਼ਟ ਹੁੰਦੀਆਂ ਹਨ! ਆਓ ਖੇਤਰੀ ਖਾਣਿਆਂ ਦੇ ਡਾਟਾ ਨੂੰ ਦੇਖੀਏ ਤਾਂ ਜੋ ਉਨ੍ਹਾਂ ਦੇ ਸਮੱਗਰੀ ਨੂੰ ਸਮਝਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਜਾ ਸਕੇ।
 
-![ਥਾਈ ਖਾਣੇ ਵੇਚਣ ਵਾਲਾ](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.pa.jpg)
+![ਥਾਈ ਖਾਣੇ ਵੇਚਣ ਵਾਲਾ](../../../translated_images/thai-food.c47a7a7f9f05c218.pa.jpg)
 > ਫੋਟੋ <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਲਿਸ਼ੇਂਗ ਚੈਂਗ</a> ਦੁਆਰਾ <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਅਨਸਪਲੈਸ਼</a> 'ਤੇ
   
 ## ਤੁਸੀਂ ਕੀ ਸਿੱਖੋਗੇ

@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਇਨ੍ਹਾਂ ਪਾਠਾਂ ਵਿੱਚ ਅਸੀਂ NLP ਦੇ ਬੁਨਿਆਦੀ ਸਿਧਾਂਤਾਂ ਨੂੰ ਸਿੱਖਾਂਗੇ, ਛੋਟੇ ਗੱਲਬਾਤੀ ਬੋਟ ਬਣਾਕੇ ਇਹ ਸਮਝਾਂਗੇ ਕਿ ਮਸ਼ੀਨ ਲਰਨਿੰਗ ਕਿਵੇਂ ਇਹ ਗੱਲਬਾਤਾਂ ਨੂੰ ਹੋਰ 'ਸਮਾਰਟ' ਬਣਾਉਣ ਵਿੱਚ ਸਹਾਇਕ ਹੁੰਦੀ ਹੈ। ਤੁਸੀਂ ਸਮੇਂ ਵਿੱਚ ਪਿੱਛੇ ਯਾਤਰਾ ਕਰੋਗੇ, ਜੇਨ ਆਸਟਿਨ ਦੇ ਕਲਾਸਿਕ ਨਾਵਲ, **ਪ੍ਰਾਈਡ ਐਂਡ ਪ੍ਰਿਜੂਡਿਸ** (1813 ਵਿੱਚ ਪ੍ਰਕਾਸ਼ਿਤ) ਦੇ ਐਲਿਜ਼ਬੇਥ ਬੈਨੇਟ ਅਤੇ ਮਿਸਟਰ ਡਾਰਸੀ ਨਾਲ ਗੱਲਬਾਤ ਕਰਦੇ ਹੋਏ। ਫਿਰ, ਤੁਸੀਂ ਹੋਰ ਗਿਆਨ ਪ੍ਰਾਪਤ ਕਰੋਗੇ ਯੂਰਪ ਦੇ ਹੋਟਲ ਰਿਵਿਊਜ਼ ਰਾਹੀਂ ਸੈਂਟੀਮੈਂਟ ਐਨਾਲਿਸਿਸ ਸਿੱਖ ਕੇ।
 
-![ਪ੍ਰਾਈਡ ਐਂਡ ਪ੍ਰਿਜੂਡਿਸ ਕਿਤਾਬ ਅਤੇ ਚਾਹ](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.pa.jpg)
+![ਪ੍ਰਾਈਡ ਐਂਡ ਪ੍ਰਿਜੂਡਿਸ ਕਿਤਾਬ ਅਤੇ ਚਾਹ](../../../translated_images/p&p.279f1c49ecd88941.pa.jpg)
 > ਫੋਟੋ <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> ਦੁਆਰਾ <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> 'ਤੇ
   
 ## ਪਾਠ

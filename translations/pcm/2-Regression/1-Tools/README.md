@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Start wit Python and Scikit-learn for regression models
 
-![Summary of regressions in a sketchnote](../../../../translated_images/ml-regression.4e4f70e3b3ed446e3ace348dec973e133fa5d3680fbc8412b61879507369b98d.pcm.png)
+![Summary of regressions in a sketchnote](../../../../translated_images/ml-regression.4e4f70e3b3ed446e.pcm.png)
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -81,7 +81,7 @@ For dis folder, you go see di file _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code wit notebook open](../../../../translated_images/notebook.4a3ee31f396b88325607afda33cadcc6368de98040ff33942424260aa84d75f2.pcm.jpg)
+![VS Code wit notebook open](../../../../translated_images/notebook.4a3ee31f396b8832.pcm.jpg)
 
 You fit mix your code wit comments to self-document di notebook.
 
@@ -211,7 +211,7 @@ For new code cell, load di diabetes dataset by calling `load_diabetes()`. Di inp
     plt.show()
     ```
 
-   ![scatterplot wey dey show datapoints about diabetes](../../../../translated_images/scatterplot.ad8b356bcbb33be68d54050e09b9b7bfc03e94fde7371f2609ae43f4c563b2d7.pcm.png)
+   ![scatterplot wey dey show datapoints about diabetes](../../../../translated_images/scatterplot.ad8b356bcbb33be6.pcm.png)
 ✅ Tink small small about wetin dey happen here. One straight line dey waka pass plenty small dots wey be data, but wetin e dey really do? You fit see how you go fit use dis line take predict where new data wey you never see go fit enter for the plot y axis? Try talk the practical use of dis model.
 
 Congrats, you don build your first linear regression model, use am predict something, and show am for one plot!

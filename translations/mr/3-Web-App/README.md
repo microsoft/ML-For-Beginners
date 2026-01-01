@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 या अभ्यासक्रमाच्या या विभागात, तुम्हाला एक अनुप्रयुक्त ML विषयाची ओळख करून दिली जाईल: तुमचे Scikit-learn मॉडेल कसे जतन करायचे जेणेकरून ते वेब अॅप्लिकेशनमध्ये अंदाज वर्तवण्यासाठी वापरले जाऊ शकेल. एकदा मॉडेल जतन केल्यानंतर, तुम्ही ते Flask मध्ये तयार केलेल्या वेब अॅपमध्ये कसे वापरायचे ते शिकाल. तुम्ही प्रथम UFO पाहण्याच्या डेटाचा वापर करून एक मॉडेल तयार कराल! त्यानंतर, तुम्ही एक वेब अॅप तयार कराल जो तुम्हाला सेकंदांची संख्या, अक्षांश, आणि रेखांश मूल्य प्रविष्ट करून अंदाज लावण्याची परवानगी देईल की कोणत्या देशाने UFO पाहिल्याचा अहवाल दिला आहे.
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.mr.jpg)
+![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d.mr.jpg)
 
 फोटो <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">मायकेल हेरन</a> यांनी Unsplash वर <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">प्रकाशित केला</a>.
 

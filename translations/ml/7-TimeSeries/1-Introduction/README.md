@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ടൈം സീരീസ് ഫോറ്കാസ്റ്റിംഗിലേക്ക് പരിചയം
 
-![ടൈം സീരീസിന്റെ സംഗ്രഹം ഒരു സ്കെച്ച്നോട്ടിൽ](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.ml.png)
+![ടൈം സീരീസിന്റെ സംഗ്രഹം ഒരു സ്കെച്ച്നോട്ടിൽ](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c.ml.png)
 
 > സ്കെച്ച്നോട്ട് [Tomomi Imura](https://www.twitter.com/girlie_mac) tarafından
 
@@ -112,7 +112,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ✅ [ഈ സാമ്പിൾ ടൈം സീരീസ് പ്ലോട്ട്](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) നോക്കൂ, ഇത് ചില വർഷങ്ങളിലായി ദിവസേന കളിയിൽ ചെലവഴിച്ച കറൻസി കാണിക്കുന്നു. മുകളിൽ പറഞ്ഞ സവിശേഷതകളിൽ ഏതെങ്കിലും ഈ ഡാറ്റയിൽ തിരിച്ചറിയാമോ?
 
-![ഇൻ-ഗെയിം കറൻസി ചെലവ്](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.ml.png)
+![ഇൻ-ഗെയിം കറൻസി ചെലവ്](../../../../translated_images/currency.e7429812bfc8c608.ml.png)
 
 ## അഭ്യാസം - വൈദ്യുതി ഉപയോഗ ഡാറ്റയുമായി ആരംഭിക്കുക
 
@@ -160,7 +160,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.ml.png)
+    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc.ml.png)
 
 4. ഇപ്പോൾ, 2014 ജൂലൈയുടെ ആദ്യ ആഴ്ച `[from date]: [to date]` മാതൃകയിൽ `energy`-ക്ക് ഇൻപുട്ടായി നൽകി പ്ലോട്ട് ചെയ്യുക:
 
@@ -171,7 +171,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.ml.png)
+    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b3.ml.png)
 
     മനോഹരമായ പ്ലോട്ട്! ഈ പ്ലോട്ടുകൾ നോക്കി മുകളിൽ പറഞ്ഞ സവിശേഷതകളിൽ ഏതെങ്കിലും തിരിച്ചറിയാമോ? ഡാറ്റ ദൃശ്യവൽക്കരിച്ച് നാം എന്ത് നിഗമനം വരുത്താം?
 

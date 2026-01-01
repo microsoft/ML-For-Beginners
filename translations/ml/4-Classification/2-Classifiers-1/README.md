@@ -107,7 +107,7 @@ Scikit-learn ക്ലാസിഫിക്കേഷൻ സൂപ്പർവൈ
 
 അപ്പോൾ, ഏത് ക്ലാസിഫയർ തിരഞ്ഞെടുക്കണം? പലതും പരീക്ഷിച്ച് നല്ല ഫലം കാണുന്നത് പരീക്ഷിക്കാൻ ഒരു മാർഗമാണ്. Scikit-learn ഒരു [സൈഡ്-ബൈ-സൈഡ് താരതമ്യം](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) ഒരുക്കിയിട്ടുണ്ട്, KNeighbors, SVC രണ്ട് രീതികൾ, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB, QuadraticDiscrinationAnalysis എന്നിവയുടെ ഫലങ്ങൾ ദൃശ്യമായി കാണിക്കുന്നു:
 
-![ക്ലാസിഫയറുകളുടെ താരതമ്യം](../../../../translated_images/comparison.edfab56193a85e7fdecbeaa1b1f8c99e94adbf7178bed0de902090cf93d6734f.ml.png)
+![ക്ലാസിഫയറുകളുടെ താരതമ്യം](../../../../translated_images/comparison.edfab56193a85e7f.ml.png)
 > Scikit-learn ഡോക്യുമെന്റേഷനിൽ നിന്നുള്ള പ്ലോട്ടുകൾ
 
 > AutoML ഈ പ്രശ്നം ക്ലൗഡിൽ ഈ താരതമ്യങ്ങൾ നടത്തിക്കൊണ്ട് സുതാര്യമായി പരിഹരിക്കുന്നു, നിങ്ങളുടെ ഡാറ്റയ്ക്ക് ഏറ്റവും അനുയോജ്യമായ ആൽഗോരിതം തിരഞ്ഞെടുക്കാൻ സഹായിക്കുന്നു. [ഇവിടെ](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott) പരീക്ഷിക്കുക
@@ -116,7 +116,7 @@ Scikit-learn ക്ലാസിഫിക്കേഷൻ സൂപ്പർവൈ
 
 വളരെ അനുമാനിച്ച് തിരഞ്ഞെടുക്കുന്നതിന് പകരം, ഡൗൺലോഡ് ചെയ്യാവുന്ന [ML ചീറ്റ് ഷീറ്റ്](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott) ൽ ഉള്ള ആശയങ്ങൾ പിന്തുടരുക. ഇവിടെ, നമ്മുടെ മൾട്ടിക്ലാസ് പ്രശ്നത്തിന് ചില തിരഞ്ഞെടുപ്പുകൾ കാണാം:
 
-![മൾട്ടിക്ലാസ് പ്രശ്നങ്ങൾക്ക് ചീറ്റ് ഷീറ്റ്](../../../../translated_images/cheatsheet.07a475ea444d22234cb8907a3826df5bdd1953efec94bd18e4496f36ff60624a.ml.png)
+![മൾട്ടിക്ലാസ് പ്രശ്നങ്ങൾക്ക് ചീറ്റ് ഷീറ്റ്](../../../../translated_images/cheatsheet.07a475ea444d2223.ml.png)
 > മൈക്രോസോഫ്റ്റിന്റെ ആൽഗോരിതം ചീറ്റ് ഷീറ്റിന്റെ ഒരു ഭാഗം, മൾട്ടിക്ലാസ് ക്ലാസിഫിക്കേഷൻ ഓപ്ഷനുകൾ വിശദീകരിക്കുന്നു
 
 ✅ ഈ ചീറ്റ് ഷീറ്റ് ഡൗൺലോഡ് ചെയ്ത് പ്രിന്റ് ചെയ്ത് നിങ്ങളുടെ ഭിത്തിയിൽ തൂക്കുക!
@@ -147,7 +147,7 @@ Scikit-learn ക്ലാസിഫിക്കേഷൻ സൂപ്പർവൈ
 
 Scikit-learn ഈ പട്ടിക നൽകുന്നു, സോൾവറുകൾ വിവിധ ഡാറ്റാ ഘടനകളിൽ എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്ന് വിശദീകരിക്കാൻ:
 
-![സോൾവറുകൾ](../../../../translated_images/solvers.5fc648618529e627dfac29b917b3ccabda4b45ee8ed41b0acb1ce1441e8d1ef1.ml.png)
+![സോൾവറുകൾ](../../../../translated_images/solvers.5fc648618529e627.ml.png)
 
 ## അഭ്യാസം - ഡാറ്റ വിഭജിക്കുക
 

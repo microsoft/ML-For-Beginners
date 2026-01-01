@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 यस पाठ्यक्रमको यस खण्डमा, तपाईंलाई परम्परागत मेसिन लर्निङका केही वास्तविक संसारका प्रयोगहरूबारे परिचित गराइनेछ। हामीले इन्टरनेटमा खोजी गरेर यस्ता सेतो कागजातहरू र लेखहरू संकलन गरेका छौं जसले यी रणनीतिहरू प्रयोग गरेका छन्, न्यूरल नेटवर्क, डीप लर्निङ र एआईलाई सकेसम्म टाढा राख्दै। जान्नुहोस् कसरी मेसिन लर्निङ व्यापार प्रणालीहरू, पारिस्थितिक प्रयोगहरू, वित्त, कला र संस्कृति, र अन्य क्षेत्रमा प्रयोग गरिन्छ।
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.ne.jpg)
+![chess](../../../translated_images/chess.e704a268781bdad8.ne.jpg)
 
 > फोटो <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">एलेक्सिस फोभेट</a> द्वारा <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्ल्यास</a> मा उपलब्ध
   

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 പാഠ്യപദ്ധതിയുടെ ഈ വിഭാഗത്തിൽ, നിങ്ങൾക്ക് ക്ലാസിക്കൽ എംഎൽ ഉപയോഗിച്ച യഥാർത്ഥ ലോക പ്രയോഗങ്ങളെ പരിചയപ്പെടുത്തും. നാം ന്യുറൽ നെറ്റ്വർക്കുകൾ, ഡീപ്പ് ലേണിംഗ്, എഐ എന്നിവ ഒഴിവാക്കി ഈ തന്ത്രങ്ങൾ ഉപയോഗിച്ച പ്രയോഗങ്ങളെക്കുറിച്ചുള്ള വൈറ്റ്‌പേപ്പറുകളും ലേഖനങ്ങളും കണ്ടെത്താൻ ഇന്റർനെറ്റ് തിരഞ്ഞെടുത്തു. ബിസിനസ് സിസ്റ്റങ്ങൾ, പരിസ്ഥിതി പ്രയോഗങ്ങൾ, ഫിനാൻസ്, കലയും സംസ്കാരവും ഉൾപ്പെടെ എങ്ങനെ എംഎൽ ഉപയോഗിക്കപ്പെടുന്നു എന്ന് പഠിക്കൂ.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.ml.jpg)
+![chess](../../../translated_images/chess.e704a268781bdad8.ml.jpg)
 
 > ഫോട്ടോ <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> ൽ നിന്നാണ്
   

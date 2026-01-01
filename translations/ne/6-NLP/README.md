@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 यी पाठहरूमा हामी NLP को आधारभूत कुरा सिक्नेछौं, साना संवादात्मक बोटहरू निर्माण गरेर मेसिन लर्निङले यी संवादहरूलाई कसरी 'स्मार्ट' बनाउँदै लगेको छ भन्ने कुरा बुझ्नेछौं। तपाईं समयको यात्रा गर्दै, Jane Austen को क्लासिक उपन्यास **Pride and Prejudice**, जुन १८१३ मा प्रकाशित भएको थियो, बाट Elizabeth Bennett र Mr. Darcy सँग कुराकानी गर्नेछौं। त्यसपछि, तपाईं युरोपका होटल समीक्षाहरूको माध्यमबाट भावना विश्लेषण सिकेर आफ्नो ज्ञानलाई अझ अगाडि बढाउनुहुनेछ।
 
-![Pride and Prejudice पुस्तक र चिया](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.ne.jpg)
+![Pride and Prejudice पुस्तक र चिया](../../../translated_images/p&p.279f1c49ecd88941.ne.jpg)
 > फोटो <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> द्वारा <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> मा
   
 ## पाठहरू

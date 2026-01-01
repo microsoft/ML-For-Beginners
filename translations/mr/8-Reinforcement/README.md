@@ -13,7 +13,7 @@ reinforcement learning, RL, हे supervised learning आणि unsupervised le
 
 कल्पना करा की तुमच्याकडे स्टॉक मार्केटसारखे एक सिम्युलेटेड वातावरण आहे. जर तुम्ही एखादा नियम लागू केला तर काय होईल? त्याचा सकारात्मक परिणाम होतो का किंवा नकारात्मक? जर काही नकारात्मक घडले, तर तुम्हाला त्या _नकारात्मक reinforcement_ वरून शिकून मार्ग बदलण्याची गरज आहे. जर सकारात्मक परिणाम झाला, तर तुम्हाला त्या _सकारात्मक reinforcement_ वर आधारित पुढे जायचे आहे.
 
-![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.mr.png)
+![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d.mr.png)
 
 > पीटर आणि त्याचे मित्र भुकेल्या लांडग्यापासून पळून जाण्याचा प्रयत्न करत आहेत! प्रतिमा [Jen Looper](https://twitter.com/jenlooper) यांच्याकडून
 

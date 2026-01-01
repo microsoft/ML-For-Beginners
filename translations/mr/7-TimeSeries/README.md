@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 आपला प्रादेशिक फोकस जागतिक वीज वापरावर आहे, जो भूतकाळातील लोडच्या पॅटर्न्सच्या आधारे भविष्यातील वीज वापराचा अंदाज लावण्यासाठी एक मनोरंजक डेटासेट आहे. व्यवसायाच्या वातावरणात अशा प्रकारचा अंदाज किती उपयुक्त ठरू शकतो हे तुम्हाला पाहता येईल.
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.mr.jpg)
+![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffa.mr.jpg)
 
 [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) यांनी राजस्थानमधील रस्त्यावर वीज टॉवर्सचे Unsplash वरील [फोटो](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

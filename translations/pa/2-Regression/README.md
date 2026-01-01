@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਉੱਤਰੀ ਅਮਰੀਕਾ ਵਿੱਚ, ਕੱਦੂਆਂ ਨੂੰ ਅਕਸਰ ਹੈਲੋਵੀਨ ਲਈ ਡਰਾਉਣੇ ਚਿਹਰੇ ਬਣਾਉਣ ਲਈ ਕੱਟਿਆ ਜਾਂਦਾ ਹੈ। ਆਓ, ਇਨ੍ਹਾਂ ਦਿਲਚਸਪ ਸਬਜ਼ੀਆਂ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਵਾਂ!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.pa.jpg)
+![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.pa.jpg)
 > ਫੋਟੋ <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਬੈਥ ਟਿਊਚਮੈਨ</a> ਵੱਲੋਂ <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਅਨਸਪਲੈਸ਼</a> 'ਤੇ
 
 ## ਤੁਸੀਂ ਕੀ ਸਿੱਖੋਗੇ
