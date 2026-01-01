@@ -17,7 +17,7 @@ Dans cette section du programme, vous serez initié à l'une des utilisations le
 
 Dans ces leçons, nous apprendrons les bases du NLP en construisant de petits bots conversationnels pour comprendre comment l'apprentissage automatique contribue à rendre ces conversations de plus en plus "intelligentes". Vous voyagerez dans le temps en discutant avec Elizabeth Bennett et Mr. Darcy du roman classique de Jane Austen, **Orgueil et Préjugés**, publié en 1813. Ensuite, vous approfondirez vos connaissances en apprenant l'analyse des sentiments à travers les avis sur les hôtels en Europe.
 
-![Livre Orgueil et Préjugés et thé](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.fr.jpg)
+![Livre Orgueil et Préjugés et thé](../../../translated_images/p&p.279f1c49ecd88941.fr.jpg)
 > Photo par <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> sur <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Leçons

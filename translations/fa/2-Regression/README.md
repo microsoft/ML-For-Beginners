@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 در آمریکای شمالی، کدو تنبل‌ها اغلب برای هالووین به شکل چهره‌های ترسناک تراشیده می‌شوند. بیایید درباره این سبزیجات جذاب بیشتر بدانیم!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.fa.jpg)
+![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.fa.jpg)
 > عکس از <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> در <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## آنچه خواهید آموخت

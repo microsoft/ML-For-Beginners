@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 مخاطبان متنوع نیجریه دارای سلیقه‌های موسیقی متنوعی هستند. با استفاده از داده‌هایی که از اسپاتیفای جمع‌آوری شده‌اند (با الهام از [این مقاله](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421))، بیایید نگاهی به برخی از موسیقی‌های محبوب در نیجریه بیندازیم. این مجموعه داده شامل اطلاعاتی درباره امتیاز 'رقص‌پذیری'، 'آکوستیک بودن'، بلندی صدا، 'گفتاری بودن'، محبوبیت و انرژی آهنگ‌های مختلف است. کشف الگوها در این داده‌ها می‌تواند بسیار جالب باشد!
 
-![یک صفحه‌گردان](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.fa.jpg)
+![یک صفحه‌گردان](../../../translated_images/turntable.f2b86b13c53302dc.fa.jpg)
 
 > عکس از <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">مارسلا لاسکوسکی</a> در <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

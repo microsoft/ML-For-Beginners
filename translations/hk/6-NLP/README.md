@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在這些課程中，我們將通過構建小型對話機器人來學習自然語言處理的基礎知識，了解機器學習如何幫助使這些對話變得越來越「智能」。你將穿越時光，與珍·奧斯汀1813年出版的經典小說《傲慢與偏見》中的伊麗莎白·班內特和達西先生進行交流。接著，你將進一步學習如何通過分析歐洲酒店評論來進行情感分析。
 
-![傲慢與偏見書籍與茶](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.hk.jpg)
+![傲慢與偏見書籍與茶](../../../translated_images/p&p.279f1c49ecd88941.hk.jpg)
 > 照片由 <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> 提供，來自 <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 課程

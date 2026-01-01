@@ -25,7 +25,7 @@ Oleme sinu _notebook.ipynb_ faili laadinud puhastatud andmestikuga ja jaganud se
 
 Eelnevalt õppisid erinevaid võimalusi andmete klassifitseerimiseks, kasutades Microsofti spikrit. Scikit-learn pakub sarnast, kuid detailsemat spikrit, mis aitab veelgi täpsemalt valida sobivaid hindajaid (teine termin klassifikaatorite kohta):
 
-![ML kaart Scikit-learnilt](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.et.png)
+![ML kaart Scikit-learnilt](../../../../translated_images/map.e963a6a51349425a.et.png)
 > Näpunäide: [vaata seda kaarti veebis](https://scikit-learn.org/stable/tutorial/machine_learning_map/) ja klõpsa teekonnal, et lugeda dokumentatsiooni.
 
 ### Plaan

@@ -56,7 +56,7 @@ Näiteks võtame *Uhkus ja eelarvamus*, tuntud ingliskeelse romaani, mille kirju
 
 Näiteks kui ingliskeelne fraas `I have no money` tõlgitakse sõnasõnaliselt prantsuse keelde, võib see muutuda `Je n'ai pas de monnaie`. "Monnaie" on keeruline prantsuse 'vale sõna', kuna 'money' ja 'monnaie' ei ole sünonüümid. Parem tõlge, mille inimene võiks teha, oleks `Je n'ai pas d'argent`, kuna see edastab paremini tähendust, et teil pole raha (mitte 'peenraha', mis on 'monnaie' tähendus).
 
-![monnaie](../../../../translated_images/monnaie.606c5fa8369d5c3b3031ef0713e2069485c87985dd475cd9056bdf4c76c1f4b8.et.png)
+![monnaie](../../../../translated_images/monnaie.606c5fa8369d5c3b.et.png)
 
 > Pilt autorilt [Jen Looper](https://twitter.com/jenlooper)
 

@@ -17,7 +17,7 @@ Dans ces deux leçons, vous serez initié à la prévision des séries temporell
 
 Notre sujet régional est la consommation électrique dans le monde, un ensemble de données intéressant pour apprendre à prévoir la consommation future d'énergie en fonction des schémas de charge passés. Vous pouvez constater à quel point ce type de prévision peut être extrêmement utile dans un environnement commercial.
 
-![réseau électrique](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.fr.jpg)
+![réseau électrique](../../../translated_images/electric-grid.0c21d5214db09ffa.fr.jpg)
 
 Photo de [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de pylônes électriques sur une route au Rajasthan sur [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

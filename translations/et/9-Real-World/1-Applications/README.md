@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Järelsõna: Masinõpe pärismaailmas
 
-![Masinõppe kokkuvõte pärismaailmas sketšina](../../../../translated_images/ml-realworld.26ee2746716155771f8076598b6145e6533fe4a9e2e465ea745f46648cbf1b84.et.png)
+![Masinõppe kokkuvõte pärismaailmas sketšina](../../../../translated_images/ml-realworld.26ee274671615577.et.png)
 > Sketš joonistas [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 Selles õppekavas õppisite mitmeid viise, kuidas andmeid treenimiseks ette valmistada ja masinõppe mudeleid luua. Te ehitasite klassikalisi regressiooni-, klasterdamis-, klassifitseerimis-, loomuliku keele töötlemise ja ajareamudeleid. Palju õnne! Nüüd võite mõelda, milleks see kõik vajalik on... millised on nende mudelite pärismaailma rakendused?

@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 नाइजीरिया के विविध दर्शकों के संगीत स्वाद भी विविध हैं। Spotify से डेटा स्क्रैप करके (प्रेरित [इस लेख](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421) से), आइए नाइजीरिया में लोकप्रिय कुछ संगीत पर नज़र डालें। इस डेटा सेट में विभिन्न गानों के 'डांसएबिलिटी' स्कोर, 'एकॉस्टिकनेस', लाउडनेस, 'स्पीचनेस', लोकप्रियता और ऊर्जा के बारे में जानकारी शामिल है। इस डेटा में पैटर्न्स की खोज करना दिलचस्प होगा!
 
-![एक टर्नटेबल](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.hi.jpg)
+![एक टर्नटेबल](../../../translated_images/turntable.f2b86b13c53302dc.hi.jpg)
 
 > फोटो <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> द्वारा <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> पर
   

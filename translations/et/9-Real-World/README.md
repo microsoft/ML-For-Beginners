@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Selles õppekava osas tutvustatakse teile klassikalise masinõppe rakendusi päriselus. Oleme internetist otsinud valgeid raamatuid ja artikleid, mis käsitlevad nende strateegiate kasutamist, vältides võimalusel närvivõrke, süvaõpet ja tehisintellekti. Uurige, kuidas masinõpet kasutatakse ärisüsteemides, ökoloogilistes rakendustes, rahanduses, kunstis ja kultuuris ning mujal.
 
-![male](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.et.jpg)
+![male](../../../translated_images/chess.e704a268781bdad8.et.jpg)
 
 > Foto autor <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> lehelt <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
