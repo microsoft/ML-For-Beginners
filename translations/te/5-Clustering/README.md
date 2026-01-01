@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 నైజీరియాలోని విభిన్న ప్రేక్షకులు విభిన్న సంగీత రుచులు కలిగి ఉన్నారు. Spotify నుండి సేకరించిన డేటాను ఉపయోగించి ([ఈ ఆర్టికల్](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421) నుండి ప్రేరణ పొందిన), నైజీరియాలో ప్రాచుర్యం పొందిన కొన్ని సంగీతాలను చూద్దాం. ఈ డేటాసెట్‌లో వివిధ పాటల 'డాన్స్‌బిలిటీ' స్కోరు, 'అకౌస్టిక్‌నెస్', లౌడ్నెస్, 'స్పీచినెస్', ప్రాచుర్యం మరియు ఎనర్జీ గురించి డేటా ఉంది. ఈ డేటాలో నమూనాలను కనుగొనడం ఆసక్తికరం!
 
-![A turntable](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.te.jpg)
+![A turntable](../../../translated_images/turntable.f2b86b13c53302dc.te.jpg)
 
 > ఫోటో <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">మార్సెలా లాస్కోస్కి</a> ద్వారా <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">అన్స్ప్లాష్</a>లో
 

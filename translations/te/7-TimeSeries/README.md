@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 మా ప్రాంతీయ దృష్టి ప్రపంచంలో విద్యుత్ వినియోగం మీద ఉంది, ఇది గత లోడ్ నమూనాల ఆధారంగా భవిష్యత్తు విద్యుత్ వినియోగాన్ని అంచనా వేయడాన్ని నేర్చుకోవడానికి ఆసక్తికరమైన డేటాసెట్. ఈ రకమైన ఫోర్కాస్టింగ్ వ్యాపార వాతావరణంలో ఎంతగానో సహాయకరమవుతుందో మీరు చూడవచ్చు.
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.te.jpg)
+![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffa.te.jpg)
 
 ఫోటో [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ద్వారా రాజస్థాన్‌లో రోడ్డుపై ఉన్న విద్యుత్ టవర్స్ యొక్క [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

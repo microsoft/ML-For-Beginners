@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [మౌంటైన్ కార్ వాతావరణం](https://gym.openai.com/envs/MountainCar-v0/) లో ఒక కారు ఒక లోయలో చిక్కుకుంది:
 
-<img src="../../../../translated_images/mountaincar.43d56e588ce581c2d035f28cf038a9af112bec043b2ef8da40ac86119b1e3a93.te.png" width="300"/>
+<img src="../../../../translated_images/mountaincar.43d56e588ce581c2.te.png" width="300"/>
 
 ప్రతి దశలో క్రింది చర్యలలో ఒకదాన్ని చేయడం ద్వారా లోయ నుండి బయటకు వచ్చి జెండాను పట్టుకోవడం లక్ష్యం:
 

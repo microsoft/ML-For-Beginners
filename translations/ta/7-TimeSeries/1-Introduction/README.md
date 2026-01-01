@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # கால வரிசை முன்னறிவிப்பு அறிமுகம்
 
-![கால வரிசையின் சுருக்கம் ஒரு ஸ்கெட்ச் நோட்டில்](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.ta.png)
+![கால வரிசையின் சுருக்கம் ஒரு ஸ்கெட்ச் நோட்டில்](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c.ta.png)
 
 > ஸ்கெட்ச் நோட்: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -112,7 +112,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ✅ [இந்த மாதிரி கால வரிசை வரைபடத்தை](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) பாருங்கள், இது சில ஆண்டுகளாக தினசரி விளையாட்டு நாணய செலவுகளை காட்டுகிறது. இந்த தரவுகளில் மேலே பட்டியலிடப்பட்ட பண்புகளில் ஏதேனும் ஒன்றை நீங்கள் அடையாளம் காண முடியுமா?
 
-![விளையாட்டு நாணய செலவுகள்](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.ta.png)
+![விளையாட்டு நாணய செலவுகள்](../../../../translated_images/currency.e7429812bfc8c608.ta.png)
 
 ## பயிற்சி - மின்சார பயன்பாட்டு தரவுடன் தொடங்குதல்
 
@@ -160,7 +160,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![மின்சார வரைபடம்](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.ta.png)
+    ![மின்சார வரைபடம்](../../../../translated_images/energy-plot.5fdac3f397a910bc.ta.png)
 
 4. இப்போது, 2014 ஜூலை மாதத்தின் முதல் வாரத்தை வரைபடமாக்கவும், அதை `[from date]: [to date]` வடிவத்தில் `energy` க்கு உள்ளீடாக வழங்கவும்:
 
@@ -171,7 +171,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![ஜூலை](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.ta.png)
+    ![ஜூலை](../../../../translated_images/july-2014.9e1f7c318ec6d5b3.ta.png)
 
     அழகான ஒரு வரைபடம்! இந்த வரைபடங்களைப் பாருங்கள் மற்றும் மேலே பட்டியலிடப்பட்ட பண்புகளில் ஏதேனும் ஒன்றை இந்த தரவுகளில் இருந்து நீங்கள் கண்டறிய முடியுமா என்பதை பாருங்கள். தரவுகளை காட்சிப்படுத்துவதன் மூலம் நாம் என்ன முடிவு செய்ய முடியும்?
 

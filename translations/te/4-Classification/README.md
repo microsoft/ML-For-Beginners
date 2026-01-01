@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఆసియా మరియు భారతదేశంలో, ఆహార సంప్రదాయాలు చాలా వైవిధ్యంగా ఉంటాయి, మరియు చాలా రుచికరంగా ఉంటాయి! వారి పదార్థాలను అర్థం చేసుకోవడానికి ప్రాంతీయ వంటకాల గురించి డేటాను చూద్దాం.
 
-![Thai food seller](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.te.jpg)
+![Thai food seller](../../../translated_images/thai-food.c47a7a7f9f05c218.te.jpg)
 > ఫోటో <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">లిషెంగ్ చాంగ్</a> ద్వారా <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">అన్స్ప్లాష్</a>లో
 
 ## మీరు నేర్చుకునేది

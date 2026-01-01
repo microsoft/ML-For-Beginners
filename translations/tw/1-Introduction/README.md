@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在本課程的這一部分中，您將了解機器學習領域的基本概念、它的定義，並學習它的歷史以及研究人員使用的相關技術。讓我們一起探索這個嶄新的機器學習世界吧！
 
-![globe](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.tw.jpg)
+![globe](../../../translated_images/globe.59f26379ceb40428.tw.jpg)
 > 照片由 <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> 提供，來自 <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### 課程

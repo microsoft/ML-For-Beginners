@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 நாம் கவனம் செலுத்தும் பிராந்தியப் பகுதி உலகின் மின்சார பயன்பாடு ஆகும், இது கடந்த கால சுமை (load) முறைமைகளின் அடிப்படையில் எதிர்கால மின்சார பயன்பாட்டை முன்னறிவிக்க கற்றுக்கொள்ள ஒரு சுவாரஸ்யமான தரவுத்தொகுப்பாகும். இந்த மாதிரியான முன்னறிவிப்பு வணிக சூழலில் மிகவும் பயனுள்ளதாக இருக்க முடியும் என்பதை நீங்கள் காணலாம்.
 
-![மின்சார வலை](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ta.jpg)
+![மின்சார வலை](../../../translated_images/electric-grid.0c21d5214db09ffa.ta.jpg)
 
 இந்தியாவின் ராஜஸ்தானில் சாலையில் மின்சார கோபுரங்களைப் பற்றிய [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) எடுத்த புகைப்படம் [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) மூலம்.
 

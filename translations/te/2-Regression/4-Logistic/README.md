@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # వర్గాలను అంచనా వేయడానికి లాజిస్టిక్ రిగ్రెషన్
 
-![లాజిస్టిక్ vs. లీనియర్ రిగ్రెషన్ ఇన్ఫోగ్రాఫిక్](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.te.png)
+![లాజిస్టిక్ vs. లీనియర్ రిగ్రెషన్ ఇన్ఫోగ్రాఫిక్](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee667.te.png)
 
 ## [ప్రీ-లెక్చర్ క్విజ్](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -52,7 +52,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 లాజిస్టిక్ రిగ్రెషన్ లీనియర్ రిగ్రెషన్ లాంటి లక్షణాలను అందించదు. మొదటిది ద్విభాగ వర్గం గురించి అంచనా ఇస్తుంది ("వైట్ లేదా వైట్ కాదు") కానీ రెండవది నిరంతర విలువలను అంచనా వేయగలదు, ఉదాహరణకు పంప్కిన్ మూలం మరియు పంట కోత సమయం ఇచ్చినప్పుడు, _దాని ధర ఎంత పెరుగుతుందో_.
 
-![Pumpkin classification Model](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.te.png)
+![Pumpkin classification Model](../../../../translated_images/pumpkin-classifier.562771f104ad5436.te.png)
 > ఇన్ఫోగ్రాఫిక్: [దాసాని మడిపల్లి](https://twitter.com/dasani_decoded)
 
 ### ఇతర వర్గీకరణలు
@@ -62,7 +62,7 @@ CO_OP_TRANSLATOR_METADATA:
 - **మల్టినోమియల్**, అంటే ఒక కంటే ఎక్కువ వర్గాలు ఉండటం - "ఆరెంజ్, వైట్, మరియు స్ట్రైప్డ్".
 - **ఆర్డినల్**, అంటే క్రమబద్ధమైన వర్గాలు, ఉదాహరణకు మన పంప్కిన్లు పరిమాణాల క్రమంలో (మినీ, చిన్న, మధ్య, పెద్ద, ఎక్స్ ఎల్, డబుల్ ఎక్స్ ఎల్) ఉంటే ఉపయోగపడుతుంది.
 
-![మల్టినోమియల్ vs ఆర్డినల్ రిగ్రెషన్](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.te.png)
+![మల్టినోమియల్ vs ఆర్డినల్ రిగ్రెషన్](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86.te.png)
 
 ### వేరియబుల్స్ తప్పనిసరిగా సంబంధం ఉండాల్సిన అవసరం లేదు
 
@@ -120,7 +120,7 @@ Seaborn మీ డేటాను విజువలైజ్ చేయడాన
     )
     ```
 
-    ![విజువలైజ్ చేసిన డేటా గ్రిడ్](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.te.png)
+    ![విజువలైజ్ చేసిన డేటా గ్రిడ్](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ec.te.png)
 
     డేటాను పరిశీలించి, మీరు Color డేటా Variety తో ఎలా సంబంధం ఉన్నదో చూడవచ్చు.
 
@@ -199,7 +199,7 @@ Seaborn మీ డేటాను విజువలైజ్ చేయడాన
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
 ```
-![విజువలైజ్ చేసిన డేటా క్యాట్‌ప్లాట్](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.te.png)
+![విజువలైజ్ చేసిన డేటా క్యాట్‌ప్లాట్](../../../../translated_images/pumpkins_catplot_2.87a354447880b388.te.png)
 
 ### స్వార్మ్ ప్లాట్ ఉపయోగించండి
 
@@ -217,7 +217,7 @@ Seaborn ప్లాట్లతో వేరియబుల్స్ ను ప
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![విజువలైజ్ చేసిన డేటా స్వార్మ్](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.te.png)
+    ![విజువలైజ్ చేసిన డేటా స్వార్మ్](../../../../translated_images/swarm_2.efeacfca536c2b57.te.png)
 
 **జాగ్రత్త**: పై కోడ్ ఒక హెచ్చరికను ఉత్పత్తి చేయవచ్చు, ఎందుకంటే seaborn ఇంత పెద్ద డేటా పాయింట్లను స్వార్మ్ ప్లాట్ లో చూపించలేకపోవచ్చు. ఒక పరిష్కారం 'size' పారామీటర్ ఉపయోగించి మార్కర్ పరిమాణం తగ్గించడం. అయితే, ఇది ప్లాట్ చదవడాన్ని ప్రభావితం చేస్తుంది.
 
@@ -225,7 +225,7 @@ Seaborn ప్లాట్లతో వేరియబుల్స్ ను ప
 >
 > లాజిస్టిక్ రిగ్రెషన్ 'మాక్సిమమ్ లైక్లిహుడ్' సూత్రంపై ఆధారపడి ఉంటుంది, [సిగ్మాయిడ్ ఫంక్షన్లు](https://wikipedia.org/wiki/Sigmoid_function) ఉపయోగించి. ఒక 'సిగ్మాయిడ్ ఫంక్షన్' ప్లాట్ లో 'S' ఆకారంలో ఉంటుంది. ఇది ఒక విలువ తీసుకుని 0 మరియు 1 మధ్య ఎక్కడో మ్యాప్ చేస్తుంది. దీని వక్రరేఖను 'లాజిస్టిక్ వక్రరేఖ' అంటారు. దీని సూత్రం ఇలా ఉంటుంది:
 >
-> ![లాజిస్టిక్ ఫంక్షన్](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.te.png)
+> ![లాజిస్టిక్ ఫంక్షన్](../../../../translated_images/sigmoid.8b7ba9d095c789cf.te.png)
 >
 > ఇక్కడ సిగ్మాయిడ్ మధ్యబిందువు x యొక్క 0 పాయింట్ వద్ద ఉంటుంది, L వక్రరేఖ గరిష్ట విలువ, k వక్రత యొక్క తీవ్రత. ఫంక్షన్ ఫలితం 0.5 కంటే ఎక్కువ అయితే, ఆ లేబుల్ '1' అనే ద్విభాగ ఎంపికకు ఇవ్వబడుతుంది. లేకపోతే, '0' గా వర్గీకరించబడుతుంది.
 
@@ -374,7 +374,7 @@ plt.show()
 
 Matplotlib ఉపయోగించి, మోడల్ యొక్క [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) లేదా ROC ను ప్లాట్ చేయండి. ROC వక్రాలు తరచుగా క్లాసిఫయర్ అవుట్పుట్ ను నిజమైన మరియు తప్పు పాజిటివ్స్ పరంగా చూడటానికి ఉపయోగిస్తారు. "ROC వక్రాలు సాధారణంగా Y అక్షంపై నిజమైన పాజిటివ్ రేటును, X అక్షంపై తప్పు పాజిటివ్ రేటును చూపిస్తాయి." కాబట్టి వక్రం యొక్క తిప్పట మరియు మధ్య రేఖ మరియు వక్రం మధ్య ఉన్న స్థలం ముఖ్యం: మీరు త్వరగా పైకి వెళ్లి రేఖను దాటే వక్రం కావాలి. మన కేసులో, మొదట కొన్ని తప్పు పాజిటివ్స్ ఉన్నాయి, ఆ తర్వాత రేఖ సరిగ్గా పైకి వెళ్లి దాటుతుంది:
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.te.png)
+![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca.te.png)
 
 చివరగా, Scikit-learn యొక్క [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) ఉపయోగించి వాస్తవ 'Area Under the Curve' (AUC) ను లెక్కించండి:
 

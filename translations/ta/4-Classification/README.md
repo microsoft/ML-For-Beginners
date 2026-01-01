@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ஆசியா மற்றும் இந்தியாவில், உணவுப் பாரம்பரியங்கள் மிகவும் பல்வகைமிக்கவை மற்றும் மிகவும் சுவையானவை! அவற்றின் பொருட்களைப் புரிந்துகொள்ள பிராந்திய உணவுகள் பற்றிய தரவுகளைப் பார்ப்போம்.
 
-![தாய் உணவு விற்பனையாளர்](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.ta.jpg)
+![தாய் உணவு விற்பனையாளர்](../../../translated_images/thai-food.c47a7a7f9f05c218.ta.jpg)
 > புகைப்படம் <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">லிஷெங் சாங்</a> மூலம் <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> இல்
 
 ## நீங்கள் என்ன கற்றுக்கொள்வீர்கள்

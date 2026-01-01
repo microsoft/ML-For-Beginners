@@ -15,7 +15,7 @@ Ang clustering ay isang gawain sa machine learning kung saan sinusubukan nitong 
 
 Ang iba't ibang audience sa Nigeria ay may iba't ibang panlasa sa musika. Gamit ang datos na nakuha mula sa Spotify (inspirado ng [artikulong ito](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), tingnan natin ang ilang musikang sikat sa Nigeria. Ang dataset na ito ay naglalaman ng impormasyon tungkol sa iba't ibang kanta tulad ng 'danceability' score, 'acousticness', lakas ng tunog (loudness), 'speechiness', kasikatan (popularity), at enerhiya. Magiging interesante ang pagtuklas ng mga pattern sa datos na ito!
 
-![Isang turntable](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.tl.jpg)
+![Isang turntable](../../../translated_images/turntable.f2b86b13c53302dc.tl.jpg)
 
 > Larawan ni <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> sa <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

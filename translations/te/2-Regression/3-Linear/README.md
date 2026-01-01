@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Scikit-learn ఉపయోగించి రిగ్రెషన్ మోడల్ నిర్మించండి: రిగ్రెషన్ నాలుగు విధానాలు
 
-![లీనియర్ vs పాలినోమియల్ రిగ్రెషన్ ఇన్ఫోగ్రాఫిక్](../../../../translated_images/linear-polynomial.5523c7cb6576ccab0fecbd0e3505986eb2d191d9378e785f82befcf3a578a6e7.te.png)
+![లీనియర్ vs పాలినోమియల్ రిగ్రెషన్ ఇన్ఫోగ్రాఫిక్](../../../../translated_images/linear-polynomial.5523c7cb6576ccab.te.png)
 > ఇన్ఫోగ్రాఫిక్ [దాసాని మడిపల్లి](https://twitter.com/dasani_decoded) ద్వారా
 ## [ప్రీ-లెక్చర్ క్విజ్](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -66,13 +66,13 @@ CO_OP_TRANSLATOR_METADATA:
 >
 > `X` అనేది 'వివరణాత్మక వేరియబుల్'. `Y` అనేది 'ఆధారిత వేరియబుల్'. లైన్ యొక్క స్లోప్ `b` మరియు `a` y-ఇంటర్సెప్ట్, అంటే `X = 0` ఉన్నప్పుడు `Y` విలువ.
 >
->![స్లోప్ లెక్కించండి](../../../../translated_images/slope.f3c9d5910ddbfcf9096eb5564254ba22c9a32d7acd7694cab905d29ad8261db3.te.png)
+>![స్లోప్ లెక్కించండి](../../../../translated_images/slope.f3c9d5910ddbfcf9.te.png)
 >
 > మొదట, స్లోప్ `b` లెక్కించండి. ఇన్ఫోగ్రాఫిక్ [జెన్ లూపర్](https://twitter.com/jenlooper) ద్వారా
 >
 > మరొక మాటలో చెప్పాలంటే, మా పంప్కిన్ డేటా యొక్క అసలు ప్రశ్నకు సంబంధించి: "నెల వారీగా పంప్కిన్ ధర అంచనా వేయండి", `X` ధరకు సూచిస్తుంది మరియు `Y` అమ్మకాల నెలకు సూచిస్తుంది.
 >
->![సమీకరణ పూర్తి చేయండి](../../../../translated_images/calculation.a209813050a1ddb141cdc4bc56f3af31e67157ed499e16a2ecf9837542704c94.te.png)
+>![సమీకరణ పూర్తి చేయండి](../../../../translated_images/calculation.a209813050a1ddb1.te.png)
 >
 > Y విలువ లెక్కించండి. మీరు సుమారు $4 చెల్లిస్తుంటే, అది ఏప్రిల్ కావాలి! ఇన్ఫోగ్రాఫిక్ [జెన్ లూపర్](https://twitter.com/jenlooper) ద్వారా
 >
@@ -114,11 +114,11 @@ day_of_year = pd.to_datetime(pumpkins['Date']).apply(lambda dt: (dt-datetime(dt.
 
 మునుపటి పాఠం నుండి మీరు చూసినట్లయితే, వివిధ నెలల సగటు ధర ఇలా ఉంటుంది:
 
-<img alt="నెల వారీ సగటు ధర" src="../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.te.png" width="50%"/>
+<img alt="నెల వారీ సగటు ధర" src="../../../../translated_images/barchart.a833ea9194346d76.te.png" width="50%"/>
 
 ఇది కొంత సహసంబంధం ఉండాలని సూచిస్తుంది, మరియు మేము `నెల` మరియు `ధర` మధ్య లేదా `DayOfYear` మరియు `ధర` మధ్య సంబంధాన్ని అంచనా వేయడానికి లీనియర్ రిగ్రెషన్ మోడల్ శిక్షణ ఇవ్వవచ్చు. క్రింది స్కాటర్ ప్లాట్ ఆ తర్వాత సంబంధాన్ని చూపిస్తుంది:
 
-<img alt="ధర vs. సంవత్సరం లో రోజు స్కాటర్ ప్లాట్" src="../../../../translated_images/scatter-dayofyear.bc171c189c9fd553fe93030180b9c00ed123148a577640e4d7481c4c01811972.te.png" width="50%" /> 
+<img alt="ధర vs. సంవత్సరం లో రోజు స్కాటర్ ప్లాట్" src="../../../../translated_images/scatter-dayofyear.bc171c189c9fd553.te.png" width="50%" /> 
 
 `corr` ఫంక్షన్ ఉపయోగించి సహసంబంధం ఉందా చూద్దాం:
 
@@ -137,7 +137,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
     ax = df.plot.scatter('DayOfYear','Price',ax=ax,c=colors[i],label=var)
 ```
 
-<img alt="ధర vs. సంవత్సరం లో రోజు రంగు స్కాటర్ ప్లాట్" src="../../../../translated_images/scatter-dayofyear-color.65790faefbb9d54fb8f6223c566c445b9fac58a1c15f41f8641c3842af9d548b.te.png" width="50%" /> 
+<img alt="ధర vs. సంవత్సరం లో రోజు రంగు స్కాటర్ ప్లాట్" src="../../../../translated_images/scatter-dayofyear-color.65790faefbb9d54f.te.png" width="50%" /> 
 
 మా పరిశీలన ప్రకారం, రకం అమ్మకాల తేదీ కంటే మొత్తం ధరపై ఎక్కువ ప్రభావం చూపుతుంది. దీన్ని బార్ గ్రాఫ్‌తో చూడవచ్చు:
 
@@ -145,7 +145,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="ధర vs రకం బార్ గ్రాఫ్" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb43a9a8c69469ce2520c9524fabfa270b1b2422cc2450d6d11.te.png" width="50%" /> 
+<img alt="ధర vs రకం బార్ గ్రాఫ్" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb4.te.png" width="50%" /> 
 
 ఇప్పుడు మనం కేవలం ఒక పంప్కిన్ రకం, 'పై టైప్' పై దృష్టి పెట్టి, తేదీ ధరపై ఎలాంటి ప్రభావం చూపుతుందో చూద్దాం:
 
@@ -153,7 +153,7 @@ new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
 pie_pumpkins.plot.scatter('DayOfYear','Price') 
 ```
-<img alt="ధర vs. సంవత్సరం లో రోజు స్కాటర్ ప్లాట్" src="../../../../translated_images/pie-pumpkins-scatter.d14f9804a53f927e7fe39aa072486f4ed1bdd7f31c8bb08f476855f4b02350c3.te.png" width="50%" /> 
+<img alt="ధర vs. సంవత్సరం లో రోజు స్కాటర్ ప్లాట్" src="../../../../translated_images/pie-pumpkins-scatter.d14f9804a53f927e.te.png" width="50%" /> 
 
 ఇప్పుడు `corr` ఫంక్షన్ ఉపయోగించి `ధర` మరియు `DayOfYear` మధ్య సహసంబంధం లెక్కిస్తే, సుమారు `-0.27` వస్తుంది - అంటే అంచనా వేయగల మోడల్ శిక్షణ ఇవ్వడం అర్థం.
 
@@ -228,7 +228,7 @@ plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
 ```
 
-<img alt="Linear regression" src="../../../../translated_images/linear-results.f7c3552c85b0ed1ce2808276c870656733f6878c8fd37ec220812ee77686c3ef.te.png" width="50%" />
+<img alt="Linear regression" src="../../../../translated_images/linear-results.f7c3552c85b0ed1c.te.png" width="50%" />
 
 ## పాలినోమియల్ రిగ్రెషన్
 
@@ -257,7 +257,7 @@ pipeline.fit(X_train,y_train)
 
 Pipelines ను అసలు `LinearRegression` ఆబ్జెక్ట్ లాగా ఉపయోగించవచ్చు, అంటే మేము pipeline ను `fit` చేసి, ఆపై `predict` ఉపయోగించి అంచనా ఫలితాలు పొందవచ్చు. ఇక్కడ టెస్ట్ డేటా మరియు సన్నిహిత వక్రీకరణ వక్రాన్ని చూపించే గ్రాఫ్ ఉంది:
 
-<img alt="Polynomial regression" src="../../../../translated_images/poly-results.ee587348f0f1f60bd16c471321b0b2f2457d0eaa99d99ec0ced4affc900fa96c.te.png" width="50%" />
+<img alt="Polynomial regression" src="../../../../translated_images/poly-results.ee587348f0f1f60b.te.png" width="50%" />
 
 పాలినోమియల్ రిగ్రెషన్ ఉపయోగించి, మేము కొంచెం తక్కువ MSE మరియు ఎక్కువ నిర్ణయ సహగుణం పొందవచ్చు, కానీ గణనీయంగా కాదు. మేము ఇతర ఫీచర్లను కూడా పరిగణలోకి తీసుకోవాలి!
 
@@ -275,7 +275,7 @@ Pipelines ను అసలు `LinearRegression` ఆబ్జెక్ట్ ల
 
 ఇక్కడ మీరు వేరియటీపై సగటు ధర ఎలా ఆధారపడి ఉందో చూడవచ్చు:
 
-<img alt="Average price by variety" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb43a9a8c69469ce2520c9524fabfa270b1b2422cc2450d6d11.te.png" width="50%" />
+<img alt="Average price by variety" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb4.te.png" width="50%" />
 
 వేరియటీని పరిగణలోకి తీసుకోవడానికి, ముందుగా దాన్ని సంఖ్యాత్మక రూపంలోకి మార్చాలి, లేదా **ఎంకోడ్** చేయాలి. దీని కోసం కొన్ని మార్గాలు ఉన్నాయి:
 

@@ -42,7 +42,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## హైప్ కర్వ్
 
-![ml hype curve](../../../../translated_images/hype.07183d711a17aafe70915909a0e45aa286ede136ee9424d418026ab00fec344c.te.png)
+![ml hype curve](../../../../translated_images/hype.07183d711a17aafe.te.png)
 
 > గూగుల్ ట్రెండ్స్ 'మెషీన్ లెర్నింగ్' పదం యొక్క తాజా 'హైప్ కర్వ్' ను చూపిస్తుంది
 
@@ -69,7 +69,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## AI, ML, డీప్ లెర్నింగ్
 
-![AI, ML, deep learning, data science](../../../../translated_images/ai-ml-ds.537ea441b124ebf69c144a52c0eb13a7af63c4355c2f92f440979380a2fb08b8.te.png)
+![AI, ML, deep learning, data science](../../../../translated_images/ai-ml-ds.537ea441b124ebf6.te.png)
 
 > AI, ML, డీప్ లెర్నింగ్ మరియు డేటా సైన్స్ మధ్య సంబంధాలను చూపించే డయాగ్రామ్. ఇన్ఫోగ్రాఫిక్ [జెన్ లూపర్](https://twitter.com/jenlooper) ద్వారా, ఈ గ్రాఫిక్ ఆధారంగా [ఇది](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
