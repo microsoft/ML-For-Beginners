@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在亚洲和印度，饮食文化极其多样化，而且非常美味！让我们来看看有关地区美食的数据，试着了解它们的食材。
 
-![泰国小吃摊](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.zh.jpg)
+![泰国小吃摊](../../../translated_images/thai-food.c47a7a7f9f05c218.zh.jpg)
 > 图片由 <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> 提供，发布在 <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 你将学到什么

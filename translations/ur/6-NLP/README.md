@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ان اسباق میں ہم NLP کی بنیادی باتیں سیکھیں گے، چھوٹے گفتگو کرنے والے بوٹس بنا کر یہ جانیں گے کہ مشین لرننگ ان گفتگو کو زیادہ سے زیادہ 'سمارٹ' بنانے میں کیسے مدد کرتی ہے۔ آپ وقت میں پیچھے جائیں گے، جین آسٹن کے کلاسک ناول **Pride and Prejudice** کے کردار الزبتھ بینٹ اور مسٹر ڈارسی کے ساتھ گفتگو کریں گے، جو 1813 میں شائع ہوا تھا۔ پھر، آپ اپنی معلومات کو مزید بڑھائیں گے، یورپ کے ہوٹل کے جائزوں کے ذریعے جذباتی تجزیہ کے بارے میں سیکھ کر۔
 
-![Pride and Prejudice کتاب اور چائے](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.ur.jpg)
+![Pride and Prejudice کتاب اور چائے](../../../translated_images/p&p.279f1c49ecd88941.ur.jpg)
 > تصویر <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> کی جانب سے <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> پر
   
 ## اسباق

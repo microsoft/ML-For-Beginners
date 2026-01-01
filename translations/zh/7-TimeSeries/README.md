@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 我们的区域重点是全球电力使用，这是一个有趣的数据集，可以用来学习如何根据过去的负载模式预测未来的电力使用情况。你会发现这种预测在商业环境中非常有帮助。
 
-![电网](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.zh.jpg)
+![电网](../../../translated_images/electric-grid.0c21d5214db09ffa.zh.jpg)
 
 照片由 [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) 在拉贾斯坦邦的道路上拍摄的电力塔，发布于 [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

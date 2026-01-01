@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 اس نصاب کے اس حصے میں، آپ کو کلاسیکل مشین لرننگ کے حقیقی دنیا میں استعمالات سے متعارف کرایا جائے گا۔ ہم نے انٹرنیٹ پر تحقیق کی ہے تاکہ ایسے وائٹ پیپرز اور مضامین تلاش کیے جا سکیں جو ان حکمت عملیوں کو استعمال کرتے ہیں، اور جہاں تک ممکن ہو نیورل نیٹ ورکس، ڈیپ لرننگ اور اے آئی سے گریز کیا گیا ہو۔ جانیں کہ مشین لرننگ کو کاروباری نظاموں، ماحولیاتی استعمالات، مالیات، فنون اور ثقافت، اور دیگر شعبوں میں کیسے استعمال کیا جاتا ہے۔
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.ur.jpg)
+![chess](../../../translated_images/chess.e704a268781bdad8.ur.jpg)
 
 > تصویر از <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">الیکسس فوویٹ</a>، <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> پر
   

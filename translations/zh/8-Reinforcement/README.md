@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 想象一下，你有一个模拟环境，比如股票市场。如果你实施某项规定，会发生什么？它会产生积极还是消极的影响？如果发生了消极的事情，你需要接受这种_负强化_，从中学习并调整方向。如果是积极的结果，你需要基于这种_正强化_继续发展。
 
-![彼得与狼](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.zh.png)
+![彼得与狼](../../../translated_images/peter.779730f9ba3a8a8d.zh.png)
 
 > 彼得和他的朋友们需要逃离饥饿的狼！图片由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
