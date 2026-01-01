@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [Mountain Car environment](https://gym.openai.com/envs/MountainCar-v0/) get one car wey dey stuck for valley:
 
-<img src="../../../../translated_images/mountaincar.43d56e588ce581c2d035f28cf038a9af112bec043b2ef8da40ac86119b1e3a93.pcm.png" width="300"/>
+<img src="../../../../translated_images/mountaincar.43d56e588ce581c2.pcm.png" width="300"/>
 
 Di goal na to commot for di valley and capture di flag, by doing one of di actions wey dey below for each step:
 

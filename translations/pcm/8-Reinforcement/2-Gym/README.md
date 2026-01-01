@@ -19,13 +19,13 @@ For dis lesson, we go use di same Q-Learning principles for problem wey get **co
 
 > **Problem**: If Peter wan run comot from di wolf, e need sabi move fast. We go see how Peter go fit learn how to skate, especially to balance, using Q-Learning.
 
-![Di great escape!](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.pcm.png)
+![Di great escape!](../../../../translated_images/escape.18862db9930337e3.pcm.png)
 
 > Peter and im padi dem dey creative to run comot from di wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
 
 We go use one simple version of balancing wey dem dey call **CartPole** problem. For di cartpole world, we get one horizontal slider wey fit move left or right, and di goal na to balance one vertical pole for di top of di slider.
 
-<img alt="a cartpole" src="../../../../translated_images/cartpole.b5609cc0494a14f75d121299495ae24fd8f1c30465e7b40961af94ecda2e1cd0.pcm.png" width="200"/>
+<img alt="a cartpole" src="../../../../translated_images/cartpole.b5609cc0494a14f7.pcm.png" width="200"/>
 
 ## Prerequisites
 
@@ -285,7 +285,7 @@ During training, we don collect di cumulative reward value for each of di iterat
 plt.plot(rewards)
 ```
 
-![raw progress](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.pcm.png)
+![raw progress](../../../../translated_images/train_progress_raw.2adfdf2daea09c59.pcm.png)
 
 From dis graph, e no dey possible to talk anything, because di stochastic training process dey make di length of training sessions vary well. To make di graph make sense, we fit calculate di **running average** over series of experiments, like 100. We fit do dis well using `np.convolve`: (code block 12)
 
@@ -296,7 +296,7 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![training progress](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.pcm.png)
+![training progress](../../../../translated_images/train_progress_runav.c71694a8fa9ab359.pcm.png)
 
 ## Varying hyperparameters
 

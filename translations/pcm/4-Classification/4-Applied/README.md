@@ -152,7 +152,7 @@ If you run di whole notebook now, e go build Onnx model and save am for dis fold
 
 Onnx models no dey too visible for Visual Studio code, but one free software wey researchers dey use to see di model dey available. Download [Netron](https://github.com/lutzroeder/Netron) and open your model.onnx file. You go see your simple model visualized, with di 380 inputs and classifier listed:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.pcm.png)
+![Netron visual](../../../../translated_images/netron.a05f39410211915e.pcm.png)
 
 Netron na helpful tool to view your models.
 
@@ -301,7 +301,7 @@ For dis code, plenty things dey happen:
 
 Open terminal session for Visual Studio Code for di folder wey your index.html file dey. Make sure say you don install [http-server](https://www.npmjs.com/package/http-server) globally, and type `http-server` for di prompt. Localhost go open and you fit view your web app. Check wetin di app recommend based on di ingredients wey you select:
 
-![ingredient web app](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.pcm.png)
+![ingredient web app](../../../../translated_images/web-app.4c76450cabe20036.pcm.png)
 
 Congrats, you don create 'recommendation' web app wey get small fields. Take time to build dis system well!
 

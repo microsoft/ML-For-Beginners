@@ -56,7 +56,7 @@ For example, look di case of *Pride and Prejudice*, one popular English novel we
 
 For example, if English phrase like `I have no money` dey translate word for word to French, e fit turn `Je n'ai pas de monnaie`. "Monnaie" na tricky French 'false cognate', because 'money' and 'monnaie' no mean di same thing. Better translation wey human fit do na `Je n'ai pas d'argent`, because e go explain di meaning well say you no get money (no be 'loose change' wey be di meaning of 'monnaie').
 
-![monnaie](../../../../translated_images/monnaie.606c5fa8369d5c3b3031ef0713e2069485c87985dd475cd9056bdf4c76c1f4b8.pcm.png)
+![monnaie](../../../../translated_images/monnaie.606c5fa8369d5c3b.pcm.png)
 
 > Image by [Jen Looper](https://twitter.com/jenlooper)
 

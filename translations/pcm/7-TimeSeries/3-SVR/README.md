@@ -71,7 +71,7 @@ Open di [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-T
    plt.show()
    ```
 
-   ![full data](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.pcm.png)
+   ![full data](../../../../translated_images/full-data.a82ec9957e580e97.pcm.png)
 
    Now, make we build our SVR model.
 
@@ -97,7 +97,7 @@ Now wey your data don load, you fit separate am into train and test sets. Then y
    plt.show()
    ```
 
-   ![training and testing data](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.pcm.png)
+   ![training and testing data](../../../../translated_images/train-test.ead0cecbfc341921.pcm.png)
 
 
 
@@ -275,7 +275,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![training data prediction](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.pcm.png)
+![training data prediction](../../../../translated_images/train-data-predict.3c4ef4e78553104f.pcm.png)
 
 Print MAPE for training data
 
@@ -298,7 +298,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testing data prediction](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.pcm.png)
+![testing data prediction](../../../../translated_images/test-data-predict.8afc47ee7e52874f.pcm.png)
 
 Print MAPE for testing data
 
@@ -354,7 +354,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![full data prediction](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.pcm.png)
+![full data prediction](../../../../translated_images/full-data-predict.4f0fed16a131c8f3.pcm.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

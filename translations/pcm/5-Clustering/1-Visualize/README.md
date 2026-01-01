@@ -70,7 +70,7 @@ Make you learn more about clustering techniques for dis [Learn module](https://d
 >
 >'Flat' for dis context mean Euclidean geometry (parts of am dey taught as 'plane' geometry), and non-flat mean non-Euclidean geometry. Wetin geometry get to do with machine learning? Well, as di two fields dey based on mathematics, we need common way to measure distance between points for clusters, and we fit do am in 'flat' or 'non-flat' way, depending on di nature of di data. [Euclidean distances](https://wikipedia.org/wiki/Euclidean_distance) dey measure di length of line segment between two points. [Non-Euclidean distances](https://wikipedia.org/wiki/Non-Euclidean_geometry) dey measure distance along curve. If your data, when you visualize am, no dey for plane, you go need special algorithm to handle am.
 >
-![Flat vs Nonflat Geometry Infographic](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.pcm.png)
+![Flat vs Nonflat Geometry Infographic](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1.pcm.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
@@ -93,12 +93,12 @@ Plenty clustering algorithms dey, more than 100, and di one wey you go use depen
 
 - **Hierarchical clustering**. If object dey classified by how e near another object, instead of how far e dey, clusters go form based on di distance of di members to and from other objects. Scikit-learn agglomerative clustering na hierarchical.
 
-   ![Hierarchical clustering Infographic](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.pcm.png)
+   ![Hierarchical clustering Infographic](../../../../translated_images/hierarchical.bf59403aa43c8c47.pcm.png)
    > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 - **Centroid clustering**. Dis popular algorithm dey require make you choose 'k', or di number of clusters wey you wan form, then di algorithm go find di center point of di cluster and gather data around di point. [K-means clustering](https://wikipedia.org/wiki/K-means_clustering) na popular version of centroid clustering. Di center dey determined by di nearest mean, na why dem call am di name. Di squared distance from di cluster dey minimized.
 
-   ![Centroid clustering Infographic](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.pcm.png)
+   ![Centroid clustering Infographic](../../../../translated_images/centroid.097fde836cf6c918.pcm.png)
    > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 - **Distribution-based clustering**. Dis one dey based on statistical modeling, e dey focus on di probability say data point belong to cluster, then e go assign am. Gaussian mixture methods dey belong to dis type.
@@ -234,7 +234,7 @@ Make we look di general values for di data. Note say popularity fit be '0', wey 
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.pcm.png)
+    ![most popular](../../../../translated_images/popular.9c48d84b3386705f.pcm.png)
 
 ✅ If you wan see more top values, change di top `[:5]` to bigger value, or remove am to see all.
 
@@ -253,7 +253,7 @@ Note, when di top genre dey described as 'Missing', e mean say Spotify no classi
 
     Now check di genres again:
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.pcm.png)
+    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd6.pcm.png)
 
 1. Di top three genres dey dominate dis dataset. Make we focus on `afro dancehall`, `afropop`, and `nigerian pop`, plus filter di dataset to remove anything wey get 0 popularity value (meaning e no dey classified with popularity for di dataset and fit be noise for our purpose):
 
@@ -275,7 +275,7 @@ Note, when di top genre dey described as 'Missing', e mean say Spotify no classi
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.pcm.png)
+    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea5.pcm.png)
 
     Di only strong correlation na between `energy` and `loudness`, wey no too surprise, as loud music dey usually energetic. Otherwise, di correlations dey relatively weak. E go dey interesting to see wetin clustering algorithm fit do with dis data.
 
@@ -307,7 +307,7 @@ Di three genres dey different well well for di perception of their danceability,
 
     Generally, di three genres dey align small in terms of their popularity and danceability. To find clusters for dis loosely-aligned data go dey challenging:
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.pcm.png)
+    ![distribution](../../../../translated_images/distribution.9be11df42356ca95.pcm.png)
 
 1. Create scatter plot:
 
@@ -319,7 +319,7 @@ Di three genres dey different well well for di perception of their danceability,
 
     Scatterplot for di same axes dey show similar pattern of convergence
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.pcm.png)
+    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f.pcm.png)
 
 Generally, for clustering, you fit use scatterplots to show clusters of data, so e good to sabi dis type of visualization well. For di next lesson, we go use dis filtered data and use k-means clustering to find groups for dis data wey dey overlap in interesting ways.
 

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nesta seção do currículo, será apresentada uma introdução aos conceitos básicos que fundamentam o campo do aprendizado de máquina, o que ele é, além de aprender sobre sua história e as técnicas que os pesquisadores utilizam para trabalhar com ele. Vamos explorar juntos este novo mundo do aprendizado de máquina!
 
-![globo](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.pt.jpg)
+![globo](../../../translated_images/globe.59f26379ceb40428.pt.jpg)
 > Foto por <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> no <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Aulas

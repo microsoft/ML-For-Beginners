@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Build regression model wit Scikit-learn: regression four ways
 
-![Linear vs polynomial regression infographic](../../../../translated_images/linear-polynomial.5523c7cb6576ccab0fecbd0e3505986eb2d191d9378e785f82befcf3a578a6e7.pcm.png)
+![Linear vs polynomial regression infographic](../../../../translated_images/linear-polynomial.5523c7cb6576ccab.pcm.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -66,13 +66,13 @@ We dey do am because we want model line wey get di least total distance from all
 >
 > `X` na di 'explanatory variable'. `Y` na di 'dependent variable'. Di slope of di line na `b` and `a` na di y-intercept, wey mean di value of `Y` when `X = 0`. 
 >
->![calculate di slope](../../../../translated_images/slope.f3c9d5910ddbfcf9096eb5564254ba22c9a32d7acd7694cab905d29ad8261db3.pcm.png)
+>![calculate di slope](../../../../translated_images/slope.f3c9d5910ddbfcf9.pcm.png)
 >
 > First, calculate di slope `b`. Infographic by [Jen Looper](https://twitter.com/jenlooper)
 >
 > In other words, and referring to our pumpkin data original question: "predict di price of pumpkin per bushel by month", `X` go mean di price and `Y` go mean di month of sale. 
 >
->![complete di equation](../../../../translated_images/calculation.a209813050a1ddb141cdc4bc56f3af31e67157ed499e16a2ecf9837542704c94.pcm.png)
+>![complete di equation](../../../../translated_images/calculation.a209813050a1ddb1.pcm.png)
 >
 > Calculate di value of Y. If you dey pay around $4, e fit be April! Infographic by [Jen Looper](https://twitter.com/jenlooper)
 >
@@ -114,11 +114,11 @@ Now wey you don understand di math wey dey behind linear regression, make we cre
 
 From di previous lesson, you don probably see say di average price for different months dey look like dis:
 
-<img alt="Average price by month" src="../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.pcm.png" width="50%"/>
+<img alt="Average price by month" src="../../../../translated_images/barchart.a833ea9194346d76.pcm.png" width="50%"/>
 
 Dis suggest say correlation dey, and we fit try train linear regression model to predict di relationship between `Month` and `Price`, or between `DayOfYear` and `Price`. Dis scatter plot dey show di relationship between `DayOfYear` and `Price`:
 
-<img alt="Scatter plot of Price vs. Day of Year" src="../../../../translated_images/scatter-dayofyear.bc171c189c9fd553fe93030180b9c00ed123148a577640e4d7481c4c01811972.pcm.png" width="50%" /> 
+<img alt="Scatter plot of Price vs. Day of Year" src="../../../../translated_images/scatter-dayofyear.bc171c189c9fd553.pcm.png" width="50%" /> 
 
 Make we see if correlation dey using di `corr` function:
 
@@ -137,7 +137,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
     ax = df.plot.scatter('DayOfYear','Price',ax=ax,c=colors[i],label=var)
 ```
 
-<img alt="Scatter plot of Price vs. Day of Year" src="../../../../translated_images/scatter-dayofyear-color.65790faefbb9d54fb8f6223c566c445b9fac58a1c15f41f8641c3842af9d548b.pcm.png" width="50%" /> 
+<img alt="Scatter plot of Price vs. Day of Year" src="../../../../translated_images/scatter-dayofyear-color.65790faefbb9d54f.pcm.png" width="50%" /> 
 
 Our investigation dey suggest say variety dey affect di overall price pass di actual selling date. We fit see dis wit bar graph:
 
@@ -145,7 +145,7 @@ Our investigation dey suggest say variety dey affect di overall price pass di ac
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="Bar graph of price vs variety" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb43a9a8c69469ce2520c9524fabfa270b1b2422cc2450d6d11.pcm.png" width="50%" /> 
+<img alt="Bar graph of price vs variety" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb4.pcm.png" width="50%" /> 
 
 Make we focus for now only on one pumpkin variety, di 'pie type', and see wetin di date dey do to di price:
 
@@ -153,7 +153,7 @@ Make we focus for now only on one pumpkin variety, di 'pie type', and see wetin 
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
 pie_pumpkins.plot.scatter('DayOfYear','Price') 
 ```
-<img alt="Scatter plot of Price vs. Day of Year" src="../../../../translated_images/pie-pumpkins-scatter.d14f9804a53f927e7fe39aa072486f4ed1bdd7f31c8bb08f476855f4b02350c3.pcm.png" width="50%" /> 
+<img alt="Scatter plot of Price vs. Day of Year" src="../../../../translated_images/pie-pumpkins-scatter.d14f9804a53f927e.pcm.png" width="50%" /> 
 
 If we now calculate di correlation between `Price` and `DayOfYear` using `corr` function, we go get something like `-0.27` - wey mean say training predictive model dey make sense.
 
@@ -228,7 +228,7 @@ plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
 ```
 
-<img alt="Linear regression" src="../../../../translated_images/linear-results.f7c3552c85b0ed1ce2808276c870656733f6878c8fd37ec220812ee77686c3ef.pcm.png" width="50%" />
+<img alt="Linear regression" src="../../../../translated_images/linear-results.f7c3552c85b0ed1c.pcm.png" width="50%" />
 
 ## Polynomial Regression
 
@@ -257,7 +257,7 @@ Using `PolynomialFeatures(2)` mean say we go include all second-degree polynomia
 
 Pipelines fit dey used same way as the original `LinearRegression` object, like we fit `fit` the pipeline, then use `predict` to get the prediction results. Here be the graph wey show test data, and the approximation curve:
 
-<img alt="Polynomial regression" src="../../../../translated_images/poly-results.ee587348f0f1f60bd16c471321b0b2f2457d0eaa99d99ec0ced4affc900fa96c.pcm.png" width="50%" />
+<img alt="Polynomial regression" src="../../../../translated_images/poly-results.ee587348f0f1f60b.pcm.png" width="50%" />
 
 Using Polynomial Regression, we fit get slightly lower MSE and higher determination, but e no dey significant. We need to consider other features!
 
@@ -275,7 +275,7 @@ For ideal world, we go want predict prices for different pumpkin varieties using
 
 Here you fit see how average price dey depend on variety:
 
-<img alt="Average price by variety" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb43a9a8c69469ce2520c9524fabfa270b1b2422cc2450d6d11.pcm.png" width="50%" />
+<img alt="Average price by variety" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb4.pcm.png" width="50%" />
 
 To take variety into account, we first need to change am to numeric form, or **encode** am. E get different ways we fit do am:
 

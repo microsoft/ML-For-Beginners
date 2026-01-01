@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Python மற்றும் Scikit-learn மூலம் Regression மாடல்களை உருவாக்க தொடங்குங்கள்
 
-![Regression மாடல்களின் சுருக்கம் sketchnote வடிவில்](../../../../translated_images/ml-regression.4e4f70e3b3ed446e3ace348dec973e133fa5d3680fbc8412b61879507369b98d.ta.png)
+![Regression மாடல்களின் சுருக்கம் sketchnote வடிவில்](../../../../translated_images/ml-regression.4e4f70e3b3ed446e.ta.png)
 
 > Sketchnote: [Tomomi Imura](https://www.twitter.com/girlie_mac) 
 
@@ -81,7 +81,7 @@ Notebooks என்பது ஒரு தொடர்பு சூழல் ஆ
     hello notebook
     ```
 
-![VS Code-இல் notebook திறக்கப்பட்டுள்ள screenshot](../../../../translated_images/notebook.4a3ee31f396b88325607afda33cadcc6368de98040ff33942424260aa84d75f2.ta.jpg)
+![VS Code-இல் notebook திறக்கப்பட்டுள்ள screenshot](../../../../translated_images/notebook.4a3ee31f396b8832.ta.jpg)
 
 உங்கள் குறியீட்டுடன் குறிப்புகளை இணைத்து notebook-ஐ சுய ஆவணமாக்கலாம்.
 
@@ -211,7 +211,7 @@ Scikit-learn-இல் உள்ள [diabetes dataset](https://scikit-learn.org/
     plt.show()
     ```
 
-   ![Diabetes பற்றிய datapoints-ஐ காட்டும் scatterplot](../../../../translated_images/scatterplot.ad8b356bcbb33be68d54050e09b9b7bfc03e94fde7371f2609ae43f4c563b2d7.ta.png)
+   ![Diabetes பற்றிய datapoints-ஐ காட்டும் scatterplot](../../../../translated_images/scatterplot.ad8b356bcbb33be6.ta.png)
 ✅ இங்கே என்ன நடக்கிறது என்பதைப் பற்றி சிறிது யோசிக்கவும். ஒரு நேர்கோடு பல சிறிய தரவுப் புள்ளிகளின் வழியாக ஓடுகிறது, ஆனால் அது உண்மையில் என்ன செய்கிறது? புதிய, பார்க்கப்படாத தரவுப் புள்ளி ஒரு வரைபடத்தின் y அச்சுடன் தொடர்புடைய இடத்தில் பொருந்த வேண்டும் என்பதை நீங்கள் எப்படி கணிக்க முடியும் என்பதைப் பார்க்க முடியுமா? இந்த மாதிரியின் நடைமுறை பயன்பாட்டை வார்த்தைகளில் விளக்க முயற்சிக்கவும்.
 
 வாழ்த்துக்கள், நீங்கள் உங்கள் முதல் நேரியல் மடங்கல் மாதிரியை உருவாக்கி, அதைப் பயன்படுத்தி ஒரு கணிப்பு செய்து, அதை ஒரு வரைபடத்தில் காட்டியுள்ளீர்கள்!

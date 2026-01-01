@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Logistic regression to predict categories
 
-![Logistic vs. linear regression infographic](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.pcm.png)
+![Logistic vs. linear regression infographic](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee667.pcm.png)
 
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -52,7 +52,7 @@ Logistic regression different from linear regression wey you don learn before, f
 
 Logistic regression no dey offer di same features as linear regression. Di former dey predict binary category ("white or not white") while di latter fit predict continuous values, like di price wey pumpkin go rise based on origin and harvest time.
 
-![Pumpkin classification Model](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.pcm.png)
+![Pumpkin classification Model](../../../../translated_images/pumpkin-classifier.562771f104ad5436.pcm.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ### Other classifications
@@ -62,7 +62,7 @@ Other types of logistic regression dey, like multinomial and ordinal:
 - **Multinomial**, wey involve more than one category - "Orange, White, and Striped".
 - **Ordinal**, wey involve ordered categories, useful if we wan arrange outcomes logically, like di pumpkin sizes (mini, sm, med, lg, xl, xxl).
 
-![Multinomial vs ordinal regression](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.pcm.png)
+![Multinomial vs ordinal regression](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86.pcm.png)
 
 ### Variables NO need to correlate
 
@@ -120,7 +120,7 @@ Seaborn get better ways to visualize your data. For example, you fit compare di 
     )
     ```
 
-    ![A grid of visualized data](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.pcm.png)
+    ![A grid of visualized data](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ec.pcm.png)
 
     By looking di data, you go see how di Color data relate to Variety.
 
@@ -199,7 +199,7 @@ Di best way to do dis analysis na to plot di data. We go use Seaborn `catplot` f
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
 ```
-![A catplot of visualized data](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.pcm.png)
+![A catplot of visualized data](../../../../translated_images/pumpkins_catplot_2.87a354447880b388.pcm.png)
 
 ### Use swarm plot
 
@@ -217,7 +217,7 @@ You fit visualize variables side-by-side with Seaborn plots.
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![A swarm of visualized data](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.pcm.png)
+    ![A swarm of visualized data](../../../../translated_images/swarm_2.efeacfca536c2b57.pcm.png)
 
 **Watch Out**: di code above fit show warning, as seaborn fit struggle to represent plenty datapoints for swarm plot. One solution na to reduce di size of di marker, by using 'size' parameter. But make you sabi say e go affect how clear di plot go be.
 
@@ -225,7 +225,7 @@ You fit visualize variables side-by-side with Seaborn plots.
 >
 > Logistic regression dey use di concept of 'maximum likelihood' with [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). 'Sigmoid Function' for plot dey look like 'S' shape. E dey take value and map am to somewhere between 0 and 1. Di curve dey also called 'logistic curve'. Di formula be like dis:
 >
-> ![logistic function](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.pcm.png)
+> ![logistic function](../../../../translated_images/sigmoid.8b7ba9d095c789cf.pcm.png)
 >
 > where di sigmoid midpoint dey for x's 0 point, L na di curve maximum value, and k na di curve steepness. If di function outcome pass 0.5, di label go dey class '1' for di binary choice. If e no pass, e go dey class '0'.
 
@@ -374,7 +374,7 @@ plt.show()
 
 Using Matplotlib, plot di model's [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) or ROC. ROC curves dey usually dey used to see di output of classifier in terms of di true vs. false positives. "ROC curves dey usually show true positive rate for di Y axis, and false positive rate for di X axis." So, di steepness of di curve and di space wey dey between di midpoint line and di curve matter: you go wan curve wey go quick go up and pass di line. For our case, we get false positives for di beginning, and di line later go up and pass di line well:
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.pcm.png)
+![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca.pcm.png)
 
 Finally, use Scikit-learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to calculate di actual 'Area Under di Curve' (AUC):
 
