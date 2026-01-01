@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 নাইজেরিয়ার বৈচিত্র্যময় শ্রোতাদের সঙ্গীতের রুচিও বৈচিত্র্যময়। Spotify থেকে সংগৃহীত ডেটা ব্যবহার করে (এই [প্রবন্ধটি](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421) দ্বারা অনুপ্রাণিত), আসুন নাইজেরিয়ায় জনপ্রিয় কিছু সঙ্গীত দেখি। এই ডেটাসেটে বিভিন্ন গানের 'danceability' স্কোর, 'acousticness', শব্দের উচ্চতা, 'speechiness', জনপ্রিয়তা এবং এনার্জি সম্পর্কিত তথ্য অন্তর্ভুক্ত রয়েছে। এই ডেটায় প্যাটার্ন খুঁজে বের করাটা বেশ মজার হবে!
 
-![একটি টার্নটেবিল](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.bn.jpg)
+![একটি টার্নটেবিল](../../../translated_images/turntable.f2b86b13c53302dc.bn.jpg)
 
 > ছবি তুলেছেন <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>-এ
   

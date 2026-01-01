@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Alusta Pythoni ja Scikit-learniga regressioonimudelite jaoks
 
-![Regressioonide kokkuvõte visuaalses märkmes](../../../../translated_images/ml-regression.4e4f70e3b3ed446e3ace348dec973e133fa5d3680fbc8412b61879507369b98d.et.png)
+![Regressioonide kokkuvõte visuaalses märkmes](../../../../translated_images/ml-regression.4e4f70e3b3ed446e.et.png)
 
 > Visuaalne märge: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -81,7 +81,7 @@ Selles kaustas leiad faili _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code avatud märkmikuga](../../../../translated_images/notebook.4a3ee31f396b88325607afda33cadcc6368de98040ff33942424260aa84d75f2.et.jpg)
+![VS Code avatud märkmikuga](../../../../translated_images/notebook.4a3ee31f396b8832.et.jpg)
 
 Sa saad oma koodi vaheldumisi kommentaaridega täiendada, et märkmikku ise dokumenteerida.
 
@@ -211,7 +211,7 @@ Uues koodilahtris laadi diabeedi andmekogum, kutsudes `load_diabetes()`. Sisend 
     plt.show()
     ```
 
-   ![hajusdiagramm, mis näitab diabeediga seotud andmepunkte](../../../../translated_images/scatterplot.ad8b356bcbb33be68d54050e09b9b7bfc03e94fde7371f2609ae43f4c563b2d7.et.png)
+   ![hajusdiagramm, mis näitab diabeediga seotud andmepunkte](../../../../translated_images/scatterplot.ad8b356bcbb33be6.et.png)
 ✅ Mõtle veidi, mis siin toimub. Sirgjoon kulgeb läbi paljude väikeste andmepunktide, kuid mida see täpselt teeb? Kas näed, kuidas saaksid seda joont kasutada, et ennustada, kuhu uus, seni nägemata andmepunkt peaks graafiku y-telje suhtes sobituma? Proovi sõnastada selle mudeli praktiline kasutus.
 
 Palju õnne, sa ehitasid oma esimese lineaarse regressioonimudeli, tegid sellega ennustuse ja kuvad selle graafikul!

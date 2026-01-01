@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 في هذه الدروس، سنتعلم أساسيات معالجة اللغة الطبيعية من خلال بناء روبوتات محادثة صغيرة لفهم كيف يساعد التعلم الآلي في جعل هذه المحادثات أكثر "ذكاءً". ستعود بالزمن إلى الوراء، وتتحدث مع إليزابيث بينيت والسيد دارسي من رواية جين أوستن الكلاسيكية، **كبرياء وتحامل**، التي نُشرت عام 1813. بعد ذلك، ستُعمّق معرفتك من خلال تعلم تحليل المشاعر عبر مراجعات الفنادق في أوروبا.
 
-![كتاب كبرياء وتحامل وشاي](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.ar.jpg)
+![كتاب كبرياء وتحامل وشاي](../../../translated_images/p&p.279f1c49ecd88941.ar.jpg)
 > صورة بواسطة <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> على <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## الدروس

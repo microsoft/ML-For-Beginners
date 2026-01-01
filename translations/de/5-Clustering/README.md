@@ -15,7 +15,7 @@ Clustering ist eine Aufgabe des maschinellen Lernens, bei der versucht wird, Obj
 
 Das vielfältige Publikum in Nigeria hat ebenso vielfältige musikalische Vorlieben. Mithilfe von Daten, die von Spotify gesammelt wurden (inspiriert von [diesem Artikel](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), werfen wir einen Blick auf einige beliebte Musikstücke in Nigeria. Dieses Datenset enthält Informationen über verschiedene Songs, wie deren 'Danceability'-Score, 'Acousticness', Lautstärke, 'Speechiness', Popularität und Energie. Es wird spannend sein, Muster in diesen Daten zu entdecken!
 
-![Ein Plattenspieler](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.de.jpg)
+![Ein Plattenspieler](../../../translated_images/turntable.f2b86b13c53302dc.de.jpg)
 
 > Foto von <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> auf <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

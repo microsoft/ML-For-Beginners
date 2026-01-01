@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 تركيزنا الإقليمي هو استخدام الكهرباء عالميًا، وهو مجموعة بيانات مثيرة للاهتمام للتعلم عن كيفية التنبؤ باستخدام الطاقة في المستقبل بناءً على أنماط الأحمال السابقة. يمكنك أن ترى كيف يمكن أن يكون هذا النوع من التنبؤ مفيدًا للغاية في بيئة الأعمال.
 
-![شبكة الكهرباء](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ar.jpg)
+![شبكة الكهرباء](../../../translated_images/electric-grid.0c21d5214db09ffa.ar.jpg)
 
 صورة بواسطة [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) لأبراج كهرباء على طريق في راجستان على [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

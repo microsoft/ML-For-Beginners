@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c21bf667cfbd946f76fde049e31b07d0",
-  "translation_date": "2025-12-24T22:31:48+00:00",
+  "original_hash": "ec8385130a8239ad9d827175126a0722",
+  "translation_date": "2026-01-01T09:45:29+00:00",
   "source_file": "README.md",
   "language_code": "en"
 }
@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 We have a Discord learn with AI series ongoing, learn more and join us at [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You will get tips and tricks of using GitHub Copilot for Data Science.
 
-![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.en.png)
+![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20.en.png)
 
 # Machine Learning for Beginners - A Curriculum
 
@@ -80,7 +80,7 @@ Follow these steps:
 
 Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.
 
-[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.en.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.en.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 
@@ -219,5 +219,5 @@ If you have product feedback or errors while building visit:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 Disclaimer:
-This document has been translated using the AI translation service Co-op Translator (https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service Co-op Translator (https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

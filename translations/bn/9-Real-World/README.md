@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 এই পাঠক্রমের এই অংশে, আপনাকে ক্লাসিক্যাল মেশিন লার্নিং-এর কিছু বাস্তব জীবনের প্রয়োগের সাথে পরিচয় করানো হবে। আমরা ইন্টারনেট থেকে সাদা কাগজ এবং প্রবন্ধ সংগ্রহ করেছি যেখানে এই কৌশলগুলো ব্যবহার করা হয়েছে, যতটা সম্ভব নিউরাল নেটওয়ার্ক, ডিপ লার্নিং এবং AI এড়িয়ে। শিখুন কীভাবে মেশিন লার্নিং ব্যবসায়িক সিস্টেম, পরিবেশগত প্রয়োগ, অর্থনীতি, শিল্প ও সংস্কৃতি এবং আরও অনেক ক্ষেত্রে ব্যবহার করা হয়।
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.bn.jpg)
+![chess](../../../translated_images/chess.e704a268781bdad8.bn.jpg)
 
 > ছবি <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> এর তোলা <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> এ
   

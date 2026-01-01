@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 In Nordamerika werden Kürbisse oft zu Halloween in gruselige Gesichter geschnitzt. Lassen Sie uns mehr über dieses faszinierende Gemüse herausfinden!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.de.jpg)
+![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.de.jpg)
 > Foto von <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> auf <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Was Sie lernen werden
