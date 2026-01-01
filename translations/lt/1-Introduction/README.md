@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Šioje mokymo programos dalyje susipažinsite su pagrindinėmis sąvokomis, kurios sudaro mašininio mokymosi pagrindą, sužinosite, kas tai yra, jo istoriją ir technikas, kurias tyrėjai naudoja dirbdami su juo. Leiskimės kartu į šį naują ML pasaulį!
 
-![globe](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.lt.jpg)
+![globe](../../../translated_images/globe.59f26379ceb40428.lt.jpg)
 > Nuotrauka <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> iš <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Pamokos

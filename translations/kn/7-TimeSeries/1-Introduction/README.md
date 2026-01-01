@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ಕಾಲ ಸರಣಿಗಳ ಭವಿಷ್ಯವಾಣಿ ಪರಿಚಯ
 
-![ಕಾಲ ಸರಣಿಗಳ ಸಾರಾಂಶವನ್ನು ಸ್ಕೆಚ್‌ನೋಟ್‌ನಲ್ಲಿ](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.kn.png)
+![ಕಾಲ ಸರಣಿಗಳ ಸಾರಾಂಶವನ್ನು ಸ್ಕೆಚ್‌ನೋಟ್‌ನಲ್ಲಿ](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c.kn.png)
 
 > ಸ್ಕೆಚ್‌ನೋಟ್ [ಟೊಮೊಮಿ ಇಮುರು](https://www.twitter.com/girlie_mac) ಅವರಿಂದ
 
@@ -112,7 +112,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ✅ ಇಲ್ಲಿ [ನಮೂನಾ ಕಾಲ ಸರಣಿ ಪ್ಲಾಟ್](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) ಇದೆ, ಇದು ಕೆಲವು ವರ್ಷಗಳ ಕಾಲ ದಿನನಿತ್ಯದ ಆಟದ ಕರೆನ್ಸಿ ಖರ್ಚನ್ನು ತೋರಿಸುತ್ತದೆ. ಈ ಡೇಟಾದಲ್ಲಿ ಮೇಲ್ಕಂಡ ಲಕ್ಷಣಗಳಲ್ಲಿ ಯಾವುದಾದರೂ ಗುರುತಿಸಬಹುದೇ?
 
-![ಆಟದ ಕರೆನ್ಸಿ ಖರ್ಚು](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.kn.png)
+![ಆಟದ ಕರೆನ್ಸಿ ಖರ್ಚು](../../../../translated_images/currency.e7429812bfc8c608.kn.png)
 
 ## ಅಭ್ಯಾಸ - ವಿದ್ಯುತ್ ಬಳಕೆ ಡೇಟಾ ಮೂಲಕ ಪ್ರಾರಂಭಿಸುವುದು
 
@@ -160,7 +160,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.kn.png)
+    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc.kn.png)
 
 4. ಈಗ, 2014 ರ ಜುಲೈ ಮೊದಲ ವಾರವನ್ನು `[from date]: [to date]` ಮಾದರಿಯಲ್ಲಿ `energy` ಗೆ ಇನ್ಪುಟ್ ನೀಡುವ ಮೂಲಕ ಪ್ಲಾಟ್ ಮಾಡಿ:
 
@@ -171,7 +171,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.kn.png)
+    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b3.kn.png)
 
     ಅದ್ಭುತವಾದ ಪ್ಲಾಟ್! ಈ ಪ್ಲಾಟ್‌ಗಳನ್ನು ನೋಡಿ ಮೇಲ್ಕಂಡ ಲಕ್ಷಣಗಳಲ್ಲಿ ಯಾವುದಾದರೂ ನೀವು ಗುರುತಿಸಬಹುದೇ? ಡೇಟಾವನ್ನು ದೃಶ್ಯೀಕರಿಸುವ ಮೂಲಕ ನಾವು ಏನು ಊಹಿಸಬಹುದು?
 

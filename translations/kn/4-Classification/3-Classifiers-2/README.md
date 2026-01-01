@@ -25,7 +25,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಹಿಂದೆ, ನೀವು ಡೇಟಾವನ್ನು ವರ್ಗೀಕರಿಸುವಾಗ Microsoft ನ ಚೀಟ್ ಶೀಟ್ ಬಳಸಿ ವಿವಿಧ ಆಯ್ಕೆಗಳ ಬಗ್ಗೆ ಕಲಿತಿದ್ದೀರಿ. Scikit-learn ಒಂದು ಸಮಾನವಾದ, ಆದರೆ ಹೆಚ್ಚು ಸೂಕ್ಷ್ಮ ಚೀಟ್ ಶೀಟ್ ಅನ್ನು ನೀಡುತ್ತದೆ, ಇದು ನಿಮ್ಮ ಅಂದಾಜುಕಾರರನ್ನು (ಮತ್ತೊಂದು ಪದದಲ್ಲಿ ವರ್ಗೀಕರಣಕಾರರು) ಇನ್ನಷ್ಟು ನಿಖರಗೊಳಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ:
 
-![ML Map from Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.kn.png)
+![ML Map from Scikit-learn](../../../../translated_images/map.e963a6a51349425a.kn.png)
 > ಟಿಪ್: [ಈ ನಕ್ಷೆಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಭೇಟಿ ನೀಡಿ](https://scikit-learn.org/stable/tutorial/machine_learning_map/) ಮತ್ತು ದಾರಿಯಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ ಡಾಕ್ಯುಮೆಂಟೇಶನ್ ಓದಿ.
 
 ### ಯೋಜನೆ

@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ナイジェリアの多様な聴衆は、多様な音楽嗜好を持っています。Spotifyから収集したデータを使用して（[この記事](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)に触発されました）、ナイジェリアで人気の音楽を見てみましょう。このデータセットには、曲の「ダンサビリティ」スコア、「アコースティック性」、音量、「スピーチ性」、人気度、エネルギーに関するデータが含まれています。このデータからパターンを発見するのは興味深いでしょう！
 
-![ターンテーブル](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.ja.jpg)
+![ターンテーブル](../../../translated_images/turntable.f2b86b13c53302dc.ja.jpg)
 
 > 写真提供: <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> on <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಪಠ್ಯಕ್ರಮದ ಈ ವಿಭಾಗದಲ್ಲಿ, ನೀವು ಶ್ರೇಷ್ಟ ML ನ ಕೆಲವು ನೈಜ ಜಗತ್ತಿನ ಅನ್ವಯಿಕೆಗಳನ್ನು ಪರಿಚಯಿಸಿಕೊಳ್ಳುತ್ತೀರಿ. ನಾವು ಇಂಟರ್ನೆಟ್ ಅನ್ನು ಹುಡುಕಿ ಈ ತಂತ್ರಗಳನ್ನು ಬಳಸಿದ ಅನ್ವಯಿಕೆಗಳ ಬಗ್ಗೆ ಶ್ವೇತಪತ್ರಗಳು ಮತ್ತು ಲೇಖನಗಳನ್ನು ಕಂಡುಹಿಡಿದಿದ್ದೇವೆ, ನ್ಯೂರಲ್ ನೆಟ್‌ವರ್ಕ್‌ಗಳು, ಡೀಪ್ ಲರ್ನಿಂಗ್ ಮತ್ತು AI ಅನ್ನು ಸಾಧ್ಯವಾದಷ್ಟು ತಪ್ಪಿಸಿ. ವ್ಯವಹಾರ ವ್ಯವಸ್ಥೆಗಳು, ಪರಿಸರ ಅನ್ವಯಿಕೆಗಳು, ಹಣಕಾಸು, ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿ ಮತ್ತು ಇನ್ನಷ್ಟು ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ML ಹೇಗೆ ಬಳಸಲಾಗುತ್ತದೆ ಎಂಬುದನ್ನು ತಿಳಿಯಿರಿ.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.kn.jpg)
+![chess](../../../translated_images/chess.e704a268781bdad8.kn.jpg)
 
 > ಫೋಟೋ <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> ಅವರಿಂದ <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> ನಲ್ಲಿ
   

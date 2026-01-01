@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 주식 시장과 같은 시뮬레이션 환경을 상상해 보세요. 특정 규제를 적용하면 어떤 일이 발생할까요? 긍정적인 효과가 있을까요, 아니면 부정적인 효과가 있을까요? 부정적인 일이 발생하면 이를 _부정적 강화_로 받아들이고, 이를 통해 배우며 방향을 바꿔야 합니다. 긍정적인 결과가 나오면 _긍정적 강화_를 기반으로 더 발전시켜야 합니다.
 
-![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.ko.png)
+![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d.ko.png)
 
 > 피터와 그의 친구들은 배고픈 늑대에게서 도망쳐야 합니다! 이미지 제공: [Jen Looper](https://twitter.com/jenlooper)
 

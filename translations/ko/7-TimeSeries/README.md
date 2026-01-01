@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 우리의 지역적 초점은 세계 전력 사용량입니다. 이는 과거 부하 패턴을 기반으로 미래 전력 사용량을 예측하는 방법을 배우기에 흥미로운 데이터셋입니다. 이러한 예측은 비즈니스 환경에서 매우 유용할 수 있음을 알 수 있습니다.
 
-![전력망](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ko.jpg)
+![전력망](../../../translated_images/electric-grid.0c21d5214db09ffa.ko.jpg)
 
 라자스탄 도로 위 전력탑 사진 제공: [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ([Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText))
 

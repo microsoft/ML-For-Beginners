@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [ಪರ್ವತ ಕಾರ್ ಪರಿಸರ](https://gym.openai.com/envs/MountainCar-v0/) ಒಂದು ಕಣಿವೆಗೆ ಸಿಲುಕಿದ ಕಾರನ್ನು ಹೊಂದಿದೆ:
 
-<img src="../../../../translated_images/mountaincar.43d56e588ce581c2d035f28cf038a9af112bec043b2ef8da40ac86119b1e3a93.kn.png" width="300"/>
+<img src="../../../../translated_images/mountaincar.43d56e588ce581c2.kn.png" width="300"/>
 
 ಗುರಿ ಕಾರ್ ಅನ್ನು ಕಣಿವೆಯಿಂದ ಹೊರತೆಗೆದು ಧ್ವಜವನ್ನು ಹಿಡಿಯುವುದು, ಪ್ರತಿ ಹಂತದಲ್ಲಿ ಕೆಳಗಿನ ಕ್ರಿಯೆಗಳಲ್ಲಿ ಒಂದನ್ನು ಮಾಡುವುದು:
 

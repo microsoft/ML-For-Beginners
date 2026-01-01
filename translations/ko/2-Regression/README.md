@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 북미에서는 호박을 종종 할로윈을 위해 무서운 얼굴로 조각합니다. 이 매력적인 채소에 대해 더 알아봅시다!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.ko.jpg)
+![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.ko.jpg)
 > 사진 제공: <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> on <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 학습 내용

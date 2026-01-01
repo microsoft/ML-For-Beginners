@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 പാഠ്യപദ്ധതിയുടെ ഈ ഭാഗത്തിൽ, മെഷീൻ ലേണിങ്ങ് എന്ന മേഖലയെ അടിസ്ഥാനമാക്കിയുള്ള ആശയങ്ങൾ, അതെന്താണെന്ന്, അതിന്റെ ചരിത്രം, ഗവേഷകർ അതുമായി പ്രവർത്തിക്കാൻ ഉപയോഗിക്കുന്ന സാങ്കേതിക വിദ്യകൾ എന്നിവയെക്കുറിച്ച് നിങ്ങൾക്ക് പരിചയപ്പെടുത്തും. ഈ പുതിയ ML ലോകത്തെ നമുക്ക് ഒരുമിച്ച് അന്വേഷിക്കാം!
 
-![globe](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.ml.jpg)
+![globe](../../../translated_images/globe.59f26379ceb40428.ml.jpg)
 > ഫോട്ടോ <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ബിൽ ഓക്സ്ഫോർഡ്</a> എന്നവരിൽ നിന്നാണ് <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">അൺസ്പ്ലാഷിൽ</a>
   
 ### പാഠങ്ങൾ

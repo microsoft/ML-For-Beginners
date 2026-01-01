@@ -17,7 +17,7 @@ Kas yra laiko eilučių prognozavimas? Tai ateities įvykių numatymas analizuoj
 
 Mūsų regioninis dėmesys skiriamas pasauliniam elektros energijos naudojimui – įdomiam duomenų rinkiniui, kuris padeda išmokti prognozuoti būsimą energijos poreikį remiantis praeities apkrovos modeliais. Galite pamatyti, kaip tokio tipo prognozavimas gali būti itin naudingas verslo aplinkoje.
 
-![elektros tinklas](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.lt.jpg)
+![elektros tinklas](../../../translated_images/electric-grid.0c21d5214db09ffa.lt.jpg)
 
 Nuotrauka [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) elektros bokštų kelyje Radžastane, [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
