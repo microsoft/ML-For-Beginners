@@ -1,6 +1,6 @@
 import random
 import string
-# New Test
+# New Update chatbot code with intent detection and state management
 INTENTS = {
    "greeting": ["hello", "hi", "hey"],
     "question": ["why", "what", "how", "is", "are", "?"],
