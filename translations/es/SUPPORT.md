@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
-  "translation_date": "2025-09-03T22:11:22+00:00",
+  "original_hash": "09623d7343ff1c26ff4f198c1b2d3176",
+  "translation_date": "2025-10-03T11:34:49+00:00",
   "source_file": "SUPPORT.md",
   "language_code": "es"
 }
@@ -10,13 +10,18 @@ CO_OP_TRANSLATOR_METADATA:
 # Soporte
 ## Cómo reportar problemas y obtener ayuda  
 
-Este proyecto utiliza GitHub Issues para rastrear errores y solicitudes de características. Por favor, busca en los problemas existentes antes de reportar nuevos problemas para evitar duplicados. Para nuevos problemas, reporta tu error o solicitud de característica como un nuevo Issue.
+Antes de reportar un problema, consulta nuestra [Guía de Solución de Problemas](TROUBLESHOOTING.md) para encontrar soluciones a problemas comunes relacionados con la instalación, configuración y ejecución de las lecciones.
 
-Para obtener ayuda y responder preguntas sobre el uso de este proyecto, crea un Issue.
+Este proyecto utiliza GitHub Issues para rastrear errores y solicitudes de características. Por favor, busca entre los problemas existentes antes de reportar uno nuevo para evitar duplicados. Para nuevos problemas, reporta tu error o solicitud de característica como un nuevo Issue.
 
-## Política de soporte de Microsoft  
+Para obtener ayuda y resolver dudas sobre el uso de este proyecto, también puedes:
+- Consultar la [Guía de Solución de Problemas](TROUBLESHOOTING.md)
+- Visitar nuestro [canal de Discord Discussions #ml-for-beginners](https://aka.ms/foundry/discord)
+- Reportar un problema
 
-El soporte para este repositorio se limita a los recursos enumerados anteriormente.
+## Política de Soporte de Microsoft  
+
+El soporte para este repositorio se limita a los recursos mencionados anteriormente.
 
 ---
 

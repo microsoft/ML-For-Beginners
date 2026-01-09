@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "872be8bc1b93ef1dd9ac3d6e8f99f6ab",
-  "translation_date": "2025-09-03T21:37:48+00:00",
+  "original_hash": "09623d7343ff1c26ff4f198c1b2d3176",
+  "translation_date": "2025-10-03T11:35:53+00:00",
   "source_file": "SUPPORT.md",
   "language_code": "de"
 }
@@ -10,9 +10,16 @@ CO_OP_TRANSLATOR_METADATA:
 # Unterstützung
 ## So melden Sie Probleme und erhalten Hilfe  
 
-Dieses Projekt verwendet GitHub Issues, um Fehler und Funktionsanfragen zu verfolgen. Bitte durchsuchen Sie die vorhandenen Issues, bevor Sie neue erstellen, um Duplikate zu vermeiden. Für neue Issues melden Sie Ihren Fehler oder Ihre Funktionsanfrage als neues Issue.
+Bevor Sie ein Problem melden, überprüfen Sie bitte unseren [Leitfaden zur Fehlerbehebung](TROUBLESHOOTING.md) für Lösungen zu häufigen Problemen bei Installation, Einrichtung und Durchführung der Lektionen.
 
-Für Hilfe und Fragen zur Nutzung dieses Projekts erstellen Sie ein Issue.
+Dieses Projekt verwendet GitHub Issues, um Fehler und Funktionsanfragen zu verfolgen. Bitte durchsuchen Sie die vorhandenen 
+Issues, bevor Sie neue erstellen, um Duplikate zu vermeiden. Für neue Issues melden Sie Ihren Fehler oder 
+Ihre Funktionsanfrage als neues Issue.
+
+Für Hilfe und Fragen zur Nutzung dieses Projekts können Sie außerdem:
+- Den [Leitfaden zur Fehlerbehebung](TROUBLESHOOTING.md) überprüfen
+- Unseren [Discord-Diskussionskanal #ml-for-beginners](https://aka.ms/foundry/discord) besuchen
+- Ein Issue erstellen
 
 ## Microsoft-Support-Richtlinie  
 
