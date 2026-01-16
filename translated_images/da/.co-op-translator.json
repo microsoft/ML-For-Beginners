@@ -1,0 +1,920 @@
+{
+  "favicon.37b561214b36d454.webp": {
+    "original_hash": "228faa6584f8ba1f7e9a75e3200112e9",
+    "translation_date": "2026-01-16T13:03:44+00:00",
+    "source_file": "images/favicon.png",
+    "language_code": "da"
+  },
+  "ml-for-beginners.9eecb963dbfbfb32.webp": {
+    "original_hash": "168efdbeb98bec4da0e91cf8acf77dfe",
+    "translation_date": "2026-01-16T13:03:46+00:00",
+    "source_file": "images/ml-for-beginners.png",
+    "language_code": "da"
+  },
+  "ml-for-beginners-video-banner.63f694a100034bc6.webp": {
+    "original_hash": "2ee5851fdd14fb777163c9dfef721412",
+    "translation_date": "2026-01-16T13:03:49+00:00",
+    "source_file": "images/ml-for-beginners-video-banner.png",
+    "language_code": "da"
+  },
+  "3.9b58fd8d6c373c20.webp": {
+    "original_hash": "2de21431c87bb9ebc9bf4ddcb3ba2bdd",
+    "translation_date": "2026-01-16T13:03:54+00:00",
+    "source_file": "images/3.png",
+    "language_code": "da"
+  },
+  "ml-fairness.ef296ebec6afc98a.webp": {
+    "original_hash": "bceb2f96ebd4940cfddce42307d5e4a9",
+    "translation_date": "2026-01-16T13:04:07+00:00",
+    "source_file": "sketchnotes/ml-fairness.png",
+    "language_code": "da"
+  },
+  "ml-regression.4e4f70e3b3ed446e.webp": {
+    "original_hash": "c9bf1c0fe00e48262b884a679c612372",
+    "translation_date": "2026-01-16T13:04:28+00:00",
+    "source_file": "sketchnotes/ml-regression.png",
+    "language_code": "da"
+  },
+  "ml-realworld.26ee274671615577.webp": {
+    "original_hash": "3f43444e6254753eb5f23de7f52b2745",
+    "translation_date": "2026-01-16T13:04:46+00:00",
+    "source_file": "sketchnotes/ml-realworld.png",
+    "language_code": "da"
+  },
+  "ml-reinforcement.94024374d63348db.webp": {
+    "original_hash": "c3b55d97bb8edd97fbff43767fb4c563",
+    "translation_date": "2026-01-16T13:05:10+00:00",
+    "source_file": "sketchnotes/ml-reinforcement.png",
+    "language_code": "da"
+  },
+  "ml-timeseries.fb98d25f1013fc0c.webp": {
+    "original_hash": "03443e1e03edffd1a9c8c605903c4e84",
+    "translation_date": "2026-01-16T13:05:32+00:00",
+    "source_file": "sketchnotes/ml-timeseries.png",
+    "language_code": "da"
+  },
+  "ml-history.a1bdfd4ce1f464d9.webp": {
+    "original_hash": "2fe022d2dd04763788b2a5a8ad71fb1f",
+    "translation_date": "2026-01-16T13:05:53+00:00",
+    "source_file": "sketchnotes/ml-history.png",
+    "language_code": "da"
+  },
+  "globe.59f26379ceb40428.webp": {
+    "original_hash": "843aa34b1b65eb8ab23f8a7476b7dcd0",
+    "translation_date": "2026-01-16T13:06:08+00:00",
+    "source_file": "1-Introduction/images/globe.jpg",
+    "language_code": "da"
+  },
+  "ai-ml-ds.537ea441b124ebf6.webp": {
+    "original_hash": "22725868b26ca27e64c946ee025d45a3",
+    "translation_date": "2026-01-16T13:06:10+00:00",
+    "source_file": "1-Introduction/1-intro-to-ML/images/ai-ml-ds.png",
+    "language_code": "da"
+  },
+  "hype.07183d711a17aafe.webp": {
+    "original_hash": "fdd8cab17e681e45c4fe2647eb58bdb9",
+    "translation_date": "2026-01-16T13:06:15+00:00",
+    "source_file": "1-Introduction/1-intro-to-ML/images/hype.png",
+    "language_code": "da"
+  },
+  "shakey.4dc17819c447c05b.webp": {
+    "original_hash": "c1d741be4627f3e75ea5ee912f5896e6",
+    "translation_date": "2026-01-16T13:06:23+00:00",
+    "source_file": "1-Introduction/2-history-of-ML/images/shakey.jpg",
+    "language_code": "da"
+  },
+  "eliza.84397454cda9559b.webp": {
+    "original_hash": "cf4cf518f649213e8970b1d08fbe6c77",
+    "translation_date": "2026-01-16T13:06:34+00:00",
+    "source_file": "1-Introduction/2-history-of-ML/images/eliza.png",
+    "language_code": "da"
+  },
+  "overfitting.1c132d92bfd93cb6.webp": {
+    "original_hash": "e9d1a3d88cf81abd87b93ba3cae6f3b1",
+    "translation_date": "2026-01-16T13:06:46+00:00",
+    "source_file": "1-Introduction/4-techniques-of-ML/images/overfitting.png",
+    "language_code": "da"
+  },
+  "gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp": {
+    "original_hash": "0e8aac544ac1089cd727075b6083639f",
+    "translation_date": "2026-01-16T13:06:49+00:00",
+    "source_file": "1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png",
+    "language_code": "da"
+  },
+  "accountability.41d8c0f4b85b6231.webp": {
+    "original_hash": "65e19795f4a18a0878133c71c8862c42",
+    "translation_date": "2026-01-16T13:06:54+00:00",
+    "source_file": "1-Introduction/3-fairness/images/accountability.png",
+    "language_code": "da"
+  },
+  "ceos.7a9a67871424a6c0.webp": {
+    "original_hash": "f403a92005c5f0c581fd27587dd69eb8",
+    "translation_date": "2026-01-16T13:06:57+00:00",
+    "source_file": "1-Introduction/3-fairness/images/ceos.png",
+    "language_code": "da"
+  },
+  "gender-bias-translate-en-tr.f185fd8822c2d437.webp": {
+    "original_hash": "3abc35f319aef1169941603df4db6fd0",
+    "translation_date": "2026-01-16T13:07:02+00:00",
+    "source_file": "1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png",
+    "language_code": "da"
+  },
+  "fairness.b9f9893a4e3dc28b.webp": {
+    "original_hash": "89c57b68363652950bfa4b8a3cae82c1",
+    "translation_date": "2026-01-16T13:07:06+00:00",
+    "source_file": "1-Introduction/3-fairness/images/fairness.png",
+    "language_code": "da"
+  },
+  "accessibility.c1be5ce816eaea65.webp": {
+    "original_hash": "ff169fe805ae6b4b0067443121c4c7ce",
+    "translation_date": "2026-01-16T13:07:10+00:00",
+    "source_file": "1-Introduction/3-fairness/images/accessibility.png",
+    "language_code": "da"
+  },
+  "jack-o-lanterns.181c661a9212457d.webp": {
+    "original_hash": "3f6f70bd9fcfd9f85c229fdbbeef8a4a",
+    "translation_date": "2026-01-16T13:07:12+00:00",
+    "source_file": "2-Regression/images/jack-o-lanterns.jpg",
+    "language_code": "da"
+  },
+  "polynomial.8fce4663e7283dfb.webp": {
+    "original_hash": "7df902a6d0b81a28de48a330b3b4aa76",
+    "translation_date": "2026-01-16T13:07:15+00:00",
+    "source_file": "2-Regression/3-Linear/images/polynomial.png",
+    "language_code": "da"
+  },
+  "janitor.e4a77dd3d3e6a32e.webp": {
+    "original_hash": "8e34c6515b5a664c4485bed85ace536e",
+    "translation_date": "2026-01-16T13:07:29+00:00",
+    "source_file": "2-Regression/3-Linear/images/janitor.jpg",
+    "language_code": "da"
+  },
+  "calculation.a209813050a1ddb1.webp": {
+    "original_hash": "b2131ec1d3e6db2e2abd7bc8c699dbcf",
+    "translation_date": "2026-01-16T13:07:48+00:00",
+    "source_file": "2-Regression/3-Linear/images/calculation.png",
+    "language_code": "da"
+  },
+  "linear-results.f7c3552c85b0ed1c.webp": {
+    "original_hash": "3f6827091179dabc363a4327e4f824fe",
+    "translation_date": "2026-01-16T13:07:54+00:00",
+    "source_file": "2-Regression/3-Linear/images/linear-results.png",
+    "language_code": "da"
+  },
+  "recipes.9ad10d8a4056bf89.webp": {
+    "original_hash": "925552a21bb3687dfd83bb25010273f9",
+    "translation_date": "2026-01-16T13:08:09+00:00",
+    "source_file": "2-Regression/3-Linear/images/recipes.png",
+    "language_code": "da"
+  },
+  "heatmap.39952045da50b4eb.webp": {
+    "original_hash": "a62eb0069cc21d495828469ea2d0b506",
+    "translation_date": "2026-01-16T13:08:41+00:00",
+    "source_file": "2-Regression/3-Linear/images/heatmap.png",
+    "language_code": "da"
+  },
+  "slope.f3c9d5910ddbfcf9.webp": {
+    "original_hash": "d81920219716f4765a0208ea6d035ec7",
+    "translation_date": "2026-01-16T13:08:52+00:00",
+    "source_file": "2-Regression/3-Linear/images/slope.png",
+    "language_code": "da"
+  },
+  "pie-pumpkins-scatter.d14f9804a53f927e.webp": {
+    "original_hash": "2475f9d321d752ada7e5f431fe59f9e9",
+    "translation_date": "2026-01-16T13:08:57+00:00",
+    "source_file": "2-Regression/3-Linear/images/pie-pumpkins-scatter.png",
+    "language_code": "da"
+  },
+  "poly-results.ee587348f0f1f60b.webp": {
+    "original_hash": "e69be7266860f3cae8c750a35e160493",
+    "translation_date": "2026-01-16T13:08:58+00:00",
+    "source_file": "2-Regression/3-Linear/images/poly-results.png",
+    "language_code": "da"
+  },
+  "scatter-dayofyear-color.65790faefbb9d54f.webp": {
+    "original_hash": "57a573b7b038fddf7793cc520baa2ecd",
+    "translation_date": "2026-01-16T13:09:00+00:00",
+    "source_file": "2-Regression/3-Linear/images/scatter-dayofyear-color.png",
+    "language_code": "da"
+  },
+  "price-by-variety.744a2f9925d9bcb4.webp": {
+    "original_hash": "80b85163de4d24d4d0bf67ff0d9b2309",
+    "translation_date": "2026-01-16T13:09:04+00:00",
+    "source_file": "2-Regression/3-Linear/images/price-by-variety.png",
+    "language_code": "da"
+  },
+  "linear-polynomial.5523c7cb6576ccab.webp": {
+    "original_hash": "1b810c7c5447242163be60624c06bf97",
+    "translation_date": "2026-01-16T13:09:10+00:00",
+    "source_file": "2-Regression/3-Linear/images/linear-polynomial.png",
+    "language_code": "da"
+  },
+  "scatter-dayofyear.bc171c189c9fd553.webp": {
+    "original_hash": "0dfbd93772844f3b564fefa1750f1f1a",
+    "translation_date": "2026-01-16T13:09:20+00:00",
+    "source_file": "2-Regression/3-Linear/images/scatter-dayofyear.png",
+    "language_code": "da"
+  },
+  "linear.a1b0760a56132551.webp": {
+    "original_hash": "0bc5432c73d2c073cab1b85d8279ff44",
+    "translation_date": "2026-01-16T13:09:24+00:00",
+    "source_file": "2-Regression/3-Linear/images/linear.png",
+    "language_code": "da"
+  },
+  "notebook.4a3ee31f396b8832.webp": {
+    "original_hash": "53ed9e8157acd2742be1840e5d9c69ab",
+    "translation_date": "2026-01-16T13:09:31+00:00",
+    "source_file": "2-Regression/1-Tools/images/notebook.jpg",
+    "language_code": "da"
+  },
+  "scatterplot.ad8b356bcbb33be6.webp": {
+    "original_hash": "3957c7a107594dadc4758bb3ce04857d",
+    "translation_date": "2026-01-16T13:09:37+00:00",
+    "source_file": "2-Regression/1-Tools/images/scatterplot.png",
+    "language_code": "da"
+  },
+  "encouRage.e75d5fe0367fb913.webp": {
+    "original_hash": "7dd96b2ba0df871e1553f743be58a0e5",
+    "translation_date": "2026-01-16T13:09:45+00:00",
+    "source_file": "2-Regression/1-Tools/images/encouRage.jpg",
+    "language_code": "da"
+  },
+  "data-visualization.54e56dded7c1a804.webp": {
+    "original_hash": "0978cd448f88701c82bc30537b17c1c5",
+    "translation_date": "2026-01-16T13:09:56+00:00",
+    "source_file": "2-Regression/2-Data/images/data-visualization.png",
+    "language_code": "da"
+  },
+  "unruly_data.0eedc7ced92d2d91.webp": {
+    "original_hash": "a4a8c088eb459adbbae497322c640811",
+    "translation_date": "2026-01-16T13:10:02+00:00",
+    "source_file": "2-Regression/2-Data/images/unruly_data.jpg",
+    "language_code": "da"
+  },
+  "scatterplot.b6868f44cbd2051c.webp": {
+    "original_hash": "be95a93bbe7e5ef894f0cc2a9165b524",
+    "translation_date": "2026-01-16T13:10:07+00:00",
+    "source_file": "2-Regression/2-Data/images/scatterplot.png",
+    "language_code": "da"
+  },
+  "dplyr_wrangling.f5f99c64fd4580f1.webp": {
+    "original_hash": "c9623f92bdbfdc2b68fcc8b8c28ec6d1",
+    "translation_date": "2026-01-16T13:10:13+00:00",
+    "source_file": "2-Regression/2-Data/images/dplyr_wrangling.png",
+    "language_code": "da"
+  },
+  "barchart.a833ea9194346d76.webp": {
+    "original_hash": "49c21ba1929ad7ee26b6cd2fcf243929",
+    "translation_date": "2026-01-16T13:10:19+00:00",
+    "source_file": "2-Regression/2-Data/images/barchart.png",
+    "language_code": "da"
+  },
+  "multinomial-vs-ordinal.36701b4850e37d86.webp": {
+    "original_hash": "f073e94529a3648f2231cdce2cbab8b4",
+    "translation_date": "2026-01-16T13:10:25+00:00",
+    "source_file": "2-Regression/4-Logistic/images/multinomial-vs-ordinal.png",
+    "language_code": "da"
+  },
+  "sigmoid.8b7ba9d095c789cf.webp": {
+    "original_hash": "93e362a78005d1964a4a108887df6f65",
+    "translation_date": "2026-01-16T13:10:33+00:00",
+    "source_file": "2-Regression/4-Logistic/images/sigmoid.png",
+    "language_code": "da"
+  },
+  "multinomial-ordinal.944fe02295fd6cdf.webp": {
+    "original_hash": "c7ccca072d30b5d4b75255a67ddae654",
+    "translation_date": "2026-01-16T13:10:38+00:00",
+    "source_file": "2-Regression/4-Logistic/images/multinomial-ordinal.png",
+    "language_code": "da"
+  },
+  "linear-vs-logistic.ba180bf95e7ee667.webp": {
+    "original_hash": "96759faebbd1f2a900347a266e140c4d",
+    "translation_date": "2026-01-16T13:10:49+00:00",
+    "source_file": "2-Regression/4-Logistic/images/linear-vs-logistic.png",
+    "language_code": "da"
+  },
+  "pumpkin-classifier.562771f104ad5436.webp": {
+    "original_hash": "9b4b4ac420310c1c6f70835f8f039666",
+    "translation_date": "2026-01-16T13:10:57+00:00",
+    "source_file": "2-Regression/4-Logistic/images/pumpkin-classifier.png",
+    "language_code": "da"
+  },
+  "logistic.b0cba6b7db4d5789.webp": {
+    "original_hash": "9794c53dc6a7c7c197cf4e308d45cfe8",
+    "translation_date": "2026-01-16T13:11:04+00:00",
+    "source_file": "2-Regression/4-Logistic/images/logistic.png",
+    "language_code": "da"
+  },
+  "ROC.167a70519c5bf898.webp": {
+    "original_hash": "63e5567374ae1de1cd1e775dda7c81e9",
+    "translation_date": "2026-01-16T13:11:07+00:00",
+    "source_file": "2-Regression/4-Logistic/images/ROC.png",
+    "language_code": "da"
+  },
+  "grid.464370ad00f3696c.webp": {
+    "original_hash": "79d757e96813e70fbf7844b23dae96bc",
+    "translation_date": "2026-01-16T13:11:19+00:00",
+    "source_file": "2-Regression/4-Logistic/images/grid.png",
+    "language_code": "da"
+  },
+  "swarm.56d253ae80a2c0f5.webp": {
+    "original_hash": "fe1af9f5ac979ea7316753ac7559aaaf",
+    "translation_date": "2026-01-16T13:11:38+00:00",
+    "source_file": "2-Regression/4-Logistic/images/swarm.png",
+    "language_code": "da"
+  },
+  "confusion-matrix.3cc5496a1a37c3e4.webp": {
+    "original_hash": "4150f5e65462636d31a355fb8bacd710",
+    "translation_date": "2026-01-16T13:12:13+00:00",
+    "source_file": "2-Regression/4-Logistic/images/confusion-matrix.png",
+    "language_code": "da"
+  },
+  "ROC_2.777f20cdfc4988ca.webp": {
+    "original_hash": "7e020247ea2b610881d260a38315aeae",
+    "translation_date": "2026-01-16T13:12:18+00:00",
+    "source_file": "2-Regression/4-Logistic/images/ROC_2.png",
+    "language_code": "da"
+  },
+  "pumpkins_catplot_2.87a354447880b388.webp": {
+    "original_hash": "64c425c52a46eef297def367d169d32a",
+    "translation_date": "2026-01-16T13:12:29+00:00",
+    "source_file": "2-Regression/4-Logistic/images/pumpkins_catplot_2.png",
+    "language_code": "da"
+  },
+  "pumpkins_catplot_1.c55c409b71fea2ec.webp": {
+    "original_hash": "21156df8979d98c866269dca8da8f884",
+    "translation_date": "2026-01-16T13:12:47+00:00",
+    "source_file": "2-Regression/4-Logistic/images/pumpkins_catplot_1.png",
+    "language_code": "da"
+  },
+  "violin.ffceb68923177011.webp": {
+    "original_hash": "6552159e8ea391bd6d60d1ee0ee0a40b",
+    "translation_date": "2026-01-16T13:12:54+00:00",
+    "source_file": "2-Regression/4-Logistic/images/violin.png",
+    "language_code": "da"
+  },
+  "r_learners_sm.e25fa9c205b3a3f9.webp": {
+    "original_hash": "837c804617ba17f341a8ed2db93105d5",
+    "translation_date": "2026-01-16T13:12:57+00:00",
+    "source_file": "2-Regression/4-Logistic/images/r_learners_sm.jpeg",
+    "language_code": "da"
+  },
+  "swarm_2.efeacfca536c2b57.webp": {
+    "original_hash": "734f5d0884220257ff5c7f7e1f6faed2",
+    "translation_date": "2026-01-16T13:13:01+00:00",
+    "source_file": "2-Regression/4-Logistic/images/swarm_2.png",
+    "language_code": "da"
+  },
+  "logistic-linear.0f2f6bb73b3134c1.webp": {
+    "original_hash": "7069c082c288ac778688382b8f817d12",
+    "translation_date": "2026-01-16T13:13:08+00:00",
+    "source_file": "2-Regression/4-Logistic/images/logistic-linear.png",
+    "language_code": "da"
+  },
+  "ufo.9e787f5161da9d4d.webp": {
+    "original_hash": "99f743b68eb93ed8c683c0f78ac1a180",
+    "translation_date": "2026-01-16T13:13:22+00:00",
+    "source_file": "3-Web-App/images/ufo.jpg",
+    "language_code": "da"
+  },
+  "lobe.2fa0806408ef9923.webp": {
+    "original_hash": "e6ec71dbe350aef39135dbf88bc89163",
+    "translation_date": "2026-01-16T13:13:36+00:00",
+    "source_file": "3-Web-App/1-Web-App/images/lobe.png",
+    "language_code": "da"
+  },
+  "p&p.279f1c49ecd88941.webp": {
+    "original_hash": "9896259959fc22aeeb0c5e0d6e0154a7",
+    "translation_date": "2026-01-16T13:13:52+00:00",
+    "source_file": "6-NLP/images/p&p.jpg",
+    "language_code": "da"
+  },
+  "monnaie.606c5fa8369d5c3b.webp": {
+    "original_hash": "8eb6b1ab4f94ed2f98059f68ebafc014",
+    "translation_date": "2026-01-16T13:13:56+00:00",
+    "source_file": "6-NLP/3-Translation-Sentiment/images/monnaie.png",
+    "language_code": "da"
+  },
+  "comprehension.619708fc5959b0f6.webp": {
+    "original_hash": "199ba9874415c9ac69ab90ca0c7a5798",
+    "translation_date": "2026-01-16T13:13:59+00:00",
+    "source_file": "6-NLP/1-Introduction-to-NLP/images/comprehension.png",
+    "language_code": "da"
+  },
+  "tokenization.1641a160c66cd2d9.webp": {
+    "original_hash": "568ebd0acfd2a2712e97c2efb889b5b9",
+    "translation_date": "2026-01-16T13:14:03+00:00",
+    "source_file": "6-NLP/2-Tasks/images/tokenization.png",
+    "language_code": "da"
+  },
+  "embedding.2cf8953c4b3101d1.webp": {
+    "original_hash": "1007c6219e1ce7d2a51becd0596a822a",
+    "translation_date": "2026-01-16T13:14:06+00:00",
+    "source_file": "6-NLP/2-Tasks/images/embedding.png",
+    "language_code": "da"
+  },
+  "parse.d0c5bbe1106eae8f.webp": {
+    "original_hash": "322098f5a3769e96c7a60b16ad9d02b3",
+    "translation_date": "2026-01-16T13:14:10+00:00",
+    "source_file": "6-NLP/2-Tasks/images/parse.png",
+    "language_code": "da"
+  },
+  "turntable.f2b86b13c53302dc.webp": {
+    "original_hash": "02aa654944ce0872a2a6b41ad6f8bae2",
+    "translation_date": "2026-01-16T13:14:13+00:00",
+    "source_file": "5-Clustering/images/turntable.jpg",
+    "language_code": "da"
+  },
+  "problems.f7fb539ccd80608e.webp": {
+    "original_hash": "d3605f6f944d3a7a5390490be3a94186",
+    "translation_date": "2026-01-16T13:14:18+00:00",
+    "source_file": "5-Clustering/2-K-Means/images/problems.png",
+    "language_code": "da"
+  },
+  "clusters.b635354640d8e4fd.webp": {
+    "original_hash": "1bf916ab2a323ca1ff9524b957d191d9",
+    "translation_date": "2026-01-16T13:14:28+00:00",
+    "source_file": "5-Clustering/2-K-Means/images/clusters.png",
+    "language_code": "da"
+  },
+  "voronoi.1dc1613fb0439b95.webp": {
+    "original_hash": "561aedc2bbfa5e0af9f4e1b1d5df00a1",
+    "translation_date": "2026-01-16T13:14:30+00:00",
+    "source_file": "5-Clustering/2-K-Means/images/voronoi.png",
+    "language_code": "da"
+  },
+  "elbow.72676169eed744ff.webp": {
+    "original_hash": "bb938c301c0b3fd5deec9f8b277b0506",
+    "translation_date": "2026-01-16T13:14:31+00:00",
+    "source_file": "5-Clustering/2-K-Means/images/elbow.png",
+    "language_code": "da"
+  },
+  "r_learners_sm.e4a71b113ffbedfe.webp": {
+    "original_hash": "837c804617ba17f341a8ed2db93105d5",
+    "translation_date": "2026-01-16T13:14:34+00:00",
+    "source_file": "5-Clustering/2-K-Means/images/r_learners_sm.jpeg",
+    "language_code": "da"
+  },
+  "boxplots.8228c29dabd0f292.webp": {
+    "original_hash": "841ff52a90f91c88278604315d9cd6e5",
+    "translation_date": "2026-01-16T13:14:52+00:00",
+    "source_file": "5-Clustering/2-K-Means/images/boxplots.png",
+    "language_code": "da"
+  },
+  "flat-nonflat.d1c8c6e2a96110c1.webp": {
+    "original_hash": "73d6fedd799f48057e154a4e8ce42f93",
+    "translation_date": "2026-01-16T13:15:29+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/flat-nonflat.png",
+    "language_code": "da"
+  },
+  "correlation.a9356bb798f5eea5.webp": {
+    "original_hash": "2defd6b5fe95facd4a781f9622902c78",
+    "translation_date": "2026-01-16T13:15:49+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/correlation.png",
+    "language_code": "da"
+  },
+  "hierarchical.bf59403aa43c8c47.webp": {
+    "original_hash": "50b9bc3298659c463ae76564ca645b12",
+    "translation_date": "2026-01-16T13:16:16+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/hierarchical.png",
+    "language_code": "da"
+  },
+  "distribution.9be11df42356ca95.webp": {
+    "original_hash": "70424f77d27ac2c69e595ea8fdd3e28e",
+    "translation_date": "2026-01-16T13:16:28+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/distribution.png",
+    "language_code": "da"
+  },
+  "centroid.097fde836cf6c918.webp": {
+    "original_hash": "c8f866ed446563d8e59087f1bca1f97d",
+    "translation_date": "2026-01-16T13:16:36+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/centroid.png",
+    "language_code": "da"
+  },
+  "popular.9c48d84b3386705f.webp": {
+    "original_hash": "178fa011a311e1411a3750428b0525a7",
+    "translation_date": "2026-01-16T13:16:45+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/popular.png",
+    "language_code": "da"
+  },
+  "all-genres.1d56ef06cefbfcd6.webp": {
+    "original_hash": "b65f4a4412b6559b03529f10eb450c17",
+    "translation_date": "2026-01-16T13:16:50+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/all-genres.png",
+    "language_code": "da"
+  },
+  "facetgrid.9b2e65ce707eba1f.webp": {
+    "original_hash": "8497ce8826ba4d381db1f9ed514dede2",
+    "translation_date": "2026-01-16T13:16:55+00:00",
+    "source_file": "5-Clustering/1-Visualize/images/facetgrid.png",
+    "language_code": "da"
+  },
+  "chess.e704a268781bdad8.webp": {
+    "original_hash": "5b6c7fdfb0b6262a3938b18cce2f4a2b",
+    "translation_date": "2026-01-16T13:17:00+00:00",
+    "source_file": "9-Real-World/images/chess.jpg",
+    "language_code": "da"
+  },
+  "model-overview-feature-cohorts.c5104d575ffd0c80.webp": {
+    "original_hash": "d2b187b7d1ec4bdcd8c985283d54f8e4",
+    "translation_date": "2026-01-16T13:17:15+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png",
+    "language_code": "da"
+  },
+  "gender-bias-translate-tr-en.1f97568ba9e40e20.webp": {
+    "original_hash": "0e8aac544ac1089cd727075b6083639f",
+    "translation_date": "2026-01-16T13:17:46+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/gender-bias-translate-tr-en.png",
+    "language_code": "da"
+  },
+  "datapoints.aaf6815cd5d87354.webp": {
+    "original_hash": "5a9527dee26b9b255cc5b624dbb51919",
+    "translation_date": "2026-01-16T13:17:54+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/datapoints.png",
+    "language_code": "da"
+  },
+  "ea-error-distribution.117452e1177c1dd8.webp": {
+    "original_hash": "15823a9cd18a5ee815e7d6262bc6818f",
+    "translation_date": "2026-01-16T13:18:10+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png",
+    "language_code": "da"
+  },
+  "9-feature-importance.cd3193b4bba3fd4b.webp": {
+    "original_hash": "479e68fc76c6b6fc8cbc2b90eb2981e1",
+    "translation_date": "2026-01-16T13:18:20+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/9-feature-importance.png",
+    "language_code": "da"
+  },
+  "ceos.3de5d092ce8d2753.webp": {
+    "original_hash": "f403a92005c5f0c581fd27587dd69eb8",
+    "translation_date": "2026-01-16T13:18:39+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/ceos.png",
+    "language_code": "da"
+  },
+  "counterfactuals-examples.b38a50a504ee0a9f.webp": {
+    "original_hash": "65fb9b98701cc42014f18aa998228333",
+    "translation_date": "2026-01-16T13:19:00+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/counterfactuals-examples.png",
+    "language_code": "da"
+  },
+  "gender-bias-translate-en-tr.bfd87c45da23c085.webp": {
+    "original_hash": "3abc35f319aef1169941603df4db6fd0",
+    "translation_date": "2026-01-16T13:19:33+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/gender-bias-translate-en-tr.png",
+    "language_code": "da"
+  },
+  "fairness.25d7c8ce9817272d.webp": {
+    "original_hash": "89c57b68363652950bfa4b8a3cae82c1",
+    "translation_date": "2026-01-16T13:19:38+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/fairness.png",
+    "language_code": "da"
+  },
+  "model-overview-dataset-cohorts.dfa463fb527a35a0.webp": {
+    "original_hash": "5ba7caa265cee1ff9a7072a4f94e890d",
+    "translation_date": "2026-01-16T13:19:47+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png",
+    "language_code": "da"
+  },
+  "individual-causal-what-if.00e7b86b52a083ce.webp": {
+    "original_hash": "535a0ad1507648542f43293e101eecb6",
+    "translation_date": "2026-01-16T13:20:16+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/individual-causal-what-if.png",
+    "language_code": "da"
+  },
+  "9-features-influence.3ead3d3f68a84029.webp": {
+    "original_hash": "7a522f0212ca4c9d15c9d3d9f01f86f5",
+    "translation_date": "2026-01-16T13:20:52+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/9-features-influence.png",
+    "language_code": "da"
+  },
+  "ea-heatmap.8d27185e28cee383.webp": {
+    "original_hash": "861a9ea52a5aa2841f4dbf9ba45c7900",
+    "translation_date": "2026-01-16T13:21:10+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png",
+    "language_code": "da"
+  },
+  "ea-error-cohort.6886209ea5d438c4.webp": {
+    "original_hash": "95030d8832d8931fb4e1ec6ecda699e6",
+    "translation_date": "2026-01-16T13:21:27+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png",
+    "language_code": "da"
+  },
+  "cf-what-if-features.5a92a6924da3e9b5.webp": {
+    "original_hash": "0cbbda81885b2341ee63ff33aaa4fff0",
+    "translation_date": "2026-01-16T13:21:34+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/cf-what-if-features.png",
+    "language_code": "da"
+  },
+  "dataanalysis-cover.8d6d0683a70a5c1e.webp": {
+    "original_hash": "6d92c827e7138869509118dccd983ccd",
+    "translation_date": "2026-01-16T13:21:48+00:00",
+    "source_file": "9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png",
+    "language_code": "da"
+  },
+  "thai-food.c47a7a7f9f05c218.webp": {
+    "original_hash": "d3881195db88ba1cc9fd217f30415da6",
+    "translation_date": "2026-01-16T13:22:04+00:00",
+    "source_file": "4-Classification/images/thai-food.jpg",
+    "language_code": "da"
+  },
+  "korean.4a4f0274f3d9805a.webp": {
+    "original_hash": "9863922b50bccb4f12b2036825a49a5b",
+    "translation_date": "2026-01-16T13:22:06+00:00",
+    "source_file": "4-Classification/1-Introduction/images/korean.png",
+    "language_code": "da"
+  },
+  "thai.0269dbab2e78bd38.webp": {
+    "original_hash": "e2b3c8115e57ff80b2c950d3c783e2cf",
+    "translation_date": "2026-01-16T13:22:09+00:00",
+    "source_file": "4-Classification/1-Introduction/images/thai.png",
+    "language_code": "da"
+  },
+  "recipes.186acfa8ed2e8f00.webp": {
+    "original_hash": "925552a21bb3687dfd83bb25010273f9",
+    "translation_date": "2026-01-16T13:22:25+00:00",
+    "source_file": "4-Classification/1-Introduction/images/recipes.png",
+    "language_code": "da"
+  },
+  "cuisine-dist.d0cc2d551abe5c25.webp": {
+    "original_hash": "c513d1f6832ac06836e0c8c665c8354a",
+    "translation_date": "2026-01-16T13:22:52+00:00",
+    "source_file": "4-Classification/1-Introduction/images/cuisine-dist.png",
+    "language_code": "da"
+  },
+  "indian.2c4292002af1a1f9.webp": {
+    "original_hash": "9d396f43a0af642a695b6651bff475af",
+    "translation_date": "2026-01-16T13:22:53+00:00",
+    "source_file": "4-Classification/1-Introduction/images/indian.png",
+    "language_code": "da"
+  },
+  "binary-multiclass.b56d0c86c81105a6.webp": {
+    "original_hash": "e1a17ceb5d6b5a8bb91bae9ca474cfb5",
+    "translation_date": "2026-01-16T13:22:56+00:00",
+    "source_file": "4-Classification/1-Introduction/images/binary-multiclass.png",
+    "language_code": "da"
+  },
+  "chinese.e62cafa5309f111a.webp": {
+    "original_hash": "e7afddb049bc5e60e1594d3b0dd7e7c6",
+    "translation_date": "2026-01-16T13:22:59+00:00",
+    "source_file": "4-Classification/1-Introduction/images/chinese.png",
+    "language_code": "da"
+  },
+  "r_learners_sm.cd14eb3581a9f28d.webp": {
+    "original_hash": "837c804617ba17f341a8ed2db93105d5",
+    "translation_date": "2026-01-16T13:23:03+00:00",
+    "source_file": "4-Classification/1-Introduction/images/r_learners_sm.jpeg",
+    "language_code": "da"
+  },
+  "pinch.1b035ec9ba7e0d40.webp": {
+    "original_hash": "18f413d7670738c758fee477886c7759",
+    "translation_date": "2026-01-16T13:23:06+00:00",
+    "source_file": "4-Classification/1-Introduction/images/pinch.png",
+    "language_code": "da"
+  },
+  "dplyr_filter.b480b264b03439ff.webp": {
+    "original_hash": "e71fffc34b1e453f16d5b8e266f46aa2",
+    "translation_date": "2026-01-16T13:23:15+00:00",
+    "source_file": "4-Classification/1-Introduction/images/dplyr_filter.jpg",
+    "language_code": "da"
+  },
+  "japanese.30260486f2a05c46.webp": {
+    "original_hash": "2341f1b464ca87b44d9a1a8581a60068",
+    "translation_date": "2026-01-16T13:23:30+00:00",
+    "source_file": "4-Classification/1-Introduction/images/japanese.png",
+    "language_code": "da"
+  },
+  "svm.621ae7b516d678e0.webp": {
+    "original_hash": "ce775a75b8ab37b61869cbb31dc76289",
+    "translation_date": "2026-01-16T13:23:34+00:00",
+    "source_file": "4-Classification/3-Classifiers-2/images/svm.png",
+    "language_code": "da"
+  },
+  "map.e963a6a51349425a.webp": {
+    "original_hash": "d8d479d57d050e32c1d77bb859d61ce2",
+    "translation_date": "2026-01-16T13:23:52+00:00",
+    "source_file": "4-Classification/3-Classifiers-2/images/map.png",
+    "language_code": "da"
+  },
+  "r_learners_sm.f9199f76f1e2e493.webp": {
+    "original_hash": "837c804617ba17f341a8ed2db93105d5",
+    "translation_date": "2026-01-16T13:24:20+00:00",
+    "source_file": "4-Classification/3-Classifiers-2/images/r_learners_sm.jpeg",
+    "language_code": "da"
+  },
+  "netron.a05f39410211915e.webp": {
+    "original_hash": "c2b192971dd35d1f9297037e3d9cf2c1",
+    "translation_date": "2026-01-16T13:24:24+00:00",
+    "source_file": "4-Classification/4-Applied/images/netron.png",
+    "language_code": "da"
+  },
+  "web-app.4c76450cabe20036.webp": {
+    "original_hash": "cbede42b607bbb5910e9a4faf778225c",
+    "translation_date": "2026-01-16T13:24:29+00:00",
+    "source_file": "4-Classification/4-Applied/images/web-app.png",
+    "language_code": "da"
+  },
+  "parsnip.cd2ce92622976502.webp": {
+    "original_hash": "898a910cf3763544400593dac6a92389",
+    "translation_date": "2026-01-16T13:24:38+00:00",
+    "source_file": "4-Classification/2-Classifiers-1/images/parsnip.jpg",
+    "language_code": "da"
+  },
+  "solvers.5fc648618529e627.webp": {
+    "original_hash": "f792b31c558c35d791f54218c114f11a",
+    "translation_date": "2026-01-16T13:24:51+00:00",
+    "source_file": "4-Classification/2-Classifiers-1/images/solvers.png",
+    "language_code": "da"
+  },
+  "comparison.edfab56193a85e7f.webp": {
+    "original_hash": "7f24bd09d9d7f8a13007c1028041fbf5",
+    "translation_date": "2026-01-16T13:25:08+00:00",
+    "source_file": "4-Classification/2-Classifiers-1/images/comparison.png",
+    "language_code": "da"
+  },
+  "cheatsheet.07a475ea444d2223.webp": {
+    "original_hash": "d4728a3bd3332576e35f206ee6ad3fbb",
+    "translation_date": "2026-01-16T13:25:26+00:00",
+    "source_file": "4-Classification/2-Classifiers-1/images/cheatsheet.png",
+    "language_code": "da"
+  },
+  "peter.779730f9ba3a8a8d.webp": {
+    "original_hash": "dd4a8cb8e3eb15c467a08d45fade443a",
+    "translation_date": "2026-01-16T13:25:34+00:00",
+    "source_file": "8-Reinforcement/images/peter.png",
+    "language_code": "da"
+  },
+  "cartpole.b5609cc0494a14f7.webp": {
+    "original_hash": "5399242e127ea1c18aa6ee405daecf51",
+    "translation_date": "2026-01-16T13:25:36+00:00",
+    "source_file": "8-Reinforcement/2-Gym/images/cartpole.png",
+    "language_code": "da"
+  },
+  "escape.18862db9930337e3.webp": {
+    "original_hash": "992ff5365e7fb990b22e1cd8e421374f",
+    "translation_date": "2026-01-16T13:25:36+00:00",
+    "source_file": "8-Reinforcement/2-Gym/images/escape.png",
+    "language_code": "da"
+  },
+  "train_progress_runav.c71694a8fa9ab359.webp": {
+    "original_hash": "4e4c78e37e5b80687dd1d8452fd8ce78",
+    "translation_date": "2026-01-16T13:25:38+00:00",
+    "source_file": "8-Reinforcement/2-Gym/images/train_progress_runav.png",
+    "language_code": "da"
+  },
+  "mountaincar.43d56e588ce581c2.webp": {
+    "original_hash": "61c868cc389dc92bd2b402ea490cd162",
+    "translation_date": "2026-01-16T13:25:39+00:00",
+    "source_file": "8-Reinforcement/2-Gym/images/mountaincar.png",
+    "language_code": "da"
+  },
+  "train_progress_raw.2adfdf2daea09c59.webp": {
+    "original_hash": "6b053943a2e7d2b4d7d65460517e854a",
+    "translation_date": "2026-01-16T13:25:42+00:00",
+    "source_file": "8-Reinforcement/2-Gym/images/train_progress_raw.png",
+    "language_code": "da"
+  },
+  "lpathlen.94f211521ed60940.webp": {
+    "original_hash": "ac846488f72765b30a11fb5044342021",
+    "translation_date": "2026-01-16T13:25:43+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/lpathlen.png",
+    "language_code": "da"
+  },
+  "wolf.a56d3d4070ca0c79.webp": {
+    "original_hash": "36a8284655906f6a4e5c4aaa06671da4",
+    "translation_date": "2026-01-16T13:25:44+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/wolf.png",
+    "language_code": "da"
+  },
+  "human.e3840390a2ab7690.webp": {
+    "original_hash": "2779edce282e49929804dec71636094e",
+    "translation_date": "2026-01-16T13:25:45+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/human.png",
+    "language_code": "da"
+  },
+  "bellman-equation.7c0c4c722e5a6b7c.webp": {
+    "original_hash": "7adc065a5ea494b45531f754c9b76469",
+    "translation_date": "2026-01-16T13:25:47+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/bellman-equation.png",
+    "language_code": "da"
+  },
+  "environment.40ba3cb66256c93f.webp": {
+    "original_hash": "3b7f633735a7af2335c024eeb9ed1160",
+    "translation_date": "2026-01-16T13:25:49+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/environment.png",
+    "language_code": "da"
+  },
+  "env_init.04e8f26d2d60089e.webp": {
+    "original_hash": "c98e0e9c3bd656f4518dcb94c1743f5d",
+    "translation_date": "2026-01-16T13:25:50+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/env_init.png",
+    "language_code": "da"
+  },
+  "lpathlen1.0534784add58d4eb.webp": {
+    "original_hash": "2c699a343a0253fcf0024de108d45266",
+    "translation_date": "2026-01-16T13:25:51+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/lpathlen1.png",
+    "language_code": "da"
+  },
+  "apple.c81c8d5965e5e5da.webp": {
+    "original_hash": "ed62bd6204e6efabc031ea19173bafb7",
+    "translation_date": "2026-01-16T13:25:52+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/apple.png",
+    "language_code": "da"
+  },
+  "learned.ed28bcd8484b5287.webp": {
+    "original_hash": "084d4af7881e5b990b53dd562a0aca6e",
+    "translation_date": "2026-01-16T13:25:54+00:00",
+    "source_file": "8-Reinforcement/1-QLearning/images/learned.png",
+    "language_code": "da"
+  },
+  "electric-grid.0c21d5214db09ffa.webp": {
+    "original_hash": "d3adac5039330761223c6e9299402b3a",
+    "translation_date": "2026-01-16T13:25:56+00:00",
+    "source_file": "7-TimeSeries/images/electric-grid.jpg",
+    "language_code": "da"
+  },
+  "train-data-predict.3c4ef4e78553104f.webp": {
+    "original_hash": "8f901e721ed63b25087154a88980eb8c",
+    "translation_date": "2026-01-16T13:25:58+00:00",
+    "source_file": "7-TimeSeries/3-SVR/images/train-data-predict.png",
+    "language_code": "da"
+  },
+  "test-data-predict.8afc47ee7e52874f.webp": {
+    "original_hash": "d9de9b2f4cc312cf745b00a1c3344579",
+    "translation_date": "2026-01-16T13:26:02+00:00",
+    "source_file": "7-TimeSeries/3-SVR/images/test-data-predict.png",
+    "language_code": "da"
+  },
+  "full-data.a82ec9957e580e97.webp": {
+    "original_hash": "e428351ccdd1d7019ab5c486385a0cb1",
+    "translation_date": "2026-01-16T13:26:06+00:00",
+    "source_file": "7-TimeSeries/3-SVR/images/full-data.png",
+    "language_code": "da"
+  },
+  "train-test.ead0cecbfc341921.webp": {
+    "original_hash": "56b4e7e0f3e4bcabfc70dd34c86778ad",
+    "translation_date": "2026-01-16T13:26:10+00:00",
+    "source_file": "7-TimeSeries/3-SVR/images/train-test.png",
+    "language_code": "da"
+  },
+  "full-data-predict.4f0fed16a131c8f3.webp": {
+    "original_hash": "b9ad88a56a196b6b70ffbda06538bca4",
+    "translation_date": "2026-01-16T13:26:15+00:00",
+    "source_file": "7-TimeSeries/3-SVR/images/full-data-predict.png",
+    "language_code": "da"
+  },
+  "energy-plot.5fdac3f397a910bc.webp": {
+    "original_hash": "ea7eb60322ee54196efdcac12d2313d5",
+    "translation_date": "2026-01-16T13:26:20+00:00",
+    "source_file": "7-TimeSeries/1-Introduction/images/energy-plot.png",
+    "language_code": "da"
+  },
+  "scaled.91897dfbaa26ca4a.webp": {
+    "original_hash": "789c70fafe6f6dd6e377a90b66e7d740",
+    "translation_date": "2026-01-16T13:26:23+00:00",
+    "source_file": "7-TimeSeries/1-Introduction/images/scaled.png",
+    "language_code": "da"
+  },
+  "currency.e7429812bfc8c608.webp": {
+    "original_hash": "b5ebb401a6bea7c0ad8fa2d3f0fa1e18",
+    "translation_date": "2026-01-16T13:26:25+00:00",
+    "source_file": "7-TimeSeries/1-Introduction/images/currency.png",
+    "language_code": "da"
+  },
+  "july-2014.9e1f7c318ec6d5b3.webp": {
+    "original_hash": "7bee9739087aee3ce5b7157cb92cc043",
+    "translation_date": "2026-01-16T13:26:28+00:00",
+    "source_file": "7-TimeSeries/1-Introduction/images/july-2014.png",
+    "language_code": "da"
+  },
+  "scaled.e35258ca5cd3d43f.webp": {
+    "original_hash": "789c70fafe6f6dd6e377a90b66e7d740",
+    "translation_date": "2026-01-16T13:26:31+00:00",
+    "source_file": "7-TimeSeries/2-ARIMA/images/scaled.png",
+    "language_code": "da"
+  },
+  "accuracy.2c47fe1bf15f44b3.webp": {
+    "original_hash": "f8fcd7ea58a80666ad22914c3c992c55",
+    "translation_date": "2026-01-16T13:26:34+00:00",
+    "source_file": "7-TimeSeries/2-ARIMA/images/accuracy.png",
+    "language_code": "da"
+  },
+  "mape.fd87bbaf4d346846.webp": {
+    "original_hash": "cdc81fd2d2ffdbc2f8c10d75c954cb74",
+    "translation_date": "2026-01-16T13:26:36+00:00",
+    "source_file": "7-TimeSeries/2-ARIMA/images/mape.png",
+    "language_code": "da"
+  },
+  "original.b2b15efe0ce92b87.webp": {
+    "original_hash": "6dc5968069b296588e723b0f62f7cb39",
+    "translation_date": "2026-01-16T13:26:40+00:00",
+    "source_file": "7-TimeSeries/2-ARIMA/images/original.png",
+    "language_code": "da"
+  },
+  "train-test.8928d14e5b91fc94.webp": {
+    "original_hash": "86bac92c99563659e1acb31bb50bb4e4",
+    "translation_date": "2026-01-16T13:26:43+00:00",
+    "source_file": "7-TimeSeries/2-ARIMA/images/train-test.png",
+    "language_code": "da"
+  }
+}
