@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 در این بخش از دوره آموزشی، با یک موضوع کاربردی در یادگیری ماشین آشنا خواهید شد: چگونگی ذخیره مدل Scikit-learn به‌صورت یک فایل که بتوان از آن برای پیش‌بینی‌ها در یک اپلیکیشن وب استفاده کرد. پس از ذخیره مدل، یاد می‌گیرید که چگونه از آن در یک اپلیکیشن وب ساخته‌شده با Flask استفاده کنید. ابتدا مدلی را با استفاده از داده‌هایی که درباره مشاهده بشقاب‌پرنده‌ها هستند ایجاد می‌کنید! سپس، یک اپلیکیشن وب می‌سازید که به شما امکان می‌دهد با وارد کردن تعداد ثانیه‌ها به همراه مقادیر عرض و طول جغرافیایی، پیش‌بینی کنید که کدام کشور مشاهده بشقاب‌پرنده را گزارش داده است.
 
-![پارک بشقاب‌پرنده](../../../translated_images/fa/ufo.9e787f5161da9d4d.jpg)
+![پارک بشقاب‌پرنده](../../../translated_images/fa/ufo.9e787f5161da9d4d.webp)
 
 عکس از <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">مایکل هرن</a> در <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

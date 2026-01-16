@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Vi har en pågående Discord-serie "Learn with AI". Lær mer og bli med oss på [Learn with AI-serien](https://aka.ms/learnwithai/discord) fra 18. til 30. september 2025. Du får tips og triks for å bruke GitHub Copilot for Data Science.
 
-![Learn with AI-serien](../../translated_images/no/3.9b58fd8d6c373c20.png)
+![Learn with AI-serien](../../translated_images/no/3.9b58fd8d6c373c20.webp)
 
 # Maskinlæring for nybegynnere - En læreplan
 
@@ -80,7 +80,7 @@ Følg disse trinnene:
 
 Noen av leksjonene er tilgjengelige som kortform video. Du finner alle disse inne i leksjonene, eller på [ML for Beginners-spillelisten på Microsoft Developer YouTube-kanalen](https://aka.ms/ml-beginners-videos) ved å klikke bildet nedenfor.
 
-[![ML for nybegynnere-banner](../../translated_images/no/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML for nybegynnere-banner](../../translated_images/no/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

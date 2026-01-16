@@ -56,7 +56,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಉದಾಹರಣೆಗೆ, ಇಂಗ್ಲಿಷ್ ವಾಕ್ಯ `I have no money` ಅನ್ನು ಫ್ರೆಂಚ್‌ಗೆ ಶಬ್ದಾರ್ಥವಾಗಿ ಅನುವಾದಿಸಿದಾಗ, ಅದು `Je n'ai pas de monnaie` ಆಗಬಹುದು. "Monnaie" ಒಂದು ಕಪಟ ಫ್ರೆಂಚ್ 'false cognate', ಏಕೆಂದರೆ 'money' ಮತ್ತು 'monnaie' ಸಮಾನಾರ್ಥಕವಲ್ಲ. ಮಾನವನು ಮಾಡಬಹುದಾದ ಉತ್ತಮ ಅನುವಾದ `Je n'ai pas d'argent` ಆಗಿರುತ್ತದೆ, ಏಕೆಂದರೆ ಇದು ನೀವು ಹಣವಿಲ್ಲ ಎಂದು ಉತ್ತಮವಾಗಿ ಸೂಚಿಸುತ್ತದೆ (ಮತ್ತೆ 'monnaie' ಅರ್ಥ 'ಲೂಸ್ ಚೇಂಜ್').
 
-![monnaie](../../../../translated_images/kn/monnaie.606c5fa8369d5c3b.png)
+![monnaie](../../../../translated_images/kn/monnaie.606c5fa8369d5c3b.webp)
 
 > ಚಿತ್ರ [Jen Looper](https://twitter.com/jenlooper) ಅವರಿಂದ
 

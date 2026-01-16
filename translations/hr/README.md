@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Imamo tekuću Discord seriju Learn with AI, saznajte više i pridružite nam se na [Serija Learn with AI](https://aka.ms/learnwithai/discord) od 18. - 30. rujna 2025. Dobit ćete savjete i trikove za korištenje GitHub Copilot za Data Science.
 
-![Serija Learn with AI](../../translated_images/hr/3.9b58fd8d6c373c20.png)
+![Serija Learn with AI](../../translated_images/hr/3.9b58fd8d6c373c20.webp)
 
 # Strojno učenje za početnike - Kurikulum
 
@@ -80,7 +80,7 @@ Slijedite ove korake:
 
 Neke od lekcija dostupne su kao kratki videozapisi. Sve ih možete pronaći unutar samih lekcija, ili na [ML for Beginners playlisti na Microsoft Developer YouTube kanalu](https://aka.ms/ml-beginners-videos) klikom na sliku ispod.
 
-[![Baner ML za početnike](../../translated_images/hr/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![Baner ML za početnike](../../translated_images/hr/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

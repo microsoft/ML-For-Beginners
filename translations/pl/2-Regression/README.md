@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 W Ameryce Północnej dynie często są rzeźbione w straszne twarze na Halloween. Odkryjmy więcej na temat tych fascynujących warzyw!
 
-![jack-o-lanterns](../../../translated_images/pl/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/pl/jack-o-lanterns.181c661a9212457d.webp)
 > Zdjęcie autorstwa <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> na <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Czego się nauczysz

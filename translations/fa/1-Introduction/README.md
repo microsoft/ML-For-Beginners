@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 در این بخش از برنامه آموزشی، با مفاهیم پایه‌ای که زیربنای حوزه یادگیری ماشین هستند آشنا خواهید شد، یاد خواهید گرفت که یادگیری ماشین چیست، تاریخچه آن را بررسی خواهید کرد و با تکنیک‌هایی که محققان برای کار با آن استفاده می‌کنند آشنا خواهید شد. بیایید با هم این دنیای جدید یادگیری ماشین را کشف کنیم!
 
-![globe](../../../translated_images/fa/globe.59f26379ceb40428.jpg)
+![globe](../../../translated_images/fa/globe.59f26379ceb40428.webp)
 > عکس از <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> در <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### درس‌ها

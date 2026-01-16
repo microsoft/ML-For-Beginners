@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 در آسیا و هند، سنت‌های غذایی بسیار متنوع و فوق‌العاده خوشمزه هستند! بیایید داده‌هایی درباره غذاهای منطقه‌ای بررسی کنیم تا مواد تشکیل‌دهنده آن‌ها را بهتر درک کنیم.
 
-![فروشنده غذای تایلندی](../../../translated_images/fa/thai-food.c47a7a7f9f05c218.jpg)
+![فروشنده غذای تایلندی](../../../translated_images/fa/thai-food.c47a7a7f9f05c218.webp)
 > عکس از <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> در <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## آنچه خواهید آموخت

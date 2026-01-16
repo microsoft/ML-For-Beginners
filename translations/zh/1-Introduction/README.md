@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在本课程部分中，您将了解机器学习领域的基本概念、它的定义，并学习它的历史以及研究人员使用的相关技术。让我们一起探索这个机器学习的新世界吧！
 
-![globe](../../../translated_images/zh/globe.59f26379ceb40428.jpg)
+![globe](../../../translated_images/zh/globe.59f26379ceb40428.webp)
 > 图片由 <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> 提供，来自 <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### 课程

@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఉత్తర అమెరికాలో, హాలోవీన్ కోసం పంప్కిన్లను తరచుగా భయంకరమైన ముఖాలుగా కోసి తయారు చేస్తారు. ఈ ఆకర్షణీయమైన కూరగాయల గురించి మరింత తెలుసుకుందాం!
 
-![jack-o-lanterns](../../../translated_images/te/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/te/jack-o-lanterns.181c661a9212457d.webp)
 > ఫోటో <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">బెత్ ట్యూట్ష్మాన్</a> ద్వారా <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">అన్స్ప్లాష్</a> లో
   
 ## మీరు నేర్చుకునేది

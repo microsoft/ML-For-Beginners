@@ -17,7 +17,7 @@ Nesta seção do currículo, será introduzido um dos usos mais difundidos do ap
 
 Nestes módulos, aprenderemos os fundamentos do PLN construindo pequenos bots conversacionais para entender como o aprendizado de máquina ajuda a tornar essas conversas cada vez mais 'inteligentes'. Você viajará no tempo, conversando com Elizabeth Bennett e Mr. Darcy do clássico romance de Jane Austen, **Orgulho e Preconceito**, publicado em 1813. Depois, aprofundará seus conhecimentos aprendendo sobre análise de sentimentos através de avaliações de hotéis na Europa.
 
-![Livro Orgulho e Preconceito e chá](../../../translated_images/pt/p&p.279f1c49ecd88941.jpg)
+![Livro Orgulho e Preconceito e chá](../../../translated_images/pt/p&p.279f1c49ecd88941.webp)
 > Foto por <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> no <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Aulas

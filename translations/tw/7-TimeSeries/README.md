@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 我們的地區重點是全球的電力使用，這是一個有趣的數據集，可以用來學習如何根據過去的負載模式預測未來的電力使用。您可以看到這種預測在商業環境中是多麼有幫助。
 
-![電力網](../../../translated_images/tw/electric-grid.0c21d5214db09ffa.jpg)
+![電力網](../../../translated_images/tw/electric-grid.0c21d5214db09ffa.webp)
 
 照片由 [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) 拍攝，展示了拉賈斯坦邦道路上的電力塔，來自 [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Šiaurės Amerikoje moliūgai dažnai išpjaustomi į baisius veidus Helovino šventei. Sužinokime daugiau apie šias įdomias daržoves!
 
-![jack-o-lanterns](../../../translated_images/lt/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/lt/jack-o-lanterns.181c661a9212457d.webp)
 > Nuotrauka <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> iš <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Ką išmoksite

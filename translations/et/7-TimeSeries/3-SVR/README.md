@@ -71,7 +71,7 @@ Avage selle õppetüki [_/working_](https://github.com/microsoft/ML-For-Beginner
    plt.show()
    ```
 
-   ![täielikud andmed](../../../../translated_images/et/full-data.a82ec9957e580e97.png)
+   ![täielikud andmed](../../../../translated_images/et/full-data.a82ec9957e580e97.webp)
 
    Nüüd loome oma SVR-mudeli.
 
@@ -97,7 +97,7 @@ Nüüd on teie andmed laaditud, nii et saate need jagada treening- ja testandmek
    plt.show()
    ```
 
-   ![treening- ja testandmed](../../../../translated_images/et/train-test.ead0cecbfc341921.png)
+   ![treening- ja testandmed](../../../../translated_images/et/train-test.ead0cecbfc341921.webp)
 
 ### Andmete ettevalmistamine treenimiseks
 
@@ -273,7 +273,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![treeningandmete prognoos](../../../../translated_images/et/train-data-predict.3c4ef4e78553104f.png)
+![treeningandmete prognoos](../../../../translated_images/et/train-data-predict.3c4ef4e78553104f.webp)
 
 Prindige MAPE treeningandmete jaoks
 
@@ -296,7 +296,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testandmete prognoos](../../../../translated_images/et/test-data-predict.8afc47ee7e52874f.png)
+![testandmete prognoos](../../../../translated_images/et/test-data-predict.8afc47ee7e52874f.webp)
 
 Prindige MAPE testandmete jaoks
 
@@ -352,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![kogu andmekogumi prognoos](../../../../translated_images/et/full-data-predict.4f0fed16a131c8f3.png)
+![kogu andmekogumi prognoos](../../../../translated_images/et/full-data-predict.4f0fed16a131c8f3.webp)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

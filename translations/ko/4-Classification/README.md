@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 아시아와 인도에서는 음식 전통이 매우 다양하고 정말 맛있습니다! 지역 요리에 대한 데이터를 살펴보며 그 재료를 이해해 봅시다.
 
-![태국 음식 판매자](../../../translated_images/ko/thai-food.c47a7a7f9f05c218.jpg)
+![태국 음식 판매자](../../../translated_images/ko/thai-food.c47a7a7f9f05c218.webp)
 > 사진 제공: <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> on <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 학습 내용

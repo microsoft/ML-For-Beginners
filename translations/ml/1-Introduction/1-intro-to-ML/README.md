@@ -42,7 +42,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## ഹൈപ്പ് കർവ്
 
-![ml hype curve](../../../../translated_images/ml/hype.07183d711a17aafe.png)
+![ml hype curve](../../../../translated_images/ml/hype.07183d711a17aafe.webp)
 
 > 'machine learning' എന്ന പദത്തിന്റെ പുതിയ 'ഹൈപ്പ് കർവ്' Google ട്രെൻഡ്സ് കാണിക്കുന്നു
 
@@ -69,7 +69,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## AI, ML, ഡീപ് ലേണിങ്
 
-![AI, ML, deep learning, data science](../../../../translated_images/ml/ai-ml-ds.537ea441b124ebf6.png)
+![AI, ML, deep learning, data science](../../../../translated_images/ml/ai-ml-ds.537ea441b124ebf6.webp)
 
 > AI, ML, ഡീപ് ലേണിങ്, ഡാറ്റാ സയൻസ് എന്നിവയുടെ ബന്ധം കാണിക്കുന്ന ഒരു രേഖാചിത്രം. [Jen Looper](https://twitter.com/jenlooper) ഒരുക്കിയ ഇൻഫോഗ്രാഫിക്, [ഈ ഗ്രാഫിക്](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining) പ്രചോദനമായി.
 

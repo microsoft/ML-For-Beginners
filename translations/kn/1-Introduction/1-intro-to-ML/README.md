@@ -42,7 +42,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## ಹೈಪ್ ವಕ್ರ
 
-![ml hype curve](../../../../translated_images/kn/hype.07183d711a17aafe.png)
+![ml hype curve](../../../../translated_images/kn/hype.07183d711a17aafe.webp)
 
 > ಗೂಗಲ್ ಟ್ರೆಂಡ್ಸ್ 'ಯಂತ್ರ ಅಧ್ಯಯನ' ಪದದ ಇತ್ತೀಚಿನ 'ಹೈಪ್ ವಕ್ರ' ಅನ್ನು ತೋರಿಸುತ್ತದೆ
 
@@ -69,7 +69,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## AI, ML, ಡೀಪ್ ಲರ್ನಿಂಗ್
 
-![AI, ML, deep learning, data science](../../../../translated_images/kn/ai-ml-ds.537ea441b124ebf6.png)
+![AI, ML, deep learning, data science](../../../../translated_images/kn/ai-ml-ds.537ea441b124ebf6.webp)
 
 > AI, ML, ಡೀಪ್ ಲರ್ನಿಂಗ್ ಮತ್ತು ಡೇಟಾ ಸೈನ್ಸ್ ನಡುವಿನ ಸಂಬಂಧಗಳನ್ನು ತೋರಿಸುವ ಚಿತ್ರ. [ಜೆನ್ ಲೂಪರ್](https://twitter.com/jenlooper) ಅವರ ಇನ್ಫೋಗ್ರಾಫಿಕ್, [ಈ ಚಿತ್ರ](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining) ಪ್ರೇರಿತ
 

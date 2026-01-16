@@ -17,7 +17,7 @@ W tej części programu nauczania zostaniesz wprowadzony do jednego z najbardzie
 
 W tych lekcjach poznamy podstawy NLP, budując małe boty konwersacyjne, aby dowiedzieć się, jak uczenie maszynowe pomaga w tworzeniu coraz bardziej „inteligentnych” rozmów. Cofniesz się w czasie, rozmawiając z Elizabeth Bennett i panem Darcym z klasycznej powieści Jane Austen, **Duma i uprzedzenie**, opublikowanej w 1813 roku. Następnie pogłębisz swoją wiedzę, ucząc się analizy sentymentu na podstawie recenzji hoteli w Europie.
 
-![Książka Duma i uprzedzenie oraz herbata](../../../translated_images/pl/p&p.279f1c49ecd88941.jpg)
+![Książka Duma i uprzedzenie oraz herbata](../../../translated_images/pl/p&p.279f1c49ecd88941.webp)
 > Zdjęcie autorstwa <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> na <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Lekcje

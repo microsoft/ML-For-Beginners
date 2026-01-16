@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 در این درس‌ها، ما اصول اولیه NLP را با ساخت ربات‌های مکالمه‌ای کوچک یاد خواهیم گرفت تا ببینیم چگونه یادگیری ماشین به هوشمندتر شدن این مکالمات کمک می‌کند. شما به گذشته سفر خواهید کرد و با الیزابت بنت و آقای دارسی از رمان کلاسیک جین آستن، **غرور و تعصب**، که در سال ۱۸۱۳ منتشر شده است، گفتگو خواهید کرد. سپس دانش خود را با یادگیری تحلیل احساسات از طریق بررسی نظرات هتل‌های اروپا گسترش خواهید داد.
 
-![کتاب غرور و تعصب و چای](../../../translated_images/fa/p&p.279f1c49ecd88941.jpg)
+![کتاب غرور و تعصب و چای](../../../translated_images/fa/p&p.279f1c49ecd88941.webp)
 > عکس از <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> در <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## درس‌ها

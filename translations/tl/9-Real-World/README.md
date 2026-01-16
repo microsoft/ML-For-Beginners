@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Sa bahaging ito ng kurikulum, ipakikilala sa iyo ang ilang totoong aplikasyon ng klasikong ML. Nagsaliksik kami sa internet upang makahanap ng mga whitepaper at artikulo tungkol sa mga aplikasyon na gumamit ng mga estratehiyang ito, iniiwasan hangga't maaari ang neural networks, deep learning, at AI. Alamin kung paano ginagamit ang ML sa mga sistema ng negosyo, mga aplikasyon sa ekolohiya, pananalapi, sining at kultura, at marami pang iba.
 
-![chess](../../../translated_images/tl/chess.e704a268781bdad8.jpg)
+![chess](../../../translated_images/tl/chess.e704a268781bdad8.webp)
 
 > Larawan ni <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> sa <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

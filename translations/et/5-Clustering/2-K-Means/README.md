@@ -26,7 +26,7 @@ Mõisted, mida õpid:
 
 Klastreid saab visualiseerida kui [Voronoi diagramme](https://wikipedia.org/wiki/Voronoi_diagram), mis sisaldavad punkti (või 'seemet') ja selle vastavat piirkonda.
 
-![voronoi diagramm](../../../../translated_images/et/voronoi.1dc1613fb0439b95.png)
+![voronoi diagramm](../../../../translated_images/et/voronoi.1dc1613fb0439b95.webp)
 
 > infograafik autorilt [Jen Looper](https://twitter.com/jenlooper)
 
@@ -91,7 +91,7 @@ Alusta, vaadates uuesti laulude andmeid.
 
     Need andmed on veidi müra täis: iga veeru kastdiagrammi vaadates näed kõrvalekaldeid.
 
-    ![kõrvalekalded](../../../../translated_images/et/boxplots.8228c29dabd0f292.png)
+    ![kõrvalekalded](../../../../translated_images/et/boxplots.8228c29dabd0f292.webp)
 
 Sa võiksid andmestiku läbi käia ja need kõrvalekalded eemaldada, kuid see muudaks andmed üsna minimaalseks.
 
@@ -187,7 +187,7 @@ Varem arvasid, et kuna sihtisid 3 laulude žanrit, peaksid valima 3 klastrit. Ag
 
     Kasuta `wcss` muutujat, mille ehitasid eelmises etapis, et luua diagramm, mis näitab, kus on 'küünarnuki' painutus, mis näitab optimaalset klastrite arvu. Võib-olla on see tõesti **3**!
 
-    ![küünarnuki meetod](../../../../translated_images/et/elbow.72676169eed744ff.png)
+    ![küünarnuki meetod](../../../../translated_images/et/elbow.72676169eed744ff.webp)
 
 ## Harjutus - klastrite kuvamine
 
@@ -218,13 +218,13 @@ Varem arvasid, et kuna sihtisid 3 laulude žanrit, peaksid valima 3 klastrit. Ag
 
     Selle mudeli täpsus ei ole väga hea ja klastrite kuju annab vihje, miks.
 
-    ![klastrid](../../../../translated_images/et/clusters.b635354640d8e4fd.png)
+    ![klastrid](../../../../translated_images/et/clusters.b635354640d8e4fd.webp)
 
     Need andmed on liiga tasakaalust väljas, liiga vähe korrelatsioonis ja veergude väärtuste vahel on liiga palju variatsiooni, et hästi klasterdada. Tegelikult on klastrid, mis moodustuvad, tõenäoliselt tugevalt mõjutatud või kallutatud kolme žanrikategooria poolt, mille me ülal määratlesime. See oli õppeprotsess!
 
     Scikit-learn'i dokumentatsioonis näed, et mudel nagu see, kus klastrid ei ole väga hästi eraldatud, on 'variantsi' probleemiga:
 
-    ![probleemsed mudelid](../../../../translated_images/et/problems.f7fb539ccd80608e.png)
+    ![probleemsed mudelid](../../../../translated_images/et/problems.f7fb539ccd80608e.webp)
     > Infograafik Scikit-learn'ist
 
 ## Variants

@@ -19,13 +19,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 > **సమస్య**: పీటర్ నక్క నుండి తప్పించుకోవాలంటే, అతను వేగంగా కదలగలగాలి. పీటర్ ఎలా స్కేట్ చేయాలో, ముఖ్యంగా, సమతుల్యతను ఎలా ఉంచాలో Q-లెర్నింగ్ ఉపయోగించి నేర్చుకోవడం ఎలా అనేది మేము చూడబోతున్నాము.
 
-![The great escape!](../../../../translated_images/te/escape.18862db9930337e3.png)
+![The great escape!](../../../../translated_images/te/escape.18862db9930337e3.webp)
 
 > పీటర్ మరియు అతని స్నేహితులు నక్క నుండి తప్పించుకోవడానికి సృజనాత్మకత చూపుతున్నారు! చిత్రం [Jen Looper](https://twitter.com/jenlooper) ద్వారా
 
 మేము సమతుల్యతను సాధించడానికి సులభీకరించిన వెర్షన్ అయిన **కార్ట్‌పోల్** సమస్యను ఉపయోగిస్తాము. కార్ట్‌పోల్ ప్రపంచంలో, మాకు ఎడమ లేదా కుడి వైపు కదలగల ఒక ఆడంబరమైన స్లైడర్ ఉంటుంది, మరియు లక్ష్యం స్లైడర్ పై ఒక నిలువెత్తు కాండాన్ని సమతుల్యం చేయడం.
 
-<img alt="a cartpole" src="../../../../translated_images/te/cartpole.b5609cc0494a14f7.png" width="200"/>
+<img alt="a cartpole" src="../../../../translated_images/te/cartpole.b5609cc0494a14f7.webp" width="200"/>
 
 ## ముందస్తు అవగాహన
 
@@ -285,7 +285,7 @@ Q-లెర్నింగ్‌లో, ప్రతి స్థితిలో
 plt.plot(rewards)
 ```
 
-![raw  progress](../../../../translated_images/te/train_progress_raw.2adfdf2daea09c59.png)
+![raw  progress](../../../../translated_images/te/train_progress_raw.2adfdf2daea09c59.webp)
 
 ఈ గ్రాఫ్ నుండి ఏమీ చెప్పలేము, ఎందుకంటే యాదృచ్ఛిక శిక్షణ ప్రక్రియ స్వభావం వల్ల శిక్షణ సెషన్ల పొడవు చాలా మారుతుంది. ఈ గ్రాఫ్‌కు అర్థం చేసుకోవడానికి, మేము అనేక ప్రయోగాలపై, ఉదా: 100, **రన్నింగ్ సగటు** లెక్కించవచ్చు. ఇది `np.convolve` ఉపయోగించి సులభంగా చేయవచ్చు: (కోడ్ బ్లాక్ 12)
 
@@ -296,7 +296,7 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![training progress](../../../../translated_images/te/train_progress_runav.c71694a8fa9ab359.png)
+![training progress](../../../../translated_images/te/train_progress_runav.c71694a8fa9ab359.webp)
 
 ## హైపర్‌పారామీటర్ల మార్పులు
 

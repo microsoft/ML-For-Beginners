@@ -71,7 +71,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![full data](../../../../translated_images/ml/full-data.a82ec9957e580e97.png)
+   ![full data](../../../../translated_images/ml/full-data.a82ec9957e580e97.webp)
 
    ഇപ്പോൾ, നമുക്ക് SVR മോഡൽ നിർമ്മിക്കാം.
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![training and testing data](../../../../translated_images/ml/train-test.ead0cecbfc341921.png)
+   ![training and testing data](../../../../translated_images/ml/train-test.ead0cecbfc341921.webp)
 
 
 
@@ -275,7 +275,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![training data prediction](../../../../translated_images/ml/train-data-predict.3c4ef4e78553104f.png)
+![training data prediction](../../../../translated_images/ml/train-data-predict.3c4ef4e78553104f.webp)
 
 ട്രെയിനിംഗ് ഡാറ്റയ്ക്ക് MAPE പ്രിന്റ് ചെയ്യുക
 
@@ -298,7 +298,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testing data prediction](../../../../translated_images/ml/test-data-predict.8afc47ee7e52874f.png)
+![testing data prediction](../../../../translated_images/ml/test-data-predict.8afc47ee7e52874f.webp)
 
 ടെസ്റ്റിംഗ് ഡാറ്റയ്ക്ക് MAPE പ്രിന്റ് ചെയ്യുക
 
@@ -354,7 +354,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![full data prediction](../../../../translated_images/ml/full-data-predict.4f0fed16a131c8f3.png)
+![full data prediction](../../../../translated_images/ml/full-data-predict.4f0fed16a131c8f3.webp)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

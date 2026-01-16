@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਅਸੀਂ Discord 'ਤੇ ਇੱਕ "Learn with AI" ਸੀਰੀਜ਼ ਚਲਾ ਰਹੇ ਹਾਂ, ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਤੇ ਸਾਡੇ ਨਾਲ 18 - 30 ਸਤੰਬਰ, 2025 ਦੌਰਾਨ [Learn with AI Series](https://aka.ms/learnwithai/discord) 'ਤੇ ਜੁੜੋ। ਤੁਹਾਨੂੰ GitHub Copilot ਨੂੰ Data Science ਲਈ ਵਰਤਣੇ ਦੀਆਂ ਟਿੱਪਸ ਅਤੇ ਚਾਲਾਂ ਮਿਲਣਗੀਆਂ।
 
-![Learn with AI ਸੈਰੀਜ਼](../../translated_images/pa/3.9b58fd8d6c373c20.png)
+![Learn with AI ਸੈਰੀਜ਼](../../translated_images/pa/3.9b58fd8d6c373c20.webp)
 
 # ਸ਼ੁਰੂਆਤੀਆਂ ਲਈ ਮਸ਼ੀਨ ਲਰਨਿੰਗ - ਇੱਕ ਪਾਠਕ੍ਰਮ
 
@@ -80,7 +80,7 @@ Microsoft ਦੇ Cloud Advocates ਖੁਸ਼ ਹਨ ਕਿ ਉਹ 12-ਹਫ਼�
 
 ਕੁਝ ਪਾਠ ਛੋਟੇ ਫਾਰਮ ਦੀ ਵੀਡੀਓ ਵਜੋਂ ਉਪਲਬਧ ਹਨ। ਤੁਸੀਂ ਇਹ ਸਾਰੇ ਪਾਠਾਂ ਵਿੱਚ ਲਾਈਨ-ਅੰਦਰ ਪਾ ਸਕਦੇ ਹੋ, ਜਾਂ Microsoft Developer YouTube ਚੈਨਲ 'ਤੇ [ML for Beginners playlist](https://aka.ms/ml-beginners-videos) 'ਤੇ ਹੇਠ ਲਿਖੀ ਚਿੱਤਰ 'ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਵੇਖ ਸਕਦੇ ਹੋ।
 
-[![ML for beginners ਬੈਨਰ](../../translated_images/pa/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners ਬੈਨਰ](../../translated_images/pa/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

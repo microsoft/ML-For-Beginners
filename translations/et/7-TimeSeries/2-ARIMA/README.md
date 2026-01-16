@@ -114,7 +114,7 @@ Nüüd, kui andmed on laaditud, saate need jagada treening- ja testandmekogumite
     plt.show()
     ```
 
-    ![treening- ja testandmed](../../../../translated_images/et/train-test.8928d14e5b91fc94.png)
+    ![treening- ja testandmed](../../../../translated_images/et/train-test.8928d14e5b91fc94.webp)
 
     Seetõttu peaks suhteliselt väikese ajavahemiku kasutamine treeningandmete jaoks olema piisav.
 
@@ -157,11 +157,11 @@ Nüüd peate andmed treenimiseks ette valmistama, filtreerides ja skaleerides om
     plt.show()
     ```
 
-    ![algne](../../../../translated_images/et/original.b2b15efe0ce92b87.png)
+    ![algne](../../../../translated_images/et/original.b2b15efe0ce92b87.webp)
 
     > Algne andmestik
 
-    ![skaleeritud](../../../../translated_images/et/scaled.e35258ca5cd3d43f.png)
+    ![skaleeritud](../../../../translated_images/et/scaled.e35258ca5cd3d43f.webp)
 
     > Skaleeritud andmestik
 
@@ -321,7 +321,7 @@ Kontrollige oma mudeli täpsust, testides selle keskmist absoluutset protsentvig
 
 > **🧮 Näidake mulle matemaatikat**
 >
-> ![MAPE](../../../../translated_images/et/mape.fd87bbaf4d346846.png)
+> ![MAPE](../../../../translated_images/et/mape.fd87bbaf4d346846.webp)
 >
 > [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) kasutatakse ennustustäpsuse näitamiseks suhtarvuna, mis on määratletud ülaltoodud valemi järgi. Erinevus tegeliku<sub>t</sub> ja prognoositud<sub>t</sub> vahel jagatakse tegeliku<sub>t</sub> väärtusega. "Selle arvutuse absoluutväärtus summeeritakse iga prognoositud ajahetke kohta ja jagatakse sobitatud punktide arvuga n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 
@@ -381,7 +381,7 @@ Kontrollige oma mudeli täpsust, testides selle keskmist absoluutset protsentvig
     plt.show()
     ```
 
-    ![aegrea mudel](../../../../translated_images/et/accuracy.2c47fe1bf15f44b3.png)
+    ![aegrea mudel](../../../../translated_images/et/accuracy.2c47fe1bf15f44b3.webp)
 
 🏆 Väga kena graafik, mis näitab mudelit hea täpsusega. Tubli töö!
 

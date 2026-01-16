@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Имамо покренуту Discord серију „Учите уз AI“, сазнајте више и придружите нам се на [Learn with AI Series](https://aka.ms/learnwithai/discord) од 18. до 30. септембра 2025. Добићете савете и трикове за коришћење GitHub Copilot-а за науку о подацима.
 
-![Серија 'Учите уз AI'](../../translated_images/sr/3.9b58fd8d6c373c20.png)
+![Серија 'Учите уз AI'](../../translated_images/sr/3.9b58fd8d6c373c20.webp)
 
 # Машинско учење за почетнике - Наставни програм
 
@@ -80,7 +80,7 @@ Cloud Advocates у компанији Microsoft са задовољством н
 
 Неке од лекција доступне су у кратком видео формату. Све их можете наћи у оквиру лекција или на [плејлисту ML for Beginners на Microsoft Developer YouTube каналу](https://aka.ms/ml-beginners-videos) кликом на слику испод.
 
-[![Банер ML for beginners](../../translated_images/sr/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![Банер ML for beginners](../../translated_images/sr/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Mayroon kaming serye sa Discord na "Learn with AI" na nagpapatuloy—alamin pa at sumali sa amin sa [Learn with AI Series](https://aka.ms/learnwithai/discord) mula 18 - 30 Setyembre, 2025. Makakakuha ka ng mga tip at trick sa paggamit ng GitHub Copilot para sa Data Science.
 
-![Serye ng Learn with AI](../../translated_images/tl/3.9b58fd8d6c373c20.png)
+![Serye ng Learn with AI](../../translated_images/tl/3.9b58fd8d6c373c20.webp)
 
 # Machine Learning para sa mga Nagsisimula - Isang Kurikulum
 
@@ -80,7 +80,7 @@ Sundin ang mga hakbang na ito:
 
 Ang ilan sa mga leksyon ay available bilang maikling anyo ng video. Makikita mo ang lahat ng ito sa loob mismo ng mga leksyon, o sa [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) sa pamamagitan ng pag-click sa larawan sa ibaba.
 
-[![ML for beginners banner](../../translated_images/tl/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](../../translated_images/tl/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

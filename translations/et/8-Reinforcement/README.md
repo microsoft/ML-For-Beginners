@@ -13,7 +13,7 @@ Tugevdusõpe, RL, on üks põhilisi masinõppe paradigmasid, kõrvuti juhendatud
 
 Kujutlege, et teil on simuleeritud keskkond, näiteks aktsiaturg. Mis juhtub, kui kehtestate teatud regulatsiooni? Kas sellel on positiivne või negatiivne mõju? Kui juhtub midagi negatiivset, peate võtma selle _negatiivse tugevduse_, sellest õppima ja suunda muutma. Kui tulemus on positiivne, peate sellele _positiivsele tugevdusele_ tuginedes edasi liikuma.
 
-![Peeter ja hunt](../../../translated_images/et/peter.779730f9ba3a8a8d.png)
+![Peeter ja hunt](../../../translated_images/et/peter.779730f9ba3a8a8d.webp)
 
 > Peeter ja tema sõbrad peavad põgenema näljase hundi eest! Pildi autor [Jen Looper](https://twitter.com/jenlooper)
 

@@ -23,14 +23,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 బహుశా చాలా NLP అల్గోరిథమ్స్ మొదట చేయవలసిన పని టెక్స్ట్‌ను టోకెన్స్ లేదా పదాలుగా విభజించడం. ఇది సులభంగా అనిపించినప్పటికీ, విరామ చిహ్నాలు మరియు వివిధ భాషల పదాలు, వాక్య విభజనలను పరిగణలోకి తీసుకోవడం కష్టంగా ఉంటుంది. మీరు విభజనలను నిర్ణయించడానికి వివిధ పద్ధతులు ఉపయోగించవలసి ఉంటుంది.
 
-![tokenization](../../../../translated_images/te/tokenization.1641a160c66cd2d9.png)
+![tokenization](../../../../translated_images/te/tokenization.1641a160c66cd2d9.webp)
 > **Pride and Prejudice** నుండి ఒక వాక్యాన్ని టోకనైజ్ చేయడం. ఇన్ఫోగ్రాఫిక్ [Jen Looper](https://twitter.com/jenlooper) ద్వారా
 
 ### ఎంబెడ్డింగ్స్
 
 [పద ఎంబెడ్డింగ్స్](https://wikipedia.org/wiki/Word_embedding) అనేవి మీ టెక్స్ట్ డేటాను సంఖ్యలుగా మార్చే ఒక విధానం. ఎంబెడ్డింగ్స్ అలా చేయబడతాయి, అర్థం సమానమైన లేదా కలిసి ఉపయోగించే పదాలు సమీపంగా క్లస్టర్ అవుతాయి.
 
-![word embeddings](../../../../translated_images/te/embedding.2cf8953c4b3101d1.png)
+![word embeddings](../../../../translated_images/te/embedding.2cf8953c4b3101d1.webp)
 > "నేను మీ నర్వ్స్‌కు అత్యంత గౌరవం కలిగి ఉన్నాను, అవి నా పాత స్నేహితులు." - **Pride and Prejudice** లో ఒక వాక్యానికి పద ఎంబెడ్డింగ్స్. ఇన్ఫోగ్రాఫిక్ [Jen Looper](https://twitter.com/jenlooper) ద్వారా
 
 ✅ పద ఎంబెడ్డింగ్స్‌తో ప్రయోగించడానికి [ఈ ఆసక్తికరమైన టూల్](https://projector.tensorflow.org/) ను ప్రయత్నించండి. ఒక పదాన్ని క్లిక్ చేస్తే సమానమైన పదాల క్లస్టర్లు చూపబడతాయి: 'toy' క్లస్టర్‌లో 'disney', 'lego', 'playstation', మరియు 'console' ఉన్నాయి.
@@ -39,7 +39,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ప్రతి టోకనైజ్ చేసిన పదాన్ని భాగంగా ట్యాగ్ చేయవచ్చు - నామవాచకం, క్రియ, లేదా విశేషణం. వాక్యం `the quick red fox jumped over the lazy brown dog` లో fox = నామవాచకం, jumped = క్రియ అని POS ట్యాగ్ చేయవచ్చు.
 
-![parsing](../../../../translated_images/te/parse.d0c5bbe1106eae8f.png)
+![parsing](../../../../translated_images/te/parse.d0c5bbe1106eae8f.webp)
 
 > **Pride and Prejudice** నుండి ఒక వాక్యాన్ని పార్స్ చేయడం. ఇన్ఫోగ్రాఫిక్ [Jen Looper](https://twitter.com/jenlooper) ద్వారా
 

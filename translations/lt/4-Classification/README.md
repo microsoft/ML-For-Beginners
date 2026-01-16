@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Azijoje ir Indijoje maisto tradicijos yra itin įvairios ir labai gardžios! Pažvelkime į duomenis apie regioninius patiekalus, kad geriau suprastume jų ingredientus.
 
-![Tailando maisto pardavėjas](../../../translated_images/lt/thai-food.c47a7a7f9f05c218.jpg)
+![Tailando maisto pardavėjas](../../../translated_images/lt/thai-food.c47a7a7f9f05c218.webp)
 > Nuotrauka <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> iš <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Ką išmoksite

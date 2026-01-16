@@ -13,7 +13,7 @@ Il reinforcement learning, RL, è considerato uno dei paradigmi fondamentali del
 
 Immagina di avere un ambiente simulato, come il mercato azionario. Cosa succede se imponi una determinata regolamentazione? Ha un effetto positivo o negativo? Se accade qualcosa di negativo, devi prendere questo _rinforzo negativo_, imparare da esso e cambiare rotta. Se invece l'esito è positivo, devi costruire su quel _rinforzo positivo_.
 
-![peter and the wolf](../../../translated_images/it/peter.779730f9ba3a8a8d.png)
+![peter and the wolf](../../../translated_images/it/peter.779730f9ba3a8a8d.webp)
 
 > Peter e i suoi amici devono scappare dal lupo affamato! Immagine di [Jen Looper](https://twitter.com/jenlooper)
 

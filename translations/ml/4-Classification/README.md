@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ഏഷ്യയിലും ഇന്ത്യയിലും ഭക്ഷണപരമ്പരകൾ വളരെ വൈവിധ്യമാർന്നതും, വളരെ രുചികരവുമാണ്! അവയുടെ ഘടകങ്ങൾ മനസ്സിലാക്കാൻ പ്രാദേശിക ഭക്ഷണങ്ങളെക്കുറിച്ചുള്ള ഡാറ്റ നോക്കാം.
 
-![Thai food seller](../../../translated_images/ml/thai-food.c47a7a7f9f05c218.jpg)
+![Thai food seller](../../../translated_images/ml/thai-food.c47a7a7f9f05c218.webp)
 > ഫോട്ടോ <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ലിഷെങ് ചാങ്</a> <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">അൺസ്പ്ലാഷിൽ</a>
   
 ## നിങ്ങൾ പഠിക്കാനിരിക്കുന്നതെന്ത്

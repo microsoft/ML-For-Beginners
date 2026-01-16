@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Scikit-learn ಬಳಸಿ ರೆಗ್ರೆಶನ್ ಮಾದರಿಯನ್ನು ನಿರ್ಮಿಸಿ: ರೆಗ್ರೆಶನ್ ನಾಲ್ಕು ರೀತಿಗಳು
 
-![ರೇಖೀಯ ಮತ್ತು ಬಹುಪದ ರೆಗ್ರೆಶನ್ ಇನ್ಫೋಗ್ರಾಫಿಕ್](../../../../translated_images/kn/linear-polynomial.5523c7cb6576ccab.png)
+![ರೇಖೀಯ ಮತ್ತು ಬಹುಪದ ರೆಗ್ರೆಶನ್ ಇನ್ಫೋಗ್ರಾಫಿಕ್](../../../../translated_images/kn/linear-polynomial.5523c7cb6576ccab.webp)
 > ಇನ್ಫೋಗ್ರಾಫಿಕ್ [ದಾಸನಿ ಮಡಿಪಳ್ಳಿ](https://twitter.com/dasani_decoded) ಅವರಿಂದ
 ## [ಪೂರ್ವ-ಪಾಠ ಕ್ವಿಜ್](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -66,13 +66,13 @@ CO_OP_TRANSLATOR_METADATA:
 >
 > `X` ಅನ್ನು 'ವಿವರಣೆ ಚರ' ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ. `Y` ಅನ್ನು 'ಆಧಾರಿತ ಚರ' ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ. ರೇಖೆಯ ಸ್ಲೋಪ್ `b` ಆಗಿದ್ದು, `a` ಯು y-ಅಂತರವನ್ನು ಸೂಚಿಸುತ್ತದೆ, ಇದು `X = 0` ಆಗಿರುವಾಗ `Y` ಯ ಮೌಲ್ಯ.
 >
->![ಸ್ಲೋಪ್ ಲೆಕ್ಕಹಾಕಿ](../../../../translated_images/kn/slope.f3c9d5910ddbfcf9.png)
+>![ಸ್ಲೋಪ್ ಲೆಕ್ಕಹಾಕಿ](../../../../translated_images/kn/slope.f3c9d5910ddbfcf9.webp)
 >
 > ಮೊದಲು, ಸ್ಲೋಪ್ `b` ಅನ್ನು ಲೆಕ್ಕಹಾಕಿ. ಇನ್ಫೋಗ್ರಾಫಿಕ್ [ಜೆನ್ ಲೂಪರ್](https://twitter.com/jenlooper) ಅವರಿಂದ
 >
 > ಬೇರೆ ಪದಗಳಲ್ಲಿ, ಮತ್ತು ನಮ್ಮ ಪಂಪ್ಕಿನ್ ಡೇಟಾದ ಮೂಲ ಪ್ರಶ್ನೆಗೆ ಸಂಬಂಧಿಸಿದಂತೆ: "ತಿಂಗಳ ಪ್ರಕಾರ ಪ್ರತಿ ಬಷೆಲ್ ಪಂಪ್ಕಿನ್ ಬೆಲೆಯನ್ನು ಭವಿಷ್ಯವಾಣಿ ಮಾಡಿ", `X` ಬೆಲೆಗೆ ಸೂಚಿಸುತ್ತದೆ ಮತ್ತು `Y` ಮಾರಾಟದ ತಿಂಗಳಿಗೆ ಸೂಚಿಸುತ್ತದೆ.
 >
->![ಸಮೀಕರಣ ಪೂರ್ಣಗೊಳಿಸಿ](../../../../translated_images/kn/calculation.a209813050a1ddb1.png)
+>![ಸಮೀಕರಣ ಪೂರ್ಣಗೊಳಿಸಿ](../../../../translated_images/kn/calculation.a209813050a1ddb1.webp)
 >
 > Y ಮೌಲ್ಯವನ್ನು ಲೆಕ್ಕಹಾಕಿ. ನೀವು ಸುಮಾರು $4 ಪಾವತಿಸುತ್ತಿದ್ದರೆ, ಅದು ಏಪ್ರಿಲ್ ಆಗಿರಬೇಕು! ಇನ್ಫೋಗ್ರಾಫಿಕ್ [ಜೆನ್ ಲೂಪರ್](https://twitter.com/jenlooper) ಅವರಿಂದ
 >
@@ -114,11 +114,11 @@ day_of_year = pd.to_datetime(pumpkins['Date']).apply(lambda dt: (dt-datetime(dt.
 
 ಹಿಂದಿನ ಪಾಠದಿಂದ ನೀವು ನೋಡಿರಬಹುದು ವಿಭಿನ್ನ ತಿಂಗಳುಗಳಿಗೆ ಸರಾಸರಿ ಬೆಲೆ ಹೀಗಿದೆ:
 
-<img alt="ತಿಂಗಳ ಪ್ರಕಾರ ಸರಾಸರಿ ಬೆಲೆ" src="../../../../translated_images/kn/barchart.a833ea9194346d76.png" width="50%"/>
+<img alt="ತಿಂಗಳ ಪ್ರಕಾರ ಸರಾಸರಿ ಬೆಲೆ" src="../../../../translated_images/kn/barchart.a833ea9194346d76.webp" width="50%"/>
 
 ಇದು ಕೆಲವು ಸಹಸಂಬಂಧ ಇರಬೇಕೆಂದು ಸೂಚಿಸುತ್ತದೆ, ಮತ್ತು ನಾವು `ತಿಂಗಳು` ಮತ್ತು `ಬೆಲೆ` ಅಥವಾ `DayOfYear` ಮತ್ತು `ಬೆಲೆ` ನಡುವಿನ ಸಂಬಂಧವನ್ನು ಭವಿಷ್ಯವಾಣಿ ಮಾಡಲು ರೇಖೀಯ ರೆಗ್ರೆಶನ್ ಮಾದರಿಯನ್ನು ತರಬೇತುಗೊಳಿಸಲು ಪ್ರಯತ್ನಿಸಬಹುದು. ಕೆಳಗಿನ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್ ನಂತರದ ಸಂಬಂಧವನ್ನು ತೋರಿಸುತ್ತದೆ:
 
-<img alt="ಬೆಲೆ ಮತ್ತು ವರ್ಷದ ದಿನದ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್" src="../../../../translated_images/kn/scatter-dayofyear.bc171c189c9fd553.png" width="50%" /> 
+<img alt="ಬೆಲೆ ಮತ್ತು ವರ್ಷದ ದಿನದ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್" src="../../../../translated_images/kn/scatter-dayofyear.bc171c189c9fd553.webp" width="50%" /> 
 
 `corr` ಫಂಕ್ಷನ್ ಬಳಸಿ ಸಹಸಂಬಂಧವನ್ನು ನೋಡೋಣ:
 
@@ -137,7 +137,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
     ax = df.plot.scatter('DayOfYear','Price',ax=ax,c=colors[i],label=var)
 ```
 
-<img alt="ಬೆಲೆ ಮತ್ತು ವರ್ಷದ ದಿನದ ಬಣ್ಣದ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್" src="../../../../translated_images/kn/scatter-dayofyear-color.65790faefbb9d54f.png" width="50%" /> 
+<img alt="ಬೆಲೆ ಮತ್ತು ವರ್ಷದ ದಿನದ ಬಣ್ಣದ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್" src="../../../../translated_images/kn/scatter-dayofyear-color.65790faefbb9d54f.webp" width="50%" /> 
 
 ನಮ್ಮ ತನಿಖೆ ಸೂಚಿಸುತ್ತದೆ, ಪ್ರಭೇದವು ಮಾರಾಟದ ದಿನಾಂಕಕ್ಕಿಂತ ಒಟ್ಟು ಬೆಲೆಯ ಮೇಲೆ ಹೆಚ್ಚು ಪ್ರಭಾವ ಬೀರುತ್ತದೆ. ನಾವು ಇದನ್ನು ಬಾರ್ ಗ್ರಾಫ್ ಮೂಲಕ ನೋಡಬಹುದು:
 
@@ -145,7 +145,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="ಬೆಲೆ ಮತ್ತು ಪ್ರಭೇದದ ಬಾರ್ ಗ್ರಾಫ್" src="../../../../translated_images/kn/price-by-variety.744a2f9925d9bcb4.png" width="50%" /> 
+<img alt="ಬೆಲೆ ಮತ್ತು ಪ್ರಭೇದದ ಬಾರ್ ಗ್ರಾಫ್" src="../../../../translated_images/kn/price-by-variety.744a2f9925d9bcb4.webp" width="50%" /> 
 
 ಈಗ ನಾವು ಒಂದು ಪಂಪ್ಕಿನ್ ಪ್ರಭೇದ, 'ಪೈ ಟೈಪ್' ಮೇಲೆ ಮಾತ್ರ ಗಮನಹರಿಸೋಣ ಮತ್ತು ದಿನಾಂಕವು ಬೆಲೆಗೆ ಏನು ಪ್ರಭಾವ ಬೀರುತ್ತದೆ ನೋಡೋಣ:
 
@@ -153,7 +153,7 @@ new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
 pie_pumpkins.plot.scatter('DayOfYear','Price') 
 ```
-<img alt="ಬೆಲೆ ಮತ್ತು ವರ್ಷದ ದಿನದ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್" src="../../../../translated_images/kn/pie-pumpkins-scatter.d14f9804a53f927e.png" width="50%" /> 
+<img alt="ಬೆಲೆ ಮತ್ತು ವರ್ಷದ ದಿನದ ಸ್ಕ್ಯಾಟರ್ ಪ್ಲಾಟ್" src="../../../../translated_images/kn/pie-pumpkins-scatter.d14f9804a53f927e.webp" width="50%" /> 
 
 ಈಗ ನಾವು `corr` ಫಂಕ್ಷನ್ ಬಳಸಿ `ಬೆಲೆ` ಮತ್ತು `DayOfYear` ನಡುವಿನ ಸಹಸಂಬಂಧವನ್ನು ಲೆಕ್ಕಹಾಕಿದರೆ, ಅದು `-0.27` ಆಗಿರುತ್ತದೆ - ಇದು ಭವಿಷ್ಯವಾಣಿ ಮಾದರಿಯನ್ನು ತರಬೇತುಗೊಳಿಸುವುದು ಅರ್ಥಪೂರ್ಣ ಎಂದು ಸೂಚಿಸುತ್ತದೆ.
 
@@ -228,7 +228,7 @@ plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
 ```
 
-<img alt="Linear regression" src="../../../../translated_images/kn/linear-results.f7c3552c85b0ed1c.png" width="50%" />
+<img alt="Linear regression" src="../../../../translated_images/kn/linear-results.f7c3552c85b0ed1c.webp" width="50%" />
 
 ## ಬಹುಪದ ರಿಗ್ರೆಷನ್
 
@@ -257,7 +257,7 @@ pipeline.fit(X_train,y_train)
 
 ಪೈಪ್‌ಲೈನ್‌ಗಳನ್ನು ಮೂಲ `LinearRegression` ವಸ್ತುವಿನಂತೆ ಬಳಸಬಹುದು, ಅಂದರೆ ನಾವು ಪೈಪ್‌ಲೈನ್ ಅನ್ನು `fit` ಮಾಡಬಹುದು, ನಂತರ `predict` ಬಳಸಿ ಭವಿಷ್ಯವಾಣಿ ಫಲಿತಾಂಶಗಳನ್ನು ಪಡೆಯಬಹುದು. ಇಲ್ಲಿ ಪರೀಕ್ಷಾ ಡೇಟಾ ಮತ್ತು ಅಂದಾಜು ವಕ್ರವನ್ನು ತೋರಿಸುವ ಗ್ರಾಫ್ ಇದೆ:
 
-<img alt="Polynomial regression" src="../../../../translated_images/kn/poly-results.ee587348f0f1f60b.png" width="50%" />
+<img alt="Polynomial regression" src="../../../../translated_images/kn/poly-results.ee587348f0f1f60b.webp" width="50%" />
 
 ಬಹುಪದ ರಿಗ್ರೆಷನ್ ಬಳಸಿ, ನಾವು ಸ್ವಲ್ಪ ಕಡಿಮೆ MSE ಮತ್ತು ಹೆಚ್ಚು ನಿರ್ಧಾರ ಸಹಗುಣಕವನ್ನು ಪಡೆಯಬಹುದು, ಆದರೆ ಬಹಳಷ್ಟು ಅಲ್ಲ. ನಾವು ಇತರ ಲಕ್ಷಣಗಳನ್ನು ಪರಿಗಣಿಸಬೇಕಾಗಿದೆ!
 
@@ -275,7 +275,7 @@ pipeline.fit(X_train,y_train)
 
 ಇಲ್ಲಿ ನೀವು ಪ್ರಭೇದದ ಮೇಲೆ ಸರಾಸರಿ ಬೆಲೆ ಹೇಗೆ ಅವಲಂಬಿತವಾಗಿದೆ ಎಂದು ನೋಡಬಹುದು:
 
-<img alt="Average price by variety" src="../../../../translated_images/kn/price-by-variety.744a2f9925d9bcb4.png" width="50%" />
+<img alt="Average price by variety" src="../../../../translated_images/kn/price-by-variety.744a2f9925d9bcb4.webp" width="50%" />
 
 ಪ್ರಭೇದವನ್ನು ಪರಿಗಣಿಸಲು, ಮೊದಲು ಅದನ್ನು ಅಂಕಿ ರೂಪಕ್ಕೆ ಪರಿವರ್ತಿಸಬೇಕಾಗುತ್ತದೆ, ಅಥವಾ **ಎನ್‌ಕೋಡ್** ಮಾಡಬೇಕಾಗುತ್ತದೆ. ಇದನ್ನು ಮಾಡಲು ಹಲವಾರು ವಿಧಾನಗಳಿವೆ:
 

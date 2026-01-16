@@ -27,7 +27,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 We have a Discord learn with AI series ongoing, learn more and join us at [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You will get tips and tricks of using GitHub Copilot for Data Science.
 
-![AI తో నేర్చుకునే సిరీస్](../../translated_images/te/3.9b58fd8d6c373c20.png)
+![AI తో నేర్చుకునే సిరీస్](../../translated_images/te/3.9b58fd8d6c373c20.webp)
 
 # ప్రారంభికుల కోసం మెషిన్ లెర్నింగ్ - ఒక పాఠ్యక్రమం
 
@@ -76,7 +76,7 @@ Microsoft లోని క్లౌడ్ అడ్వొకేట్స్ ఒ�
 
 కొన్ని పాఠాలు షార్ట్ ఫార్మ్ వీడియోలుగా అందుబాటులో ఉన్నాయి. మీరు ఇవన్ని పాఠాలలో inlineగా కనుగొనవచ్చు, లేదా దిగువ చిత్రం పై క్లిక్ చేయడం ద్వారా [Microsoft Developer YouTube చానల్上的 ML for Beginners ప్లేలిస్ట్](https://aka.ms/ml-beginners-videos) లో పొందవచ్చు.
 
-[![ప్రారంభుల కోసం ML బ్యానర్](../../translated_images/te/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ప్రారంభుల కోసం ML బ్యానర్](../../translated_images/te/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

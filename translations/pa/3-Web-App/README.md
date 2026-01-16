@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਇਸ ਪਾਠਕ੍ਰਮ ਦੇ ਇਸ ਹਿੱਸੇ ਵਿੱਚ, ਤੁਹਾਨੂੰ ਇੱਕ ਲਾਗੂ ਕੀਤੀ ਗਈ ਮਸ਼ੀਨ ਲਰਨਿੰਗ ਵਿਸ਼ੇ ਨਾਲ ਜਾਣੂ ਕਰਵਾਇਆ ਜਾਵੇਗਾ: ਆਪਣੇ Scikit-learn ਮਾਡਲ ਨੂੰ ਇੱਕ ਫਾਈਲ ਵਜੋਂ ਕਿਵੇਂ ਸੇਵ ਕਰਨਾ ਹੈ ਜੋ ਵੈੱਬ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਅਨੁਮਾਨ ਲਗਾਉਣ ਲਈ ਵਰਤੀ ਜਾ ਸਕਦੀ ਹੈ। ਜਦੋਂ ਮਾਡਲ ਸੇਵ ਹੋ ਜਾਂਦਾ ਹੈ, ਤੁਸੀਂ ਸਿੱਖੋਗੇ ਕਿ ਇਸਨੂੰ Flask ਵਿੱਚ ਬਣਾਈ ਗਈ ਵੈੱਬ ਐਪ ਵਿੱਚ ਕਿਵੇਂ ਵਰਤਣਾ ਹੈ। ਸਭ ਤੋਂ ਪਹਿਲਾਂ, ਤੁਸੀਂ ਇੱਕ ਮਾਡਲ ਬਣਾਓਗੇ ਜੋ UFO ਦੇ ਨਜ਼ਾਰਿਆਂ ਬਾਰੇ ਕੁਝ ਡਾਟਾ ਵਰਤਦਾ ਹੈ! ਫਿਰ, ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਐਪ ਬਣਾਓਗੇ ਜੋ ਤੁਹਾਨੂੰ ਸਕਿੰਟਾਂ ਦੀ ਗਿਣਤੀ, ਲੈਟੀਟਿਊਡ ਅਤੇ ਲੌਂਗਿਟਿਊਡ ਦੀ ਮੁੱਲ ਦਾਖਲ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਵੇਗਾ ਤਾਂ ਜੋ ਇਹ ਅਨੁਮਾਨ ਲਗਾਇਆ ਜਾ ਸਕੇ ਕਿ ਕਿਸ ਦੇਸ਼ ਨੇ UFO ਦੇਖਣ ਦੀ ਰਿਪੋਰਟ ਕੀਤੀ।
 
-![UFO Parking](../../../translated_images/pa/ufo.9e787f5161da9d4d.jpg)
+![UFO Parking](../../../translated_images/pa/ufo.9e787f5161da9d4d.webp)
 
 ਫੋਟੋ <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਮਾਈਕਲ ਹੇਰਨ</a> ਦੁਆਰਾ <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਅਨਸਪਲੈਸ਼</a> 'ਤੇ
 

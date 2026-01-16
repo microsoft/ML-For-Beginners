@@ -23,14 +23,14 @@ Teksti analüüsimiseks on erinevaid viise. On mitmeid ülesandeid, mida saab t�
 
 Esimene asi, mida enamik NLP algoritme teeb, on teksti jagamine tokeniteks ehk sõnadeks. Kuigi see kõlab lihtsana, võib kirjavahemärkide ja erinevate keelte sõna- ja lausepiiride arvestamine olla keeruline. Võib olla vaja kasutada erinevaid meetodeid, et määrata piire.
 
-![tokeniseerimine](../../../../translated_images/et/tokenization.1641a160c66cd2d9.png)
+![tokeniseerimine](../../../../translated_images/et/tokenization.1641a160c66cd2d9.webp)
 > Lause tokeniseerimine **Uhkus ja eelarvamus** raamatust. Infograafika: [Jen Looper](https://twitter.com/jenlooper)
 
 ### Embeddings
 
 [Sõna embeddings](https://wikipedia.org/wiki/Word_embedding) on viis, kuidas tekstandmeid numbriliselt esitada. Embeddings tehakse nii, et sarnase tähendusega või koos kasutatavad sõnad grupeeritakse.
 
-![sõna embeddings](../../../../translated_images/et/embedding.2cf8953c4b3101d1.png)
+![sõna embeddings](../../../../translated_images/et/embedding.2cf8953c4b3101d1.webp)
 > "Mul on teie närvide vastu suurim austus, nad on minu vanad sõbrad." - Sõna embeddings lausele **Uhkus ja eelarvamus** raamatust. Infograafika: [Jen Looper](https://twitter.com/jenlooper)
 
 ✅ Proovi [seda huvitavat tööriista](https://projector.tensorflow.org/), et katsetada sõna embeddings. Klõpsates ühel sõnal, näed sarnaste sõnade klastreid: 'mänguasi' grupeerub 'disney', 'lego', 'playstation' ja 'konsooliga'.
@@ -39,7 +39,7 @@ Esimene asi, mida enamik NLP algoritme teeb, on teksti jagamine tokeniteks ehk s
 
 Iga tokeniseeritud sõna saab määrata sõnaliigi järgi - nimisõna, tegusõna või omadussõna. Näiteks lause `kiire punane rebane hüppas üle laisa pruuni koera` võib olla POS märgistatud järgmiselt: rebane = nimisõna, hüppas = tegusõna.
 
-![parssimine](../../../../translated_images/et/parse.d0c5bbe1106eae8f.png)
+![parssimine](../../../../translated_images/et/parse.d0c5bbe1106eae8f.webp)
 
 > Lause parssimine **Uhkus ja eelarvamus** raamatust. Infograafika: [Jen Looper](https://twitter.com/jenlooper)
 

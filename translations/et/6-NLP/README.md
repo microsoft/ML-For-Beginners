@@ -17,7 +17,7 @@ Selles õppekava osas tutvustatakse teile üht masinõppe kõige laialdasemalt k
 
 Nendes tundides õpime NLP põhialuseid, luues väikeseid vestlusroboteid, et mõista, kuidas masinõpe aitab neid vestlusi üha "nutikamaks" muuta. Rändate ajas tagasi, vesteldes Elizabeth Bennetti ja Mr. Darcyga Jane Austeni klassikalisest romaanist **Uhkus ja eelarvamus**, mis avaldati 1813. aastal. Seejärel süvendate oma teadmisi, õppides sentimentanalüüsi Euroopa hotellide arvustuste kaudu.
 
-![Uhkus ja eelarvamus raamat ja tee](../../../translated_images/et/p&p.279f1c49ecd88941.jpg)
+![Uhkus ja eelarvamus raamat ja tee](../../../translated_images/et/p&p.279f1c49ecd88941.webp)
 > Foto autor <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> lehel <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Tunnid

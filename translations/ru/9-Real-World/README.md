@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 В этом разделе учебной программы вы познакомитесь с реальными примерами использования классического машинного обучения. Мы тщательно изучили интернет, чтобы найти статьи и научные работы, описывающие применение этих стратегий, стараясь избегать нейронных сетей, глубокого обучения и искусственного интеллекта. Узнайте, как машинное обучение используется в бизнес-системах, экологических проектах, финансах, искусстве и культуре, и не только.
 
-![chess](../../../translated_images/ru/chess.e704a268781bdad8.jpg)
+![chess](../../../translated_images/ru/chess.e704a268781bdad8.webp)
 
 > Фото сделано <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Алексисом Фове</a> на <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

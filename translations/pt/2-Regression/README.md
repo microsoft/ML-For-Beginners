@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Na América do Norte, as abóboras são frequentemente esculpidas em rostos assustadores para o Halloween. Vamos descobrir mais sobre estes vegetais fascinantes!
 
-![jack-o-lanterns](../../../translated_images/pt/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/pt/jack-o-lanterns.181c661a9212457d.webp)
 > Foto por <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> no <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## O que irá aprender

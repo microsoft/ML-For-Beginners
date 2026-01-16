@@ -32,7 +32,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Folyamatban van a Discordon a "Learn with AI" sorozatunk, további információkért és csatlakozáshoz látogass el a [Learn with AI Series](https://aka.ms/learnwithai/discord) oldalra 2025. szeptember 18. és 30. között. Tippeket és trükköket kapsz a GitHub Copilot adattudományban való használatához.
 
-![Tanulj az MI-vel sorozat](../../translated_images/hu/3.9b58fd8d6c373c20.png)
+![Tanulj az MI-vel sorozat](../../translated_images/hu/3.9b58fd8d6c373c20.webp)
 
 # Gépi tanulás kezdőknek - Tanterv
 
@@ -81,7 +81,7 @@ Kövesd az alábbi lépéseket:
 
 Néhány lecke rövid videó formában is elérhető. Ezeket megtalálhatod beágyazva a leckékben, vagy a [ML for Beginners lejátszási listán a Microsoft Developer YouTube csatornán](https://aka.ms/ml-beginners-videos) az alábbi képre kattintva.
 
-[![ML kezdőknek banner](../../translated_images/hu/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML kezdőknek banner](../../translated_images/hu/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

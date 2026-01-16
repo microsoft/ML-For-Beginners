@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ما یک مجموعه فعال در دیسکورد با عنوان «یادگیری با هوش مصنوعی» داریم؛ برای کسب اطلاعات بیشتر و پیوستن به ما از 18 تا 30 سپتامبر 2025 به [سری یادگیری با هوش مصنوعی](https://aka.ms/learnwithai/discord) مراجعه کنید. در این رویداد نکات و ترفندهایی برای استفاده از GitHub Copilot در علم داده دریافت خواهید کرد.
 
-![سری یادگیری با هوش مصنوعی](../../translated_images/fa/3.9b58fd8d6c373c20.png)
+![سری یادگیری با هوش مصنوعی](../../translated_images/fa/3.9b58fd8d6c373c20.webp)
 
 # یادگیری ماشین برای مبتدیان - برنامه درسی
 
@@ -80,7 +80,7 @@ Cloud Advocates در مایکروسافت مفتخر است یک برنامه د
 
 بعضی از دروس به‌صورت ویدئوی کوتاه در دسترس هستند. می‌توانید همهٔ این ویدئوها را در داخل دروس پیدا کنید، یا در [فهرست پخش ML for Beginners در کانال Microsoft Developer در یوتیوب](https://aka.ms/ml-beginners-videos) با کلیک روی تصویر زیر ببینید.
 
-[![بنر ML برای مبتدیان](../../translated_images/fa/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![بنر ML برای مبتدیان](../../translated_images/fa/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

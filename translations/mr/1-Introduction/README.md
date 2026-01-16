@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 या अभ्यासक्रमाच्या विभागात, तुम्हाला मशीन लर्निंग क्षेत्राशी संबंधित मूलभूत संकल्पना, त्याचा अर्थ, त्याचा इतिहास आणि संशोधक त्यावर काम करण्यासाठी वापरत असलेल्या तंत्रज्ञानाची ओळख करून दिली जाईल. चला, आपण एकत्रितपणे या नवीन ML च्या जगाचा शोध घेऊया!
 
-![globe](../../../translated_images/mr/globe.59f26379ceb40428.jpg)
+![globe](../../../translated_images/mr/globe.59f26379ceb40428.webp)
 > फोटो <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">बिल ऑक्सफर्ड</a> यांनी <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> वर घेतला आहे
   
 ### धडे

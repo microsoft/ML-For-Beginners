@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 نائجیریا کے متنوع سامعین کے موسیقی کے ذوق بھی متنوع ہیں۔ اس سلسلے میں، Spotify سے حاصل کردہ ڈیٹا کا استعمال کرتے ہوئے (جیسا کہ [اس مضمون](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421) سے متاثر ہو کر)، آئیے نائجیریا میں مقبول موسیقی پر نظر ڈالیں۔ اس ڈیٹا سیٹ میں مختلف گانوں کے 'ڈانس ایبلٹی' اسکور، 'اکوسٹکنیس'، آواز کی بلندی، 'اسپیچنیس'، مقبولیت اور توانائی کے بارے میں معلومات شامل ہیں۔ اس ڈیٹا میں پیٹرنز دریافت کرنا دلچسپ ہوگا!
 
-![ایک ٹرن ٹیبل](../../../translated_images/ur/turntable.f2b86b13c53302dc.jpg)
+![ایک ٹرن ٹیبل](../../../translated_images/ur/turntable.f2b86b13c53302dc.webp)
 
 > تصویر از <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">مارسیلا لاسکوسکی</a>، <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> پر
   

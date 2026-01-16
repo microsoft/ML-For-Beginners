@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 このカリキュラムのセクションでは、応用的な機械学習のトピックについて学びます。具体的には、Scikit-learnモデルをファイルとして保存し、それをウェブアプリケーション内で予測に使用する方法です。モデルを保存した後、Flaskで構築されたウェブアプリでそのモデルを使用する方法を学びます。まず、UFO目撃情報に関するデータを使用してモデルを作成します。その後、緯度と経度の値と秒数を入力することで、どの国がUFOを目撃したかを予測するウェブアプリを構築します。
 
-![UFO Parking](../../../translated_images/ja/ufo.9e787f5161da9d4d.jpg)
+![UFO Parking](../../../translated_images/ja/ufo.9e787f5161da9d4d.webp)
 
 写真提供：<a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> on <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

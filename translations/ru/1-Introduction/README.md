@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 В этом разделе учебной программы вы познакомитесь с основными концепциями, лежащими в основе машинного обучения, узнаете, что это такое, а также изучите его историю и методы, которые используют исследователи для работы в этой области. Давайте вместе исследуем этот новый мир машинного обучения!
 
-![глобус](../../../translated_images/ru/globe.59f26379ceb40428.jpg)  
+![глобус](../../../translated_images/ru/globe.59f26379ceb40428.webp)  
 > Фото сделано <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Биллом Оксфордом</a> на <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 ### Уроки

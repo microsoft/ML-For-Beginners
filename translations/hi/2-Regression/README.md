@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 उत्तरी अमेरिका में, कद्दू अक्सर हैलोवीन के लिए डरावने चेहरों में तराशे जाते हैं। आइए इन दिलचस्प सब्जियों के बारे में और जानें!
 
-![jack-o-lanterns](../../../translated_images/hi/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/hi/jack-o-lanterns.181c661a9212457d.webp)
 > फोटो <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">बेथ ट्यूट्सचमैन</a> द्वारा <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्लैश</a> पर
 
 ## आप क्या सीखेंगे

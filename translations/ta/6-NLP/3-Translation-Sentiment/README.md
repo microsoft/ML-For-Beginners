@@ -56,7 +56,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 உதாரணமாக, `I have no money` என்ற ஆங்கில சொற்றொடர் பிரெஞ்சுக்கு சொற்தொகுப்பாக மொழிபெயர்க்கப்படும் போது, அது `Je n'ai pas de monnaie` ஆக மாறலாம். "Monnaie" என்பது ஒரு சிக்கலான பிரெஞ்சு 'தவறான ஒத்தசொல்', ஏனெனில் 'money' மற்றும் 'monnaie' ஒரே அர்த்தம் கொண்டவை அல்ல. ஒரு மனிதன் செய்யக்கூடிய சிறந்த மொழிபெயர்ப்பு `Je n'ai pas d'argent` ஆக இருக்கும், ஏனெனில் இது உங்களிடம் பணம் இல்லை என்பதைச் சரியாக வெளிப்படுத்துகிறது (அல்லது 'சில்லறை' என்பதை அல்ல, இது 'monnaie' என்பதன் அர்த்தம்).
 
-![monnaie](../../../../translated_images/ta/monnaie.606c5fa8369d5c3b.png)
+![monnaie](../../../../translated_images/ta/monnaie.606c5fa8369d5c3b.webp)
 
 > படம்: [Jen Looper](https://twitter.com/jenlooper)
 

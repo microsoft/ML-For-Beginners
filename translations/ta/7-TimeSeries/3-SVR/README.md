@@ -71,7 +71,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![முழு தரவு](../../../../translated_images/ta/full-data.a82ec9957e580e97.png)
+   ![முழு தரவு](../../../../translated_images/ta/full-data.a82ec9957e580e97.webp)
 
    இப்போது, உங்கள் SVR மாதிரியை உருவாக்குவோம்.
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![பயிற்சி மற்றும் சோதனை தரவுகள்](../../../../translated_images/ta/train-test.ead0cecbfc341921.png)
+   ![பயிற்சி மற்றும் சோதனை தரவுகள்](../../../../translated_images/ta/train-test.ead0cecbfc341921.webp)
 
 ### பயிற்சிக்கான தரவுகளை தயாரிக்கவும்
 
@@ -273,7 +273,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![பயிற்சி தரவுகளின் முன்னறிவிப்பு](../../../../translated_images/ta/train-data-predict.3c4ef4e78553104f.png)
+![பயிற்சி தரவுகளின் முன்னறிவிப்பு](../../../../translated_images/ta/train-data-predict.3c4ef4e78553104f.webp)
 
 பயிற்சி தரவுகளுக்கான MAPE அச்சிடவும்
 
@@ -296,7 +296,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![சோதனை தரவுகளின் முன்னறிவிப்பு](../../../../translated_images/ta/test-data-predict.8afc47ee7e52874f.png)
+![சோதனை தரவுகளின் முன்னறிவிப்பு](../../../../translated_images/ta/test-data-predict.8afc47ee7e52874f.webp)
 
 சோதனை தரவுகளுக்கான MAPE அச்சிடவும்
 
@@ -352,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![முழு தரவுகளின் முன்னறிவிப்பு](../../../../translated_images/ta/full-data-predict.4f0fed16a131c8f3.png)
+![முழு தரவுகளின் முன்னறிவிப்பு](../../../../translated_images/ta/full-data-predict.4f0fed16a131c8f3.webp)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

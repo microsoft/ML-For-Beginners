@@ -56,7 +56,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఉదాహరణకు, ఇంగ్లీష్ పదబంధం `I have no money` ను ఫ్రెంచ్‌కు నేరుగా అనువదిస్తే, అది `Je n'ai pas de monnaie` అవుతుంది. "Monnaie" అనేది ఒక క్లిష్టమైన ఫ్రెంచ్ 'తప్పు సారూప్యం' (false cognate), ఎందుకంటే 'money' మరియు 'monnaie' సమానార్థకాలు కావు. మానవుడు చేసే మంచి అనువాదం `Je n'ai pas d'argent` అవుతుంది, ఎందుకంటే ఇది మీరు డబ్బు లేనట్టుగా అర్థం చెప్పడంలో మెరుగ్గా ఉంటుంది (మరియు 'monnaie' అర్థం 'చిన్న నాణేలు').
 
-![monnaie](../../../../translated_images/te/monnaie.606c5fa8369d5c3b.png)
+![monnaie](../../../../translated_images/te/monnaie.606c5fa8369d5c3b.webp)
 
 > చిత్రం [Jen Looper](https://twitter.com/jenlooper) ద్వారా
 

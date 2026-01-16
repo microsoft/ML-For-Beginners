@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 На этих уроках мы изучим основы NLP, создавая небольших разговорных ботов, чтобы понять, как машинное обучение помогает делать эти разговоры все более "умными". Вы отправитесь в прошлое, общаясь с Элизабет Беннет и мистером Дарси из классического романа Джейн Остин **"Гордость и предубеждение"**, опубликованного в 1813 году. Затем вы углубите свои знания, изучая анализ настроений через отзывы о гостиницах в Европе.
 
-![Книга "Гордость и предубеждение" и чай](../../../translated_images/ru/p&p.279f1c49ecd88941.jpg)
+![Книга "Гордость и предубеждение" и чай](../../../translated_images/ru/p&p.279f1c49ecd88941.webp)
 > Фото <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Элейн Хоулин</a> на <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Уроки

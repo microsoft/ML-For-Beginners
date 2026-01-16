@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 In Nord America, le zucche vengono spesso intagliate in facce spaventose per Halloween. Scopriamo di più su questi affascinanti ortaggi!
 
-![jack-o-lanterns](../../../translated_images/it/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/it/jack-o-lanterns.181c661a9212457d.webp)
 > Foto di <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> su <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Cosa imparerai

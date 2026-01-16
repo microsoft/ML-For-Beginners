@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 저희는 Discord에서 Learn with AI 시리즈를 진행하고 있습니다. 자세한 내용과 참여는 [Learn with AI Series](https://aka.ms/learnwithai/discord)에서 확인하세요. 2025년 9월 18일 - 30일 동안 진행됩니다. GitHub Copilot을 데이터 과학에 활용하는 팁과 요령을 얻을 수 있습니다.
 
-![Learn with AI series](../../translated_images/ko/3.9b58fd8d6c373c20.png)
+![Learn with AI series](../../translated_images/ko/3.9b58fd8d6c373c20.webp)
 
 # 초보자를 위한 머신러닝 - 커리큘럼
 
@@ -80,7 +80,7 @@ Microsoft의 Cloud Advocates는 총 12주, 26개의 수업으로 구성된 **머
 
 일부 수업은 단편 비디오로 제공됩니다. 수업 내부에서 직접 보거나 [ML for Beginners 재생목록 (Microsoft Developer YouTube 채널)](https://aka.ms/ml-beginners-videos)에서 아래 이미지를 클릭하여 모두 확인할 수 있습니다.
 
-[![ML for beginners 배너](../../translated_images/ko/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners 배너](../../translated_images/ko/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

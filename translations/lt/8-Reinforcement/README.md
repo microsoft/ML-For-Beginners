@@ -13,7 +13,7 @@ Stiprinamasis mokymasis (RL) laikomas vienu iš pagrindinių mašininio mokymosi
 
 Įsivaizduokite, kad turite simuliuotą aplinką, pavyzdžiui, akcijų rinką. Kas nutiks, jei įvesite tam tikrą reguliavimą? Ar tai turės teigiamą ar neigiamą poveikį? Jei nutiks kažkas neigiamo, turite priimti šį _neigiamą stiprinimą_, pasimokyti iš jo ir pakeisti kryptį. Jei rezultatas yra teigiamas, turite remtis tuo _teigiamu stiprinimu_.
 
-![peter ir vilkas](../../../translated_images/lt/peter.779730f9ba3a8a8d.png)
+![peter ir vilkas](../../../translated_images/lt/peter.779730f9ba3a8a8d.webp)
 
 > Petras ir jo draugai turi pabėgti nuo alkano vilko! Vaizdas sukurtas [Jen Looper](https://twitter.com/jenlooper)
 

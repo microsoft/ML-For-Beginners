@@ -56,7 +56,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ഉദാഹരണത്തിന്, `I have no money` എന്ന ഇംഗ്ലീഷ് വാചകം ഫ്രഞ്ചിലേക്ക് ശബ്ദാർത്ഥമായി വിവർത്തനം ചെയ്താൽ, അത് `Je n'ai pas de monnaie` ആകാം. "Monnaie" ഒരു പ്രയാസമുള്ള ഫ്രഞ്ച് 'false cognate' ആണ്, 'money' ഉം 'monnaie' ഉം സമാനാർത്ഥകങ്ങൾ അല്ല. മനുഷ്യൻ നൽകുന്ന നല്ല വിവർത്തനം `Je n'ai pas d'argent` ആകും, കാരണം ഇത് നിങ്ങൾക്ക് പണം ഇല്ല എന്ന അർത്ഥം കൂടുതൽ വ്യക്തമാക്കുന്നു ('monnaie' യുടെ അർത്ഥം 'loose change' ആണ്).
 
-![monnaie](../../../../translated_images/ml/monnaie.606c5fa8369d5c3b.png)
+![monnaie](../../../../translated_images/ml/monnaie.606c5fa8369d5c3b.webp)
 
 > ചിത്രം [Jen Looper](https://twitter.com/jenlooper) യുടെതാണ്
 

@@ -33,7 +33,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Meil on käimas Discordi sarja "Õpi tehisintellektiga"; saa rohkem teada ja liitu meiega aadressil [Õpi tehisintellektiga sari](https://aka.ms/learnwithai/discord) ajavahemikul 18 - 30 September, 2025. Saad näpunäiteid ja trikke GitHub Copiloti kasutamiseks andmeteaduses.
 
-![Õpi tehisintellektiga](../../translated_images/et/3.9b58fd8d6c373c20.png)
+![Õpi tehisintellektiga](../../translated_images/et/3.9b58fd8d6c373c20.webp)
 
 # Masinõpe algajatele - Õppekava
 
@@ -81,7 +81,7 @@ Järgnevaid samme:
 
 Mõned õppetunnid on saadaval lühivormis videote kujul. Leiate need integreeritult õppetundidest või [ML for Beginners esitusloendist Microsoft Developer YouTube kanalil](https://aka.ms/ml-beginners-videos) pildi klõpsamisel allpool.
 
-[![ML algajatele bänner](../../translated_images/et/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML algajatele bänner](../../translated_images/et/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

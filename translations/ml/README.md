@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 നമുക്കു Discord-ൽ "Learn with AI" സീരീസ് നീണ്ടുനടക്കുകയാണ്; കൂടുതല്‍ അറിയാന്‍ , 18 - 30 സെപ്റ്റംബർ, 2025 തീയതികൾക്കായി ഞങ്ങളോടൊപ്പം ചേരൂ: [Learn with AI Series](https://aka.ms/learnwithai/discord). GitHub Copilot ഉപയോഗിച്ച് Data Science ചെയ്യാനുള്ള ടിപ്സ്-ട്രിക്ക്‌സ് നിങ്ങൾക്ക് ലഭിക്കും.
 
-![Learn with AI series](../../translated_images/ml/3.9b58fd8d6c373c20.png)
+![Learn with AI series](../../translated_images/ml/3.9b58fd8d6c373c20.webp)
 
 # Machine Learning for Beginners - A Curriculum
 
@@ -80,7 +80,7 @@ Microsoft-ലെ Cloud Advocates-ുകൾ സന്തോഷത്തോടെ 
 
 ചില പാഠങ്ങൾ ചെറിയ ഫോർമാറ്റിലുള്ള വീഡിയോ ആയി ലഭ്യമാണ്. ഈ മുഴുവൻ വിഡിയോകൾ പാഠങ്ങളിൽ തന്നെ ഇൻ-ലൈൻ ആയി കാണാനോ, അല്ലെങ്കിൽ [ML for Beginners പ്ലേലിസ്റ്റ് - Microsoft Developer YouTube ചാനൽ](https://aka.ms/ml-beginners-videos) ൽ ചിത്രം ക്ലിക്കുചെയ്ത് കാണാവുന്നതാണ്.
 
-[![ML for beginners ബാനർ](../../translated_images/ml/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners ബാനർ](../../translated_images/ml/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

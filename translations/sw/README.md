@@ -33,7 +33,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Tunayo mfululizo wa kujifunza kupitia Discord kuhusu AI unaoendelea; jifunze zaidi na ujiunge nasi kwenye [Mfululizo wa Kujifunza na AI](https://aka.ms/learnwithai/discord) kuanzia 18 - 30 Septemba, 2025. Utapata vidokezo na mbinu za kutumia GitHub Copilot kwa Data Science.
 
-![Mfululizo wa Kujifunza na AI](../../translated_images/sw/3.9b58fd8d6c373c20.png)
+![Mfululizo wa Kujifunza na AI](../../translated_images/sw/3.9b58fd8d6c373c20.webp)
 
 # Kujifunza kwa Mashine kwa Waanzilishi - Mtaala
 
@@ -81,7 +81,7 @@ Fuata hatua hizi:
 
 Baadhi ya masomo yanapatikana kama video fupi. Unaweza kupata hizi zote zinazoonyeshwa ndani ya masomo, au kwenye [orodha ya nyimbo ya ML for Beginners kwenye kituo cha Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) kwa kubonyeza picha hapa chini.
 
-[![Bango la ML kwa Waanzilishi](../../translated_images/sw/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![Bango la ML kwa Waanzilishi](../../translated_images/sw/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

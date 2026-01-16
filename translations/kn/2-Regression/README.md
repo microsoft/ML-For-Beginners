@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಉತ್ತರ ಅಮೆರಿಕದಲ್ಲಿ, ಹ್ಯಾಲೋವೀನ್‌ಗಾಗಿ ಕಂಬಳಿಗಳನ್ನು ಭಯಾನಕ ಮುಖಗಳಾಗಿ ಕತ್ತರಿಸಲಾಗುತ್ತದೆ. ಈ ಆಕರ್ಷಕ ತರಕಾರಿಗಳ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ತಿಳಿದುಕೊಳ್ಳೋಣ!
 
-![jack-o-lanterns](../../../translated_images/kn/jack-o-lanterns.181c661a9212457d.jpg)
+![jack-o-lanterns](../../../translated_images/kn/jack-o-lanterns.181c661a9212457d.webp)
 > ಫೋಟೋ <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಬೆತ್ ಟ್ಯೂಟ್ಸ್‌ಮನ್</a> ಅವರಿಂದ <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಅನ್ಸ್ಪ್ಲ್ಯಾಶ್</a> ನಲ್ಲಿ
   
 ## ನೀವು ಏನು ಕಲಿಯುತ್ತೀರಿ

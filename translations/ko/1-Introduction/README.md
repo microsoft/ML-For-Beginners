@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 이 커리큘럼 섹션에서는 머신 러닝 분야의 기본 개념, 그것이 무엇인지, 그리고 연구자들이 이를 다루기 위해 사용하는 기술에 대해 배우게 됩니다. 함께 이 새로운 ML 세계를 탐험해 봅시다!
 
-![globe](../../../translated_images/ko/globe.59f26379ceb40428.jpg)
+![globe](../../../translated_images/ko/globe.59f26379ceb40428.webp)
 > 사진 제공: <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> on <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### 강의 목록
