@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Sa Asya at India, ang mga tradisyon sa pagkain ay napaka-diverse at napakasarap! Tingnan natin ang datos tungkol sa mga lutuing rehiyonal upang maunawaan ang kanilang mga sangkap.
 
-![Nagbebenta ng pagkaing Thai](../../../translated_images/thai-food.c47a7a7f9f05c218.tl.jpg)
+![Nagbebenta ng pagkaing Thai](../../../translated_images/tl/thai-food.c47a7a7f9f05c218.jpg)
 > Larawan ni <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> sa <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Ano ang iyong matututuhan

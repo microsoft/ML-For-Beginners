@@ -71,7 +71,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![full data](../../../../translated_images/full-data.a82ec9957e580e97.te.png)
+   ![full data](../../../../translated_images/te/full-data.a82ec9957e580e97.png)
 
    ఇప్పుడు, మన SVR మోడల్‌ను నిర్మిద్దాం.
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![training and testing data](../../../../translated_images/train-test.ead0cecbfc341921.te.png)
+   ![training and testing data](../../../../translated_images/te/train-test.ead0cecbfc341921.png)
 
 
 
@@ -275,7 +275,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![training data prediction](../../../../translated_images/train-data-predict.3c4ef4e78553104f.te.png)
+![training data prediction](../../../../translated_images/te/train-data-predict.3c4ef4e78553104f.png)
 
 శిక్షణ డేటా కోసం MAPE ముద్రించండి
 
@@ -298,7 +298,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testing data prediction](../../../../translated_images/test-data-predict.8afc47ee7e52874f.te.png)
+![testing data prediction](../../../../translated_images/te/test-data-predict.8afc47ee7e52874f.png)
 
 పరీక్ష డేటా కోసం MAPE ముద్రించండి
 
@@ -354,7 +354,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![full data prediction](../../../../translated_images/full-data-predict.4f0fed16a131c8f3.te.png)
+![full data prediction](../../../../translated_images/te/full-data-predict.4f0fed16a131c8f3.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

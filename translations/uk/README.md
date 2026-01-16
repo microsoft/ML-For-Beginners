@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 У нас триває серія заходів у Discord під назвою "Навчайся зі ШІ", дізнайтеся більше та приєднуйтесь до нас на [Серія «Навчання зі ШІ»](https://aka.ms/learnwithai/discord) з 18 по 30 вересня 2025 року. Ви отримаєте поради та прийоми використання GitHub Copilot для Data Science.
 
-![Серія «Навчання зі ШІ»](../../translated_images/3.9b58fd8d6c373c20.uk.png)
+![Серія «Навчання зі ШІ»](../../translated_images/uk/3.9b58fd8d6c373c20.png)
 
 # Машинне навчання для початківців - навчальна програма
 
@@ -80,7 +80,7 @@ Cloud Advocates у Microsoft раді запропонувати 12-тижнев
 
 Деякі уроки доступні у вигляді коротких відео. Ви можете знайти їх вбудованими в уроки або в [плейлисті ML for Beginners на каналі Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos), натиснувши на зображення нижче.
 
-[![Банер «ML для початківців»](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.uk.png)](https://aka.ms/ml-beginners-videos)
+[![Банер «ML для початківців»](../../translated_images/uk/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

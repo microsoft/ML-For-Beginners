@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఈ పాఠ్యాంశంలో, మీరు మెషీన్ లెర్నింగ్ రంగానికి ఆధారమైన మూల భావనలను, అది ఏమిటి, మరియు పరిశోధకులు దీని తో పని చేయడానికి ఉపయోగించే చరిత్ర మరియు సాంకేతికతలను తెలుసుకుంటారు. ఈ కొత్త ML ప్రపంచాన్ని కలిసి అన్వేషిద్దాం!
 
-![globe](../../../translated_images/globe.59f26379ceb40428.te.jpg)
+![globe](../../../translated_images/te/globe.59f26379ceb40428.jpg)
 > ఫోటో <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">బిల్ ఆక్స్ఫర్డ్</a> ద్వారా <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">అన్స్ప్లాష్</a>
   
 ### పాఠాలు

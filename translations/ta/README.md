@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 நாங்கள் ஒரு Discord "Learn with AI" தொடர் நடத்தி வருகிறோம், மேலும் விவரங்களுக்காக மற்றும் 18 - 30 செப்டம்பர், 2025 அன்று நடைபெறும் நிகழ்ச்சியில் கலந்து கொள்ள [Learn with AI Series](https://aka.ms/learnwithai/discord) என்ற இணைப்பில் சேரவும். Data Science க்கான GitHub Copilot பயன்படுத்துவதற்கான குறிப்புகள் மற்றும் முறைகள் கிடைக்கும்.
 
-![AI உடன் கற்றல் தொடர்](../../translated_images/3.9b58fd8d6c373c20.ta.png)
+![AI உடன் கற்றல் தொடர்](../../translated_images/ta/3.9b58fd8d6c373c20.png)
 
 # துவக்கர்களுக்கான மெஷின் லெர்னிங் - ஒரு பாடத்திட்டம்
 
@@ -80,7 +80,7 @@ Microsoft இல் உள்ள Cloud Advocates குழு 12 வாரங்
 
 சில பாடங்கள் குறுகிய வடிவ வீடியோவாக கிடைக்கின்றன. இவைகளைப் பாடங்களில் நேரடியாக காணலாம், அல்லது கீழ் படத்தை கிளிக் செய்து [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) இல் காணலாம்.
 
-[![ML for beginners பேனர்](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.ta.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners பேனர்](../../translated_images/ta/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

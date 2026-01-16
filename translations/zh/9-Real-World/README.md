@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在本课程的这一部分中，您将了解经典机器学习在现实世界中的一些应用。我们在互联网上搜集了关于这些策略应用的白皮书和文章，尽量避免涉及神经网络、深度学习和人工智能。了解机器学习如何应用于商业系统、生态应用、金融、艺术与文化等领域。
 
-![国际象棋](../../../translated_images/chess.e704a268781bdad8.zh.jpg)
+![国际象棋](../../../translated_images/zh/chess.e704a268781bdad8.jpg)
 
 > 图片由 <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> 提供，来源于 <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

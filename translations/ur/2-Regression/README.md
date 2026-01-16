@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 شمالی امریکہ میں، کدو اکثر ہالووین کے لیے خوفناک چہروں میں تراشے جاتے ہیں۔ آئیے ان دلچسپ سبزیوں کے بارے میں مزید جانتے ہیں!  
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.ur.jpg)  
+![jack-o-lanterns](../../../translated_images/ur/jack-o-lanterns.181c661a9212457d.jpg)  
 > تصویر از <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> on <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>  
 
 ## آپ کیا سیکھیں گے  

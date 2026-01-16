@@ -29,7 +29,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ہماری طرف سے ایک Discord "Learn with AI" سیریز جاری ہے، مزید جاننے اور ہمارے ساتھ شامل ہونے کے لیے [Learn with AI Series](https://aka.ms/learnwithai/discord) پر 18 - 30 ستمبر، 2025 کے درمیان تشریف لائیں۔ آپ کو GitHub Copilot کو ڈیٹا سائنس کے لیے استعمال کرنے کے متعلق تجاویز اور طریقے ملیں گے۔
 
-![AI کے ساتھ سیکھنے کی سیریز](../../translated_images/3.9b58fd8d6c373c20.ur.png)
+![AI کے ساتھ سیکھنے کی سیریز](../../translated_images/ur/3.9b58fd8d6c373c20.png)
 
 # مشین لرننگ برائے مبتدی - نصاب
 
@@ -77,7 +77,7 @@ Microsoft کے کلاؤڈ ایڈووکیٹس خوش ہیں کہ وہ 12 ہفتو
 
 کچھ اسباق مختصر ویڈیو کے طور پر دستیاب ہیں۔ آپ انہیں اسباق کے اندر ہی دیکھ سکتے ہیں، یا نیچے موجود تصویر پر کلک کر کے [Microsoft Developer YouTube چینل پر ML for Beginners پلے لسٹ](https://aka.ms/ml-beginners-videos) پر جا سکتے ہیں۔
 
-[![مشین لرننگ برائے مبتدی بینر](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.ur.png)](https://aka.ms/ml-beginners-videos)
+[![مشین لرننگ برائے مبتدی بینر](../../translated_images/ur/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

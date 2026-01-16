@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Chúng tôi có một chuỗi Discord Learn with AI đang diễn ra, tìm hiểu thêm và tham gia cùng chúng tôi tại [Chuỗi Learn with AI](https://aka.ms/learnwithai/discord) từ ngày 18 - 30 tháng 9, 2025. Bạn sẽ nhận được mẹo và thủ thuật sử dụng GitHub Copilot cho Data Science.
 
-![Chuỗi Learn with AI](../../translated_images/3.9b58fd8d6c373c20.vi.png)
+![Chuỗi Learn with AI](../../translated_images/vi/3.9b58fd8d6c373c20.png)
 
 # Học Máy cho Người Mới Bắt Đầu - Một Chương trình giảng dạy
 
@@ -80,7 +80,7 @@ Thực hiện các bước sau:
 
 Một số bài học có sẵn dưới dạng video ngắn. Bạn có thể tìm tất cả những video này nhúng trong các bài học, hoặc trên [danh sách phát ML for Beginners trên kênh Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) bằng cách nhấp vào hình ảnh bên dưới.
 
-[![Biểu ngữ ML cho Người Mới Bắt Đầu](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.vi.png)](https://aka.ms/ml-beginners-videos)
+[![Biểu ngữ ML cho Người Mới Bắt Đầu](../../translated_images/vi/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

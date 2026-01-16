@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # టైమ్ సిరీస్ ఫోర్కాస్టింగ్ పరిచయం
 
-![స్కెచ్ నోట్‌లో టైమ్ సిరీస్ సారాంశం](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c.te.png)
+![స్కెచ్ నోట్‌లో టైమ్ సిరీస్ సారాంశం](../../../../translated_images/te/ml-timeseries.fb98d25f1013fc0c.png)
 
 > స్కెచ్ నోట్ [Tomomi Imura](https://www.twitter.com/girlie_mac) ద్వారా
 
@@ -112,7 +112,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ✅ ఇది ఒక [నమూనా టైమ్ సిరీస్ ప్లాట్](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python), ఇది కొన్ని సంవత్సరాల పాటు రోజువారీ గేమ్ కరెన్సీ ఖర్చును చూపిస్తుంది. మీరు పై పేర్కొన్న లక్షణాలలో ఏవైనా ఈ డేటాలో గుర్తించగలరా?
 
-![ఇన్-గేమ్ కరెన్సీ ఖర్చు](../../../../translated_images/currency.e7429812bfc8c608.te.png)
+![ఇన్-గేమ్ కరెన్సీ ఖర్చు](../../../../translated_images/te/currency.e7429812bfc8c608.png)
 
 ## వ్యాయామం - విద్యుత్ వినియోగ డేటాతో ప్రారంభం
 
@@ -160,7 +160,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc.te.png)
+    ![energy plot](../../../../translated_images/te/energy-plot.5fdac3f397a910bc.png)
 
 4. ఇప్పుడు, 2014 జూలై మొదటి వారాన్ని `[from date]: [to date]` నమూనాలో `energy`కి ఇన్‌పుట్‌గా అందించి ప్లాట్ చేయండి:
 
@@ -171,7 +171,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b3.te.png)
+    ![july](../../../../translated_images/te/july-2014.9e1f7c318ec6d5b3.png)
 
     ఒక అందమైన ప్లాట్! ఈ ప్లాట్లను పరిశీలించి పై పేర్కొన్న లక్షణాలలో ఏవైనా మీరు గుర్తించగలరా? డేటాను దృశ్యీకరించడం ద్వారా మనం ఏమి అర్థం చేసుకోవచ్చు?
 

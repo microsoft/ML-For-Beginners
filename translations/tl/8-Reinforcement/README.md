@@ -13,7 +13,7 @@ Ang reinforcement learning, RL, ay itinuturing bilang isa sa mga pangunahing par
 
 Isipin mo na mayroon kang isang simulated na kapaligiran tulad ng stock market. Ano ang mangyayari kung magpataw ka ng isang partikular na regulasyon? Magkakaroon ba ito ng positibo o negatibong epekto? Kung may negatibong mangyari, kailangan mong tanggapin ang _negative reinforcement_, matuto mula rito, at baguhin ang direksyon. Kung positibo ang resulta, kailangan mong palakasin ang _positive reinforcement_.
 
-![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d.tl.png)
+![peter and the wolf](../../../translated_images/tl/peter.779730f9ba3a8a8d.png)
 
 > Si Peter at ang kanyang mga kaibigan ay kailangang tumakas mula sa gutom na lobo! Larawan ni [Jen Looper](https://twitter.com/jenlooper)
 

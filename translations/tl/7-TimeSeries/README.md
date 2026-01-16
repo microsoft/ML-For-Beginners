@@ -17,7 +17,7 @@ Sa dalawang araling ito, ipakikilala sa iyo ang pag-forecast ng time series, isa
 
 Ang ating pokus na rehiyon ay ang paggamit ng kuryente sa buong mundo, isang kawili-wiling dataset upang matutunan ang pag-forecast ng hinaharap na paggamit ng kuryente batay sa mga pattern ng nakaraang load. Makikita mo kung paano ang ganitong uri ng pag-forecast ay maaaring maging lubos na kapaki-pakinabang sa isang kapaligiran ng negosyo.
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffa.tl.jpg)
+![electric grid](../../../translated_images/tl/electric-grid.0c21d5214db09ffa.jpg)
 
 Larawan ni [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ng mga electrical tower sa isang kalsada sa Rajasthan sa [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

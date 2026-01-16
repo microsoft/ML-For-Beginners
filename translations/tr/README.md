@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Discord üzerinde devam eden bir AI ile öğrenme serimiz var; daha fazlasını öğrenin ve 18 - 30 September, 2025 tarihlerinde bize katılın: [AI ile Öğrenme Serisi](https://aka.ms/learnwithai/discord). Veri Bilimi için GitHub Copilot kullanımıyla ilgili ipuçları ve püf noktaları alacaksınız.
 
-![AI ile Öğrenme serisi](../../translated_images/3.9b58fd8d6c373c20.tr.png)
+![AI ile Öğrenme serisi](../../translated_images/tr/3.9b58fd8d6c373c20.png)
 
 # Başlangıç İçin Makine Öğrenimi - Bir Müfredat
 
@@ -80,7 +80,7 @@ Bu adımları izleyin:
 
 Bazı dersler kısa format video olarak mevcuttur. Bunların tamamını derslerin içinde bulabilirsiniz ya da aşağıdaki görseli tıklayarak [Microsoft Developer YouTube kanalındaki ML for Beginners oynatma listesinde](https://aka.ms/ml-beginners-videos) izleyebilirsiniz.
 
-[![ML için başlangıç afişi](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.tr.png)](https://aka.ms/ml-beginners-videos)
+[![ML için başlangıç afişi](../../translated_images/tr/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 
