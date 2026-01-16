@@ -1,170 +1,178 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ec8385130a8239ad9d827175126a0722",
-  "translation_date": "2026-01-01T13:01:49+00:00",
+  "original_hash": "0a6f4476a4f3934a4aa47c1bf47158bc",
+  "translation_date": "2026-01-16T14:49:09+00:00",
   "source_file": "README.md",
   "language_code": "hu"
 }
 -->
-[![GitHub licenc](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
-[![GitHub közreműködők](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
-[![GitHub hibajegyek](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
+[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PR-eket várunk](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
-[![GitHub figyelők](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
-[![GitHub forkok](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
-[![GitHub csillagok](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
+[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
 ### 🌐 Többnyelvű támogatás
 
-#### GitHub Action által támogatott (Automatizált és mindig naprakész)
+#### GitHub Action segítségével (automatikus és mindig naprakész)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arab](../ar/README.md) | [Bengáli](../bn/README.md) | [Bolgár](../bg/README.md) | [Burmai (Myanmar)](../my/README.md) | [Kínai (egyszerűsített)](../zh/README.md) | [Kínai (hagyományos, Hongkong)](../hk/README.md) | [Kínai (hagyományos, Makaó)](../mo/README.md) | [Kínai (hagyományos, Tajvan)](../tw/README.md) | [Horvát](../hr/README.md) | [Cseh](../cs/README.md) | [Dán](../da/README.md) | [Holland](../nl/README.md) | [Észt](../et/README.md) | [Finn](../fi/README.md) | [Francia](../fr/README.md) | [Német](../de/README.md) | [Görög](../el/README.md) | [Héber](../he/README.md) | [Hindi](../hi/README.md) | [Magyar](./README.md) | [Indonéz](../id/README.md) | [Olasz](../it/README.md) | [Japán](../ja/README.md) | [Kannada](../kn/README.md) | [Koreai](../ko/README.md) | [Litván](../lt/README.md) | [Maláj](../ms/README.md) | [Malajálam](../ml/README.md) | [Maráthi](../mr/README.md) | [Nepáli](../ne/README.md) | [Nigériai pidgin](../pcm/README.md) | [Norvég](../no/README.md) | [Perzsa (Farsi)](../fa/README.md) | [Lengyel](../pl/README.md) | [Portugál (Brazília)](../br/README.md) | [Portugál (Portugália)](../pt/README.md) | [Pandzsábi (Gurmukhi)](../pa/README.md) | [Román](../ro/README.md) | [Orosz](../ru/README.md) | [Szerb (cirill)](../sr/README.md) | [Szlovák](../sk/README.md) | [Szlovén](../sl/README.md) | [Spanyol](../es/README.md) | [Szuahéli](../sw/README.md) | [Svéd](../sv/README.md) | [Tagalog (Filippínó)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Török](../tr/README.md) | [Ukrán](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnami](../vi/README.md)
+[Arab](../ar/README.md) | [Bengáli](../bn/README.md) | [Bolgár](../bg/README.md) | [Burmai (Myanmar)](../my/README.md) | [Kínai (egyszerűsített)](../zh/README.md) | [Kínai (hagyományos, Hong Kong)](../hk/README.md) | [Kínai (hagyományos, Makaó)](../mo/README.md) | [Kínai (hagyományos, Tajvan)](../tw/README.md) | [Horvát](../hr/README.md) | [Cseh](../cs/README.md) | [Dán](../da/README.md) | [Holland](../nl/README.md) | [Észt](../et/README.md) | [Finn](../fi/README.md) | [Francia](../fr/README.md) | [Német](../de/README.md) | [Görög](../el/README.md) | [Héber](../he/README.md) | [Hindi](../hi/README.md) | [Magyar](./README.md) | [Indonéz](../id/README.md) | [Olasz](../it/README.md) | [Japán](../ja/README.md) | [Kannada](../kn/README.md) | [Koreai](../ko/README.md) | [Litván](../lt/README.md) | [Maláj](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepáli](../ne/README.md) | [Nigériai pidgin](../pcm/README.md) | [Norvég](../no/README.md) | [Perzsa (Fárszi)](../fa/README.md) | [Lengyel](../pl/README.md) | [Portugál (Brazília)](../br/README.md) | [Portugál (Portugália)](../pt/README.md) | [Pandzsábi (Gurmuki)](../pa/README.md) | [Román](../ro/README.md) | [Orosz](../ru/README.md) | [Szerb (cirill)](../sr/README.md) | [Szlovák](../sk/README.md) | [Szlovén](../sl/README.md) | [Spanyol](../es/README.md) | [Szuahéli](../sw/README.md) | [Svéd](../sv/README.md) | [Tagalog (Filippínó)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Török](../tr/README.md) | [Ukrán](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnami](../vi/README.md)
+
+> **Inkább helyben klónoznád?**
+
+> Ez a tárház több mint 50 nyelvi fordítást tartalmaz, amelyek jelentősen megnövelik a letöltési méretet. Fordítások nélküli klónozáshoz használja a sparse checkout-ot:
+> ```bash
+> git clone --filter=blob:none --sparse https://github.com/microsoft/ML-For-Beginners.git
+> cd ML-For-Beginners
+> git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+> ```
+> Így minden megvan, ami a tanfolyam elvégzéséhez szükséges, sokkal gyorsabb letöltéssel.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-#### Csatlakozz közösségünkhöz
+#### Csatlakozzon közösségünkhöz
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Folyamatban van a Discordon a "Learn with AI" sorozatunk, további információkért és csatlakozáshoz látogass el a [Learn with AI Series](https://aka.ms/learnwithai/discord) oldalra 2025. szeptember 18. és 30. között. Tippeket és trükköket kapsz a GitHub Copilot adattudományban való használatához.
+Folyamatban van egy Discord "Tanulj az MI-vel" sorozatunk, további információkért és részvételért látogasson el a [Learn with AI Series](https://aka.ms/learnwithai/discord) oldalra 2025. szeptember 18. és 30. között. Tippeket és trükköket kaphat a GitHub Copilot használatához az Adattudományban.
 
-![Tanulj az MI-vel sorozat](../../translated_images/hu/3.9b58fd8d6c373c20.webp)
+![Tanulj az MI-vel sorozat](../../../../translated_images/hu/3.9b58fd8d6c373c20.webp)
 
-# Gépi tanulás kezdőknek - Tanterv
+# Gépi tanulás kezdőknek - Tananyag
 
-> 🌍 Utazz a világ körül, miközben a gépi tanulást a világ kultúráin keresztül fedezzük fel 🌍
+> 🌍 Utazz velünk a világ körül, miközben a gépi tanulást a világ kultúrái által fedezzük fel 🌍
 
-A Microsoft Cloud Advocates örömmel kínál egy 12 hetes, 26 leckéből álló tantervet, amely a **Gépi tanulásról** szól. Ebben a tananyagban a főként Scikit-learn könyvtárat használó, néha "klasszikus gépi tanulásnak" nevezett módszereket tanulhatod meg, és elkerüljük a mélytanulást, amely a mi [AI for Beginners tantervünkben](https://aka.ms/ai4beginners) található. Ezeket a leckéket párosítsd a mi ['Data Science for Beginners' tantervünkkel](https://aka.ms/ds4beginners) is!
+A Microsoft felhős képviselői örömmel kínálnak egy 12 hetes, 26 leckéből álló tananyagot, amely a **gépi tanulásról** szól. Ebben a tananyagban azt tanulod meg, amit néha **klasszikus gépi tanulásnak** neveznek, elsősorban a Scikit-learn könyvtárat használva, elkerülve a mélytanulást, amelyet a [MI kezdőknek tananyagunkban](https://aka.ms/ai4beginners) tárgyalunk. Párosítsd ezeket a leckéket a ['Adattudomány kezdőknek' tananyaggal](https://aka.ms/ds4beginners) is!
 
-Utazz velünk a világ körül, miközben ezeket a klasszikus technikákat a világ számos területéről származó adatokon alkalmazzuk. Minden lecke tartalmaz elő- és utóleckés kvízeket, írásos utasításokat a lecke elvégzéséhez, egy megoldást, egy feladatot és még többet. Projektalapú pedagógiánk lehetővé teszi, hogy tanulj miközben építesz — ez egy bevált módja annak, hogy az új készségek "megragadjanak".
+Utazz velünk a világ körül, miközben ezeket a klasszikus technikákat a világ sok területéről származó adatokra alkalmazzuk. Minden lecke tartalmaz elő- és utóleckés kvízeket, írásos útmutatót a lecke elvégzéséhez, megoldást, feladatot, és még többet. Projekt-alapú oktatásunk révén tanulhatsz miközben építesz, ami bevált módszer az új készségek tartós elsajátítására.
 
-**✍️ Szívből köszönet szerzőinknek** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu és Amy Boyd
+**✍️ Hálás köszönet szerzőinknek:** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu és Amy Boyd
 
-**🎨 Köszönet illusztrátorainknak is** Tomomi Imura, Dasani Madipalli és Jen Looper
+**🎨 Köszönet illusztrátorainknak is:** Tomomi Imura, Dasani Madipalli és Jen Looper
 
-**🙏 Külön köszönet 🙏 Microsoft Student Ambassador szerzőinknek, lektorainknak és tartalomhozzájárulóinknak**, különösen Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila és Snigdha Agarwal
+**🙏 Külön köszönet a Microsoft Student Ambassador szerzőknek, lektoroknak és tartalomközreműködőknek, különösen Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila és Snigdha Agarwal**
 
-**🤩 Külön hála Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi és Vidushi Gupta részére az R leckéinkért!**
+**🤩 További hálánk Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi és Vidushi Gupta számára az R leckéinkért!**
 
-# Első lépések
+# Kezdés
 
 Kövesd az alábbi lépéseket:
-1. **Készíts forkot a tárhelyről**: Kattints a "Fork" gombra ennek az oldalnak a jobb felső sarkában.
-2. **Klónozd a tárhelyet**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+1. **Furkálja le a tárházat**: Kattints a jobb felső sarokban a "Fork" gombra.
+2. **Klónozd a tárházat**: `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [találd meg a tanfolyam összes további forrását a Microsoft Learn gyűjteményünkben](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [az összes további erőforrást megtalálod a Microsoft Learn gyűjteményünkben](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-> 🔧 **Segítség kell?** Nézd meg a [Troubleshooting Guide](TROUBLESHOOTING.md)-t a telepítéssel, beállítással és a leckék futtatásával kapcsolatos gyakori problémák megoldásaiért.
+> 🔧 **Segítségre van szükséged?** Nézd meg a [Hibakeresési útmutatónkat](TROUBLESHOOTING.md) az általános telepítési, beállítási és lecke futtatási problémák megoldásához.
 
 
-**[Diákok](https://aka.ms/student-page)**, a tananyag használatához forkold le az egész repót a saját GitHub fiókodba, és oldd meg a feladatokat egyénileg vagy csoportban:
+**[Hallgatók](https://aka.ms/student-page)**, ahhoz, hogy használjátok ezt a tananyagot, forkold a teljes repót a saját GitHub fiókodra és végezd el a feladatokat egyénileg vagy csoportban:
 
 - Kezdd egy előadás előtti kvízzel.
-- Olvasd el az előadást és hajtsd végre a tevékenységeket, állj meg és gondolkodj el minden tudásellenőrzésnél.
-- Próbáld meg a projekteket a leckék megértésével elkészíteni, ahelyett, hogy csak lefuttatnád a megoldást; azonban az a kód elérhető minden projektorientált lecke `/solution` mappájában.
-- Töltsd ki az előadás utáni kvízt.
+- Olvasd el az előadást és végezd el a tevékenységeket, minden tudásellenőrzésnél tarts szünetet és gondolkodj el.
+- Próbáld meg a projekteket a leckék megértésével létrehozni, ne csak a megoldás-kód futtatásával; azonban ez a kód elérhető a /solution mappákban minden projekt-orientált leckében.
+- Tedd le az utóleckés kvízt.
 - Teljesítsd a kihívást.
-- Teljesítsd a feladatot.
-- Egy leccsecsoport befejezése után látogass el a [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions)-ra és "tanulj hangosan" egy megfelelő PAT rubrika kitöltésével. A 'PAT' egy Progress Assessment Tool (Haladási értékelő eszköz), amely egy olyan rubrika, amelyet kitöltesz a tanulásod elősegítésére. Más PAT-ekre is reagálhatsz, hogy közösen tanulhassunk.
+- Végezd el a feladatot.
+- Miután egy leckecsoportot befejeztél, látogass el a [Vita fórumra](https://github.com/microsoft/ML-For-Beginners/discussions) és tanulj hangosan azáltal, hogy kitöltöd a megfelelő PAT értékelőt. A 'PAT' egy haladás-értékelő eszköz, amely egy értékelőrendszer, amit kitöltesz, hogy előbbre juss a tanulásban. Más PAT-ekre is reagálhatsz, hogy együtt tanuljunk.
 
-> A további tanuláshoz ajánljuk ezeket a [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modulokat és tanulási útvonalakat.
+> További tanulmányozásra azt ajánljuk, hogy kövesd ezeket a [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modulokat és tanulási útvonalakat.
 
-**Tanárok**, [tartalmaztunk néhány javaslatot](for-teachers.md) arra vonatkozóan, hogyan használhatjátok ezt a tananyagot.
+**Tanárként**, [találsz néhány javaslatot](for-teachers.md) arra, hogyan használd ezt a tananyagot.
 
 ---
 
-## Videós bemutatók
+## Videó bemutatók
 
-Néhány lecke rövid videó formában is elérhető. Ezeket megtalálhatod beágyazva a leckékben, vagy a [ML for Beginners lejátszási listán a Microsoft Developer YouTube csatornán](https://aka.ms/ml-beginners-videos) az alábbi képre kattintva.
+A leckék egy része rövid formátumú videóként is elérhető. Mindezeket megtalálod az leckékben inline, vagy a [ML for Beginners lejátszási listán a Microsoft Developer YouTube csatornán](https://aka.ms/ml-beginners-videos) a lenti képre kattintva.
 
-[![ML kezdőknek banner](../../translated_images/hu/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](../../../../translated_images/hu/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 
 ## Ismerd meg a csapatot
 
-[![Promóciós videó](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
+[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
 
-**Gif készítette** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+**Gif készítője** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
-> 🎥 Kattints a fenti képre a projektről és az alkotókról szóló videóért!
+> 🎥 Kattints a fenti képre egy videóért a projektről és az alkotóiról!
 
 ---
 
-## Pedagógia
+## Oktatási elvek
 
-Két pedagógiai alapelvet választottunk ennek a tananyagnak a kialakításakor: biztosítani, hogy kézben fogható, **projektalapú** legyen, és hogy tartalmazzon **gyakori kvízeket**. Ezenkívül a tananyag egy közös **téma** mentén épül, hogy koherens egészet alkosson.
+Két pedagógiai elvet választottunk a tananyag elkészítésekor: azt, hogy gyakorlatorientált, **projekt-alapú** legyen, és hogy tartalmazzon **gyakori kvízeket**. Ezen felül a tananyagnak van egy közös **téma** is, hogy kohéziót adjon neki.
 
-Azáltal, hogy a tartalom illeszkedik a projektekhez, a folyamat érdekesebb lesz a diákok számára és a fogalmak elraktározása is javulni fog. Emellett egy alacsony tétű kvíz az óra előtt beállítja a tanuló szándékát egy téma elsajátítására, míg egy második kvíz az óra után biztosítja a további rögzülést. Ezt a tananyagot rugalmasra és szórakoztatóra terveztük, és egészben vagy részben is elvégezhető. A projektek kicsiben kezdődnek és a 12 hetes ciklus végére egyre összetettebbé válnak. A tananyag egy posztszkriptet is tartalmaz a gépi tanulás valós alkalmazásairól, amely extra krediteként vagy vitaalapként használható.
+Azáltal, hogy a tartalom a projektekhez kapcsolódik, az egész folyamat élvezetesebb a tanulók számára, és a fogalmak megtartása is fokozódik. Ezenkívül egy alacsony tétű kvíz az óra előtt előkészíti a hallgató szándékát a téma megtanulására, míg az óra utáni második kvíz további megtartást biztosít. Ez a tananyag rugalmas és szórakoztató formában készült, egyben vagy részleteiben is végezhető. A projektek kicsiben kezdődnek, és egyre összetettebbé válnak a 12 hetes ciklus végére. A tananyag egy utószót is tartalmaz a gépi tanulás valódi alkalmazásairól, amely extra pontként vagy megbeszélés alapjaként használható.
 
-> Találd meg a mi [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), [Translation](TRANSLATIONS.md) és [Troubleshooting](TROUBLESHOOTING.md) útmutatóinkat. Várjuk építő jellegű visszajelzésedet!
+> Tekintsd meg az [Etikai kódexünket](CODE_OF_CONDUCT.md), a [Közreműködés](CONTRIBUTING.md), [Fordítási](TRANSLATIONS.md) és [Hibakeresési](TROUBLESHOOTING.md) irányelveinket. Várjuk építő jellegű visszajelzéseidet!
 
 ## Minden lecke tartalmaz
 
-- opcionális sketchnote-ot
+- opcionális vázlatjegyzetet
 - opcionális kiegészítő videót
-- videós bemutatót (csak egyes leckék)
-- [előadás előtti bemelegítő kvíz](https://ff-quizzes.netlify.app/en/ml/)
+- videós bemutatót (csak egyes leckéknél)
+- [előadás előtti bemelegítő kvízt](https://ff-quizzes.netlify.app/en/ml/)
 - írásos leckét
-- projektalapú leckéknél lépésről-lépésre útmutatót a projekt elkészítéséhez
+- projekt-alapú leckékhez lépésenkénti útmutatót a projekt elkészítéséhez
 - tudásellenőrzéseket
-- egy kihívást
+- kihívást
 - kiegészítő olvasmányt
 - feladatot
-- [előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
+- [előadás utáni kvízt](https://ff-quizzes.netlify.app/en/ml/)
 
-> **Megjegyzés a nyelvekről**: Ezek a leckék elsősorban Pythonban íródtak, de sokuk elérhető R nyelven is. Egy R lecke elvégzéséhez menj a `/solution` mappába és keresd az R leckéket. Ezek .rmd kiterjesztésű fájlok, amelyek egy **R Markdown** fájlt jelentenek, amely egyszerűen definiálható úgy, hogy `kódblokkokat` (R vagy más nyelvekhez) és egy `YAML fejlécet` (ami irányítja, hogyan formázódnak a kimenetek, pl. PDF) ágyaz be egy `Markdown dokumentumban`. Ennek megfelelően kiváló szerkesztési keretet ad a data science számára, mivel lehetővé teszi, hogy kombináld a kódot, annak kimenetét és a gondolataidat úgy, hogy Markdownban írod le. R Markdown dokumentumok továbbá renderelhetők olyan kimeneti formátumokra, mint PDF, HTML vagy Word.
+> **Megjegyzés a nyelvekről**: Ezek a leckék elsősorban Pythonban íródtak, de sok elérhető R-ben is. Az R lecke elvégzéséhez menj a `/solution` mappába, és keress R leckéket. Ezek .rmd kiterjesztésű fájlok, amelyek egy **R Markdown** fájlt jelentenek, egyszerűen megfogalmazva egy olyan dokumentumot, ami `kódrészleteket` (R vagy más nyelvek) és egy `YAML fejlécet` (amely útmutatást ad a kimenetek, például PDF formázására) tartalmaz markdown dokumentumban. Így példamutató szerkesztési keretet nyújt az adattudományhoz, mivel lehetővé teszi, hogy kódodat, annak kimenetét és gondolataidat markdownban írd le. R Markdown dokumentumok PDF, HTML vagy Word kimeneti formátumokba is konvertálhatók.
+> **Megjegyzés a kvízekhez**: Az összes kvíz megtalálható a [Quiz App mappában](../../quiz-app), összesen 52 darab, mindegyik három kérdéssel. Az órákból van linkelve, de a kvízalkalmazás helyben is futtatható; kövesd a `quiz-app` mappa utasításait a helyi hosztoláshoz vagy az Azure-ra történő telepítéshez.
 
-> **Megjegyzés a kvízekről**: Az összes kvíz a [Quiz App mappában](../../quiz-app) található, összesen 52 kvíz három-három kérdéssel. A leckékben vannak linkelve, de a quiz app helyileg is futtatható; kövesd a `quiz-app` mappában található utasításokat a helyi hosztoláshoz vagy Azure-ra történő telepítéshez.
+| Óra száma |                             Téma                              |                   Óra csoportosítása                   | Tanulási célok                                                                                                             |                                                              Linked Lesson                                                               |                        Szerző                        |
+| :-------: | :----------------------------------------------------------: | :----------------------------------------------------: | -------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------: |
+|    01     |                Bevezetés a gépi tanulásba                   |      [Bevezetés](1-Introduction/README.md)             | Ismerd meg a gépi tanulás alapfogalmait                                                                                   |                                             [Óra](1-Introduction/1-intro-to-ML/README.md)                                            |                       Muhammad                       |
+|    02     |                A gépi tanulás története                     |      [Bevezetés](1-Introduction/README.md)             | Ismerd meg e terület történetét                                                                                           |                                            [Óra](1-Introduction/2-history-of-ML/README.md)                                             |                     Jen és Amy                       |
+|    03     |                 Méltányosság és gépi tanulás                |      [Bevezetés](1-Introduction/README.md)             | Mik a fontos filozófiai kérdések a méltányossággal kapcsolatban, amelyeket a tanulóknak figyelembe kell venniük a gépi tanulási modellek építése és alkalmazása során? |                                              [Óra](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|    04     |                Gépi tanulási technikák                      |      [Bevezetés](1-Introduction/README.md)             | Milyen technikákat használnak a gépi tanulás kutatói a modellek építéséhez?                                               |                                          [Óra](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris és Jen                      |
+|    05     |                   Bevezetés a regresszióba                   |        [Regresszió](2-Regression/README.md)             | Ismerkedj meg a Python és Scikit-learn használatával regressziós modellekhez                                             |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|    06     |                Észak-amerikai tökárak 🎃                     |        [Regresszió](2-Regression/README.md)             | Adatok vizualizálása és tisztítása gépi tanulás előkészítéséhez                                                           |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|    07     |                Észak-amerikai tökárak 🎃                     |        [Regresszió](2-Regression/README.md)             | Lineáris és polinomiális regressziós modellek építése                                                                     |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen és Dmitry • Eric Wanjau       |
+|    08     |                Észak-amerikai tökárak 🎃                     |        [Regresszió](2-Regression/README.md)             | Logisztikus regressziós modell építése                                                                                     |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|    09     |                          Webalkalmazás 🔌                    |           [Web App](3-Web-App/README.md)                | Webalkalmazás építése a betanított modell használatához                                                                   |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|    10     |                 Bevezetés osztályozásba                      |    [Osztályozás](4-Classification/README.md)           | Tisztítsd, készítsd elő és vizualizáld az adatokat; bevezetés az osztályozásba                                              | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen és Cassie • Eric Wanjau |
+|    11     |             Finom ázsiai és indiai konyhák 🍜                 |    [Osztályozás](4-Classification/README.md)           | Bevezetés az osztályozókba                                                                                                 | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen és Cassie • Eric Wanjau |
+|    12     |             Finom ázsiai és indiai konyhák 🍜                 |    [Osztályozás](4-Classification/README.md)           | Több osztályozó                                                                                                            | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen és Cassie • Eric Wanjau |
+|    13     |             Finom ázsiai és indiai konyhák 🍜                 |    [Osztályozás](4-Classification/README.md)           | Ajánló webalkalmazás építése a modelled használatával                                                                      |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|    14     |                   Bevezetés a klaszterezésbe                  |        [Klaszterezés](5-Clustering/README.md)           | Tisztítsd, készítsd elő és vizualizáld az adatokat; bevezetés a klaszterezésbe                                             |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|    15     |              Felfedezés a nigériai zenei ízlésekben 🎧        |        [Klaszterezés](5-Clustering/README.md)           | Fedezd fel a K-közép klaszterezési módszert                                                                                 |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
+|    16     |        Bevezetés a természetes nyelvfeldolgozásba ☕️         |   [Természetes nyelvfeldolgozás](6-NLP/README.md)        | Ismerd meg az NLP alapjait egyszerű bot építésével                                                                         |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|    17     |                      Gyakori NLP feladatok ☕️                |   [Természetes nyelvfeldolgozás](6-NLP/README.md)        | Mélyítsd el NLP tudásod, értsd meg a nyelvi struktúrákkal kapcsolatos gyakori feladatokat                                     |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|    18     |             Fordítás és érzelemelemzés ♥️                     |   [Természetes nyelvfeldolgozás](6-NLP/README.md)        | Fordítás és érzelemelemzés Jane Austen műveivel                                                                            |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|    19     |                  Romantikus európai szállodák ♥️              |   [Természetes nyelvfeldolgozás](6-NLP/README.md)        | Érzelemelemzés szállodai véleményekkel 1                                                                                   |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|    20     |                  Romantikus európai szállodák ♥️              |   [Természetes nyelvfeldolgozás](6-NLP/README.md)        | Érzelemelemzés szállodai véleményekkel 2                                                                                   |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|    21     |            Bevezetés az idősor-előrejelzésbe                  |        [Idősor](7-TimeSeries/README.md)                   | Bevezetés az idősor előrejelzésébe                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|    22     | ⚡️ Világ energiafelhasználás ⚡️ - idősor előrejelzés ARIMA-val |        [Idősor](7-TimeSeries/README.md)                   | Idősor előrejelzés ARIMA-val                                                                                                |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|    23     |  ⚡️ Világ energiafelhasználás ⚡️ - idősor előrejelzés SVR-rel  |        [Idősor](7-TimeSeries/README.md)                   | Idősor előrejelzés Támogató Vektorgépes regresszorral (SVR)                                                                |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|    24     |             Bevezetés a megerősítéses tanulásba               | [Megerősítéses tanulás](8-Reinforcement/README.md)        | Bevezetés a megerősítéses tanulásba Q-learning használatával                                                               |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|    25     |                 Segíts Peternek elkerülni a farkast! 🐺        | [Megerősítéses tanulás](8-Reinforcement/README.md)        | Megerősítéses tanulás Gym keretrendszerrel                                                                                  |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+| Utóirat   |            Valós világ gépi tanulási forgatókönyvek és alkalmazások |      [Gépi tanulás a gyakorlatban](9-Real-World/README.md) | Érdekes és tanulságos valós példák a klasszikus gépi tanulás alkalmazásaira                                                 |                                             [Óra](9-Real-World/1-Applications/README.md)                                              |                         Csapat                        |
+| Utóirat   |            Modell hibakeresése gépi tanulásban az RAI irányítópult segítségével |      [Gépi tanulás a gyakorlatban](9-Real-World/README.md) | Modell hibakeresése gépi tanulásban a Responsible AI irányítópult komponenseinek segítségével                                 |                                             [Óra](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
-| Lecke száma |                             Téma                              |                   Leckecsoport                   | Tanulási célok                                                                                                             |                                                              Kapcsolt lecke                                                               |                        Szerző                        |
-| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-|      01       |                Bevezetés a gépi tanulásba                      |      [Bevezetés](1-Introduction/README.md)         | Ismerje meg a gépi tanulás alapfogalmait                                                                                         |                                             [Lecke](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
-|      02       |                A gépi tanulás története                        |      [Bevezetés](1-Introduction/README.md)         | Ismerje meg ennek a területnek a történetét                                                                                      |                                            [Lecke](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen és Amy                      |
-|      03       |                 Méltányosság és gépi tanulás                   |      [Bevezetés](1-Introduction/README.md)         | Melyek a méltányossággal kapcsolatos fontos filozófiai kérdések, amelyeket a hallgatóknak figyelembe kell venniük ML-modellek építésekor és alkalmazásakor? |                                              [Lecke](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
-|      04       |                Gépi tanulási technikák                         |      [Bevezetés](1-Introduction/README.md)         | Milyen technikákat használnak a gépi tanulás kutatói ML-modellek építéséhez?                                                     |                                          [Lecke](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris és Jen                     |
-|      05       |                   Bevezetés a regresszióba                     |        [Regresszió](2-Regression/README.md)        | Ismerkedjen meg a Python és a Scikit-learn használatával regressziós modellekhez                                                |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
-|      06       |                Észak-amerikai tökárak 🎃                       |        [Regresszió](2-Regression/README.md)        | Adatok vizualizálása és tisztítása ML-re való felkészüléshez                                                                      |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
-|      07       |                Észak-amerikai tökárak 🎃                       |        [Regresszió](2-Regression/README.md)        | Lineáris és polinom regressziós modellek építése                                                                                 |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen és Dmitry • Eric Wanjau       |
-|      08       |                Észak-amerikai tökárak 🎃                       |        [Regresszió](2-Regression/README.md)        | Logisztikus regressziós modell építése                                                                                            |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
-|      09       |                          Webalkalmazás 🔌                      |           [Webalkalmazás](3-Web-App/README.md)     | Webalkalmazás készítése a betanított modell használatához                                                                        |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
-|      10       |                 Bevezetés az osztályozáshoz                    |    [Osztályozás](4-Classification/README.md)      | Adatok tisztítása, előkészítése és vizualizálása; bevezetés az osztályozásba                                                     | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen és Cassie • Eric Wanjau |
-|      11       |             Finom ázsiai és indiai konyhák 🍜                  |    [Osztályozás](4-Classification/README.md)      | Bevezetés az osztályozókhoz                                                                                                      | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen és Cassie • Eric Wanjau |
-|      12       |             Finom ázsiai és indiai konyhák 🍜                  |    [Osztályozás](4-Classification/README.md)      | További osztályozók                                                                                                              | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen és Cassie • Eric Wanjau |
-|      13       |             Finom ázsiai és indiai konyhák 🍜                  |    [Osztályozás](4-Classification/README.md)      | Ajánló webalkalmazás készítése a modell használatával                                                                            |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
-|      14       |                   Bevezetés a klaszterezésbe                   |        [Klaszterezés](5-Clustering/README.md)     | Adatok tisztítása, előkészítése és vizualizálása; bevezetés a klaszterezésbe                                                     |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
-|      15       |              Nigériai zenei ízlések felfedezése 🎧             |        [Klaszterezés](5-Clustering/README.md)     | A K-Means klaszterezési módszer felfedezése                                                                                       |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
-|      16       |        Bevezetés a természetes nyelvfeldolgozásba ☕️         |   [Természetes nyelvfeldolgozás](6-NLP/README.md)  | Ismerje meg az NLP alapjait egy egyszerű bot készítésével                                                                        |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|      17       |                      Gyakori NLP-feladatok ☕️                  |   [Természetes nyelvfeldolgozás](6-NLP/README.md)  | Mélyítse NLP-ismereteit azáltal, hogy megérti a nyelvi szerkezetek kezeléséhez szükséges gyakori feladatokat                       |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
-|      18       |             Fordítás és érzelem-elemzés ♥️                     |   [Természetes nyelvfeldolgozás](6-NLP/README.md)  | Fordítás és érzelem-elemzés Jane Austen műveivel                                                                                 |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
-|      19       |                  Romantikus európai szállodák ♥️               |   [Természetes nyelvfeldolgozás](6-NLP/README.md)  | Érzelem-elemzés szállodai értékelésekkel 1                                                                                       |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
-|      20       |                  Romantikus európai szállodák ♥️               |   [Természetes nyelvfeldolgozás](6-NLP/README.md)  | Érzelem-elemzés szállodai értékelésekkel 2                                                                                       |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
-|      21       |            Bevezetés az idősoros előrejelzésbe                 |        [Idősorok](7-TimeSeries/README.md)         | Bevezetés az idősoros előrejelzésbe                                                                                              |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
-|      22       | ⚡️ Világ energiafelhasználása ⚡️ - idősoros előrejelzés ARIMA-val |        [Idősorok](7-TimeSeries/README.md)         | Idősoros előrejelzés ARIMA-val                                                                                                   |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
-|      23       |  ⚡️ Világ energiafelhasználása ⚡️ - idősoros előrejelzés SVR-rel  |        [Idősorok](7-TimeSeries/README.md)         | Idősoros előrejelzés Support Vector Regressorral                                                                                 |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
-|      24       |             Bevezetés a megerősítéses tanulásba               | [Megerősítéses tanulás](8-Reinforcement/README.md) | Bevezetés a megerősítéses tanulásba Q-tanulással                                                                                 |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
-|      25       |                 Segíts Péternek elkerülni a farkast! 🐺         | [Megerősítéses tanulás](8-Reinforcement/README.md) | Megerősítéses tanulás a Gym könyvtárral                                                                                            |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
-|  Utószó       |            Valós világ ML forgatókönyvek és alkalmazások       |      [ML a gyakorlatban](9-Real-World/README.md)   | Érdekes és szemléletes valós alkalmazások a klasszikus ML területéről                                                             |                                             [Lecke](9-Real-World/1-Applications/README.md)                                              |                         Csapat                         |
-|  Utószó       |            Modellek hibakeresése ML-ben az RAI irányítópult segítségével          |      [ML a gyakorlatban](9-Real-World/README.md)   | Modellek hibakeresése gépi tanulásban a Responsible AI irányítópult komponenseivel                                                               |                                             [Lecke](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
-
-> [Keresse meg az összes további forrást ehhez a kurzushoz a Microsoft Learn gyűjteményünkben](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [keresd meg az összes további erőforrást ehhez a tanfolyamhoz a Microsoft Learn gyűjteményünkben](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 ## Offline hozzáférés
 
-A dokumentációt offline is futtathatja a [Docsify](https://docsify.js.org/#/) használatával. Forkolja ezt a repót, [telepítse a Docsify-t](https://docsify.js.org/#/quickstart) a helyi gépére, és a repo gyökérmappájában írja be a `docsify serve` parancsot. A weboldal a 3000-es porton lesz kiszolgálva a localhoston: `localhost:3000`.
+A dokumentációt offline is futtathatod a [Docsify](https://docsify.js.org/#/) segítségével. Forkold ezt a repót, [telepítsd a Docsify-t](https://docsify.js.org/#/quickstart) a helyi gépeden, majd a repo gyökérmappájában írd be a `docsify serve` parancsot. Az oldal a localhost 3000-es portján lesz elérhető: `localhost:3000`.
 
 ## PDF-ek
 
-A tanterv PDF változatát linkekkel megtalálja [itt](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
+A tananyag pdf formátumban, linkekkel [itt található](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 
-## 🎒 Egyéb kurzusok 
+## 🎒 Egyéb tanfolyamok
 
-Csapatunk más kurzusokat is készít! Nézze meg:
+Csapatunk más tanfolyamokat is készít! Nézd meg:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
@@ -181,16 +189,16 @@ Csapatunk más kurzusokat is készít! Nézze meg:
 
 ---
  
-### Generatív AI sorozat
-[![Generatív AI kezdőknek](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Generatív AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
+### Generatív MI sorozat
+[![Generatív MI kezdőknek](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Generatív MI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 [![Generatív MI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
 [![Generatív MI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Alapvető tananyagok
-[![Gépi tanulás kezdőknek](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+### Alapvető tanulás
+[![ML kezdőknek](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
 [![Adattudomány kezdőknek](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
 [![MI kezdőknek](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 [![Kiberbiztonság kezdőknek](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
@@ -200,25 +208,25 @@ Csapatunk más kurzusokat is készít! Nézze meg:
 
 ---
  
-### Copilot-sorozat
-[![Copilot MI-vel páros programozáshoz](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+### Copilot sorozat
+[![Copilot AI páros programozáshoz](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
 [![Copilot C#/.NET-hez](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
 [![Copilot kaland](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
 ## Segítség kérése
 
-Ha elakadsz, vagy bármilyen kérdésed van az MI-alkalmazások fejlesztésével kapcsolatban. Csatlakozz más tanulókhoz és tapasztalt fejlesztőkhöz az MCP-ről folytatott beszélgetésekhez. Ez egy támogató közösség, ahol a kérdések szívesen látottak és a tudás szabadon megosztott.
+Ha elakad vagy kérdése van az MI-alapú alkalmazások fejlesztésével kapcsolatban, csatlakozzon a tanulótársakhoz és tapasztalt fejlesztőkhöz az MCP vitáiban. Ez egy támogató közösség, ahol a kérdések szívesen látottak és a tudás szabadon megosztott.
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Ha termékvisszajelzésed van, vagy hibákat tapasztalsz a fejlesztés során, látogass el ide:
+Ha termék-visszajelzése vagy hibája van a fejlesztés során, látogasson el ide:
 
-[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+[![Microsoft Foundry fejlesztői fórum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-Felelősségkizárás:
-Ez a dokumentum a mesterséges intelligencián alapuló fordítószolgáltatás, a Co-op Translator (https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő irányadónak. Kritikus jelentőségű információk esetén professzionális, emberi fordítást javasolunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordító szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítás hibákat vagy pontatlanságokat tartalmazhat. Az eredeti dokumentum az anyanyelvén tekinthető hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget az ebből a fordításból eredő félreértésekért vagy téves értelmezésekért.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
