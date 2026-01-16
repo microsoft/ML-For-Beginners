@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 এশিয়া এবং ভারতে খাবারের ঐতিহ্য অত্যন্ত বৈচিত্র্যময় এবং খুবই সুস্বাদু! চলুন আঞ্চলিক খাবারের উপাদান সম্পর্কে বোঝার জন্য ডেটা দেখি।
 
-![থাই খাবার বিক্রেতা](../../../translated_images/bn/thai-food.c47a7a7f9f05c218.jpg)
+![থাই খাবার বিক্রেতা](../../../translated_images/bn/thai-food.c47a7a7f9f05c218.webp)
 > ছবি <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">লিশেং চ্যাং</a> এর তোলা <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">আনস্প্ল্যাশ</a> এ
   
 ## আপনি কী শিখবেন

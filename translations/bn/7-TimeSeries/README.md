@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 আমাদের আঞ্চলিক ফোকাস হলো বিশ্বব্যাপী বিদ্যুৎ ব্যবহার, যা একটি আকর্ষণীয় ডেটাসেট যা অতীতের লোডের প্যাটার্নের উপর ভিত্তি করে ভবিষ্যতের বিদ্যুৎ ব্যবহারের পূর্বাভাস সম্পর্কে শেখার সুযোগ দেয়। আপনি দেখতে পাবেন যে এই ধরনের পূর্বাভাস ব্যবসায়িক পরিবেশে কতটা কার্যকর হতে পারে।
 
-![electric grid](../../../translated_images/bn/electric-grid.0c21d5214db09ffa.jpg)
+![electric grid](../../../translated_images/bn/electric-grid.0c21d5214db09ffa.webp)
 
 ছবি [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) কর্তৃক, রাজস্থানের একটি রাস্তায় বৈদ্যুতিক টাওয়ারের। [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) থেকে নেওয়া।
 

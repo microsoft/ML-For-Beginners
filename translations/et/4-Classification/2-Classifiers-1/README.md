@@ -107,7 +107,7 @@ Scikit-learn liigitab klassifitseerimise juhendatud õppimise alla, ja selles ka
 
 Millist klassifikaatorit valida? Sageli on hea katsetada mitmeid ja otsida parimat tulemust. Scikit-learn pakub [kõrvutavat võrdlust](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) loodud andmestikul, võrreldes KNeighbors, SVC kahte viisi, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB ja QuadraticDiscriminationAnalysis, näidates tulemusi visualiseeritult:
 
-![klassifikaatorite võrdlus](../../../../translated_images/et/comparison.edfab56193a85e7f.png)
+![klassifikaatorite võrdlus](../../../../translated_images/et/comparison.edfab56193a85e7f.webp)
 > Graafikud on genereeritud Scikit-learn'i dokumentatsioonis
 
 > AutoML lahendab selle probleemi elegantselt, tehes need võrdlused pilves ja võimaldades valida parima algoritmi sinu andmete jaoks. Proovi seda [siin](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
@@ -116,7 +116,7 @@ Millist klassifikaatorit valida? Sageli on hea katsetada mitmeid ja otsida parim
 
 Parem viis kui lihtsalt juhuslikult arvata, on järgida ideid selle allalaaditava [ML Cheat Sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott) abil. Siin avastame, et meie mitmeklassi probleemi jaoks on mõned valikud:
 
-![spikker mitmeklassi probleemide jaoks](../../../../translated_images/et/cheatsheet.07a475ea444d2223.png)
+![spikker mitmeklassi probleemide jaoks](../../../../translated_images/et/cheatsheet.07a475ea444d2223.webp)
 > Microsofti algoritmi spikri osa, mis kirjeldab mitmeklassi klassifikatsiooni valikuid
 
 ✅ Laadi see spikker alla, prindi see välja ja riputa seinale!
@@ -147,7 +147,7 @@ Dokumentatsiooni järgi mitmeklassi puhul treeningalgoritm:
 
 Scikit-learn pakub seda tabelit, et selgitada, kuidas solverid käsitlevad erinevaid väljakutseid, mida esitavad erinevat tüüpi andmestruktuurid:
 
-![solverid](../../../../translated_images/et/solvers.5fc648618529e627.png)
+![solverid](../../../../translated_images/et/solvers.5fc648618529e627.webp)
 
 ## Harjutus - andmete jagamine
 

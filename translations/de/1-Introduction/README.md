@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 In diesem Abschnitt des Lehrplans werden Sie mit den grundlegenden Konzepten des maschinellen Lernens vertraut gemacht, erfahren, was es ist, und etwas über seine Geschichte sowie die Techniken lernen, die Forscher verwenden, um damit zu arbeiten. Lassen Sie uns diese neue Welt des maschinellen Lernens gemeinsam erkunden!
 
-![globe](../../../translated_images/de/globe.59f26379ceb40428.jpg)
+![globe](../../../translated_images/de/globe.59f26379ceb40428.webp)
 > Foto von <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> auf <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Lektionen

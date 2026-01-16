@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Selles õppekava osas tutvustatakse teile masinõppe valdkonna aluskontseptsioone, mis see on, ning saate teada selle ajaloost ja tehnikatest, mida teadlased selle valdkonnaga töötamiseks kasutavad. Uurime koos seda uut ML-i maailma!
 
-![globe](../../../translated_images/et/globe.59f26379ceb40428.jpg)
+![globe](../../../translated_images/et/globe.59f26379ceb40428.webp)
 > Foto autorilt <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> lehel <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Õppetunnid

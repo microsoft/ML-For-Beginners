@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 উত্তর আমেরিকায়, হ্যালোউইনের জন্য কুমড়া প্রায়ই ভয়ঙ্কর মুখে খোদাই করা হয়। চলুন এই চমৎকার সবজিগুলো সম্পর্কে আরও জানি!
 
-![জ্যাক-ও-ল্যান্টার্নস](../../../translated_images/bn/jack-o-lanterns.181c661a9212457d.jpg)
+![জ্যাক-ও-ল্যান্টার্নস](../../../translated_images/bn/jack-o-lanterns.181c661a9212457d.webp)
 > ছবি: <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> এর তোলা <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> এ
 
 ## আপনি কী শিখবেন

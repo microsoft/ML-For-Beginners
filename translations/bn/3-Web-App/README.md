@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 এই পাঠ্যক্রমের এই অংশে, আপনি একটি প্রয়োগকৃত মেশিন লার্নিং বিষয়ের সাথে পরিচিত হবেন: কীভাবে আপনার Scikit-learn মডেলকে একটি ফাইলে সংরক্ষণ করবেন যা একটি ওয়েব অ্যাপ্লিকেশনের মধ্যে পূর্বাভাস দেওয়ার জন্য ব্যবহার করা যেতে পারে। মডেলটি সংরক্ষণ করার পরে, আপনি শিখবেন কীভাবে এটি Flask-এ তৈরি একটি ওয়েব অ্যাপে ব্যবহার করবেন। প্রথমে, আপনি কিছু ডেটা ব্যবহার করে একটি মডেল তৈরি করবেন যা UFO দেখার ঘটনার উপর ভিত্তি করে! এরপর, আপনি একটি ওয়েব অ্যাপ তৈরি করবেন যা আপনাকে সেকেন্ডের একটি সংখ্যা, একটি অক্ষাংশ এবং দ্রাঘিমাংশের মান ইনপুট দিয়ে পূর্বাভাস করতে দেবে কোন দেশ UFO দেখার রিপোর্ট করেছে।
 
-![UFO পার্কিং](../../../translated_images/bn/ufo.9e787f5161da9d4d.jpg)
+![UFO পার্কিং](../../../translated_images/bn/ufo.9e787f5161da9d4d.webp)
 
 ছবি তুলেছেন <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">মাইকেল হেরেন</a> <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">আনস্প্ল্যাশ</a>-এ
 

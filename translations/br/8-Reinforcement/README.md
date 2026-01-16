@@ -13,7 +13,7 @@ O aprendizado por reforço, RL, é considerado um dos paradigmas básicos de apr
 
 Imagine que você tem um ambiente simulado, como o mercado de ações. O que acontece se você impuser uma determinada regulamentação? Isso terá um efeito positivo ou negativo? Se algo negativo acontecer, você precisa aceitar esse _reforço negativo_, aprender com ele e mudar de direção. Se o resultado for positivo, você precisa construir sobre esse _reforço positivo_.
 
-![Pedro e o lobo](../../../translated_images/br/peter.779730f9ba3a8a8d.png)
+![Pedro e o lobo](../../../translated_images/br/peter.779730f9ba3a8a8d.webp)
 
 > Pedro e seus amigos precisam escapar do lobo faminto! Imagem por [Jen Looper](https://twitter.com/jenlooper)
 

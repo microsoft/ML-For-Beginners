@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 In diesem Abschnitt des Lehrplans werden Sie mit einem angewandten ML-Thema vertraut gemacht: wie Sie Ihr Scikit-learn-Modell als Datei speichern können, die innerhalb einer Webanwendung für Vorhersagen verwendet werden kann. Sobald das Modell gespeichert ist, lernen Sie, wie Sie es in einer Web-App verwenden, die mit Flask erstellt wurde. Zunächst erstellen Sie ein Modell mit Daten, die sich mit UFO-Sichtungen befassen! Anschließend entwickeln Sie eine Web-App, die es ermöglicht, eine Anzahl von Sekunden zusammen mit einem Breitengrad- und Längengradwert einzugeben, um vorherzusagen, welches Land eine UFO-Sichtung gemeldet hat.
 
-![UFO-Parkplatz](../../../translated_images/de/ufo.9e787f5161da9d4d.jpg)
+![UFO-Parkplatz](../../../translated_images/de/ufo.9e787f5161da9d4d.webp)
 
 Foto von <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> auf <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

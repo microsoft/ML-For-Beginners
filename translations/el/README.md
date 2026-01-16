@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Διοργανώνουμε μια σειρά Discord "Μάθε με AI" σε εξέλιξη — μάθετε περισσότερα και εγγραφείτε στη σειρά στο [Learn with AI Series](https://aka.ms/learnwithai/discord) από 18 - 30 Σεπτεμβρίου 2025. Θα λάβετε συμβουλές και κόλπα για τη χρήση του GitHub Copilot για Data Science.
 
-![Σειρά Learn with AI](../../translated_images/el/3.9b58fd8d6c373c20.png)
+![Σειρά Learn with AI](../../translated_images/el/3.9b58fd8d6c373c20.webp)
 
 # Μηχανική Μάθηση για Αρχάριους - Ένα Πρόγραμμα Σπουδών
 
@@ -80,7 +80,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Μερικά από τα μαθήματα είναι διαθέσιμα ως βίντεο σύντομης μορφής. Μπορείτε να βρείτε όλα αυτά ενσωματωμένα στα μαθήματα, ή στη [playlist ML for Beginners στο κανάλι Microsoft Developer στο YouTube](https://aka.ms/ml-beginners-videos) κάνοντας κλικ στην εικόνα παρακάτω.
 
-[![Μπάνερ ML για αρχάριους](../../translated_images/el/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![Μπάνερ ML για αρχάριους](../../translated_images/el/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

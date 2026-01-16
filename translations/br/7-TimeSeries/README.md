@@ -17,7 +17,7 @@ Nestes dois módulos, você será introduzido à previsão de séries temporais,
 
 Nosso foco regional é o uso de eletricidade no mundo, um conjunto de dados interessante para aprender a prever o consumo futuro de energia com base em padrões de carga anteriores. Você verá como esse tipo de previsão pode ser extremamente útil em um ambiente empresarial.
 
-![rede elétrica](../../../translated_images/br/electric-grid.0c21d5214db09ffa.jpg)
+![rede elétrica](../../../translated_images/br/electric-grid.0c21d5214db09ffa.webp)
 
 Foto de [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de torres elétricas em uma estrada em Rajasthan no [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

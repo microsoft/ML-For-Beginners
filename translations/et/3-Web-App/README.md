@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Selles õppekava osas tutvustatakse teile rakenduslikku masinõppe teemat: kuidas salvestada oma Scikit-learn mudel failina, mida saab kasutada ennustuste tegemiseks veebirakenduses. Kui mudel on salvestatud, õpite, kuidas seda kasutada Flaskis ehitatud veebirakenduses. Kõigepealt loote mudeli, kasutades andmeid, mis käsitlevad UFO-vaatlusi! Seejärel ehitate veebirakenduse, mis võimaldab sisestada sekundite arvu koos laius- ja pikkuskraadi väärtustega, et ennustada, milline riik teatas UFO nägemisest.
 
-![UFO Parkimine](../../../translated_images/et/ufo.9e787f5161da9d4d.jpg)
+![UFO Parkimine](../../../translated_images/et/ufo.9e787f5161da9d4d.webp)
 
 Foto autor <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> lehel <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

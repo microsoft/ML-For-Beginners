@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Probíhá naše série „Learn with AI“ na Discordu — dozvíte se více a připojte se k nám na [Learn with AI Series](https://aka.ms/learnwithai/discord) od 18. do 30. září 2025. Získáte tipy a triky pro používání GitHub Copilot pro datovou vědu.
 
-![Série Learn with AI](../../translated_images/cs/3.9b58fd8d6c373c20.png)
+![Série Learn with AI](../../translated_images/cs/3.9b58fd8d6c373c20.webp)
 
 # Strojové učení pro začátečníky - osnovy kurzu
 
@@ -80,7 +80,7 @@ Postupujte podle těchto kroků:
 
 Některé lekce jsou dostupné jako krátká videa. Vše najdete vložené přímo v lekcích nebo v [playlistu ML for Beginners na kanálu Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) kliknutím na obrázek níže.
 
-[![Banner ML for beginners](../../translated_images/cs/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
+[![Banner ML for beginners](../../translated_images/cs/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 

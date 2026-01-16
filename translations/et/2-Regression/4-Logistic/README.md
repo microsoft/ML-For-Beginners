@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Logistiline regressioon kategooriate ennustamiseks
 
-![Logistilise ja lineaarse regressiooni infograafik](../../../../translated_images/et/linear-vs-logistic.ba180bf95e7ee667.png)
+![Logistilise ja lineaarse regressiooni infograafik](../../../../translated_images/et/linear-vs-logistic.ba180bf95e7ee667.webp)
 
 ## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -52,7 +52,7 @@ Logistiline regressioon erineb lineaarse regressioonist, mida sa õppisid varem,
 
 Logistiline regressioon ei paku samu funktsioone kui lineaarne regressioon. Esimene pakub ennustust binaarse kategooria kohta ("valge või mitte valge"), samas kui teine suudab ennustada pidevaid väärtusi, näiteks arvestades kõrvitsa päritolu ja koristusaega, _kui palju selle hind tõuseb_.
 
-![Kõrvitsa klassifikatsioonimudel](../../../../translated_images/et/pumpkin-classifier.562771f104ad5436.png)
+![Kõrvitsa klassifikatsioonimudel](../../../../translated_images/et/pumpkin-classifier.562771f104ad5436.webp)
 > Infograafik autorilt [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ### Muud klassifikatsioonid
@@ -62,7 +62,7 @@ On olemas ka teisi logistilise regressiooni tüüpe, sealhulgas multinomiaalne j
 - **Multinomiaalne**, mis hõlmab rohkem kui ühte kategooriat - "Oranž, Valge ja Triibuline".
 - **Ordinaalne**, mis hõlmab järjestatud kategooriaid, kasulik, kui tahame oma tulemusi loogiliselt järjestada, näiteks kõrvitsad, mis on järjestatud piiratud arvu suuruste järgi (mini, väike, keskmine, suur, XL, XXL).
 
-![Multinomiaalne vs ordinaalne regressioon](../../../../translated_images/et/multinomial-vs-ordinal.36701b4850e37d86.png)
+![Multinomiaalne vs ordinaalne regressioon](../../../../translated_images/et/multinomial-vs-ordinal.36701b4850e37d86.webp)
 
 ### Muutujad EI PEA korreleeruma
 
@@ -118,7 +118,7 @@ Seaborn pakub huvitavaid viise andmete visualiseerimiseks. Näiteks saad võrrel
     )
     ```
 
-    ![Visualiseeritud andmete ruudustik](../../../../translated_images/et/pumpkins_catplot_1.c55c409b71fea2ec.png)
+    ![Visualiseeritud andmete ruudustik](../../../../translated_images/et/pumpkins_catplot_1.c55c409b71fea2ec.webp)
 
     Vaadates andmeid, näed, kuidas `Color` andmed seostuvad `Variety`-ga.
 
@@ -197,7 +197,7 @@ Parim viis sellise analüüsi tegemiseks on andmete graafikule kandmine. Kasutam
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
 ```
-![Visualiseeritud andmete kategooriline graafik](../../../../translated_images/et/pumpkins_catplot_2.87a354447880b388.png)
+![Visualiseeritud andmete kategooriline graafik](../../../../translated_images/et/pumpkins_catplot_2.87a354447880b388.webp)
 
 ### Kasuta 'swarm' graafikut
 
@@ -215,7 +215,7 @@ Saad visualiseerida muutujaid kõrvuti Seaborn graafikutega.
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![Visualiseeritud andmete 'swarm'](../../../../translated_images/et/swarm_2.efeacfca536c2b57.png)
+    ![Visualiseeritud andmete 'swarm'](../../../../translated_images/et/swarm_2.efeacfca536c2b57.webp)
 
 **Ole ettevaatlik**: ülaltoodud kood võib genereerida hoiatuse, kuna Seaborn ei suuda esitada sellist hulka andmepunkte 'swarm' graafikus. Võimalik lahendus on vähendada markeri suurust, kasutades 'size' parameetrit. Kuid ole teadlik, et see mõjutab graafiku loetavust.
 
@@ -223,7 +223,7 @@ Saad visualiseerida muutujaid kõrvuti Seaborn graafikutega.
 >
 > Logistiline regressioon tugineb 'maksimaalse tõenäosuse' kontseptsioonile, kasutades [sigmoidfunktsioone](https://wikipedia.org/wiki/Sigmoid_function). 'Sigmoidfunktsioon' graafikul näeb välja nagu 'S'-kuju. See võtab väärtuse ja kaardistab selle vahemikku 0 kuni 1. Selle kõverat nimetatakse ka 'logistiliseks kõveraks'. Selle valem näeb välja selline:
 >
-> ![logistiline funktsioon](../../../../translated_images/et/sigmoid.8b7ba9d095c789cf.png)
+> ![logistiline funktsioon](../../../../translated_images/et/sigmoid.8b7ba9d095c789cf.webp)
 >
 > kus sigmoidi keskpunkt asub x-i 0 punktis, L on kõvera maksimaalne väärtus ja k on kõvera järskus. Kui funktsiooni tulemus on suurem kui 0.5, antakse vastavale sildile binaarse valiku klass '1'. Kui mitte, klassifitseeritakse see kui '0'.
 
@@ -372,7 +372,7 @@ plt.show()
 
 Kasutades Matplotlibi, joonista mudeli [Vastuvõtu Tööomaduste Kõver](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) ehk ROC. ROC kõveraid kasutatakse sageli klassifikaatori väljundi vaatamiseks tõeliste ja valepositiivsete osas. "ROC kõveratel on tavaliselt tõeliste positiivsete määr Y-teljel ja valepositiivsete määr X-teljel." Seega on kõvera järskus ja kaugus keskjoonest kõverani olulised: soovid kõverat, mis kiiresti tõuseb ja liigub üle joone. Meie puhul on alguses valepositiivsed, kuid seejärel tõuseb joon korralikult üles ja üle:
 
-![ROC](../../../../translated_images/et/ROC_2.777f20cdfc4988ca.png)
+![ROC](../../../../translated_images/et/ROC_2.777f20cdfc4988ca.webp)
 
 Lõpuks kasuta Scikit-learn'i [`roc_auc_score` API-t](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score), et arvutada tegelik 'Kõvera Alune Pindala' (AUC):
 

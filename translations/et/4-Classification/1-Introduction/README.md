@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nendes neljas õppetunnis uurid klassikalise masinõppe põhivaldkonda - _klassifikatsiooni_. Vaatame erinevate klassifikatsioonialgoritmide kasutamist andmekogumiga, mis käsitleb Aasia ja India suurepäraseid kööke. Loodetavasti oled näljane!
 
-![ainult näpuotsaga!](../../../../translated_images/et/pinch.1b035ec9ba7e0d40.png)
+![ainult näpuotsaga!](../../../../translated_images/et/pinch.1b035ec9ba7e0d40.webp)
 
 > Tähista pan-Aasia kööke nendes õppetundides! Pilt: [Jen Looper](https://twitter.com/jenlooper)
 
@@ -38,7 +38,7 @@ Klassifikatsioon on üks masinõppe teadlase ja andmeteadlase põhitegevusi. Ala
 
 Teaduslikumalt öeldes loob sinu klassifikatsioonimeetod ennustava mudeli, mis võimaldab kaardistada sisendmuutujate ja väljundmuutujate vahelisi seoseid.
 
-![binaarne vs. mitmeklassiline klassifikatsioon](../../../../translated_images/et/binary-multiclass.b56d0c86c81105a6.png)
+![binaarne vs. mitmeklassiline klassifikatsioon](../../../../translated_images/et/binary-multiclass.b56d0c86c81105a6.webp)
 
 > Binaarsed vs. mitmeklassilised probleemid, mida klassifikatsioonialgoritmid peavad lahendama. Infograafika: [Jen Looper](https://twitter.com/jenlooper)
 
@@ -134,7 +134,7 @@ Nüüd muutub töö huvitavamaks. Uurime andmete jaotust köökide kaupa.
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![köögiandmete jaotus](../../../../translated_images/et/cuisine-dist.d0cc2d551abe5c25.png)
+    ![köögiandmete jaotus](../../../../translated_images/et/cuisine-dist.d0cc2d551abe5c25.webp)
 
     Kööke on piiratud arv, kuid andmete jaotus on ebaühtlane. Saad selle parandada! Enne seda uurime veidi rohkem.
 
@@ -188,7 +188,7 @@ Nüüd saad sügavamale andmetesse kaevuda ja teada saada, millised on tüüpili
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![tai](../../../../translated_images/et/thai.0269dbab2e78bd38.png)
+    ![tai](../../../../translated_images/et/thai.0269dbab2e78bd38.webp)
 
 1. Tee sama jaapani andmete jaoks:
 
@@ -197,7 +197,7 @@ Nüüd saad sügavamale andmetesse kaevuda ja teada saada, millised on tüüpili
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![jaapani](../../../../translated_images/et/japanese.30260486f2a05c46.png)
+    ![jaapani](../../../../translated_images/et/japanese.30260486f2a05c46.webp)
 
 1. Nüüd hiina koostisosade jaoks:
 
@@ -206,7 +206,7 @@ Nüüd saad sügavamale andmetesse kaevuda ja teada saada, millised on tüüpili
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![hiina](../../../../translated_images/et/chinese.e62cafa5309f111a.png)
+    ![hiina](../../../../translated_images/et/chinese.e62cafa5309f111a.webp)
 
 1. Joonista india koostisosad:
 
@@ -215,7 +215,7 @@ Nüüd saad sügavamale andmetesse kaevuda ja teada saada, millised on tüüpili
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![india](../../../../translated_images/et/indian.2c4292002af1a1f9.png)
+    ![india](../../../../translated_images/et/indian.2c4292002af1a1f9.webp)
 
 1. Lõpuks joonista korea koostisosad:
 
@@ -224,7 +224,7 @@ Nüüd saad sügavamale andmetesse kaevuda ja teada saada, millised on tüüpili
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korea](../../../../translated_images/et/korean.4a4f0274f3d9805a.png)
+    ![korea](../../../../translated_images/et/korean.4a4f0274f3d9805a.webp)
 
 1. Nüüd eemalda kõige levinumad koostisosad, mis tekitavad segadust erinevate köökide vahel, kutsudes `drop()`:
 

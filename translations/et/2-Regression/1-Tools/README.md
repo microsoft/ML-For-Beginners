@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Alusta Pythoni ja Scikit-learniga regressioonimudelite jaoks
 
-![Regressioonide kokkuvõte visuaalses märkmes](../../../../translated_images/et/ml-regression.4e4f70e3b3ed446e.png)
+![Regressioonide kokkuvõte visuaalses märkmes](../../../../translated_images/et/ml-regression.4e4f70e3b3ed446e.webp)
 
 > Visuaalne märge: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -81,7 +81,7 @@ Selles kaustas leiad faili _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code avatud märkmikuga](../../../../translated_images/et/notebook.4a3ee31f396b8832.jpg)
+![VS Code avatud märkmikuga](../../../../translated_images/et/notebook.4a3ee31f396b8832.webp)
 
 Sa saad oma koodi vaheldumisi kommentaaridega täiendada, et märkmikku ise dokumenteerida.
 
@@ -211,7 +211,7 @@ Uues koodilahtris laadi diabeedi andmekogum, kutsudes `load_diabetes()`. Sisend 
     plt.show()
     ```
 
-   ![hajusdiagramm, mis näitab diabeediga seotud andmepunkte](../../../../translated_images/et/scatterplot.ad8b356bcbb33be6.png)
+   ![hajusdiagramm, mis näitab diabeediga seotud andmepunkte](../../../../translated_images/et/scatterplot.ad8b356bcbb33be6.webp)
 ✅ Mõtle veidi, mis siin toimub. Sirgjoon kulgeb läbi paljude väikeste andmepunktide, kuid mida see täpselt teeb? Kas näed, kuidas saaksid seda joont kasutada, et ennustada, kuhu uus, seni nägemata andmepunkt peaks graafiku y-telje suhtes sobituma? Proovi sõnastada selle mudeli praktiline kasutus.
 
 Palju õnne, sa ehitasid oma esimese lineaarse regressioonimudeli, tegid sellega ennustuse ja kuvad selle graafikul!
