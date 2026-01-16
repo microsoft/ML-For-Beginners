@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Ehita regressioonimudel Scikit-learniga: neli viisi regressiooniks
 
-![Lineaarse ja polünoomse regressiooni infograafika](../../../../translated_images/linear-polynomial.5523c7cb6576ccab.et.png)
+![Lineaarse ja polünoomse regressiooni infograafika](../../../../translated_images/et/linear-polynomial.5523c7cb6576ccab.png)
 > Infograafika autor: [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -66,13 +66,13 @@ Teeme seda, kuna soovime modelleerida joont, millel on kõigi meie andmepunktide
 >
 > `X` on 'selgitav muutuja'. `Y` on 'sõltuv muutuja'. Joone kalle on `b` ja `a` on y-teljelõige, mis viitab `Y` väärtusele, kui `X = 0`.
 >
->![kalle arvutamine](../../../../translated_images/slope.f3c9d5910ddbfcf9.et.png)
+>![kalle arvutamine](../../../../translated_images/et/slope.f3c9d5910ddbfcf9.png)
 >
 > Kõigepealt arvutage kalle `b`. Infograafika autor: [Jen Looper](https://twitter.com/jenlooper)
 >
 > Teisisõnu, viidates meie kõrvitsate andmete algsele küsimusele: "ennusta kõrvitsa hinda busheli kohta kuu järgi", viitaks `X` hinnale ja `Y` müügikuule.
 >
->![võrrandi täitmine](../../../../translated_images/calculation.a209813050a1ddb1.et.png)
+>![võrrandi täitmine](../../../../translated_images/et/calculation.a209813050a1ddb1.png)
 >
 > Arvutage Y väärtus. Kui maksate umbes 4 dollarit, peab olema aprill! Infograafika autor: [Jen Looper](https://twitter.com/jenlooper)
 >
@@ -114,11 +114,11 @@ Nüüd, kui olete aru saanud lineaarse regressiooni matemaatikast, loome regress
 
 Eelmises õppetunnis olete tõenäoliselt näinud, et keskmine hind erinevate kuude kohta näeb välja selline:
 
-<img alt="Keskmine hind kuu järgi" src="../../../../translated_images/barchart.a833ea9194346d76.et.png" width="50%"/>
+<img alt="Keskmine hind kuu järgi" src="../../../../translated_images/et/barchart.a833ea9194346d76.png" width="50%"/>
 
 See viitab sellele, et peaks olema mingi korrelatsioon, ja me võime proovida treenida lineaarse regressiooni mudelit, et ennustada seost `Kuu` ja `Hinna` vahel või `AastaPäeva` ja `Hinna` vahel. Siin on hajuvusdiagramm, mis näitab viimast seost:
 
-<img alt="Hajuvusdiagramm hinna ja aasta päeva vahel" src="../../../../translated_images/scatter-dayofyear.bc171c189c9fd553.et.png" width="50%" /> 
+<img alt="Hajuvusdiagramm hinna ja aasta päeva vahel" src="../../../../translated_images/et/scatter-dayofyear.bc171c189c9fd553.png" width="50%" /> 
 
 Vaatame, kas korrelatsioon on olemas, kasutades funktsiooni `corr`:
 
@@ -137,7 +137,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
     ax = df.plot.scatter('DayOfYear','Price',ax=ax,c=colors[i],label=var)
 ```
 
-<img alt="Hajuvusdiagramm hinna ja aasta päeva vahel" src="../../../../translated_images/scatter-dayofyear-color.65790faefbb9d54f.et.png" width="50%" /> 
+<img alt="Hajuvusdiagramm hinna ja aasta päeva vahel" src="../../../../translated_images/et/scatter-dayofyear-color.65790faefbb9d54f.png" width="50%" /> 
 
 Meie uurimine viitab sellele, et sordil on müügikuupäevast suurem mõju üldisele hinnale. Seda näeme ka tulpdiagrammist:
 
@@ -145,7 +145,7 @@ Meie uurimine viitab sellele, et sordil on müügikuupäevast suurem mõju üldi
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="Tulpdiagramm hinna ja sordi vahel" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb4.et.png" width="50%" /> 
+<img alt="Tulpdiagramm hinna ja sordi vahel" src="../../../../translated_images/et/price-by-variety.744a2f9925d9bcb4.png" width="50%" /> 
 
 Keskendume hetkeks ainult ühele kõrvitsasordile, 'pie type', ja vaatame, millist mõju kuupäev hinnale avaldab:
 
@@ -153,7 +153,7 @@ Keskendume hetkeks ainult ühele kõrvitsasordile, 'pie type', ja vaatame, milli
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
 pie_pumpkins.plot.scatter('DayOfYear','Price') 
 ```
-<img alt="Hajuvusdiagramm hinna ja aasta päeva vahel" src="../../../../translated_images/pie-pumpkins-scatter.d14f9804a53f927e.et.png" width="50%" /> 
+<img alt="Hajuvusdiagramm hinna ja aasta päeva vahel" src="../../../../translated_images/et/pie-pumpkins-scatter.d14f9804a53f927e.png" width="50%" /> 
 
 Kui arvutame nüüd korrelatsiooni `Hinna` ja `AastaPäeva` vahel, kasutades funktsiooni `corr`, saame tulemuseks umbes `-0.27` - mis tähendab, et ennustava mudeli treenimine on mõistlik.
 
@@ -228,7 +228,7 @@ plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
 ```
 
-<img alt="Lineaarne regressioon" src="../../../../translated_images/linear-results.f7c3552c85b0ed1c.et.png" width="50%" />
+<img alt="Lineaarne regressioon" src="../../../../translated_images/et/linear-results.f7c3552c85b0ed1c.png" width="50%" />
 
 ## Polünoomiline regressioon
 
@@ -257,7 +257,7 @@ pipeline.fit(X_train,y_train)
 
 Pipeline'i saab kasutada samamoodi nagu algset `LinearRegression` objekti, st saame pipeline'i `fit`-ida ja seejärel kasutada `predict`, et saada prognoositulemused. Siin on graafik, mis näitab testandmeid ja lähenduskõverat:
 
-<img alt="Polünoomiline regressioon" src="../../../../translated_images/poly-results.ee587348f0f1f60b.et.png" width="50%" />
+<img alt="Polünoomiline regressioon" src="../../../../translated_images/et/poly-results.ee587348f0f1f60b.png" width="50%" />
 
 Polünoomilist regressiooni kasutades saame veidi madalama MSE ja kõrgema determinatsiooni, kuid mitte märkimisväärselt. Peame arvesse võtma ka teisi omadusi!
 
@@ -275,7 +275,7 @@ Ideaalis tahame olla võimelised prognoosima hindu erinevate kõrvitsasortide ja
 
 Siin näed, kuidas keskmine hind sõltub sordist:
 
-<img alt="Keskmine hind sordi järgi" src="../../../../translated_images/price-by-variety.744a2f9925d9bcb4.et.png" width="50%" />
+<img alt="Keskmine hind sordi järgi" src="../../../../translated_images/et/price-by-variety.744a2f9925d9bcb4.png" width="50%" />
 
 Sordi arvesse võtmiseks peame esmalt selle numbriliseks vormiks teisendama ehk **kodeerima**. Selleks on mitu võimalust:
 

@@ -15,7 +15,7 @@ Klasterizavimas yra mašininio mokymosi užduotis, kurios tikslas – surasti ob
 
 Nigerijos įvairialypė auditorija turi skirtingus muzikinius skonius. Naudojant duomenis, surinktus iš Spotify (įkvėpta [šio straipsnio](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), pažvelkime į kai kurias Nigerijoje populiarias dainas. Šis duomenų rinkinys apima informaciją apie įvairių dainų „šokamumo“ balą, „akustiškumą“, garsumą, „kalbamumą“, populiarumą ir energiją. Bus įdomu atrasti šių duomenų dėsningumus!
 
-![Patefono nuotrauka](../../../translated_images/turntable.f2b86b13c53302dc.lt.jpg)
+![Patefono nuotrauka](../../../translated_images/lt/turntable.f2b86b13c53302dc.jpg)
 
 > Nuotrauka <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> iš <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

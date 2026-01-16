@@ -23,14 +23,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 ഏതാണ്ട് എല്ലാ NLP ആൽഗോരിതങ്ങൾക്കും ആദ്യം ചെയ്യേണ്ടത് ടെക്സ്റ്റ് ടോക്കണുകളായി, അല്ലെങ്കിൽ വാക്കുകളായി വിഭജിക്കുക എന്നതാണ്. ഇത് ലളിതമായതായി തോന്നിയാലും, പദവിരാമം, വ്യത്യസ്ത ഭാഷകളിലെ വാക്കുകളും വാക്യവിരാമങ്ങളും പരിഗണിക്കേണ്ടത് സങ്കീർണ്ണമാക്കാം. വ്യത്യസ്ത മാർഗ്ഗങ്ങൾ ഉപയോഗിച്ച് വിഭജനം നിർണയിക്കേണ്ടിവരും.
 
-![tokenization](../../../../translated_images/tokenization.1641a160c66cd2d9.ml.png)
+![tokenization](../../../../translated_images/ml/tokenization.1641a160c66cd2d9.png)
 > **Pride and Prejudice** എന്ന പുസ്തകത്തിലെ ഒരു വാക്യം ടോക്കൺ ചെയ്യുന്നു. ഇൻഫോഗ്രാഫിക് [Jen Looper](https://twitter.com/jenlooper) 
 
 ### എംബെഡ്ഡിംഗ്സ്
 
 [വേർഡ് എംബെഡ്ഡിംഗ്സ്](https://wikipedia.org/wiki/Word_embedding) നിങ്ങളുടെ ടെക്സ്റ്റ് ഡാറ്റ സംഖ്യാത്മകമായി മാറ്റാനുള്ള ഒരു മാർഗ്ഗമാണ്. സമാന അർത്ഥമുള്ള വാക്കുകൾ അല്ലെങ്കിൽ ഒരുമിച്ച് ഉപയോഗിക്കുന്ന വാക്കുകൾ കൂട്ടമായി ക്ലസ്റ്റർ ചെയ്യപ്പെടുന്ന രീതിയിൽ എംബെഡ്ഡിംഗ്സ് ചെയ്യപ്പെടുന്നു.
 
-![word embeddings](../../../../translated_images/embedding.2cf8953c4b3101d1.ml.png)
+![word embeddings](../../../../translated_images/ml/embedding.2cf8953c4b3101d1.png)
 > "I have the highest respect for your nerves, they are my old friends." - **Pride and Prejudice** എന്ന വാക്യത്തിനുള്ള വാക്കുകളുടെ എംബെഡ്ഡിംഗ്സ്. ഇൻഫോഗ്രാഫിക് [Jen Looper](https://twitter.com/jenlooper)
 
 ✅ വാക്കുകളുടെ എംബെഡ്ഡിംഗ്സ് പരീക്ഷിക്കാൻ [ഈ രസകരമായ ടൂൾ](https://projector.tensorflow.org/) പരീക്ഷിക്കൂ. ഒരു വാക്കിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ സമാന വാക്കുകളുടെ ക്ലസ്റ്ററുകൾ കാണാം: 'toy' 'disney', 'lego', 'playstation', 'console' എന്നിവയുമായി ക്ലസ്റ്റർ ചെയ്യുന്നു.
@@ -39,7 +39,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ടോക്കൺ ചെയ്ത ഓരോ വാക്കും വാക്കിന്റെ ഭാഗമായി ടാഗ് ചെയ്യാം - നാമം, ക്രിയ, വിശേഷണം എന്നിവ. `the quick red fox jumped over the lazy brown dog` എന്ന വാക്യം fox = നാമം, jumped = ക്രിയ എന്നിങ്ങനെ POS ടാഗ് ചെയ്യാം.
 
-![parsing](../../../../translated_images/parse.d0c5bbe1106eae8f.ml.png)
+![parsing](../../../../translated_images/ml/parse.d0c5bbe1106eae8f.png)
 
 > **Pride and Prejudice** എന്ന വാക്യം പാർസ് ചെയ്യുന്നു. ഇൻഫോഗ്രാഫിക് [Jen Looper](https://twitter.com/jenlooper)
 

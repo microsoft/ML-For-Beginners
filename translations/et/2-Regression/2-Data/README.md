@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Ehita regressioonimudel Scikit-learniga: andmete ettevalmistamine ja visualiseerimine
 
-![Andmete visualiseerimise infograafika](../../../../translated_images/data-visualization.54e56dded7c1a804.et.png)
+![Andmete visualiseerimise infograafika](../../../../translated_images/et/data-visualization.54e56dded7c1a804.png)
 
 Infograafika autor: [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
@@ -183,7 +183,7 @@ Proovi luua mõned põhilised graafikud, et kuvada just loodud andmeraami. Mida 
     plt.show()
     ```
 
-    ![Hajuvusdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/scatterplot.b6868f44cbd2051c.et.png)
+    ![Hajuvusdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/et/scatterplot.b6868f44cbd2051c.png)
 
     Kas see on kasulik graafik? Kas miski selles üllatab sind?
 
@@ -200,7 +200,7 @@ Et graafikud kuvaksid kasulikke andmeid, tuleb andmeid tavaliselt kuidagi rühmi
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Tulpdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/barchart.a833ea9194346d76.et.png)
+    ![Tulpdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/et/barchart.a833ea9194346d76.png)
 
     See on kasulikum andmete visualiseerimine! Näib, et kõrvitsate kõrgeim hind esineb septembris ja oktoobris. Kas see vastab sinu ootustele? Miks või miks mitte?
 

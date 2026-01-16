@@ -78,7 +78,7 @@ Siga estes passos:
 
 Algumas das lições estão disponíveis em formato de vídeo curto. Pode encontrá-los embutidos nas lições ou na [playlist ML for Beginners no canal Microsoft Developer no YouTube](https://aka.ms/ml-beginners-videos) clicando na imagem abaixo.
 
-[![Banner ML para principiantes](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.pt.png)](https://aka.ms/ml-beginners-videos)
+[![Banner ML para principiantes](../../translated_images/pt/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

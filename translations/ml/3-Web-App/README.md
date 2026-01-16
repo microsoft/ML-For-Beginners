@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 പാഠ്യപദ്ധതിയുടെ ഈ ഭാഗത്തിൽ, നിങ്ങൾക്ക് പ്രയോഗാത്മകമായ ഒരു ML വിഷയം പരിചയപ്പെടുത്തും: നിങ്ങളുടെ Scikit-learn മോഡൽ ഫയലായി സേവ് ചെയ്യുന്നത്, അത് വെബ് ആപ്ലിക്കേഷനിൽ പ്രവചനങ്ങൾ നടത്താൻ ഉപയോഗിക്കാവുന്നതാണ്. മോഡൽ സേവ് ചെയ്ത ശേഷം, Flask-ൽ നിർമ്മിച്ച ഒരു വെബ് ആപ്പിൽ അത് എങ്ങനെ ഉപയോഗിക്കാമെന്ന് നിങ്ങൾ പഠിക്കും. ആദ്യം, UFO കാണപ്പെട്ടതുമായി ബന്ധപ്പെട്ട ചില ഡാറ്റ ഉപയോഗിച്ച് ഒരു മോഡൽ നിങ്ങൾ സൃഷ്ടിക്കും! പിന്നീട്, ഒരു വെബ് ആപ്പ് നിർമ്മിക്കും, അതിലൂടെ നിങ്ങൾ സെക്കൻഡുകളുടെ എണ്ണം, അക്ഷാംശവും രേഖാംശവും നൽകുമ്പോൾ ഏത് രാജ്യമാണ് UFO കണ്ടതായി റിപ്പോർട്ട് ചെയ്തതെന്ന് പ്രവചിക്കാനാകും.
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d.ml.jpg)
+![UFO Parking](../../../translated_images/ml/ufo.9e787f5161da9d4d.jpg)
 
 ഫോട്ടോ <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> എന്നവരിൽ നിന്നാണ് <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

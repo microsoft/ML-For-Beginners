@@ -17,7 +17,7 @@ In diesem Abschnitt des Lehrplans wirst du in eine der am weitesten verbreiteten
 
 In diesen Lektionen lernen wir die Grundlagen von NLP, indem wir kleine Konversationsbots erstellen, um zu verstehen, wie maschinelles Lernen dazu beiträgt, diese Gespräche immer „intelligenter“ zu machen. Du wirst in der Zeit zurückreisen und mit Elizabeth Bennett und Mr. Darcy aus Jane Austens klassischem Roman **Stolz und Vorurteil**, veröffentlicht im Jahr 1813, chatten. Anschließend vertiefst du dein Wissen, indem du mehr über Sentiment-Analyse anhand von Hotelbewertungen in Europa lernst.
 
-![Stolz und Vorurteil Buch und Tee](../../../translated_images/p&p.279f1c49ecd88941.de.jpg)
+![Stolz und Vorurteil Buch und Tee](../../../translated_images/de/p&p.279f1c49ecd88941.jpg)
 > Foto von <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> auf <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Lektionen

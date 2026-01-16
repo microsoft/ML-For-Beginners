@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 इस पाठ्यक्रम के इस भाग में, आपको क्लासिकल मशीन लर्निंग के कुछ वास्तविक दुनिया में उपयोगों से परिचित कराया जाएगा। हमने इंटरनेट पर खोजबीन की है और ऐसे श्वेतपत्र और लेख ढूंढे हैं जो इन रणनीतियों का उपयोग करते हैं, न्यूरल नेटवर्क, डीप लर्निंग और एआई से यथासंभव बचते हुए। जानें कि व्यवसाय प्रणालियों, पारिस्थितिक अनुप्रयोगों, वित्त, कला और संस्कृति, और अन्य क्षेत्रों में मशीन लर्निंग का उपयोग कैसे किया जाता है।
 
-![chess](../../../translated_images/chess.e704a268781bdad8.hi.jpg)
+![chess](../../../translated_images/hi/chess.e704a268781bdad8.jpg)
 
 > फोटो <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">एलेक्सिस फॉवेट</a> द्वारा <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्लैश</a> पर
 

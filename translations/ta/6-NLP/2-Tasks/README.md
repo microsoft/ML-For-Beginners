@@ -23,14 +23,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 மிகவும் முதலில், பெரும்பாலான NLP ஆல்கொரிதங்கள் செய்ய வேண்டியது உரையை டோக்கன்கள் அல்லது சொற்களாகப் பிரிப்பது. இது எளிதாகத் தோன்றினாலும், குறியீடுகள் மற்றும் பல மொழிகளின் சொல் மற்றும் வாக்கிய எல்லைகளை கணக்கில் எடுத்துக்கொள்ள வேண்டிய அவசியம் இதை சிக்கலாக்குகிறது. நீங்கள் எல்லைகளைத் தீர்மானிக்க பல்வேறு முறைகளைப் பயன்படுத்த வேண்டியிருக்கலாம்.
 
-![டோக்கனேஷன்](../../../../translated_images/tokenization.1641a160c66cd2d9.ta.png)
+![டோக்கனேஷன்](../../../../translated_images/ta/tokenization.1641a160c66cd2d9.png)
 > **Pride and Prejudice**-இன் ஒரு வாக்கியத்தை டோக்கனேஷன் செய்கிறது. [Jen Looper](https://twitter.com/jenlooper) உருவாக்கிய தகவல்படம்
 
 ### எம்பெடிங்ஸ்
 
 [சொல் எம்பெடிங்ஸ்](https://wikipedia.org/wiki/Word_embedding) என்பது உங்கள் உரைத் தரவுகளை எண் வடிவமாக மாற்றும் ஒரு வழியாகும். எம்பெடிங்ஸ், ஒரே பொருள் கொண்ட சொற்கள் அல்லது ஒன்றாகப் பயன்படுத்தப்படும் சொற்கள் ஒன்றாகக் குழுவாக அமைக்கப்படும் வகையில் செய்யப்படுகிறது.
 
-![சொல் எம்பெடிங்ஸ்](../../../../translated_images/embedding.2cf8953c4b3101d1.ta.png)
+![சொல் எம்பெடிங்ஸ்](../../../../translated_images/ta/embedding.2cf8953c4b3101d1.png)
 > "I have the highest respect for your nerves, they are my old friends." - **Pride and Prejudice**-இன் ஒரு வாக்கியத்திற்கான சொல் எம்பெடிங்ஸ். [Jen Looper](https://twitter.com/jenlooper) உருவாக்கிய தகவல்படம்
 
 ✅ [இந்த 흥미로운 கருவியை](https://projector.tensorflow.org/) முயற்சிக்கவும். ஒரு சொல் மீது கிளிக் செய்வது 유사மான சொற்களின் குழுக்களை காட்டுகிறது: 'toy' 'disney', 'lego', 'playstation', மற்றும் 'console' உடன் குழுவாக உள்ளது.
@@ -39,7 +39,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 டோக்கனேஷன் செய்யப்பட்ட ஒவ்வொரு சொல் ஒரு பாகம்-ஆஃப்-ஸ்பீச் ஆக டேக் செய்யப்படலாம் - ஒரு பெயர்ச்சொல், வினைச்சொல், அல்லது பெயரடை. `the quick red fox jumped over the lazy brown dog` என்ற வாக்கியம் fox = noun, jumped = verb என POS டேக் செய்யப்படலாம்.
 
-![பார்சிங்](../../../../translated_images/parse.d0c5bbe1106eae8f.ta.png)
+![பார்சிங்](../../../../translated_images/ta/parse.d0c5bbe1106eae8f.png)
 
 > **Pride and Prejudice**-இன் ஒரு வாக்கியத்தை பார்சிங் செய்கிறது. [Jen Looper](https://twitter.com/jenlooper) உருவாக்கிய தகவல்படம்
 

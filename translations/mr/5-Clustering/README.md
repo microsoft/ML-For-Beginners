@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 नायजेरियाच्या विविध प्रेक्षकांची संगीताची आवडही विविध आहे. Spotify वरून डेटा स्क्रॅप करून (या [लेखातून प्रेरित](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), नायजेरियामध्ये लोकप्रिय असलेल्या काही संगीतावर नजर टाकूया. या डेटासेटमध्ये विविध गाण्यांच्या 'danceability' स्कोअर, 'acousticness', loudness, 'speechiness', लोकप्रियता आणि ऊर्जा याबद्दलचा डेटा समाविष्ट आहे. या डेटामध्ये नमुने शोधणे खूपच मनोरंजक ठरेल!
 
-![एक टर्नटेबल](../../../translated_images/turntable.f2b86b13c53302dc.mr.jpg)
+![एक टर्नटेबल](../../../translated_images/mr/turntable.f2b86b13c53302dc.jpg)
 
 > <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> यांनी <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> वर फोटो दिला आहे
   

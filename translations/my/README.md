@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ကျွန်တော်တို့မှာ Discord ပေါ်တွင် "Learn with AI" စီးရီးတစ်ခု ဆက်လက်လည်ပတ်နေပါသည်။ 18 - 30 September, 2025 အတွင်း၊ အသေးစိတ်ကို သင်ယူရန်နှင့် ပူးပေါင်းရန် [Learn with AI Series](https://aka.ms/learnwithai/discord) တွင် ပါဝင်နိုင်ပါတယ်။ GitHub Copilot ကို Data Science အတွက် အသုံးပြုနည်း လှမ်းများနှင့် ကိုယ့်ရဲ့လက်တွေ့အကောင်းဆုံး လက်နက်များ၊ လက်ရာများကို ရယူနိုင်ပါမယ်။
 
-![AI နှင့် လေ့လာမှု စီးရီး](../../translated_images/3.9b58fd8d6c373c20.my.png)
+![AI နှင့် လေ့လာမှု စီးရီး](../../translated_images/my/3.9b58fd8d6c373c20.png)
 
 # မစတင်သူများအတွက် Machine Learning - သင်ရိုးညွှန်းတမ်း
 
@@ -79,7 +79,7 @@ Cloud Advocates တွေက Microsoft မှ အသင်းအဖွဲ့သ�
 
 သင်ခန်းစာတချို့ကို အတိုချုံး ဗီဒီယိုအဖြစ် ရရှိနိုင်ပါသည်။ သင်ခန်းစာများထဲတွင် တန်းစီထည့်ထားသော ဗီဒီယိုများအားလုံးကို သင့်သင်ခန်းစာများအတွင်းကနေ သို့မဟုတ် [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) မှာ ဗီဒီယိုကို နှိပ်၍ ကြည့်ရှုနိုင်သည်။
 
-[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.my.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](../../translated_images/my/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

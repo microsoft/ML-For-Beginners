@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 我們正舉辦 Discord 的「與 AI 一起學習」系列活動，詳情與加入請到 [Learn with AI Series](https://aka.ms/learnwithai/discord)，活動期間為 2025 年 9 月 18 日至 30 日。你將會學到使用 GitHub Copilot 進行資料科學的技巧與秘訣。
 
-![與 AI 一起學習 系列](../../translated_images/3.9b58fd8d6c373c20.hk.png)
+![與 AI 一起學習 系列](../../translated_images/hk/3.9b58fd8d6c373c20.png)
 
 # Machine Learning for Beginners - A Curriculum
 
@@ -80,7 +80,7 @@ Microsoft 的 Cloud Advocates 很高興推出一個為期 12 週、共 26 節課
 
 部分課程有短片形式的教學。你可以在各課程內嵌找到這些影片，或於 [Microsoft Developer YouTube 頻道上的 ML for Beginners 播放清單](https://aka.ms/ml-beginners-videos) 中觀看，點選下方圖片即可前往。
 
-[![ML for beginners 橫幅](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.hk.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners 橫幅](../../translated_images/hk/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

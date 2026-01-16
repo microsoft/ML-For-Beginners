@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Meillä on Discordissa käynnissä Learn with AI -sarja; opi lisää ja liity mukaan osoitteessa [Learn with AI Series](https://aka.ms/learnwithai/discord) ajalla 18.–30. syyskuuta 2025. Saat vinkkejä ja niksejä GitHub Copilotin käytöstä data-analytiikassa.
 
-![Learn with AI -sarja](../../translated_images/3.9b58fd8d6c373c20.fi.png)
+![Learn with AI -sarja](../../translated_images/fi/3.9b58fd8d6c373c20.png)
 
 # Koneoppiminen aloittelijoille - Opetussuunnitelma
 
@@ -66,7 +66,7 @@ Seuraa näitä vaiheita:
 
 Joistakin oppitunneista on saatavilla lyhyitä videoita. Löydät kaikki nämä suoraan oppitunneista tai [ML for Beginners -soittolistalta Microsoft Developer YouTube -kanavalla](https://aka.ms/ml-beginners-videos) klikkaamalla alla olevaa kuvaa.
 
-[![ML for Beginners -banneri](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.fi.png)](https://aka.ms/ml-beginners-videos)
+[![ML for Beginners -banneri](../../translated_images/fi/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

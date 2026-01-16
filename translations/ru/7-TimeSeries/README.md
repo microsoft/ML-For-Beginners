@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Наш региональный фокус — потребление электроэнергии в мире. Это интересный набор данных, который позволяет изучить прогнозирование будущего энергопотребления на основе прошлых нагрузок. Вы увидите, как такой вид прогнозирования может быть крайне полезным в бизнес-среде.
 
-![электрическая сеть](../../../translated_images/electric-grid.0c21d5214db09ffa.ru.jpg)
+![электрическая сеть](../../../translated_images/ru/electric-grid.0c21d5214db09ffa.jpg)
 
 Фото [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) электрических вышек на дороге в Раджастане на [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

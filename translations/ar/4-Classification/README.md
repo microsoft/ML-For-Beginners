@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 في آسيا والهند، تتميز تقاليد الطعام بتنوعها الكبير ولذتها الفائقة! دعونا نلقي نظرة على بيانات حول المأكولات الإقليمية لفهم مكوناتها بشكل أفضل.
 
-![بائع طعام تايلاندي](../../../translated_images/thai-food.c47a7a7f9f05c218.ar.jpg)
+![بائع طعام تايلاندي](../../../translated_images/ar/thai-food.c47a7a7f9f05c218.jpg)
 > الصورة بواسطة <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> على <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## ما الذي ستتعلمه

@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [Mountain Car environment](https://gym.openai.com/envs/MountainCar-v0/) ഒരു താഴ്വരയിൽ കുടുങ്ങിയ ഒരു കാർ ഉൾക്കൊള്ളുന്നു:
 
-<img src="../../../../translated_images/mountaincar.43d56e588ce581c2.ml.png" width="300"/>
+<img src="../../../../translated_images/ml/mountaincar.43d56e588ce581c2.png" width="300"/>
 
 ലക്ഷ്യം താഴ്വരയിൽ നിന്ന് പുറത്തുകടക്കുകയും പതാക പിടിക്കുകയും ചെയ്യുക ആണ്, ഓരോ ഘട്ടത്തിലും താഴെപ്പറയുന്ന പ്രവർത്തനങ്ങളിൽ ഒന്നും ചെയ്യുക:
 

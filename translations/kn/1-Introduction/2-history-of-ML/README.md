@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # ಯಂತ್ರ ಅಧ್ಯಯನದ ಇತಿಹಾಸ
 
-![ಯಂತ್ರ ಅಧ್ಯಯನದ ಇತಿಹಾಸದ ಸಾರಾಂಶವನ್ನು ಸ್ಕೆಚ್‌ನೋಟ್‌ನಲ್ಲಿ](../../../../translated_images/ml-history.a1bdfd4ce1f464d9.kn.png)
+![ಯಂತ್ರ ಅಧ್ಯಯನದ ಇತಿಹಾಸದ ಸಾರಾಂಶವನ್ನು ಸ್ಕೆಚ್‌ನೋಟ್‌ನಲ್ಲಿ](../../../../translated_images/kn/ml-history.a1bdfd4ce1f464d9.png)
 > ಸ್ಕೆಚ್‌ನೋಟ್: [ಟೊಮೊಮಿ ಇಮುರಾ](https://www.twitter.com/girlie_mac)
 
 ## [ಪೂರ್ವ-ಪಾಠ ಪ್ರಶ್ನೋತ್ತರ](https://ff-quizzes.netlify.app/en/ml/)
@@ -71,14 +71,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 * [ಶೇಕಿ ರೋಬೋಟ್](https://wikipedia.org/wiki/Shakey_the_robot), ಯಾರು 'ಬುದ್ಧಿವಂತಿಕೆಯಿಂದ' ಕಾರ್ಯಗಳನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ನಿರ್ಧರಿಸಲು ಸಾಧ್ಯವಿತ್ತು.
 
-    ![ಶೇಕಿ, ಬುದ್ಧಿವಂತ ರೋಬೋಟ್](../../../../translated_images/shakey.4dc17819c447c05b.kn.jpg)
+    ![ಶೇಕಿ, ಬುದ್ಧಿವಂತ ರೋಬೋಟ್](../../../../translated_images/kn/shakey.4dc17819c447c05b.jpg)
     > 1972 ರಲ್ಲಿ ಶೇಕಿ
 
 ---
 
 * ಎಲಿಜಾ, ಆರಂಭಿಕ 'ಚಾಟ್‌ಬಾಟ್', ಜನರೊಂದಿಗೆ ಸಂಭಾಷಣೆ ನಡೆಸಲು ಮತ್ತು ಪ್ರಾಥಮಿಕ 'ಥೆರಪಿಸ್ಟ್' ಆಗ ಕಾರ್ಯನಿರ್ವಹಿಸಲು ಸಾಧ್ಯವಿತ್ತು. NLP ಪಾಠಗಳಲ್ಲಿ ನೀವು ಎಲಿಜಾ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯುತ್ತೀರಿ.
 
-    ![ಎಲಿಜಾ, ಒಂದು ಬಾಟ್](../../../../translated_images/eliza.84397454cda9559b.kn.png)
+    ![ಎಲಿಜಾ, ಒಂದು ಬಾಟ್](../../../../translated_images/kn/eliza.84397454cda9559b.png)
     > ಎಲಿಜಾ, ಒಂದು ಚಾಟ್‌ಬಾಟ್‌ನ ಆವೃತ್ತಿ
 
 ---

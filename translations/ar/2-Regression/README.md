@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 في أمريكا الشمالية، غالبًا ما يتم نحت القرع إلى وجوه مخيفة للاحتفال بعيد الهالوين. دعونا نكتشف المزيد عن هذه الخضروات المثيرة!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.ar.jpg)
+![jack-o-lanterns](../../../translated_images/ar/jack-o-lanterns.181c661a9212457d.jpg)
 > صورة بواسطة <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> على <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## ما ستتعلمه

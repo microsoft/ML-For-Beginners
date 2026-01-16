@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Avem în curs o serie Discord „Învață cu AI”, aflați mai multe și alăturați-vă la [Learn with AI Series](https://aka.ms/learnwithai/discord) între 18 - 30 septembrie, 2025. Veți primi sfaturi și trucuri privind utilizarea GitHub Copilot pentru Data Science.
 
-![Seria Învață cu AI](../../translated_images/3.9b58fd8d6c373c20.ro.png)
+![Seria Învață cu AI](../../translated_images/ro/3.9b58fd8d6c373c20.png)
 
 # Machine Learning pentru începători - Un curriculum
 
@@ -80,7 +80,7 @@ Urmați acești pași:
 
 Unele lecții sunt disponibile ca video scurt. Le puteți găsi incluse în lecții sau în [lista de redare ML for Beginners de pe canalul Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) făcând clic pe imaginea de mai jos.
 
-[![Banner ML pentru începători](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.ro.png)](https://aka.ms/ml-beginners-videos)
+[![Banner ML pentru începători](../../translated_images/ro/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

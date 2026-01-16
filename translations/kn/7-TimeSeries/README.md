@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ನಮ್ಮ ಪ್ರಾದೇಶಿಕ ಗಮನವು ವಿಶ್ವದ ವಿದ್ಯುತ್ ಬಳಕೆಯ ಮೇಲೆ ಇದೆ, ಇದು ಭೂತಕಾಲದ ಲೋಡ್ ಮಾದರಿಗಳ ಆಧಾರದ ಮೇಲೆ ಭವಿಷ್ಯದ ವಿದ್ಯುತ್ ಬಳಕೆಯನ್ನು ಊಹಿಸುವುದನ್ನು ಕಲಿಯಲು ಆಸಕ್ತಿದಾಯಕ ಡೇಟಾಸೆಟ್ ಆಗಿದೆ. ಈ ರೀತಿಯ ಭವಿಷ್ಯವಾಣಿ ವ್ಯವಹಾರ ಪರಿಸರದಲ್ಲಿ ಅತ್ಯಂತ ಸಹಾಯಕವಾಗಬಹುದು ಎಂದು ನೀವು ನೋಡಬಹುದು.
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffa.kn.jpg)
+![electric grid](../../../translated_images/kn/electric-grid.0c21d5214db09ffa.jpg)
 
 ರಾಜಸ್ಥಾನದಲ್ಲಿ ರಸ್ತೆಯ ಮೇಲೆ ವಿದ್ಯುತ್ ಕಂಬಗಳ ಫೋಟೋವನ್ನು [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ಅವರು [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ನಲ್ಲಿ ತೆಗೆದಿದ್ದಾರೆ
 

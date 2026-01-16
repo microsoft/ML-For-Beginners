@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 このカリキュラムのこのセクションでは、古典的な機械学習の実世界での応用例を紹介します。インターネットを徹底的に調査し、ニューラルネットワークやディープラーニング、AIをできるだけ避けた上で、これらの戦略を使用した応用に関するホワイトペーパーや記事を見つけました。機械学習がビジネスシステム、生態学的応用、金融、芸術や文化などでどのように活用されているかを学びましょう。
 
-![chess](../../../translated_images/chess.e704a268781bdad8.ja.jpg)
+![chess](../../../translated_images/ja/chess.e704a268781bdad8.jpg)
 
 > 写真提供: <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> on <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

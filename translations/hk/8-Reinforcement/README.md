@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 想像一下你有一個模擬環境，例如股票市場。如果你施加某項規定，會發生什麼事？它會帶來正面還是負面的影響？如果發生負面影響，你需要接受這種_負面強化_，從中學習並改變方向。如果結果是正面的，你需要基於這種_正面強化_進一步發展。
 
-![彼得與狼](../../../translated_images/peter.779730f9ba3a8a8d.hk.png)
+![彼得與狼](../../../translated_images/hk/peter.779730f9ba3a8a8d.png)
 
 > 彼得和他的朋友需要逃離飢餓的狼！圖片來源：[Jen Looper](https://twitter.com/jenlooper)
 

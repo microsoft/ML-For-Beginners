@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Разнообразная аудитория Нигерии имеет разнообразные музыкальные вкусы. Используя данные, собранные со Spotify (вдохновлено [этой статьей](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), давайте рассмотрим популярную музыку в Нигерии. Этот набор данных включает информацию о таких характеристиках песен, как уровень "танцевальности", "акустичности", громкость, "речевость", популярность и энергия. Будет интересно обнаружить закономерности в этих данных!
 
-![Проигрыватель](../../../translated_images/turntable.f2b86b13c53302dc.ru.jpg)
+![Проигрыватель](../../../translated_images/ru/turntable.f2b86b13c53302dc.jpg)
 
 > Фото предоставлено <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Марселой Ласкоски</a> на <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

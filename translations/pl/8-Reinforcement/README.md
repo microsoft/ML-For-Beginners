@@ -13,7 +13,7 @@ Uczenie ze wzmocnieniem (RL) jest postrzegane jako jeden z podstawowych paradygm
 
 Wyobraź sobie, że masz symulowane środowisko, takie jak rynek akcji. Co się stanie, jeśli wprowadzisz określone regulacje? Czy będzie to miało pozytywny czy negatywny efekt? Jeśli wydarzy się coś negatywnego, musisz przyjąć tę _negatywną informację zwrotną_, nauczyć się z niej i zmienić kierunek działania. Jeśli wynik jest pozytywny, musisz budować na tej _pozytywnej informacji zwrotnej_.
 
-![Piotruś i wilk](../../../translated_images/peter.779730f9ba3a8a8d.pl.png)
+![Piotruś i wilk](../../../translated_images/pl/peter.779730f9ba3a8a8d.png)
 
 > Piotruś i jego przyjaciele muszą uciec przed głodnym wilkiem! Obraz autorstwa [Jen Looper](https://twitter.com/jenlooper)
 

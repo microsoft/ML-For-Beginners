@@ -29,7 +29,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 אנו עורכים סדרת "ללמוד עם בינה מלאכותית" בדיוסקורד, למידע נוסף והצטרפות ראו את [סדרת Learn with AI](https://aka.ms/learnwithai/discord) בין התאריכים 18 - 30 בספטמבר 2025. תקבלו טיפים וטריקים לשימוש ב-GitHub Copilot במדעי הנתונים.
 
-![סדרת Learn with AI](../../translated_images/3.9b58fd8d6c373c20.he.png)
+![סדרת Learn with AI](../../translated_images/he/3.9b58fd8d6c373c20.png)
 
 # למידת מכונה למתחילים - תכנית לימודים
 
@@ -78,7 +78,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 חלק מהשיעורים זמינים כסרטוני קצרי פורמט. ניתן למצוא את כולם בתוך השיעורים, או ברשימת ההשמעה של [ML for Beginners בערוץ Microsoft Developer ב-YouTube](https://aka.ms/ml-beginners-videos) על ידי לחיצה על התמונה למטה.
 
-[![באנר ML למתחילים](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.he.png)](https://aka.ms/ml-beginners-videos)
+[![באנר ML למתחילים](../../translated_images/he/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

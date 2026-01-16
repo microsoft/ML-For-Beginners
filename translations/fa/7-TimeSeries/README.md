@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 تمرکز منطقه‌ای ما بر مصرف برق جهانی است، یک مجموعه داده جالب برای یادگیری پیش‌بینی مصرف برق آینده بر اساس الگوهای بار گذشته. می‌توانید ببینید که این نوع پیش‌بینی چگونه می‌تواند در محیط‌های تجاری بسیار مفید باشد.
 
-![شبکه برق](../../../translated_images/electric-grid.0c21d5214db09ffa.fa.jpg)
+![شبکه برق](../../../translated_images/fa/electric-grid.0c21d5214db09ffa.jpg)
 
 عکس از [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) از برج‌های برق در جاده‌ای در راجستان در [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

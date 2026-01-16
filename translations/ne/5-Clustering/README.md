@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 नाइजेरियाको विविध दर्शकहरूको संगीत रुचि पनि विविध छ। Spotify बाट सङ्कलित डाटाको प्रयोग गरेर (यस [लेख](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421) बाट प्रेरित), नाइजेरियामा लोकप्रिय केही संगीतलाई हेरौं। यो डेटासेटमा विभिन्न गीतहरूको 'डान्सएबिलिटी' स्कोर, 'एकुस्टिकनेस', लाउडनेस, 'स्पिचिनेस', लोकप्रियता र ऊर्जा सम्बन्धी डाटा समावेश छ। यस डाटामा पैटर्नहरू पत्ता लगाउनु रोचक हुनेछ!
 
-![एक टर्नटेबल](../../../translated_images/turntable.f2b86b13c53302dc.ne.jpg)
+![एक टर्नटेबल](../../../translated_images/ne/turntable.f2b86b13c53302dc.jpg)
 
 > फोटो <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">मार्सेला लास्कोस्की</a> द्वारा <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्ल्यास</a> मा
   

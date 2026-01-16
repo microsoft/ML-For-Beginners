@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Kami mempunyai siri Learn with AI di Discord yang sedang berjalan, ketahui lebih lanjut dan sertai kami di [Siri Belajar dengan AI](https://aka.ms/learnwithai/discord) dari 18 - 30 September, 2025. Anda akan mendapat petua dan trik menggunakan GitHub Copilot untuk Sains Data.
 
-![Siri Belajar dengan AI](../../translated_images/3.9b58fd8d6c373c20.ms.png)
+![Siri Belajar dengan AI](../../translated_images/ms/3.9b58fd8d6c373c20.png)
 
 # Machine Learning for Beginners - A Curriculum
 
@@ -80,7 +80,7 @@ Ikuti langkah-langkah ini:
 
 Beberapa pelajaran tersedia sebagai video bentuk pendek. Anda boleh mencari semua ini bersusun dalam pelajaran, atau di [playlist ML for Beginners pada saluran Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) dengan mengklik imej di bawah.
 
-[![Sepanduk ML untuk Pemula](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.ms.png)](https://aka.ms/ml-beginners-videos)
+[![Sepanduk ML untuk Pemula](../../translated_images/ms/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

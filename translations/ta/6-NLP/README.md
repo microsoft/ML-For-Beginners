@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 இந்த பாடங்களில், சிறிய உரையாடல் பாட்டுகளை உருவாக்குவதன் மூலம் NLP இன் அடிப்படைகளை கற்றுக்கொள்வோம், இந்த உரையாடல்களை மேலும் 'சிறந்த'தாக மாற்ற இயந்திரக் கற்றல் எப்படி உதவுகிறது என்பதைப் புரிந்துகொள்வோம். நீங்கள் காலத்தை மீண்டும் பயணம் செய்து, ஜேன் ஆஸ்டனின் 1813-ல் வெளியிடப்பட்ட **Pride and Prejudice** என்ற புகழ்பெற்ற நாவலின் எலிசபெத் பென்னட் மற்றும் திரு. டார்சி உடன் உரையாடுவீர்கள். பின்னர், ஐரோப்பிய ஹோட்டல் விமர்சனங்கள் மூலம் உணர்வு பகுப்பாய்வு பற்றி கற்றுக்கொள்வதன் மூலம் உங்கள் அறிவை மேம்படுத்துவீர்கள்.
 
-![Pride and Prejudice புத்தகம் மற்றும் தேநீர்](../../../translated_images/p&p.279f1c49ecd88941.ta.jpg)
+![Pride and Prejudice புத்தகம் மற்றும் தேநீர்](../../../translated_images/ta/p&p.279f1c49ecd88941.jpg)
 > புகைப்படம் <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> மூலம் <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> இல்
   
 ## பாடங்கள்

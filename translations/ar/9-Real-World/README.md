@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 في هذا القسم من المنهج الدراسي، ستتعرف على بعض تطبيقات العالم الحقيقي لتعلم الآلة الكلاسيكي. لقد قمنا بالبحث عبر الإنترنت للعثور على أوراق بحثية ومقالات حول تطبيقات استخدمت هذه الاستراتيجيات، مع تجنب الشبكات العصبية، التعلم العميق والذكاء الاصطناعي قدر الإمكان. تعرف على كيفية استخدام تعلم الآلة في أنظمة الأعمال، التطبيقات البيئية، التمويل، الفنون والثقافة، والمزيد.
 
-![chess](../../../translated_images/chess.e704a268781bdad8.ar.jpg)
+![chess](../../../translated_images/ar/chess.e704a268781bdad8.jpg)
 
 > صورة بواسطة <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> على <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

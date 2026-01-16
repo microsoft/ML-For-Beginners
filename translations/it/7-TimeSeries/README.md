@@ -17,7 +17,7 @@ In queste due lezioni, verrà introdotta la previsione delle serie temporali, un
 
 Il nostro focus regionale è l'utilizzo dell'elettricità nel mondo, un dataset interessante per imparare a prevedere il consumo energetico futuro basandosi sui modelli di carico passati. Puoi vedere come questo tipo di previsione possa essere estremamente utile in un contesto aziendale.
 
-![rete elettrica](../../../translated_images/electric-grid.0c21d5214db09ffa.it.jpg)
+![rete elettrica](../../../translated_images/it/electric-grid.0c21d5214db09ffa.jpg)
 
 Foto di [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) di torri elettriche su una strada in Rajasthan su [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

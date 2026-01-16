@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Na Ásia e na Índia, as tradições culinárias são extremamente diversas e muito deliciosas! Vamos analisar dados sobre culinárias regionais para tentar entender os seus ingredientes.
 
-![Vendedor de comida tailandesa](../../../translated_images/thai-food.c47a7a7f9f05c218.pt.jpg)
+![Vendedor de comida tailandesa](../../../translated_images/pt/thai-food.c47a7a7f9f05c218.jpg)
 > Foto por <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> no <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## O que irá aprender

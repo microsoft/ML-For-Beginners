@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 これらのレッスンでは、小さな会話型ボットを構築することでNLPの基本を学び、機械学習がこれらの会話をますます「賢く」するのを助ける方法を理解します。1813年に出版されたジェーン・オースティンの古典小説**『高慢と偏見』**のエリザベス・ベネットやミスター・ダーシーと会話しながら、時を遡ります。その後、ヨーロッパのホテルレビューを通じて感情分析について学び、知識を深めます。
 
-![高慢と偏見の本と紅茶](../../../translated_images/p&p.279f1c49ecd88941.ja.jpg)
+![高慢と偏見の本と紅茶](../../../translated_images/ja/p&p.279f1c49ecd88941.jpg)
 > 写真提供: <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> on <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## レッスン

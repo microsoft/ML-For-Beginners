@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 در این بخش از برنامه آموزشی، با برخی از کاربردهای واقعی یادگیری ماشین کلاسیک آشنا خواهید شد. ما اینترنت را جستجو کرده‌ایم تا مقالات و گزارش‌هایی درباره کاربردهایی که از این استراتژی‌ها استفاده کرده‌اند پیدا کنیم، و تا حد امکان از شبکه‌های عصبی، یادگیری عمیق و هوش مصنوعی اجتناب کرده‌ایم. درباره نحوه استفاده از یادگیری ماشین در سیستم‌های تجاری، کاربردهای زیست‌محیطی، امور مالی، هنر و فرهنگ و موارد دیگر بیاموزید.
 
-![chess](../../../translated_images/chess.e704a268781bdad8.fa.jpg)
+![chess](../../../translated_images/fa/chess.e704a268781bdad8.jpg)
 
 > عکس از <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">الکسیس فووه</a> در <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

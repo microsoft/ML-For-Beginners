@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 このカリキュラムのセクションでは、機械学習の分野の基本的な概念、それが何であるか、その歴史、そして研究者がそれに取り組むために使用する技術について学びます。一緒にこの新しい機械学習の世界を探求してみましょう！
 
-![globe](../../../translated_images/globe.59f26379ceb40428.ja.jpg)
+![globe](../../../translated_images/ja/globe.59f26379ceb40428.jpg)
 > 写真提供: <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> on <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### レッスン

@@ -42,7 +42,7 @@ Termin 'masinõpe' on üks tänapäeva populaarsemaid ja sagedamini kasutatavaid
 ---
 ## Hüppekurv
 
-![ml hüppekurv](../../../../translated_images/hype.07183d711a17aafe.et.png)
+![ml hüppekurv](../../../../translated_images/et/hype.07183d711a17aafe.png)
 
 > Google Trends näitab termini 'masinõpe' hiljutist hüppekurvi
 
@@ -69,7 +69,7 @@ Kuigi termineid võib segamini ajada, on masinõpe (ML) tehisintellekti oluline 
 ---
 ## AI, ML, süvaõpe
 
-![AI, ML, süvaõpe, andmeteadus](../../../../translated_images/ai-ml-ds.537ea441b124ebf6.et.png)
+![AI, ML, süvaõpe, andmeteadus](../../../../translated_images/et/ai-ml-ds.537ea441b124ebf6.png)
 
 > Diagramm, mis näitab AI, ML-i, süvaõppe ja andmeteaduse vahelisi seoseid. Infograafik autorilt [Jen Looper](https://twitter.com/jenlooper), inspireeritud [sellest graafikust](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 

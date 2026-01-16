@@ -17,7 +17,7 @@ Nendes kahes õppetükis tutvustatakse teile aegridade prognoosimist, mis on kü
 
 Meie regionaalne fookus on elektritarbimine maailmas – huvitav andmestik, mille abil õppida prognoosima tulevast energiatarbimist mineviku koormusmustrite põhjal. Näete, kuidas selline prognoosimine võib olla äärmiselt kasulik ärikeskkonnas.
 
-![elektrivõrk](../../../translated_images/electric-grid.0c21d5214db09ffa.et.jpg)
+![elektrivõrk](../../../translated_images/et/electric-grid.0c21d5214db09ffa.jpg)
 
 Foto autorilt [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) elektritornidest teel Rajasthanis [Unsplashis](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

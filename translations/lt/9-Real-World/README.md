@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Šioje mokymo programos dalyje susipažinsite su kai kuriais klasikinio mašininio mokymosi realaus pasaulio taikymais. Mes peržiūrėjome internetą, ieškodami straipsnių ir mokslinių darbų apie taikymus, kurie naudoja šias strategijas, vengdami neuroninių tinklų, giluminio mokymosi ir dirbtinio intelekto, kiek įmanoma. Sužinokite, kaip mašininis mokymasis naudojamas verslo sistemose, ekologiniuose projektuose, finansuose, mene ir kultūroje bei kitose srityse.
 
-![šachmatai](../../../translated_images/chess.e704a268781bdad8.lt.jpg)
+![šachmatai](../../../translated_images/lt/chess.e704a268781bdad8.jpg)
 
 > Nuotrauka <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> iš <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಪಠ್ಯಕ್ರಮದ ಈ ವಿಭಾಗದಲ್ಲಿ, ನೀವು ಯಂತ್ರ ಅಧ್ಯಯನ ಕ್ಷೇತ್ರದ ಮೂಲ ತತ್ವಗಳನ್ನು ಪರಿಚಯಿಸಿಕೊಳ್ಳುತ್ತೀರಿ, ಅದು ಏನು ಮತ್ತು ಅದರ ಇತಿಹಾಸ ಮತ್ತು ಸಂಶೋಧಕರು ಅದನ್ನು ಬಳಸುವ ತಂತ್ರಗಳನ್ನು ತಿಳಿಯುತ್ತೀರಿ. ಬನ್ನಿ, ಈ ಹೊಸ ಯಂತ್ರ ಅಧ್ಯಯನ ಲೋಕವನ್ನು ಒಟ್ಟಿಗೆ ಅನ್ವೇಷಿಸೋಣ!
 
-![globe](../../../translated_images/globe.59f26379ceb40428.kn.jpg)
+![globe](../../../translated_images/kn/globe.59f26379ceb40428.jpg)
 > ಫೋಟೋ <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಬಿಲ್ ಆಕ್ಸ್ಫರ್ಡ್</a> ಅವರಿಂದ <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಅನ್ಸ್ಪ್ಲ್ಯಾಶ್</a> ನಲ್ಲಿ
   
 ### ಪಾಠಗಳು

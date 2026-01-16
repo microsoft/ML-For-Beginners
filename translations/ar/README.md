@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 نقوم بتشغيل سلسلة Learn with AI على Discord، تعرف على المزيد وانضم إلينا في [Learn with AI Series](https://aka.ms/learnwithai/discord) من 18 إلى 30 سبتمبر 2025. ستحصل على نصائح وحيل لاستخدام GitHub Copilot في علم البيانات.
 
-![سلسلة Learn with AI](../../translated_images/3.9b58fd8d6c373c20.ar.png)
+![سلسلة Learn with AI](../../translated_images/ar/3.9b58fd8d6c373c20.png)
 
 # تعلم الآلة للمبتدئين - منهج دراسي
 
@@ -80,7 +80,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 بعض الدروس متاحة كفيديو قصير. يمكنك العثور على كل هذه الفيديوهات مضمّنة داخل الدروس، أو على [قائمة تشغيل ML للمبتدئين على قناة Microsoft Developer على YouTube](https://aka.ms/ml-beginners-videos) بالنقر على الصورة أدناه.
 
-[![لافتة ML للمبتدئين](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.ar.png)](https://aka.ms/ml-beginners-videos)
+[![لافتة ML للمبتدئين](../../translated_images/ar/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

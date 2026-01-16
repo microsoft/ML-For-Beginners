@@ -13,7 +13,7 @@ Reinforcement Learning, RL, wird als eines der grundlegenden Paradigmen des masc
 
 Stellen Sie sich vor, Sie haben eine simulierte Umgebung wie den Aktienmarkt. Was passiert, wenn Sie eine bestimmte Regulierung einführen? Hat dies eine positive oder negative Wirkung? Wenn etwas Negatives passiert, müssen Sie diese _negative Verstärkung_ nutzen, daraus lernen und den Kurs ändern. Wenn es ein positives Ergebnis ist, müssen Sie darauf aufbauen und die _positive Verstärkung_ nutzen.
 
-![Peter und der Wolf](../../../translated_images/peter.779730f9ba3a8a8d.de.png)
+![Peter und der Wolf](../../../translated_images/de/peter.779730f9ba3a8a8d.png)
 
 > Peter und seine Freunde müssen dem hungrigen Wolf entkommen! Bild von [Jen Looper](https://twitter.com/jenlooper)
 

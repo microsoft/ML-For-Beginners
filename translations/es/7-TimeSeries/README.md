@@ -17,7 +17,7 @@ En estas dos lecciones, se te presentará la predicción de series temporales, u
 
 Nuestro enfoque regional es el uso eléctrico en el mundo, un conjunto de datos interesante para aprender sobre la predicción del consumo futuro de energía basado en patrones de carga pasados. Puedes ver cómo este tipo de predicción puede ser extremadamente útil en un entorno empresarial.
 
-![red eléctrica](../../../translated_images/electric-grid.0c21d5214db09ffa.es.jpg)
+![red eléctrica](../../../translated_images/es/electric-grid.0c21d5214db09ffa.webp)
 
 Foto de [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de torres eléctricas en una carretera en Rajasthan en [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

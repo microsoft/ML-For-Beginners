@@ -71,7 +71,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![ಪೂರ್ಣ ಡೇಟಾ](../../../../translated_images/full-data.a82ec9957e580e97.kn.png)
+   ![ಪೂರ್ಣ ಡೇಟಾ](../../../../translated_images/kn/full-data.a82ec9957e580e97.png)
 
    ಈಗ, ನಮ್ಮ SVR ಮಾದರಿಯನ್ನು ನಿರ್ಮಿಸೋಣ.
 
@@ -97,7 +97,7 @@ CO_OP_TRANSLATOR_METADATA:
    plt.show()
    ```
 
-   ![ತರಬೇತಿ ಮತ್ತು ಪರೀಕ್ಷಾ ಡೇಟಾ](../../../../translated_images/train-test.ead0cecbfc341921.kn.png)
+   ![ತರಬೇತಿ ಮತ್ತು ಪರೀಕ್ಷಾ ಡೇಟಾ](../../../../translated_images/kn/train-test.ead0cecbfc341921.png)
 
 
 
@@ -275,7 +275,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![ತರಬೇತಿ ಡೇಟಾ ಭವಿಷ್ಯವಾಣಿ](../../../../translated_images/train-data-predict.3c4ef4e78553104f.kn.png)
+![ತರಬೇತಿ ಡೇಟಾ ಭವಿಷ್ಯವಾಣಿ](../../../../translated_images/kn/train-data-predict.3c4ef4e78553104f.png)
 
 ತರಬೇತಿ ಡೇಟಾದ MAPE ಅನ್ನು ಮುದ್ರಿಸಿ
 
@@ -298,7 +298,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![ಪರೀಕ್ಷಾ ಡೇಟಾ ಭವಿಷ್ಯವಾಣಿ](../../../../translated_images/test-data-predict.8afc47ee7e52874f.kn.png)
+![ಪರೀಕ್ಷಾ ಡೇಟಾ ಭವಿಷ್ಯವಾಣಿ](../../../../translated_images/kn/test-data-predict.8afc47ee7e52874f.png)
 
 ಪರೀಕ್ಷಾ ಡೇಟಾದ MAPE ಅನ್ನು ಮುದ್ರಿಸಿ
 
@@ -354,7 +354,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![ಪೂರ್ಣ ಡೇಟಾ ಭವಿಷ್ಯವಾಣಿ](../../../../translated_images/full-data-predict.4f0fed16a131c8f3.kn.png)
+![ಪೂರ್ಣ ಡೇಟಾ ಭವಿಷ್ಯವಾಣಿ](../../../../translated_images/kn/full-data-predict.4f0fed16a131c8f3.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

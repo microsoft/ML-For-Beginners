@@ -29,7 +29,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 私たちは Discord 上で「Learn with AI」シリーズを開催しています。詳細や参加は 2025年9月18日～30日の期間に [Learn with AI シリーズ](https://aka.ms/learnwithai/discord) でご案内しています。データサイエンス向けの GitHub Copilot の使い方に関するヒントやコツが得られます。
 
-![Learn with AI シリーズ](../../translated_images/3.9b58fd8d6c373c20.ja.png)
+![Learn with AI シリーズ](../../translated_images/ja/3.9b58fd8d6c373c20.png)
 
 # 機械学習入門 - カリキュラム
 
@@ -78,7 +78,7 @@ Microsoft の Cloud Advocates は、12 週間・26 課からなる **機械学�
 
 一部のレッスンは短い動画として利用できます。これらはレッスン内でインラインに表示されているほか、下の画像をクリックして [Microsoft Developer の YouTube チャンネル上の ML for Beginners プレイリスト](https://aka.ms/ml-beginners-videos) でもご覧いただけます。
 
-[![ML for beginners バナー](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.ja.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners バナー](../../translated_images/ja/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

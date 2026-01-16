@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Šioje mokymo programos dalyje susipažinsite su praktiniu ML aspektu: kaip išsaugoti savo Scikit-learn modelį kaip failą, kurį galima naudoti prognozėms internetinėje programoje. Kai modelis bus išsaugotas, sužinosite, kaip jį naudoti internetinėje programoje, sukurtoje naudojant Flask. Pirmiausia sukursite modelį naudodami duomenis apie NSO stebėjimus! Tada sukursite internetinę programą, kuri leis įvesti sekundžių skaičių, platumos ir ilgumos reikšmes, kad būtų galima prognozuoti, kuri šalis pranešė apie NSO stebėjimą.
 
-![NSO stovėjimo aikštelė](../../../translated_images/ufo.9e787f5161da9d4d.lt.jpg)
+![NSO stovėjimo aikštelė](../../../translated_images/lt/ufo.9e787f5161da9d4d.jpg)
 
 Nuotrauka <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> iš <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

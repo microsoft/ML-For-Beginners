@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਇਸ ਪਾਠਕ੍ਰਮ ਦੇ ਇਸ ਭਾਗ ਵਿੱਚ, ਤੁਹਾਨੂੰ ਮਸ਼ੀਨ ਲਰਨਿੰਗ ਦੇ ਮੂਲ ਧਾਰਨਾਵਾਂ, ਇਹ ਕੀ ਹੈ, ਇਸ ਦਾ ਇਤਿਹਾਸ ਅਤੇ ਉਹ ਤਕਨੀਕਾਂ ਜਿਨ੍ਹਾਂ ਨੂੰ ਖੋਜਕਰਤਾ ਇਸ ਨਾਲ ਕੰਮ ਕਰਨ ਲਈ ਵਰਤਦੇ ਹਨ, ਨਾਲ ਜਾਣੂ ਕਰਵਾਇਆ ਜਾਵੇਗਾ। ਆਓ, ਇਸ ਨਵੇਂ ML ਦੀ ਦੁਨੀਆ ਨੂੰ ਇਕੱਠੇ ਖੋਜੀਏ!
 
-![globe](../../../translated_images/globe.59f26379ceb40428.pa.jpg)
+![globe](../../../translated_images/pa/globe.59f26379ceb40428.jpg)
 > ਫੋਟੋ <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਬਿਲ ਆਕਸਫੋਰਡ</a> ਦੁਆਰਾ <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਅਨਸਪਲੈਸ਼</a> 'ਤੇ
   
 ### ਪਾਠ

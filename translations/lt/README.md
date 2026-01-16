@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Mes turime tęstinę Discord renginių seriją „Mokymasis su AI“ — sužinokite daugiau ir prisijunkite prie [Serija „Learn with AI“](https://aka.ms/learnwithai/discord) nuo 2025 m. rugsėjo 18 d. iki 30 d. Gausite patarimų ir triukų, kaip naudoti GitHub Copilot Duomenų mokslui.
 
-![Serija „Mokymasis su AI“](../../translated_images/3.9b58fd8d6c373c20.lt.png)
+![Serija „Mokymasis su AI“](../../translated_images/lt/3.9b58fd8d6c373c20.png)
 
 # Mašininis mokymasis pradedantiesiems - mokymo programa
 
@@ -80,7 +80,7 @@ Atlikite šiuos veiksmus:
 
 Kai kurios pamokos prieinamos trumpos formos vaizdo įrašais. Visus juos rasite įterptus pamokose arba [ML for Beginners grojaraštyje Microsoft Developer YouTube kanale](https://aka.ms/ml-beginners-videos), spustelėję žemiau esantį vaizdą.
 
-[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.lt.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](../../translated_images/lt/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

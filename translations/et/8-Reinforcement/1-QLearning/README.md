@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Sissejuhatus tugevdusõppesse ja Q-õppesse
 
-![Tugevdusõppe kokkuvõte masinõppes sketchnote'is](../../../../translated_images/ml-reinforcement.94024374d63348db.et.png)
+![Tugevdusõppe kokkuvõte masinõppes sketchnote'is](../../../../translated_images/et/ml-reinforcement.94024374d63348db.png)
 > Sketchnote autor: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 Tugevdusõpe hõlmab kolme olulist mõistet: agent, teatud seisundid ja tegevuste kogum iga seisundi kohta. Kui agent sooritab kindlas seisundis tegevuse, saab ta tasu. Kujutle näiteks arvutimängu Super Mario. Sina oled Mario, oled mängutasemel ja seisad kaljuserval. Sinu kohal on münt. Sina, olles Mario, mängutasemel kindlas asukohas ... see on sinu seisund. Kui liigud ühe sammu paremale (tegevus), kukud kaljult alla ja saad madala punktisumma. Kui aga vajutad hüppenuppu, saad punkti ja jääd ellu. See on positiivne tulemus ja selle eest peaksid saama positiivse punktisumma.
@@ -40,7 +40,7 @@ Selles õppetükis uurime **[Peeter ja hunt](https://en.wikipedia.org/wiki/Peter
 
 Lihtsuse huvides kujutame ette, et Peetri maailm on ruudukujuline laud mõõtmetega `laius` x `kõrgus`, mis näeb välja selline:
 
-![Peetri keskkond](../../../../translated_images/environment.40ba3cb66256c93f.et.png)
+![Peetri keskkond](../../../../translated_images/et/environment.40ba3cb66256c93f.png)
 
 Iga laua ruut võib olla:
 
@@ -177,7 +177,7 @@ Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 
 Pange tähele, et algväärtustame kõik Q-tabeli väärtused võrdse väärtusega, meie puhul - 0.25. See vastab "juhusliku kõndimise" poliitikale, kuna kõik liigutused igas seisundis on võrdselt head. Saame Q-tabeli edastada `plot` funktsioonile, et visualiseerida tabelit laual: `m.plot(Q)`.
 
-![Peetri keskkond](../../../../translated_images/env_init.04e8f26d2d60089e.et.png)
+![Peetri keskkond](../../../../translated_images/et/env_init.04e8f26d2d60089e.png)
 
 Iga ruudu keskel on "nooleke", mis näitab eelistatud liikumissuunda. Kuna kõik suunad on võrdsed, kuvatakse punkt.
 
@@ -195,7 +195,7 @@ Oletame, et oleme nüüd seisundis *s* ja tahame liikuda järgmisesse seisundiss
 
 See annab **Bellmani valemi**, mille abil arvutada Q-tabeli väärtust seisundis *s*, arvestades tegevust *a*:
 
-<img src="../../../../translated_images/bellman-equation.7c0c4c722e5a6b7c.et.png"/>
+<img src="../../../../translated_images/et/bellman-equation.7c0c4c722e5a6b7c.png"/>
 
 Siin γ on nn **diskonteerimistegur**, mis määrab, mil määral peaks eelistama praegust tasu tulevase tasu ees ja vastupidi.
 
@@ -267,7 +267,7 @@ Käivita õppealgoritm läbi 5000 eksperimendi, mida nimetatakse ka **epohhideks
 
 Pärast selle algoritmi täitmist peaks Q-tabel olema uuendatud väärtustega, mis määratlevad erinevate tegevuste atraktiivsuse igas etapis. Saame proovida Q-tabelit visualiseerida, joonistades igasse ruutu vektori, mis osutab soovitud liikumissuunda. Lihtsuse huvides joonistame noolepea asemel väikese ringi.
 
-<img src="../../../../translated_images/learned.ed28bcd8484b5287.et.png"/>
+<img src="../../../../translated_images/et/learned.ed28bcd8484b5287.png"/>
 
 ## Poliitika kontrollimine
 
@@ -311,7 +311,7 @@ Pärast selle koodi käivitamist peaksite saama palju väiksema keskmise teekonn
 
 Nagu mainitud, on õppimisprotsess tasakaal uurimise ja olemasoleva teadmise rakendamise vahel probleemiruumi struktuuri kohta. Oleme näinud, et õppimise tulemused (võime aidata agenti leida lühike tee eesmärgini) on paranenud, kuid huvitav on ka jälgida, kuidas keskmine teekonna pikkus käitub õppimisprotsessi ajal:
 
-<img src="../../../../translated_images/lpathlen1.0534784add58d4eb.et.png"/>
+<img src="../../../../translated_images/et/lpathlen1.0534784add58d4eb.png"/>
 
 Õppimisprotsessi saab kokku võtta järgmiselt:
 

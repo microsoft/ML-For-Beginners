@@ -13,7 +13,7 @@ El aprendizaje por refuerzo, RL, se considera uno de los paradigmas básicos del
 
 Imagina que tienes un entorno simulado como el mercado de valores. ¿Qué sucede si impones una regulación específica? ¿Tiene un efecto positivo o negativo? Si ocurre algo negativo, necesitas tomar este _refuerzo negativo_, aprender de ello y cambiar de rumbo. Si el resultado es positivo, necesitas construir sobre ese _refuerzo positivo_.
 
-![Pedro y el lobo](../../../translated_images/peter.779730f9ba3a8a8d.es.png)
+![Pedro y el lobo](../../../translated_images/es/peter.779730f9ba3a8a8d.webp)
 
 > ¡Pedro y sus amigos necesitan escapar del lobo hambriento! Imagen por [Jen Looper](https://twitter.com/jenlooper)
 

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 इस पाठ्यक्रम के इस भाग में, आपको एक व्यावहारिक ML विषय से परिचित कराया जाएगा: कैसे अपने Scikit-learn मॉडल को एक फाइल के रूप में सेव करें जिसे वेब एप्लिकेशन के भीतर भविष्यवाणी करने के लिए उपयोग किया जा सके। एक बार मॉडल सेव हो जाने के बाद, आप सीखेंगे कि इसे Flask में बनाए गए वेब ऐप में कैसे उपयोग करें। सबसे पहले, आप कुछ डेटा का उपयोग करके एक मॉडल बनाएंगे जो UFO देखे जाने के बारे में है! फिर, आप एक वेब ऐप बनाएंगे जो आपको सेकंड की संख्या, अक्षांश और देशांतर मान दर्ज करने की अनुमति देगा ताकि यह भविष्यवाणी की जा सके कि किस देश ने UFO देखने की रिपोर्ट की है।
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d.hi.jpg)
+![UFO Parking](../../../translated_images/hi/ufo.9e787f5161da9d4d.jpg)
 
 फोटो <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">माइकल हेरेन</a> द्वारा <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> पर
 

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 이 커리큘럼 섹션에서는 고전적 머신 러닝의 실제 응용 사례를 소개합니다. 우리는 인터넷을 샅샅이 뒤져서 신경망, 딥러닝, AI를 최대한 배제한 채 이러한 전략을 활용한 응용 사례에 대한 백서와 기사를 찾아냈습니다. 머신 러닝이 비즈니스 시스템, 생태학적 응용, 금융, 예술과 문화 등 다양한 분야에서 어떻게 사용되는지 알아보세요.
 
-![chess](../../../translated_images/chess.e704a268781bdad8.ko.jpg)
+![chess](../../../translated_images/ko/chess.e704a268781bdad8.jpg)
 
 > 사진 제공: <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> on <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

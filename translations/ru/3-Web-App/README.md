@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 В этом разделе курса вы познакомитесь с прикладной темой машинного обучения: как сохранить вашу модель Scikit-learn в виде файла, который можно использовать для предсказаний в веб-приложении. После сохранения модели вы узнаете, как использовать её в веб-приложении, созданном на Flask. Сначала вы создадите модель, используя данные о наблюдениях НЛО! Затем вы разработаете веб-приложение, которое позволит вводить количество секунд, широту и долготу, чтобы предсказать, в какой стране сообщили о наблюдении НЛО.
 
-![Парковка для НЛО](../../../translated_images/ufo.9e787f5161da9d4d.ru.jpg)
+![Парковка для НЛО](../../../translated_images/ru/ufo.9e787f5161da9d4d.jpg)
 
 Фото <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> на <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

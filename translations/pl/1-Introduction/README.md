@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 W tej części programu nauczania zostaniesz wprowadzony w podstawowe pojęcia związane z dziedziną uczenia maszynowego, dowiesz się, czym ono jest, poznasz jego historię oraz techniki, które badacze wykorzystują w pracy z nim. Odkryjmy razem ten nowy świat ML!
 
-![globe](../../../translated_images/globe.59f26379ceb40428.pl.jpg)
+![globe](../../../translated_images/pl/globe.59f26379ceb40428.jpg)
 > Zdjęcie autorstwa <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> na <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Lekcje

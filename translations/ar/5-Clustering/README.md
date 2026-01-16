@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 الجمهور النيجيري المتنوع لديه أذواق موسيقية متنوعة. باستخدام البيانات المستخرجة من Spotify (مستوحاة من [هذه المقالة](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421))، دعونا نلقي نظرة على بعض الموسيقى الشعبية في نيجيريا. تتضمن هذه المجموعة من البيانات معلومات حول درجات "القابلية للرقص"، "الصوتية"، مستوى الصوت، "الكلامية"، الشعبية والطاقة للأغاني المختلفة. سيكون من المثير اكتشاف الأنماط في هذه البيانات!
 
-![جهاز تشغيل الأسطوانات](../../../translated_images/turntable.f2b86b13c53302dc.ar.jpg)
+![جهاز تشغيل الأسطوانات](../../../translated_images/ar/turntable.f2b86b13c53302dc.jpg)
 
 > صورة بواسطة <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> على <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

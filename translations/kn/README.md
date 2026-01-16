@@ -29,7 +29,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ನಾವು ಡಿಸ್ಕೋರ್ಡ್‌ನಲ್ಲಿ AI ಜೊತೆಗೆ ಕಲಿಕೆ ಸರಣಿ ನಡೆಸುತ್ತಿದ್ದೇವೆ; ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ ಮತ್ತು 18 - 30 ಸೆಪ್ಟೆಂಬರ್, 2025 ರ ಅವಧಿಯಲ್ಲಿ ನಮ್ಮೊಂದಿಗೆ ಸೇರಲು [AI ಜೊತೆ ಕಲಿಕೆ ಸರಣಿ](https://aka.ms/learnwithai/discord) ಗೆ ಭೇಟಿ ನೀಡಿ. ನೀವು GitHub Copilot ಅನ್ನು ಡೇಟಾ ಸೈನ್ಸ್‌ಗೆ ಬಳಸುವ ಸಲಹೆಗಳು ಮತ್ತು ಟ್ರಿಕ್ಕುಗಳನ್ನು ಪಡೆಯುತ್ತೀರಿ.
 
-![AI ಜೊತೆ ಕಲಿಕೆ ಸರಣಿ](../../translated_images/3.9b58fd8d6c373c20.kn.png)
+![AI ಜೊತೆ ಕಲಿಕೆ ಸರಣಿ](../../translated_images/kn/3.9b58fd8d6c373c20.png)
 
 # ಆರಂಭಿಕರಿಗಾಗಿ ಮೆಷಿನ್ ಲರ್ನಿಂಗ್ - ಪಾಠ್ಯಕ್ರಮ
 
@@ -78,7 +78,7 @@ Microsoftನ ಕ್ಲೌಡ್ ಅಡ್ವೊಕೇಟ್‌ಗಳು **ಮೆ
 
 ಕೆಲವು ಪಾಠಗಳು ಚುಟುಕು ಆಕಾರದ ವೀಡಿಯೊಗಳಾಗಿ ಲಭ್ಯವಾಗಿವೆ. ನೀವು ಈ ಎಲ್ಲಾ ವೀಡಿಯೊಗಳನ್ನು ಪಾಠಗಳಲ್ಲಿ ಬಣ್ಣವಾಗಿ ಕಂಡುಹಿಡಿಯಬಹುದು, ಇಲ್ಲವೇ ಕೆಳಗಿನ ಚಿತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ [Microsoft Developer YouTube ಚಾನೆಲಿನ 'ML for Beginners' ಪ್ಲೇಲಿಸ್ಟ್](https://aka.ms/ml-beginners-videos) ಭೈಗತಿಯನ್ನು ನೋಡಿ.
 
-[![ML for Beginners ಬ್ಯಾನರ್](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.kn.png)](https://aka.ms/ml-beginners-videos)
+[![ML for Beginners ಬ್ಯಾನರ್](../../translated_images/kn/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

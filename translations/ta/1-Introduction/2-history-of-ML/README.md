@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # இயந்திரக் கற்றலின் வரலாறு
 
-![இயந்திரக் கற்றலின் வரலாற்றின் சுருக்கம் ஒரு ஸ்கெட்ச் நோட்டில்](../../../../translated_images/ml-history.a1bdfd4ce1f464d9.ta.png)
+![இயந்திரக் கற்றலின் வரலாற்றின் சுருக்கம் ஒரு ஸ்கெட்ச் நோட்டில்](../../../../translated_images/ta/ml-history.a1bdfd4ce1f464d9.png)
 > ஸ்கெட்ச் நோட்: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [முன்-பாடம் வினாடி வினா](https://ff-quizzes.netlify.app/en/ml/)
@@ -71,14 +71,14 @@ Alan Turing, 2019-ல் [பொது மக்களால்](https://wikiped
 
 * [Shakey the robot](https://wikipedia.org/wiki/Shakey_the_robot), 'நுண்ணறிவுடன்' பணிகளைச் செய்ய முடிவு செய்யும் திறன் கொண்டது.
 
-    ![Shakey, ஒரு நுண்ணறிவு ரோபோ](../../../../translated_images/shakey.4dc17819c447c05b.ta.jpg)
+    ![Shakey, ஒரு நுண்ணறிவு ரோபோ](../../../../translated_images/ta/shakey.4dc17819c447c05b.jpg)
     > Shakey 1972-ல்
 
 ---
 
 * Eliza, ஒரு ஆரம்ப 'chatterbot', மக்களுடன் உரையாட முடியும் மற்றும் ஒரு ஆரம்ப 'மனநல மருத்துவர்' ஆக செயல்பட முடியும். NLP பாடங்களில் Eliza பற்றி மேலும் அறியலாம்.
 
-    ![Eliza, ஒரு bot](../../../../translated_images/eliza.84397454cda9559b.ta.png)
+    ![Eliza, ஒரு bot](../../../../translated_images/ta/eliza.84397454cda9559b.png)
     > Eliza, ஒரு chatbot-இன் ஒரு பதிப்பு
 
 ---

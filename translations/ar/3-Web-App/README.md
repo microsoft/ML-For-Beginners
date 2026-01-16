@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 في هذا القسم من المنهج، ستتعرف على موضوع عملي في التعلم الآلي: كيفية حفظ نموذج Scikit-learn كملف يمكن استخدامه لإجراء التنبؤات داخل تطبيق ويب. بمجرد حفظ النموذج، ستتعلم كيفية استخدامه في تطبيق ويب مبني باستخدام Flask. ستقوم أولاً بإنشاء نموذج باستخدام بعض البيانات المتعلقة بمشاهدات الأجسام الطائرة المجهولة (UFO)! بعد ذلك، ستبني تطبيق ويب يسمح لك بإدخال عدد من الثواني مع قيمة خط العرض وخط الطول للتنبؤ بالدولة التي أبلغت عن رؤية جسم طائر مجهول.
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d.ar.jpg)
+![UFO Parking](../../../translated_images/ar/ufo.9e787f5161da9d4d.jpg)
 
 صورة بواسطة <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> على <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

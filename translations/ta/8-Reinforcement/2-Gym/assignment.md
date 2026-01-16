@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [மலை கார் சூழல்](https://gym.openai.com/envs/MountainCar-v0/) ஒரு பள்ளத்தாக்கில் சிக்கியுள்ள காரை கொண்டுள்ளது:
 
-<img src="../../../../translated_images/mountaincar.43d56e588ce581c2.ta.png" width="300"/>
+<img src="../../../../translated_images/ta/mountaincar.43d56e588ce581c2.png" width="300"/>
 
 பள்ளத்தாக்கிலிருந்து வெளியேறி கொடியை பிடிக்க வேண்டும், இதற்காக ஒவ்வொரு படியிலும் பின்வரும் செயல்களில் ஒன்றை செய்ய வேண்டும்:
 

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 இந்த பாடத்திட்டத்தின் இந்த பகுதியில், இயந்திரக் கற்றல் துறையின் அடிப்படை கருத்துக்கள், அது என்ன, அதன் வரலாறு மற்றும் அதில் ஆராய்ச்சியாளர்கள் பயன்படுத்தும் நுட்பங்களைப் பற்றி அறிந்து கொள்ளுவீர்கள். ML என்ற புதிய உலகத்தை ஒன்றாக ஆராய்வோம்!
 
-![globe](../../../translated_images/globe.59f26379ceb40428.ta.jpg)
+![globe](../../../translated_images/ta/globe.59f26379ceb40428.jpg)
 > புகைப்படம் <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> மூலம் <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> இல்
 
 ### பாடங்கள்

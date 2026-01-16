@@ -42,7 +42,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## பரபரப்பான வளைவு
 
-![ml hype curve](../../../../translated_images/hype.07183d711a17aafe.ta.png)
+![ml hype curve](../../../../translated_images/ta/hype.07183d711a17aafe.png)
 
 > 'இயந்திரக் கற்றல்' என்ற சொல் சமீபத்திய 'பரபரப்பான வளைவை' Google Trends காட்டுகிறது
 
@@ -69,7 +69,7 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## AI, ML, ஆழமான கற்றல்
 
-![AI, ML, deep learning, data science](../../../../translated_images/ai-ml-ds.537ea441b124ebf6.ta.png)
+![AI, ML, deep learning, data science](../../../../translated_images/ta/ai-ml-ds.537ea441b124ebf6.png)
 
 > AI, ML, ஆழமான கற்றல் மற்றும் தரவியல் விஞ்ஞானம் ஆகியவற்றின் தொடர்புகளை காட்டும் ஒரு வரைபடம். [Jen Looper](https://twitter.com/jenlooper) உருவாக்கிய தகவல்படம், [இந்த வரைபடத்தால்](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining) ஊக்கமளிக்கப்பட்டது.
 

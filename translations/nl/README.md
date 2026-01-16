@@ -31,7 +31,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 We hebben een Discord Learn with AI-serie die doorgaat; lees meer en sluit je van 18 - 30 september 2025 bij ons aan op [Learn with AI-serie](https://aka.ms/learnwithai/discord). Je ontvangt tips en trucs voor het gebruik van GitHub Copilot voor Data Science.
 
-![Learn with AI-serie](../../translated_images/3.9b58fd8d6c373c20.nl.png)
+![Learn with AI-serie](../../translated_images/nl/3.9b58fd8d6c373c20.png)
 
 # Machine Learning for Beginners - Een curriculum
 
@@ -80,7 +80,7 @@ Volg deze stappen:
 
 Sommige van de lessen zijn beschikbaar als korte video's. Je kunt ze allemaal inline in de lessen vinden, of op de [ML for Beginners afspeellijst op het Microsoft Developer YouTube-kanaal](https://aka.ms/ml-beginners-videos) door op de afbeelding hieronder te klikken.
 
-[![ML for beginners-banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6.nl.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners-banner](../../translated_images/nl/ml-for-beginners-video-banner.63f694a100034bc6.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 

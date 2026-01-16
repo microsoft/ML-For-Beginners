@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 In diesem Abschnitt des Lehrplans werden Sie mit einigen realen Anwendungen des klassischen maschinellen Lernens vertraut gemacht. Wir haben das Internet durchforstet, um Whitepapers und Artikel über Anwendungen zu finden, die diese Strategien genutzt haben, und dabei neuralen Netzwerken, Deep Learning und KI so weit wie möglich vermieden. Erfahren Sie, wie maschinelles Lernen in Geschäftssystemen, ökologischen Anwendungen, Finanzen, Kunst und Kultur und mehr eingesetzt wird.
 
-![chess](../../../translated_images/chess.e704a268781bdad8.de.jpg)
+![chess](../../../translated_images/de/chess.e704a268781bdad8.jpg)
 
 > Foto von <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> auf <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
