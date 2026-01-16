@@ -114,7 +114,7 @@ Now we don load di data, so we fit separate am into train and test sets. You go 
     plt.show()
     ```
 
-    ![training and testing data](../../../../translated_images/train-test.8928d14e5b91fc94.pcm.png)
+    ![training and testing data](../../../../translated_images/pcm/train-test.8928d14e5b91fc94.webp)
 
     So, using small time window for training di data go dey okay.
 
@@ -157,11 +157,11 @@ Now, you need prepare di data for training by filtering and scaling di data. Fil
     plt.show()
     ```
 
-    ![original](../../../../translated_images/original.b2b15efe0ce92b87.pcm.png)
+    ![original](../../../../translated_images/pcm/original.b2b15efe0ce92b87.webp)
 
     > Di original data
 
-    ![scaled](../../../../translated_images/scaled.e35258ca5cd3d43f.pcm.png)
+    ![scaled](../../../../translated_images/pcm/scaled.e35258ca5cd3d43f.webp)
 
     > Di scaled data
 
@@ -321,7 +321,7 @@ Check di accuracy of di model by testing di mean absolute percentage error (MAPE
 
 > **🧮 Show me di math**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846.pcm.png)
+> ![MAPE](../../../../translated_images/pcm/mape.fd87bbaf4d346846.webp)
 >
 >  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) na wetin dem dey use to show how prediction accurate dey as ratio wey dem define by di formula wey dey up. Di difference wey dey between actual<sub>t</sub> and predicted<sub>t</sub> dem dey divide am by di actual<sub>t</sub>. "Di absolute value for dis calculation na di sum for every forecasted point for time, and dem go divide am by di number of fitted points n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 
@@ -381,7 +381,7 @@ Check di accuracy of di model by testing di mean absolute percentage error (MAPE
     plt.show()
     ```
 
-    ![a time series model](../../../../translated_images/accuracy.2c47fe1bf15f44b3.pcm.png)
+    ![a time series model](../../../../translated_images/pcm/accuracy.2c47fe1bf15f44b3.webp)
 
 🏆 Dis graph fine well well, e show say di model get good accuracy. Good job!
 

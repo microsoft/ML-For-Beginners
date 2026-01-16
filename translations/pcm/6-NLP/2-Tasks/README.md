@@ -23,14 +23,14 @@ Plenty ways dey to analyze di text wey you dey work on. You fit do some tasks we
 
 Di first thing wey most NLP algorithms dey do na to divide di text into tokens, or words. E dey look simple, but di wahala of punctuation and di way different languages dey use word and sentence separator fit make am hard. You go need use different methods to know where e dey start and end.
 
-![tokenization](../../../../translated_images/tokenization.1641a160c66cd2d9.pcm.png)
+![tokenization](../../../../translated_images/pcm/tokenization.1641a160c66cd2d9.webp)
 > Tokenizing one sentence from **Pride and Prejudice**. Infographic by [Jen Looper](https://twitter.com/jenlooper)
 
 ### Embeddings
 
 [Word embeddings](https://wikipedia.org/wiki/Word_embedding) na one way to change your text data to numbers. Dem dey do embeddings so dat words wey get similar meaning or wey dey appear together go dey close to each other.
 
-![word embeddings](../../../../translated_images/embedding.2cf8953c4b3101d1.pcm.png)
+![word embeddings](../../../../translated_images/pcm/embedding.2cf8953c4b3101d1.webp)
 > "I have the highest respect for your nerves, they are my old friends." - Word embeddings for one sentence from **Pride and Prejudice**. Infographic by [Jen Looper](https://twitter.com/jenlooper)
 
 ✅ Try [dis tool wey dey interesting](https://projector.tensorflow.org/) to test word embeddings. If you click one word, e go show clusters of similar words: 'toy' dey cluster wit 'disney', 'lego', 'playstation', and 'console'.
@@ -39,7 +39,7 @@ Di first thing wey most NLP algorithms dey do na to divide di text into tokens, 
 
 Every word wey dem don tokenize fit get tag as part of speech - like noun, verb, or adjective. Di sentence `the quick red fox jumped over the lazy brown dog` fit get POS tag like fox = noun, jumped = verb.
 
-![parsing](../../../../translated_images/parse.d0c5bbe1106eae8f.pcm.png)
+![parsing](../../../../translated_images/pcm/parse.d0c5bbe1106eae8f.webp)
 
 > Parsing one sentence from **Pride and Prejudice**. Infographic by [Jen Looper](https://twitter.com/jenlooper)
 

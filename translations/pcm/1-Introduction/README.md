@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 For dis section of di curriculum, you go sabi di basic idea wey dey behind machine learning, wetin e mean, and you go learn about di history and di techniques wey researchers dey use to work with am. Make we waka enter dis new world of ML together!
 
-![globe](../../../translated_images/globe.59f26379ceb40428.pcm.jpg)
+![globe](../../../translated_images/pcm/globe.59f26379ceb40428.webp)
 > Foto by <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> for <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Lessons

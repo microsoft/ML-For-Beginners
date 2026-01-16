@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 For North America, dem dey use pumpkin plenty for Halloween, dem dey carve am make e look scary. Make we learn more about dis vegetable wey dey interesting!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d.pcm.jpg)
+![jack-o-lanterns](../../../translated_images/pcm/jack-o-lanterns.181c661a9212457d.webp)
 > Foto by <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> for <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Wetin you go learn

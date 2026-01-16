@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # History of machine learning
 
-![Summary of History of machine learning in a sketchnote](../../../../translated_images/ml-history.a1bdfd4ce1f464d9.pcm.png)
+![Summary of History of machine learning in a sketchnote](../../../../translated_images/pcm/ml-history.a1bdfd4ce1f464d9.webp)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
@@ -71,14 +71,14 @@ Research dey well funded by government agencies, progress dey for computation an
 
 * [Shakey di robot](https://wikipedia.org/wiki/Shakey_the_robot), wey fit move and decide how e go do tasks 'intelligently'.
 
-    ![Shakey, an intelligent robot](../../../../translated_images/shakey.4dc17819c447c05b.pcm.jpg)
+    ![Shakey, an intelligent robot](../../../../translated_images/pcm/shakey.4dc17819c447c05b.webp)
     > Shakey for 1972
 
 ---
 
 * Eliza, one early 'chatterbot', fit talk with people and act like one basic 'therapist'. You go learn more about Eliza for di NLP lessons.
 
-    ![Eliza, a bot](../../../../translated_images/eliza.84397454cda9559b.pcm.png)
+    ![Eliza, a bot](../../../../translated_images/pcm/eliza.84397454cda9559b.webp)
     > One version of Eliza, one chatbot
 
 ---

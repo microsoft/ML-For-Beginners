@@ -25,7 +25,7 @@ We don load your _notebook.ipynb_ file with the clean dataset and we don divide 
 
 Before, you don learn about the different options wey you fit use to classify data using Microsoft's cheat sheet. Scikit-learn get similar cheat sheet wey dey more detailed and fit help you narrow down your estimators (another name for classifiers):
 
-![ML Map from Scikit-learn](../../../../translated_images/map.e963a6a51349425a.pcm.png)
+![ML Map from Scikit-learn](../../../../translated_images/pcm/map.e963a6a51349425a.webp)
 > Tip: [visit dis map online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) and click along the path to read documentation.
 
 ### The plan

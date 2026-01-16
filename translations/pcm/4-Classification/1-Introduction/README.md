@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 For dis four lessons, you go learn one important part of classic machine learning - _classification_. We go show you how to use different classification algorithms with one dataset wey dey talk about all di sweet cuisines for Asia and India. Hope say you dey hungry!
 
-![just a pinch!](../../../../translated_images/pinch.1b035ec9ba7e0d40.pcm.png)
+![just a pinch!](../../../../translated_images/pcm/pinch.1b035ec9ba7e0d40.webp)
 
 > Make we celebrate pan-Asian cuisines for dis lessons! Image by [Jen Looper](https://twitter.com/jenlooper)
 
@@ -38,7 +38,7 @@ Classification na one of di main work wey machine learning researchers and data 
 
 To talk di process in one more scientific way, di classification method go create one predictive model wey go help you map di relationship between input variables to output variables.
 
-![binary vs. multiclass classification](../../../../translated_images/binary-multiclass.b56d0c86c81105a6.pcm.png)
+![binary vs. multiclass classification](../../../../translated_images/pcm/binary-multiclass.b56d0c86c81105a6.webp)
 
 > Binary vs. multiclass problems wey classification algorithms dey handle. Infographic by [Jen Looper](https://twitter.com/jenlooper)
 
@@ -134,7 +134,7 @@ Now di work dey start to dey interesting. Make we find di distribution of data, 
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![cuisine data distribution](../../../../translated_images/cuisine-dist.d0cc2d551abe5c25.pcm.png)
+    ![cuisine data distribution](../../../../translated_images/pcm/cuisine-dist.d0cc2d551abe5c25.webp)
 
     We get limited number of cuisines, but di distribution of data no dey even. You fit fix am! Before you do am, explore small more.
 
@@ -188,7 +188,7 @@ Now you fit dig deeper into di data and learn wetin be di common ingredients for
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thai](../../../../translated_images/thai.0269dbab2e78bd38.pcm.png)
+    ![thai](../../../../translated_images/pcm/thai.0269dbab2e78bd38.webp)
 
 1. Do di same for di Japanese data:
 
@@ -197,7 +197,7 @@ Now you fit dig deeper into di data and learn wetin be di common ingredients for
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japanese](../../../../translated_images/japanese.30260486f2a05c46.pcm.png)
+    ![japanese](../../../../translated_images/pcm/japanese.30260486f2a05c46.webp)
 
 1. Now for di Chinese ingredients:
 
@@ -206,7 +206,7 @@ Now you fit dig deeper into di data and learn wetin be di common ingredients for
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinese](../../../../translated_images/chinese.e62cafa5309f111a.pcm.png)
+    ![chinese](../../../../translated_images/pcm/chinese.e62cafa5309f111a.webp)
 
 1. Plot di Indian ingredients:
 
@@ -215,7 +215,7 @@ Now you fit dig deeper into di data and learn wetin be di common ingredients for
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indian](../../../../translated_images/indian.2c4292002af1a1f9.pcm.png)
+    ![indian](../../../../translated_images/pcm/indian.2c4292002af1a1f9.webp)
 
 1. Finally, plot di Korean ingredients:
 
@@ -224,7 +224,7 @@ Now you fit dig deeper into di data and learn wetin be di common ingredients for
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korean](../../../../translated_images/korean.4a4f0274f3d9805a.pcm.png)
+    ![korean](../../../../translated_images/pcm/korean.4a4f0274f3d9805a.webp)
 
 1. Now, drop di common ingredients wey dey cause confusion between different cuisines, by calling `drop()`:
 

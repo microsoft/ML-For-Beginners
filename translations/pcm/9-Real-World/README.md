@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 For dis part of di curriculum, you go sabi some real-world ways wey dem dey use classical ML. We don waka internet well well find whitepapers and articles wey talk about how dem don use dis strategies, we dey try avoid neural networks, deep learning and AI as much as we fit. You go learn how ML dey work for business systems, ecological applications, finance, arts and culture, and plenty other areas.
 
-![chess](../../../translated_images/chess.e704a268781bdad8.pcm.jpg)
+![chess](../../../translated_images/pcm/chess.e704a268781bdad8.webp)
 
 > Foto by <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> for <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

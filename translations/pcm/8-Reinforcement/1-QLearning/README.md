@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introduction to Reinforcement Learning and Q-Learning
 
-![Summary of reinforcement in machine learning in a sketchnote](../../../../translated_images/ml-reinforcement.94024374d63348db.pcm.png)
+![Summary of reinforcement in machine learning in a sketchnote](../../../../translated_images/pcm/ml-reinforcement.94024374d63348db.webp)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 Reinforcement learning get three main things: agent, states, and actions wey dey for each state. If agent do action for one state, e go get reward. Imagine say you dey play Super Mario game. You be Mario, you dey one level for the game, you stand near cliff edge. Coin dey above you. You be Mario, for one level, for one position... na your state be dat. If you waka go right (action), you go fall for cliff and your score go low. But if you press jump button, you go collect coin and you go still dey alive. Dat one na better result and e go give you better score.
@@ -40,7 +40,7 @@ For this lesson, we go look the world of **[Peter and the Wolf](https://en.wikip
 
 Make we make Peter world simple, e go be one square board wey get size `width` x `height`, like this:
 
-![Peter's Environment](../../../../translated_images/environment.40ba3cb66256c93f.pcm.png)
+![Peter's Environment](../../../../translated_images/pcm/environment.40ba3cb66256c93f.webp)
 
 Each cell for this board fit be:
 
@@ -177,7 +177,7 @@ Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 
 Notice say we dey initialize all the values for the Q-Table with equal value, for our case - 0.25. This one mean "random walk" policy, because all moves for each state dey equally good. We fit pass the Q-Table to the `plot` function to visualize the table on the board: `m.plot(Q)`.
 
-![Peter's Environment](../../../../translated_images/env_init.04e8f26d2d60089e.pcm.png)
+![Peter's Environment](../../../../translated_images/pcm/env_init.04e8f26d2d60089e.webp)
 
 For the center of each cell, arrow dey show the preferred direction of movement. Since all directions dey equal, dot go show.
 
@@ -195,7 +195,7 @@ Suppose we dey state *s*, and we wan move to next state *s'*. If we do am, we go
 
 This give us **Bellman formula** to calculate Q-Table value for state *s*, given action *a*:
 
-<img src="../../../../translated_images/bellman-equation.7c0c4c722e5a6b7c.pcm.png"/>
+<img src="../../../../translated_images/pcm/bellman-equation.7c0c4c722e5a6b7c.webp"/>
 
 Here γ na **discount factor** wey dey decide how you go prefer current reward over future reward.
 
@@ -267,7 +267,7 @@ Run the learning algorithm for 5000 experiments, wey we dey call **epochs**: (co
 
 After we run this algorithm, the Q-Table go update with values wey show how good different actions dey for each step. We fit try visualize the Q-Table by drawing vector for each cell wey go point the direction of movement. To make am simple, we go draw small circle instead of arrow head.
 
-<img src="../../../../translated_images/learned.ed28bcd8484b5287.pcm.png"/>
+<img src="../../../../translated_images/pcm/learned.ed28bcd8484b5287.webp"/>
 
 ## Checking the policy
 
@@ -311,7 +311,7 @@ After you run dis code, you suppose see say di average path length go reduce wel
 
 As we don talk before, di learning process na balance between exploration and di knowledge wey we don gather about di problem space. We don see say di result of di learning (di ability to help agent find short path go di goal) don improve, but e go still make sense to check how di average path length dey behave during di learning process:
 
-<img src="../../../../translated_images/lpathlen1.0534784add58d4eb.pcm.png"/>
+<img src="../../../../translated_images/pcm/lpathlen1.0534784add58d4eb.webp"/>
 
 Di learnings fit summarize like dis:
 

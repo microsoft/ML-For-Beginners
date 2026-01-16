@@ -71,7 +71,7 @@ Open di [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-T
    plt.show()
    ```
 
-   ![full data](../../../../translated_images/full-data.a82ec9957e580e97.pcm.png)
+   ![full data](../../../../translated_images/pcm/full-data.a82ec9957e580e97.webp)
 
    Now, make we build our SVR model.
 
@@ -97,7 +97,7 @@ Now wey your data don load, you fit separate am into train and test sets. Then y
    plt.show()
    ```
 
-   ![training and testing data](../../../../translated_images/train-test.ead0cecbfc341921.pcm.png)
+   ![training and testing data](../../../../translated_images/pcm/train-test.ead0cecbfc341921.webp)
 
 
 
@@ -275,7 +275,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![training data prediction](../../../../translated_images/train-data-predict.3c4ef4e78553104f.pcm.png)
+![training data prediction](../../../../translated_images/pcm/train-data-predict.3c4ef4e78553104f.webp)
 
 Print MAPE for training data
 
@@ -298,7 +298,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testing data prediction](../../../../translated_images/test-data-predict.8afc47ee7e52874f.pcm.png)
+![testing data prediction](../../../../translated_images/pcm/test-data-predict.8afc47ee7e52874f.webp)
 
 Print MAPE for testing data
 
@@ -354,7 +354,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![full data prediction](../../../../translated_images/full-data-predict.4f0fed16a131c8f3.pcm.png)
+![full data prediction](../../../../translated_images/pcm/full-data-predict.4f0fed16a131c8f3.webp)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')

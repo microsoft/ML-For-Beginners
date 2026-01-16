@@ -15,7 +15,7 @@ Clustering na machine learning task wey dey try find objects wey resemble each o
 
 Nigeria get plenty different people and dem music taste dey different too. Using data wey dem collect from Spotify (inspired by [dis article](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), make we check some music wey dey popular for Nigeria. Dis dataset get data about different songs like 'danceability' score, 'acousticness', loudness, 'speechiness', popularity, and energy. E go dey interesting to see wetin we fit discover for dis data!
 
-![A turntable](../../../translated_images/turntable.f2b86b13c53302dc.pcm.jpg)
+![A turntable](../../../translated_images/pcm/turntable.f2b86b13c53302dc.webp)
 
 > Photo by <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> on <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

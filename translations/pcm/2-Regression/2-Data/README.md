@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Build regression model wit Scikit-learn: prepare and show data
 
-![Data visualization infographic](../../../../translated_images/data-visualization.54e56dded7c1a804.pcm.png)
+![Data visualization infographic](../../../../translated_images/pcm/data-visualization.54e56dded7c1a804.webp)
 
 Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
@@ -183,7 +183,7 @@ Try create some basic plots to show di new dataframe wey you don create. Wetin b
     plt.show()
     ```
 
-    ![A scatterplot showing price to month relationship](../../../../translated_images/scatterplot.b6868f44cbd2051c.pcm.png)
+    ![A scatterplot showing price to month relationship](../../../../translated_images/pcm/scatterplot.b6868f44cbd2051c.webp)
 
     Dis plot dey useful? E surprise you?
 
@@ -200,7 +200,7 @@ To get charts wey dey useful, you go need group di data somehow. Make we try cre
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![A bar chart showing price to month relationship](../../../../translated_images/barchart.a833ea9194346d76.pcm.png)
+    ![A bar chart showing price to month relationship](../../../../translated_images/pcm/barchart.a833ea9194346d76.webp)
 
     Dis na more useful data visualization! E dey show say di highest price for pumpkins dey September and October. E match wetin you dey expect? Why or why not?
 

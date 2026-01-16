@@ -34,17 +34,17 @@ Before you start, abeg review [Responsible AI tools for developers](https://www.
 
 Di normal way to measure model performance na to check di correct vs wrong predictions. For example, if model dey accurate 89% of di time and error loss na 0.001, e fit look like say di model dey perform well. But di errors no dey spread equally for di data. You fit get 89% accuracy but find out say di model dey fail 42% of di time for some parts of di data. Dis kind failure fit cause fairness or reliability wahala. E dey important to sabi where di model dey perform well or dey fail. Di parts of di data wey get plenty errors fit be important data group.
 
-![Analyze and debug model errors](../../../../translated_images/ea-error-distribution.117452e1177c1dd8.pcm.png)
+![Analyze and debug model errors](../../../../translated_images/pcm/ea-error-distribution.117452e1177c1dd8.webp)
 
 Di Error Analysis component for RAI dashboard dey show how di model dey fail for different groups with tree visualization. E dey help to find di features or areas wey get high error rate for di data. Once you sabi where di errors dey come from, you fit start to check di root cause. You fit also create data groups to analyze. Dis data groups dey help to debug why di model dey perform well for one group but dey fail for another.
 
-![Error Analysis](../../../../translated_images/ea-error-cohort.6886209ea5d438c4.pcm.png)
+![Error Analysis](../../../../translated_images/pcm/ea-error-cohort.6886209ea5d438c4.webp)
 
 Di tree map dey show di problem areas fast. For example, di darker di red color for di tree node, di higher di error rate.
 
 Heat map na another visualization wey users fit use to check di error rate with one or two features to find wetin dey cause di model errors for di whole dataset or groups.
 
-![Error Analysis Heatmap](../../../../translated_images/ea-heatmap.8d27185e28cee383.pcm.png)
+![Error Analysis Heatmap](../../../../translated_images/pcm/ea-heatmap.8d27185e28cee383.webp)
 
 Use error analysis when you need to:
 
@@ -57,11 +57,11 @@ To check how machine learning model dey perform, you need to understand di behav
 
 Di Model Overview component for RAI dashboard dey help to analyze di performance metrics for di data representation for one group, and e dey allow users compare di model behavior for different groups.
 
-![Dataset cohorts - model overview in RAI dashboard](../../../../translated_images/model-overview-dataset-cohorts.dfa463fb527a35a0.pcm.png)
+![Dataset cohorts - model overview in RAI dashboard](../../../../translated_images/pcm/model-overview-dataset-cohorts.dfa463fb527a35a0.webp)
 
 Di feature-based analysis functionality dey allow users narrow down data subgroups for one feature to find wahala for detailed level. For example, di dashboard fit automatically create groups for one feature wey user select (like *"time_in_hospital < 3"* or *"time_in_hospital >= 7"*). Dis dey allow user isolate one feature from di bigger data group to see if e dey cause di model errors.
 
-![Feature cohorts - model overview in RAI dashboard](../../../../translated_images/model-overview-feature-cohorts.c5104d575ffd0c80.pcm.png)
+![Feature cohorts - model overview in RAI dashboard](../../../../translated_images/pcm/model-overview-feature-cohorts.c5104d575ffd0c80.webp)
 
 Di Model Overview component dey support two types of disparity metrics:
 
@@ -85,7 +85,7 @@ Data na big blind spot for di normal model performance metrics. You fit get high
 
 Di Data Analysis component for RAI dashboard dey help to find areas wey di data dey represent one group too much or too small. E dey help users check di root cause of errors and fairness wahala wey di data imbalance or lack of representation dey cause. E dey allow users visualize datasets based on predicted and actual outcomes, error groups, and specific features. Sometimes, if you find one group wey di data no represent well, e fit show say di model no dey learn well, and na why di errors dey plenty. If model get data bias, e no just be fairness wahala but e show say di model no dey inclusive or reliable.
 
-![Data Analysis component on RAI Dashboard](../../../../translated_images/dataanalysis-cover.8d6d0683a70a5c1e.pcm.png)
+![Data Analysis component on RAI Dashboard](../../../../translated_images/pcm/dataanalysis-cover.8d6d0683a70a5c1e.webp)
 
 Use data analysis when you need to:
 
@@ -104,14 +104,14 @@ Machine learning models dey like black box. To sabi which key data features dey 
 
 Di Feature Importance component for RAI dashboard dey help you debug and understand how di model dey make predictions. E dey useful for machine learning professionals and decision-makers to explain and show evidence of features wey dey influence di model behavior for regulatory compliance. Users fit check both global and local explanations to confirm which features dey drive di model predictions. Global explanations dey show di top features wey dey affect di model overall prediction. Local explanations dey show di features wey make di model predict something for one case. To check local explanations dey help debug or audit one case to understand why di model make correct or wrong prediction.
 
-![Feature Importance component of the RAI dashboard](../../../../translated_images/9-feature-importance.cd3193b4bba3fd4b.pcm.png)
+![Feature Importance component of the RAI dashboard](../../../../translated_images/pcm/9-feature-importance.cd3193b4bba3fd4b.webp)
 
 * Global explanations: For example, which features dey affect di overall behavior of diabetes hospital readmission model?
 * Local explanations: For example, why di model predict say diabetic patient wey dey over 60 years old with prior hospitalizations go return or no go return to hospital within 30 days?
 
 For di debugging process to check di model performance for different groups, Feature Importance dey show di level of impact wey feature get for di groups. E dey help find wahala when you compare di level of influence wey di feature get for di model errors. Di Feature Importance component fit show which values for feature dey positively or negatively affect di model outcome. For example, if di model make wrong prediction, di component go allow you check wetin for di features or feature values cause di prediction. Dis level of detail dey help not just for debugging but e dey bring transparency and accountability for auditing situations. Finally, di component fit help you find fairness wahala. For example, if sensitive feature like ethnicity or gender dey highly influence di model prediction, e fit show race or gender bias for di model.
 
-![Feature importance](../../../../translated_images/9-features-influence.3ead3d3f68a84029.pcm.png)
+![Feature importance](../../../../translated_images/pcm/9-features-influence.3ead3d3f68a84029.webp)
 
 Use interpretability when you need to:
 
