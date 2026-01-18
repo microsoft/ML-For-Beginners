@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 アジアやインドでは、食文化が非常に多様で、とても美味しいです！地域料理のデータを見て、その材料を理解してみましょう。
 
-![タイ料理の売り手](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.ja.jpg)
+![タイ料理の売り手](../../../translated_images/ja/thai-food.c47a7a7f9f05c218.webp)
 > 写真提供: <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> on <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 学べること

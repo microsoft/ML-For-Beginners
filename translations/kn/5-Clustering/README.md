@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ನೈಜೀರಿಯಾದ ವೈವಿಧ್ಯಮಯ ಪ್ರೇಕ್ಷಕರಿಗೆ ವೈವಿಧ್ಯಮಯ ಸಂಗೀತ ರುಚಿಗಳು ಇವೆ. Spotify ನಿಂದ ಸ್ಕ್ರೇಪ್ ಮಾಡಲಾದ ಡೇಟಾವನ್ನು ಬಳಸಿಕೊಂಡು ([ಈ ಲೇಖನದಿಂದ ಪ್ರೇರಿತ](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), ನೈಜೀರಿಯಾದಲ್ಲಿ ಜನಪ್ರಿಯವಾಗಿರುವ ಕೆಲವು ಸಂಗೀತಗಳನ್ನು ನೋಡೋಣ. ಈ ಡೇಟಾಸೆಟ್ ವಿವಿಧ ಹಾಡುಗಳ 'ನೃತ್ಯ ಸಾಮರ್ಥ್ಯ' ಅಂಕ, 'ಅಕೌಸ್ಟಿಕ್‌ನೆಸ್', ಶಬ್ದದ ತೀವ್ರತೆ, 'ಸ್ಪೀಚಿನೆಸ್', ಜನಪ್ರಿಯತೆ ಮತ್ತು ಶಕ್ತಿ ಬಗ್ಗೆ ಡೇಟಾವನ್ನು ಒಳಗೊಂಡಿದೆ. ಈ ಡೇಟಾದಲ್ಲಿ ಮಾದರಿಗಳನ್ನು ಕಂಡುಹಿಡಿಯುವುದು ಆಸಕ್ತಿದಾಯಕವಾಗಿರುತ್ತದೆ!
 
-![A turntable](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.kn.jpg)
+![A turntable](../../../translated_images/kn/turntable.f2b86b13c53302dc.webp)
 
 > ಫೋಟೋ <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಮಾರ್ಸೆಲಾ ಲಾಸ್ಕೋಸ್ಕಿ</a> ಅವರಿಂದ <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಅನ್ಸ್ಪ್ಲ್ಯಾಶ್</a> ನಲ್ಲಿ
 

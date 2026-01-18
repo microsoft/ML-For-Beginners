@@ -17,7 +17,7 @@ Sa bahaging ito ng kurikulum, ipakikilala sa iyo ang isa sa mga pinakalaganap na
 
 Sa mga araling ito, matututuhan natin ang mga pangunahing kaalaman sa NLP sa pamamagitan ng paggawa ng maliliit na conversational bots upang matutunan kung paano nakakatulong ang machine learning sa paggawa ng mga pag-uusap na mas 'matalino'. Maglalakbay ka pabalik sa nakaraan, makikipag-usap kina Elizabeth Bennett at Mr. Darcy mula sa klasikong nobela ni Jane Austen, **Pride and Prejudice**, na inilathala noong 1813. Pagkatapos, palalalimin mo pa ang iyong kaalaman sa pamamagitan ng pag-aaral tungkol sa sentiment analysis gamit ang mga review ng hotel sa Europa.
 
-![Aklat ng Pride and Prejudice at tsaa](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.tl.jpg)
+![Aklat ng Pride and Prejudice at tsaa](../../../translated_images/tl/p&p.279f1c49ecd88941.webp)
 > Larawan ni <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> sa <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Mga Aralin

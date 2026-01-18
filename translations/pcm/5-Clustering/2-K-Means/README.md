@@ -26,7 +26,7 @@ Terms wey you go learn about:
 
 Di clusters fit dey visualized as [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), wey include one point (or 'seed') and di region wey dey follow am.
 
-![voronoi diagram](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.pcm.png)
+![voronoi diagram](../../../../translated_images/pcm/voronoi.1dc1613fb0439b95.webp)
 
 > infographic by [Jen Looper](https://twitter.com/jenlooper)
 
@@ -91,7 +91,7 @@ Start by looking di songs data again.
 
     Dis data dey small noisy: if you observe each column as boxplot, you go see outliers.
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.pcm.png)
+    ![outliers](../../../../translated_images/pcm/boxplots.8228c29dabd0f292.webp)
 
 You fit go through di dataset and remove di outliers, but e go make di data small.
 
@@ -187,7 +187,7 @@ Before, you don reason say, because you dey target 3 song genres, you suppose ch
 
     Use di `wcss` variable wey you build for di previous step to create one chart wey dey show where di 'bend' for di elbow dey, wey dey indicate di optimum number of clusters. Maybe e **dey** 3!
 
-    ![elbow method](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.pcm.png)
+    ![elbow method](../../../../translated_images/pcm/elbow.72676169eed744ff.webp)
 
 ## Exercise - display di clusters
 
@@ -218,13 +218,13 @@ Before, you don reason say, because you dey target 3 song genres, you suppose ch
 
     Dis model accuracy no too good, and di shape of di clusters dey give you hint why.
 
-    ![clusters](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.pcm.png)
+    ![clusters](../../../../translated_images/pcm/clusters.b635354640d8e4fd.webp)
 
     Dis data dey too imbalanced, e no too correlate and di variance between di column values too much to cluster well. In fact, di clusters wey form fit dey heavily influenced or skewed by di three genre categories wey we define above. Na learning process!
 
     For Scikit-learn documentation, you fit see say model like dis one, wit clusters wey no too demarcate well, get 'variance' problem:
 
-    ![problem models](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.pcm.png)
+    ![problem models](../../../../translated_images/pcm/problems.f7fb539ccd80608e.webp)
     > Infographic from Scikit-learn
 
 ## Variance

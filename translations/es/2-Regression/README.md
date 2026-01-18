@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 En América del Norte, las calabazas suelen tallarse con caras aterradoras para Halloween. ¡Descubramos más sobre estos fascinantes vegetales!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.es.jpg)
+![jack-o-lanterns](../../../translated_images/es/jack-o-lanterns.181c661a9212457d.webp)
 > Foto por <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> en <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Lo que aprenderás

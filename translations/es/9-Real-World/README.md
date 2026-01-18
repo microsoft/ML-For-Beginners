@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 En esta sección del currículo, se te presentarán algunas aplicaciones reales del aprendizaje automático clásico. Hemos investigado en internet para encontrar artículos y documentos técnicos sobre aplicaciones que han utilizado estas estrategias, evitando redes neuronales, aprendizaje profundo e inteligencia artificial tanto como sea posible. Aprende cómo se utiliza el aprendizaje automático en sistemas empresariales, aplicaciones ecológicas, finanzas, arte y cultura, entre otros.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.es.jpg)
+![chess](../../../translated_images/es/chess.e704a268781bdad8.webp)
 
 > Foto por <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> en <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

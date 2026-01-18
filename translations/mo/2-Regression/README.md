@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在北美，南瓜常被雕刻成恐怖的臉孔以慶祝萬聖節。讓我們一起探索這些迷人的蔬菜吧！
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.mo.jpg)
+![jack-o-lanterns](../../../translated_images/mo/jack-o-lanterns.181c661a9212457d.webp)
 > 照片由 <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> 提供，來自 <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 你將學到什麼

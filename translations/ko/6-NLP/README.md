@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 이 강의에서는 작은 대화형 봇을 만들어 NLP의 기초를 배우고, 기계 학습이 이러한 대화를 점점 더 '스마트'하게 만드는 데 어떻게 기여하는지 알아볼 것입니다. 여러분은 시간을 거슬러 올라가, 제인 오스틴의 고전 소설 **오만과 편견**(1813년 출간)의 엘리자베스 베넷과 미스터 다아시와 대화를 나누게 될 것입니다. 이후, 유럽 호텔 리뷰를 통해 감정 분석에 대해 배우며 지식을 확장할 것입니다.
 
-![오만과 편견 책과 차](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.ko.jpg)
+![오만과 편견 책과 차](../../../translated_images/ko/p&p.279f1c49ecd88941.webp)
 > 사진 제공: <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> on <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 강의 목록

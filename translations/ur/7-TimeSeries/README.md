@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ہمارا علاقائی فوکس دنیا میں بجلی کے استعمال پر ہے، ایک دلچسپ ڈیٹا سیٹ جو ماضی کے لوڈ کے نمونوں کی بنیاد پر مستقبل کی بجلی کی کھپت کی پیش گوئی کرنے کے بارے میں سیکھنے کے لیے ہے۔ آپ دیکھ سکتے ہیں کہ اس قسم کی پیش گوئی کاروباری ماحول میں کتنی مددگار ثابت ہو سکتی ہے۔
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ur.jpg)
+![electric grid](../../../translated_images/ur/electric-grid.0c21d5214db09ffa.webp)
 
 تصویر [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) کی، جو راجستھان کی ایک سڑک پر بجلی کے ٹاورز کی ہے، [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) پر۔
 

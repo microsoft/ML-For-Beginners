@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఈ పాఠాలలో మనం NLP యొక్క ప్రాథమికాలను చిన్న సంభాషణ బాట్లను నిర్మించడం ద్వారా నేర్చుకుంటాము, యంత్ర అభ్యాసం ఈ సంభాషణలను మరింత 'స్మార్ట్' గా చేయడంలో ఎలా సహాయపడుతుందో తెలుసుకుంటాము. మీరు జేన్ ఆస్టెన్ యొక్క క్లాసిక్ నవల **ప్రైడ్ అండ్ ప్రెజుడిస్**, 1813లో ప్రచురించబడిన ఎలిజబెత్ బెన్నెట్ మరియు మిస్టర్ డార్సీతో చర్చిస్తూ కాలంలో వెనక్కి ప్రయాణిస్తారు. ఆ తర్వాత, మీరు యూరోపియన్ హోటల్ సమీక్షల ద్వారా భావ విశ్లేషణ గురించి మరింత తెలుసుకుంటారు.
 
-![Pride and Prejudice book and tea](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.te.jpg)
+![Pride and Prejudice book and tea](../../../translated_images/te/p&p.279f1c49ecd88941.webp)
 > ఫోటో <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ఎలైన్ హౌలిన్</a> ద్వారా <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">అన్స్ప్లాష్</a>లో
 
 ## పాఠాలు

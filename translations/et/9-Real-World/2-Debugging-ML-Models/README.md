@@ -34,17 +34,17 @@ Eeldusena vaadake üle [Vastutustundliku AI tööriistad arendajatele](https://w
 
 Traditsioonilised mudeli jõudlusmõõdikud, mida kasutatakse täpsuse mõõtmiseks, põhinevad peamiselt õigete ja valede ennustuste arvutustel. Näiteks võib mudelit, mis on täpne 89% ajast ja mille veakadu on 0,001, pidada heaks. Vead ei ole sageli jaotatud ühtlaselt teie aluseks olevas andmestikus. Võite saada 89% mudeli täpsuse skoori, kuid avastada, et on olemas andmejaotuse piirkonnad, kus mudel ebaõnnestub 42% ajast. Nende ebaõnnestumismustrite tagajärjed teatud andmegruppidega võivad viia õiglus- või usaldusväärsusprobleemideni. On oluline mõista, kus mudel toimib hästi ja kus mitte. Andmejaotuse piirkonnad, kus mudelil on palju ebatäpsusi, võivad osutuda oluliseks demograafiliseks andmegrupiks.
 
-![Analüüsige ja siluge mudeli vigu](../../../../translated_images/ea-error-distribution.117452e1177c1dd84fab2369967a68bcde787c76c6ea7fdb92fcf15d1fce8206.et.png)
+![Analüüsige ja siluge mudeli vigu](../../../../translated_images/et/ea-error-distribution.117452e1177c1dd8.webp)
 
 RAI armatuurlaua vigade analüüsi komponent illustreerib, kuidas mudeli ebaõnnestumised jaotuvad erinevate kohtade vahel puu visualiseerimise abil. See on kasulik tunnuste või piirkondade tuvastamiseks, kus teie andmestikus on kõrge veamäär. Nägemine, kust enamik mudeli ebatäpsusi pärineb, võimaldab teil alustada juurpõhjuse uurimist. Samuti saate luua andmekohti analüüsi tegemiseks. Need andmekohad aitavad silumisprotsessis kindlaks teha, miks mudeli jõudlus on ühes kohas hea, kuid teises vigane.
 
-![Vigade analüüs](../../../../translated_images/ea-error-cohort.6886209ea5d438c4daa8bfbf5ce3a7042586364dd3eccda4a4e3d05623ac702a.et.png)
+![Vigade analüüs](../../../../translated_images/et/ea-error-cohort.6886209ea5d438c4.webp)
 
 Puu kaardil olevad visuaalsed indikaatorid aitavad probleemipiirkondi kiiremini leida. Näiteks mida tumedam punane värv puu sõlmel on, seda kõrgem on veamäär.
 
 Kuumuskaart on veel üks visualiseerimisfunktsioon, mida kasutajad saavad kasutada veamäära uurimiseks ühe või kahe tunnuse abil, et leida mudeli vigade panustaja kogu andmestikus või kohtades.
 
-![Vigade analüüsi kuumuskaart](../../../../translated_images/ea-heatmap.8d27185e28cee3830c85e1b2e9df9d2d5e5c8c940f41678efdb68753f2f7e56c.et.png)
+![Vigade analüüsi kuumuskaart](../../../../translated_images/et/ea-heatmap.8d27185e28cee383.webp)
 
 Kasutage vigade analüüsi, kui peate:
 
@@ -57,11 +57,11 @@ Masinõppe mudeli jõudluse hindamine nõuab terviklikku arusaamist selle käitu
 
 RAI armatuurlaua mudeli ülevaate komponent aitab mitte ainult analüüsida andmekohtade esindatuse jõudlusmõõdikuid, vaid annab kasutajatele võimaluse võrrelda mudeli käitumist erinevate kohtade vahel.
 
-![Andmekohtade ülevaade - mudeli ülevaade RAI armatuurlaual](../../../../translated_images/model-overview-dataset-cohorts.dfa463fb527a35a0afc01b7b012fc87bf2cad756763f3652bbd810cac5d6cf33.et.png)
+![Andmekohtade ülevaade - mudeli ülevaade RAI armatuurlaual](../../../../translated_images/et/model-overview-dataset-cohorts.dfa463fb527a35a0.webp)
 
 Komponendi tunnusepõhine analüüsifunktsioon võimaldab kasutajatel kitsendada andmealamgruppe konkreetse tunnuse piires, et tuvastada anomaaliaid detailsemal tasemel. Näiteks on armatuurlaual sisseehitatud intelligentsus, mis automaatselt genereerib kohtade jaoks kasutaja valitud tunnuse (nt *"time_in_hospital < 3"* või *"time_in_hospital >= 7"*) põhjal. See võimaldab kasutajal eraldada konkreetse tunnuse suuremast andmegrupist, et näha, kas see on mudeli vigaste tulemuste võtmetegur.
 
-![Tunnuste kohad - mudeli ülevaade RAI armatuurlaual](../../../../translated_images/model-overview-feature-cohorts.c5104d575ffd0c80b7ad8ede7703fab6166bfc6f9125dd395dcc4ace2f522f70.et.png)
+![Tunnuste kohad - mudeli ülevaade RAI armatuurlaual](../../../../translated_images/et/model-overview-feature-cohorts.c5104d575ffd0c80.webp)
 
 Mudeli ülevaate komponent toetab kahte klassi erinevusmõõdikuid:
 
@@ -85,7 +85,7 @@ Andmed on traditsiooniliste mudeli jõudlusmõõdikute jaoks suur pimeala. Teil 
 
 RAI armatuurlaua andmeanalüüsi komponent aitab tuvastada piirkondi, kus andmestikus on üle- ja alarepresentatsioon. See aitab kasutajatel diagnoosida vigade ja õigluse probleemide juurpõhjuseid, mis on põhjustatud andmete tasakaalustamatusest või konkreetse andmegrupi esindatuse puudumisest. See annab kasutajatele võimaluse visualiseerida andmestikke ennustatud ja tegelike tulemuste, veagruppide ja konkreetsete tunnuste põhjal. Mõnikord võib alarepresentatsiooni avastamine paljastada, et mudel ei õpi hästi, mistõttu on kõrged ebatäpsused. Mudel, millel on andmebias, ei ole mitte ainult õigluse probleem, vaid näitab, et mudel ei ole kaasav ega usaldusväärne.
 
-![Andmeanalüüsi komponent RAI armatuurlaual](../../../../translated_images/dataanalysis-cover.8d6d0683a70a5c1e274e5a94b27a71137e3d0a3b707761d7170eb340dd07f11d.et.png)
+![Andmeanalüüsi komponent RAI armatuurlaual](../../../../translated_images/et/dataanalysis-cover.8d6d0683a70a5c1e.webp)
 
 Kasutage andmeanalüüsi, kui peate:
 
@@ -104,14 +104,14 @@ Masinõppe mudelid kipuvad olema mustad kastid. Mõistmine, millised olulised an
 
 RAI armatuurlaua tunnuste olulisuse komponent aitab teil siluda ja saada põhjalikku arusaama, kuidas mudel teeb ennustusi. See on kasulik tööriist masinõppe spetsialistidele ja otsustajatele, et selgitada ja näidata tõendeid tunnuste mõjust mudeli käitumisele regulatiivse vastavuse jaoks. Järgmisena saavad kasutajad uurida nii globaalseid kui ka kohalikke selgitusi, et valideerida, millised tunnused juhivad mudeli ennustust. Globaalsed selgitused loetlevad peamised tunnused, mis mõjutasid mudeli üldist ennustust. Kohalikud selgitused näitavad, millised tunnused viisid mudeli ennustuseni individuaalse juhtumi puhul. Kohalike selgituste hindamise võime on kasulik ka konkreetse juhtumi silumisel või auditeerimisel, et paremini mõista ja tõlgendada, miks mudel tegi täpse või ebatäpse ennustuse.
 
-![Tunnuste olulisuse komponent RAI armatuurlaual](../../../../translated_images/9-feature-importance.cd3193b4bba3fd4bccd415f566c2437fb3298c4824a3dabbcab15270d783606e.et.png)
+![Tunnuste olulisuse komponent RAI armatuurlaual](../../../../translated_images/et/9-feature-importance.cd3193b4bba3fd4b.webp)
 
 * Globaalsed selgitused: Näiteks millised tunnused mõjutavad diabeedi haigla tagasivõtmise mudeli üldist käitumist?
 * Kohalikud selgitused: Näiteks miks ennustati, et diabeediga patsient, kes on üle 60-aastane ja kellel on olnud varasemad hospitaliseerimised, võetakse tagasi haiglasse või ei võeta tagasi 30 päeva jooksul?
 
 Mudeli jõudluse uurimise protsessis erinevate kohtade vahel näitab tunnuste olulisus, millisel tasemel tunnus mõjutab kohtade vahel mudeli ennustusi. See aitab paljastada anomaaliaid, kui võrrelda tunnuse mõju taset mudeli vigaste ennustuste juhtimisel. Tunnuste olulisuse komponent võib näidata, millised tunnuse väärtused mõjutasid mudeli tulemust positiivselt või negatiivselt. Näiteks kui mudel tegi ebatäpse ennustuse, annab komponent võimaluse süveneda ja tuvastada, millised tunnused või tunnuse väärtused viisid ennustuseni. See detailide tase aitab mitte ainult silumisel, vaid pakub läbipaistvust ja vastutust auditeerimissituatsioonides. Lõpuks võib komponent aidata tuvastada õigluse probleeme. Näiteks kui tundlik tunnus, nagu etniline kuuluvus või sugu, mõjutab tugevalt mudeli ennustust, võib see viidata rassilise või soolise eelarvamuse olemasolule mudelis.
 
-![Tunnuste olulisus](../../../../translated_images/9-features-influence.3ead3d3f68a84029f1e40d3eba82107445d3d3b6975d4682b23d8acc905da6d0.et.png)
+![Tunnuste olulisus](../../../../translated_images/et/9-features-influence.3ead3d3f68a84029.webp)
 
 Kasutage tõlgendatavust, kui peate:
 

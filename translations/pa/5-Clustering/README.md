@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਨਾਈਜੀਰੀਆ ਦੇ ਵੱਖ-ਵੱਖ ਦਰਸ਼ਕਾਂ ਦੀਆਂ ਵੱਖ-ਵੱਖ ਸੰਗੀਤਕ ਰੁਚੀਆਂ ਹਨ। Spotify ਤੋਂ ਡਾਟਾ ਇਕੱਠਾ ਕਰਕੇ (ਇਸ ਲੇਖ ਤੋਂ ਪ੍ਰੇਰਿਤ [ਇਥੇ](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), ਆਓ ਨਾਈਜੀਰੀਆ ਵਿੱਚ ਪ੍ਰਸਿੱਧ ਕੁਝ ਸੰਗੀਤਾਂ ਨੂੰ ਵੇਖੀਏ। ਇਸ ਡਾਟਾਸੈਟ ਵਿੱਚ ਵੱਖ-ਵੱਖ ਗੀਤਾਂ ਦੇ 'ਡਾਂਸੇਬਿਲਿਟੀ' ਸਕੋਰ, 'ਅਕੂਸਟਿਕਨੈਸ', ਲਾਊਡਨੈਸ, 'ਸਪੀਚੀਨੈਸ', ਪ੍ਰਸਿੱਧੀ ਅਤੇ ਊਰਜਾ ਬਾਰੇ ਡਾਟਾ ਸ਼ਾਮਲ ਹੈ। ਇਸ ਡਾਟੇ ਵਿੱਚ ਪੈਟਰਨ ਲੱਭਣਾ ਦਿਲਚਸਪ ਹੋਵੇਗਾ!
 
-![ਇੱਕ ਟਰਨਟੇਬਲ](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.pa.jpg)
+![ਇੱਕ ਟਰਨਟੇਬਲ](../../../translated_images/pa/turntable.f2b86b13c53302dc.webp)
 
 > ਫੋਟੋ <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਮਾਰਸੇਲਾ ਲਾਸਕੋਸਕੀ</a> ਦੁਆਰਾ <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ਅਨਸਪਲੈਸ਼</a> 'ਤੇ
   

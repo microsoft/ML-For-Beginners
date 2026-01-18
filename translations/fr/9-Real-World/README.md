@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dans cette section du programme, vous serez introduit à quelques applications réelles de l'apprentissage automatique classique. Nous avons parcouru l'internet pour trouver des articles et des publications sur des applications ayant utilisé ces stratégies, en évitant autant que possible les réseaux neuronaux, l'apprentissage profond et l'intelligence artificielle. Découvrez comment l'apprentissage automatique est utilisé dans les systèmes d'entreprise, les applications écologiques, la finance, les arts et la culture, et bien plus encore.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.fr.jpg)
+![chess](../../../translated_images/fr/chess.e704a268781bdad8.webp)
 
 > Photo par <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> sur <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

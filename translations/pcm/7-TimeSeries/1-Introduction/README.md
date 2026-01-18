@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Introduction to time series forecasting
 
-![Summary of time series in a sketchnote](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.pcm.png)
+![Summary of time series in a sketchnote](../../../../translated_images/pcm/ml-timeseries.fb98d25f1013fc0c.webp)
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -112,7 +112,7 @@ Di data fit show abrupt change wey need more analysis. Example na di sudden clos
 
 ✅ Dis [sample time series plot](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) dey show daily in-game currency wey people dey spend over some years. You fit identify any of di characteristics wey we list for dis data?
 
-![In-game currency spend](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.pcm.png)
+![In-game currency spend](../../../../translated_images/pcm/currency.e7429812bfc8c608.webp)
 
 ## Exercise - getting started with power usage data
 
@@ -160,7 +160,7 @@ Make we start to create time series model to predict future power usage based on
     plt.show()
     ```
 
-    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.pcm.png)
+    ![energy plot](../../../../translated_images/pcm/energy-plot.5fdac3f397a910bc.webp)
 
 4. Now, plot di first week of July 2014, by providing am as input to di `energy` in `[from date]: [to date]` pattern:
 
@@ -171,7 +171,7 @@ Make we start to create time series model to predict future power usage based on
     plt.show()
     ```
 
-    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.pcm.png)
+    ![july](../../../../translated_images/pcm/july-2014.9e1f7c318ec6d5b3.webp)
 
     Di plot fine well! Check di plots and see if you fit identify any of di characteristics wey we list before. Wetin you fit learn by visualizing di data?
 

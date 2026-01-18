@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 এই পাঠগুলোতে আমরা ছোট ছোট কথোপকথনকারী বট তৈরি করে NLP-এর মৌলিক বিষয়গুলো শিখব, যাতে মেশিন লার্নিং কীভাবে এই কথোপকথনগুলোকে আরও 'স্মার্ট' করে তুলতে সাহায্য করে তা বোঝা যায়। আপনি সময়ের পিছনে ভ্রমণ করবেন, জেন অস্টেনের ক্লাসিক উপন্যাস **Pride and Prejudice**, যা ১৮১৩ সালে প্রকাশিত হয়েছিল, থেকে এলিজাবেথ বেনেট এবং মিস্টার ডার্সির সাথে কথা বলবেন। এরপর, ইউরোপের হোটেল রিভিউয়ের মাধ্যমে অনুভূতি বিশ্লেষণ সম্পর্কে শিখে আপনার জ্ঞান আরও বাড়াবেন।
 
-![Pride and Prejudice বই এবং চা](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.bn.jpg)
+![Pride and Prejudice বই এবং চা](../../../translated_images/bn/p&p.279f1c49ecd88941.webp)
 > ছবি <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> এর তোলা <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> এ
   
 ## পাঠসমূহ

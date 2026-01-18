@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 இந்த நான்கு பாடங்களில், நீங்கள் பாரம்பரிய இயந்திரக் கற்றலின் முக்கியமான அம்சமான _வகைப்பாட்டை_ ஆராய்வீர்கள். ஆசியா மற்றும் இந்தியாவின் அற்புதமான சமையல்களைப் பற்றிய தரவுத்தொகுப்புடன் பல வகைப்பாட்டு الگorithம்களைப் பயன்படுத்துவது பற்றி நாம் கற்றுக்கொள்வோம். உங்களுக்குப் பசிக்கிறதா?
 
-![சிறிது சுவை!](../../../../translated_images/pinch.1b035ec9ba7e0d408313b551b60c721c9c290b2dd2094115bc87e6ddacd114c9.ta.png)
+![சிறிது சுவை!](../../../../translated_images/ta/pinch.1b035ec9ba7e0d40.webp)
 
 > இந்த பாடங்களில் பான்-ஆசிய சமையல்களை கொண்டாடுங்கள்! படம்: [Jen Looper](https://twitter.com/jenlooper)
 
@@ -38,7 +38,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 இந்த செயல்முறையை அறிவியல் முறையில் கூறுவதற்கு, உங்கள் வகைப்பாட்டு முறை உள்தொகை மாறிலிகளுக்கும் வெளிப்புற மாறிலிகளுக்கும் இடையிலான உறவுகளை வரைபடமாக்க அனுமதிக்கும் ஒரு முன்னறிவிப்பு மாதிரியை உருவாக்குகிறது.
 
-![இரட்டை மற்றும் பலவகை வகைப்பாடு](../../../../translated_images/binary-multiclass.b56d0c86c81105a697dddd82242c1d11e4d78b7afefea07a44627a0f1111c1a9.ta.png)
+![இரட்டை மற்றும் பலவகை வகைப்பாடு](../../../../translated_images/ta/binary-multiclass.b56d0c86c81105a6.webp)
 
 > வகைப்பாட்டு الگorithம்கள் கையாள வேண்டிய இரட்டை மற்றும் பலவகை பிரச்சினைகள். தகவல்படம்: [Jen Looper](https://twitter.com/jenlooper)
 
@@ -134,7 +134,7 @@ Scikit-learn பல்வேறு الگorithம்களை வழங்கு
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![சமையல் தரவின் விநியோகம்](../../../../translated_images/cuisine-dist.d0cc2d551abe5c25f83d73a5f560927e4a061e9a4560bac1e97d35682ef3ca6d.ta.png)
+    ![சமையல் தரவின் விநியோகம்](../../../../translated_images/ta/cuisine-dist.d0cc2d551abe5c25.webp)
 
     சமையல்களின் எண்ணிக்கை முடிவுறுத்தப்பட்டுள்ளன, ஆனால் தரவின் விநியோகம் சமமாக இல்லை. அதை சரிசெய்யலாம்! அதைச் செய்வதற்கு முன், மேலும் ஆராயுங்கள்.
 
@@ -188,7 +188,7 @@ Scikit-learn பல்வேறு الگorithம்களை வழங்கு
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thai](../../../../translated_images/thai.0269dbab2e78bd38a132067759fe980008bdb80b6d778e5313448dbe12bed846.ta.png)
+    ![thai](../../../../translated_images/ta/thai.0269dbab2e78bd38.webp)
 
 1. ஜப்பானிய தரவுகளுக்கு இதையே செய்யுங்கள்:
 
@@ -197,7 +197,7 @@ Scikit-learn பல்வேறு الگorithம்களை வழங்கு
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japanese](../../../../translated_images/japanese.30260486f2a05c463c8faa62ebe7b38f0961ed293bd9a6db8eef5d3f0cf17155.ta.png)
+    ![japanese](../../../../translated_images/ta/japanese.30260486f2a05c46.webp)
 
 1. இப்போது சீன பொருட்களுக்கு:
 
@@ -206,7 +206,7 @@ Scikit-learn பல்வேறு الگorithம்களை வழங்கு
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinese](../../../../translated_images/chinese.e62cafa5309f111afd1b54490336daf4e927ce32bed837069a0b7ce481dfae8d.ta.png)
+    ![chinese](../../../../translated_images/ta/chinese.e62cafa5309f111a.webp)
 
 1. இந்திய பொருட்களை வரைபடம்:
 
@@ -215,7 +215,7 @@ Scikit-learn பல்வேறு الگorithம்களை வழங்கு
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indian](../../../../translated_images/indian.2c4292002af1a1f97a4a24fec6b1459ee8ff616c3822ae56bb62b9903e192af6.ta.png)
+    ![indian](../../../../translated_images/ta/indian.2c4292002af1a1f9.webp)
 
 1. இறுதியாக, கொரிய பொருட்களை வரைபடம்:
 
@@ -224,7 +224,7 @@ Scikit-learn பல்வேறு الگorithம்களை வழங்கு
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korean](../../../../translated_images/korean.4a4f0274f3d9805a65e61f05597eeaad8620b03be23a2c0a705c023f65fad2c0.ta.png)
+    ![korean](../../../../translated_images/ta/korean.4a4f0274f3d9805a.webp)
 
 1. இப்போது, `drop()` ஐ அழைப்பதன் மூலம் தனித்துவமான சமையல்களுக்கு இடையே குழப்பத்தை உருவாக்கும் பொதுவான பொருட்களை நீக்குங்கள்: 
 

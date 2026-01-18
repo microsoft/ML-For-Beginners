@@ -17,7 +17,7 @@ Natūralios kalbos apdorojimas (NLP) – tai kompiuterinės programos gebėjimas
 
 Šiose pamokose išmoksime NLP pagrindus, kurdami mažus pokalbių robotus, kad suprastume, kaip mašininis mokymasis padeda šiuos pokalbius padaryti vis „protingesnius“. Keliausite atgal laiku, bendraudami su Elizabeth Bennett ir ponu Darcy iš Jane Austen klasikinio romano **Puikybė ir prietarai**, išleisto 1813 metais. Vėliau gilinsite savo žinias, mokydamiesi apie sentimentų analizę per viešbučių apžvalgas Europoje.
 
-![Puikybė ir prietarai knyga ir arbata](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.lt.jpg)
+![Puikybė ir prietarai knyga ir arbata](../../../translated_images/lt/p&p.279f1c49ecd88941.webp)
 > Nuotrauka <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> iš <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Pamokos

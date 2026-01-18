@@ -13,7 +13,7 @@ L'apprentissage par renforcement, ou RL, est considéré comme l'un des paradigm
 
 Imaginez que vous avez un environnement simulé, comme le marché boursier. Que se passe-t-il si vous imposez une réglementation donnée ? A-t-elle un effet positif ou négatif ? Si quelque chose de négatif se produit, vous devez tirer parti de ce _renforcement négatif_, en apprendre et changer de cap. Si le résultat est positif, vous devez vous appuyer sur ce _renforcement positif_.
 
-![peter et le loup](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.fr.png)
+![peter et le loup](../../../translated_images/fr/peter.779730f9ba3a8a8d.webp)
 
 > Peter et ses amis doivent échapper au loup affamé ! Image par [Jen Looper](https://twitter.com/jenlooper)
 

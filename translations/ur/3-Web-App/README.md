@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 اس نصاب کے اس حصے میں، آپ کو ایک عملی مشین لرننگ موضوع سے متعارف کرایا جائے گا: اپنے Scikit-learn ماڈل کو ایک فائل کے طور پر محفوظ کرنے کا طریقہ جو ویب ایپلیکیشن کے اندر پیش گوئی کرنے کے لیے استعمال کی جا سکتی ہے۔ جب ماڈل محفوظ ہو جائے گا، تو آپ سیکھیں گے کہ اسے Flask میں بنائی گئی ویب ایپ میں کیسے استعمال کریں۔ آپ پہلے کچھ ڈیٹا کا استعمال کرتے ہوئے ایک ماڈل بنائیں گے جو UFO دیکھنے کے بارے میں ہے! پھر، آپ ایک ویب ایپ بنائیں گے جو آپ کو سیکنڈز کی تعداد، عرض بلد اور طول بلد کی قدر درج کرنے کی اجازت دے گی تاکہ یہ پیش گوئی کی جا سکے کہ کس ملک نے UFO دیکھنے کی اطلاع دی۔
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.ur.jpg)
+![UFO Parking](../../../translated_images/ur/ufo.9e787f5161da9d4d.webp)
 
 تصویر از <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">مائیکل ہیرن</a> پر <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

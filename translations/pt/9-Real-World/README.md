@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nesta secção do currículo, será apresentado a algumas aplicações reais de aprendizagem automática clássica. Pesquisámos na internet para encontrar artigos e documentos técnicos sobre aplicações que utilizaram estas estratégias, evitando redes neuronais, aprendizagem profunda e IA tanto quanto possível. Descubra como a aprendizagem automática é utilizada em sistemas empresariais, aplicações ecológicas, finanças, artes e cultura, entre outros.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.pt.jpg)
+![chess](../../../translated_images/pt/chess.e704a268781bdad8.webp)
 
 > Foto por <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> em <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ఈ పాఠ్యాంశంలో, మీరు ఒక అన్వయించిన ML అంశాన్ని పరిచయం చేయబడతారు: మీ Scikit-learn మోడల్‌ను ఫైల్‌గా ఎలా సేవ్ చేయాలో, అది వెబ్ అప్లికేషన్‌లో అంచనాలు చేయడానికి ఉపయోగించవచ్చు. మోడల్ సేవ్ అయిన తర్వాత, మీరు దాన్ని Flaskలో నిర్మించిన వెబ్ యాప్‌లో ఎలా ఉపయోగించాలో నేర్చుకుంటారు. మీరు మొదట UFO సాక్ష్యాల గురించి ఉన్న కొన్ని డేటాతో ఒక మోడల్‌ను సృష్టిస్తారు! ఆ తర్వాత, మీరు సెకన్ల సంఖ్య, అక్షాంశం మరియు రేఖాంశం విలువలను ఇన్‌పుట్‌గా ఇచ్చి ఏ దేశం UFO చూసిందని అంచనా వేయగల వెబ్ యాప్‌ను నిర్మిస్తారు.
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.te.jpg)
+![UFO Parking](../../../translated_images/te/ufo.9e787f5161da9d4d.webp)
 
 ఫోటో <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> ద్వారా <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

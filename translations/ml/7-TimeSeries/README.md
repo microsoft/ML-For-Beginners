@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 നമ്മുടെ പ്രാദേശിക ശ്രദ്ധ ലോകത്തിലെ വൈദ്യുതി ഉപയോഗത്തിലാണ്, കഴിഞ്ഞ ലോഡിന്റെ മാതൃകകളുടെ അടിസ്ഥാനത്തിൽ ഭാവിയിലെ വൈദ്യുതി ഉപയോഗം ഫോറ്കാസ്റ്റ് ചെയ്യുന്നതിനെക്കുറിച്ച് പഠിക്കാൻ ഒരു രസകരമായ ഡാറ്റാസെറ്റ്. ഈ തരത്തിലുള്ള ഫോറ്കാസ്റ്റിംഗ് ബിസിനസ്സ് പരിസരത്തിൽ എത്രത്തോളം സഹായകരമാകാമെന്ന് നിങ്ങൾ കാണാം.
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ml.jpg)
+![electric grid](../../../translated_images/ml/electric-grid.0c21d5214db09ffa.webp)
 
 രാജസ്ഥാനിലെ ഒരു റോഡിൽ വൈദ്യുതി ടവറുകളുടെ ചിത്രം [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) എന്നവന്റെ ഫോട്ടോ, [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ൽ നിന്നാണ്.
 

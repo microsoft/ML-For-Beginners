@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಈ ಪಠ್ಯಕ್ರಮದ ವಿಭಾಗದಲ್ಲಿ, ನೀವು ಅನ್ವಯಿತ ML ವಿಷಯವನ್ನು ಪರಿಚಯಿಸಿಕೊಳ್ಳುತ್ತೀರಿ: ನಿಮ್ಮ Scikit-learn ಮಾದರಿಯನ್ನು ಫೈಲ್ ಆಗಿ ಉಳಿಸುವುದು, ಅದನ್ನು ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಭವಿಷ್ಯವಾಣಿ ಮಾಡಲು ಬಳಸಬಹುದು. ಮಾದರಿ ಉಳಿಸಿದ ನಂತರ, ನೀವು ಅದನ್ನು Flask ನಲ್ಲಿ ನಿರ್ಮಿಸಲಾದ ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಹೇಗೆ ಬಳಸುವುದು ಎಂದು ಕಲಿಯುತ್ತೀರಿ. ಮೊದಲು, ನೀವು UFO ದೃಶ್ಯಗಳ ಬಗ್ಗೆ ಇರುವ ಕೆಲವು ಡೇಟಾ ಬಳಸಿ ಮಾದರಿಯನ್ನು ರಚಿಸುವಿರಿ! ನಂತರ, ನೀವು ಸೆಕೆಂಡುಗಳ ಸಂಖ್ಯೆ, ಅಕ್ಷಾಂಶ ಮತ್ತು ರೇಖಾಂಶ ಮೌಲ್ಯವನ್ನು ನಮೂದಿಸಲು ಅನುಮತಿಸುವ ವೆಬ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ನಿರ್ಮಿಸುವಿರಿ, ಅದು ಯಾವ ದೇಶ UFO ನೋಡಿದ ಎಂದು ಭವಿಷ್ಯವಾಣಿ ಮಾಡುತ್ತದೆ.
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.kn.jpg)
+![UFO Parking](../../../translated_images/kn/ufo.9e787f5161da9d4d.webp)
 
 ಚಿತ್ರವನ್ನು <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಮೈಕೆಲ್ ಹೆರೆನ್</a> ಅವರು <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ಅನ್ಸ್ಪ್ಲ್ಯಾಶ್</a> ನಲ್ಲಿ ತೆಗೆದಿದ್ದಾರೆ
 

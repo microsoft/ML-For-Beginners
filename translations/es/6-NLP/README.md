@@ -17,7 +17,7 @@ En esta sección del programa, se te presentará uno de los usos más extendidos
 
 En estas lecciones aprenderemos los conceptos básicos del NLP construyendo pequeños bots conversacionales para entender cómo el aprendizaje automático ayuda a que estas conversaciones sean cada vez más 'inteligentes'. Viajarás en el tiempo, conversando con Elizabeth Bennett y el Sr. Darcy del clásico de Jane Austen, **Orgullo y Prejuicio**, publicado en 1813. Luego, ampliarás tus conocimientos aprendiendo sobre el análisis de sentimientos a través de reseñas de hoteles en Europa.
 
-![Libro de Orgullo y Prejuicio y té](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.es.jpg)
+![Libro de Orgullo y Prejuicio y té](../../../translated_images/es/p&p.279f1c49ecd88941.webp)
 > Foto por <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> en <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Lecciones

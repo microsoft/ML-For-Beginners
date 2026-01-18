@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 इन पाठों में हम छोटे संवादात्मक बॉट्स बनाकर NLP की मूल बातें सीखेंगे ताकि यह समझ सकें कि मशीन लर्निंग इन संवादों को अधिक 'स्मार्ट' बनाने में कैसे मदद करती है। आप समय में पीछे यात्रा करेंगे, जेन ऑस्टेन के क्लासिक उपन्यास **Pride and Prejudice**, जो 1813 में प्रकाशित हुआ था, के पात्र एलिजाबेथ बेनेट और मिस्टर डार्सी से बातचीत करेंगे। फिर, आप होटल समीक्षाओं के माध्यम से भावना विश्लेषण सीखकर अपने ज्ञान को और बढ़ाएंगे।
 
-![Pride and Prejudice किताब और चाय](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.hi.jpg)
+![Pride and Prejudice किताब और चाय](../../../translated_images/hi/p&p.279f1c49ecd88941.webp)
 > फोटो <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> द्वारा <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> पर
   
 ## पाठ

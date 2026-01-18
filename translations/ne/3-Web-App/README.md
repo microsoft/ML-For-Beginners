@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 यस पाठ्यक्रमको यस भागमा, तपाईंलाई एक प्रयोगात्मक ML विषयमा परिचय गराइनेछ: कसरी आफ्नो Scikit-learn मोडेललाई फाइलको रूपमा सुरक्षित गर्ने जसलाई वेब एप्लिकेसनमा भविष्यवाणी गर्न प्रयोग गर्न सकिन्छ। मोडेल सुरक्षित गरेपछि, तपाईंले यसलाई Flask मा बनाइएको वेब एपमा प्रयोग गर्न सिक्नुहुनेछ। तपाईंले पहिलोमा केही डाटाको प्रयोग गरेर मोडेल बनाउनुहुनेछ, जुन UFO देखिएको घटनाको बारेमा हुनेछ! त्यसपछि, तपाईंले एउटा वेब एप बनाउनुहुनेछ जसले तपाईंलाई सेकन्डको संख्या, अक्षांश र देशान्तरको मान प्रविष्ट गर्न अनुमति दिनेछ, ताकि कुन देशले UFO देखेको रिपोर्ट गरेको हो भनेर भविष्यवाणी गर्न सकियोस्।
 
-![UFO पार्किङ](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.ne.jpg)
+![UFO पार्किङ](../../../translated_images/ne/ufo.9e787f5161da9d4d.webp)
 
 फोटो <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">माइकल हेरेन</a> द्वारा <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> मा
 

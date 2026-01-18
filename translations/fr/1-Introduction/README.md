@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dans cette section du programme, vous serez initié aux concepts de base qui sous-tendent le domaine du machine learning, ce qu'il est, et vous découvrirez son histoire ainsi que les techniques utilisées par les chercheurs pour travailler avec lui. Explorons ensemble ce nouvel univers du ML !
 
-![globe](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.fr.jpg)
+![globe](../../../translated_images/fr/globe.59f26379ceb40428.webp)
 > Photo par <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> sur <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Leçons

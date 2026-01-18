@@ -1,160 +1,169 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c21bf667cfbd946f76fde049e31b07d0",
-  "translation_date": "2025-12-25T02:09:36+00:00",
+  "original_hash": "0a6f4476a4f3934a4aa47c1bf47158bc",
+  "translation_date": "2026-01-16T16:46:12+00:00",
   "source_file": "README.md",
   "language_code": "lt"
 }
 -->
-[![GitHub licencija](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
-[![GitHub prisidėtojai](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
+[![GitHub licence](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
+[![GitHub contributoriai](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
 [![GitHub problemos](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
-[![GitHub pull-užklausos](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PRs laukiami](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
+[![PRs Sveiki](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![GitHub stebėtojai](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
-[![GitHub fork'ai](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
+[![GitHub šakės](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
 [![GitHub žvaigždutės](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
-### 🌐 Multi-Language Support
+### 🌐 Daugialypė kalbų palaikymas
 
-#### Supported via GitHub Action (Automated & Always Up-to-Date)
+#### Palaikoma per GitHub Action (automatizuota ir visada atnaujinta)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](./README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arabų](../ar/README.md) | [Bengalų](../bn/README.md) | [Bulgarų](../bg/README.md) | [Birmos (Mianmaras)](../my/README.md) | [Kinų (supaprastinta)](../zh/README.md) | [Kinų (tradicinė, Honkongas)](../hk/README.md) | [Kinų (tradicinė, Makao)](../mo/README.md) | [Kinų (tradicinė, Taivanas)](../tw/README.md) | [Kroatų](../hr/README.md) | [Čekų](../cs/README.md) | [Danų](../da/README.md) | [Olandų](../nl/README.md) | [Estų](../et/README.md) | [Suomių](../fi/README.md) | [Prancūzų](../fr/README.md) | [Vokiečių](../de/README.md) | [Graikų](../el/README.md) | [Hebrajų](../he/README.md) | [Hindų](../hi/README.md) | [Vengrų](../hu/README.md) | [Indoneziečių](../id/README.md) | [Italų](../it/README.md) | [Japonų](../ja/README.md) | [Kannadų](../kn/README.md) | [Korėjiečių](../ko/README.md) | [Lietuvių](./README.md) | [Malajų](../ms/README.md) | [Malajalų](../ml/README.md) | [Maratų](../mr/README.md) | [Nepalų](../ne/README.md) | [Nigerijos pidžino](../pcm/README.md) | [Norvegų](../no/README.md) | [Persų (Farsi)](../fa/README.md) | [Lenkų](../pl/README.md) | [Portugalų (Brazilija)](../br/README.md) | [Portugalų (Portugalija)](../pt/README.md) | [Pandžabų (Gurmukhi)](../pa/README.md) | [Rumunų](../ro/README.md) | [Rusų](../ru/README.md) | [Serbų (kirilica)](../sr/README.md) | [Slovakų](../sk/README.md) | [Slovėnų](../sl/README.md) | [Ispanų](../es/README.md) | [Svahilių](../sw/README.md) | [Švedų](../sv/README.md) | [Tagalogų (filipiniečių)](../tl/README.md) | [Tamilų](../ta/README.md) | [Telugų](../te/README.md) | [Tajų](../th/README.md) | [Turkų](../tr/README.md) | [Ukrainiečių](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamiečių](../vi/README.md)
+
+> **Norite klonuoti vietoje?**
+
+> Šiame saugykloje yra 50+ kalbų vertimų, dėl ko žymiai padidėja atsisiuntimo dydis. Norėdami klonuoti be vertimų, naudokite retą atsisiuntimą (sparse checkout):
+> ```bash
+> git clone --filter=blob:none --sparse https://github.com/microsoft/ML-For-Beginners.git
+> cd ML-For-Beginners
+> git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+> ```
+> Tai suteikia viską, ko reikia kursui atlikti, žymiai greičiau atsisiunčiant.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-#### Join Our Community
+#### Prisijunkite prie mūsų bendruomenės
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-We have a Discord learn with AI series ongoing, learn more and join us at [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You will get tips and tricks of using GitHub Copilot for Data Science.
+Turime vykstančią Discord „mokymosi su AI“ seriją, daugiau sužinokite ir prisijunkite prie mūsų adresu [Learn with AI Series](https://aka.ms/learnwithai/discord) rugsėjo 18 - 30 d., 2025 m. Gaunate patarimus ir gudrybes, kaip naudoti GitHub Copilot duomenų mokslui.
 
-![Mokymasis su AI serija](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.lt.png)
+![Mokymosi su AI serija](../../../../translated_images/lt/3.9b58fd8d6c373c20.webp)
 
-# Machine Learning for Beginners - A Curriculum
+# Mašininis mokymasis pradedantiesiems – mokymo programa
 
 > 🌍 Keliaukite po pasaulį, tyrinėdami mašininį mokymąsi per pasaulio kultūras 🌍
 
-Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!
+„Microsoft“ Cloud Advocates maloniai siūlo 12 savaičių, 26 pamokų mokymo programą, skirtą **Mašininiam mokymuisi**. Šioje programoje sužinosite apie tai, ką kartais vadiname **klasikiniu mašininiu mokymusi**, daugiausia naudodami biblioteka Scikit-learn ir vengdami giluminio mokymosi, kuris aptariamas mūsų [AI pradedantiesiems mokymo programoje](https://aka.ms/ai4beginners). Derinkite šias pamokas su mūsų ['Duomenų mokslas pradedantiesiems' mokymo programa](https://aka.ms/ds4beginners).
 
-Keliaukite su mumis po pasaulį, taikydami šias klasikines technikas duomenims iš įvairių pasaulio vietų. Kiekviena pamoka apima priešpamokos ir popamokos testus, užrašytas instrukcijas pamokos atlikimui, sprendimą, užduotį ir dar daugiau. Mūsų projektu paremta pedagogika leidžia mokytis statant – tai patikrintas būdas, kad nauji įgūdžiai „įsikabintų“.
+Keliaukite su mumis po pasaulį, taikydami šias klasikines technikas duomenims iš įvairių pasaulio regionų. Kiekvienoje pamokoje yra priešpamokinis ir popamokinis testai, rašytinės pamokos vykdymo instrukcijos, sprendimas, užduotis ir daugiau. Mūsų projektinė pedagogika leidžia mokytis kuriant, kas įrodytas būdas, kaip nauji įgūdžiai geriau įsitvirtina.
 
-**✍️ Nuoširdus ačiū mūsų autoriams** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu and Amy Boyd
+**✍️ Nuoširdžiai dėkojame mūsų autoriams** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu ir Amy Boyd
 
-**🎨 Ačiū taip pat mūsų iliustratoriams** Tomomi Imura, Dasani Madipalli, and Jen Looper
+**🎨 Taip pat dėkojame mūsų iliustratoriams** Tomomi Imura, Dasani Madipalli ir Jen Looper
 
-**🙏 Ypatingas ačiū 🙏 mūsų Microsoft Student Ambassador autoriams, recenzentams ir turinio pranešėjams**, ypač Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
+**🙏 Ypatingas ačiū 🙏 mūsų Microsoft Student Ambassador autoriams, recenzentams ir turinio dalintojams**, ypač Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila ir Snigdha Agarwal
 
-**🤩 Papildomas dėkingumas Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, and Vidushi Gupta už mūsų R pamokas!**
+**🤩 Dėkojame Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi ir Vidushi Gupta už mūsų R pamokas!**
 
-# Getting Started
+# Pradžia
 
-Follow these steps:
-1. **Sukurkite saugyklos fork'ą**: Click on the "Fork" button at the top-right corner of this page.
-2. **Klonuokite saugyklą**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+Atlikite šiuos veiksmus:
+1. **Atšakokite saugyklą**: spustelėkite mygtuką „Fork“ viršutiniame dešiniajame šio puslapio kampe.
+2. **Klonuokite saugyklą**: `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [raskite visus papildomus išteklius šiam kursui mūsų Microsoft Learn kolekcijoje](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-> 🔧 **Reikia pagalbos?** Patikrinkite mūsų [Gedimų šalinimo vadovą](TROUBLESHOOTING.md) dėl sprendimų dažniausiai pasitaikančioms problemoms su diegimu, nustatymu ir pamokų vykdymu.
+> 🔧 **Reikia pagalbos?** Patikrinkite mūsų [Trikčių šalinimo vadovą](TROUBLESHOOTING.md) dėl dažnų problemų sprendimo diegiant, nustatant ir paleidžiant pamokas.
 
 
-**[Studentams](https://aka.ms/student-page)**, norėdami naudoti šią mokymo programą, sukurkite visos saugyklos fork'ą į savo GitHub paskyrą ir atlikite pratimus savarankiškai arba grupėje:
+**[Studentai](https://aka.ms/student-page)**, norėdami naudoti šią mokymo programą, atšakokite visą saugyklą į savo GitHub paskyrą ir vykdykite pratimus patys arba grupėje:
 
-- Pradėkite nuo priešpaskaitos testo.
-- Perskaitykite paskaitą ir atlikite veiklas, sustodami ir apmąstydami kiekvieną žinių patikrinimą.
-- Bandykite sukurti projektus suprasdami pamokas, o ne paleisdami sprendimo kodą; tačiau tas kodas yra prieinamas kiekvienos su projektu susijusios pamokos `/solution` aplankuose.
-- Padarykite popaskaitos testą.
+- Pradėkite nuo priešpamokinio testo.
+- Skaitykite paskaitą ir atlikite veiklas, sustodami ir apmąstydami kiekvieną žinių patikrinimą.
+- Stenkitės sukurti projektus suprasdami pamokas, o ne vykdydami sprendimų kodą; tačiau šis kodas yra prieinamas kiekvieno orientuoto į projektą modulio `/solution` aplankuose.
+- Atlikite popamokinį testą.
 - Atlikite iššūkį.
 - Atlikite užduotį.
-- Baigę pamokų grupę, apsilankykite [Diskusijų lentoje](https://github.com/microsoft/ML-For-Beginners/discussions) ir „mokykitės garsiai“, užpildydami atitinkamą PAT rubriką. PAT yra pažangos vertinimo įrankis, kurį užpildote tolesniam mokymuisi. Taip pat galite reaguoti į kitų PAT'us, kad galėtume mokytis kartu.
+- Baigę grupę pamokų, apsilankykite [Diskusijų lentoje](https://github.com/microsoft/ML-For-Beginners/discussions) ir „mokykitės garsiai“, užpildydami atitinkamą PAT vertinimo formą. „PAT“ yra pažangos vertinimo įrankis, kurį užpildote siekdami toliau mokytis. Taip pat galite reaguoti į kitų PAT, kad mokytumėmės kartu.
 
-> Dėl tolesnio mokymosi rekomenduojame sekti šiuos [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modulius ir mokymosi kelius.
+> Tolimesniam mokymuisi rekomenduojame sekti šiuos [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modulius ir mokymosi kelius.
 
-**Mokytojams**, mes įtraukėme [keletą pasiūlymų](for-teachers.md) apie tai, kaip naudoti šią mokymo programą.
-
----
-
-## Video walkthroughs
-
-Kai kurios pamokos yra prieinamos trumpais vaizdo įrašais. Juos galite rasti tiesiogiai pamokose arba [ML for Beginners grojaraštyje Microsoft Developer YouTube kanale](https://aka.ms/ml-beginners-videos) spustelėję paveikslėlį žemiau.
-
-[![ML pradedantiesiems baneris](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.lt.png)](https://aka.ms/ml-beginners-videos)
+**Mokytojai**, mes pateikėme [keletą pasiūlymų](for-teachers.md) apie tai, kaip naudoti šią mokymo programą.
 
 ---
 
-## Meet the Team
+## Vaizdo pristatymai
+
+Kai kurios pamokos prieinamos trumpais vaizdo įrašais. Juos rasite įterptus tiesiai pamokose arba [ML pradedantiesiems grojaraščio „Microsoft Developer“ YouTube kanale](https://aka.ms/ml-beginners-videos) spustelėję žemiau esantį paveikslėlį.
+
+[![ML pradedantiesiems antraštė](../../../../translated_images/lt/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
+
+---
+
+## Komanda
 
 [![Reklaminis vaizdo įrašas](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
 
-**Gif autorius** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+**Gif sukūrė** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
-> 🎥 Spustelėkite aukščiau esantį vaizdą, kad pamatytumėte vaizdo įrašą apie projektą ir žmones, kurie jį sukūrė!
+> 🎥 Spustelėkite viršuje esantį paveikslėlį, kad pamatytumėte vaizdo įrašą apie projektą ir žmones, kurie jį sukūrė!
 
 ---
 
-## Pedagogy
+## Pedagogika
 
-Mes pasirinkome du pedagoginius principus kurdami šią mokymo programą: užtikrinti, kad ji būtų praktiška ir paremta **projektais**, bei kad joje būtų **dažni testai**. Be to, ši mokymo programa turi bendrą **temą**, suteikiančią jai nuoseklumo.
+Kuriant šią mokymo programą pasirinkome du pedagoginius principus: užtikrinti, kad ji būtų praktinė, **projektinė** ir kad būtų įtraukti **dažni testai**. Be to, ši programa turi bendrą **temą**, suteikiančią nuoseklumą.
 
-Užtikrinant, kad turinys sutelktas į projektus, procesas tampa labiau įtraukiantis studentams, o sąvokų įsisavinimas pagerėja. Taip pat mažos rizikos testas prieš paskaitą nustato studento ketinimą mokytis temos, o antras testas po paskaitos užtikrina geresnį įsiminimą. Ši mokymo programa buvo sukurta būti lanksčia ir įdomia ir gali būti atliekama pilnai arba dalinai. Projektai prasideda nuo paprastų užduočių ir palaipsniui didėja sudėtingumu per 12 savaičių ciklą. Mokymo programoje taip pat įtrauktas priedas apie realaus pasaulio ML taikymus, kurį galima naudoti kaip papildomą kreditą arba kaip diskusijų pagrindą.
+Užtikrinus, kad turinys yra susietas su projektais, procesas tampa labiau įtraukiantis studentams ir gerėja koncepcijų įsisavinimas. Be to, mažos rizikos testas prieš pamoką nukreipia studentą į tam tikro dalyko mokymąsi, o antras testas po pamokos užtikrina tolesnį įsisavinimą. Ši programa sukurta būti lanksti ir smagi, ją galima atlikti visą arba dalimis. Projektai prasideda nuo paprastų ir palaipsniui tampa sudėtingesni per 12 savaičių ciklą. Šioje programoje taip pat yra priedas apie realius ML taikymus, kurį galima naudoti kaip papildomus kreditus arba kaip pagrindą diskusijoms.
 
-> Raskite mūsų [Elgesio kodeksą](CODE_OF_CONDUCT.md), [Indėlio gairės](CONTRIBUTING.md), [Vertimo gaires](TRANSLATIONS.md) ir [Gedimų šalinimo gaires](TROUBLESHOOTING.md). Laukiame jūsų konstruktyvios grįžtamosios informacijos!
+> Susipažinkite su mūsų [Elgesio kodeksu](CODE_OF_CONDUCT.md), [Bendradarbiavimo gairėmis](CONTRIBUTING.md), [Vertimo gairėmis](TRANSLATIONS.md) ir [Trikčių šalinimo gairėmis](TROUBLESHOOTING.md). Laukiame jūsų konstruktyvios grįžtamosios reakcijos!
 
-## Each lesson includes
+## Kiekviena pamoka apima
 
-- pasirinktiną sketchnote
+- pasirenkamą eskizo užrašą
 - pasirenkamą papildomą vaizdo įrašą
-- vaizdo įrašo peržiūrą (tik kai kurios pamokos)
-- [priešpaskaitos apšilimo testą](https://ff-quizzes.netlify.app/en/ml/)
-- rašytinę pamoką
-- projekto pamokoms: žingsnis po žingsnio vadovus, kaip sukurti projektą
+- vaizdo peržiūrą (kai kurios pamokos)
+- [priešpamokinį įšilimo testą](https://ff-quizzes.netlify.app/en/ml/)
+- rašytines pamokas
+- projektinėse pamokose – žingsnis po žingsnio gidus, kaip sukurti projektą
 - žinių patikrinimus
 - iššūkį
 - papildomą skaitymą
 - užduotį
-- [popaskaitos testą](https://ff-quizzes.netlify.app/en/ml/)
+- [popamokinį testą](https://ff-quizzes.netlify.app/en/ml/)
 
-> **Pastaba apie kalbas**: Šios pamokos daugiausia parašytos Python, tačiau dauguma jų taip pat yra prieinamos R. Norėdami atlikti R pamoką, eikite į `/solution` aplanką ir ieškokite R pamokų. Jos turi .rmd plėtinį, kuris reiškia **R Markdown** failą — tai tiesiog integracija `kodo blokų` (R ar kitomis kalbomis) ir `YAML antraštės` (kuri nurodo, kaip formatuoti išvestis, pvz., PDF) „Markdown“ dokumente. Tokiu būdu tai tarnauja kaip puikus autoriavimo pagrindas duomenų mokslui, nes leidžia derinti kodą, jo išvestį ir pastabas, rašant jas Markdown formatu. Be to, R Markdown dokumentai gali būti atvaizduojami į formatus, tokius kaip PDF, HTML ar Word.
+> **Pastaba apie kalbas**: Šios pamokos daugiausia rašomos Python kalba, tačiau dauguma jų yra prieinamos ir R kalba. Norėdami atlikti R pamoką, eikite į `/solution` aplanką ir raskite R pamokas. Jos turi .rmd plėtinį, kuris reiškia **R Markdown** failą, kurį galima apibūdinti kaip `kodo blokų` (R ar kitų kalbų) ir `YAML antraštės` (nurodančios, kaip formatuoti išvestis, pvz., PDF) įterpimą `Markdown dokumente`. Todėl tai puiki autorinė sistema duomenų mokslui, leidžianti derinti savo kodą, išvestį ir mintis rašant Markdown forma. Be to, R Markdown dokumentus galima konvertuoti į įvairius išvesties formatus, tokius kaip PDF, HTML ar Word.
+> **Pastaba apie viktorinas**: Visos viktorinos yra [Quiz App kataloge](../../quiz-app), iš viso 52 viktorinos po tris klausimus kiekvienoje. Jos sujungtos pamokų viduje, tačiau viktorinų programėlę galite paleisti vietoje; vadovaukitės instrukcijomis `quiz-app` kataloge, kad paleistumėte vietoje arba išplatintumėte Azure.
 
-> **Pastaba apie testus**: Visi testai yra [Quiz App aplanke](../../quiz-app), iš viso 52 testai po tris klausimus. Jie susieti iš pamokų, tačiau testų programėlę galima paleisti lokaliai; sekite instrukcijas `quiz-app` aplanke, kad paleistumėte vietoje arba diegtumėte į Azure.
-
-| Pamokos numeris |                             Tema                              |                   Pamokos grupė                   | Mokymosi tikslai                                                                                                             |                                                              Susieta pamoka                                                               |                        Autorius                        |
-| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-|      01       |                Įvadas į mašininį mokymąsi                |      [Įvadas](1-Introduction/README.md)       | Sužinokite pagrindines mašininio mokymosi koncepcijas                                                                                |                                             [Pamoka](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
-|      02       |                Mašininio mokymosi istorija                 |      [Įvadas](1-Introduction/README.md)       | Sužinokite šios srities istoriją                                                                                         |                                            [Pamoka](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
-|      03       |                 Teisingumas ir mašininis mokymasis                  |      [Įvadas](1-Introduction/README.md)       | Kokie yra svarbūs filosofiniai klausimai apie teisingumą, kuriuos studentai turėtų apsvarstyti kurdami ir taikydami ML modelius? |                                              [Pamoka](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
-|      04       |                Mašininio mokymosi metodai                 |      [Įvadas](1-Introduction/README.md)       | Kokias technikas ML tyrėjai naudoja kuriant ML modelius?                                                                       |                                          [Pamoka](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
-|      05       |                   Įvadas į regresiją                   |        [Regresija](2-Regression/README.md)         | Pradėkite darbą su Python ir Scikit-learn regresijos modeliams                                                                  |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
-|      06       |                Šiaurės Amerikos moliūgų kainos 🎃                |        [Regresija](2-Regression/README.md)         | Vizualizuokite ir išvalykite duomenis pasiruošimui ML                                                                                  |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
-|      07       |                Šiaurės Amerikos moliūgų kainos 🎃                |        [Regresija](2-Regression/README.md)         | Sukurkite linijinius ir polinominius regresijos modelius                                                                                   |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
-|      08       |                Šiaurės Amerikos moliūgų kainos 🎃                |        [Regresija](2-Regression/README.md)         | Sukurkite logistinės regresijos modelį                                                                                               |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
-|      09       |                          Interneto programėlė 🔌                          |           [Žiniatinklio programa](3-Web-App/README.md)            | Sukurkite interneto programėlę, kad naudotumėte išmokytą modelį                                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
-|      10       |                 Įvadas į klasifikaciją                 |    [Klasifikacija](4-Classification/README.md)     | Išvalykite, paruoškite ir vizualizuokite duomenis; įvadas į klasifikaciją                                                            | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
-|      11       |             Skaniausi Azijos ir Indijos patiekalai 🍜             |    [Klasifikacija](4-Classification/README.md)     | Įvadas į klasifikatorius                                                                                                     | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
-|      12       |             Skaniausi Azijos ir Indijos patiekalai 🍜             |    [Klasifikacija](4-Classification/README.md)     | Daugiau klasifikatorių                                                                                                                | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
-|      13       |             Skaniausi Azijos ir Indijos patiekalai 🍜             |    [Klasifikacija](4-Classification/README.md)     | Sukurkite rekomendacinę interneto programėlę naudodami savo modelį                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
-|      14       |                   Įvadas į klasterizavimą                   |        [Klasterizavimas](5-Clustering/README.md)         | Išvalykite, paruoškite ir vizualizuokite duomenis; įvadas į klasterizavimą                                                                |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
-|      15       |              Nigerijos muzikos skonių tyrinėjimas 🎧              |        [Klasterizavimas](5-Clustering/README.md)         | Tyrinėkite K-Means klasterizavimo metodą                                                                                           |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
-|      16       |        Įvadas į natūralios kalbos apdorojimą ☕️         |   [Natūralios kalbos apdorojimas](6-NLP/README.md)    | Išmokite NLP pagrindus kurdami paprastą botą                                                                             |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|      17       |                      Bendros NLP užduotys ☕️                      |   [Natūralios kalbos apdorojimas](6-NLP/README.md)    | Pagilinkite savo NLP žinias suprasdami bendras užduotis, reikalingas dirbant su kalbos struktūromis                          |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
-|      18       |             Vertimas ir nuotaikų analizė ♥️              |   [Natūralios kalbos apdorojimas](6-NLP/README.md)    | Vertimas ir nuotaikų analizė naudojant Jane Austen                                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
-|      19       |                  Romantiški Europos viešbučiai ♥️                  |   [Natūralios kalbos apdorojimas](6-NLP/README.md)    | Nuotaikų analizė su viešbučių atsiliepimais 1                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
-|      20       |                  Romantiški Europos viešbučiai ♥️                  |   [Natūralios kalbos apdorojimas](6-NLP/README.md)    | Nuotaikų analizė su viešbučių atsiliepimais 2                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
-|      21       |            Įvadas į laiko eilučių prognozavimą             |        [Laiko eilutės](7-TimeSeries/README.md)        | Įvadas į laiko eilučių prognozavimą                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
-|      22       | ⚡️ World Power Usage ⚡️ - laiko eilučių prognozavimas su ARIMA |        [Laiko eilutės](7-TimeSeries/README.md)        | Laiko eilučių prognozavimas su ARIMA                                                                                              |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
-|      23       |  ⚡️ World Power Usage ⚡️ - laiko eilučių prognozavimas su SVR  |        [Laiko eilutės](7-TimeSeries/README.md)        | Laiko eilučių prognozavimas su Support Vector Regressor                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
-|      24       |             Įvadas į stiprinamąjį mokymąsi             | [Stiprinamasis mokymasis](8-Reinforcement/README.md) | Įvadas į stiprinamąjį mokymąsi su Q-Learning                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
-|      25       |                 Padėkite Peteriui išvengti vilko! 🐺                  | [Stiprinamasis mokymasis](8-Reinforcement/README.md) | Stiprinamojo mokymosi Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
-|  Priedas   |            Real-World ML scenarios and applications            |      [ML in the Wild](9-Real-World/README.md)       | Įdomios ir atskleidžiančios realaus pasaulio klasikinio ML taikymai                                                               |                                             [Pamoka](9-Real-World/1-Applications/README.md)                                              |                         Komanda                         |
-|  Priedas   |            Model Debugging in ML using RAI dashboard          |      [ML in the Wild](9-Real-World/README.md)       | Mašininio mokymosi modelių derinimas naudojant Responsible AI skydelio komponentus                                                              |                                             [Pamoka](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
+| Pamokos numeris |                             Temos                              |                   Pamokų grupė                   | Mokymosi tikslai                                                                                                              |                                                              Susieta pamoka                                                               |                        Autorius                        |
+| :-------------: | :-----------------------------------------------------------: | :----------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
+|       01        |                Įvadas į mašininį mokymąsi                   |      [Įvadas](1-Introduction/README.md)          | Susipažinkite su pagrindinėmis mašininio mokymosi sąvokomis                                                                     |                                             [Pamoka](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|       02        |                Mašininio mokymosi istorija                   |      [Įvadas](1-Introduction/README.md)          | Sužinokite šios srities istoriją                                                                                               |                                            [Pamoka](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen ir Amy                        |
+|       03        |                 Teisingumas ir mašininis mokymasis           |      [Įvadas](1-Introduction/README.md)          | Kokie yra svarbūs filosofiniai klausimai apie teisingumą, kuriuos studentai turėtų apsvarstyti kuriant ir taikant ML modelius?  |                                              [Pamoka](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|       04        |                Mašininio mokymosi metodai                    |      [Įvadas](1-Introduction/README.md)          | Kokius metodus ML tyrėjai naudoja ML modeliams kurti?                                                                          |                                          [Pamoka](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris ir Jen                      |
+|       05        |                   Įvadas į regresiją                         |        [Regresija](2-Regression/README.md)        | Pradėkite dirbti su Python ir Scikit-learn regresijos modeliams                                                                |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|       06        |                Šiaurės Amerikos moliūgų kainos 🎃            |        [Regresija](2-Regression/README.md)        | Vaizduokite ir valykite duomenis pasiruošimui ML                                                                                |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|       07        |                Šiaurės Amerikos moliūgų kainos 🎃            |        [Regresija](2-Regression/README.md)        | Kurkite tiesinės ir polinomų regresijos modelius                                                                               |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen ir Dmitry • Eric Wanjau       |
+|       08        |                Šiaurės Amerikos moliūgų kainos 🎃            |        [Regresija](2-Regression/README.md)        | Kurkite logistinės regresijos modelį                                                                                            |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|       09        |                          Interneto programėlė 🔌             |           [Web App](3-Web-App/README.md)           | Sukurkite interneto programėlę panaudodami savo paruoštą modelį                                                                 |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|       10        |                 Įvadas į klasifikaciją                       |    [Klasifikacija](4-Classification/README.md)    | Valykite, paruoškite ir vizualizuokite duomenis; įvadas į klasifikaciją                                                         | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen ir Cassie • Eric Wanjau |
+|       11        |             Gardūs Azijos ir Indijos patiekalai 🍜           |    [Klasifikacija](4-Classification/README.md)    | Įvadas į klasifikatorius                                                                                                       | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen ir Cassie • Eric Wanjau |
+|       12        |             Gardūs Azijos ir Indijos patiekalai 🍜           |    [Klasifikacija](4-Classification/README.md)    | Daugiau klasifikatorių                                                                                                         | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen ir Cassie • Eric Wanjau |
+|       13        |             Gardūs Azijos ir Indijos patiekalai 🍜           |    [Klasifikacija](4-Classification/README.md)    | Sukurkite rekomendacinę interneto programėlę naudodami savo modelį                                                              |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|       14        |                   Įvadas į grupavimą                         |        [Grupavimas](5-Clustering/README.md)         | Valykite, paruoškite ir vizualizuokite duomenis; Įvadas į grupavimą                                                             |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|       15        |              Nigerijos muzikos skonio tyrinėjimas 🎧         |        [Grupavimas](5-Clustering/README.md)         | Tyrinėkite K-vidurkių grupavimo metodą                                                                                         |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
+|       16        |        Įvadas į natūralios kalbos apdorojimą ☕️             |   [Natūralios kalbos apdorojimas](6-NLP/README.md) | Sužinokite NLP pagrindus kurdami paprastą botą                                                                                 |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|       17        |                      Dažnos NLP užduotys ☕️                 |   [Natūralios kalbos apdorojimas](6-NLP/README.md) | Gilinkite NLP žinias suprasdami dažnas užduotis, susijusias su kalbos struktūromis                                               |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|       18        |             Vertimas ir nuotaikų analizė ♥️                  |   [Natūralios kalbos apdorojimas](6-NLP/README.md) | Vertimo ir nuotaikų analizė su Jane Austen                                                                                      |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|       19        |                  Romantiški Europos viešbučiai ♥️            |   [Natūralios kalbos apdorojimas](6-NLP/README.md) | Nuotaikų analizė su viešbučių atsiliepimais 1                                                                                   |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|       20        |                  Romantiški Europos viešbučiai ♥️            |   [Natūralios kalbos apdorojimas](6-NLP/README.md) | Nuotaikų analizė su viešbučių atsiliepimais 2                                                                                   |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|       21        |            Įvadas į laiko eilučių prognozavimą               |        [Laiko eilutės](7-TimeSeries/README.md)      | Įvadas į laiko eilučių prognozavimą                                                                                            |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|       22        | ⚡️ Pasaulinis energijos naudojimas ⚡️ - laiko eilučių prognozavimas su ARIMA |        [Laiko eilutės](7-TimeSeries/README.md)      | Laiko eilučių prognozavimas su ARIMA                                                                                           |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|       23        |  ⚡️ Pasaulinis energijos naudojimas ⚡️ - laiko eilučių prognozavimas su SVR  |        [Laiko eilutės](7-TimeSeries/README.md)      | Laiko eilučių prognozavimas su paramos vektorių regresoriumi                                                                   |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|       24        |             Įvadas į stiprinamąjį mokymąsi                  | [Stiprinamasis mokymasis](8-Reinforcement/README.md) | Įvadas į stiprinamąjį mokymąsi naudojant Q-mokymą                                                                               |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|       25        |                 Padėkite Peteriui išvengti vilko! 🐺          | [Stiprinamasis mokymasis](8-Reinforcement/README.md) | Stiprinamojo mokymosi treniruoklis                                                                                            |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|  Postscript    |            Tikri mašininio mokymosi scenarijai ir taikymai   |      [ML laukinėje gamtoje](9-Real-World/README.md) | Įdomios ir atskleidžiančios tikrojo pasaulio klasikinio ML taikymo sritys                                                      |                                             [Pamoka](9-Real-World/1-Applications/README.md)                                              |                         Komanda                       |
+|  Postscript    |            Modelių derinimas ML naudojant RAI skydelį         |      [ML laukinėje gamtoje](9-Real-World/README.md) | Modelių derinimas mašininiame mokymesi naudojant Atsakingo AI skydelio komponentus                                              |                                             [Pamoka](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                    |
 
 > [raskite visus papildomus šio kurso išteklius mūsų Microsoft Learn kolekcijoje](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-## Prieiga neprisijungus
+## Offline prieiga
 
-Šią dokumentaciją galite paleisti neprisijungę naudodami [Docsify](https://docsify.js.org/#/). Atšakokite šią saugyklą, [įdiekite Docsify](https://docsify.js.org/#/quickstart) savo vietiniame kompiuteryje, ir tada šio repo šakniniame aplanke įrašykite `docsify serve`. Svetainė bus pasiekiama per portą 3000 jūsų localhost: `localhost:3000`.
+Šią dokumentaciją galite paleisti neprisijungę, naudodami [Docsify](https://docsify.js.org/#/). Šaknikite šį repozitorijų, [įdiekite Docsify](https://docsify.js.org/#/quickstart) savo vietiniame kompiuteryje, o tada šio repozitoriumo šakniniame kataloge įveskite `docsify serve`. Svetainė bus pateikta per 3000 prievadą jūsų localhost adresu: `localhost:3000`.
 
 ## PDF failai
 
@@ -163,7 +172,7 @@ Raskite mokymo programos PDF su nuorodomis [čia](https://microsoft.github.io/ML
 
 ## 🎒 Kiti kursai 
 
-Mūsų komanda rengia ir kitus kursus! Pažiūrėkite:
+Mūsų komanda kuria ir kitus kursus! Peržiūrėkite:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
@@ -180,44 +189,44 @@ Mūsų komanda rengia ir kitus kursus! Pažiūrėkite:
 
 ---
  
-### Generatyvinės AI serijos
-[![Generatyvinė AI pradedantiesiems](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Generatyvinė AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
+### Generatyvinio AI serija
+[![Generatyvinis DI pradedantiesiems](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Generatyvinis DI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 [![Generatyvinis DI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
 [![Generatyvinis DI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Pagrindiniai kursai
+### Pagrindinis mokymasis
 [![ML pradedantiesiems](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
 [![Duomenų mokslas pradedantiesiems](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
 [![DI pradedantiesiems](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
 [![Kibernetinis saugumas pradedantiesiems](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-[![Tinklapių kūrimas pradedantiesiems](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![IoT pradedantiesiems](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![Interneto svetainių kūrimas pradedantiesiems](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![Daiktų internetas pradedantiesiems](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
 [![XR kūrimas pradedantiesiems](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### Copilot serijos
-[![Copilot AI poriniam programavimui](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+### Copilot serija
+[![Copilot dirbant kartu su DI programavimas](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
 [![Copilot C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
 [![Copilot nuotykiai](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
-## Kaip gauti pagalbą
+## Pagalbos gavimas
 
-Jei įstrigote arba turite klausimų apie AI programėlių kūrimą. Prisijunkite prie kitų besimokančiųjų ir patyrusių kūrėjų diskusijose apie MCP. Tai palaikanti bendruomenė, kurioje klausimai yra laukiami ir žinios dalijamos laisvai.
+Jei įstringate ar turite klausimų apie DI programėlių kūrimą. Prisijunkite prie bendraminčių mokinių ir patyrusių programuotojų diskusijose apie MCP. Tai palaikanti bendruomenė, kurioje klausimai laukiami, o žinios laisvai dalijamos.
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-Jei turite atsiliepimų apie produktą arba pastebite klaidų kuriant, apsilankykite:
+Jei turite produkto atsiliepimų ar klaidų kūrimo metu, apsilankykite:
 
-[![Microsoft Foundry kūrėjų forumas](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, atkreipkite dėmesį, kad automatizuoti vertimai gali turėti klaidų arba netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinės informacijos atveju rekomenduojamas profesionalus žmogaus vertimas. Mes neprisiimame atsakomybės už bet kokius nesusipratimus ar klaidingas interpretacijas, kylančias dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes nesame atsakingi už bet kokius nesusipratimus ar neteisingus aiškinimus, kylančius dėl šio vertimo naudojimo.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

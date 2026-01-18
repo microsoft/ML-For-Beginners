@@ -15,7 +15,7 @@ Klastrowanie to zadanie w uczeniu maszynowym, które polega na znajdowaniu obiek
 
 Różnorodna publiczność w Nigerii ma zróżnicowane gusta muzyczne. Korzystając z danych pobranych ze Spotify (zainspirowanych [tym artykułem](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), przyjrzyjmy się niektórym popularnym utworom w Nigerii. Ten zbiór danych zawiera informacje o takich cechach utworów jak: wskaźnik „taneczności”, „akustyczność”, głośność, „mowa”, popularność i energia. Odkrywanie wzorców w tych danych może być bardzo interesujące!
 
-![Gramofon](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.pl.jpg)
+![Gramofon](../../../translated_images/pl/turntable.f2b86b13c53302dc.webp)
 
 > Zdjęcie autorstwa <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> na <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

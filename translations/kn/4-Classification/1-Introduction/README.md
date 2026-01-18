@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ಈ ನಾಲ್ಕು ಪಾಠಗಳಲ್ಲಿ, ನೀವು ಕ್ಲಾಸಿಕ್ ಮೆಷಿನ್ ಲರ್ನಿಂಗ್‌ನ ಮೂಲಭೂತ ಗಮನಾರ್ಹ ವಿಷಯವಾದ _ವರ್ಗೀಕರಣ_ ಅನ್ನು ಅನ್ವೇಷಿಸುವಿರಿ. ಏಷ್ಯಾ ಮತ್ತು ಭಾರತದಲ್ಲಿನ ಎಲ್ಲಾ ಅದ್ಭುತ ಆಹಾರಗಳ ಬಗ್ಗೆ ಡೇಟಾಸೆಟ್ ಬಳಸಿ ವಿವಿಧ ವರ್ಗೀಕರಣ ಆಲ್ಗಾರಿಥಮ್‌ಗಳನ್ನು ಹೇಗೆ ಬಳಸುವುದು ಎಂಬುದನ್ನು ನಾವು ನೋಡೋಣ. ನೀವು ಹಸಿವಾಗಿದ್ದೀರಾ ಎಂದು ಆಶಿಸುತ್ತೇವೆ!
 
-![ಒಂದು ಚುಟುಕು!](../../../../translated_images/pinch.1b035ec9ba7e0d408313b551b60c721c9c290b2dd2094115bc87e6ddacd114c9.kn.png)
+![ಒಂದು ಚುಟುಕು!](../../../../translated_images/kn/pinch.1b035ec9ba7e0d40.webp)
 
 > ಈ ಪಾಠಗಳಲ್ಲಿ ಪ್ಯಾನ್-ಏಷಿಯನ್ ಆಹಾರಗಳನ್ನು ಆಚರಿಸೋಣ! ಚಿತ್ರವನ್ನು [ಜೆನ್ ಲೂಪರ್](https://twitter.com/jenlooper) ನೀಡಿದ್ದಾರೆ
 
@@ -38,7 +38,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ವಿಜ್ಞಾನಾತ್ಮಕವಾಗಿ ಹೇಳುವುದಾದರೆ, ನಿಮ್ಮ ವರ್ಗೀಕರಣ ವಿಧಾನವು ಇನ್ಪುಟ್ ವ್ಯತ್ಯಾಸಗಳ ಮತ್ತು ಔಟ್‌ಪುಟ್ ವ್ಯತ್ಯಾಸಗಳ ನಡುವಿನ ಸಂಬಂಧವನ್ನು ನಕ್ಷೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವ ಭವಿಷ್ಯವಾಣಿ ಮಾದರಿಯನ್ನು ರಚಿಸುತ್ತದೆ.
 
-![ದ್ವೈತ ಮತ್ತು ಬಹು-ವರ್ಗ ವರ್ಗೀಕರಣ](../../../../translated_images/binary-multiclass.b56d0c86c81105a697dddd82242c1d11e4d78b7afefea07a44627a0f1111c1a9.kn.png)
+![ದ್ವೈತ ಮತ್ತು ಬಹು-ವರ್ಗ ವರ್ಗೀಕರಣ](../../../../translated_images/kn/binary-multiclass.b56d0c86c81105a6.webp)
 
 > ವರ್ಗೀಕರಣ ಆಲ್ಗಾರಿಥಮ್‌ಗಳು ನಿಭಾಯಿಸಬೇಕಾದ ದ್ವೈತ ಮತ್ತು ಬಹು-ವರ್ಗ ಸಮಸ್ಯೆಗಳು. ಇನ್ಫೋಗ್ರಾಫಿಕ್ [ಜೆನ್ ಲೂಪರ್](https://twitter.com/jenlooper) ಅವರಿಂದ
 
@@ -134,7 +134,7 @@ CO_OP_TRANSLATOR_METADATA:
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![ಆಹಾರ ಡೇಟಾ ಹಂಚಿಕೆ](../../../../translated_images/cuisine-dist.d0cc2d551abe5c25f83d73a5f560927e4a061e9a4560bac1e97d35682ef3ca6d.kn.png)
+    ![ಆಹಾರ ಡೇಟಾ ಹಂಚಿಕೆ](../../../../translated_images/kn/cuisine-dist.d0cc2d551abe5c25.webp)
 
     ಆಹಾರಗಳ ಸಂಖ್ಯೆ ಸೀಮಿತವಾಗಿದೆ, ಆದರೆ ಡೇಟಾ ಹಂಚಿಕೆ ಅಸಮಾನವಾಗಿದೆ. ನೀವು ಅದನ್ನು ಸರಿಪಡಿಸಬಹುದು! ಅದನ್ನು ಮಾಡುವ ಮೊದಲು, ಸ್ವಲ್ಪ ಹೆಚ್ಚು ಅನ್ವೇಷಿಸಿ.
 
@@ -188,7 +188,7 @@ CO_OP_TRANSLATOR_METADATA:
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![ಥಾಯ್](../../../../translated_images/thai.0269dbab2e78bd38a132067759fe980008bdb80b6d778e5313448dbe12bed846.kn.png)
+    ![ಥಾಯ್](../../../../translated_images/kn/thai.0269dbab2e78bd38.webp)
 
 1. ಜಪಾನೀಸ್ ಡೇಟಾ ಬಗ್ಗೆ ಅದೇ ರೀತಿಯಲ್ಲಿ ಮಾಡಿ:
 
@@ -197,7 +197,7 @@ CO_OP_TRANSLATOR_METADATA:
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![ಜಪಾನೀಸ್](../../../../translated_images/japanese.30260486f2a05c463c8faa62ebe7b38f0961ed293bd9a6db8eef5d3f0cf17155.kn.png)
+    ![ಜಪಾನೀಸ್](../../../../translated_images/kn/japanese.30260486f2a05c46.webp)
 
 1. ಈಗ ಚೈನೀಸ್ ಪದಾರ್ಥಗಳಿಗಾಗಿ:
 
@@ -206,7 +206,7 @@ CO_OP_TRANSLATOR_METADATA:
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![ಚೈನೀಸ್](../../../../translated_images/chinese.e62cafa5309f111afd1b54490336daf4e927ce32bed837069a0b7ce481dfae8d.kn.png)
+    ![ಚೈನೀಸ್](../../../../translated_images/kn/chinese.e62cafa5309f111a.webp)
 
 1. ಇಂಡಿಯನ್ ಪದಾರ್ಥಗಳನ್ನು ಚಿತ್ರಿಸಿ:
 
@@ -215,7 +215,7 @@ CO_OP_TRANSLATOR_METADATA:
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![ಇಂಡಿಯನ್](../../../../translated_images/indian.2c4292002af1a1f97a4a24fec6b1459ee8ff616c3822ae56bb62b9903e192af6.kn.png)
+    ![ಇಂಡಿಯನ್](../../../../translated_images/kn/indian.2c4292002af1a1f9.webp)
 
 1. ಕೊನೆಗೆ, ಕೊರಿಯನ್ ಪದಾರ್ಥಗಳನ್ನು ಚಿತ್ರಿಸಿ:
 
@@ -224,7 +224,7 @@ CO_OP_TRANSLATOR_METADATA:
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![ಕೊರಿಯನ್](../../../../translated_images/korean.4a4f0274f3d9805a65e61f05597eeaad8620b03be23a2c0a705c023f65fad2c0.kn.png)
+    ![ಕೊರಿಯನ್](../../../../translated_images/kn/korean.4a4f0274f3d9805a.webp)
 
 1. ಈಗ, ವಿಭಿನ್ನ ಆಹಾರಗಳ ನಡುವೆ ಗೊಂದಲ ಉಂಟುಮಾಡುವ ಅತ್ಯಂತ ಸಾಮಾನ್ಯ ಪದಾರ್ಥಗಳನ್ನು `drop()` ಅನ್ನು ಕರೆಸಿ ತೆಗೆದುಹಾಕಿ:
 

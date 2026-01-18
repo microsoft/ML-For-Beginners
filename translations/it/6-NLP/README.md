@@ -17,7 +17,7 @@ In questa sezione del curriculum, verrà introdotto uno degli utilizzi più diff
 
 In queste lezioni impareremo le basi dell'NLP costruendo piccoli bot conversazionali per capire come il machine learning contribuisca a rendere queste conversazioni sempre più "intelligenti". Faremo un viaggio nel tempo, chiacchierando con Elizabeth Bennett e Mr. Darcy dal classico romanzo di Jane Austen, **Orgoglio e Pregiudizio**, pubblicato nel 1813. Successivamente, approfondiremo la conoscenza imparando l'analisi del sentiment attraverso le recensioni di hotel in Europa.
 
-![Libro Orgoglio e Pregiudizio e tè](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.it.jpg)
+![Libro Orgoglio e Pregiudizio e tè](../../../translated_images/it/p&p.279f1c49ecd88941.webp)
 > Foto di <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> su <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Lezioni

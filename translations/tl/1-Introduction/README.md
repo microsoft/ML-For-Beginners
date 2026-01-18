@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Sa seksyong ito ng kurikulum, ipapakilala sa iyo ang mga pangunahing konsepto na bumubuo sa larangan ng machine learning, kung ano ito, at matutunan ang tungkol sa kasaysayan nito at ang mga teknik na ginagamit ng mga mananaliksik upang magtrabaho dito. Tuklasin natin ang bagong mundo ng ML nang magkasama!
 
-![globe](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.tl.jpg)
+![globe](../../../translated_images/tl/globe.59f26379ceb40428.webp)
 > Larawan ni <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> sa <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Mga Aralin

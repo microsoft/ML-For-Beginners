@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # How to Build Machine Learning Solutions Wey Get Responsible AI
 
-![Summary of responsible AI in Machine Learning in a sketchnote](../../../../translated_images/ml-fairness.ef296ebec6afc98a44566d7b6c1ed18dc2bf1115c13ec679bb626028e852fa1d.pcm.png)
+![Summary of responsible AI in Machine Learning in a sketchnote](../../../../translated_images/pcm/ml-fairness.ef296ebec6afc98a.webp)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
@@ -51,10 +51,10 @@ AI systems suppose treat everybody fairly and no dey affect similar groups diffe
 - **Over- or under-representation**. When one group no dey seen for one profession, and any service wey dey promote that na harm.
 - **Stereotyping**. To connect one group with pre-assigned attributes. For example, language translation system between English and Turkish fit get mistake because of words wey dey stereotype gender.
 
-![translation to Turkish](../../../../translated_images/gender-bias-translate-en-tr.f185fd8822c2d4372912f2b690f6aaddd306ffbb49d795ad8d12a4bf141e7af0.pcm.png)
+![translation to Turkish](../../../../translated_images/pcm/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > translation to Turkish
 
-![translation back to English](../../../../translated_images/gender-bias-translate-tr-en.4eee7e3cecb8c70e13a8abbc379209bc8032714169e585bdeac75af09b1752aa.pcm.png)
+![translation back to English](../../../../translated_images/pcm/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > translation back to English
 
 When we dey design and test AI systems, we need to make sure say AI dey fair and no dey programmed to make biased or discriminatory decisions, wey humans no suppose make. To make AI and machine learning fair na one big sociotechnical challenge.
@@ -97,7 +97,7 @@ AI systems suppose dey easy to understand. Transparency mean to explain how AI s
 
 The people wey dey design and use AI systems suppose take responsibility for how their systems dey work. Accountability dey very important for sensitive technologies like facial recognition. Recently, demand for facial recognition technology don dey grow, especially from law enforcement wey wan use am to find missing children. But these technologies fit make government use am to take away people freedom, like to dey monitor specific people every time. So, data scientists and organizations need to take responsibility for how their AI system dey affect people or society.
 
-[![Leading AI Researcher Warns of Mass Surveillance Through Facial Recognition](../../../../translated_images/accountability.41d8c0f4b85b6231301d97f17a450a805b7a07aaeb56b34015d71c757cad142e.pcm.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
+[![Leading AI Researcher Warns of Mass Surveillance Through Facial Recognition](../../../../translated_images/pcm/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
 
 > 🎥 Click the image above for a video: Warnings of Mass Surveillance Through Facial Recognition
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Postscript: Machine learning for real world
 
-![Summary of machine learning in the real world in a sketchnote](../../../../translated_images/ml-realworld.26ee2746716155771f8076598b6145e6533fe4a9e2e465ea745f46648cbf1b84.pcm.png)
+![Summary of machine learning in the real world in a sketchnote](../../../../translated_images/pcm/ml-realworld.26ee274671615577.webp)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 For dis curriculum, you don learn plenty ways to prepare data for training and create machine learning models. You don build different types of models like regression, clustering, classification, natural language processing, and time series models. Congrats! Now, you fit dey wonder wetin all dis work mean... wetin be the real world use for dis models?

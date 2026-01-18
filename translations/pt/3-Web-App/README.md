@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nesta secção do currículo, será introduzido a um tópico aplicado de ML: como guardar o seu modelo Scikit-learn como um ficheiro que pode ser utilizado para fazer previsões dentro de uma aplicação web. Depois de guardar o modelo, aprenderá como utilizá-lo numa aplicação web construída em Flask. Primeiro, irá criar um modelo utilizando alguns dados relacionados com avistamentos de OVNIs! Em seguida, irá construir uma aplicação web que permitirá introduzir um número de segundos juntamente com valores de latitude e longitude para prever qual país relatou ter visto um OVNI.
 
-![Estacionamento de OVNIs](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.pt.jpg)
+![Estacionamento de OVNIs](../../../translated_images/pt/ufo.9e787f5161da9d4d.webp)
 
 Foto por <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> em <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

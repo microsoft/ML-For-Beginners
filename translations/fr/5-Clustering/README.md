@@ -15,7 +15,7 @@ Le clustering est une tâche d'apprentissage automatique qui cherche à identifi
 
 Le public diversifié du Nigeria a des goûts musicaux variés. En utilisant des données extraites de Spotify (inspiré par [cet article](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), examinons certaines musiques populaires au Nigeria. Ce jeu de données inclut des informations sur le score de 'danseabilité', l'acoustique, le volume sonore, le caractère 'parlé', la popularité et l'énergie de diverses chansons. Il sera intéressant de découvrir des motifs dans ces données !
 
-![Une platine vinyle](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.fr.jpg)
+![Une platine vinyle](../../../translated_images/fr/turntable.f2b86b13c53302dc.webp)
 
 > Photo par <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> sur <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

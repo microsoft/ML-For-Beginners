@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Sissejuhatus aegridade prognoosimisse
 
-![Aegridade kokkuvõte visandina](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.et.png)
+![Aegridade kokkuvõte visandina](../../../../translated_images/et/ml-timeseries.fb98d25f1013fc0c.webp)
 
 > Visand Tomomi Imura poolt [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -112,7 +112,7 @@ Andmed võivad näidata järsku muutust, mis vajab täiendavat analüüsi. Näit
 
 ✅ Siin on [näidis aegridade graafik](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python), mis näitab igapäevast mängusisese valuuta kulutamist mitme aasta jooksul. Kas suudad tuvastada mõnda ülaltoodud omadust nendes andmetes?
 
-![Mängusisese valuuta kulutamine](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.et.png)
+![Mängusisese valuuta kulutamine](../../../../translated_images/et/currency.e7429812bfc8c608.webp)
 
 ## Harjutus - alustamine elektritarbimise andmetega
 
@@ -160,7 +160,7 @@ Alustame aegridade mudeli loomist, et prognoosida tulevast elektritarbimist, arv
     plt.show()
     ```
 
-    ![energia graafik](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.et.png)
+    ![energia graafik](../../../../translated_images/et/energy-plot.5fdac3f397a910bc.webp)
 
 4. Nüüd, kuva 2014. aasta juuli esimene nädal, andes selle sisendiks `energy` kujul `[kuupäevast]:[kuupäevani]`:
 
@@ -171,7 +171,7 @@ Alustame aegridade mudeli loomist, et prognoosida tulevast elektritarbimist, arv
     plt.show()
     ```
 
-    ![juuli](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.et.png)
+    ![juuli](../../../../translated_images/et/july-2014.9e1f7c318ec6d5b3.webp)
 
     Kaunis graafik! Vaata neid graafikuid ja proovi tuvastada mõnda ülaltoodud omadust. Mida saame andmeid visualiseerides järeldada?
 

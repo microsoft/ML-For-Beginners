@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 اس نصاب کے اس حصے میں، آپ کو مشین لرننگ کے میدان کے بنیادی تصورات، یہ کیا ہے، اس کی تاریخ، اور وہ تکنیکیں جنہیں محققین اس کے ساتھ کام کرنے کے لیے استعمال کرتے ہیں، سے متعارف کرایا جائے گا۔ آئیے مل کر مشین لرننگ کی اس نئی دنیا کو دریافت کرتے ہیں!
 
-![globe](../../../translated_images/globe.59f26379ceb40428672b4d9a568044618a2bf6292ecd53a5c481b90e3fa805eb.ur.jpg)
+![globe](../../../translated_images/ur/globe.59f26379ceb40428.webp)
 > تصویر <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">بل آکسفورڈ</a> کی جانب سے <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> پر
   
 ### اسباق

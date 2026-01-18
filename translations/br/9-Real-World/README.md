@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nesta seção do currículo, você será apresentado a algumas aplicações reais do aprendizado de máquina clássico. Pesquisamos na internet para encontrar artigos e publicações sobre aplicações que utilizam essas estratégias, evitando ao máximo redes neurais, aprendizado profundo e IA. Descubra como o aprendizado de máquina é usado em sistemas empresariais, aplicações ecológicas, finanças, artes e cultura, entre outros.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.br.jpg)
+![chess](../../../translated_images/br/chess.e704a268781bdad8.webp)
 
 > Foto por <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> no <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

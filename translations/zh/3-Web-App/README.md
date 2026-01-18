@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在本课程的这一部分，您将学习一个应用型的机器学习主题：如何将您的 Scikit-learn 模型保存为一个文件，以便在网页应用中进行预测。一旦模型保存完成，您将学习如何在使用 Flask 构建的网页应用中使用它。您将首先使用一些关于 UFO 目击事件的数据创建一个模型！然后，您将构建一个网页应用，允许用户输入持续时间（秒数）、纬度和经度值，以预测哪个国家报告了看到 UFO。
 
-![UFO 停车场](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.zh.jpg)
+![UFO 停车场](../../../translated_images/zh/ufo.9e787f5161da9d4d.webp)
 
 照片由 <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> 提供，来自 <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

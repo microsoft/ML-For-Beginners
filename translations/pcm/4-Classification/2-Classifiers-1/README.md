@@ -107,7 +107,7 @@ Scikit-learn dey group classification under Supervised Learning, and for dat cat
 
 So, which classifier you go use? Sometimes, to try different ones and check di result na one way to test. Scikit-learn dey offer [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) for one created dataset, wey compare KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, wey show di results visualized:
 
-![comparison of classifiers](../../../../translated_images/comparison.edfab56193a85e7fdecbeaa1b1f8c99e94adbf7178bed0de902090cf93d6734f.pcm.png)
+![comparison of classifiers](../../../../translated_images/pcm/comparison.edfab56193a85e7f.webp)
 > Plots wey dem generate for Scikit-learn documentation
 
 > AutoML dey solve dis problem well by running dis comparisons for di cloud, e go allow you choose di best algorithm for your data. Try am [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
@@ -116,7 +116,7 @@ So, which classifier you go use? Sometimes, to try different ones and check di r
 
 Better way wey pass to dey guess anyhow na to follow di ideas wey dey dis downloadable [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott). Here, we go see say for our multiclass problem, we get some options:
 
-![cheatsheet for multiclass problems](../../../../translated_images/cheatsheet.07a475ea444d22234cb8907a3826df5bdd1953efec94bd18e4496f36ff60624a.pcm.png)
+![cheatsheet for multiclass problems](../../../../translated_images/pcm/cheatsheet.07a475ea444d2223.webp)
 > Part of Microsoft's Algorithm Cheat Sheet, wey show multiclass classification options
 
 ✅ Download dis cheat sheet, print am, and hang am for your wall!
@@ -147,7 +147,7 @@ According to di docs, for di multiclass case, di training algorithm:
 
 Scikit-learn dey offer dis table to explain how solvers dey handle different challenges wey different kinds of data structures dey bring:
 
-![solvers](../../../../translated_images/solvers.5fc648618529e627dfac29b917b3ccabda4b45ee8ed41b0acb1ce1441e8d1ef1.pcm.png)
+![solvers](../../../../translated_images/pcm/solvers.5fc648618529e627.webp)
 
 ## Exercise - split di data
 

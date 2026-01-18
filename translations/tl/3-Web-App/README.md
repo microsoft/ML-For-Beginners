@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Sa seksyong ito ng kurikulum, ipapakilala sa iyo ang isang praktikal na paksa sa ML: kung paano i-save ang iyong Scikit-learn model bilang isang file na magagamit para gumawa ng mga prediksyon sa loob ng isang web application. Kapag na-save na ang model, matutunan mo kung paano ito gamitin sa isang web app na ginawa gamit ang Flask. Una, gagawa ka ng model gamit ang ilang data na may kaugnayan sa mga sightings ng UFO! Pagkatapos, gagawa ka ng isang web app na magbibigay-daan sa iyo na mag-input ng bilang ng mga segundo kasama ang latitude at longitude value upang hulaan kung aling bansa ang nag-ulat ng pag-sighting ng UFO.
 
-![UFO Parking](../../../translated_images/ufo.9e787f5161da9d4d1dafc537e1da09be8210f2ee996cb638aa5cee1d92867a04.tl.jpg)
+![UFO Parking](../../../translated_images/tl/ufo.9e787f5161da9d4d.webp)
 
 Larawan ni <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michael Herren</a> sa <a href="https://unsplash.com/s/photos/ufo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

@@ -13,7 +13,7 @@ Reinforcement learning, RL, na one of di main machine learning style, e dey foll
 
 Imagine say you get one simulated environment like stock market. Wetin go happen if you put one regulation? E go get positive or negative effect? If e get negative effect, you go need take di _negative reinforcement_, learn from am, and change wetin you dey do. If e get positive result, you go need build on top di _positive reinforcement_.
 
-![peter and the wolf](../../../translated_images/peter.779730f9ba3a8a8d9290600dcf55f2e491c0640c785af7ac0d64f583c49b8864.pcm.png)
+![peter and the wolf](../../../translated_images/pcm/peter.779730f9ba3a8a8d.webp)
 
 > Peter and im friends wan run comot from di hungry wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
 

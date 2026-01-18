@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c21bf667cfbd946f76fde049e31b07d0",
-  "translation_date": "2025-12-24T22:31:48+00:00",
+  "original_hash": "0a6f4476a4f3934a4aa47c1bf47158bc",
+  "translation_date": "2026-01-16T07:34:53+00:00",
   "source_file": "README.md",
   "language_code": "en"
 }
@@ -23,6 +23,16 @@ CO_OP_TRANSLATOR_METADATA:
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
 [Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../br/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+
+> **Prefer to Clone Locally?**
+
+> This repository includes 50+ language translations which significantly increases the download size. To clone without translations, use sparse checkout:
+> ```bash
+> git clone --filter=blob:none --sparse https://github.com/microsoft/ML-For-Beginners.git
+> cd ML-For-Beginners
+> git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+> ```
+> This gives you everything you need to complete the course with a much faster download.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 #### Join Our Community
@@ -31,7 +41,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 We have a Discord learn with AI series ongoing, learn more and join us at [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You will get tips and tricks of using GitHub Copilot for Data Science.
 
-![Learn with AI series](../../translated_images/3.9b58fd8d6c373c20c588c5070c4948a826ab074426c28ceb5889641294373dfc.en.png)
+![Learn with AI series](../../../../translated_images/en/3.9b58fd8d6c373c20.webp)
 
 # Machine Learning for Beginners - A Curriculum
 
@@ -80,7 +90,7 @@ Follow these steps:
 
 Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.
 
-[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.en.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](../../../../translated_images/en/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
 ---
 
@@ -117,8 +127,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 - [post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 > **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.
-
-> **A note about quizzes**: All quizzes are contained in [Quiz App folder](../../quiz-app), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder to locally host or deploy to Azure.
+> **A note about quizzes**: All quizzes are contained in the [Quiz App folder](../../quiz-app), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder to locally host or deploy to Azure.
 
 | Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
@@ -218,6 +227,6 @@ If you have product feedback or errors while building visit:
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-Disclaimer:
-This document has been translated using the AI translation service Co-op Translator (https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+**Disclaimer**:
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

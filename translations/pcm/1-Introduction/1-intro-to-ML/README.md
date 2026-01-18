@@ -42,7 +42,7 @@ Di word 'machine learning' na one of di popular and common words wey people dey 
 ---
 ## Di hype curve
 
-![ml hype curve](../../../../translated_images/hype.07183d711a17aafe70915909a0e45aa286ede136ee9424d418026ab00fec344c.pcm.png)
+![ml hype curve](../../../../translated_images/pcm/hype.07183d711a17aafe.webp)
 
 > Google Trends dey show di recent 'hype curve' of di word 'machine learning'
 
@@ -69,7 +69,7 @@ Even though di words fit confuse person, machine learning (ML) na one important 
 ---
 ## AI, ML, Deep Learning
 
-![AI, ML, deep learning, data science](../../../../translated_images/ai-ml-ds.537ea441b124ebf69c144a52c0eb13a7af63c4355c2f92f440979380a2fb08b8.pcm.png)
+![AI, ML, deep learning, data science](../../../../translated_images/pcm/ai-ml-ds.537ea441b124ebf6.webp)
 
 > One diagram wey dey show di relationship between AI, ML, deep learning, and data science. Infographic by [Jen Looper](https://twitter.com/jenlooper) wey e take inspiration from [dis graphic](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 

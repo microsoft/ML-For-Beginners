@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在这些课程中，我们将通过构建小型对话机器人来学习NLP的基础知识，了解机器学习如何帮助使这些对话变得越来越“智能”。您将穿越时光，与简·奥斯汀1813年出版的经典小说《傲慢与偏见》中的伊丽莎白·班内特和达西先生进行对话。随后，您将通过学习欧洲酒店评论中的情感分析进一步加深知识。
 
-![傲慢与偏见书籍与茶](../../../translated_images/p&p.279f1c49ecd889419e4ce6206525e9aa30d32a976955cd24daa636c361c6391f.zh.jpg)
+![傲慢与偏见书籍与茶](../../../translated_images/zh/p&p.279f1c49ecd88941.webp)
 > 图片由 <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> 提供，来自 <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 课程

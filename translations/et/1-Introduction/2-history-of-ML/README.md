@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # Masinõppe ajalugu
 
-![Masinõppe ajaloo kokkuvõte visandmärkmetes](../../../../translated_images/ml-history.a1bdfd4ce1f464d9a0502f38d355ffda384c95cd5278297a46c9a391b5053bc4.et.png)
+![Masinõppe ajaloo kokkuvõte visandmärkmetes](../../../../translated_images/et/ml-history.a1bdfd4ce1f464d9.webp)
 > Visandmärkmed: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
@@ -71,14 +71,14 @@ Uuringuid rahastasid hästi valitsusasutused, arvutusvõimekus ja algoritmid are
 
 * [Shakey robot](https://wikipedia.org/wiki/Shakey_the_robot), kes suutis liikuda ja otsustada, kuidas ülesandeid 'intelligentselt' täita.
 
-    ![Shakey, intelligentne robot](../../../../translated_images/shakey.4dc17819c447c05bf4b52f76da0bdd28817d056fdb906252ec20124dd4cfa55e.et.jpg)
+    ![Shakey, intelligentne robot](../../../../translated_images/et/shakey.4dc17819c447c05b.webp)
     > Shakey aastal 1972
 
 ---
 
 * Eliza, varajane 'vestlusrobot', suutis inimestega vestelda ja toimida primitiivse 'terapeudina'. Õpite Eliza kohta rohkem NLP õppetundides.
 
-    ![Eliza, robot](../../../../translated_images/eliza.84397454cda9559bb5ec296b5b8fff067571c0cccc5405f9c1ab1c3f105c075c.et.png)
+    ![Eliza, robot](../../../../translated_images/et/eliza.84397454cda9559b.webp)
     > Eliza versioon, vestlusrobot
 
 ---

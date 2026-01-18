@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 இந்த பாடத்திட்டத்தின் இந்த பகுதியில், பாரம்பரிய ML-இன் சில நிஜ உலக பயன்பாடுகளை நீங்கள் அறிந்து கொள்ளுவீர்கள். நாங்கள் இணையத்தில் தேடிப்பார்த்து, நரம்பியல் வலைகள், ஆழமான கற்றல் மற்றும் AI-ஐ ככלவியளவு தவிர்த்து, இந்த உத்திகளை பயன்படுத்திய பயன்பாடுகள் பற்றிய வெள்ளை ஆவணங்கள் மற்றும் கட்டுரைகளை கண்டுபிடித்துள்ளோம். ML வணிக அமைப்புகள், சுற்றுச்சூழல் பயன்பாடுகள், நிதி, கலை மற்றும் கலாச்சாரம் மற்றும் பலவற்றில் எப்படி பயன்படுத்தப்படுகிறது என்பதை அறிக.
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.ta.jpg)
+![chess](../../../translated_images/ta/chess.e704a268781bdad8.webp)
 
 > புகைப்படம் <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> மூலம் <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> இல்
   

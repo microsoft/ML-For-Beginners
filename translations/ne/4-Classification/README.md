@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 एशिया र भारतमा, खानाको परम्परा अत्यन्त विविध र स्वादिष्ट छ! क्षेत्रीय परिकारहरूको सामग्रीलाई बुझ्नको लागि हामी डाटालाई हेर्नेछौं।
 
-![थाई खाना बेच्ने व्यक्ति](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.ne.jpg)
+![थाई खाना बेच्ने व्यक्ति](../../../translated_images/ne/thai-food.c47a7a7f9f05c218.webp)
 > फोटो <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">लिशेंग चांग</a> द्वारा <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्ल्यास</a> मा
   
 ## तपाईंले के सिक्नुहुनेछ

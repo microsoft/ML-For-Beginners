@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 வட அமெரிக்காவில், ஹாலோவீனுக்காக பூசணிக்காய்களை பயங்கரமான முகங்களாக செதுக்குவது வழக்கம். இந்த ஆச்சரியமான காய்கறிகள் பற்றி மேலும் அறிந்து கொள்வோம்!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.ta.jpg)
+![jack-o-lanterns](../../../translated_images/ta/jack-o-lanterns.181c661a9212457d.webp)
 > புகைப்படம் <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">பெத் டாய்ட்ஸ்மேன்</a> மூலம் <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">அன்ஸ்ப்ளாஷ்</a> இல்
 
 ## நீங்கள் என்ன கற்றுக்கொள்வீர்கள்

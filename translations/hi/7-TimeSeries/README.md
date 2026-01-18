@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 हमारा क्षेत्रीय फोकस दुनिया में बिजली उपयोग पर है, जो एक दिलचस्प डेटा सेट है, जिससे यह सीखने को मिलता है कि अतीत के लोड पैटर्न के आधार पर भविष्य की बिजली खपत का पूर्वानुमान कैसे लगाया जाए। आप देख सकते हैं कि इस प्रकार का पूर्वानुमान व्यावसायिक वातावरण में कितना उपयोगी हो सकता है।
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.hi.jpg)
+![electric grid](../../../translated_images/hi/electric-grid.0c21d5214db09ffa.webp)
 
 फोटो [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) द्वारा राजस्थान की एक सड़क पर बिजली के टावरों का [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) पर।
 

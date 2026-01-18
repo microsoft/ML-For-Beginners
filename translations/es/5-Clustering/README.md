@@ -15,7 +15,7 @@ El agrupamiento es una tarea de aprendizaje automático que busca encontrar obje
 
 La diversa audiencia de Nigeria tiene gustos musicales variados. Usando datos extraídos de Spotify (inspirados en [este artículo](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), analicemos algo de la música popular en Nigeria. Este conjunto de datos incluye información sobre el puntaje de 'bailabilidad', 'acústica', volumen, 'hablabilidad', popularidad y energía de varias canciones. ¡Será interesante descubrir patrones en estos datos!
 
-![Un tocadiscos](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.es.jpg)
+![Un tocadiscos](../../../translated_images/es/turntable.f2b86b13c53302dc.webp)
 
 > Foto de <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> en <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

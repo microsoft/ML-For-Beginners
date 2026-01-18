@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 [Mountain Car keskkond](https://gym.openai.com/envs/MountainCar-v0/) sisaldab orgu kinni jäänud autot:
 
-<img src="../../../../translated_images/mountaincar.43d56e588ce581c2d035f28cf038a9af112bec043b2ef8da40ac86119b1e3a93.et.png" width="300"/>
+<img src="../../../../translated_images/et/mountaincar.43d56e588ce581c2.webp" width="300"/>
 
 Eesmärk on orust välja pääseda ja lippu kätte saada, tehes igal sammul ühte järgmistest tegevustest:
 

@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # టైమ్ సిరీస్ ఫోర్కాస్టింగ్ పరిచయం
 
-![స్కెచ్ నోట్‌లో టైమ్ సిరీస్ సారాంశం](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.te.png)
+![స్కెచ్ నోట్‌లో టైమ్ సిరీస్ సారాంశం](../../../../translated_images/te/ml-timeseries.fb98d25f1013fc0c.webp)
 
 > స్కెచ్ నోట్ [Tomomi Imura](https://www.twitter.com/girlie_mac) ద్వారా
 
@@ -112,7 +112,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ✅ ఇది ఒక [నమూనా టైమ్ సిరీస్ ప్లాట్](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python), ఇది కొన్ని సంవత్సరాల పాటు రోజువారీ గేమ్ కరెన్సీ ఖర్చును చూపిస్తుంది. మీరు పై పేర్కొన్న లక్షణాలలో ఏవైనా ఈ డేటాలో గుర్తించగలరా?
 
-![ఇన్-గేమ్ కరెన్సీ ఖర్చు](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.te.png)
+![ఇన్-గేమ్ కరెన్సీ ఖర్చు](../../../../translated_images/te/currency.e7429812bfc8c608.webp)
 
 ## వ్యాయామం - విద్యుత్ వినియోగ డేటాతో ప్రారంభం
 
@@ -160,7 +160,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![energy plot](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.te.png)
+    ![energy plot](../../../../translated_images/te/energy-plot.5fdac3f397a910bc.webp)
 
 4. ఇప్పుడు, 2014 జూలై మొదటి వారాన్ని `[from date]: [to date]` నమూనాలో `energy`కి ఇన్‌పుట్‌గా అందించి ప్లాట్ చేయండి:
 
@@ -171,7 +171,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![july](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.te.png)
+    ![july](../../../../translated_images/te/july-2014.9e1f7c318ec6d5b3.webp)
 
     ఒక అందమైన ప్లాట్! ఈ ప్లాట్లను పరిశీలించి పై పేర్కొన్న లక్షణాలలో ఏవైనా మీరు గుర్తించగలరా? డేటాను దృశ్యీకరించడం ద్వారా మనం ఏమి అర్థం చేసుకోవచ్చు?
 

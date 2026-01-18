@@ -17,7 +17,7 @@ Nestes dois módulos, será introduzido o conceito de previsão de séries tempo
 
 O nosso foco regional é o consumo de eletricidade no mundo, um conjunto de dados interessante para aprender a prever o consumo futuro de energia com base nos padrões de carga do passado. É possível perceber como este tipo de previsão pode ser extremamente útil em ambientes empresariais.
 
-![rede elétrica](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.pt.jpg)
+![rede elétrica](../../../translated_images/pt/electric-grid.0c21d5214db09ffa.webp)
 
 Foto de [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de torres elétricas numa estrada em Rajasthan no [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

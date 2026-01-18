@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 आशिया आणि भारतात अन्न परंपरा अत्यंत विविध आणि अतिशय स्वादिष्ट आहेत! त्यांच्या घटकांचा अभ्यास करण्यासाठी प्रादेशिक खाद्यपदार्थांबद्दलच्या डेटावर एक नजर टाकूया.
 
-![थाई खाद्य विक्रेता](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.mr.jpg)
+![थाई खाद्य विक्रेता](../../../translated_images/mr/thai-food.c47a7a7f9f05c218.webp)
 > फोटो <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">लिशेंग चांग</a> यांनी <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्लॅश</a> वर दिला आहे
   
 ## तुम्ही काय शिकाल

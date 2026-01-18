@@ -15,7 +15,7 @@ Klasterdamine on masinõppe ülesanne, mille eesmärk on leida objekte, mis sarn
 
 Nigeeria mitmekesine publik eelistab mitmekesist muusikat. Kasutades Spotifyst kogutud andmeid (inspireerituna [sellest artiklist](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), vaatame mõningaid Nigeerias populaarseid lugusid. See andmestik sisaldab teavet erinevate laulude kohta, nagu nende 'tantsitavuse' skoor, 'akustilisus', valjus, 'kõnelemise' määr, populaarsus ja energia. On huvitav avastada mustreid nendes andmetes!
 
-![Plaadimängija](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.et.jpg)
+![Plaadimängija](../../../translated_images/et/turntable.f2b86b13c53302dc.webp)
 
 > Foto autor <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> lehel <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

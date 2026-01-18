@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 उत्तर अमेरिकामा, कद्दूहरू प्रायः हेलोविनको लागि डर लाग्दो अनुहारमा कुँदिन्छन्। यी रोचक तरकारीहरूको बारेमा थप जानौं!
 
-![jack-o-lanterns](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.ne.jpg)
+![jack-o-lanterns](../../../translated_images/ne/jack-o-lanterns.181c661a9212457d.webp)
 > फोटो <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">बेथ ट्युट्सम्यान</a> द्वारा <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्ल्यास</a> मा
 
 ## तपाईंले के सिक्नुहुनेछ

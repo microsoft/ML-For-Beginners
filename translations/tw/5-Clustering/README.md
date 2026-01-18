@@ -15,7 +15,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 尼日利亞的多元化觀眾擁有多樣化的音樂品味。使用從 Spotify 擷取的數據（靈感來自[這篇文章](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)），讓我們來看看一些在尼日利亞流行的音樂。這個數據集包含了各種歌曲的「舞蹈性」分數、「聲學性」、音量、「語音性」、流行度和能量等數據。探索這些數據中的模式將會非常有趣！
 
-![唱盤](../../../translated_images/turntable.f2b86b13c53302dc106aa741de9dc96ac372864cf458dd6f879119857aab01da.tw.jpg)
+![唱盤](../../../translated_images/tw/turntable.f2b86b13c53302dc.webp)
 
 > 照片由 <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> 提供，來自 <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

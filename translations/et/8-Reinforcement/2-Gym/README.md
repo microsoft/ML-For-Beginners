@@ -19,13 +19,13 @@ Selles tunnis rakendame Q-õppe põhimõtteid probleemile, millel on **jätkuv o
 
 > **Probleem**: Kui Peeter tahab hundi eest põgeneda, peab ta liikuma kiiremini. Me näeme, kuidas Peeter saab õppida uisutama, täpsemalt tasakaalu hoidma, kasutades Q-õpet.
 
-![Suur põgenemine!](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.et.png)
+![Suur põgenemine!](../../../../translated_images/et/escape.18862db9930337e3.webp)
 
 > Peeter ja tema sõbrad muutuvad loovaks, et hundi eest põgeneda! Pilt: [Jen Looper](https://twitter.com/jenlooper)
 
 Kasutame tasakaalu lihtsustatud versiooni, mida tuntakse kui **CartPole** probleem. CartPole maailmas on meil horisontaalne liugur, mis saab liikuda vasakule või paremale, ja eesmärk on hoida vertikaalset posti liuguri peal tasakaalus.
 
-<img alt="CartPole" src="../../../../translated_images/cartpole.b5609cc0494a14f75d121299495ae24fd8f1c30465e7b40961af94ecda2e1cd0.et.png" width="200"/>
+<img alt="CartPole" src="../../../../translated_images/et/cartpole.b5609cc0494a14f7.webp" width="200"/>
 
 ## Eeltingimused
 
@@ -285,7 +285,7 @@ Treeningu ajal kogusime kumulatiivse tasu väärtuse igal iteratsioonil `rewards
 plt.plot(rewards)
 ```
 
-![toores progress](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.et.png)
+![toores progress](../../../../translated_images/et/train_progress_raw.2adfdf2daea09c59.webp)
 
 Sellest graafikust ei ole võimalik midagi järeldada, sest stohhastilise treeningprotsessi olemuse tõttu varieerub treeningseansside pikkus suuresti. Selle graafiku mõistlikumaks muutmiseks saame arvutada **jooksva keskmise** mitme katse jooksul, näiteks 100. Seda saab mugavalt teha `np.convolve` abil: (koodiplokk 12)
 
@@ -296,7 +296,7 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![treeningu progress](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.et.png)
+![treeningu progress](../../../../translated_images/et/train_progress_runav.c71694a8fa9ab359.webp)
 
 ## Hüperparameetrite muutmine
 

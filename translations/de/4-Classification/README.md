@@ -13,7 +13,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 In Asien und Indien sind die Essensgewohnheiten äußerst vielfältig und sehr lecker! Schauen wir uns Daten über regionale Küchen an, um ihre Zutaten besser zu verstehen.
 
-![Thai-Essen-Verkäufer](../../../translated_images/thai-food.c47a7a7f9f05c21892a1f9dc7bf30669e6d18dfda420c5c7ebb4153f6a304edd.de.jpg)
+![Thai-Essen-Verkäufer](../../../translated_images/de/thai-food.c47a7a7f9f05c218.webp)
 > Foto von <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> auf <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Was Sie lernen werden

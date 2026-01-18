@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ਇਸ ਪਾਠਕ੍ਰਮ ਦੇ ਇਸ ਹਿੱਸੇ ਵਿੱਚ, ਤੁਹਾਨੂੰ ਕਲਾਸਿਕ ਮਸ਼ੀਨ ਲਰਨਿੰਗ ਦੇ ਕੁਝ ਅਸਲ ਦੁਨੀਆ ਵਿੱਚ ਲਾਗੂ ਹੋਣ ਵਾਲੇ ਉਦਾਹਰਣਾਂ ਨਾਲ ਜਾਣੂ ਕਰਵਾਇਆ ਜਾਵੇਗਾ। ਅਸੀਂ ਇੰਟਰਨੈਟ 'ਤੇ ਖੋਜ ਕੀਤੀ ਹੈ ਤਾਂ ਜੋ ਵਾਈਟਪੇਪਰ ਅਤੇ ਲੇਖ ਲੱਭੇ ਜਾ ਸਕਣ ਜੋ ਇਨ੍ਹਾਂ ਰਣਨੀਤੀਆਂ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹਨ, ਜਿੱਥੇ ਤਕ ਸੰਭਵ ਹੋਵੇ, ਨਿਊਰਲ ਨੈਟਵਰਕ, ਡੀਪ ਲਰਨਿੰਗ ਅਤੇ AI ਤੋਂ ਬਚਦੇ ਹੋਏ। ਸਿੱਖੋ ਕਿ ਮਸ਼ੀਨ ਲਰਨਿੰਗ ਨੂੰ ਵਪਾਰਕ ਪ੍ਰਣਾਲੀਆਂ, ਪਰਿਆਵਰਣਕ ਉਪਯੋਗ, ਵਿੱਤ, ਕਲਾ ਅਤੇ ਸਭਿਆਚਾਰ, ਅਤੇ ਹੋਰ ਕਈ ਖੇਤਰਾਂ ਵਿੱਚ ਕਿਵੇਂ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.pa.jpg)
+![chess](../../../translated_images/pa/chess.e704a268781bdad8.webp)
 
 > ਫੋਟੋ <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> ਦੁਆਰਾ <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> 'ਤੇ
 

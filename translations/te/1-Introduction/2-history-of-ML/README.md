@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # మెషీన్ లెర్నింగ్ చరిత్ర
 
-![మెషీన్ లెర్నింగ్ చరిత్ర యొక్క సారాంశం స్కెచ్ నోట్‌లో](../../../../translated_images/ml-history.a1bdfd4ce1f464d9a0502f38d355ffda384c95cd5278297a46c9a391b5053bc4.te.png)
+![మెషీన్ లెర్నింగ్ చరిత్ర యొక్క సారాంశం స్కెచ్ నోట్‌లో](../../../../translated_images/te/ml-history.a1bdfd4ce1f464d9.webp)
 > స్కెచ్ నోట్ [టోమోమీ ఇమురా](https://www.twitter.com/girlie_mac) ద్వారా
 
 ## [పూర్వ-లెక్చర్ క్విజ్](https://ff-quizzes.netlify.app/en/ml/)
@@ -71,14 +71,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 * [షేకీ రోబోట్](https://wikipedia.org/wiki/Shakey_the_robot), ఇది చురుకైన విధంగా పనులు చేయగలదు మరియు నిర్ణయాలు తీసుకోగలదు.
 
-    ![షేకీ, ఒక తెలివైన రోబోట్](../../../../translated_images/shakey.4dc17819c447c05bf4b52f76da0bdd28817d056fdb906252ec20124dd4cfa55e.te.jpg)
+    ![షేకీ, ఒక తెలివైన రోబోట్](../../../../translated_images/te/shakey.4dc17819c447c05b.webp)
     > 1972లో షేకీ
 
 ---
 
 * ఎలిజా, ఒక ప్రారంభ 'చాటర్‌బాట్', ప్రజలతో సంభాషించగలదు మరియు ప్రాథమిక 'థెరపిస్ట్'గా పనిచేయగలదు. మీరు NLP పాఠాలలో ఎలిజా గురించి మరింత తెలుసుకుంటారు.
 
-    ![ఎలిజా, ఒక బాట్](../../../../translated_images/eliza.84397454cda9559bb5ec296b5b8fff067571c0cccc5405f9c1ab1c3f105c075c.te.png)
+    ![ఎలిజా, ఒక బాట్](../../../../translated_images/te/eliza.84397454cda9559b.webp)
     > ఎలిజా యొక్క ఒక వెర్షన్, ఒక చాట్‌బాట్
 
 ---

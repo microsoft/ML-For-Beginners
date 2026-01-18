@@ -17,7 +17,7 @@ W tych dwóch lekcjach zostaniesz wprowadzony do prognozowania szeregów czasowy
 
 Naszym regionalnym tematem jest zużycie energii elektrycznej na świecie, interesujący zbiór danych, który pozwala nauczyć się prognozowania przyszłego zużycia energii na podstawie wzorców obciążenia z przeszłości. Możesz zobaczyć, jak tego rodzaju prognozowanie może być niezwykle pomocne w środowisku biznesowym.
 
-![sieć elektryczna](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.pl.jpg)
+![sieć elektryczna](../../../translated_images/pl/electric-grid.0c21d5214db09ffa.webp)
 
 Zdjęcie autorstwa [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) przedstawiające wieże elektryczne przy drodze w Radżastanie na [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

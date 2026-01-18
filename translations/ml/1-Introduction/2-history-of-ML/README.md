@@ -9,7 +9,7 @@ CO_OP_TRANSLATOR_METADATA:
 -->
 # മെഷീൻ ലേണിങ്ങിന്റെ ചരിത്രം
 
-![മെഷീൻ ലേണിങ്ങിന്റെ ചരിത്രത്തിന്റെ സംഗ്രഹം ഒരു സ്കെച്ച്നോട്ടിൽ](../../../../translated_images/ml-history.a1bdfd4ce1f464d9a0502f38d355ffda384c95cd5278297a46c9a391b5053bc4.ml.png)
+![മെഷീൻ ലേണിങ്ങിന്റെ ചരിത്രത്തിന്റെ സംഗ്രഹം ഒരു സ്കെച്ച്നോട്ടിൽ](../../../../translated_images/ml/ml-history.a1bdfd4ce1f464d9.webp)
 > സ്കെച്ച്നോട്ട്: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [പ്രീ-ലെക്ചർ ക്വിസ്](https://ff-quizzes.netlify.app/en/ml/)
@@ -71,14 +71,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 * [ഷേക്കി ദി റോബോട്ട്](https://wikipedia.org/wiki/Shakey_the_robot), 'ബുദ്ധിമുട്ടോടെ' പ്രവർത്തനങ്ങൾ നിർവഹിക്കാൻ കഴിവുള്ളത്.
 
-    ![ഷേക്കി, ഒരു ബുദ്ധിമുട്ടുള്ള റോബോട്ട്](../../../../translated_images/shakey.4dc17819c447c05bf4b52f76da0bdd28817d056fdb906252ec20124dd4cfa55e.ml.jpg)
+    ![ഷേക്കി, ഒരു ബുദ്ധിമുട്ടുള്ള റോബോട്ട്](../../../../translated_images/ml/shakey.4dc17819c447c05b.webp)
     > 1972-ലെ ഷേക്കി
 
 ---
 
 * എലൈസ, ഒരു പ്രാരംഭ 'ചാറ്റർബോട്ട്', ആളുകളുമായി സംവദിക്കുകയും പ്രാഥമിക 'തെറാപ്പിസ്റ്റ്' ആയി പ്രവർത്തിക്കുകയും ചെയ്തു. NLP പാഠങ്ങളിൽ എലൈസയെക്കുറിച്ച് കൂടുതൽ പഠിക്കും.
 
-    ![എലൈസ, ഒരു ബോട്ട്](../../../../translated_images/eliza.84397454cda9559bb5ec296b5b8fff067571c0cccc5405f9c1ab1c3f105c075c.ml.png)
+    ![എലൈസ, ഒരു ബോട്ട്](../../../../translated_images/ml/eliza.84397454cda9559b.webp)
     > എലൈസയുടെ ഒരു പതിപ്പ്, ഒരു ചാറ്റ്ബോട്ട്
 
 ---

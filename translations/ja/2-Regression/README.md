@@ -12,7 +12,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 北米では、カボチャはよくハロウィンのために怖い顔に彫られます。この魅力的な野菜についてもっと探ってみましょう！
 
-![ジャック・オー・ランタン](../../../translated_images/jack-o-lanterns.181c661a9212457d7756f37219f660f1358af27554d856e5a991f16b4e15337c.ja.jpg)
+![ジャック・オー・ランタン](../../../translated_images/ja/jack-o-lanterns.181c661a9212457d.webp)
 > 写真提供: <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> on <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 学べること

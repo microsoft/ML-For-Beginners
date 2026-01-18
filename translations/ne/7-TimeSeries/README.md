@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 हाम्रो क्षेत्रीय ध्यान विश्वको विद्युत उपयोगमा केन्द्रित छ, जुन भविष्यको पावर उपयोगको पूर्वानुमान गर्न विगतको लोडका ढाँचाहरूको आधारमा सिक्नका लागि रोचक डाटासेट हो। तपाईं देख्न सक्नुहुन्छ कि यस प्रकारको पूर्वानुमान व्यापार वातावरणमा कति उपयोगी हुन सक्छ।
 
-![electric grid](../../../translated_images/electric-grid.0c21d5214db09ffae93c06a87ca2abbb9ba7475ef815129c5b423d7f9a7cf136.ne.jpg)
+![electric grid](../../../translated_images/ne/electric-grid.0c21d5214db09ffa.webp)
 
 फोटो [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) द्वारा राजस्थानको सडकमा रहेका विद्युत टावरहरूको [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) मा।
 

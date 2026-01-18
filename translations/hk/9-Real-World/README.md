@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 在本課程的這部分，你將了解一些經典機器學習在現實世界中的應用。我們在網絡上搜集了白皮書和文章，介紹使用這些策略的應用，儘量避免涉及神經網絡、深度學習和人工智能。了解機器學習如何應用於商業系統、生態應用、金融、藝術與文化等領域。
 
-![chess](../../../translated_images/chess.e704a268781bdad85d1876b6c2295742fa0d856e7dcf3659147052df9d3db205.hk.jpg)
+![chess](../../../translated_images/hk/chess.e704a268781bdad8.webp)
 
 > 照片由 <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> 提供，來源於 <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
