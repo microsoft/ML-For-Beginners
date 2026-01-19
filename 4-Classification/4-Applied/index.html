@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cuisine Matcher</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script>
+    </head>
+    <body>
+       
+        <nav>
+            <div class="logo">
+                <a href="#">Cuisine Matcher</a>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Recipes</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+
+        <h1 style="padding: 20px 20px 0 20px;">Check your refrigerator. What can you create?</h1>
+
+        <div id="wrapper">
+            <div class="boxCont">
+                <input type="checkbox" value="4" class="checkbox">
+                <label>apple</label>
+            </div>
+        
+            <div class="boxCont">
+                <input type="checkbox" value="247" class="checkbox">
+                <label>pear</label>
+            </div>
+        
+            <div class="boxCont">
+                <input type="checkbox" value="77" class="checkbox">
+                <label>cherry</label>
+            </div>
+
+            <div class="boxCont">
+                <input type="checkbox" value="126" class="checkbox">
+                <label>fenugreek</label>
+            </div>
+
+            <div class="boxCont">
+                <input type="checkbox" value="302" class="checkbox">
+                <label>sake</label>
+            </div>
+
+            <div class="boxCont">
+                <input type="checkbox" value="327" class="checkbox">
+                <label>soy sauce</label>
+            </div>
+
+            <div class="boxCont">
+                <input type="checkbox" value="112" class="checkbox">
+                <label>cumin</label>
+            </div>
+        </div>
+        <div style="padding: 20px">
+            <button onClick="startInference()">What kind of cuisine can you make?</button>
+        </div> 
+        <script src="CouisineMatcher.js"></script>
+    </body>
+</html>
