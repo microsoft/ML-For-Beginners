@@ -43,9 +43,15 @@ As you learned in Lesson 1, the goal of a linear regression exercise is to be ab
 - **Show variable relationships**. Show the relationship between variables
 - **Make predictions**. Make accurate predictions on where a new datapoint would fall in relationship to that line. 
  
-It is typical of **Least-Squares Regression** to draw this type of line. The term 'least-squares' means that all the datapoints surrounding the regression line are squared and then added up. Ideally, that final sum is as small as possible, because we want a low number of errors, or `least-squares`. 
+It is typical of **Least-Squares Regression** to draw this type of line. The term "Least-Squares" refers to the process of minimizing the total error in our model. For every data point, we measure the vertical distance (called a residual) between the actual point and our regression line.  
 
-We do so since we want to model a line that has the least cumulative distance from all of our data points. We also square the terms before adding them since we are concerned with its magnitude rather than its direction.
+We square these distances for two main reasons:  
+
+    1.**Magnitude over Direction:** We want to treat an error of -5 the same as an error of +5. Squaring turns all values positive.  
+
+    2.**Penalizing Outliers:** Squaring gives more weight to larger errors, forcing the line to stay closer to points that are far away.  
+
+We then add all these squared values together. Our goal is to find the specific line where this final sum is at its least (the smallest possible value)—hence the name "Least-Squares".  
 
 > **🧮 Show me the math** 
 > 
