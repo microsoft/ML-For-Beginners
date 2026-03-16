@@ -218,11 +218,20 @@ Our team produces other courses! Check out:
 
 ## Getting Help
 
-If you get stuck or have any questions about building AI apps. Join fellow learners and experienced developers in discussions about MCP. It's a supportive community where questions are welcome and knowledge is shared freely.
+If you get stuck or have questions while learning Machine Learning or building AI applications, don't worry — help is available.
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+You can join discussions with other learners and developers, ask questions, and share your ideas with the community.
 
-If you have product feedback or errors while building visit:
+* Join the community to ask questions and learn with others
+* Discuss Machine Learning concepts and project ideas
+* Get guidance from experienced developers
+
+A supportive community is a great way to grow your skills and solve problems faster.
+
+[Microsoft Foundry Discord Community](https://discord.gg/nTYy5BXMWG)
+
+If you encounter bugs, errors, or have suggestions for improvements, you can also open an **Issue** in this repository to report the problem.
+
 
 [![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 ## Additional Learning Tips
