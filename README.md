@@ -222,9 +222,9 @@ If you get stuck or have questions while learning Machine Learning or building A
 
 You can join discussions with other learners and developers, ask questions, and share your ideas with the community.
 
-* Join the community to ask questions and learn with others
-* Discuss Machine Learning concepts and project ideas
-* Get guidance from experienced developers
+- Join the community to ask questions and learn with others
+- Discuss Machine Learning concepts and project ideas
+- Get guidance from experienced developers
 
 A supportive community is a great way to grow your skills and solve problems faster.
 
