@@ -1,10 +1,10 @@
 # Train Mountain Car
 
-[OpenAI Gym](http://gym.openai.com) has been designed in such a way that all environments provide the same API - i.e. the same methods `reset`, `step` and `render`, and the same abstractions of **action space** and **observation space**. Thus is should be possible to adapt the same reinforcement learning algorithms to different environments with minimal code changes.
+[OpenAI Gym](https://gymnasium.farama.org) has been designed in such a way that all environments provide the same API - i.e. the same methods `reset`, `step` and `render`, and the same abstractions of **action space** and **observation space**. Thus is should be possible to adapt the same reinforcement learning algorithms to different environments with minimal code changes.
 
 ## A Mountain Car Environment
 
-[Mountain Car environment](https://gym.openai.com/envs/MountainCar-v0/) contains a car stuck in a valley:
+[Mountain Car environment](https://gymnasium.farama.org/environments/classic_control/mountain_car/) contains a car stuck in a valley:
 
 <img src="images/mountaincar.png" width="300"/>
 

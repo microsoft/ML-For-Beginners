@@ -24,9 +24,9 @@ In this lesson, we will be using a library called **OpenAI Gym** to simulate dif
 
 ## OpenAI Gym
 
-In the previous lesson, the rules of the game and the state were given by the `Board` class which we defined ourselves. Here we will use a special **simulation environment**, which will simulate the physics behind the balancing pole. One of the most popular simulation environments for training reinforcement learning algorithms is called a [Gym](https://gym.openai.com/), which is maintained by [OpenAI](https://openai.com/). By using this gym we can create difference **environments** from a cartpole simulation to Atari games.
+In the previous lesson, the rules of the game and the state were given by the `Board` class which we defined ourselves. Here we will use a special **simulation environment**, which will simulate the physics behind the balancing pole. One of the most popular simulation environments for training reinforcement learning algorithms is called a [Gym](https://gymnasium.farama.org/), which is maintained by [OpenAI](https://openai.com/). By using this gym we can create difference **environments** from a cartpole simulation to Atari games.
 
-> **Note**: You can see other environments available from OpenAI Gym [here](https://gym.openai.com/envs/#classic_control). 
+> **Note**: You can see other environments available from OpenAI Gym [here](https://gymnasium.farama.org/environments/classic_control/). 
 
 First, let's install the gym and import required libraries (code block 1):
 
