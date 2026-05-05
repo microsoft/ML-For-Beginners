@@ -1,10 +1,26 @@
+import hashlib
+import os
 import numpy as np
 from flask import Flask, request, render_template
-import pickle
+import joblib
 
 app = Flask(__name__)
 
-model = pickle.load(open("../ufo-model.pkl", "rb"))
+def _verify_model_integrity(path):
+    expected = os.environ.get("MODEL_SHA256", "")
+    if not expected:
+        raise RuntimeError("MODEL_SHA256 environment variable must be set to the expected SHA-256 hex digest of the model file")
+    sha256 = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            sha256.update(chunk)
+    digest = sha256.hexdigest()
+    if digest != expected:
+        raise RuntimeError("Model integrity check failed: file hash does not match MODEL_SHA256")
+
+_MODEL_PATH = "../ufo-model.pkl"
+_verify_model_integrity(_MODEL_PATH)
+model = joblib.load(_MODEL_PATH)
 
 
 @app.route("/")
@@ -29,4 +45,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
