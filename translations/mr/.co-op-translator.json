@@ -24,8 +24,8 @@
     "language_code": "mr"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "9a6b702d1437c0467e3c5c28d763dac2",
-    "translation_date": "2025-09-06T06:12:57+00:00",
+    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
+    "translation_date": "2026-07-14T02:19:57+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "mr"
   },
@@ -54,8 +54,8 @@
     "language_code": "mr"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
-    "translation_date": "2025-09-06T06:06:21+00:00",
+    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
+    "translation_date": "2026-07-14T02:14:05+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "mr"
   },
@@ -72,8 +72,8 @@
     "language_code": "mr"
   },
   "2-Regression/2-Data/README.md": {
-    "original_hash": "7c077988328ebfe33b24d07945f16eca",
-    "translation_date": "2025-09-06T06:07:10+00:00",
+    "original_hash": "a58b2c4d16c6b122643391745ac15af6",
+    "translation_date": "2026-07-14T02:16:28+00:00",
     "source_file": "2-Regression/2-Data/README.md",
     "language_code": "mr"
   },
@@ -87,6 +87,12 @@
     "original_hash": "a39c15d63f3b2795ee2284a82b986b93",
     "translation_date": "2025-08-29T16:56:11+00:00",
     "source_file": "2-Regression/2-Data/solution/Julia/README.md",
+    "language_code": "mr"
+  },
+  "2-Regression/2-Data/solution/notebook.ipynb": {
+    "original_hash": "96b95f8cf473481f2f371de8156f1571",
+    "translation_date": "2026-07-14T02:02:25+00:00",
+    "source_file": "2-Regression/2-Data/solution/notebook.ipynb",
     "language_code": "mr"
   },
   "2-Regression/3-Linear/README.md": {
@@ -115,7 +121,7 @@
   },
   "2-Regression/4-Logistic/README.md": {
     "original_hash": "abf86d845c84330bce205a46b382ec88",
-    "translation_date": "2025-09-06T06:05:45+00:00",
+    "translation_date": "2026-07-14T02:15:15+00:00",
     "source_file": "2-Regression/4-Logistic/README.md",
     "language_code": "mr"
   },
@@ -457,7 +463,7 @@
   },
   "8-Reinforcement/1-QLearning/README.md": {
     "original_hash": "911efd5e595089000cb3c16fce1beab8",
-    "translation_date": "2025-09-06T06:18:51+00:00",
+    "translation_date": "2026-07-14T02:17:48+00:00",
     "source_file": "8-Reinforcement/1-QLearning/README.md",
     "language_code": "mr"
   },
@@ -481,7 +487,7 @@
   },
   "8-Reinforcement/2-Gym/README.md": {
     "original_hash": "107d5bb29da8a562e7ae72262d251a75",
-    "translation_date": "2025-09-06T06:19:34+00:00",
+    "translation_date": "2026-07-14T02:18:58+00:00",
     "source_file": "8-Reinforcement/2-Gym/README.md",
     "language_code": "mr"
   },
@@ -523,7 +529,7 @@
   },
   "9-Real-World/2-Debugging-ML-Models/README.md": {
     "original_hash": "df2b538e8fbb3e91cf0419ae2f858675",
-    "translation_date": "2025-09-06T06:12:09+00:00",
+    "translation_date": "2026-07-14T02:21:00+00:00",
     "source_file": "9-Real-World/2-Debugging-ML-Models/README.md",
     "language_code": "mr"
   },
@@ -580,6 +586,19 @@
     "translation_date": "2025-10-03T12:42:02+00:00",
     "source_file": "TROUBLESHOOTING.md",
     "language_code": "mr"
+  },
+  "__translation_failures__": {
+    "sketchnotes/LICENSE.md": {
+      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
+      "source_file": "sketchnotes/LICENSE.md",
+      "language_code": "mr",
+      "failure_date": "2026-07-14T02:13:15+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    }
   },
   "docs/_sidebar.md": {
     "original_hash": "68dd06c685f6ce840e0acfa313352e7c",

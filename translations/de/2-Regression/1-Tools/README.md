@@ -1,120 +1,121 @@
 # Einstieg in Python und Scikit-learn für Regressionsmodelle
 
-![Zusammenfassung von Regressionen in einer Sketchnote](../../../../sketchnotes/ml-regression.png)
+![Zusammenfassung von Regressionen in einer Sketchnote](../../../../translated_images/de/ml-regression.4e4f70e3b3ed446e.webp)
 
 > Sketchnote von [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz vor der Lektion](https://ff-quizzes.netlify.app/en/ml/)
+## [Quiz vor der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Diese Lektion ist auch in R verfügbar!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Einführung
 
-In diesen vier Lektionen lernen Sie, wie man Regressionsmodelle erstellt. Wir werden gleich besprechen, wofür diese verwendet werden. Aber bevor Sie loslegen, stellen Sie sicher, dass Sie die richtigen Werkzeuge eingerichtet haben, um den Prozess zu starten!
+In diesen vier Lektionen wirst du erfahren, wie man Regressionsmodelle erstellt. Wir werden gleich besprechen, wofür sie dienen. Aber bevor du irgendetwas machst, stelle sicher, dass du die richtigen Werkzeuge bereit hast, um den Prozess zu starten!
 
-In dieser Lektion lernen Sie:
+In dieser Lektion lernst du,
 
-- Wie Sie Ihren Computer für lokale Machine-Learning-Aufgaben konfigurieren.
-- Wie Sie mit Jupyter-Notebooks arbeiten.
-- Wie Sie Scikit-learn verwenden, einschließlich der Installation.
-- Wie Sie lineare Regression durch eine praktische Übung erkunden.
+- Deinen Computer für lokale Machine-Learning-Aufgaben zu konfigurieren.
+- Mit Jupyter Notebooks zu arbeiten.
+- Scikit-learn zu verwenden, einschließlich Installation.
+- Lineare Regression anhand einer praktischen Übung zu erkunden.
 
 ## Installationen und Konfigurationen
 
-[![ML für Anfänger - Richten Sie Ihre Tools ein, um Machine-Learning-Modelle zu erstellen](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML für Anfänger - Richten Sie Ihre Tools ein, um Machine-Learning-Modelle zu erstellen")
+[![ML für Anfänger - Richte deine Werkzeuge ein, um Machine-Learning-Modelle zu erstellen](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML für Anfänger - Richte deine Werkzeuge ein, um Machine-Learning-Modelle zu erstellen")
 
-> 🎥 Klicken Sie auf das Bild oben, um ein kurzes Video zur Konfiguration Ihres Computers für ML anzusehen.
+> 🎥 Klicke auf das Bild oben für ein kurzes Video zur Konfiguration deines Computers für ML.
 
-1. **Installieren Sie Python**. Stellen Sie sicher, dass [Python](https://www.python.org/downloads/) auf Ihrem Computer installiert ist. Sie werden Python für viele Aufgaben in den Bereichen Datenwissenschaft und maschinelles Lernen verwenden. Die meisten Computersysteme haben Python bereits vorinstalliert. Es gibt auch nützliche [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), die die Einrichtung für einige Benutzer erleichtern.
+1. **Installiere Python**. Sorge dafür, dass [Python](https://www.python.org/downloads/) auf deinem Computer installiert ist. Du wirst Python für viele Data-Science- und Machine-Learning-Aufgaben verwenden. Auf den meisten Computersystemen ist Python bereits installiert. Es gibt auch nützliche [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), die einigen Anwendern die Einrichtung erleichtern.
 
-   Einige Anwendungen von Python erfordern jedoch eine bestimmte Version der Software, während andere eine andere Version benötigen. Aus diesem Grund ist es sinnvoll, in einer [virtuellen Umgebung](https://docs.python.org/3/library/venv.html) zu arbeiten.
+Einige Anwendungsbereiche von Python erfordern jedoch eine Version der Software, während andere eine andere Version benötigen. Deshalb ist es sinnvoll, innerhalb einer [virtuellen Umgebung](https://docs.python.org/3/library/venv.html) zu arbeiten.
 
-2. **Installieren Sie Visual Studio Code**. Stellen Sie sicher, dass Visual Studio Code auf Ihrem Computer installiert ist. Folgen Sie diesen Anweisungen, um [Visual Studio Code zu installieren](https://code.visualstudio.com/). In diesem Kurs werden Sie Python in Visual Studio Code verwenden, daher sollten Sie sich mit der [Konfiguration von Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) für die Python-Entwicklung vertraut machen.
+2. **Installiere Visual Studio Code**. Stelle sicher, dass Visual Studio Code auf deinem Computer installiert ist. Folge diesen Anweisungen, um [Visual Studio Code zu installieren](https://code.visualstudio.com/) für die Basiseinrichtung. Du wirst Python in Visual Studio Code in diesem Kurs verwenden, daher solltest du dich damit vertraut machen, wie man [Visual Studio Code für die Python-Entwicklung konfiguriert](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott).
 
-   > Machen Sie sich mit Python vertraut, indem Sie diese Sammlung von [Lernmodulen](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) durcharbeiten.
-   >
-   > [![Python mit Visual Studio Code einrichten](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Python mit Visual Studio Code einrichten")
-   >
-   > 🎥 Klicken Sie auf das Bild oben, um ein Video über die Verwendung von Python in VS Code anzusehen.
+> Mach dich mit Python vertraut, indem du diese Sammlung von [Lernmodulen](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) durchgehst.
+>
+> [![Setup Python mit Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Setup Python mit Visual Studio Code")
+>
+> 🎥 Klicke auf das Bild oben für ein Video: Python innerhalb von VS Code verwenden.
 
-3. **Installieren Sie Scikit-learn**, indem Sie [diesen Anweisungen](https://scikit-learn.org/stable/install.html) folgen. Da Sie sicherstellen müssen, dass Sie Python 3 verwenden, wird empfohlen, eine virtuelle Umgebung zu nutzen. Beachten Sie, dass es spezielle Anweisungen gibt, wenn Sie diese Bibliothek auf einem M1 Mac installieren.
+3. **Installiere Scikit-learn**, indem du [diesen Anleitungen](https://scikit-learn.org/stable/install.html) folgst. Da du sicherstellen musst, dass Python 3 verwendet wird, wird empfohlen, eine virtuelle Umgebung zu nutzen. Beachte, dass es für die Installation auf einem M1 Mac auf der verlinkten Seite spezielle Hinweise gibt.
 
-4. **Installieren Sie Jupyter Notebook**. Sie müssen das [Jupyter-Paket installieren](https://pypi.org/project/jupyter/).
+1. **Installiere Jupyter Notebook**. Du musst das [Jupyter-Paket installieren](https://pypi.org/project/jupyter/).
 
-## Ihre ML-Entwicklungsumgebung
+## Deine ML-Entwicklungsumgebung
 
-Sie werden **Notebooks** verwenden, um Ihren Python-Code zu entwickeln und Machine-Learning-Modelle zu erstellen. Diese Art von Datei ist ein gängiges Werkzeug für Datenwissenschaftler und kann an ihrer Endung `.ipynb` erkannt werden.
+Du wirst **Notebooks** verwenden, um deinen Python-Code zu entwickeln und Machine-Learning-Modelle zu erstellen. Diese Dateitypen sind ein gängiges Werkzeug für Data Scientists und sind an der Dateiendung `.ipynb` zu erkennen.
 
-Notebooks sind eine interaktive Umgebung, die es Entwicklern ermöglicht, sowohl Code zu schreiben als auch Notizen und Dokumentationen rund um den Code hinzuzufügen. Dies ist besonders hilfreich für experimentelle oder forschungsorientierte Projekte.
+Notebooks bieten eine interaktive Umgebung, die es ermöglicht, sowohl Code zu schreiben als auch Notizen und Dokumentationen um den Code herum hinzuzufügen, was für experimentelle oder forschungsorientierte Projekte sehr hilfreich ist.
 
-[![ML für Anfänger - Jupyter-Notebooks einrichten, um Regressionsmodelle zu erstellen](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML für Anfänger - Jupyter-Notebooks einrichten, um Regressionsmodelle zu erstellen")
+[![ML für Anfänger - Richte Jupyter Notebooks ein, um Regressionsmodelle zu erstellen](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML für Anfänger - Richte Jupyter Notebooks ein, um Regressionsmodelle zu erstellen")
 
-> 🎥 Klicken Sie auf das Bild oben, um ein kurzes Video zu dieser Übung anzusehen.
+> 🎥 Klicke auf das Bild oben für ein kurzes Video zu dieser Übung.
 
-### Übung - Arbeiten mit einem Notebook
+### Übung - Arbeite mit einem Notebook
 
-In diesem Ordner finden Sie die Datei _notebook.ipynb_.
+In diesem Ordner findest du die Datei _notebook.ipynb_.
 
-1. Öffnen Sie _notebook.ipynb_ in Visual Studio Code.
+1. Öffne _notebook.ipynb_ in Visual Studio Code.
 
-   Ein Jupyter-Server wird mit Python 3+ gestartet. Sie finden Bereiche im Notebook, die `ausgeführt` werden können, also Codeabschnitte. Sie können einen Codeblock ausführen, indem Sie das Symbol auswählen, das wie eine Wiedergabetaste aussieht.
+Ein Jupyter-Server mit Python 3+ wird gestartet. Du findest Abschnitte im Notebook, die `run`bar sind, also Codeblöcke. Du kannst einen Codeblock ausführen, indem du das Symbol auswählst, das wie ein Abspielknopf aussieht.
 
-2. Wählen Sie das `md`-Symbol und fügen Sie etwas Markdown sowie den folgenden Text hinzu: **# Willkommen in Ihrem Notebook**.
+1. Wähle das `md`-Symbol und füge etwas Markdown ein, mit folgendem Text **# Willkommen in deinem Notebook**.
 
-   Fügen Sie anschließend etwas Python-Code hinzu.
+Füge danach etwas Python-Code hinzu.
 
-3. Geben Sie **print('hello notebook')** in den Codeblock ein.
-4. Wählen Sie den Pfeil, um den Code auszuführen.
+1. Tippe **print('hello notebook')** in den Codeblock.
+1. Wähle den Pfeil aus, um den Code auszuführen.
 
-   Sie sollten die folgende Ausgabe sehen:
+Du solltest die folgende Ausgabe sehen:
 
     ```output
     hello notebook
     ```
 
-![VS Code mit einem geöffneten Notebook](../../../../2-Regression/1-Tools/images/notebook.jpg)
+![VS Code mit geöffnetem Notebook](../../../../translated_images/de/notebook.4a3ee31f396b8832.webp)
 
-Sie können Ihren Code mit Kommentaren versehen, um das Notebook selbst zu dokumentieren.
+Du kannst deinen Code mit Kommentaren durchmischen, um das Notebook selbst zu dokumentieren.
 
-✅ Denken Sie einen Moment darüber nach, wie unterschiedlich die Arbeitsumgebung eines Webentwicklers im Vergleich zu der eines Datenwissenschaftlers ist.
+✅ Denke einen Moment darüber nach, wie unterschiedlich die Arbeitsumgebung eines Webentwicklers im Vergleich zu der eines Data Scientists ist.
 
-## Einführung in Scikit-learn
+## Aufsetzen von Scikit-learn
 
-Jetzt, da Python in Ihrer lokalen Umgebung eingerichtet ist und Sie sich mit Jupyter-Notebooks vertraut gemacht haben, machen wir uns ebenso mit Scikit-learn vertraut (ausgesprochen `sci` wie in `science`). Scikit-learn bietet eine [umfangreiche API](https://scikit-learn.org/stable/modules/classes.html#api-ref), die Ihnen bei der Durchführung von ML-Aufgaben hilft.
+Nun, da Python in deiner lokalen Umgebung eingerichtet ist und du dich mit Jupyter Notebooks wohl fühlst, lass uns jetzt auch Scikit-learn gut kennenlernen (ausgesprochen `sci` wie in `science`). Scikit-learn bietet eine [umfangreiche API](https://scikit-learn.org/stable/modules/classes.html#api-ref), die dir bei ML-Aufgaben hilft.
 
-Laut ihrer [Website](https://scikit-learn.org/stable/getting_started.html) ist "Scikit-learn eine Open-Source-Bibliothek für maschinelles Lernen, die sowohl überwachtes als auch unüberwachtes Lernen unterstützt. Sie bietet auch verschiedene Werkzeuge für Modellanpassung, Datenvorverarbeitung, Modellauswahl und -bewertung sowie viele andere Hilfsmittel."
+Laut ihrer [Webseite](https://scikit-learn.org/stable/getting_started.html) ist „Scikit-learn eine Open-Source-Machine-Learning-Bibliothek, die überwachtes und unüberwachtes Lernen unterstützt. Außerdem bietet sie verschiedene Werkzeuge für Modellanpassung, Datenvorverarbeitung, Modellauswahl und -bewertung sowie viele andere Hilfsmittel.“
 
-In diesem Kurs werden Sie Scikit-learn und andere Werkzeuge verwenden, um Machine-Learning-Modelle für sogenannte "traditionelle Machine-Learning"-Aufgaben zu erstellen. Wir haben bewusst auf neuronale Netze und Deep Learning verzichtet, da diese besser in unserem kommenden Lehrplan "KI für Anfänger" behandelt werden.
+In diesem Kurs wirst du Scikit-learn und andere Werkzeuge verwenden, um Machine-Learning-Modelle für das zu bauen, was wir „traditionelles Machine Learning“ nennen. Wir haben bewusst neuronale Netze und Deep Learning ausgelassen, da diese besser in unserem kommenden Curriculum „KI für Anfänger“ abgedeckt werden.
 
-Scikit-learn macht es einfach, Modelle zu erstellen und zu bewerten. Es konzentriert sich hauptsächlich auf die Verwendung numerischer Daten und enthält mehrere vorgefertigte Datensätze, die als Lernwerkzeuge dienen. Es bietet auch vorgefertigte Modelle, die Schüler ausprobieren können. Lassen Sie uns den Prozess des Ladens vorgefertigter Daten und der Verwendung eines eingebauten Schätzers für ein erstes ML-Modell mit Scikit-learn erkunden.
+Scikit-learn macht es einfach, Modelle zu erstellen und für die Nutzung zu bewerten. Es konzentriert sich primär auf numerische Daten und enthält mehrere vorgefertigte Datensätze, die als Lernwerkzeuge genutzt werden können. Außerdem sind vorgefertigte Modelle enthalten, die Studenten ausprobieren können. Lass uns zuerst den Prozess erkunden, vorgefertigte Daten zu laden und mit einem integrierten Schätzer das erste ML-Modell mit Scikit-learn anhand einiger einfacher Daten aufzubauen.
 
-## Übung - Ihr erstes Scikit-learn-Notebook
+## Übung - dein erstes Scikit-learn-Notebook
 
-> Dieses Tutorial wurde vom [Beispiel zur linearen Regression](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) auf der Scikit-learn-Website inspiriert.
+> Dieses Tutorial wurde vom [Beispiel für lineare Regression](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) auf der Webseite von Scikit-learn inspiriert.
 
-[![ML für Anfänger - Ihr erstes lineares Regressionsprojekt in Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML für Anfänger - Ihr erstes lineares Regressionsprojekt in Python")
 
-> 🎥 Klicken Sie auf das Bild oben, um ein kurzes Video zu dieser Übung anzusehen.
+[![ML für Anfänger - Dein erstes lineares Regressionsprojekt in Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML für Anfänger - Dein erstes lineares Regressionsprojekt in Python")
 
-In der Datei _notebook.ipynb_, die mit dieser Lektion verbunden ist, löschen Sie alle Zellen, indem Sie auf das Symbol "Papierkorb" klicken.
+> 🎥 Klicke auf das Bild oben für ein kurzes Video zu dieser Übung.
 
-In diesem Abschnitt arbeiten Sie mit einem kleinen Datensatz über Diabetes, der in Scikit-learn integriert ist und zu Lernzwecken dient. Stellen Sie sich vor, Sie möchten eine Behandlung für Diabetespatienten testen. Machine-Learning-Modelle könnten Ihnen helfen, herauszufinden, welche Patienten basierend auf Kombinationen von Variablen besser auf die Behandlung ansprechen würden. Selbst ein sehr einfaches Regressionsmodell könnte, wenn es visualisiert wird, Informationen über Variablen liefern, die Ihnen helfen könnten, Ihre theoretischen klinischen Studien zu organisieren.
+Im zu dieser Lektion gehörenden _notebook.ipynb_-Datei lösche alle Zellen, indem du auf das „Mülleimer“-Symbol klickst.
 
-✅ Es gibt viele Arten von Regressionsmethoden, und welche Sie wählen, hängt von der Frage ab, die Sie beantworten möchten. Wenn Sie beispielsweise die wahrscheinliche Größe einer Person in einem bestimmten Alter vorhersagen möchten, würden Sie lineare Regression verwenden, da Sie einen **numerischen Wert** suchen. Wenn Sie hingegen herausfinden möchten, ob eine bestimmte Küche als vegan betrachtet werden sollte oder nicht, suchen Sie nach einer **Kategorisierung** und würden logistische Regression verwenden. Sie werden später mehr über logistische Regression lernen. Überlegen Sie sich einige Fragen, die Sie an Daten stellen könnten, und welche dieser Methoden dafür besser geeignet wäre.
+In diesem Abschnitt wirst du mit einem kleinen Datensatz über Diabetes arbeiten, der zu Lernzwecken in Scikit-learn eingebaut ist. Stell dir vor, du möchtest eine Behandlung für Diabetiker testen. Machine-Learning-Modelle könnten dir helfen zu bestimmen, welche Patienten besser auf die Behandlung reagieren würden, basierend auf Kombinationen von Variablen. Schon ein sehr einfaches Regressionsmodell kann, wenn es visualisiert wird, Informationen über Variablen zeigen, die bei der Organisation potenzieller klinischer Studien helfen.
 
-Lassen Sie uns mit dieser Aufgabe beginnen.
+✅ Es gibt viele Arten von Regressionsmethoden, und welche du auswählst, hängt von der Frage ab, die du beantworten möchtest. Möchtest du die wahrscheinliche Körpergröße einer Person eines bestimmten Alters vorhersagen, würdest du lineare Regression verwenden, da du einen **numerischen Wert** suchst. Wenn du herausfinden möchtest, ob eine Art von Küche als vegan eingestuft werden sollte oder nicht, suchst du eine **Kategorie-Zuordnung** und würdest logistische Regression verwenden. Logistische Regression lernst du später kennen. Überlege dir ein paar Fragen, die du an Daten stellen kannst, und welche dieser Methoden dafür passender wäre.
+
+Lass uns mit dieser Aufgabe beginnen.
 
 ### Bibliotheken importieren
 
 Für diese Aufgabe importieren wir einige Bibliotheken:
 
-- **matplotlib**. Ein nützliches [Grafikwerkzeug](https://matplotlib.org/), das wir verwenden, um ein Liniendiagramm zu erstellen.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) ist eine nützliche Bibliothek für den Umgang mit numerischen Daten in Python.
-- **sklearn**. Dies ist die [Scikit-learn](https://scikit-learn.org/stable/user_guide.html)-Bibliothek.
+- **matplotlib**. Es ist ein nützliches [Graphing-Tool](https://matplotlib.org/) und wird verwendet, um ein Liniendiagramm zu erstellen.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) ist eine nützliche Bibliothek zur Verarbeitung numerischer Daten in Python.
+- **sklearn**. Das ist die [Scikit-learn](https://scikit-learn.org/stable/user_guide.html)-Bibliothek.
 
-Importieren Sie einige Bibliotheken, um Ihre Aufgaben zu unterstützen.
+Importiere einige Bibliotheken, die dir bei deinen Aufgaben helfen.
 
-1. Fügen Sie die Importe hinzu, indem Sie den folgenden Code eingeben:
+1. Füge die Importe ein, indem du den folgenden Code eingibst:
 
    ```python
    import matplotlib.pyplot as plt
@@ -122,26 +123,26 @@ Importieren Sie einige Bibliotheken, um Ihre Aufgaben zu unterstützen.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Oben importieren Sie `matplotlib`, `numpy` und `datasets`, `linear_model` sowie `model_selection` aus `sklearn`. `model_selection` wird verwendet, um Daten in Trainings- und Testsets aufzuteilen.
+Oben importierst du `matplotlib`, `numpy` und du importierst `datasets`, `linear_model` und `model_selection` von `sklearn`. `model_selection` wird zum Aufteilen der Daten in Trainings- und Testsets verwendet.
 
 ### Der Diabetes-Datensatz
 
-Der integrierte [Diabetes-Datensatz](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) enthält 442 Datenproben zu Diabetes mit 10 Merkmalvariablen, darunter:
+Der eingebaute [Diabetes-Datensatz](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) enthält 442 Datensätze rund um Diabetes mit 10 Merkmalvariablen, von denen einige sind:
 
 - age: Alter in Jahren
 - bmi: Body-Mass-Index
-- bp: Durchschnittlicher Blutdruck
-- s1 tc: T-Zellen (eine Art von weißen Blutkörperchen)
+- bp: durchschnittlicher Blutdruck
+- s1 tc: T-Zellen (eine Art weiße Blutzellen)
 
-✅ Dieser Datensatz enthält das Konzept von "Geschlecht" als Merkmalvariable, das für die Forschung zu Diabetes wichtig ist. Viele medizinische Datensätze enthalten diese Art von binärer Klassifikation. Überlegen Sie, wie solche Kategorisierungen bestimmte Teile der Bevölkerung von Behandlungen ausschließen könnten.
+✅ Dieser Datensatz enthält das Merkmal „sex“ (Geschlecht), das in der Diabetesforschung eine wichtige Rolle spielt. Viele medizinische Datensätze enthalten diese Art der binären Klassifikation. Überlege kurz, wie solche Kategorisierungen bestimmte Bevölkerungsgruppen von Behandlungen ausschließen könnten.
 
-Laden Sie nun die X- und y-Daten.
+Lade jetzt die X- und y-Daten.
 
-> 🎓 Denken Sie daran, dass dies überwachtes Lernen ist und wir ein benanntes 'y'-Ziel benötigen.
+> 🎓 Denke daran, dass dies überwachtes Lernen ist und wir ein benanntes Ziel „y“ brauchen.
 
-In einer neuen Codezelle laden Sie den Diabetes-Datensatz, indem Sie `load_diabetes()` aufrufen. Der Eingabeparameter `return_X_y=True` signalisiert, dass `X` eine Datenmatrix und `y` das Regressionsziel sein wird.
+Lade den Diabetes-Datensatz in eine neue Codezelle, indem du `load_diabetes()` aufrufst. Der Parameter `return_X_y=True` gibt an, dass `X` eine Datenmatrix und `y` das Regressionsziel ist.
 
-1. Fügen Sie einige Print-Befehle hinzu, um die Form der Datenmatrix und ihr erstes Element anzuzeigen:
+1. Füge ein paar print-Befehle ein, um die Form der Datenmatrix und ihr erstes Element anzuzeigen:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -149,9 +150,9 @@ In einer neuen Codezelle laden Sie den Diabetes-Datensatz, indem Sie `load_diabe
     print(X[0])
     ```
 
-    Was Sie als Antwort erhalten, ist ein Tupel. Sie weisen die beiden ersten Werte des Tupels `X` und `y` zu. Erfahren Sie mehr über [Tupel](https://wikipedia.org/wiki/Tuple).
+Was du zurückbekommst, ist ein Tupel. Du weist die beiden ersten Werte des Tupels `X` und `y` zu. Erfahre mehr über [Tupel](https://wikipedia.org/wiki/Tuple).
 
-    Sie können sehen, dass diese Daten 442 Elemente in Arrays mit 10 Elementen enthalten:
+Du kannst sehen, dass die Daten 442 Einträge enthalten, die in Arrays mit jeweils 10 Elementen geformt sind:
 
     ```text
     (442, 10)
@@ -159,39 +160,39 @@ In einer neuen Codezelle laden Sie den Diabetes-Datensatz, indem Sie `load_diabe
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Denken Sie über die Beziehung zwischen den Daten und dem Regressionsziel nach. Lineare Regression sagt Beziehungen zwischen Merkmal X und Zielvariable y voraus. Können Sie das [Ziel](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) für den Diabetes-Datensatz in der Dokumentation finden? Was zeigt dieser Datensatz, wenn man das Ziel betrachtet?
+✅ Überlege dir, welche Beziehung zwischen den Daten und dem Regressionsziel besteht. Lineare Regression sagt Beziehungen zwischen Merkmalsvariablen X und Zielvariablen y voraus. Kannst du das [Ziel](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) für den Diabetes-Datensatz in der Dokumentation finden? Was zeigt dieser Datensatz mit dem Ziel?
 
-2. Wählen Sie als Nächstes einen Teil dieses Datensatzes aus, um ihn zu plotten, indem Sie die dritte Spalte des Datensatzes auswählen. Sie können dies tun, indem Sie den `:`-Operator verwenden, um alle Zeilen auszuwählen, und dann die dritte Spalte mit dem Index (2) auswählen. Sie können die Daten auch in ein 2D-Array umformen, wie es für das Plotten erforderlich ist, indem Sie `reshape(n_rows, n_columns)` verwenden. Wenn einer der Parameter -1 ist, wird die entsprechende Dimension automatisch berechnet.
+2. Wähle als nächstes einen Teil dieses Datensatzes aus, indem du die 3. Spalte auswählst. Du kannst dies mit dem Operator `:` machen, um alle Zeilen zu nehmen und dann mit dem Index (2) die 3. Spalte auszuwählen. Du kannst die Daten auch in ein 2D-Array umformen – wie es für eine Darstellung erforderlich ist – mit `reshape(n_rows, n_columns)`. Ist einer der Parameter -1, wird die entsprechende Dimension automatisch berechnet.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Drucken Sie die Daten jederzeit aus, um ihre Form zu überprüfen.
+✅ Drucke jederzeit die Daten aus, um ihre Form zu überprüfen.
 
-3. Jetzt, da Sie die Daten zum Plotten bereit haben, können Sie sehen, ob eine Maschine helfen kann, eine logische Trennung zwischen den Zahlen in diesem Datensatz zu bestimmen. Dazu müssen Sie sowohl die Daten (X) als auch das Ziel (y) in Test- und Trainingssets aufteilen. Scikit-learn bietet eine einfache Möglichkeit, dies zu tun; Sie können Ihre Testdaten an einem bestimmten Punkt aufteilen.
+3. Nun, da du Daten zum Plotten hast, kannst du prüfen, ob eine Maschine helfen kann, eine sinnvolle Trennung zwischen den Werten in diesem Datensatz zu finden. Dazu musst du sowohl die Daten (X) als auch das Ziel (y) in Test- und Trainingssets aufteilen. Scikit-learn hat dafür eine einfache Methode; du kannst deine Testdaten an einem bestimmten Punkt aufteilen.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Jetzt sind Sie bereit, Ihr Modell zu trainieren! Laden Sie das lineare Regressionsmodell und trainieren Sie es mit Ihren X- und y-Trainingssets, indem Sie `model.fit()` verwenden:
+4. Jetzt bist du bereit, dein Modell zu trainieren! Lade das lineare Regressionsmodell und trainiere es mit deinen X- und y-Trainingsdaten mit `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` ist eine Funktion, die Sie in vielen ML-Bibliotheken wie TensorFlow sehen werden.
+✅ `model.fit()` ist eine Funktion, die du in vielen ML-Bibliotheken wie TensorFlow sehen wirst.
 
-5. Erstellen Sie dann eine Vorhersage mit Testdaten, indem Sie die Funktion `predict()` verwenden. Diese wird verwendet, um die Linie zwischen den Datengruppen zu zeichnen.
+5. Erstelle als nächstes eine Vorhersage mit den Testdaten, indem du die Funktion `predict()` verwendest. Diese wird genutzt, um die Linie zwischen den Datengruppen zu zeichnen.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Jetzt ist es an der Zeit, die Daten in einem Diagramm darzustellen. Matplotlib ist ein sehr nützliches Werkzeug für diese Aufgabe. Erstellen Sie ein Streudiagramm aller X- und y-Testdaten und verwenden Sie die Vorhersage, um eine Linie an der passendsten Stelle zwischen den Datengruppierungen des Modells zu zeichnen.
+6. Jetzt ist es Zeit, die Daten in einem Plot zu zeigen. Matplotlib ist dafür ein sehr nützliches Werkzeug. Erstelle ein Streudiagramm aller X- und y-Testdaten und verwende die Vorhersage, um eine Linie an der passendsten Stelle zwischen den Datenclustern des Modells zu zeichnen.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -202,23 +203,24 @@ In einer neuen Codezelle laden Sie den Diabetes-Datensatz, indem Sie `load_diabe
     plt.show()
     ```
 
-   ![Ein Streudiagramm, das Datenpunkte zu Diabetes zeigt](../../../../2-Regression/1-Tools/images/scatterplot.png)
-✅ Überlege ein wenig, was hier passiert. Eine gerade Linie verläuft durch viele kleine Datenpunkte, aber was genau macht sie? Kannst du erkennen, wie du diese Linie nutzen könntest, um vorherzusagen, wo ein neuer, unbekannter Datenpunkt in Bezug auf die y-Achse des Plots liegen sollte? Versuche, den praktischen Nutzen dieses Modells in Worte zu fassen.
+![Ein Streudiagramm mit Datenpunkten rund um Diabetes](../../../../translated_images/de/scatterplot.ad8b356bcbb33be6.webp)
 
-Herzlichen Glückwunsch, du hast dein erstes lineares Regressionsmodell erstellt, eine Vorhersage damit gemacht und es in einem Plot dargestellt!
+
+   ✅ Denken Sie ein wenig darüber nach, was hier vor sich geht. Eine gerade Linie verläuft durch viele kleine Datenpunkte, aber was macht sie genau? Können Sie sehen, wie Sie diese Linie verwenden sollten, um zu prognostizieren, wo ein neuer, unbekannter Datenpunkt in Bezug auf die y-Achse des Diagramms passen sollte? Versuchen Sie, den praktischen Nutzen dieses Modells in Worte zu fassen.
+
+Herzlichen Glückwunsch, Sie haben Ihr erstes lineares Regressionsmodell erstellt, eine Vorhersage damit gemacht und diese in einem Diagramm dargestellt!
 
 ---
-## 🚀Herausforderung
+## 🚀 Herausforderung
 
-Plotte eine andere Variable aus diesem Datensatz. Hinweis: Bearbeite diese Zeile: `X = X[:,2]`. Angesichts des Ziels dieses Datensatzes, was kannst du über den Verlauf von Diabetes als Krankheit herausfinden?
-
+Stellen Sie eine andere Variable aus diesem Datensatz dar. Hinweis: Bearbeiten Sie diese Zeile: `X = X[:,2]`. Angesichts des Ziels dieses Datensatzes, was können Sie über den Verlauf von Diabetes als Krankheit herausfinden?
 ## [Quiz nach der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
 
-## Rückblick & Selbststudium
+## Wiederholung & Selbststudium
 
-In diesem Tutorial hast du mit einfacher linearer Regression gearbeitet, anstatt mit univariater oder multipler linearer Regression. Lies ein wenig über die Unterschiede zwischen diesen Methoden oder sieh dir [dieses Video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef) an.
+In diesem Tutorial haben Sie mit einfacher linearer Regression gearbeitet, statt mit univariater oder multipler linearer Regression. Lesen Sie etwas über die Unterschiede zwischen diesen Methoden oder schauen Sie sich [dieses Video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef) an.
 
-Lies mehr über das Konzept der Regression und denke darüber nach, welche Arten von Fragen mit dieser Technik beantwortet werden können. Nimm an [diesem Tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) teil, um dein Verständnis zu vertiefen.
+Lesen Sie mehr über das Konzept der Regression und denken Sie darüber nach, welche Arten von Fragen mit dieser Technik beantwortet werden können. Machen Sie dieses [Tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), um Ihr Verständnis zu vertiefen.
 
 ## Aufgabe
 
@@ -226,5 +228,7 @@ Lies mehr über das Konzept der Regression und denke darüber nach, welche Arten
 
 ---
 
-**Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

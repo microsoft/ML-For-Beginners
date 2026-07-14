@@ -1,62 +1,62 @@
 # Erstellen eines Regressionsmodells mit Scikit-learn: Daten vorbereiten und visualisieren
 
-![Infografik zur Datenvisualisierung](../../../../2-Regression/2-Data/images/data-visualization.png)
+![Datenvisualisierungs-Infografik](../../../../translated_images/de/data-visualization.54e56dded7c1a804.webp)
 
 Infografik von [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz vor der Lektion](https://ff-quizzes.netlify.app/en/ml/)
+## [Vortragsquiz](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Diese Lektion ist auch in R verfügbar!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
 ## Einführung
 
-Nachdem Sie nun die notwendigen Werkzeuge eingerichtet haben, um mit dem Aufbau von Machine-Learning-Modellen in Scikit-learn zu beginnen, können Sie anfangen, Fragen an Ihre Daten zu stellen. Wenn Sie mit Daten arbeiten und ML-Lösungen anwenden, ist es entscheidend, die richtigen Fragen zu stellen, um das volle Potenzial Ihres Datensatzes auszuschöpfen.
+Jetzt, wo du mit den Werkzeugen eingerichtet bist, die du brauchst, um mit dem Aufbau von Machine-Learning-Modellen mit Scikit-learn zu beginnen, bist du bereit, Fragen an deine Daten zu stellen. Wenn du mit Daten arbeitest und ML-Lösungen anwendest, ist es sehr wichtig, zu verstehen, wie man die richtige Frage stellt, um das Potenzial deines Datensatzes richtig zu erschließen.
 
-In dieser Lektion lernen Sie:
+In dieser Lektion wirst du lernen:
 
-- Wie Sie Ihre Daten für den Modellaufbau vorbereiten.
-- Wie Sie Matplotlib für die Datenvisualisierung nutzen.
+- Wie du deine Daten für den Modellbau vorbereitest.
+- Wie du Matplotlib für die Datenvisualisierung verwendest.
+- Wie du Seaborn für ausdrucksvollere Datenvisualisierungen einsetzt.
 
-## Die richtigen Fragen an Ihre Daten stellen
+## Die richtige Frage an deine Daten stellen
 
-Die Frage, die Sie beantwortet haben möchten, bestimmt, welche Art von ML-Algorithmen Sie verwenden. Und die Qualität der Antwort hängt stark von der Beschaffenheit Ihrer Daten ab.
+Die Frage, die du beantwortet haben möchtest, bestimmt, welche Art von ML-Algorithmen du einsetzen wirst. Und die Qualität der Antwort hängt stark von der Beschaffenheit deiner Daten ab.
 
-Werfen Sie einen Blick auf die [Daten](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), die für diese Lektion bereitgestellt wurden. Sie können diese .csv-Datei in VS Code öffnen. Ein kurzer Blick zeigt sofort, dass es Lücken gibt und eine Mischung aus Zeichenketten und numerischen Daten vorliegt. Es gibt auch eine seltsame Spalte namens 'Package', in der die Daten eine Mischung aus 'sacks', 'bins' und anderen Werten sind. Die Daten sind tatsächlich ein bisschen chaotisch.
+Schau dir die für diese Lektion bereitgestellten [Daten](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) an. Du kannst diese .csv-Datei in VS Code öffnen. Ein kurzer Blick zeigt sofort, dass es Lücken und eine Mischung aus Text- und numerischen Daten gibt. Es gibt auch eine merkwürdige Spalte namens „Package“, in der die Daten eine Mischung aus „sacks“, „bins“ und anderen Werten sind. Die Daten sind tatsächlich etwas chaotisch.
 
 [![ML für Anfänger - Wie man einen Datensatz analysiert und bereinigt](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML für Anfänger - Wie man einen Datensatz analysiert und bereinigt")
 
-> 🎥 Klicken Sie auf das Bild oben, um ein kurzes Video zur Vorbereitung der Daten für diese Lektion anzusehen.
+> 🎥 Klicke auf das obige Bild für ein kurzes Video, das die Vorbereitung der Daten für diese Lektion durchgeht.
 
-Es ist tatsächlich nicht sehr häufig, dass man einen Datensatz erhält, der vollständig bereit ist, um direkt ein ML-Modell zu erstellen. In dieser Lektion lernen Sie, wie Sie einen Rohdatensatz mit Standard-Python-Bibliotheken vorbereiten. Außerdem lernen Sie verschiedene Techniken zur Visualisierung der Daten kennen.
+Tatsächlich ist es nicht sehr üblich, einen Datensatz zu erhalten, der vollständig bereit ist, um sofort ein ML-Modell zu erstellen. In dieser Lektion lernst du, wie du einen Rohdatensatz mit Standard-Python-Bibliotheken vorbereitest. Du lernst auch verschiedene Techniken zur Visualisierung der Daten.
 
-## Fallstudie: 'Der Kürbismarkt'
+## Fallstudie: „Der Kürbismarkt“
 
-In diesem Ordner finden Sie eine .csv-Datei im Stammverzeichnis des `data`-Ordners namens [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), die 1757 Zeilen mit Daten über den Kürbismarkt enthält, sortiert nach Städten. Dies sind Rohdaten, die aus den [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) des US-Landwirtschaftsministeriums extrahiert wurden.
+In diesem Ordner findest du eine .csv-Datei im Hauptordner `data` namens [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), die 1757 Zeilen Daten über den Kürbismarkt enthält, sortiert nach Städten. Dies sind Rohdaten, die aus den [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) entnommen wurden, die vom United States Department of Agriculture herausgegeben werden.
 
 ### Daten vorbereiten
 
-Diese Daten sind gemeinfrei. Sie können in vielen separaten Dateien, nach Städten sortiert, von der USDA-Website heruntergeladen werden. Um zu vermeiden, dass zu viele separate Dateien vorliegen, haben wir alle Städtedaten in eine Tabelle zusammengeführt, sodass die Daten bereits etwas _vorbereitet_ wurden. Schauen wir uns die Daten nun genauer an.
+Diese Daten sind Gemeingut. Sie können in vielen einzelnen Dateien, jeweils pro Stadt, von der USDA-Website heruntergeladen werden. Um zu viele separate Dateien zu vermeiden, haben wir alle Stadtdaten in einem Tabellenblatt zusammengefasst, daher haben wir die Daten bereits etwas _vorbereitet_. Schauen wir uns nun die Daten genauer an.
 
-### Die Kürbis-Daten - erste Eindrücke
+### Die Kürbisdaten – erste Schlüsse
 
-Was fällt Ihnen an diesen Daten auf? Sie haben bereits gesehen, dass es eine Mischung aus Zeichenketten, Zahlen, Lücken und seltsamen Werten gibt, die Sie interpretieren müssen.
+Was fällt dir an diesen Daten auf? Du hast bereits gesehen, dass eine Mischung aus Texten, Zahlen, Leerstellen und merkwürdigen Werten besteht, die du verstehen musst.
 
-Welche Frage könnten Sie mit diesen Daten unter Verwendung einer Regressionsmethode stellen? Wie wäre es mit: "Den Preis eines Kürbisses für einen bestimmten Monat vorhersagen". Wenn Sie die Daten erneut betrachten, gibt es einige Änderungen, die Sie vornehmen müssen, um die für diese Aufgabe erforderliche Datenstruktur zu erstellen.
+Welche Frage kannst du mit einer Regressionsmethode an diese Daten stellen? Wie wäre es mit „Prognose des Preises eines Kürbisses zum Verkauf in einem bestimmten Monat“? Wenn man die Daten nochmal betrachtet, gibt es einige Änderungen, die du vornehmen musst, um die Datenstruktur für die Aufgabe zu erstellen.
+## Übung – Kürbisdaten analysieren
 
-## Übung - Analysieren der Kürbis-Daten
+Lass uns [Pandas](https://pandas.pydata.org/) verwenden (der Name steht für `Python Data Analysis`), ein sehr nützliches Werkzeug für die Datenaufbereitung, um diese Kürbisdaten zu analysieren und vorzubereiten.
 
-Verwenden wir [Pandas](https://pandas.pydata.org/), ein sehr nützliches Tool zur Datenanalyse, um diese Kürbis-Daten zu analysieren und vorzubereiten.
+### Zuerst: Fehlende Daten prüfen
 
-### Zuerst fehlende Daten überprüfen
+Du musst zuerst Schritte unternehmen, um nach fehlenden Daten zu suchen:
 
-Zunächst müssen Sie Schritte unternehmen, um fehlende Daten zu überprüfen:
+1. Wandle die Daten in ein Monatsformat um (das sind US-Daten, deshalb ist das Format `MM/DD/YYYY`).
+2. Extrahiere den Monat in eine neue Spalte.
 
-1. Konvertieren Sie die Daten in ein Monatsformat (es handelt sich um US-Daten, daher ist das Format `MM/DD/YYYY`).
-2. Extrahieren Sie den Monat in eine neue Spalte.
+Öffne die Datei _notebook.ipynb_ in Visual Studio Code und importiere die Tabelle in einen neuen Pandas DataFrame.
 
-Öffnen Sie die Datei _notebook.ipynb_ in Visual Studio Code und importieren Sie die Tabelle in ein neues Pandas-Dataframe.
-
-1. Verwenden Sie die Funktion `head()`, um die ersten fünf Zeilen anzuzeigen.
+1. Verwende die Funktion `head()`, um die ersten fünf Zeilen anzuzeigen.
 
     ```python
     import pandas as pd
@@ -64,30 +64,30 @@ Zunächst müssen Sie Schritte unternehmen, um fehlende Daten zu überprüfen:
     pumpkins.head()
     ```
 
-    ✅ Welche Funktion würden Sie verwenden, um die letzten fünf Zeilen anzuzeigen?
+    ✅ Welche Funktion würdest du verwenden, um die letzten fünf Zeilen zu sehen?
 
-1. Überprüfen Sie, ob im aktuellen Dataframe fehlende Daten vorhanden sind:
+1. Prüfe, ob es fehlende Daten im aktuellen DataFrame gibt:
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    Es gibt fehlende Daten, aber möglicherweise sind diese für die aktuelle Aufgabe nicht relevant.
+    Es gibt fehlende Daten, aber vielleicht spielen sie für die aktuelle Aufgabe keine Rolle.
 
-1. Um Ihr Dataframe einfacher zu gestalten, wählen Sie nur die benötigten Spalten aus, indem Sie die Funktion `loc` verwenden, die aus dem ursprünglichen Dataframe eine Gruppe von Zeilen (als erster Parameter übergeben) und Spalten (als zweiter Parameter übergeben) extrahiert. Der Ausdruck `:` im folgenden Fall bedeutet "alle Zeilen".
+1. Um den DataFrame einfacher handhabbar zu machen, wähle nur die benötigten Spalten mit der `loc`-Funktion aus, die aus dem originalen DataFrame eine Gruppe von Zeilen (als erster Parameter) und Spalten (als zweiter Parameter) extrahiert. Der Ausdruck `:` bedeutet hier "alle Zeilen".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
     pumpkins = pumpkins.loc[:, columns_to_select]
     ```
 
-### Zweitens, den Durchschnittspreis eines Kürbisses bestimmen
+### Zweitens: Durchschnittspreis des Kürbisses bestimmen
 
-Überlegen Sie, wie Sie den Durchschnittspreis eines Kürbisses in einem bestimmten Monat bestimmen können. Welche Spalten würden Sie für diese Aufgabe auswählen? Hinweis: Sie benötigen 3 Spalten.
+Überlege, wie du den Durchschnittspreis eines Kürbisses in einem bestimmten Monat bestimmen kannst. Welche Spalten würdest du hierfür auswählen? Tipp: Du brauchst 3 Spalten.
 
-Lösung: Nehmen Sie den Durchschnitt der Spalten `Low Price` und `High Price`, um die neue Spalte `Price` zu füllen, und konvertieren Sie die Spalte `Date`, sodass nur der Monat angezeigt wird. Glücklicherweise gibt es laut der oben durchgeführten Überprüfung keine fehlenden Daten für Daten oder Preise.
+Lösung: Nimm den Durchschnitt der Spalten `Low Price` und `High Price`, um die neue Preis-Spalte zu füllen, und konvertiere die Datumsspalte so, dass nur der Monat angezeigt wird. Glücklicherweise gibt es laut der oben durchgeführten Prüfung keine fehlenden Daten bei Datum oder Preisen.
 
-1. Um den Durchschnitt zu berechnen, fügen Sie den folgenden Code hinzu:
+1. Um den Durchschnitt zu berechnen, füge folgenden Code hinzu:
 
     ```python
     price = (pumpkins['Low Price'] + pumpkins['High Price']) / 2
@@ -96,37 +96,37 @@ Lösung: Nehmen Sie den Durchschnitt der Spalten `Low Price` und `High Price`, u
 
     ```
 
-   ✅ Sie können beliebige Daten mit `print(month)` überprüfen.
+   ✅ Du kannst jederzeit Daten zum Überprüfen mit `print(month)` ausgeben.
 
-2. Kopieren Sie nun Ihre konvertierten Daten in ein neues Pandas-Dataframe:
+2. Kopiere nun deine umgewandelten Daten in einen neuen Pandas DataFrame:
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Wenn Sie Ihr Dataframe ausgeben, sehen Sie einen sauberen, aufgeräumten Datensatz, auf dessen Grundlage Sie Ihr neues Regressionsmodell erstellen können.
+    Wenn du deinen DataFrame ausgibst, erhältst du einen sauberen, aufgeräumten Datensatz, auf dem du dein neues Regressionsmodell aufbauen kannst.
 
-### Aber Moment! Etwas ist hier seltsam
+### Aber Moment! Hier ist etwas Merkwürdiges
 
-Wenn Sie sich die Spalte `Package` ansehen, werden Kürbisse in vielen verschiedenen Konfigurationen verkauft. Einige werden in '1 1/9 bushel'-Maßen verkauft, andere in '1/2 bushel'-Maßen, einige pro Kürbis, einige pro Pfund und einige in großen Kisten mit unterschiedlichen Breiten.
+Wenn du dir die Spalte `Package` ansiehst, werden Kürbisse in verschiedenen Einheiten verkauft. Einige werden in „1 1/9 bushel“ Messungen verkauft, andere in „1/2 bushel“, einige pro Kürbis, einige pro Pfund, und einige in großen Kisten mit variierenden Breiten.
 
-> Kürbisse scheinen schwer konsistent zu wiegen
+> Kürbisse scheinen sehr schwer einheitlich zu wiegen zu sein
 
-Wenn man sich die Originaldaten ansieht, ist es interessant, dass alles mit `Unit of Sale` gleich 'EACH' oder 'PER BIN' auch den `Package`-Typ pro Zoll, pro Kiste oder 'each' hat. Kürbisse scheinen schwer konsistent zu wiegen, daher filtern wir sie, indem wir nur Kürbisse mit dem String 'bushel' in ihrer `Package`-Spalte auswählen.
+Wenn man die Originaldaten betrachtet, haben alle Zeilen mit `Unit of Sale` gleich 'EACH' oder 'PER BIN' auch bei der Spalte `Package` Werte wie per Inch, per Bin oder 'each'. Kürbisse sind sehr schwer einheitlich zu wiegen, daher filtern wir sie, indem wir nur Kürbisse auswählen, die den String „bushel“ in ihrer `Package`-Spalte enthalten.
 
-1. Fügen Sie einen Filter am Anfang der Datei unter dem ersten .csv-Import hinzu:
+1. Füge einen Filter oben in der Datei unter dem initialen .csv-Import hinzu:
 
     ```python
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    Wenn Sie die Daten jetzt ausgeben, sehen Sie, dass Sie nur die etwa 415 Zeilen mit Daten erhalten, die Kürbisse nach dem Bushel enthalten.
+    Wenn du die Daten jetzt ausgibst, siehst du, dass du nur die etwa 415 Zeilen mit Kürbissen pro Bushel erhältst.
 
-### Aber Moment! Es gibt noch etwas zu tun
+### Aber Moment! Es gibt noch eine Sache zu tun
 
-Haben Sie bemerkt, dass die Bushel-Menge pro Zeile variiert? Sie müssen die Preise normalisieren, sodass Sie die Preise pro Bushel anzeigen. Führen Sie also einige Berechnungen durch, um dies zu standardisieren.
+Hast du bemerkt, dass die Bushel-Menge pro Zeile variiert? Du musst die Preise normalisieren, sodass die Preise pro Bushel angezeigt werden, also mache eine Berechnung zur Standardisierung.
 
-1. Fügen Sie diese Zeilen nach dem Block hinzu, der das `new_pumpkins`-Dataframe erstellt:
+1. Füge diese Zeilen nach dem Block hinzu, der den neuen DataFrame new_pumpkins erstellt:
 
     ```python
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1 1/9'), 'Price'] = price/(1 + 1/9)
@@ -134,38 +134,38 @@ Haben Sie bemerkt, dass die Bushel-Menge pro Zeile variiert? Sie müssen die Pre
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ Laut [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308) hängt das Gewicht eines Bushels von der Art des Produkts ab, da es sich um eine Volumenmessung handelt. "Ein Bushel Tomaten wiegt beispielsweise 56 Pfund... Blätter und Grünzeug nehmen mehr Platz mit weniger Gewicht ein, daher wiegt ein Bushel Spinat nur 20 Pfund." Das ist alles ziemlich kompliziert! Lassen Sie uns die Umrechnung von Bushel zu Pfund ignorieren und stattdessen den Preis pro Bushel berechnen. All diese Studien zu Bushels von Kürbissen zeigen jedoch, wie wichtig es ist, die Natur Ihrer Daten zu verstehen!
+✅ Laut [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308) hängt das Gewicht eines Bushels von der Art des Erzeugnisses ab, da es sich um ein Volumenmaß handelt. „Ein Bushel Tomaten soll zum Beispiel 56 Pfund wiegen... Blätter und Grünes nehmen mehr Platz bei geringerer Masse ein, ein Bushel Spinat wiegt so nur 20 Pfund.“ Alles ziemlich kompliziert! Lass uns also auf eine Umrechnung von Bushel zu Pfund verzichten und stattdessen die Preise pro Bushel angeben. Diese Untersuchung der Bushel-Kürbisse zeigt jedoch, wie wichtig es ist, die Beschaffenheit der Daten zu verstehen!
 
-Nun können Sie die Preise pro Einheit basierend auf ihrer Bushel-Messung analysieren. Wenn Sie die Daten noch einmal ausgeben, sehen Sie, wie sie standardisiert wurden.
+Jetzt kannst du die Preise pro Einheit basierend auf ihrer Bushel-Messung analysieren. Wenn du die Daten noch einmal ausgibst, siehst du, wie sie standardisiert sind.
 
-✅ Haben Sie bemerkt, dass Kürbisse, die nach dem halben Bushel verkauft werden, sehr teuer sind? Können Sie herausfinden, warum? Hinweis: Kleine Kürbisse sind viel teurer als große, wahrscheinlich weil es viel mehr davon pro Bushel gibt, da ein großer hohler Kürbis viel Platz einnimmt.
+✅ Hast du bemerkt, dass Kürbisse, die im halben Bushel verkauft werden, sehr teuer sind? Kannst du herausfinden warum? Tipp: Kleine Kürbisse sind viel teurer als große, wahrscheinlich weil viel mehr davon in einen Bushel passen, im Gegensatz zu einem großen hohlen Pie-Kürbis, der ungenutzten Platz einnimmt.
 
 ## Visualisierungsstrategien
 
-Ein Teil der Aufgabe eines Datenwissenschaftlers besteht darin, die Qualität und Beschaffenheit der Daten, mit denen er arbeitet, zu demonstrieren. Dazu erstellen sie oft interessante Visualisierungen, wie Diagramme, Grafiken und Charts, die verschiedene Aspekte der Daten zeigen. Auf diese Weise können sie Beziehungen und Lücken visuell darstellen, die sonst schwer zu erkennen wären.
+Ein Teil der Rolle des Datenwissenschaftlers ist es, die Qualität und Beschaffenheit der Daten, mit denen er arbeitet, zu demonstrieren. Dazu erstellen sie oft interessante Visualisierungen oder Plots, Graphen und Diagramme, die verschiedene Aspekte der Daten zeigen. So können sie Beziehungen und Lücken visuell darstellen, die sonst schwer zu entdecken sind.
 
 [![ML für Anfänger - Wie man Daten mit Matplotlib visualisiert](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML für Anfänger - Wie man Daten mit Matplotlib visualisiert")
 
-> 🎥 Klicken Sie auf das Bild oben, um ein kurzes Video zur Visualisierung der Daten für diese Lektion anzusehen.
+> 🎥 Klicke auf das obige Bild für ein kurzes Video, das die Visualisierung der Daten für diese Lektion zeigt.
 
-Visualisierungen können auch dabei helfen, die am besten geeignete Machine-Learning-Technik für die Daten zu bestimmen. Ein Streudiagramm, das einer Linie zu folgen scheint, deutet beispielsweise darauf hin, dass die Daten gut für eine lineare Regression geeignet sind.
+Visualisierungen können auch helfen, die am besten geeignete Machine-Learning-Technik für die Daten zu bestimmen. Ein Streudiagramm, das einer Linie zu folgen scheint, zeigt zum Beispiel, dass die Daten gut für eine lineare Regression geeignet sein könnten.
 
-Eine Datenvisualisierungsbibliothek, die gut in Jupyter-Notebooks funktioniert, ist [Matplotlib](https://matplotlib.org/) (die Sie auch in der vorherigen Lektion gesehen haben).
+Eine Datenvisualisierungsbibliothek, die gut in Jupyter-Notebooks funktioniert, ist [Matplotlib](https://matplotlib.org/) (die du auch in der vorherigen Lektion gesehen hast).
 
-> Erhalten Sie mehr Erfahrung mit der Datenvisualisierung in [diesen Tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
+> Sammle mehr Erfahrung mit Datenvisualisierung in [diesen Tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
-## Übung - Experimentieren mit Matplotlib
+## Übung – Experimentiere mit Matplotlib
 
-Versuchen Sie, einige grundlegende Diagramme zu erstellen, um das neue Dataframe anzuzeigen, das Sie gerade erstellt haben. Was würde ein einfaches Liniendiagramm zeigen?
+Versuche, einige grundlegende Diagramme zu erstellen, um den neuen DataFrame, den du gerade erstellt hast, darzustellen. Was würde ein einfaches Liniendiagramm zeigen?
 
-1. Importieren Sie Matplotlib am Anfang der Datei, unter dem Pandas-Import:
+1. Importiere Matplotlib oben in der Datei, unter dem Pandas-Import:
 
     ```python
     import matplotlib.pyplot as plt
     ```
 
-1. Führen Sie das gesamte Notebook erneut aus, um es zu aktualisieren.
-1. Fügen Sie am Ende des Notebooks eine Zelle hinzu, um die Daten als Box-Diagramm darzustellen:
+1. Führe das gesamte Notebook erneut aus, um es zu aktualisieren.
+1. Füge am Ende des Notebooks eine Zelle hinzu, um die Daten als Box-Plot darzustellen:
 
     ```python
     price = new_pumpkins.Price
@@ -174,38 +174,113 @@ Versuchen Sie, einige grundlegende Diagramme zu erstellen, um das neue Dataframe
     plt.show()
     ```
 
-    ![Ein Streudiagramm, das die Beziehung zwischen Preis und Monat zeigt](../../../../2-Regression/2-Data/images/scatterplot.png)
+    ![Ein Streudiagramm zeigt die Beziehung zwischen Preis und Monat](../../../../translated_images/de/scatterplot.b6868f44cbd2051c.webp)
 
-    Ist dies ein nützliches Diagramm? Überrascht Sie etwas daran?
+    Ist das ein nützliches Diagramm? Überrasch dich etwas daran?
 
-    Es ist nicht besonders nützlich, da es nur die Verteilung Ihrer Daten in einem bestimmten Monat anzeigt.
+    Es ist nicht besonders nützlich, da es nur deine Daten als Verteilung von Punkten in einem bestimmten Monat anzeigt.
 
-### Machen Sie es nützlich
+### Mach es nützlich
 
-Um Diagramme nützlich zu machen, müssen Sie die Daten in der Regel irgendwie gruppieren. Versuchen wir, ein Diagramm zu erstellen, bei dem die y-Achse die Monate zeigt und die Daten die Verteilung darstellen.
+Um Diagramme nützlich zu machen, muss man die Daten normalerweise irgendwie gruppieren. Lass uns versuchen, ein Diagramm zu erstellen, bei dem die y-Achse die Monate zeigt und die Daten die Verteilung demonstrieren.
 
-1. Fügen Sie eine Zelle hinzu, um ein gruppiertes Balkendiagramm zu erstellen:
+1. Füge eine Zelle hinzu, um ein gruppiertes Balkendiagramm zu erstellen:
 
     ```python
     new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Ein Balkendiagramm, das die Beziehung zwischen Preis und Monat zeigt](../../../../2-Regression/2-Data/images/barchart.png)
+    ![Ein Balkendiagramm zeigt die Beziehung zwischen Preis und Monat](../../../../translated_images/de/barchart.a833ea9194346d76.webp)
 
-    Dies ist eine nützlichere Datenvisualisierung! Es scheint darauf hinzudeuten, dass die höchsten Preise für Kürbisse im September und Oktober auftreten. Entspricht das Ihrer Erwartung? Warum oder warum nicht?
+    Das ist eine nützlichere Datenvisualisierung! Sie zeigt, dass die höchsten Preise für Kürbisse im September und Oktober auftreten. Entspricht das deinen Erwartungen? Warum oder warum nicht?
+
+## Übung – Experimentiere mit Seaborn
+
+Matplotlib ist mächtig, aber es braucht oft viel Code, um ein ausgefeiltes Diagramm zu erzeugen. [Seaborn](https://seaborn.pydata.org/) ist eine Bibliothek, die _auf_ Matplotlib aufbaut und für statistische Datenvisualisierung entwickelt wurde. Sie arbeitet direkt mit Pandas DataFrames, verwendet attraktive Standardstile und ermöglicht es, mit viel weniger Code informative Diagramme zu erstellen. Da Seaborn Matplotlib-Objekte zurückgibt, kannst du alles, was du über Matplotlib weißt, nutzen, um das Ergebnis weiter anzupassen.
+
+> Wenn du Seaborn noch nicht installiert hast, installiere es mit `pip install seaborn`.
+
+1. Importiere Seaborn oben im Notebook unter den anderen Imports. Es wird konventionell als `sns` importiert:
+
+    ```python
+    import seaborn as sns
+    ```
+
+### Streudiagramme zur Darstellung von Zusammenhängen
+
+Ein großer Teil der Datenexploration vor dem Modellaufbau ist die Suche nach _Zusammenhängen_ zwischen Variablen. Ein [Streudiagramm](https://en.wikipedia.org/wiki/Scatter_plot) ist dafür eines der besten Werkzeuge: Wenn die Punkte einer Linie folgen, können die beiden Variablen korreliert sein – das ist ein gutes Zeichen, dass ein lineares Regressionsmodell funktionieren könnte.
+
+1. Erstelle das Streudiagramm von Preis zu Monat wie zuvor, diesmal mit Seaborns [`relplot()`](https://seaborn.pydata.org/generated/seaborn.relplot.html) (Relationsdiagramm), das direkt mit den DataFrame-Spalten arbeitet:
+
+    ```python
+    sns.relplot(x="Price", y="Month", data=new_pumpkins)
+    ```
+
+    ![Ein Seaborn-Streudiagramm zeigt die Beziehung zwischen Preis und Monat](../../../../translated_images/de/relplot.a03837d8f0329cec.webp)
+
+    Beachte, wie du die _Spaltennamen_ und den DataFrame übergibst, und Seaborn kümmert sich um die Achsenbeschriftungen.
+
+2. Du kannst zu einem Liniendiagramm wechseln, indem du `kind="line"` übergibst. Seaborn zeichnet sogar ein schattiertes Band, das das Konfidenzintervall um die Linie zeigt:
+
+    ```python
+    sns.relplot(x="Price", y="Month", kind="line", data=new_pumpkins)
+    ```
+
+    ![Ein Seaborn-Liniendiagramm zeigt die Beziehung zwischen Preis und Monat](../../../../translated_images/de/lineplot.f9034ba47b1e30ee.webp)
+
+    Diese Daten sind recht stark verrauscht, daher ist ein Liniendiagramm hier nicht die klarste Wahl – aber es zeigt, wie leicht du Diagrammtypen in Seaborn ändern kannst.
+
+### Balkendiagramme zur Darstellung von Verteilungen
+
+
+Früher hast du die Daten manuell gruppiert, um mit Matplotlib ein Balkendiagramm zu erstellen. Seaborns [`catplot()`](https://seaborn.pydata.org/generated/seaborn.catplot.html) (kategorische Darstellung) kann die Gruppierung und Aggregation für dich übernehmen. Standardmäßig zeigt `kind="bar"` den Mittelwert jeder Kategorie zusammen mit einer schwarzen Linie, die das Konfidenzintervall anzeigt.
+
+1. Erstelle ein Balkendiagramm des durchschnittlichen Preises pro Monat:
+
+    ```python
+    sns.catplot(x="Month", y="Price", data=new_pumpkins, kind="bar")
+    ```
+
+    ![Ein Seaborn-Balkendiagramm, das die Preisverteilung pro Monat zeigt](../../../../translated_images/de/catplot.e73fc35fdf96242b.webp)
+
+    Dies bestätigt, was du mit Matplotlib gesehen hast — die Preise erreichen ihren Höhepunkt um September und Oktober — aber Seaborn visualisiert auch, wie stark der Preis innerhalb jedes Monats _variiert_.
+
+### Heatmaps zur Darstellung von Korrelationen
+
+Scatterplots vergleichen jeweils zwei Variablen. Wenn du mehrere numerische Spalten hast, ermöglicht dir eine [Heatmap](https://de.wikipedia.org/wiki/Heatmap) die Stärke der Beziehung zwischen _jedem_ Paar von Spalten auf einmal zu sehen. Dies ist eine gängige Methode, um zu erkennen, welche Merkmale am meisten korreliert sind, bevor du entscheidest, was du in ein Modell einspeist (und dieselbe Art von Diagramm wird später verwendet, um Verwechslungsmatrizen bei Klassifikationen darzustellen).
+
+1. Erstelle mit Pandas eine Korrelationsmatrix, und zeichne sie dann mit Seaborns [`heatmap()`](https://seaborn.pydata.org/generated/seaborn.heatmap.html). Die Option `annot=True` druckt die Korrelationswerte in jede Zelle:
+
+    ```python
+    correlations = new_pumpkins[['Month', 'Low Price', 'High Price', 'Price']].corr()
+    sns.heatmap(correlations, annot=True, cmap="coolwarm")
+    ```
+
+    ![Eine Seaborn-Heatmap, die Korrelationen zwischen den numerischen Spalten zeigt](../../../../translated_images/de/heatmap.bd98dce43b404c57.webp)
+
+    Werte nahe bei `1` (oder `-1`) bedeuten, dass die Spalten stark _linear_ korreliert sind. Beachte, wie `Low Price` und `High Price` fast perfekt korreliert sind. `Month` hingegen zeigt nur eine schwache lineare Korrelation mit dem Preis — obwohl das Balkendiagramm oben einen klaren saisonalen Höhepunkt im September und Oktober aufzeigte. Das ist eine wichtige Erkenntnis: der Korrelationskoeffizient misst nur _geradlinige_ Zusammenhänge, daher können saisonale oder anderweitig nicht-lineare Muster übersehen werden. ✅ Warum ist es nützlich, sowohl eine Heatmap als auch Diagramme wie das Balkendiagramm anzuschauen, bevor man entscheidet, welche Spalten man verwendet?
+
+### Matplotlib oder Seaborn?
+
+Beide Bibliotheken sind es wert, sie zu kennen:
+
+- **Matplotlib** bietet dir eine feinkörnige Kontrolle über jedes Element eines Diagramms und ist die Grundlage, auf der fast jede andere Python-Plotting-Bibliothek aufbaut.
+- **Seaborn** stellt höherstufige Funktionen und attraktive Standardwerte für statistische Diagramme bereit, arbeitet direkt mit DataFrames und ist oft schneller für explorative Datenanalysen.
+
+Ein üblicher Arbeitsablauf besteht darin, zunächst Seaborn zu verwenden, um deine Daten schnell zu erkunden, und dann zu Matplotlib zu wechseln, wenn du die Details anpassen musst.
 
 ---
 
-## 🚀 Herausforderung
+## 🚀Herausforderung
 
-Erforschen Sie die verschiedenen Arten von Visualisierungen, die Matplotlib bietet. Welche Arten sind am besten für Regressionsprobleme geeignet?
+Erkunde die verschiedenen Visualisierungstypen, die Matplotlib und Seaborn anbieten. Welche Typen eignen sich am besten für Regressionsprobleme?
 
-## [Quiz nach der Lektion](https://ff-quizzes.netlify.app/en/ml/)
+## [Nachvorlesungs-Quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Rückblick & Selbststudium
 
-Schauen Sie sich die vielen Möglichkeiten zur Datenvisualisierung an. Erstellen Sie eine Liste der verschiedenen verfügbaren Bibliotheken und notieren Sie, welche für bestimmte Aufgaben am besten geeignet sind, z. B. 2D-Visualisierungen vs. 3D-Visualisierungen. Was entdecken Sie?
+Schau dir die vielen Möglichkeiten an, Daten zu visualisieren. Erstelle eine Liste der verfügbaren Bibliotheken und notiere, welche am besten für bestimmte Aufgaben geeignet sind, zum Beispiel 2D-Visualisierungen vs. 3D-Visualisierungen. Was entdeckst du?
 
 ## Aufgabe
 
@@ -213,5 +288,7 @@ Schauen Sie sich die vielen Möglichkeiten zur Datenvisualisierung an. Erstellen
 
 ---
 
-**Haftungsausschluss**:  
-Dieses Dokument wurde mithilfe des KI-Übersetzungsdienstes [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

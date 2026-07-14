@@ -24,8 +24,8 @@
     "language_code": "en"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "9a6b702d1437c0467e3c5c28d763dac2",
-    "translation_date": "2025-09-06T10:53:05+00:00",
+    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
+    "translation_date": "2026-07-13T23:20:31+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "en"
   },
@@ -54,8 +54,8 @@
     "language_code": "en"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
-    "translation_date": "2025-09-06T10:46:54+00:00",
+    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
+    "translation_date": "2026-07-13T23:17:54+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "en"
   },
@@ -72,8 +72,8 @@
     "language_code": "en"
   },
   "2-Regression/2-Data/README.md": {
-    "original_hash": "7c077988328ebfe33b24d07945f16eca",
-    "translation_date": "2025-09-06T10:47:29+00:00",
+    "original_hash": "a58b2c4d16c6b122643391745ac15af6",
+    "translation_date": "2026-07-13T23:18:34+00:00",
     "source_file": "2-Regression/2-Data/README.md",
     "language_code": "en"
   },
@@ -87,6 +87,12 @@
     "original_hash": "a39c15d63f3b2795ee2284a82b986b93",
     "translation_date": "2025-09-06T10:47:59+00:00",
     "source_file": "2-Regression/2-Data/solution/Julia/README.md",
+    "language_code": "en"
+  },
+  "2-Regression/2-Data/solution/notebook.ipynb": {
+    "original_hash": "96b95f8cf473481f2f371de8156f1571",
+    "translation_date": "2026-07-13T23:15:00+00:00",
+    "source_file": "2-Regression/2-Data/solution/notebook.ipynb",
     "language_code": "en"
   },
   "2-Regression/3-Linear/README.md": {
@@ -457,7 +463,7 @@
   },
   "8-Reinforcement/1-QLearning/README.md": {
     "original_hash": "911efd5e595089000cb3c16fce1beab8",
-    "translation_date": "2025-09-06T10:59:08+00:00",
+    "translation_date": "2026-07-13T23:19:14+00:00",
     "source_file": "8-Reinforcement/1-QLearning/README.md",
     "language_code": "en"
   },
@@ -481,7 +487,7 @@
   },
   "8-Reinforcement/2-Gym/README.md": {
     "original_hash": "107d5bb29da8a562e7ae72262d251a75",
-    "translation_date": "2025-09-06T10:59:45+00:00",
+    "translation_date": "2026-07-13T23:19:55+00:00",
     "source_file": "8-Reinforcement/2-Gym/README.md",
     "language_code": "en"
   },
@@ -601,7 +607,7 @@
   },
   "sketchnotes/LICENSE.md": {
     "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-    "translation_date": "2025-09-06T10:58:18+00:00",
+    "translation_date": "2026-07-13T23:17:21+00:00",
     "source_file": "sketchnotes/LICENSE.md",
     "language_code": "en"
   },

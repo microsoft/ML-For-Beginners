@@ -1,28 +1,28 @@
 # Building Machine Learning solutions with responsible AI
-
-![Summary of responsible AI in Machine Learning in a sketchnote](../../../../sketchnotes/ml-fairness.png)
+ 
+![Summary of responsible AI in Machine Learning in a sketchnote](../../../../translated_images/en/ml-fairness.ef296ebec6afc98a.webp)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
-
+ 
 ## Introduction
 
-In this curriculum, you will begin to explore how machine learning is shaping and influencing our daily lives. Today, systems and models play a role in decision-making processes such as healthcare diagnoses, loan approvals, or fraud detection. It is crucial that these models perform well and deliver trustworthy outcomes. Like any software application, AI systems can fail to meet expectations or produce undesirable results. This is why it is essential to understand and explain the behavior of AI models.
+In this curriculum, you will start to discover how machine learning can and is impacting our everyday lives. Even now, systems and models are involved in daily decision-making tasks, such as health care diagnoses, loan approvals or detecting fraud. So, it is important that these models work well to provide outcomes that are trustworthy. Just as any software application, AI systems are going to miss expectations or have an undesirable outcome. That is why it is essential to be about to understand and explain the behavior of an AI model. 
 
-Consider what might happen if the data used to build these models lacks representation of certain demographics, such as race, gender, political views, or religion, or if it disproportionately represents some groups. What if the model’s output favors one demographic over another? What are the consequences for the application? Furthermore, what happens when the model causes harm? Who is accountable for the behavior of AI systems? These are some of the questions we will explore in this curriculum.
+Imagine what can happen when the data you are using to build these models lacks certain demographics, such as race, gender, political view, religion, or disproportionally represents such demographics. What about when the model’s output is interpreted to favor some demographic? What is the consequence for the application? In addition, what happens when the model has an adverse outcome and is harmful to people? Who is accountable for the AI systems behavior? These are some questions we will explore in this curriculum. 
 
-In this lesson, you will:
+In this lesson, you will: 
 
-- Learn about the importance of fairness in machine learning and the harms related to unfairness.
-- Understand the practice of exploring outliers and unusual scenarios to ensure reliability and safety.
-- Recognize the need to design inclusive systems that empower everyone.
-- Explore the importance of protecting privacy and security for both data and individuals.
-- Understand the value of a transparent approach to explain AI model behavior.
-- Appreciate how accountability is key to building trust in AI systems.
+- Raise your awareness of the importance of fairness in machine learning and fairness-related harms.
+- Become familiar with the practice of exploring outliers and unusual scenarios to ensure reliability and safety
+- Gain understanding on the need to empower everyone by designing inclusive systems
+- Explore how vital it is to protect privacy and security of data and people
+- See the importance of having a glass box approach to explain the behavior of AI models
+- Be mindful of how accountability is essential to build trust in AI systems
 
 ## Prerequisite
 
-Before starting, please complete the "Responsible AI Principles" Learn Path and watch the video below on the topic:
+As a prerequisite, please take the "Responsible AI Principles" Learn Path and watch the video below on the topic:
 
 Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
@@ -32,124 +32,128 @@ Learn more about Responsible AI by following this [Learning Path](https://docs.m
 
 ## Fairness
 
-AI systems should treat everyone fairly and avoid disadvantaging similar groups of people. For example, when AI systems provide recommendations for medical treatment, loan applications, or employment, they should offer the same guidance to individuals with similar symptoms, financial situations, or qualifications. As humans, we all carry biases that influence our decisions and actions. These biases can also appear in the data used to train AI systems, sometimes unintentionally. It can be challenging to recognize when bias is being introduced into data.
+AI systems should treat everyone fairly and avoid affecting similar groups of people in different ways. For example, when AI systems provide guidance on medical treatment, loan applications, or employment, they should make the same recommendations to everyone with similar symptoms, financial circumstances, or professional qualifications. Each of us as humans carries around inherited biases that affect our decisions and actions. These biases can be evident in the data that we use to train AI systems. Such manipulation can sometimes happen unintentionally. It is often difficult to consciously know when you are introducing bias in data. 
 
-**“Unfairness”** refers to negative impacts, or “harms,” experienced by a group of people, such as those defined by race, gender, age, or disability. The main types of fairness-related harms include:
+**“Unfairness”** encompasses negative impacts, or “harms”, for a group of people, such as those defined in terms of race, gender, age, or disability status. The main fairness-related harms can be classified as: 
 
-- **Allocation**: Favoring one gender, ethnicity, or group over another.
-- **Quality of service**: Training data for a specific scenario while ignoring the complexity of real-world situations, leading to poor performance. For example, a soap dispenser that fails to detect people with dark skin. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Denigration**: Unfairly criticizing or labeling someone or something. For instance, an image labeling system that mislabeled dark-skinned individuals as gorillas.
-- **Over- or under-representation**: When a group is absent or underrepresented in a profession, and systems perpetuate this imbalance.
-- **Stereotyping**: Associating a group with predefined attributes. For example, a language translation system between English and Turkish may produce errors due to gender-based stereotypes.
+- **Allocation**, if a gender or ethnicity for example is favored over another.
+- **Quality of service**. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.  For instance, a hand soap dispenser that could not seem to be able to sense people with dark skin. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Denigration**. To unfairly criticize and label something or someone. For example, an image labeling technology infamously mislabeled images of dark-skinned people as gorillas.
+- **Over- or under- representation**. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
+- **Stereotyping**. Associating a given group with pre-assigned attributes.  For example, a language translation system betweem English and Turkish may have inaccuraces due to words with stereotypical associations to gender.
 
-![translation to Turkish](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
+![translation to Turkish](../../../../translated_images/en/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > translation to Turkish
 
-![translation back to English](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
+![translation back to English](../../../../translated_images/en/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > translation back to English
 
-When designing and testing AI systems, it is essential to ensure that AI is fair and does not make biased or discriminatory decisions—just as humans are prohibited from doing. Achieving fairness in AI and machine learning is a complex sociotechnical challenge.
+When designing and testing AI systems, we need to ensure that AI is fair and not programmed to make biased or discriminatory decisions, which human beings are also prohibited from making. Guaranteeing fairness in AI and machine learning remains a complex sociotechnical challenge. 
 
 ### Reliability and safety
 
-To build trust, AI systems must be reliable, safe, and consistent under both normal and unexpected conditions. It is important to understand how AI systems behave in various situations, especially outliers. When developing AI solutions, significant attention must be given to handling a wide range of scenarios the system might encounter. For example, a self-driving car must prioritize people’s safety. The AI powering the car must account for scenarios like nighttime driving, thunderstorms, blizzards, children running into the street, pets, road construction, and more. The reliability and safety of an AI system reflect the level of foresight and preparation by the data scientist or AI developer during design and testing.
+To build trust, AI systems need to be reliable, safe, and consistent under normal and unexpected conditions. It is important to know how AI systems will behavior in a variety of situations, especially when they are outliers. When building AI solutions, there needs to be a substantial amount of focus on how to handle a wide variety of circumstances that the AI solutions would encounter. For example, a self-driving car needs to put people's safety as a top priority. As a result, the AI powering the car need to consider all the possible scenarios that the car could come across such as night, thunderstorms or blizzards, kids running across the street, pets, road constructions etc. How well an AI system can handle a wild range of conditions reliably and safely reflects the level of anticipation the data scientist or AI developer considered during the design or testing of the system.  
 
-> [🎥 Click here for a video: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Click the here for a video: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
 ### Inclusiveness
 
-AI systems should be designed to engage and empower everyone. Data scientists and AI developers must identify and address potential barriers in the system that could unintentionally exclude people. For example, there are 1 billion people with disabilities worldwide. Advances in AI can help them access information and opportunities more easily in their daily lives. Addressing barriers creates opportunities to innovate and develop AI products that provide better experiences for everyone.
+AI systems should be designed to engage and empower everyone. When designing and implementing AI systems data scientists and AI developers identify and address potential barriers in the system that could unintentionally exclude people. For example, there are 1 billion people with disabilities around the world. With the advancement of AI, they can access a wide range of information and opportunities more easily in their daily lives. By addressing the barriers, it creates opportunities to innovate and develop AI products with better experiences that benefit everyone. 
 
-> [🎥 Click here for a video: inclusiveness in AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Click the here for a video: inclusiveness in AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
-### Security and privacy
+### Security and privacy 
 
-AI systems must be safe and respect people’s privacy. People are less likely to trust systems that put their privacy, information, or lives at risk. When training machine learning models, data is essential for producing accurate results. However, the origin and integrity of the data must be considered. For example, was the data user-submitted or publicly available? Additionally, AI systems must protect confidential information and resist attacks. As AI becomes more widespread, safeguarding privacy and securing personal and business information are increasingly critical and complex. Privacy and data security require special attention because AI systems rely on data to make accurate predictions and decisions.
+AI systems should be safe and respect people’s privacy. People have less trust in systems that put their privacy, information, or lives at risk. When training machine learning models, we rely on data to produce the best results. In doing so, the origin of the data and integrity must be considered. For example, was the data user submitted or publicly available? Next, while working with the data, it is crucial to develop AI systems that can protect confidential information and resist attacks. As AI becomes more prevalent, protecting privacy and securing important personal and business information is becoming more critical and complex. Privacy and data security issues require especially close attention for AI because access to data is essential for AI systems to make accurate and informed predictions and decisions about people. 
 
-> [🎥 Click here for a video: security in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Click the here for a video: security in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- The industry has made significant progress in privacy and security, driven by regulations like GDPR (General Data Protection Regulation).
-- However, AI systems face a tension between the need for personal data to improve effectiveness and the need to protect privacy.
-- Just as the internet brought new security challenges, AI has led to a rise in security issues.
-- At the same time, AI is being used to enhance security, such as in modern antivirus scanners powered by AI heuristics.
-- Data science processes must align with the latest privacy and security practices.
+- As an industry we have made significant advancements in Privacy & security, fueled significantly by regulations like the GDPR (General Data Protection Regulation). 
+- Yet with AI systems we must acknowledge the tension between the need for more personal data to make systems more personal and effective – and privacy. 
+- Just like with the birth of connected computers with the internet, we are also seeing a huge uptick in the number of security issues related to AI. 
+- At the same time, we have seen AI being used to improve security. As an example, most modern anti-virus scanners are driven by AI heuristics today. 
+- We need to ensure that our Data Science processes blend harmoniously with the latest privacy and security practices. 
+
 
 ### Transparency
+AI systems should be understandable. A crucial part of transparency is explaining the behavior of AI systems and their components. Improving the understanding of AI systems requires that stakeholders comprehend how and why they function so that they can identify potential performance issues, safety and privacy concerns, biases, exclusionary practices, or unintended outcomes. We also believe that those who use AI systems should be honest and forthcoming about when, why, and how they choose to deploy them. As well as the limitations of the systems they use. For example, if a bank uses an AI system to support its consumer lending decisions, it is important to examine the outcomes and understand which data influences the system’s recommendations. Governments are starting to regulate AI across industries, so data scientists and organizations must explain if an AI system meets regulatory requirements, especially when there is an undesirable outcome. 
 
-AI systems should be understandable. Transparency involves explaining the behavior of AI systems and their components. Stakeholders need to understand how and why AI systems function to identify potential performance issues, safety and privacy concerns, biases, exclusionary practices, or unintended outcomes. Those who use AI systems should also be transparent about when, why, and how they deploy them, as well as the systems’ limitations. For example, if a bank uses AI for lending decisions, it is important to examine the outcomes and understand which data influences the system’s recommendations. Governments are beginning to regulate AI across industries, so data scientists and organizations must ensure their systems meet regulatory requirements, especially in cases of undesirable outcomes.
+> [🎥 Click the here for a video: transparency in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-> [🎥 Click here for a video: transparency in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+- Because AI systems are so complex, it is hard to understand how they work and interpret the results. 
+- This lack of understanding affects the way these systems are managed, operationalized, and documented. 
+- This lack of understanding more importantly affects the decisions made using the results these systems produce. 
 
-- AI systems are complex, making it difficult to understand how they work and interpret their results.
-- This lack of understanding affects how systems are managed, operationalized, and documented.
-- More importantly, it impacts the decisions made based on the systems’ results.
+### Accountability 
+ 
+The people who design and deploy AI systems must be accountable for how their systems operate. The need for accountability is particularly crucial with sensitive use technologies like facial recognition. Recently, there has been a growing demand for facial recognition technology, especially from law enforcement organizations who see the potential of the technology in uses like finding missing children. However, these technologies could potentially be used by a government to put their citizens’ fundamental freedoms at risk by, for example, enabling continuous surveillance of specific individuals. Hence, data scientists and organizations need to be responsible for how their AI system impacts individuals or society.
 
-### Accountability
+[![Leading AI Researcher Warns of Mass Surveillance Through Facial Recognition](../../../../translated_images/en/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
 
-The people who design and deploy AI systems must be accountable for their operation. Accountability is especially critical for sensitive technologies like facial recognition. For example, law enforcement agencies may use facial recognition to find missing children, but the same technology could enable governments to infringe on citizens’ freedoms through continuous surveillance. Data scientists and organizations must take responsibility for how their AI systems impact individuals and society.
+> 🎥 Click the image above for a video: Warnings of Mass Surveillance Through Facial Recognition 
 
-[![Leading AI Researcher Warns of Mass Surveillance Through Facial Recognition](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
+Ultimately one of the biggest questions for our generation, as the first generation that is bringing AI to society, is how to ensure that computers will remain accountable to people and how to ensure that the people that design computers remain accountable to everyone else.
 
-> 🎥 Click the image above for a video: Warnings of Mass Surveillance Through Facial Recognition
+## Impact assessment 
 
-One of the most significant questions for our generation, as the first to bring AI to society, is how to ensure that computers remain accountable to people and that the people designing these systems remain accountable to everyone else.
+Before training a machine learning model, it is important to conduct an impact assessmet to understand the purpose of the AI system; what the intended use is; where it will be deployed; and who will be interacting with the system.  These are helpful for reviewer(s) or testers evaluating the system to know what factors to take into consideration when identifying potential risks and expected consequences.
 
-## Impact assessment
+The following are areas of focus when conducting an impact assessment:
 
-Before training a machine learning model, it is important to conduct an impact assessment to understand the purpose of the AI system, its intended use, where it will be deployed, and who will interact with it. This helps reviewers or testers identify potential risks and expected consequences.
+* **Adverse impact on individuals**.  Being aware of any restriction or requirements, unsupported use or any known limitations hindering the system's performance is vital to ensure that the system is not used in a way that could cause harm to individuals.
+* **Data requirements**.  Gaining an understanding of how and where the system will use data enables reviewers to explore any data requirements you would need to be mindful of (e.g., GDPR or HIPAA data regulations).  In addition, examine whether the source or quantity of data is substantial for training.
+* **Summary of impact**.  Gather a list of potential harms that could  arise from using the system.  Throughout the ML lifecycle, review if the issues identified are mitigated or addressed.
+* **Applicable goals** for each of the six core principles.  Assess if the goals from each of the principles are met and if there are any gaps.
 
-Key areas to focus on during an impact assessment include:
 
-- **Adverse impact on individuals**: Be aware of any restrictions, requirements, unsupported uses, or known limitations that could hinder the system’s performance and cause harm.
-- **Data requirements**: Understand how and where the system will use data to identify any regulatory requirements (e.g., GDPR or HIPAA) and ensure the data source and quantity are sufficient for training.
-- **Summary of impact**: Identify potential harms that could arise from using the system and review whether these issues are addressed throughout the ML lifecycle.
-- **Applicable goals** for each of the six core principles: Assess whether the goals of each principle are met and identify any gaps.
+## Debugging with responsible AI  
 
-## Debugging with responsible AI
+Similar to debugging a software application, debugging an AI system is a necessary process of identifying and resolving issues in the system.  There are many factors that would affect a model not performing as expected or responsibly.  Most traditional model performance metrics are quantitative aggregates of a model's performance, which are not sufficient to analyze how a model violates the responsible AI principles. Furthermore, a machine learning model is a black box that makes it difficult to understand what drives its outcome or provide explanation when it makes a mistake.  Later in this course, we will learn how to use the Responsible AI dashboard to help debug AI systems.  The dashboard provides a holistic tool for data scientists and AI developers to perform:
 
-Debugging an AI system is similar to debugging a software application—it involves identifying and resolving issues. Many factors can cause a model to perform unexpectedly or irresponsibly. Traditional model performance metrics, which are often quantitative aggregates, are insufficient for analyzing how a model violates responsible AI principles. Additionally, machine learning models are often black boxes, making it difficult to understand their outcomes or explain their mistakes. Later in this course, we will learn how to use the Responsible AI dashboard to debug AI systems. This dashboard provides a comprehensive tool for data scientists and AI developers to:
+* **Error analysis**.  To identify the error distribution of the model that can affect the system's fairness or reliability.
+* **Model overview**. To discover where there are disparities in the model's performance across data cohorts.
+* **Data analysis**.  To understand the data distribution and identify any potential bias in the data that could lead to fairness, inclusiveness, and reliability issues.
+* **Model interpretability**. To understand what affects or influences the model's predictions. This helps in explaining the model's behavior, which is important for transparency and accountability.
 
-- **Perform error analysis**: Identify error distributions that affect fairness or reliability.
-- **Review the model overview**: Discover disparities in the model’s performance across data cohorts.
-- **Analyze data**: Understand data distribution and identify potential biases that could impact fairness, inclusiveness, and reliability.
-- **Interpret the model**: Understand what influences the model’s predictions, which is essential for transparency and accountability.
 
-## 🚀 Challenge
+## 🚀 Challenge 
+ 
+To prevent harms from being introduced in the first place, we should: 
 
-To prevent harms from being introduced in the first place, we should:
+- have a diversity of backgrounds and perspectives among the people working on systems 
+- invest in datasets that reflect the diversity of our society 
+- develop better methods throughout the machine learning lifecycle for detecting and correcting responible AI when it occurs 
 
-- Ensure diversity in the backgrounds and perspectives of the people working on AI systems.
-- Invest in datasets that reflect the diversity of society.
-- Develop better methods throughout the machine learning lifecycle to detect and address responsible AI issues.
-
-Think about real-life scenarios where a model’s lack of trustworthiness is evident during development or use. What else should we consider?
+Think about real-life scenarios where a model's untrustworthiness is evident in model-building and usage. What else should we consider? 
 
 ## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Review & Self Study
+## Review & Self Study 
+ 
 
-In this lesson, you have learned the basics of fairness and unfairness in machine learning.
-Watch this workshop to explore the topics in more detail:
+In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  
+ 
+Watch this workshop to dive deeper into the topics: 
 
-- In pursuit of responsible AI: Applying principles in practice by Besmira Nushi, Mehrnoosh Sameki, and Amit Sharma
+- In pursuit of responsible AI: Bringing principles to practice by Besmira Nushi, Mehrnoosh Sameki and Amit Sharma
 
 [![Responsible AI Toolbox: An open-source framework for building responsible AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
 
-> 🎥 Click the image above to watch the video: RAI Toolbox: An open-source framework for building responsible AI by Besmira Nushi, Mehrnoosh Sameki, and Amit Sharma
+> 🎥 Click the image above for a video: RAI Toolbox: An open-source framework for building responsible AI by Besmira Nushi, Mehrnoosh Sameki, and Amit Sharma
 
-Additionally, check out:
+Also, read: 
 
-- Microsoft’s RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft’s RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-- Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+- Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
-RAI Toolbox:
+RAI Toolbox: 
 
 - [Responsible AI Toolbox GitHub repository](https://github.com/microsoft/responsible-ai-toolbox)
 
-Learn about Azure Machine Learning's tools for ensuring fairness:
+Read about Azure Machine Learning's tools to ensure fairness:
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## Assignment
 
@@ -157,5 +161,7 @@ Learn about Azure Machine Learning's tools for ensuring fairness:
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

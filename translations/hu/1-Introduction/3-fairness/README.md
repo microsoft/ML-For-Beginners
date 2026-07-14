@@ -1,134 +1,167 @@
-# Gépi tanulási megoldások építése felelős AI-val
-
-![A felelős AI összefoglalása a gépi tanulásban egy sketchnote-ban](../../../../sketchnotes/ml-fairness.png)
-> Sketchnote készítette: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+# Felelős MI alapú gépi tanulási megoldások építése
+ 
+![Összefoglaló a felelős MI-ről a gépi tanulásban egy vázlatrajzon](../../../../translated_images/hu/ml-fairness.ef296ebec6afc98a.webp)
+> Vázlatrajz: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Előadás előtti kvíz](https://ff-quizzes.netlify.app/en/ml/)
-
+ 
 ## Bevezetés
 
-Ebben a tananyagban elkezdjük felfedezni, hogyan hat a gépi tanulás a mindennapi életünkre. Már most is rendszerek és modellek vesznek részt napi döntéshozatali feladatokban, például egészségügyi diagnózisokban, hitelkérelmek jóváhagyásában vagy csalások észlelésében. Ezért fontos, hogy ezek a modellek megbízható eredményeket nyújtsanak. Ahogy bármely szoftveralkalmazás, az AI rendszerek is elmaradhatnak az elvárásoktól, vagy nemkívánatos eredményt hozhatnak. Ezért elengedhetetlen, hogy megértsük és magyarázni tudjuk egy AI modell viselkedését.
+Ebben a tananyagban elkezded felfedezni, hogyan befolyásolja a gépi tanulás a mindennapi életünket. Már most is rendszerek és modellek vesznek részt napi döntéshozatali folyamatokban, például egészségügyi diagnózisokban, kölcsönkérelmek elbírálásában vagy csalás felismerésében. Ezért fontos, hogy ezek a modellek jól működjenek, és megbízható eredményeket nyújtsanak. Ahogyan bármely szoftveralkalmazás, az MI rendszerek is elvárásokat nem teljesíthetnek vagy nem kívánt kimenetet produkálhatnak. Ezért elengedhetetlen megérteni és megmagyarázni egy MI modell viselkedését. 
 
-Képzeljük el, mi történik, ha az adatok, amelyeket ezeknek a modelleknek az építéséhez használunk, bizonyos demográfiai csoportokat nem tartalmaznak, például faji, nemi, politikai nézetek, vallás, vagy aránytalanul képviselik ezeket. Mi történik, ha a modell kimenete egyes demográfiai csoportokat előnyben részesít? Mi a következmény az alkalmazásra nézve? Továbbá, mi történik, ha a modell káros hatást gyakorol, és árt az embereknek? Ki felelős az AI rendszerek viselkedéséért? Ezeket a kérdéseket fogjuk megvizsgálni ebben a tananyagban.
+Képzeld el, mi történhet, ha az általad használt adatok egyes demográfiai csoportokat, például fajt, nemeket, politikai nézeteket, vallást hiányosan vagy aránytalanul képviselnek a modellek építése során. Mi történik, ha a modell kimenetét úgy értelmezik, hogy egyes demográfiai csoportok javára torzít? Mi ennek a következménye az alkalmazásra nézve? Ráadásul mi történik, ha a modell káros végkimenetelt produkál és árt az embereknek? Ki felel az MI rendszer viselkedéséért? Ezek néhány kérdés, amelyeket ebben a tananyagban fogunk megvizsgálni. 
 
-Ebben a leckében:
+Ebben az órában: 
 
-- Felhívjuk a figyelmet a gépi tanulásban való méltányosság fontosságára és a méltányossággal kapcsolatos károkra.
-- Megismerkedünk azzal a gyakorlattal, hogy a szélsőséges eseteket és szokatlan forgatókönyveket vizsgáljuk a megbízhatóság és biztonság érdekében.
-- Megértjük, miért fontos mindenkit felhatalmazni inkluzív rendszerek tervezésével.
-- Felfedezzük, milyen létfontosságú a személyes adatok és az emberek biztonságának védelme.
-- Megértjük, miért fontos az "üvegdoboz" megközelítés az AI modellek viselkedésének magyarázatában.
-- Tudatosítjuk, hogy az elszámoltathatóság elengedhetetlen az AI rendszerekbe vetett bizalom kiépítéséhez.
+- Növelni fogod az igazságosság fontosságával kapcsolatos tudatosságodat a gépi tanulásban, valamint az igazságossággal kapcsolatos ártalmak terén.
+- Megismerkedsz a szokatlan esetek és kiugró értékek feltárásának gyakorlatával a megbízhatóság és biztonság érdekében.
+- Megérted, hogy miért fontos mindenkit képessé tenni a befogadó rendszerek megtervezésével.
+- Feltárjuk, milyen létfontosságú az adatok és emberek magánéletének és biztonságának védelme.
+- Meglátod, hogy miért fontos átlátható („üveg doboz”) megközelítés az MI modellek viselkedésének magyarázatához.
+- Tudatos leszel arról, hogy a felelősségvállalás mennyire elengedhetetlen a bizalom megteremtéséhez az MI rendszerekben.
 
 ## Előfeltétel
 
-Előfeltételként kérjük, végezze el a "Felelős AI alapelvei" tanulási útvonalat, és nézze meg az alábbi videót a témáról:
+Előfeltételként kérjük, vedd fel a "Felelős MI elvei" tanulási útvonalat, és nézd meg az alábbi videót a témában:
 
-Tudjon meg többet a felelős AI-ról ezen a [tanulási útvonalon](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Tudj meg többet a Felelős MI-ről ezen a [Tanulási Útvonalon](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
-[![Microsoft megközelítése a felelős AI-hoz](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft megközelítése a felelős AI-hoz")
+[![Microsoft megközelítése a Felelős MI-hez](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft megközelítése a Felelős MI-hez")
 
-> 🎥 Kattintson a fenti képre a videóért: Microsoft megközelítése a felelős AI-hoz
+> 🎥 Kattints a képre a videóért: Microsoft megközelítése a Felelős MI-hez
 
-## Méltányosság
+## Igazságosság
 
-Az AI rendszereknek mindenkit méltányosan kell kezelniük, és el kell kerülniük, hogy hasonló csoportokat különböző módon érintsenek. Például, amikor az AI rendszerek orvosi kezelési tanácsokat, hitelkérelmeket vagy foglalkoztatási ajánlásokat nyújtanak, ugyanazokat az ajánlásokat kell tenniük mindenki számára, akik hasonló tünetekkel, pénzügyi helyzettel vagy szakmai képesítéssel rendelkeznek. Mindannyian örökölt előítéleteket hordozunk magunkban, amelyek befolyásolják döntéseinket és cselekedeteinket. Ezek az előítéletek megjelenhetnek az adatokban, amelyeket az AI rendszerek képzéséhez használunk. Az ilyen manipuláció néha akaratlanul történik. Gyakran nehéz tudatosan felismerni, mikor vezetünk be előítéletet az adatokba.
+Az MI rendszereknek mindenkit igazságosan kell kezelniük, és kerülnie kell, hogy hasonló csoportokat eltérően érintsenek. Például amikor MI rendszerek orvosi kezelésben, kölcsönkérelmek elbírálásában vagy foglalkoztatásban adnak útmutatást, akkor hasonló tünetekkel, anyagi háttérrel vagy szakmai képesítéssel rendelkező embereknek ugyanazokat a javaslatokat kell adniuk. Mindannyiunkban öröklött elfogultságok vannak, amelyek döntéseinket és cselekedeteinket befolyásolják. Ezek az elfogultságok a gépi tanulási modellek képzéséhez használt adatokban is megjelenhetnek. Az ilyen torzítás néha akaratlanul is előfordulhat. Sokszor tudatosan nehéz megállapítani, mikor vezetünk be elfogultságot az adatba. 
 
-**„Méltánytalanság”** olyan negatív hatásokat vagy „károkat” foglal magában, amelyek egy csoportot érintenek, például faji, nemi, életkori vagy fogyatékossági státusz alapján. A méltányossággal kapcsolatos főbb károk a következők:
+**„Igazságtalanság”** negatív hatásokat vagy „károkat” jelent egy adott csoport számára, például faji, nemi, életkori vagy fogyatékossági státusz alapján definiált embereket. Az igazságossággal kapcsolatos legfőbb károk az alábbi kategóriákba sorolhatók: 
 
-- **Elosztás**, ha például egy nem vagy etnikum előnyben részesül egy másikkal szemben.
-- **Szolgáltatás minősége**. Ha az adatokat egy konkrét forgatókönyvre képezzük, de a valóság sokkal összetettebb, az gyenge teljesítményű szolgáltatáshoz vezet. Például egy kézmosó adagoló, amely nem érzékeli a sötét bőrű embereket. [Referencia](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Becsmérlés**. Valami vagy valaki igazságtalan kritizálása és címkézése. Például egy képfelismerő technológia hírhedten gorillának címkézte a sötét bőrű emberek képeit.
-- **Túl- vagy alulreprezentáció**. Az a gondolat, hogy egy bizonyos csoportot nem látunk egy bizonyos szakmában, és minden szolgáltatás vagy funkció, amely ezt tovább erősíti, hozzájárul a kárhoz.
-- **Sztereotipizálás**. Egy adott csoportot előre meghatározott attribútumokkal társítani. Például egy angol és török közötti nyelvi fordítórendszer pontatlanságokat mutathat a nemekhez kapcsolódó sztereotip asszociációk miatt.
+- **Elosztás**, ha például egy nem vagy etnikum előnyben részesül a másikkal szemben.
+- **Szolgáltatás minősége**. Ha egy specifikus szcenárióra tanítasz adatot, de a valóság sokkal összetettebb, az gyenge teljesítményű szolgáltatáshoz vezet. Például egy kézmosószappan adagoló látszólag nem érzékeli a sötét bőrű embereket. [Forrás](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Megvetés**. Valami vagy valaki igazságtalan kritikája és bántó címkézése. Például egy képosztályozó technológia hírhedten sötét bőrű emberek képeit majmokként címkézte.
+- **Túl- vagy alulreprezentálás**. Az az elképzelés, hogy egy adott csoport nem látható egy bizonyos szakmában, és minden olyan szolgáltatás vagy funkció, amely ezt fenntartja, káros hatással van.
+- **Sztenderdizálás**. Egy adott csoportot előre meghatározott tulajdonságokkal társítanak. Például egy angol és török nyelv közötti fordító rendszer pontatlanságokkal küzdhet a nemi sztereotípiák miatt.
 
-![Fordítás törökre](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
-> Fordítás törökre
+![fordítás törökre](../../../../translated_images/hu/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
+> fordítás törökre
 
-![Fordítás vissza angolra](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
-> Fordítás vissza angolra
+![fordítás vissza angolra](../../../../translated_images/hu/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
+> fordítás vissza angolra
 
-Az AI rendszerek tervezése és tesztelése során biztosítanunk kell, hogy az AI méltányos legyen, és ne legyen programozva előítéletes vagy diszkriminatív döntések meghozatalára, amelyeket az emberek számára is tiltanak. Az AI és gépi tanulás méltányosságának garantálása továbbra is összetett társadalmi-technikai kihívás.
+MI rendszerek tervezése és tesztelése során biztosítani kell, hogy az MI igazságos legyen, és ne programozzanak be elfogult vagy diszkriminatív döntéseket, amit az embereknek is tilos tenni. Az igazságosság garantálása MI-ben és gépi tanulásban összetett szociotechnikai kihívás marad. 
 
 ### Megbízhatóság és biztonság
 
-Az AI rendszereknek megbízhatónak, biztonságosnak és következetesnek kell lenniük normál és váratlan körülmények között. Fontos tudni, hogyan viselkednek az AI rendszerek különböző helyzetekben, különösen szélsőséges esetekben. Az AI megoldások építésekor jelentős figyelmet kell fordítani arra, hogyan kezeljük az AI megoldások által tapasztalt különféle körülményeket. Például egy önvezető autónak az emberek biztonságát kell elsődleges prioritásként kezelnie. Ennek eredményeként az autót működtető AI-nak figyelembe kell vennie az összes lehetséges forgatókönyvet, amelyet az autó találhat, például éjszaka, viharok vagy hóviharok, gyerekek, akik átszaladnak az úton, háziállatok, útépítések stb. Az AI rendszer megbízható és biztonságos kezelése széles körülmények között tükrözi az adatkutató vagy AI fejlesztő által a rendszer tervezése vagy tesztelése során figyelembe vett előrelátás szintjét.
+A bizalom kiépítéséhez az MI rendszereknek megbízhatónak, biztonságosnak és következetesnek kell lenniük normál és váratlan körülmények között egyaránt. Fontos tudni, hogyan viselkednek az MI rendszerek különféle helyzetekben, különösen, ha kiugró esetekről van szó. MI megoldások építésekor nagy figyelmet kell fordítani arra, hogyan kezeljük azokat a sokféle helyzetet, amivel az MI találkozhat. Például az önvezető autónak mindenekelőtt az emberek biztonságát kell előtérbe helyeznie. Ezért az autót működtető MI-nek minden lehetséges helyzetet figyelembe kell vennie, például éjszaka, viharban vagy hóviharban, gyerekek átfutása az úton, háziállatok, útlezárások stb. Az, hogy egy MI rendszer mennyire képes megbízhatóan és biztonságosan kezelni szélsőséges helyzeteket, azt tükrözi, mennyire előrelátó volt az adatkutató vagy MI fejlesztő a rendszer tervezése vagy tesztelése során.  
 
-> [🎥 Kattintson ide a videóért: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Kattints ide a videóért: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
-### Inkluzivitás
+### Befogadás
 
-Az AI rendszereket úgy kell megtervezni, hogy mindenkit bevonjanak és felhatalmazzanak. Az AI rendszerek tervezése és megvalósítása során az adatkutatók és AI fejlesztők azonosítják és kezelik a rendszerben lévő potenciális akadályokat, amelyek akaratlanul kizárhatnak embereket. Például világszerte 1 milliárd ember él fogyatékossággal. Az AI fejlődésével könnyebben hozzáférhetnek információkhoz és lehetőségekhez a mindennapi életükben. Az akadályok kezelésével lehetőséget teremtünk az innovációra és az AI termékek fejlesztésére, amelyek jobb élményeket nyújtanak mindenki számára.
+Az MI rendszereket úgy kell tervezni, hogy mindenkit bevonjanak és képessé tegyenek. MI rendszerek tervezése és megvalósítása során az adatkutatók és MI fejlesztők azonosítják és kezelik az esetleges akadályokat, amelyek véletlenül kizárhatnak embereket. Például a világon 1 milliárd fogyatékkal élő ember él. Az MI előrehaladtával ezek az emberek könnyebben férhetnek hozzá széles körű információkhoz és lehetőségekhez mindennapi életük során. Az akadályok kezelése lehetőséget teremt innovációra és olyan MI termékek fejlesztésére, amelyek jobb élményt nyújtanak mindenki számára. 
 
-> [🎥 Kattintson ide a videóért: inkluzivitás az AI-ban](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Kattints ide a videóért: befogadás az MI-ben](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
-### Biztonság és adatvédelem
+### Biztonság és adatvédelem 
 
-Az AI rendszereknek biztonságosnak kell lenniük, és tiszteletben kell tartaniuk az emberek magánéletét. Az emberek kevésbé bíznak azokban a rendszerekben, amelyek veszélyeztetik a magánéletüket, információikat vagy életüket. A gépi tanulási modellek képzésekor az adatokra támaszkodunk a legjobb eredmények elérése érdekében. Ennek során figyelembe kell venni az adatok eredetét és integritását. Például, az adatok felhasználói beküldésűek vagy nyilvánosan elérhetők voltak? Továbbá, az adatokkal való munka során elengedhetetlen olyan AI rendszerek fejlesztése, amelyek képesek megvédeni a bizalmas információkat és ellenállni a támadásoknak. Ahogy az AI egyre elterjedtebbé válik, a magánélet védelme és a fontos személyes és üzleti információk biztonságának megőrzése egyre kritikusabbá és összetettebbé válik. Az adatvédelem és adatbiztonság kérdései különösen nagy figyelmet igényelnek az AI esetében, mivel az adatokhoz való hozzáférés elengedhetetlen az AI rendszerek számára, hogy pontos és megalapozott előrejelzéseket és döntéseket hozzanak az emberekről.
+Az MI rendszereknek biztonságosnak kell lenniük, és tiszteletben kell tartaniuk az emberek magánéletét. Az emberek kevésbé bíznak meg olyan rendszerekben, amelyek veszélyeztetik magánéletüket, adataikat vagy életüket. Gépi tanulási modellek képzésekor jó eredmények eléréséhez adatokra támaszkodunk. Ennek során figyelembe kell venni az adatok származását és sértetlenségét. Például az adatokat a felhasználó szolgáltatta vagy nyilvánosan hozzáférhetőek? Ezután az adatfeldolgozás során létfontosságú olyan MI rendszereket fejleszteni, amelyek képesek védelmezni az érzékeny információkat és ellenállni a támadásoknak. Mivel az MI egyre elterjedtebb, a magánélet védelme és fontos személyes vagy üzleti információk védelme egyre kritikusabbá és összetettebbé válik. A magánélet és adatbiztonság különösen nagy figyelmet igényel az MI-nél, mert az adatokhoz való hozzáférés elengedhetetlen az MI rendszerek számára, hogy pontos és megalapozott előrejelzéseket és döntéseket hozzanak az emberekről. 
 
-> [🎥 Kattintson ide a videóért: biztonság az AI-ban](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Kattints ide a videóért: biztonság az MI-ben](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Az iparág jelentős előrelépéseket tett az adatvédelem és biztonság terén, amelyet jelentősen ösztönöztek olyan szabályozások, mint a GDPR (Általános Adatvédelmi Rendelet).
-- Az AI rendszerekkel azonban el kell ismernünk a feszültséget a személyes adatok szükségessége és a magánélet védelme között.
-- Ahogy az internethez kapcsolt számítógépek születésével, az AI-val kapcsolatos biztonsági problémák száma is jelentősen megnőtt.
-- Ugyanakkor az AI-t a biztonság javítására is használjuk. Például a legtöbb modern víruskereső szkennert AI-alapú heurisztikák vezérlik.
-- Biztosítanunk kell, hogy az adatkutatási folyamataink harmonikusan illeszkedjenek a legújabb adatvédelmi és biztonsági gyakorlatokhoz.
+- Iparágként jelentős előrelépéseket értünk el az adatvédelem és biztonság terén, amit nagymértékben a GDPR (Általános Adatvédelmi Rendelet) szabályozásai ösztönöznek. 
+- Azonban az MI rendszereknél el kell ismernünk a feszültséget a személyes adatok növekvő szükséglete és a magánélet védelme között.
+- Ahogy az internet megjelenésekor a hálózatba kötött számítógépek révén, úgy napjainkban is nagymértékben megnőtt az MI-hez kapcsolódó biztonsági problémák száma. 
+- Ugyanakkor azt is láttuk, hogy az MI-t a biztonság javítására is használják. Például a legtöbb modern vírusirtó szoftvert ma MI heurisztikák vezérlik. 
+- Biztosítani kell, hogy az adatkutatási folyamataink harmonikusan illeszkedjenek a legújabb adatvédelmi és biztonsági gyakorlatokhoz. 
+
 
 ### Átláthatóság
+Az MI rendszereknek érthetőknek kell lenniük. Az átláthatóság fontos része az MI rendszerek és azok elemeinek viselkedésének magyarázata. Az MI rendszerek jobb megértése megköveteli, hogy az érintettek megértsék, hogyan és miért működnek, hogy felismerjék a potenciális teljesítményproblémákat, biztonsági és adatvédelmi aggályokat, elfogultságokat, kizáró gyakorlatokat vagy nem kívánt következményeket. Úgy véljük, hogy azoknak, akik MI rendszereket használnak, őszintén és nyíltan kell beszámolniuk arról, mikor, miért és hogyan döntöttek a bevetésükről, valamint a rendszerek korlátairól is. Például, ha egy bank egy MI rendszert használ fogyasztói hitel döntések támogatására, fontos megvizsgálni az eredményeket és megérteni, mely adatok befolyásolják a rendszer javaslatait. A kormányok elkezdték szabályozni az MI-t az iparágakban, ezért az adatkutatóknak és szervezeteknek meg kell tudniuk magyarázni, hogy egy MI rendszer megfelel-e a szabályozási előírásoknak, különösen, ha nem kívánt eredmény született. 
 
-Az AI rendszereknek érthetőnek kell lenniük. Az átláthatóság kulcsfontosságú része az AI rendszerek és azok összetevőinek viselkedésének magyarázata. Az AI rendszerek megértésének javítása megköveteli, hogy az érintettek megértsék, hogyan és miért működnek, hogy azonosítani tudják a lehetséges teljesítményproblémákat, biztonsági és adatvédelmi aggályokat, előítéleteket, kizáró gyakorlatokat vagy nem szándékos eredményeket. Úgy gondoljuk, hogy azoknak, akik AI rendszereket használnak, őszintének és nyíltnak kell lenniük arról, hogy mikor, miért és hogyan döntenek azok alkalmazása mellett. Valamint a rendszerek korlátairól. Például, ha egy bank AI rendszert használ a fogyasztói hiteldöntések támogatására, fontos megvizsgálni az eredményeket, és megérteni, hogy mely adatok befolyásolják a rendszer ajánlásait. A kormányok elkezdték szabályozni az AI-t az iparágakban, így az adatkutatóknak és szervezeteknek magyarázatot kell adniuk arra, hogy az AI rendszer megfelel-e a szabályozási követelményeknek, különösen, ha nem kívánatos eredmény születik.
+> [🎥 Kattints ide a videóért: átláthatóság az MI-ben](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-> [🎥 Kattintson ide a videóért: átláthatóság az AI-ban](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+- Mivel az MI rendszerek annyira összetettek, nehéz megérteni működésüket és értelmezni az eredményeket. 
+- Ez a megértés hiánya befolyásolja, hogy hogyan kezelik, működtetik és dokumentálják ezeket a rendszereket. 
+- Ennél is fontosabb, hogy ez a megértés hiánya befolyásolja az ezeket a rendszereket használó döntéseket.
 
-- Mivel az AI rendszerek nagyon összetettek, nehéz megérteni, hogyan működnek és értelmezni az eredményeket.
-- Ez a megértés hiánya befolyásolja, hogyan kezelik, üzemeltetik és dokumentálják ezeket a rendszereket.
-- Ez a megértés hiánya még fontosabb módon befolyásolja azokat a döntéseket, amelyeket ezeknek a rendszereknek az eredményei alapján hoznak.
+### Felelősségre vonhatóság 
+ 
+Azoknak, akik MI rendszereket terveznek és alkalmaznak, felelősséget kell vállalniuk a rendszerek működéséért. A felelősség különösen fontos érzékeny technológiák, mint az arcfelismerés esetén. Az utóbbi időben nőtt az érdeklődés az arcfelismerő technológia iránt, különösen a rendvédelmi szervezetek részéről, akik ezt a technológiát olyan célokra látják hasznosnak, mint eltűnt gyermekek felkutatása. Ugyanakkor ezek a technológiák potenciálisan felhasználhatók a kormányok által az állampolgárok alapvető szabadságainak veszélyeztetésére, például az adott személyek folyamatos megfigyelésének engedélyezésére. Ezért az adatkutatóknak és szervezeteknek felelősséget kell vállalniuk az MI rendszerük hatásaiért az egyedekre vagy a társadalomra nézve.
 
-### Elszámoltathatóság
+[![Vezető MI kutató figyelmeztet az arcfelismerés által okozott tömeges megfigyelésre](../../../../translated_images/hu/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft megközelítése a Felelős MI-hez")
 
-Azoknak, akik AI rendszereket terveznek és telepítenek, felelősséget kell vállalniuk rendszereik működéséért. Az elszámoltathatóság szükségessége különösen fontos az érzékeny technológiák, például az arcfelismerés esetében. Az utóbbi időben egyre nagyobb igény mutatkozik az arcfelismerő technológia iránt, különösen a bűnüldöző szervezetek részéről, akik látják a technológia lehetőségeit például eltűnt gyermekek megtalálásában. Azonban ezek a technológiák potenciálisan veszélyeztethetik az állampolgárok alapvető szabadságjogait, például az egyének folyamatos megfigyelésének lehetővé tételével. Ezért az adatkutatóknak és szervezeteknek felelősséget kell vállalniuk AI rendszerük egyénekre vagy társadalomra gyakorolt hatásáért.
+> 🎥 Kattints a képre a videóért: Figyelmeztetések az arcfelismerés által okozott tömeges megfigyelésre
 
-[![Vezető AI kutató figyelmeztet a tömeges megfigyelés veszélyeire arcfelismeréssel](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft megközelítése a felelős AI-hoz")
+Végső soron egyik legnagyobb kérdés a mi generációnknak, az elsőnek, amely az MI-t bevezeti a társadalomba, az, hogyan biztosítsuk, hogy a számítógépek felelősséggel tartozzanak az emberek felé, és hogyan biztosítsuk, hogy a számítógépeket tervező emberek mindenkihez felelősséggel tartozzanak.
 
-> 🎥 Kattintson a fenti képre a videóért: Figyelmeztetés a tömeges megfigyelés veszélyeire arcfelismeréssel
+## Hatásértékelés
 
-Végső soron az egyik legnagyobb kérdés generációnk számára, mint az első generáció, amely AI-t hoz a társadalomba, az, hogyan biztosíthatjuk, hogy a számítógépek továbbra is elszámoltathatók maradjanak az emberek számára, és hogyan biztosíthatjuk, hogy a számítógépeket tervező emberek elszámoltathatók maradjanak mindenki más számára.
+Mielőtt gépi tanulási modellt képeznénk, fontos hatásértékelést végezni az MI rendszer céljának megértéséhez; annak tervezett használatához; hogy hol fogják alkalmazni; és kik fognak interakcióba lépni a rendszerrel. Ezek a jelöltek vagy tesztelők számára hasznosak a rendszer értékelésekor, hogy tudják, milyen tényezőket vegyenek figyelembe a potenciális kockázatok és várható következmények azonosításakor.
 
-## Hatásvizsgálat
+Az alábbi területekre kell fókuszálni a hatásértékelés során:
 
-Mielőtt gépi tanulási modellt képeznénk, fontos hatásvizsgálatot végezni, hogy megértsük az AI rendszer célját; mi a tervezett felhasználás; hol lesz telepítve; és kik fognak interakcióba lépni a rendszerrel. Ezek segítenek a rendszer értékelését végzőknek vagy tesztelőknek, hogy tudják, milyen tényezőket kell figyelembe venniük a lehetséges kockázatok és várható következmények azonosításakor.
+* **Káros hatás az egyénekre**. Fontos tisztában lenni minden korlátozással vagy előírással, a támogatott használaton kívüli alkalmazással vagy ismert korlátozásokkal, amelyek akadályozhatják a rendszer működését annak érdekében, hogy ne használják olyan módon, amely ártalmat okozhat az egyéneknek.
+* **Adatigények**. Az, hogy megértsük, hogyan és hol használja a rendszer az adatokat, lehetővé teszi a felülvizsgálók számára, hogy felmérjék az esetleges adatvédelmi szabályozásokat, például GDPR vagy HIPAA előírásokat. Emellett vizsgálják meg, van-e elegendő adatforrás és mennyiség a képzéshez.
+* **Hatás összefoglalása**. Gyűjtsünk listát a potenciális károkról, amelyek a rendszer használatából eredhetnek. A gépi tanulás életciklusa során vizsgáljuk felül, hogy a felmerült problémákat kezelik vagy mérséklik-e.
+* **Alkalmazható célok** a hat fő elv mindegyikére. Értékeljük, hogy az egyes elvek céljai teljesülnek-e, és hogy vannak-e hiányosságok.
 
-A hatásvizsgálat során az alábbi területekre kell összpontosítani:
 
-* **Kedvezőtlen hatás az egyénekre**. Fontos tudatában lenni minden korlátozásnak vagy követelménynek, nem támogatott használatnak vagy ismert korlátozásnak, amelyek akadályozhatják a rendszer teljesítményét, hogy biztosítsuk, hogy a rendszer ne okozzon kárt az egyéneknek.
-* **Adatigények**. Az adatok felhasználásának módj
-Nézd meg ezt a workshopot, hogy mélyebben elmerülj a témákban:
+## Hibakeresés felelős MI-vel  
 
-- A felelős mesterséges intelligencia nyomában: Elvek gyakorlati alkalmazása Besmira Nushi, Mehrnoosh Sameki és Amit Sharma előadásában
+Hasonlóan a szoftveralkalmazások hibakereséséhez, az MI rendszer hibakeresése is szükséges a rendszerben lévő problémák azonosításához és megoldásához. Számos tényező befolyásolhatja, hogy egy modell nem teljesít elvárások szerint vagy nem felel meg a felelős MI elveknek. A hagyományos modell teljesítménymutatók többsége egy modell teljesítményének mennyiségi összegzése, amely nem elegendő annak elemzésére, hogyan sérti a modell a felelős MI elveit. Továbbá, a gépi tanulási modell egy fekete doboz, amely megnehezíti megérteni, mi befolyásolja a kimenetét, vagy magyarázatot adni, ha hibázik. A tanfolyam későbbi részében megmutatjuk, hogyan használható a Felelős MI műszerfal az MI rendszerek hibakeresésére. A műszerfal átfogó eszközt nyújt adatkutatóknak és MI fejlesztőknek az alábbiak elvégzéséhez:
 
-[![Responsible AI Toolbox: Nyílt forráskódú keretrendszer a felelős mesterséges intelligencia építéséhez](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Nyílt forráskódú keretrendszer a felelős mesterséges intelligencia építéséhez")
+* **Hibaanalízis**. A modell hibák eloszlásának azonosítása, ami befolyásolhatja a rendszer igazságosságát vagy megbízhatóságát.
+* **Modelláttekintés**. Az eltérések felfedezése a modell teljesítményében az adatcsoportok között.
+* **Adatok elemzése**. Az adateloszlás megértése és bármilyen potenciális elfogultság azonosítása az adatokban, amely igazságossági, befogadási és megbízhatósági problémákat okozhat.
+* **Modell értelmezhetősége**. Megérteni, mi befolyásolja a modell előrejelzéseit, ami fontos az átláthatóság és felelősség szempontjából.
 
-> 🎥 Kattints a fenti képre a videóért: RAI Toolbox: Nyílt forráskódú keretrendszer a felelős mesterséges intelligencia építéséhez Besmira Nushi, Mehrnoosh Sameki és Amit Sharma előadásában
 
-Olvasd el továbbá:
+## 🚀 Kihívás 
+ 
+Az ártalmak kialakulásának megakadályozása érdekében: 
 
-- Microsoft RAI erőforrásközpontja: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- változatos háttérrel és nézőpontokkal rendelkező emberek dolgozzanak a rendszereken 
+- olyan adatállományokba fektessünk be, amelyek tükrözik társadalmunk sokszínűségét 
+- jobb módszereket dolgozzunk ki a gépi tanulás életciklusa során a felelős MI hibák felismerésére és javítására 
 
-- Microsoft FATE kutatócsoportja: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+Gondolkodj el valós életbeli helyzeteken, ahol egy modell megbízhatatlansága egyértelműen megjelenik a modellépítés és felhasználás során. Mit kell még figyelembe vennünk? 
 
-RAI Toolbox:
+## [Előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
-- [Responsible AI Toolbox GitHub repository](https://github.com/microsoft/responsible-ai-toolbox)
+## Összefoglaló & Önálló tanulás 
+ 
 
-Olvass az Azure Machine Learning eszközeiről, amelyek a méltányosság biztosítását szolgálják:
+Ebben a leckében megismerted a gépi tanulásban a méltányosság és igazságtalanság alapfogalmait.  
+ 
+Nézd meg ezt a workshopot, hogy mélyebben elmerülj a témakörökben: 
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
+- Felelős MI nyomában: Elvek a gyakorlatban Besmira Nushi, Mehrnoosh Sameki és Amit Sharma előadásában
+
+[![Felelős MI Eszköztár: Nyílt forráskódú keretrendszer felelős MI építéséhez](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
+
+> 🎥 Kattints a fenti képre a videóhoz: RAI Toolbox: Nyílt forráskódú keretrendszer felelős MI építéséhez Besmira Nushi, Mehrnoosh Sameki és Amit Sharma előadásában
+
+Olvasd el még: 
+
+- A Microsoft RAI forrásközpontja: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+
+- A Microsoft FATE kutatócsoportja: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+
+RAI Eszköztár: 
+
+- [Responsible AI Toolbox GitHub tárhely](https://github.com/microsoft/responsible-ai-toolbox)
+
+Ismerd meg az Azure Machine Learning eszközeit a méltányosság biztosításához:
+
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## Feladat
 
-[Ismerd meg a RAI Toolboxot](assignment.md)
+[Böngéssz a RAI Eszköztárban](assignment.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,171 +1,210 @@
-# Sentimenttianalyysi hotelliarvosteluilla - datan käsittely
+# Sentimenttianalyysi hotelliarvosteluilla – datan käsittely
 
-Tässä osiossa käytät aiemmissa oppitunneissa opittuja tekniikoita suuren datasetin tutkimiseen. Kun ymmärrät eri sarakkeiden hyödyllisyyden, opit:
+Tässä osassa käytät edellisten oppituntien menetelmiä tutkiaksesi laajaa aineistoa. Kun ymmärrät eri sarakkeiden hyödyllisyyden, opit:
 
-- kuinka poistaa tarpeettomat sarakkeet
-- kuinka laskea uutta dataa olemassa olevien sarakkeiden perusteella
-- kuinka tallentaa tuloksena syntynyt datasetti lopullista haastetta varten
+- miten poistaa tarpeettomat sarakkeet
+- miten laskea uutta tietoa olemassa olevien sarakkeiden perusteella
+- miten tallentaa lopullista haastetta varten muokattu aineisto
 
-## [Esiluennon kysely](https://ff-quizzes.netlify.app/en/ml/)
+## [Esiluentokoe](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Johdanto
 
-Tähän mennessä olet oppinut, kuinka tekstidata eroaa numeerisesta datasta. Jos teksti on ihmisen kirjoittamaa tai puhumaa, sitä voidaan analysoida löytääkseen kaavoja ja frekvenssejä, tunteita ja merkityksiä. Tämä oppitunti vie sinut todellisen datasetin ja todellisen haasteen pariin: **[515K hotelliarvostelut Euroopassa](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)**, joka sisältää [CC0: Public Domain -lisenssin](https://creativecommons.org/publicdomain/zero/1.0/). Datasetti on kerätty Booking.comista julkisista lähteistä. Datasetin luoja on Jiashen Liu.
+Olet oppinut, että tekstuaalinen data poikkeaa merkittävästi numeerisesta datasta. Jos teksti on ihmisen kirjoittamaa tai puhuma, sitä voidaan analysoida löytääkseen kuvioita, esiintymistiheyksiä, tunteita ja merkityksiä. Tämä oppitunti vie sinut oikeaan tietoaineistoon ja aitoon haasteeseen: **[515 000 hotelliarvostelua Euroopasta](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)**, ja aineisto on julkaistu [CC0: Public Domain -lisenssillä](https://creativecommons.org/publicdomain/zero/1.0/). Se on kerätty Booking.comin julkisista lähteistä. Aineiston tekijä on Jiashen Liu.
 
-### Valmistelu
+### Valmistelut
 
-Tarvitset:
+Tarvitset seuraavaa:
 
-* Mahdollisuuden ajaa .ipynb-tiedostoja Python 3:lla
-* pandas
-* NLTK, [joka sinun tulisi asentaa paikallisesti](https://www.nltk.org/install.html)
-* Datasetti, joka on saatavilla Kagglesta [515K hotelliarvostelut Euroopassa](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe). Se on noin 230 MB purettuna. Lataa se NLP-oppituntien `/data`-kansioon.
+* Kyvyn suorittaa .ipynb-muotoisia muistikirjoja käyttäen Python 3:a
+* pandas-kirjaston
+* NLTK:n, [jonka tulee asentaa paikallisesti](https://www.nltk.org/install.html)
+* Aineiston, joka on saatavilla Kagglesta: [515 000 hotelliarvostelua Euroopasta](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe). Pakkaamattomana noin 230 MB. Lataa se `/data`-kansioon, joka liittyy näihin NLP-oppitunteihin.
 
-## Tutkiva data-analyysi
+## Tutkiva datan analyysi
 
-Tässä haasteessa oletetaan, että rakennat hotellisuositusbotin käyttäen sentimenttianalyysiä ja vieraiden arvostelupisteitä. Datasetti, jota käytät, sisältää arvosteluja 1493 eri hotellista kuudessa kaupungissa.
+Tässä haasteessa rakennat hotellisuositusbottia käyttäen sentimenttianalyysiä ja asiakkaiden arvosteluja. Käyttämäsi aineisto sisältää arvosteluja 1493 eri hotellista kuudessa kaupungissa.
 
-Pythonin, hotelliarvosteludatan ja NLTK:n sentimenttianalyysin avulla voit selvittää:
+Pythonin, hotelliarvosteluaineiston ja NLTK:n sentimenttianalyysin avulla voit selvittää:
 
-* Mitkä ovat yleisimmin käytetyt sanat ja fraasit arvosteluissa?
-* Korreloivatko hotellia kuvaavat *tagit* arvostelupisteiden kanssa (esim. ovatko negatiivisemmat arvostelut tietylle hotellille *Perhe nuorten lasten kanssa* -tagilla kuin *Yksin matkustava*, mikä voisi viitata siihen, että hotelli sopii paremmin *Yksin matkustaville*?)
-* Ovatko NLTK:n sentimenttipisteet "samaa mieltä" hotelliarvostelijan numeerisen pisteen kanssa?
+* Mitkä sanat ja ilmaisut ovat eniten käytettyjä arvosteluissa?
+* Korreloivatko hotellin viralliset *tags*-tägit arvostelupisteiden kanssa (esim. onko enemmän negatiivisia arvosteluja *Perhe lapsineen* -tägillä kuin *Yksin matkustava*, mikä saattaisi viitata siihen, että hotelli sopii paremmin *Yksin matkustaville*)?
+* Vastaavatko NLTK:n sentimenttipisteet hotelliarvostelijan numeerisia pisteitä?
 
-#### Datasetti
+#### Aineisto
 
-Tutkitaan datasetti, jonka olet ladannut ja tallentanut paikallisesti. Avaa tiedosto editorissa, kuten VS Code tai jopa Excel.
+Tutustutaan ladattuun ja paikallisesti tallennettuun aineistoon. Avaa tiedosto esimerkiksi VS Codessa tai Excelissä.
 
-Datasetin otsikot ovat seuraavat:
+Aineiston sarakkeet ovat seuraavat:
 
 *Hotel_Address, Additional_Number_of_Scoring, Review_Date, Average_Score, Hotel_Name, Reviewer_Nationality, Negative_Review, Review_Total_Negative_Word_Counts, Total_Number_of_Reviews, Positive_Review, Review_Total_Positive_Word_Counts, Total_Number_of_Reviews_Reviewer_Has_Given, Reviewer_Score, Tags, days_since_review, lat, lng*
 
-Tässä ne on ryhmitelty helpommin tarkasteltavaksi: 
-##### Hotellin sarakkeet
+Tässä sarakkeet ryhmiteltyinä helpompaan tarkasteluun:
+##### Hotelli-sarakkeet
 
 * `Hotel_Name`, `Hotel_Address`, `lat` (leveysaste), `lng` (pituusaste)
-  * Käyttäen *lat* ja *lng* voit piirtää kartan Pythonilla, joka näyttää hotellien sijainnit (ehkä värikoodattuna negatiivisten ja positiivisten arvostelujen mukaan)
-  * Hotel_Address ei vaikuta ilmeisen hyödylliseltä, ja todennäköisesti korvaamme sen maalla helpompaa lajittelua ja hakua varten
+  * Näillä latitude- ja longitude-tiedoilla voisi piirtää Pythonilla kartan hotellien sijainneista (esim. väritettynä negatiivisten ja positiivisten arvostelujen mukaan)
+  * Hotel_Address ei vaikuta kovin hyödylliseltä, ja saatamme korvata sen maalla helpompaa lajittelua ja hakua varten
 
 **Hotellin meta-arvostelusarakkeet**
 
 * `Average_Score`
-  * Datasetin luojan mukaan tämä sarake on *Hotellin keskiarvo, laskettu viimeisen vuoden aikana annettujen kommenttien perusteella*. Tämä vaikuttaa epätavalliselta tavalta laskea pisteet, mutta koska data on kerätty, otamme sen toistaiseksi sellaisenaan. 
+  * Aineiston luojan mukaan tämä sarake kertoo *hotellin keskimääräisen pisteen, laskettuna viime vuoden uusimman kommentin perusteella*. Tämä tapa vaikuttaa erikoiselta, mutta se on kerätty data, joten voimme ottaa sen väliaikaisena arvona.
   
-  ✅ Voitko keksiä toisen tavan laskea keskiarvo datasetin muiden sarakkeiden perusteella?
+  ✅ Voisitko keksiä toisen tavan laskea keskipiste tämän aineiston muista sarakkeista?
 
 * `Total_Number_of_Reviews`
-  * Hotellin saamien arvostelujen kokonaismäärä - ei ole selvää (ilman koodin kirjoittamista), viittaako tämä datasetin arvosteluihin.
+  * Hotellin saamien arvostelujen kokonaismäärä – ei ole selvää (ilman koodin kirjoittamista), viittaako tämä tämän aineiston arvosteluihin.
 * `Additional_Number_of_Scoring`
-  * Tämä tarkoittaa, että arvostelupiste annettiin, mutta arvostelija ei kirjoittanut positiivista tai negatiivista arvostelua
+  * Tämä tarkoittaa, että arvostelupiste annettiin, mutta positiivista tai negatiivista arvostelua ei kirjoitettu
 
 **Arvostelusarakkeet**
 
 - `Reviewer_Score`
-  - Tämä on numeerinen arvo, jossa on korkeintaan yksi desimaali, välillä 2.5 ja 10
-  - Ei ole selitetty, miksi alin mahdollinen piste on 2.5
+  - Numeerinen arvo korkeintaan yhdellä desimaalilla, vaihtelu 2.5 ja 10 välillä
+  - Ei selitetä, miksi alin piste on 2.5
 - `Negative_Review`
-  - Jos arvostelija ei kirjoittanut mitään, tämä kenttä sisältää "**No Negative**"
-  - Huomaa, että arvostelija voi kirjoittaa positiivisen arvostelun negatiiviseen arvostelukenttään (esim. "ei ole mitään huonoa tässä hotellissa")
+  - Jos arvostelija ei kirjoittanut mitään, tässä lukee "**No Negative**" (ei negatiivista)
+  - Huomaa, että arvostelija voi kirjoittaa positiivisen arvostelun tähän kenttään (esim. "tässä hotellissa ei ole mitään huonoa")
 - `Review_Total_Negative_Word_Counts`
-  - Korkeampi negatiivisten sanojen määrä viittaa matalampaan pisteeseen (ilman sentimenttianalyysiä)
+  - Korkeampi negatiivisten sanojen määrä usein tarkoittaa matalampaa pistettä (ilman sentimentin tarkistusta)
 - `Positive_Review`
-  - Jos arvostelija ei kirjoittanut mitään, tämä kenttä sisältää "**No Positive**"
-  - Huomaa, että arvostelija voi kirjoittaa negatiivisen arvostelun positiiviseen arvostelukenttään (esim. "tässä hotellissa ei ole mitään hyvää")
+  - Jos arvostelija ei kirjoittanut mitään, tässä lukee "**No Positive**" (ei positiivista)
+  - Huomaa, että arvostelija voi kirjoittaa negatiivisen arvostelun tähän kenttään (esim. "tässä hotellissa ei ole lainkaan mitään hyvää")
 - `Review_Total_Positive_Word_Counts`
-  - Korkeampi positiivisten sanojen määrä viittaa korkeampaan pisteeseen (ilman sentimenttianalyysiä)
+  - Korkeampi positiivisten sanojen määrä usein tarkoittaa korkeampaa pistettä (ilman sentimentin tarkistusta)
 - `Review_Date` ja `days_since_review`
-  - Tuoreuden tai vanhentuneisuuden mittari voidaan soveltaa arvosteluun (vanhemmat arvostelut eivät välttämättä ole yhtä tarkkoja kuin uudemmat, koska hotellin johto on voinut muuttua, remontteja on voitu tehdä, tai uima-allas on lisätty jne.)
+  - Arvostelun tuoreudelle tai vanhentuneisuudelle voisi antaa painoarvon (vanhemmat arvostelut eivät ehkä ole enää yhtä oikeita, koska hotellin johto on vaihtunut, remontteja on tehty tai uima-allas lisätty jne.)
 - `Tags`
-  - Nämä ovat lyhyitä kuvauksia, joita arvostelija voi valita kuvaamaan vierailunsa tyyppiä (esim. yksin tai perhe), huoneen tyyppiä, oleskelun pituutta ja tapaa, jolla arvostelu lähetettiin.
-  - Valitettavasti näiden tagien käyttö on ongelmallista, katso alla oleva osio, joka käsittelee niiden hyödyllisyyttä
+  - Nämä ovat lyhyitä kuvauksia, joita arvostelija on voinut valita kuvaamaan vierailijan tyyppiä (esim. yksin matkustava tai perhe), huonetyyppiä, oleskelun kestoa ja miten arvostelu on jätetty.
+  - Valitettavasti näiden tägien käyttö on hankalaa – katso alla oleva osio, jossa niiden hyödyllisyyttä käsitellään
 
 **Arvostelijan sarakkeet**
 
 - `Total_Number_of_Reviews_Reviewer_Has_Given`
-  - Tämä saattaa olla tekijä suositusmallissa, esimerkiksi jos voisit määrittää, että tuotteliaammat arvostelijat, joilla on satoja arvosteluja, ovat todennäköisemmin negatiivisia kuin positiivisia. Kuitenkin minkään tietyn arvostelun arvostelijaa ei ole tunnistettu yksilöllisellä koodilla, eikä häntä siksi voida yhdistää arvostelujen joukkoon. Datasetissä on 30 arvostelijaa, joilla on 100 tai enemmän arvosteluja, mutta on vaikea nähdä, kuinka tämä voisi auttaa suositusmallia.
+  - Tämä voisi olla tekijä suositusmallissa, jos pystyisit toteamaan, että aktiivisemmat arvostelijat kirjoittavat todennäköisemmin negatiivisia kuin positiivisia arvioita. Kuitenkaan yksittäistä arvostelijaa ei tunnisteta uniikilla koodilla, joten arvioita ei voi yhdistää tiettyihin arvostelijoihin. 30 arvostelijalla on 100 tai useampia arvosteluja, mutta vaikea nähdä, miten tämä auttaisi suositusmallia.
 - `Reviewer_Nationality`
-  - Jotkut saattavat ajatella, että tietyt kansallisuudet ovat todennäköisemmin antamassa positiivisia tai negatiivisia arvosteluja kansallisen taipumuksen vuoksi. Ole varovainen rakentaessasi tällaisia anekdoottisia näkemyksiä malleihisi. Nämä ovat kansallisia (ja joskus rodullisia) stereotypioita, ja jokainen arvostelija oli yksilö, joka kirjoitti arvostelun kokemuksensa perusteella. Se saattoi olla suodatettu monien linssien läpi, kuten heidän aiemmat hotellivierailunsa, matkustettu etäisyys ja heidän henkilökohtainen temperamenttinsa. Ajatus siitä, että heidän kansallisuutensa oli syy arvostelupisteeseen, on vaikea perustella.
+  - Jotkut saattavat ajatella, että kansallisuus vaikuttaa positiivisten tai negatiivisten arvostelujen todennäköisyyteen. Ole varovainen sisällyttäessäsi tällaisia ennakko-olettamuksia malleihisi. Ne ovat kansalliseen (ja joskus rotuun liittyvään) stereotypiaan perustuvia, vaikka jokainen arvostelija on yksilö, joka kirjoitti arvostelunsa kokemuksensa perusteella. Kokemus voi olla suodatettu monien asioiden, kuten aiempien hotelliyöpymisten, matkustetun matkan ja henkilökohtaisen temperamentin, kautta. On vaikea perustella, että kansallisuus olisi arvostelupisteen syy.
 
-##### Esimerkit
+##### Esimerkkejä
 
-| Keskiarvo   Piste | Arvostelujen Kokonaismäärä | Arvostelijan   Piste | Negatiivinen <br />Arvostelu                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Positiivinen   Arvostelu                 | Tagit                                                                                      |
-| ----------------- | -------------------------- | -------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-> 🚨 Huomio varovaisuudesta
+| Average  Score | Total Number   Reviews | Reviewer   Score | Negative <br />Review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Positive   Review                 | Tags                                                                                      |
+| -------------- | ---------------------- | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+| 7.8            | 1945                   | 2.5              | Tämä on tällä hetkellä rakennustyömaa, jossa minut terrorisoitiin varhain aamulla ja koko päivän sietämättömällä rakennusmelulla, kun lepäsin pitkän matkan jälkeen ja työskentelin huoneessa. Ihmiset työskentelivät koko päivän, eli käytettiin piikkaajia viereisissä huoneissa. Pyysin huoneenvaihtoa, mutta hiljaista huonetta ei ollut tarjolla. Pahentaakseni tilannetta minulta veloitettiin liikaa. Check-out illalla, koska minun piti lähteä hyvin aikaisella lennolla, sain asianmukaisen laskun. Päivää myöhemmin hotelli veloitti toisen maksun ilman suostumustani, yli varatun hinnan. Tämä paikka on kamala. Älä rankaise itseäsi varaamalla tänne | Ei mitään Kamala paikka, pysy poissa | Työmatka Pariskunta Standard Double Room Majoitus 2 yötä |
+
+Kuten näet, tämä asiakas ei viihtynyt hotellissa. Hotellilla on hyvä keskimääräinen piste 7.8 ja 1945 arvostelua, mutta tämä arvostelija antoi sille 2.5 ja kirjoitti 115 sanaa siitä, kuinka negatiivinen heidän oleskelunsa oli. Jos he eivät olisi kirjoittaneet mitään Positive_Review-kenttään, voisi kuvitella, ettei mitään positiivista ollut, mutta he kirjoittivat kuitenkin 7 varoittavaa sanaa. Jos vain laskemme sanat tunteiden tai merkityksen sijaan, arvostelun sisältö voi vääristyä. Heidän pisteensä 2.5 on outo, koska jos hotelli oli niin huono, miksi antaa pisteitä lainkaan? Tutkimalla aineistoa tarkemmin huomaat, että alin mahdollinen pistemäärä on 2.5, ei 0. Korkein mahdollinen on 10.
+
+##### Tags-tägit
+
+Kuten aiemmin mainittu, ensimmäiseltä silmäykseltä idee käyttää `Tags`-kenttää luokitukseen vaikuttaa järkevältä. Valitettavasti nämä tägät eivät ole standardoituja, mikä tarkoittaa, että toisessa hotellissa vaihtoehdot voivat olla *Yhden hengen huone*, *Kahden hengen huone* ja *Parihuone*, mutta toisessa hotellissa ne voivat olla *Deluxe yhden hengen huone*, *Classic Queen -huone* ja *Executive King -huone*. Nämä voivat tarkoittaa samaa asiaa, mutta kun vaihteluita on niin paljon, vaihtoehdot ovat:
+
+1. Yrittää muuttaa kaikki termit yhdeksi standardiksi, mikä on hyvin vaikeaa, koska ei ole selvää, mikä muunto olisi missäkin tapauksessa (esimerkiksi *Classic yhden hengen huone* vastaa *Yhden hengen huonetta*, mutta *Superior Queen Room with Courtyard Garden or City View* on paljon vaikeampi muuntaa)
+
+1. Voidaan käyttää NLP-menetelmää ja mitata tiettyjen termien, kuten *Solo*, *Business Traveller* tai *Family with young kids*, esiintymistiheyttä hotellikohtaisesti ja ottaa se mukaan suositukseen
+
+Tägit ovat yleensä (mutta eivät aina) yksi kenttä, jossa on 5–6 pilkuilla eroteltua arvoa, jotka vastaavat matkustustyyppiä, asiakastyyppiä, huonetyyppiä, yöpymisten määrää ja laitetta, jolla arvostelu lähetettiin. Jotkut arvostelijat eivät kuitenkaan täytä kaikkia kenttiä, joten arvot eivät ole aina samassa järjestyksessä.
+
+Esimerkiksi *Ryhmän tyyppi* -kentässä on 1025 erilaista arvoa `Tags`-sarakkeessa, mutta valitettavasti vain osa viittaa ryhmään (osa liittyy huonetyyppiin jne.). Jos suodatat vain perhettä koskevat, tuloksissa on paljon *Perhehuone* -tyyppisiä tuloksia. Jos mukaan otetaan termi *with*, eli lasketaan *Family with* -arvot, tulokset ovat parempia: yli 80 000 tuloksesta 515 000:sta sisältää ilmaisun "Family with young children" tai "Family with older children".
+
+Tämä tarkoittaa, että tägisarakkeen avulla voi olla hyödyllistä, mutta sen tekeminen käyttökelpoiseksi vaatii työtä.
+
+##### Keskimääräinen hotellin piste
+
+Aineistossa on joitain outouksia tai ristiriitaisuuksia, joita en pysty selittämään, mutta jotka esitetään tässä, jotta tiedät niistä mallia rakentaessasi. Jos ratkaiset asian, ilmoitathan siitä keskusteluosiossa!
+
+Aineistossa on seuraavat sarakkeet, jotka liittyvät keskipisteeseen ja arvostelujen määrään:
+
+1. Hotel_Name
+2. Additional_Number_of_Scoring
+3. Average_Score
+4. Total_Number_of_Reviews
+5. Reviewer_Score  
+
+Yhden hotellin suurin arvostelujen määrä tässä aineistossa on *Britannia International Hotel Canary Wharf* 4789 arvostelua 515 000:sta. Mutta jos katsot `Total_Number_of_Reviews` -arvoa tässä hotellissa, se on 9086. Voisit päätellä, että on paljon pisteitä ilman arvostelua, joten lisätään mukaan myös `Additional_Number_of_Scoring` -arvo. Tämä on 2682, ja sen lisääminen 4789:ään antaa 7 471, mikä on silti 1615 vähemmän kuin `Total_Number_of_Reviews`.
+
+Jos katsoo `Average_Score` -saraketta, voisi päätellä, että se on aineiston arvostelujen keskiarvo, mutta Kagglessa kuvaillaan sitä seuraavasti: "*Eniten ajankohtaisen viime vuoden kommentin mukaan laskettu hotellin keskipiste*". Tämä ei vaikuta kovin hyödylliseltä, mutta voimme laskea oman keskiarvon arvostelupisteiden perusteella aineistosta. Käyttäen samaa hotellia esimerkkinä, keskimääräinen hotellin piste on annettu arvoksi 7.1, mutta laskettu (aineistossa olevien arvostelijoiden keskiarvo) on 6.8. Se on lähellä, mutta ei sama, ja voimme vain arvata, että `Additional_Number_of_Scoring` -arvostelut nostivat keskiarvon 7.1:een. Valitettavasti, kun tätä ei voi testata tai todistaa, on vaikea luottaa tai käyttää `Average_Score`, `Additional_Number_of_Scoring` ja `Total_Number_of_Reviews` arvoja, kun ne perustuvat tai viittaavat dataan, jota meillä ei ole.
+
+Tilannetta monimutkaistaa se, että toiseksi suurimman arvostelumäärän hotelli saa laskettua keskipisteeksi 8.12 ja aineiston `Average_Score` on 8.1. Onko tämä oikea piste sattumaa vai onko ensimmäinen hotelli poikkeama?
+
+
+On mahdollista, että nämä hotellit saattavat olla poikkeuksia ja että ehkä suurin osa arvoista täsmää (mutta jotkut eivät jostain syystä), kirjoitamme seuraavaksi lyhyen ohjelman tutkiaksemme datasetin arvoja ja määrittääksemme arvojen oikean käytön (tai käyttämättömyyden).
+
+> 🚨 Varoituksen sana
 >
-> Työskennellessäsi tämän datasetin parissa kirjoitat koodia, joka laskee jotain tekstistä ilman, että sinun tarvitsee itse lukea tai analysoida tekstiä. Tämä on NLP:n ydin: tulkita merkitystä tai tunnetta ilman, että ihminen tekee sen. On kuitenkin mahdollista, että luet joitakin negatiivisia arvosteluja. Kehottaisin sinua välttämään sitä, koska se ei ole tarpeen. Jotkut niistä ovat typeriä tai epäolennaisia negatiivisia hotelliarvosteluja, kuten "Sää ei ollut hyvä", asia, joka on hotellin tai kenenkään muun hallinnan ulkopuolella. Mutta joissakin arvosteluissa on myös synkempi puoli. Joskus negatiiviset arvostelut ovat rasistisia, seksistisiä tai ikäsyrjiviä. Tämä on valitettavaa, mutta odotettavissa datasetissä, joka on kerätty julkiselta verkkosivustolta. Jotkut arvostelijat jättävät arvosteluja, jotka saattavat olla vastenmielisiä, epämukavia tai järkyttäviä. On parempi antaa koodin mitata tunne kuin lukea ne itse ja järkyttyä. Tästä huolimatta vain vähemmistö kirjoittaa tällaisia asioita, mutta heitä on silti olemassa.
+> Kun työskentelet tämän datasetin kanssa, kirjoitat koodia, joka laskee jotain tekstistä ilman, että sinun tarvitsee itse lukea tai analysoida tekstiä. Tämä on NLP:n ydin, tulkita merkitys tai tunnelma ilman ihmisen osallistumista. On kuitenkin mahdollista, että luet joitakin negatiivisia arvosteluja. Kehotan sinua olemaan tekemättä niin, koska sinun ei tarvitse. Jotkut niistä ovat typeriä tai merkityksettömiä negatiivisia hotelliarvosteluja, kuten "Sää ei ollut hyvä", jotain hotellin hallinnan ulkopuolella, tai oikeastaan kenenkään hallinnan ulkopuolella. Mutta joissakin arvosteluissa on myös pimeä puoli. Joskus negatiiviset arvostelut ovat rasistisia, seksistisiä tai ikään perustuvia. Tämä on valitettavaa mutta odotettavissa julkisen verkkosivuston keräämässä datasetissä. Jotkut arvostelijat jättävät arvosteluja, jotka koet epämiellyttävinä, epämukavina tai loukkaavina. On parempi antaa koodin mitata tunnelmaa kuin lukea niitä itse ja loukkaantua. Tosin tällaisia kirjoittavia on vähemmistönä, mutta heitä on kuitenkin olemassa.
+
 ## Harjoitus - Datan tutkiminen
 ### Lataa data
 
-Visuaalinen tarkastelu riittää, nyt on aika kirjoittaa koodia ja saada vastauksia! Tässä osiossa käytetään pandas-kirjastoa. Ensimmäinen tehtäväsi on varmistaa, että pystyt lataamaan ja lukemaan CSV-datan. Pandas-kirjastossa on nopea CSV-lataustyökalu, ja tulos sijoitetaan dataframeen, kuten aiemmissa oppitunneissa. Lataamassamme CSV-tiedostossa on yli puoli miljoonaa riviä, mutta vain 17 saraketta. Pandas tarjoaa monia tehokkaita tapoja käsitellä dataframea, mukaan lukien mahdollisuuden suorittaa operaatioita jokaiselle riville.
+Dataa on tutkittu visuaalisesti tarpeeksi, nyt kirjoitat koodia ja saat vastauksia! Tämä osio käyttää pandas-kirjastoa. Ensimmäinen tehtäväsi on varmistaa, että pystyt lataamaan ja lukemaan CSV-dataa. Pandas-kirjastolla on nopea CSV-lataaja, ja tulos sijoitetaan dataframeen, kuten aiemmissa oppitunneissa. Lataamamme CSV:ssä on yli puoli miljoonaa riviä, mutta vain 17 saraketta. Pandas tarjoaa monia tehokkaita tapoja käsitellä dataa, mukaan lukien mahdollisuuden suorittaa operaatioita jokaiselle riville.
 
-Tästä eteenpäin tässä oppitunnissa on koodiesimerkkejä, selityksiä koodista ja keskustelua tulosten merkityksestä. Käytä mukana olevaa _notebook.ipynb_-tiedostoa koodiasi varten.
+Tästä oppitunnista eteenpäin on mukana koodipätkiä ja joitain selityksiä sekä keskustelua tuloksista. Käytä mukana tullutta _notebook.ipynb_-tiedostoa koodillesi.
 
-Aloitetaan lataamalla datatiedosto, jota käytät:
+Aloitetaan lataamalla käyttämäsi datatiedosto:
 
 ```python
-# Load the hotel reviews from CSV
+# Lataa hotelliarvostelut CSV-tiedostosta
 import pandas as pd
 import time
-# importing time so the start and end time can be used to calculate file loading time
+# tuodaan time, jotta aloitus- ja lopetusaikaa voidaan käyttää tiedoston latausajan laskemiseen
 print("Loading data file now, this could take a while depending on file size")
 start = time.time()
-# df is 'DataFrame' - make sure you downloaded the file to the data folder
+# df on 'DataFrame' - varmista, että latasit tiedoston data-kansioon
 df = pd.read_csv('../../data/Hotel_Reviews.csv')
 end = time.time()
 print("Loading took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Kun data on ladattu, voimme suorittaa siihen operaatioita. Pidä tämä koodi ohjelmasi yläosassa seuraavaa osaa varten.
+Nyt kun data on ladattu, voimme tehdä siihen operaatioita. Pidä tämä koodi ohjelmasi yläosassa seuraavaa osaa varten.
 
 ## Tutki dataa
 
-Tässä tapauksessa data on jo *puhdasta*, mikä tarkoittaa, että se on valmis käsiteltäväksi eikä sisällä muiden kielten merkkejä, jotka saattaisivat häiritä algoritmeja, jotka odottavat vain englanninkielisiä merkkejä.
+Tässä tapauksessa data on jo *puhdasta*, eli se on valmis käsiteltäväksi eikä sisällä muita kuin englantilaisia merkkejä, jotka voisivat sotkea algoritmit.
 
-✅ Saatat joutua työskentelemään datan kanssa, joka vaatii alkuvaiheen käsittelyä ennen NLP-tekniikoiden soveltamista, mutta tällä kertaa ei tarvitse. Jos joutuisit, miten käsittelisit ei-englanninkielisiä merkkejä?
+✅ Saatat joutua työskentelemään datan kanssa, joka vaatii jonkinlaista esikäsittelyä ennen NLP-teknisten menetelmien soveltamista, mutta ei tällä kertaa. Mutta jos joutuisit, kuinka käsittelisit ei-englanninkielisiä merkkejä?
 
-Varmista, että kun data on ladattu, voit tutkia sitä koodilla. On helppoa keskittyä `Negative_Review`- ja `Positive_Review`-sarakkeisiin. Ne sisältävät luonnollista tekstiä NLP-algoritmejasi varten. Mutta odota! Ennen kuin siirryt NLP:hen ja sentimenttianalyysiin, seuraa alla olevaa koodia varmistaaksesi, että datasetissä annetut arvot vastaavat pandasilla laskettuja arvoja.
+Varmista hetki, että datan latauduttua voit tutkia sitä koodilla. On hyvin helppo keskittyä sarakkeisiin `Negative_Review` ja `Positive_Review`. Niissä on luonnollista tekstiä, jota NLP-algoritmit voivat käsitellä. Mutta odota! Ennen kuin hyppäät NLP:n ja tunnelman analysointiin, sinun pitäisi seurata alla olevaa koodia tarkistaaksesi, vastaavatko datasetissä annetut arvot arvoja, jotka lasket pandasilla.
 
-## Dataframen operaatioita
+## Dataframen operoinnit
 
-Ensimmäinen tehtävä tässä oppitunnissa on tarkistaa, ovatko seuraavat väittämät oikein kirjoittamalla koodia, joka tutkii dataframea (ilman sen muuttamista).
+Ensimmäinen tehtävä tässä oppitunnissa on tarkistaa, ovatko seuraavat väittämät oikein kirjoittamalla koodi, joka tutkii dataframeta (ilman sen muuttamista).
 
-> Kuten monissa ohjelmointitehtävissä, on useita tapoja suorittaa tämä, mutta hyvä neuvo on tehdä se yksinkertaisimmalla ja helpoimmalla tavalla, erityisesti jos se on helpompi ymmärtää, kun palaat tähän koodiin tulevaisuudessa. Dataframeissa on kattava API, joka usein tarjoaa tehokkaan tavan tehdä haluamasi.
+> Kuten monissa ohjelmointitehtävissä, on useita tapoja suorittaa tämä, mutta hyvä neuvo on tehdä se yksinkertaisimmalla, helpoimmalla tavalla, erityisesti jos on helpompaa ymmärtää tätä koodia myöhemmin. Dataframella on laaja API, joka usein mahdollistaa halutun tekemisen tehokkaasti.
 
-Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katsomatta ratkaisua.
+Kohtele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin ilman ratkaisun katsomista.
 
-1. Tulosta juuri lataamasi dataframen *shape* (muoto eli rivien ja sarakkeiden määrä).
-2. Laske arvot `Reviewer_Nationality`-sarakkeelle:
-   1. Kuinka monta erillistä arvoa `Reviewer_Nationality`-sarakkeessa on ja mitkä ne ovat?
-   2. Mikä arvostelijan kansallisuus on datasetissä yleisin (tulosta maa ja arvostelujen määrä)?
-   3. Mitkä ovat seuraavat 10 yleisintä kansallisuutta ja niiden lukumäärät?
-3. Mikä hotelli sai eniten arvosteluja kunkin 10 yleisimmän arvostelijan kansallisuuden osalta?
-4. Kuinka monta arvostelua datasetissä on per hotelli (hotellin arvostelujen lukumäärä)?
-5. Vaikka datasetissä on `Average_Score`-sarake jokaiselle hotellille, voit myös laskea keskiarvon (laskemalla kaikkien arvostelijoiden pisteiden keskiarvon datasetissä jokaiselle hotellille). Lisää dataframeen uusi sarake otsikolla `Calc_Average_Score`, joka sisältää lasketun keskiarvon.
-6. Onko hotelleja, joilla on sama (pyöristetty yhteen desimaaliin) `Average_Score` ja `Calc_Average_Score`?
-   1. Kokeile kirjoittaa Python-funktio, joka ottaa argumenttina Seriesin (rivin) ja vertaa arvoja, tulostaen viestin, kun arvot eivät ole yhtäläiset. Käytä sitten `.apply()`-metodia käsitelläksesi jokaisen rivin funktiolla.
-7. Laske ja tulosta, kuinka monella rivillä `Negative_Review`-sarake sisältää arvon "No Negative".
-8. Laske ja tulosta, kuinka monella rivillä `Positive_Review`-sarake sisältää arvon "No Positive".
-9. Laske ja tulosta, kuinka monella rivillä `Positive_Review`-sarake sisältää arvon "No Positive" **ja** `Negative_Review`-sarake arvon "No Negative".
-
+1. Tulosta juuri lataamasi dataframen *muoto* (muoto on rivien ja sarakkeiden lukumäärä)
+2. Laske arvostelijoiden kansallisuuksien esiintymistiheys:
+   1. Kuinka monta eri arvoa sarakkeessa `Reviewer_Nationality` on ja mitkä ne ovat?
+   2. Mikä arvostelijan kansallisuus on yleisin datasetissä (tulosta maa ja arvostelujen määrä)?
+   3. Mitkä ovat seuraavat 10 yleisintä kansallisuutta ja niiden esiintymistiheys?
+3. Mikä oli yleisimmin arvosteltu hotelli kullekin kymmenelle yleiselle arvostelijakansallisuudelle?
+4. Kuinka monta arvostelua hotellilla on datasetissä (hotellin esiintymistiheys)?
+5. Vaikka datasetissä on sarake `Average_Score` jokaiselle hotellille, voit myös laskea keskiarvon (otsikoiden kaikkien arvostelijoiden pisteiden keskiarvon jokaiselle hotellille). Lisää dataframeesi uusi sarake otsikolla `Calc_Average_Score`, joka sisältää lasketun keskiarvon.
+6. Onko joillakin hotelleilla sama (pyöristettynä 1 desimaaliin) `Average_Score` ja `Calc_Average_Score`?
+   1. Yritä kirjoittaa Python-funktio, joka ottaa sarjan (rivin) argumentiksi ja vertaa arvoja, tulostaen viestin, kun arvot eivät ole yhtä suuret. Käytä sitten `.apply()`-metodia käsittelemään jokainen rivi funktiolla.
+7. Laske ja tulosta, kuinka monessa rivissä sarakkeen `Negative_Review` arvo on "No Negative" 
+8. Laske ja tulosta, kuinka monessa rivissä sarakkeen `Positive_Review` arvo on "No Positive"
+9. Laske ja tulosta, kuinka monessa rivissä sarakkeen `Positive_Review` arvo on "No Positive" **ja** sarakkeen `Negative_Review` arvo on "No Negative"
 ### Koodivastaukset
 
-1. Tulosta juuri lataamasi dataframen *shape* (muoto eli rivien ja sarakkeiden määrä).
+1. Tulosta juuri lataamasi dataframen *muoto* (muoto on rivien ja sarakkeiden lukumäärä)
 
    ```python
    print("The shape of the data (rows, cols) is " + str(df.shape))
    > The shape of the data (rows, cols) is (515738, 17)
    ```
 
-2. Laske arvot `Reviewer_Nationality`-sarakkeelle:
+2. Laske arvostelijoiden kansallisuuksien esiintymistiheys:
 
-   1. Kuinka monta erillistä arvoa `Reviewer_Nationality`-sarakkeessa on ja mitkä ne ovat?
-   2. Mikä arvostelijan kansallisuus on datasetissä yleisin (tulosta maa ja arvostelujen määrä)?
+   1. Kuinka monta eri arvoa sarakkeessa `Reviewer_Nationality` on ja mitkä ne ovat?
+   2. Mikä arvostelijan kansallisuus on yleisin datasetissä (tulosta maa ja arvostelujen määrä)?
 
    ```python
-   # value_counts() creates a Series object that has index and values in this case, the country and the frequency they occur in reviewer nationality
+   # value_counts() luo Series-olion, jolla on tässä tapauksessa indeksi ja arvot, eli maa ja kuinka usein ne esiintyvät arvioijan kansalaisuuksissa
    nationality_freq = df["Reviewer_Nationality"].value_counts()
    print("There are " + str(nationality_freq.size) + " different nationalities")
-   # print first and last rows of the Series. Change to nationality_freq.to_string() to print all of the data
+   # tulosta Seriesin ensimmäiset ja viimeiset rivit. Vaihda nationality_freq.to_string() tulostaaksesi kaikki tiedot
    print(nationality_freq) 
    
    There are 227 different nationalities
@@ -183,12 +222,12 @@ Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katso
    Name: Reviewer_Nationality, Length: 227, dtype: int64
    ```
 
-   3. Mitkä ovat seuraavat 10 yleisintä kansallisuutta ja niiden lukumäärät?
+   3. Mitkä ovat seuraavat 10 yleisintä kansallisuutta ja niiden esiintymistiheys?
 
       ```python
       print("The highest frequency reviewer nationality is " + str(nationality_freq.index[0]).strip() + " with " + str(nationality_freq[0]) + " reviews.")
-      # Notice there is a leading space on the values, strip() removes that for printing
-      # What is the top 10 most common nationalities and their frequencies?
+      # Huomaa, että arvoissa on alussa välilyönti, strip() poistaa sen tulostusta varten
+      # Mitkä ovat 10 yleisintä kansallisuutta ja niiden esiintymistiheydet?
       print("The next 10 highest frequency reviewer nationalities are:")
       print(nationality_freq[1:11].to_string())
       
@@ -206,15 +245,15 @@ Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katso
        France                        7296
       ```
 
-3. Mikä hotelli sai eniten arvosteluja kunkin 10 yleisimmän arvostelijan kansallisuuden osalta?
+3. Mikä oli yleisimmin arvosteltu hotelli kullekin kymmenelle yleiselle arvostelijakansallisuudelle?
 
    ```python
-   # What was the most frequently reviewed hotel for the top 10 nationalities
-   # Normally with pandas you will avoid an explicit loop, but wanted to show creating a new dataframe using criteria (don't do this with large amounts of data because it could be very slow)
+   # Mikä oli eniten arvosteltu hotelli kymmenen suosituimman kansallisuuden joukossa
+   # Yleensä Pandasissa vältät eksplisiittisiä silmukoita, mutta halusin näyttää uuden dataframen luomisen kriteerien avulla (älä tee tätä suurilla tietomäärillä, koska se voi olla hyvin hidasta)
    for nat in nationality_freq[:10].index:
-      # First, extract all the rows that match the criteria into a new dataframe
+      # Ensin poimi kaikki rivit, jotka täyttävät kriteerit, uuteen dataframeen
       nat_df = df[df["Reviewer_Nationality"] == nat]   
-      # Now get the hotel freq
+      # Nyt haetaan hotellin esiintymistiheys
       freq = nat_df["Hotel_Name"].value_counts()
       print("The most reviewed hotel for " + str(nat).strip() + " was " + str(freq.index[0]) + " with " + str(freq[0]) + " reviews.") 
       
@@ -230,16 +269,16 @@ Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katso
    The most reviewed hotel for Canada was St James Court A Taj Hotel London with 61 reviews.
    ```
 
-4. Kuinka monta arvostelua datasetissä on per hotelli (hotellin arvostelujen lukumäärä)?
+4. Kuinka monta arvostelua hotellilla on datasetissä (hotellin esiintymistiheys)?
 
    ```python
-   # First create a new dataframe based on the old one, removing the uneeded columns
+   # Luo ensin uusi dataframe vanhan pohjalta poistamalla tarpeettomat sarakkeet
    hotel_freq_df = df.drop(["Hotel_Address", "Additional_Number_of_Scoring", "Review_Date", "Average_Score", "Reviewer_Nationality", "Negative_Review", "Review_Total_Negative_Word_Counts", "Positive_Review", "Review_Total_Positive_Word_Counts", "Total_Number_of_Reviews_Reviewer_Has_Given", "Reviewer_Score", "Tags", "days_since_review", "lat", "lng"], axis = 1)
    
-   # Group the rows by Hotel_Name, count them and put the result in a new column Total_Reviews_Found
+   # Ryhmittele rivit Hotel_Name mukaan, laske ne ja laita tulos uuteen sarakkeeseen Total_Reviews_Found
    hotel_freq_df['Total_Reviews_Found'] = hotel_freq_df.groupby('Hotel_Name').transform('count')
    
-   # Get rid of all the duplicated rows
+   # Poista kaikki päällekkäiset rivit
    hotel_freq_df = hotel_freq_df.drop_duplicates(subset = ["Hotel_Name"])
    display(hotel_freq_df) 
    ```
@@ -253,31 +292,31 @@ Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katso
    |                Hotel Wagner                |           135           |         10          |
    |            Hotel Gallitzinberg             |           173           |          8          |
    
-   Saatat huomata, että datasetistä laskettu tulos ei vastaa `Total_Number_of_Reviews`-arvoa. On epäselvää, edustiko datasetin arvo hotellin kokonaisarvostelujen määrää, mutta kaikkia ei ehkä ole kerätty, tai kyseessä on jokin muu laskelma. `Total_Number_of_Reviews`-arvoa ei käytetä mallissa tämän epäselvyyden vuoksi.
+   Saatat huomata, että datasetissä *lasketut* tulokset eivät vastaa arvoa `Total_Number_of_Reviews`. Ei ole selvää, kuvaako datasetin arvo hotellin kokonaistarvostelumäärää, mutta kaikki arvostelut eivät ole mukana, vai onko kyseessä muu laskelma. Arvoa `Total_Number_of_Reviews` ei käytetä mallissa tämän epäselvyyden vuoksi.
 
-5. Vaikka datasetissä on `Average_Score`-sarake jokaiselle hotellille, voit myös laskea keskiarvon (laskemalla kaikkien arvostelijoiden pisteiden keskiarvon datasetissä jokaiselle hotellille). Lisää dataframeen uusi sarake otsikolla `Calc_Average_Score`, joka sisältää lasketun keskiarvon. Tulosta sarakkeet `Hotel_Name`, `Average_Score` ja `Calc_Average_Score`.
+5. Vaikka datasetissä on sarake `Average_Score` jokaiselle hotellille, voit myös laskea keskiarvon (kaikkien arvostelijoiden pisteiden keskiarvon jokaiselle hotellille). Lisää dataframeresultsiisi uusi sarake otsikolla `Calc_Average_Score`, joka sisältää tämän lasketun keskiarvon. Tulosta sarakkeet `Hotel_Name`, `Average_Score` ja `Calc_Average_Score`.
 
    ```python
-   # define a function that takes a row and performs some calculation with it
+   # määrittele funktio, joka ottaa rivin ja suorittaa sillä jonkin laskelman
    def get_difference_review_avg(row):
      return row["Average_Score"] - row["Calc_Average_Score"]
    
-   # 'mean' is mathematical word for 'average'
+   # 'mean' on matemaattinen sana 'keskiarvolle'
    df['Calc_Average_Score'] = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
    
-   # Add a new column with the difference between the two average scores
+   # Lisää uusi sarake, jossa on kahden keskiarvopistemäärän välinen ero
    df["Average_Score_Difference"] = df.apply(get_difference_review_avg, axis = 1)
    
-   # Create a df without all the duplicates of Hotel_Name (so only 1 row per hotel)
+   # Luo df ilman kaikkia Hotel_Name-kentän päällekkäisyyksiä (joten vain 1 rivi per hotelli)
    review_scores_df = df.drop_duplicates(subset = ["Hotel_Name"])
    
-   # Sort the dataframe to find the lowest and highest average score difference
+   # Järjestä dataframe löytääksesi pienimmän ja suurimman keskiarvopistemäärän eron
    review_scores_df = review_scores_df.sort_values(by=["Average_Score_Difference"])
    
    display(review_scores_df[["Average_Score_Difference", "Average_Score", "Calc_Average_Score", "Hotel_Name"]])
    ```
 
-   Saatat myös ihmetellä `Average_Score`-arvoa ja miksi se joskus eroaa lasketusta keskiarvosta. Koska emme voi tietää, miksi jotkut arvot täsmäävät, mutta toiset eroavat, on turvallisinta tässä tapauksessa käyttää arvostelupisteitä, jotka meillä on, ja laskea keskiarvo itse. Ero on yleensä hyvin pieni, tässä ovat hotellit, joilla on suurin poikkeama datasetin keskiarvon ja lasketun keskiarvon välillä:
+   Saatat myös pohtia `Average_Score`-arvoa ja miksi se joskus eroaa lasketusta keskiarvosta. Koska emme voi tietää, miksi jotkut arvot täsmäävät, mutta toiset eroavat, on tässä tapauksessa turvallisinta käyttää laskettuja arvostelupisteitä keskiarvon laskemiseen itse. Tosin erot ovat yleensä hyvin pieniä, tässä ovat hotellit, joilla on suurimmat poikkeamat datasetin keskiarvosta ja lasketusta keskiarvosta:
 
    | Average_Score_Difference | Average_Score | Calc_Average_Score |                                  Hotel_Name |
    | :----------------------: | :-----------: | :----------------: | ------------------------------------------: |
@@ -293,16 +332,16 @@ Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katso
    |           0.9            |      8.6      |        7.7         |   MARQUIS Faubourg St Honor Relais Ch teaux |
    |           1.3            |      7.2      |        5.9         |                          Kube Hotel Ice Bar |
 
-   Koska vain yhdellä hotellilla on ero, joka on suurempi kuin 1, voimme todennäköisesti jättää eron huomiotta ja käyttää laskettua keskiarvoa.
+   Kun vain yhdellä hotellilla ero pisteissä on yli 1, voimme todennäköisesti jättää erot huomioimatta ja käyttää laskettua keskiarvosummaa.
 
-6. Laske ja tulosta, kuinka monella rivillä `Negative_Review`-sarake sisältää arvon "No Negative".
+6. Laske ja tulosta, kuinka monessa rivissä sarakkeen `Negative_Review` arvo on "No Negative" 
 
-7. Laske ja tulosta, kuinka monella rivillä `Positive_Review`-sarake sisältää arvon "No Positive".
+7. Laske ja tulosta, kuinka monessa rivissä sarakkeen `Positive_Review` arvo on "No Positive"
 
-8. Laske ja tulosta, kuinka monella rivillä `Positive_Review`-sarake sisältää arvon "No Positive" **ja** `Negative_Review`-sarake arvon "No Negative".
+8. Laske ja tulosta, kuinka monessa rivissä sarakkeen `Positive_Review` arvo on "No Positive" **ja** sarakkeen `Negative_Review` arvo on "No Negative"
 
    ```python
-   # with lambdas:
+   # lambda-funktioiden kanssa:
    start = time.time()
    no_negative_reviews = df.apply(lambda x: True if x['Negative_Review'] == "No Negative" else False , axis=1)
    print("Number of No Negative reviews: " + str(len(no_negative_reviews[no_negative_reviews == True].index)))
@@ -323,10 +362,10 @@ Käsittele seuraavia kysymyksiä kooditehtävinä ja yritä vastata niihin katso
 
 ## Toinen tapa
 
-Toinen tapa laskea rivejä ilman Lambdaa ja käyttää summaa rivien laskemiseen:
+Toinen tapa laskea kohteet ilman lambda-funktioita ja käyttää summaa rivien laskemiseen:
 
    ```python
-   # without lambdas (using a mixture of notations to show you can use both)
+   # ilman lambdoja (käyttämällä sekoitusta merkintöjä näyttämään, että voit käyttää molempia)
    start = time.time()
    no_negative_reviews = sum(df.Negative_Review == "No Negative")
    print("Number of No Negative reviews: " + str(no_negative_reviews))
@@ -346,20 +385,20 @@ Toinen tapa laskea rivejä ilman Lambdaa ja käyttää summaa rivien laskemiseen
    Sum took 0.19 seconds
    ```
 
-   Saatat huomata, että 127 rivillä on sekä "No Negative" että "No Positive" arvot sarakkeissa `Negative_Review` ja `Positive_Review`. Tämä tarkoittaa, että arvostelija antoi hotellille numeerisen pisteen, mutta jätti kirjoittamatta sekä positiivisen että negatiivisen arvostelun. Onneksi tämä on pieni määrä rivejä (127/515738, eli 0,02 %), joten se ei todennäköisesti vääristä malliamme tai tuloksia mihinkään suuntaan. Saatat kuitenkin yllättyä, että arvosteludatasetissä on rivejä ilman arvosteluja, joten datan tutkiminen on tärkeää tällaisten rivien löytämiseksi.
+   Saatat huomata, että 127 rivillä molempien sarakkeiden `Negative_Review` ja `Positive_Review` arvot ovat vastaavasti "No Negative" ja "No Positive". Tämä tarkoittaa, että arvostelija antoi hotellille numeerisen arvion, mutta ei kirjoittanut positiivista eikä negatiivista arvostelua. Onneksi tämä on pieni osuus riveistä (127 / 515738, eli 0,02 %), joten se ei todennäköisesti vinouta mallia tai tuloksia, mutta et ehkä odottanut arvosteludatan sisältävän rivejä ilman varsinaisia arvosteluja, joten datan tutkiminen tällaisten rivien löytämiseksi on tärkeää.
 
-Nyt kun olet tutkinut datasetin, seuraavassa oppitunnissa suodatat dataa ja lisäät sentimenttianalyysin.
+Nyt kun olet tutkinut datasetin, voit seuraavassa oppitunnissa suodattaa dataa ja lisätä tunnelman analysoinnin.
 
 ---
 ## 🚀Haaste
 
-Tämä oppitunti osoittaa, kuten aiemmissa oppitunneissa nähtiin, kuinka tärkeää on ymmärtää data ja sen erityispiirteet ennen operaatioiden suorittamista. Tekstipohjainen data vaatii erityistä tarkastelua. Tutki erilaisia tekstipainotteisia datasettejä ja katso, voitko löytää alueita, jotka voisivat tuoda malliin vinoumaa tai vääristynyttä sentimenttiä.
+Tämä oppitunti osoittaa, kuten aiemmissa oppitunneissa, kuinka kriittistä on ymmärtää oma data ja sen ominaisuudet ennen operaatioiden tekemistä. Erityisesti tekstipohjainen data vaatii huolellista tarkastelua. Kaiva eri tekstipainotteisia datasettejä ja katso, löydätkö alueita, jotka voisivat aiheuttaa vinoutumia tai vääristynyttä tunnelmaa mallissa.
 
-## [Oppitunnin jälkeinen kysely](https://ff-quizzes.netlify.app/en/ml/)
+## [Luenton jälkeinen tietovisa](https://ff-quizzes.netlify.app/en/ml/)
 
-## Kertaus ja itseopiskelu
+## Kertaus & Itsenäinen opiskelu
 
-Ota [tämä NLP-oppimispolku](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) ja tutustu työkaluihin, joita voit kokeilla puhe- ja tekstipainotteisten mallien rakentamisessa.
+Suosittelemme [tätä oppimispolkua NLP:stä](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) löytääksesi työkaluja puhe- ja tekstipainotteisten mallien rakentamiseen.
 
 ## Tehtävä
 
@@ -367,5 +406,7 @@ Ota [tämä NLP-oppimispolku](https://docs.microsoft.com/learn/paths/explore-nat
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,106 +1,107 @@
 # Kom godt i gang med Python og Scikit-learn til regressionsmodeller
 
-![Oversigt over regressioner i en sketchnote](../../../../sketchnotes/ml-regression.png)
+![Oversigt over regressioner i en sketchnote](../../../../translated_images/da/ml-regression.4e4f70e3b3ed446e.webp)
 
 > Sketchnote af [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz før lektionen](https://ff-quizzes.netlify.app/en/ml/)
+## [For-forelæsning quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Denne lektion er også tilgængelig i R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Denne lektion findes også i R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Introduktion
 
-I disse fire lektioner vil du lære, hvordan man bygger regressionsmodeller. Vi vil snart diskutere, hvad de bruges til. Men før du gør noget, skal du sørge for, at du har de rigtige værktøjer klar til at starte processen!
+I disse fire lektioner vil du opdage, hvordan man bygger regressionsmodeller. Vi vil snart diskutere, hvad disse bruges til. Men før du gør noget, skal du sikre dig, at du har de rette værktøjer på plads for at begynde processen!
 
 I denne lektion vil du lære at:
 
-- Konfigurere din computer til lokale machine learning-opgaver.
-- Arbejde med Jupyter-notebooks.
-- Bruge Scikit-learn, herunder installation.
+- Konfigurere din computer til lokale maskinlæringsopgaver.
+- Arbejde med Jupyter Notebooks.
+- Bruge Scikit-learn, inklusive installation.
 - Udforske lineær regression med en praktisk øvelse.
 
 ## Installationer og konfigurationer
 
-[![ML for begyndere - Konfigurer dine værktøjer til at bygge Machine Learning-modeller](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML for begyndere - Konfigurer dine værktøjer til at bygge Machine Learning-modeller")
+[![ML for begyndere - Opsæt dine værktøjer klar til at bygge maskinlæringsmodeller](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML for begyndere -Opsæt dine værktøjer klar til at bygge maskinlæringsmodeller")
 
-> 🎥 Klik på billedet ovenfor for en kort video om konfiguration af din computer til ML.
+> 🎥 Klik på billedet ovenfor for en kort video, der viser, hvordan du konfigurerer din computer til ML.
 
-1. **Installer Python**. Sørg for, at [Python](https://www.python.org/downloads/) er installeret på din computer. Du vil bruge Python til mange data science- og machine learning-opgaver. De fleste computersystemer har allerede en Python-installation. Der findes også nyttige [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), som kan gøre opsætningen lettere for nogle brugere.
+1. **Installer Python**. Sørg for, at [Python](https://www.python.org/downloads/) er installeret på din computer. Du vil bruge Python til mange data science- og maskinlæringsopgaver. De fleste computersystemer inkluderer allerede en Python-installation. Der findes også nyttige [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) tilgængelige, som kan lette opsætningen for nogle brugere.
 
-   Nogle anvendelser af Python kræver én version af softwaren, mens andre kræver en anden version. Derfor er det nyttigt at arbejde i et [virtuelt miljø](https://docs.python.org/3/library/venv.html).
+   Nogle anvendelser af Python kræver dog én version af softwaren, mens andre kræver en anden version. Af denne grund er det nyttigt at arbejde inden for et [virtuelt miljø](https://docs.python.org/3/library/venv.html).
 
-2. **Installer Visual Studio Code**. Sørg for, at du har Visual Studio Code installeret på din computer. Følg disse instruktioner for at [installere Visual Studio Code](https://code.visualstudio.com/) til den grundlæggende installation. Du vil bruge Python i Visual Studio Code i dette kursus, så det kan være en god idé at opdatere din viden om, hvordan man [konfigurerer Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) til Python-udvikling.
+2. **Installer Visual Studio Code**. Sørg for, at du har Visual Studio Code installeret på din computer. Følg disse instruktioner for at [installere Visual Studio Code](https://code.visualstudio.com/) til den grundlæggende installation. Du kommer til at bruge Python i Visual Studio Code i dette kursus, så du vil måske opfriske, hvordan man [konfigurerer Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) til Python-udvikling.
 
-   > Bliv fortrolig med Python ved at gennemgå denne samling af [Learn-moduler](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Bliv fortrolig med Python ved at arbejde gennem denne samling af [Læringsmoduler](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
    > [![Opsæt Python med Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Opsæt Python med Visual Studio Code")
    >
-   > 🎥 Klik på billedet ovenfor for en video: Brug Python i VS Code.
+   > 🎥 Klik på billedet ovenfor for en video: brug af Python i VS Code.
 
-3. **Installer Scikit-learn** ved at følge [disse instruktioner](https://scikit-learn.org/stable/install.html). Da du skal sikre dig, at du bruger Python 3, anbefales det, at du bruger et virtuelt miljø. Bemærk, at hvis du installerer dette bibliotek på en M1 Mac, er der særlige instruktioner på den side, der er linket til ovenfor.
+3. **Installer Scikit-learn**, ved at følge [disse instruktioner](https://scikit-learn.org/stable/install.html). Da du skal sikre dig, at du bruger Python 3, anbefales det, at du bruger et virtuelt miljø. Bemærk, hvis du installerer dette bibliotek på en M1 Mac, er der særlige instruktioner på den linkede side ovenfor.
 
-4. **Installer Jupyter Notebook**. Du skal [installere Jupyter-pakken](https://pypi.org/project/jupyter/).
+1. **Installer Jupyter Notebook**. Du skal [installere Jupyter-pakken](https://pypi.org/project/jupyter/).
 
-## Dit ML-udviklingsmiljø
+## Dit ML forfattermiljø
 
-Du vil bruge **notebooks** til at udvikle din Python-kode og oprette machine learning-modeller. Denne type fil er et almindeligt værktøj for dataforskere, og de kan identificeres ved deres suffix eller filtype `.ipynb`.
+Du kommer til at bruge **notebooks** til at udvikle din Python-kode og skabe maskinlæringsmodeller. Denne type fil er et almindeligt værktøj for dataforskere, og de kan identificeres ved deres suffix eller filendelse `.ipynb`.
 
-Notebooks er et interaktivt miljø, der giver udvikleren mulighed for både at kode og tilføje noter samt skrive dokumentation omkring koden, hvilket er meget nyttigt for eksperimentelle eller forskningsorienterede projekter.
+Notebooks er et interaktivt miljø, som tillader udvikleren både at kode og tilføje noter og skrive dokumentation omkring koden, hvilket er ganske hjælpsomt til eksperimentelle eller forskningsorienterede projekter.
 
-[![ML for begyndere - Opsæt Jupyter Notebooks for at begynde at bygge regressionsmodeller](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML for begyndere - Opsæt Jupyter Notebooks for at begynde at bygge regressionsmodeller")
+[![ML for begyndere - Opsæt Jupyter Notebooks for at starte med at bygge regressionsmodeller](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML for begyndere - Opsæt Jupyter Notebooks for at starte med at bygge regressionsmodeller")
 
-> 🎥 Klik på billedet ovenfor for en kort video om denne øvelse.
+> 🎥 Klik på billedet ovenfor for en kort video, der gennemgår denne øvelse.
 
-### Øvelse - arbejde med en notebook
+### Øvelse - arbejd med en notebook
 
 I denne mappe finder du filen _notebook.ipynb_.
 
 1. Åbn _notebook.ipynb_ i Visual Studio Code.
 
-   En Jupyter-server vil starte med Python 3+. Du vil finde områder i notebooken, der kan `køres`, stykker af kode. Du kan køre en kodeblok ved at vælge ikonet, der ligner en afspilningsknap.
+   En Jupyter-server vil starte med Python 3+ i gang. Du vil finde områder af notebooken, der kan `køres`, stykker af kode. Du kan køre en kodeblok ved at vælge ikonet, der ligner en afspilningsknap.
 
-2. Vælg `md`-ikonet og tilføj lidt markdown med følgende tekst **# Velkommen til din notebook**.
+1. Vælg `md`-ikonet og tilføj lidt markdown, og følgende tekst **# Velkommen til din notebook**.
 
    Tilføj derefter noget Python-kode.
 
-3. Skriv **print('hello notebook')** i kodeblokken.
-4. Vælg pilen for at køre koden.
+1. Skriv **print('hello notebook')** i kodeblokken.
+1. Vælg pilen for at køre koden.
 
-   Du bør se den udskrevne erklæring:
+   Du skulle gerne se den udskrevne sætning:
 
     ```output
     hello notebook
     ```
 
-![VS Code med en notebook åben](../../../../2-Regression/1-Tools/images/notebook.jpg)
+![VS Code med en åben notebook](../../../../translated_images/da/notebook.4a3ee31f396b8832.webp)
 
-Du kan blande din kode med kommentarer for at selv-dokumentere notebooken.
+Du kan folde din kode sammen med kommentarer for at selvdokumentere notebooken.
 
 ✅ Tænk et øjeblik over, hvor forskelligt en webudviklers arbejdsmiljø er i forhold til en dataforskers.
 
-## Kom godt i gang med Scikit-learn
+## Oppe og køre med Scikit-learn
 
-Nu hvor Python er sat op i dit lokale miljø, og du er fortrolig med Jupyter-notebooks, lad os blive lige så fortrolige med Scikit-learn (udtales `sci` som i `science`). Scikit-learn tilbyder en [omfattende API](https://scikit-learn.org/stable/modules/classes.html#api-ref) til at hjælpe dig med at udføre ML-opgaver.
+Nu hvor Python er sat op i dit lokale miljø, og du er fortrolig med Jupyter Notebooks, lad os blive lige så fortrolige med Scikit-learn (udtales `sci` som i `science`). Scikit-learn tilbyder et [omfattende API](https://scikit-learn.org/stable/modules/classes.html#api-ref) for at hjælpe dig med at udføre ML-opgaver.
 
-Ifølge deres [websted](https://scikit-learn.org/stable/getting_started.html) er "Scikit-learn et open source machine learning-bibliotek, der understøtter superviseret og usuperviseret læring. Det tilbyder også forskellige værktøjer til modeltilpasning, databehandling, modelvalg og evaluering samt mange andre funktioner."
+Ifølge deres [hjemmeside](https://scikit-learn.org/stable/getting_started.html), "er Scikit-learn et open source maskinlæringsbibliotek, der understøtter superviseret og usuperviseret læring. Det tilbyder også forskellige værktøjer til modeltilpasning, dataprvbehandling, modelvalg og evaluering samt mange andre hjælpemidler."
 
-I dette kursus vil du bruge Scikit-learn og andre værktøjer til at bygge machine learning-modeller til at udføre det, vi kalder 'traditionelle machine learning'-opgaver. Vi har bevidst undgået neurale netværk og deep learning, da de er bedre dækket i vores kommende 'AI for Beginners'-curriculum.
+I dette kursus vil du bruge Scikit-learn og andre værktøjer til at bygge maskinlæringsmodeller for at udføre det, vi kalder 'traditionelle maskinlærings'-opgaver. Vi har bevidst undgået neurale netværk og dyb læring, da de bedre dækkes i vores kommende 'AI for Beginners' pensum.
 
-Scikit-learn gør det nemt at bygge modeller og evaluere dem til brug. Det fokuserer primært på brugen af numeriske data og indeholder flere færdiglavede datasæt til brug som læringsværktøjer. Det inkluderer også forudbyggede modeller, som studerende kan prøve. Lad os udforske processen med at indlæse forpakkede data og bruge en indbygget estimator til den første ML-model med Scikit-learn med nogle grundlæggende data.
+Scikit-learn gør det enkelt at bygge modeller og evaluere dem til brug. Det fokuserer primært på at bruge numeriske data og indeholder adskillige færdiglavede datasæt til brug som læringsværktøjer. Det inkluderer også forberedte modeller, som studerende kan prøve. Lad os først udforske processen med at indlæse forberedte data og bruge en indbygget estimator — den første ML-model med Scikit-learn med nogle grundlæggende data.
 
 ## Øvelse - din første Scikit-learn notebook
 
 > Denne tutorial er inspireret af [eksemplet på lineær regression](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) på Scikit-learns websted.
 
-[![ML for begyndere - Dit første projekt med lineær regression i Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML for begyndere - Dit første projekt med lineær regression i Python")
 
-> 🎥 Klik på billedet ovenfor for en kort video om denne øvelse.
+[![ML for begyndere - Dit første lineære regressionsprojekt i Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML for begyndere - Dit første lineære regressionsprojekt i Python")
 
-I filen _notebook.ipynb_ tilknyttet denne lektion skal du rydde alle celler ved at trykke på 'skraldespand'-ikonet.
+> 🎥 Klik på billedet ovenfor for en kort video, der gennemgår denne øvelse.
 
-I denne sektion vil du arbejde med et lille datasæt om diabetes, som er indbygget i Scikit-learn til læringsformål. Forestil dig, at du ville teste en behandling for diabetiske patienter. Machine Learning-modeller kan hjælpe dig med at afgøre, hvilke patienter der vil reagere bedre på behandlingen baseret på kombinationer af variabler. Selv en meget grundlæggende regressionsmodel, når den visualiseres, kan vise information om variabler, der kan hjælpe dig med at organisere dine teoretiske kliniske forsøg.
+I filen _notebook.ipynb_ tilknyttet denne lektion, ryd alle cellerne ved at trykke på 'skraldespands' ikonet.
 
-✅ Der findes mange typer regressionsmetoder, og hvilken du vælger afhænger af det svar, du leder efter. Hvis du vil forudsige den sandsynlige højde for en person i en given alder, vil du bruge lineær regression, da du søger en **numerisk værdi**. Hvis du er interesseret i at finde ud af, om en type køkken skal betragtes som vegansk eller ej, leder du efter en **kategoriinddeling**, så du vil bruge logistisk regression. Du vil lære mere om logistisk regression senere. Tænk lidt over nogle spørgsmål, du kan stille til data, og hvilken af disse metoder der ville være mest passende.
+I denne sektion vil du arbejde med et lille datasæt om diabetes, som er indbygget i Scikit-learn til læringsformål. Forestil dig, at du ønskede at teste en behandling for diabetespatienter. Maskinlæringsmodeller kan hjælpe dig med at afgøre, hvilke patienter der ville reagere bedre på behandlingen, baseret på kombinationer af variable. Selv en meget basal regressionsmodel, når den visualiseres, kan vise oplysninger om variable, der ville hjælpe dig med at organisere dine teoretiske kliniske forsøg.
+
+✅ Der findes mange typer regressionsmetoder, og hvilken du vælger afhænger af det svar, du søger. Hvis du vil forudsige den sandsynlige højde for en person i en given alder, vil du bruge lineær regression, da du søger en **numerisk værdi**. Hvis du er interesseret i at finde ud af, om en bestemt type køkken skal betragtes som vegansk eller ej, søger du en **kategori-tildeling**, så du ville bruge logistisk regression. Du lærer mere om logistisk regression senere. Tænk lidt over nogle spørgsmål, du kan stille om data, og hvilken af disse metoder der ville være mere passende.
 
 Lad os komme i gang med denne opgave.
 
@@ -108,9 +109,9 @@ Lad os komme i gang med denne opgave.
 
 Til denne opgave vil vi importere nogle biblioteker:
 
-- **matplotlib**. Det er et nyttigt [grafværktøj](https://matplotlib.org/), og vi vil bruge det til at oprette en linjeplot.
+- **matplotlib**. Det er et nyttigt [grafværktøj](https://matplotlib.org/) og vi vil bruge det til at lave en linjeplot.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) er et nyttigt bibliotek til håndtering af numeriske data i Python.
-- **sklearn**. Dette er [Scikit-learn](https://scikit-learn.org/stable/user_guide.html)-biblioteket.
+- **sklearn**. Dette er [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) biblioteket.
 
 Importer nogle biblioteker til at hjælpe med dine opgaver.
 
@@ -122,26 +123,26 @@ Importer nogle biblioteker til at hjælpe med dine opgaver.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Ovenfor importerer du `matplotlib`, `numpy`, og du importerer `datasets`, `linear_model` og `model_selection` fra `sklearn`. `model_selection` bruges til at opdele data i trænings- og test-sæt.
+   Ovenfor importerer du `matplotlib`, `numpy` og du importerer også `datasets`, `linear_model` og `model_selection` fra `sklearn`. `model_selection` bruges til at opdele data i trænings- og testdatasæt.
 
 ### Diabetes-datasættet
 
-Det indbyggede [diabetes-datasæt](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) inkluderer 442 prøver af data omkring diabetes med 10 feature-variabler, nogle af dem inkluderer:
+Det indbyggede [diabetes datasæt](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) indeholder 442 datapunkter om diabetes, med 10 feature variabler, nogle af dem inkluderer:
 
-- age: alder i år
-- bmi: body mass index
+- alder: alder i år
+- bmi: kropsmasseindeks
 - bp: gennemsnitligt blodtryk
-- s1 tc: T-celler (en type hvide blodceller)
+- s1 tc: T-celler (en type hvide blodlegemer)
 
-✅ Dette datasæt inkluderer begrebet 'køn' som en feature-variabel, der er vigtig for forskning omkring diabetes. Mange medicinske datasæt inkluderer denne type binær klassifikation. Tænk lidt over, hvordan kategoriseringer som denne kan udelukke visse dele af befolkningen fra behandlinger.
+✅ Dette datasæt inkluderer begrebet 'køn' som en feature variabel vigtig for forskning omkring diabetes. Mange medicinske datasæt inkluderer denne type binær klassifikation. Tænk lidt over, hvordan kategoriseringer som denne kan udelukke visse dele af en befolkning fra behandlinger.
 
-Nu skal du indlæse X- og y-data.
+Nu skal du indlæse X- og y-dataene.
 
-> 🎓 Husk, dette er superviseret læring, og vi har brug for et navngivet 'y'-mål.
+> 🎓 Husk, dette er superviseret læring, og vi har brug for et navngivet 'y' mål.
 
-I en ny kodecelle skal du indlæse diabetes-datasættet ved at kalde `load_diabetes()`. Inputtet `return_X_y=True` signalerer, at `X` vil være en datamatrix, og `y` vil være regressionsmålet.
+I en ny kodecelle, indlæs diabetes datasættet ved at kalde `load_diabetes()`. Inputtet `return_X_y=True` signalerer, at `X` vil være en datamatricer, og `y` vil være regressionsmålet.
 
-1. Tilføj nogle print-kommandoer for at vise formen på datamatricen og dens første element:
+1. Tilføj nogle print-kommandoer for at vise formen af datamatrixen og dens første element:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -149,9 +150,9 @@ I en ny kodecelle skal du indlæse diabetes-datasættet ved at kalde `load_diabe
     print(X[0])
     ```
 
-    Det, du får tilbage som svar, er en tuple. Det, du gør, er at tildele de to første værdier af tuplen til henholdsvis `X` og `y`. Læs mere [om tuples](https://wikipedia.org/wiki/Tuple).
+    Det, du får tilbage som respons, er en tuple. Det, du gør, er at tildele de to første værdier i tuplen til henholdsvis `X` og `y`. Læs mere [om tuples](https://wikipedia.org/wiki/Tuple).
 
-    Du kan se, at disse data har 442 elementer formet i arrays med 10 elementer:
+    Du kan se, at disse data har 442 elementer formet som arrays med 10 elementer:
 
     ```text
     (442, 10)
@@ -159,39 +160,39 @@ I en ny kodecelle skal du indlæse diabetes-datasættet ved at kalde `load_diabe
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Tænk lidt over forholdet mellem dataene og regressionsmålet. Lineær regression forudsiger forholdet mellem feature X og målvariabel y. Kan du finde [målet](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for diabetes-datasættet i dokumentationen? Hvad demonstrerer dette datasæt, givet målet?
+    ✅ Tænk lidt over forholdet mellem dataene og regressionsmålet. Lineær regression forudsiger sammenhænge mellem feature X og målvariablen y. Kan du finde [målet](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for diabetes datasættet i dokumentationen? Hvad demonstrerer dette datasæt, givet målet?
 
-2. Vælg derefter en del af dette datasæt til at plotte ved at vælge den 3. kolonne i datasættet. Du kan gøre dette ved at bruge `:`-operatoren til at vælge alle rækker og derefter vælge den 3. kolonne ved hjælp af indekset (2). Du kan også omforme dataene til at være et 2D-array - som krævet for plotning - ved at bruge `reshape(n_rows, n_columns)`. Hvis en af parametrene er -1, beregnes den tilsvarende dimension automatisk.
+2. Vælg derefter en del af dette datasæt til at plotte ved at vælge den 3. kolonne af datasættet. Det kan du gøre ved at bruge `:` operatoren til at vælge alle rækker, og derefter vælge den 3. kolonne ved hjælp af indekset (2). Du kan også omforme dataene til at være et 2D-array — som krævet for plotning — ved at bruge `reshape(n_rows, n_columns)`. Hvis en af parametrene er -1, beregnes den tilsvarende dimension automatisk.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Print dataene når som helst for at kontrollere deres form.
+   ✅ Print dataene ud når som helst for at tjekke deres form.
 
-3. Nu hvor du har data klar til at blive plottet, kan du se, om en maskine kan hjælpe med at bestemme en logisk opdeling mellem tallene i dette datasæt. For at gøre dette skal du opdele både dataene (X) og målet (y) i test- og træningssæt. Scikit-learn har en ligetil måde at gøre dette på; du kan opdele dine testdata på et givet punkt.
+3. Nu hvor du har data klar til at blive plottet, kan du se, om en maskine kan hjælpe med at bestemme en logisk opdeling mellem tallene i dette datasæt. For at gøre dette skal du opdele både dataene (X) og målet (y) i test- og træningssæt. Scikit-learn har en ligetil måde at gøre dette på; du kan opdele dine testdata på et givent punkt.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Nu er du klar til at træne din model! Indlæs den lineære regressionsmodel og træn den med dine X- og y-træningssæt ved hjælp af `model.fit()`:
+4. Nu er du klar til at træne din model! Indlæs den lineære regressionsmodel og træne den med dine X- og y træningssæt ved hjælp af `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` er en funktion, du vil se i mange ML-biblioteker som TensorFlow.
+    ✅ `model.fit()` er en funktion, du vil se i mange ML-biblioteker såsom TensorFlow
 
-5. Derefter skal du oprette en forudsigelse ved hjælp af testdata ved hjælp af funktionen `predict()`. Dette vil blive brugt til at tegne linjen mellem data-grupperne.
+5. Opret derefter en forudsigelse ved hjælp af testdata, brug funktionen `predict()`. Dette vil blive brugt til at tegne linjen mellem datagrupper
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Nu er det tid til at vise dataene i et plot. Matplotlib er et meget nyttigt værktøj til denne opgave. Opret et scatterplot af alle X- og y-testdata, og brug forudsigelsen til at tegne en linje på det mest passende sted mellem modellens data-grupperinger.
+6. Nu er det tid til at vise dataene i et plot. Matplotlib er et meget nyttigt værktøj til denne opgave. Lav et scatterplot af alle X- og y testdata, og brug forudsigelsen til at tegne en linje på det mest passende sted, mellem modellens datagrupperinger.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -202,22 +203,24 @@ I en ny kodecelle skal du indlæse diabetes-datasættet ved at kalde `load_diabe
     plt.show()
     ```
 
-   ![et scatterplot, der viser datapunkter omkring diabetes](../../../../2-Regression/1-Tools/images/scatterplot.png)
-✅ Tænk lidt over, hvad der foregår her. En lige linje løber gennem mange små datapunkter, men hvad gør den egentlig? Kan du se, hvordan du burde kunne bruge denne linje til at forudsige, hvor et nyt, ukendt datapunkt skulle passe i forhold til plottets y-akse? Prøv at sætte ord på den praktiske anvendelse af denne model.
+   ![et scatterplot, der viser datapunkter omkring diabetes](../../../../translated_images/da/scatterplot.ad8b356bcbb33be6.webp)
+
+
+   ✅ Tænk lidt over, hvad der foregår her. En ret linje løber gennem mange små datapunkter, men hvad gør den egentlig? Kan du se, hvordan du burde kunne bruge denne linje til at forudsige, hvor et nyt, uset datapunkt skal placeres i forhold til plottets y-akse? Prøv at formulere den praktiske anvendelse af denne model.
 
 Tillykke, du har bygget din første lineære regressionsmodel, lavet en forudsigelse med den og vist den i et plot!
 
 ---
 ## 🚀Udfordring
 
-Plot en anden variabel fra dette datasæt. Tip: rediger denne linje: `X = X[:,2]`. Givet målet for dette datasæt, hvad kan du opdage om udviklingen af diabetes som en sygdom?
+Plot en anden variabel fra dette datasæt. Tip: rediger denne linje: `X = X[:,2]`. Med dette datasæts målvariabel, hvad kan du opdage om progressionen af diabetes som sygdom?
 ## [Quiz efter forelæsning](https://ff-quizzes.netlify.app/en/ml/)
 
-## Gennemgang & Selvstudie
+## Gennemgang & Selvstudium
 
-I denne tutorial arbejdede du med simpel lineær regression, frem for univariat eller multivariat regression. Læs lidt om forskellene mellem disse metoder, eller se [denne video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+I denne vejledning arbejdede du med simpel lineær regression fremfor univariat eller multiple lineære regression. Læs lidt om forskellene mellem disse metoder, eller se [denne video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Læs mere om begrebet regression og tænk over, hvilke slags spørgsmål der kan besvares med denne teknik. Tag [denne tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) for at uddybe din forståelse.
+Læs mere om konceptet regression og tænk over, hvilke slags spørgsmål der kan besvares med denne teknik. Tag denne [vejledning](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) for at fordybe din forståelse.
 
 ## Opgave
 
@@ -225,5 +228,7 @@ Læs mere om begrebet regression og tænk over, hvilke slags spørgsmål der kan
 
 ---
 
-**Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på at opnå nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi er ikke ansvarlige for eventuelle misforståelser eller fejltolkninger, der måtte opstå som følge af brugen af denne oversættelse.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfraskrivelse**:
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

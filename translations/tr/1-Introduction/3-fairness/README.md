@@ -1,162 +1,167 @@
-# Sorumlu Yapay Zeka ile Makine Öğrenimi Çözümleri Oluşturma
-
-![Makine Öğreniminde sorumlu yapay zekanın özetini içeren bir sketchnote](../../../../sketchnotes/ml-fairness.png)
+# Sorumlu Yapay Zeka ile Makine Öğrenimi çözümleri oluşturmak
+ 
+![Makine Öğreniminde sorumlu yapay zekanın özeti olan bir sketchnote](../../../../translated_images/tr/ml-fairness.ef296ebec6afc98a.webp)
 > Sketchnote: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Ders Öncesi Test](https://ff-quizzes.netlify.app/en/ml/)
-
+## [Ders öncesi quiz](https://ff-quizzes.netlify.app/en/ml/)
+ 
 ## Giriş
 
-Bu müfredatta, makine öğreniminin günlük hayatımızı nasıl etkilediğini ve etkilemeye devam ettiğini keşfetmeye başlayacaksınız. Şu anda bile, sistemler ve modeller sağlık teşhisleri, kredi onayları veya dolandırıcılığı tespit etme gibi günlük karar verme görevlerinde yer alıyor. Bu nedenle, bu modellerin güvenilir sonuçlar sunmak için iyi çalışması önemlidir. Her yazılım uygulaması gibi, yapay zeka sistemleri de beklentileri karşılamayabilir veya istenmeyen sonuçlar doğurabilir. Bu yüzden bir yapay zeka modelinin davranışını anlamak ve açıklamak çok önemlidir.
+Bu müfredatta, makine öğreniminin hayatımızı nasıl etkilediğini keşfetmeye başlayacaksınız. Hâlihazırda, sistemler ve modeller sağlık teşhisleri, kredi onayları veya dolandırıcılık tespiti gibi günlük karar verme görevlerinde yer almaktadır. Bu nedenle, bu modellerin güvenilir sonuçlar sağlamak için iyi çalışması önemlidir. Herhangi bir yazılım uygulaması gibi, yapay zeka sistemleri beklentileri karşılamayabilir veya istenmeyen sonuçlar doğurabilir. Bu yüzden, bir yapay zeka modelinin davranışını anlamak ve açıklamak çok önemlidir.
 
-Bu modelleri oluşturmak için kullandığınız veriler belirli demografik grupları (ırk, cinsiyet, siyasi görüş, din gibi) içermediğinde veya bu demografik grupları orantısız bir şekilde temsil ettiğinde neler olabileceğini hayal edin. Peki ya modelin çıktısı bazı demografik grupları kayıracak şekilde yorumlandığında ne olur? Uygulama için sonuçları nelerdir? Ayrıca, modelin olumsuz bir sonucu olduğunda ve insanlara zarar verdiğinde ne olur? Yapay zeka sistemlerinin davranışından kim sorumludur? Bu müfredatta bu tür soruları inceleyeceğiz.
+Bu modelleri oluşturmak için kullandığınız veriler belli demografik grupları, örneğin ırk, cinsiyet, politik görüş, din gibi özellikleri eksik barındırıyorsa ya da bu demografileri orantısız şekilde temsil ediyorsa ne olur? Modelin çıktısı bazı demografik grupları kayıracak şekilde yorumlanırsa ne olur? Uygulamanın sonucu ne olur? Ayrıca, model olumsuz bir sonuç üretip insanlara zarar verirse ne olur? Yapay zeka sistemlerinin davranışından kim sorumludur? Bu müfredatta bu gibi soruları keşfedeceğiz.
 
-Bu derste şunları öğreneceksiniz:
+Bu derste:
 
-- Makine öğreniminde adaletin önemi ve adaletle ilgili zararlar hakkında farkındalık oluşturmak.
-- Güvenilirlik ve güvenliği sağlamak için aykırı değerleri ve olağandışı senaryoları keşfetme pratiğini öğrenmek.
-- Herkesin kapsayıcı sistemler tasarlayarak güçlendirilmesi gerektiğini anlamak.
-- Verilerin ve insanların gizliliğini ve güvenliğini korumanın ne kadar önemli olduğunu keşfetmek.
-- Yapay zeka modellerinin davranışını açıklamak için şeffaf bir yaklaşımın önemini görmek.
-- Yapay zeka sistemlerinde güven oluşturmak için hesap verebilirliğin ne kadar önemli olduğunu anlamak.
+- Makine öğreniminde adaletin ve adaletle ilgili zararların önemine farkındalık kazanacaksınız.
+- Güvenilirlik ve güvenliği sağlamak için sıra dışı durumları ve aykırı değerleri keşfetme pratiğine alışacaksınız.
+- Herkesi güçlendiren kapsayıcı sistemler tasarlamanın gerekliliğini anlayacaksınız.
+- Verilerin ve insanların gizliliği ile güvenliğinin korunmasının ne denli hayati olduğunu keşfedeceksiniz.
+- Yapay zeka modellerinin davranışını açıklayan bir cam kutu yaklaşımının önemini göreceksiniz.
+- Yapay zeka sistemlerine olan güvenin temelinde sorumluluğun ne kadar hayati olduğunu fark edeceksiniz.
 
-## Ön Koşul
+## Önkoşul
 
-Ön koşul olarak, "Sorumlu Yapay Zeka İlkeleri" öğrenme yolunu tamamlayın ve aşağıdaki videoyu izleyin:
+Önkoşul olarak, lütfen "Sorumlu Yapay Zeka İlkeleri" Öğrenme Yolunu tamamlayın ve aşağıdaki videoyu izleyin:
 
-Sorumlu Yapay Zeka hakkında daha fazla bilgi edinmek için bu [Öğrenme Yolunu](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott) takip edin.
+Bu [Öğrenme Yolunu](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott) takip ederek Sorumlu Yapay Zeka hakkında daha fazla bilgi edinin
 
-[![Microsoft'un Sorumlu Yapay Zeka Yaklaşımı](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft'un Sorumlu Yapay Zeka Yaklaşımı")
+[![Microsoft'un Sorumlu Yapay Zekaya Yaklaşımı](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft'un Sorumlu Yapay Zekaya Yaklaşımı")
 
-> 🎥 Yukarıdaki görüntüye tıklayarak videoyu izleyin: Microsoft'un Sorumlu Yapay Zeka Yaklaşımı
+> 🎥 Yukarıdaki resme tıklayarak videoyu izleyin: Microsoft'un Sorumlu Yapay Zekaya Yaklaşımı
 
 ## Adalet
 
-Yapay zeka sistemleri herkese adil davranmalı ve benzer grupları farklı şekillerde etkilemekten kaçınmalıdır. Örneğin, yapay zeka sistemleri tıbbi tedavi, kredi başvuruları veya istihdam konusunda rehberlik sağladığında, benzer semptomlara, finansal koşullara veya mesleki niteliklere sahip herkese aynı önerileri sunmalıdır. Hepimiz, kararlarımızı ve eylemlerimizi etkileyen kalıtsal önyargılar taşırız. Bu önyargılar, yapay zeka sistemlerini eğitmek için kullandığımız verilere yansıyabilir. Bu tür manipülasyonlar bazen istemeden gerçekleşebilir. Verilere önyargı eklediğinizi bilinçli olarak fark etmek genellikle zordur.
+Yapay zeka sistemleri herkese adil davranmalı ve benzer grupları farklı şekillerde etkilemekten kaçınmalıdır. Örneğin, yapay zeka sistemleri tıbbi tedavi, kredi başvuruları ya da istihdam konularında rehberlik sağlarken, benzer semptomları, finansal durumu veya mesleki nitelikleri olan herkese aynı önerileri yapmalıdır. İnsanlar olarak hepimizin kararlarımızı ve eylemlerimizi etkileyen doğuştan gelen önyargılarımız vardır. Bu önyargılar, yapay zeka sistemlerini eğitirken kullandığımız verilerde görülebilir. Bu tür manipülasyon bazen farkında olmadan gerçekleşebilir. Veriye bilinçli olarak ne zaman önyargı eklediğinizi anlamak çoğu zaman zordur.
 
-**“Adaletsizlik”**, bir grup insan için (örneğin ırk, cinsiyet, yaş veya engellilik durumu açısından tanımlanan) olumsuz etkileri veya “zararları” kapsar. Adaletle ilgili başlıca zararlar şu şekilde sınıflandırılabilir:
+**“Adaletsizlik”**, ırk, cinsiyet, yaş veya engellilik durumu gibi tanımlanan bir grup insan için ortaya çıkan olumsuz etkileri veya “zararları” kapsar. Temel adaletle ilgili zararlar şu şekilde sınıflandırılabilir:
 
-- **Tahsis**: Örneğin, bir cinsiyet veya etnik kökenin diğerine tercih edilmesi.
-- **Hizmet kalitesi**: Verileri yalnızca belirli bir senaryo için eğitmek, ancak gerçekliğin çok daha karmaşık olması, kötü performans gösteren bir hizmete yol açar. Örneğin, koyu tenli insanları algılayamayan bir el sabunu dağıtıcısı. [Referans](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Aşağılama**: Bir şeyi veya birini haksız yere eleştirmek ve etiketlemek. Örneğin, bir görüntü etiketleme teknolojisi koyu tenli insanları goril olarak yanlış etiketlemiştir.
-- **Aşırı veya yetersiz temsil**: Belirli bir grubun belirli bir meslekte görülmemesi fikri ve bu durumu sürekli olarak teşvik eden herhangi bir hizmet veya işlev zarara katkıda bulunur.
-- **Stereotipleme**: Belirli bir grubu önceden atanmış özelliklerle ilişkilendirme. Örneğin, İngilizce ve Türkçe arasında çeviri yapan bir dil sistemi, cinsiyetle ilgili stereotipik ilişkilere dayalı hatalar içerebilir.
+- **Tahsis**: Örneğin, bir cinsiyet veya etnik grubun diğerine kıyasla tercih edilmesi.
+- **Hizmet kalitesi**: Eğer veri yalnızca belirli bir senaryo için eğitilir ama gerçeklik çok daha karmaşıksa, bu kötü çalışan bir hizmete yol açar. Örneğin, koyu tenli insanları algılayamayan bir el sabunluğu. [Referans](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Aşağılama**: Adaletsiz şekilde bir şeyi veya birini eleştirmek ve etiketlemek. Örneğin, bir görüntü etiketleme teknolojisi koyu tenli insanları maymun olarak yanlış etiketlemesiyle ünlüdür.
+- **Aşırı veya az temsil**: Belirli bir grubun belli bir meslekte görülmemesi ve hizmetlerin veya fonksiyonların bunu sürdürmesi zarar vericidir.
+- **Klişeleştirme**: Bir grubu önceden atanmış özelliklerle ilişkilendirmek. Örneğin, İngilizce-Türkçe çeviri sisteminde cinsiyetle ilgili klişeler nedeniyle yanlışlar oluşabilir.
 
-![Türkçeye çeviri](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
-> Türkçeye çeviri
+![türkçeye çeviri](../../../../translated_images/tr/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
+> türkçeye çeviri
 
-![İngilizceye geri çeviri](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
-> İngilizceye geri çeviri
+![ingilizceye geri çeviri](../../../../translated_images/tr/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
+> ingilizceye geri çeviri
 
-Yapay zeka sistemlerini tasarlarken ve test ederken, yapay zekanın adil olmasını ve önyargılı veya ayrımcı kararlar vermek üzere programlanmamasını sağlamamız gerekir. Yapay zekada ve makine öğreniminde adaleti garanti altına almak, karmaşık bir sosyo-teknik zorluk olmaya devam ediyor.
+Yapay zeka sistemleri tasarlanırken ve test edilirken, yapay zekanın adil olması ve insanlara yasaklanan önyargılı veya ayrımcı kararlar vermeye programlanmadığından emin olunmalıdır. Yapay zekada ve makine öğreniminde adaletin garantilenmesi karmaşık bir sosyoteknik zorluktur.
 
-### Güvenilirlik ve Güvenlik
+### Güvenilirlik ve güvenlik
 
-Güven oluşturmak için yapay zeka sistemlerinin normal ve beklenmedik koşullar altında güvenilir, güvenli ve tutarlı olması gerekir. Yapay zeka sistemlerinin çeşitli durumlarda nasıl davranacağını bilmek önemlidir, özellikle de aykırı değerler söz konusu olduğunda. Yapay zeka çözümleri oluştururken, yapay zeka çözümlerinin karşılaşabileceği çeşitli koşulları ele alma konusunda önemli bir odaklanma gereklidir. Örneğin, bir otonom araç insanların güvenliğini en öncelikli olarak ele almalıdır. Sonuç olarak, aracı çalıştıran yapay zeka, gece, fırtına, kar fırtınası, yola koşan çocuklar, evcil hayvanlar, yol çalışmaları gibi aracın karşılaşabileceği tüm olası senaryoları dikkate almalıdır. Bir yapay zeka sisteminin geniş bir koşul yelpazesini ne kadar güvenilir ve güvenli bir şekilde ele alabildiği, veri bilimci veya yapay zeka geliştiricisinin tasarım veya test sırasında ne kadar öngörüde bulunduğunu yansıtır.
+Güveni inşa etmek için yapay zeka sistemlerinin normal ve beklenmedik koşullar altında güvenilir, güvenli ve tutarlı olması gerekir. Yapay zeka sistemlerinin çeşitli durumlarda, özellikle sıra dışı durumlarda nasıl davranacağını bilmek önemlidir. Yapay zeka çözümleri oluştururken, bu çözümlerin karşılaşacağı geniş bir koşullar yelpazesine nasıl uyum sağlayacağına önemli ölçüde dikkat edilmelidir. Örneğin, otonom bir aracın insanların güvenliğini en öncelikle tutması gerekir. Bu nedenle, aracı besleyen yapay zekanın gece, fırtına, tipi, sokaktan koşan çocuklar, evcil hayvanlar, yol çalışmaları gibi tüm olası senaryoları dikkate alması gerekir. Bir yapay zeka sisteminin çok geniş koşulları ne kadar güvenilir ve güvenli şekilde yönetebildiği, veri bilimcisinin veya yapay zeka geliştiricisinin sistemi tasarlarken veya test ederken ne kadar öngördüğünü yansıtır.
 
-> [🎥 Video için buraya tıklayın: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Bir video için buraya tıklayın: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
 ### Kapsayıcılık
 
-Yapay zeka sistemleri herkesin katılımını sağlamalı ve güçlendirmelidir. Yapay zeka sistemlerini tasarlarken ve uygularken, veri bilimciler ve yapay zeka geliştiriciler, sistemi istemeden insanları dışlayabilecek potansiyel engelleri belirler ve ele alır. Örneğin, dünya genelinde 1 milyar engelli insan bulunmaktadır. Yapay zekanın ilerlemesiyle, günlük yaşamlarında bilgiye ve fırsatlara daha kolay erişebilirler. Engelleri ele alarak, herkes için daha iyi deneyimler sunan yapay zeka ürünlerini yenilikçi bir şekilde geliştirme fırsatları yaratılır.
+Yapay zeka sistemleri herkesi kapsayacak ve güçlendirecek şekilde tasarlanmalıdır. Tasarım ve uygulama süreçlerinde veri bilimciler ve yapay zeka geliştiriciler, sistemi istemeden dışlayıcı kılabilecek potansiyel engelleri tanır ve çözerler. Örneğin dünyada 1 milyar engelli insan var. Yapay zeka ilerledikçe, bu kişiler günlük yaşamlarında bilgiye ve fırsatlara daha kolay erişebilirler. Engelleri çözerek, daha iyi deneyimlere sahip yapay zeka ürünleri geliştirme ve yenilik yapma fırsatları yaratılır ve bu herkesin yararına olur.
 
-> [🎥 Video için buraya tıklayın: yapay zekada kapsayıcılık](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Yapay zekada kapsayıcılık videosu için buraya tıklayın](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
-### Güvenlik ve Gizlilik
+### Güvenlik ve gizlilik
 
-Yapay zeka sistemleri güvenli olmalı ve insanların gizliliğine saygı göstermelidir. Gizliliği, bilgileri veya hayatları riske atan sistemlere insanlar daha az güvenir. Makine öğrenimi modellerini eğitirken, en iyi sonuçları elde etmek için verilere güveniriz. Bunu yaparken, verilerin kaynağı ve bütünlüğü dikkate alınmalıdır. Örneğin, veriler kullanıcı tarafından mı gönderildi yoksa kamuya açık mıydı? Ardından, verilerle çalışırken, gizli bilgileri koruyabilen ve saldırılara karşı dirençli yapay zeka sistemleri geliştirmek önemlidir. Yapay zeka daha yaygın hale geldikçe, gizliliği korumak ve önemli kişisel ve iş bilgilerini güvence altına almak giderek daha kritik ve karmaşık hale geliyor. Gizlilik ve veri güvenliği sorunları, yapay zeka için özellikle dikkat gerektirir çünkü verilere erişim, yapay zeka sistemlerinin insanlar hakkında doğru ve bilgilendirilmiş tahminler ve kararlar vermesi için gereklidir.
+Yapay zeka sistemleri güvenli olmalı ve insanların gizliliğine saygı göstermelidir. Gizliliklerini, bilgilerini veya hayatlarını riske atan sistemlere insanların güveni daha azdır. Makine öğrenimi modellerini eğitirken en iyi sonuçları almaya çalışırız. Bu süreçte verinin kaynağı ve bütünlüğü göz önünde bulundurulmalıdır. Örneğin, veri kullanıcılardan mı yoksa kamuya açık mı? Devamında, veriler üzerinde çalışırken gizli bilgileri koruyabilen ve saldırılara dayanabilen yapay zeka sistemleri geliştirmek kritik önem taşır. Yapay zeka yaygınlaştıkça gizliliğin korunması ve önemli kişisel ve ticari bilgilerin güvenliği daha kritik ve karmaşık hale gelir. Yapay zeka için gizlilik ve veri güvenliği sorunlarına özellikle dikkat edilmelidir çünkü yapay zeka sistemlerinin doğru ve bilinçli tahminler ve kararlar verebilmesi için verilere erişim gereklidir.
 
-> [🎥 Video için buraya tıklayın: yapay zekada güvenlik](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Yapay zekada güvenlik videosu için buraya tıklayın](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Endüstri olarak, GDPR (Genel Veri Koruma Yönetmeliği) gibi düzenlemelerle önemli ilerlemeler kaydettik.
-- Ancak yapay zeka sistemleriyle, sistemleri daha kişisel ve etkili hale getirmek için daha fazla kişisel veri ihtiyacı ile gizlilik arasındaki gerilimi kabul etmeliyiz.
-- İnternetle bağlantılı bilgisayarların doğuşunda olduğu gibi, yapay zeka ile ilgili güvenlik sorunlarında da büyük bir artış görüyoruz.
-- Aynı zamanda, yapay zekanın güvenliği artırmak için kullanıldığını da görüyoruz. Örneğin, modern antivirüs tarayıcılarının çoğu bugün yapay zeka sezgileriyle çalışıyor.
-- Veri Bilimi süreçlerimizin en son gizlilik ve güvenlik uygulamalarıyla uyum içinde olmasını sağlamalıyız.
+- Endüstri olarak, GDPR (Genel Veri Koruma Yönetmeliği) gibi düzenlemelerle önemli gizlilik ve güvenlik ilerlemeleri kaydettik.
+- Ancak yapay zeka sistemlerinde, sistemleri daha kişisel ve etkili yapmak için daha fazla kişisel veriye ihtiyaç ile gizlilik arasında bir gerilim olduğunu kabul etmeliyiz.
+- İnternetle bağlı bilgisayarların doğuşu gibi, yapay zekayla ilişkili güvenlik sorunlarında da büyük bir artış görüyoruz.
+- Aynı zamanda yapay zekanın güvenliği iyileştirmek için kullanıldığını görüyoruz. Örneğin, çoğu modern antivirüs tarayıcısı artık yapay zeka sezgileriyle çalışıyor.
+- Veri Bilimi süreçlerimizin en son gizlilik ve güvenlik uygulamalarıyla uyumlu olması gerekiyor.
+
 
 ### Şeffaflık
+Yapay zeka sistemleri anlaşılabilir olmalıdır. Şeffaflığın kritik bir parçası, yapay zeka sistemlerinin ve bileşenlerinin davranışını açıklamaktır. Yapay zeka sistemlerinin anlaşılmasını geliştirmek, paydaşların sistemlerin nasıl ve neden işlediğini anlamasını gerektirir; bu sayede performans sorunlarını, güvenlik ve gizlilik endişelerini, önyargıları, dışlayıcı uygulamaları veya istenmeyen sonuçları tespit edebilirler. Ayrıca yapay zeka sistemlerini kullananların, bunları ne zaman, neden ve nasıl devreye aldıklarını ve hangi sınırlamalara sahip olduklarını dürüstçe açıklamaları gerektiğine inanıyoruz. Örneğin, bir banka yapay zeka sistemi kullanarak kredi kararlarını destekliyorsa, sonuçları inceleyip hangi verilerin sistemin önerilerini etkilediğini anlamak önemlidir. Hükümetler yapay zekayı düzenlemeye başladığı için, veri bilimciler ve kurumlar, bir yapay zeka sisteminin düzenleyici gereklilikleri karşılayıp karşılamadığını, özellikle istenmeyen sonuçlarda açıklamak zorundadır.
 
-Yapay zeka sistemleri anlaşılabilir olmalıdır. Şeffaflığın önemli bir kısmı, yapay zeka sistemlerinin ve bileşenlerinin davranışını açıklamaktır. Yapay zeka sistemlerinin anlaşılmasını geliştirmek, paydaşların nasıl ve neden çalıştıklarını anlamalarını gerektirir, böylece potansiyel performans sorunlarını, güvenlik ve gizlilik endişelerini, önyargıları, dışlayıcı uygulamaları veya istenmeyen sonuçları belirleyebilirler. Ayrıca, yapay zeka sistemlerini kullananların, bunları ne zaman, neden ve nasıl kullanmayı seçtikleri konusunda dürüst ve açık olmaları gerektiğine inanıyoruz. Kullandıkları sistemlerin sınırlamaları hakkında da bilgi vermelidirler. Örneğin, bir banka tüketici kredi kararlarını desteklemek için bir yapay zeka sistemi kullanıyorsa, sonuçları incelemek ve sistemin önerilerini hangi verilerin etkilediğini anlamak önemlidir. Hükümetler, endüstrilerde yapay zekayı düzenlemeye başladığından, veri bilimciler ve kuruluşlar, bir yapay zeka sisteminin düzenleyici gereklilikleri karşılayıp karşılamadığını, özellikle istenmeyen bir sonuç olduğunda açıklamalıdır.
+> [🎥 Yapay zekada şeffaflık videosu için buraya tıklayın](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-> [🎥 Video için buraya tıklayın: yapay zekada şeffaflık](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+- Yapay zeka sistemleri çok karmaşık olduğundan, nasıl çalıştıklarını anlamak ve sonuçları yorumlamak zordur.
+- Bu anlayış eksikliği, bu sistemlerin yönetilişi, uygulanışı ve belgelenişini etkiler.
+- Daha da önemlisi, bu anlayış eksikliği, bu sistemlerin ürettiği sonuçlarla yapılan kararları etkiler.
 
-- Yapay zeka sistemleri çok karmaşık olduğu için nasıl çalıştıklarını anlamak ve sonuçları yorumlamak zordur.
-- Bu anlayış eksikliği, bu sistemlerin nasıl yönetildiğini, işletildiğini ve belgelenmesini etkiler.
-- Daha da önemlisi, bu anlayış eksikliği, bu sistemlerin ürettiği sonuçlara dayanarak alınan kararları etkiler.
+### Sorumluluk  
+ 
+Yapay zeka sistemlerini tasarlayan ve kullanan insanlar, sistemlerinin nasıl çalıştığından sorumlu olmalıdır. Yüz tanıma gibi hassas teknolojilerde sorumluluk özellikle önemlidir. Son zamanlarda, çalıntı çocukları bulmak gibi kullanımlarda potansiyel görülen bu teknolojiye, özellikle güvenlik güçlerinden yoğun talep artışı olmuştur. Ancak bu teknolojiler, örneğin belirli bireylerin sürekli gözetilmesini mümkün kılarak, bir hükümetin vatandaşlarının temel özgürlüklerini riske atacak şekilde kullanılabilir. Bu nedenle, veri bilimciler ve kurumlar, yapay zeka sistemlerinin bireyler veya toplum üzerindeki etkileri için sorumlu olmalıdır.
 
-### Hesap Verebilirlik
+[![Lider Yapay Zeka Araştırmacısı Yüz Tanıma ile Kitlesel Gözetim Uyarısı](../../../../translated_images/tr/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft'un Sorumlu Yapay Zekaya Yaklaşımı")
 
-Yapay zeka sistemlerini tasarlayan ve uygulayan kişiler, sistemlerinin nasıl çalıştığı konusunda hesap verebilir olmalıdır. Hesap verebilirlik ihtiyacı, özellikle yüz tanıma gibi hassas teknolojilerde çok önemlidir. Son zamanlarda, özellikle kayıp çocukları bulmak gibi kullanımlarda teknolojinin potansiyelini gören kolluk kuvvetleri tarafından yüz tanıma teknolojisine olan talep artmıştır. Ancak, bu teknolojiler bir hükümet tarafından vatandaşlarının temel özgürlüklerini riske atmak için kullanılabilir, örneğin belirli bireylerin sürekli gözetimini sağlamak için. Bu nedenle, veri bilimciler ve kuruluşlar, yapay zeka sistemlerinin bireyler veya toplum üzerindeki etkisinden sorumlu olmalıdır.
+> 🎥 Yukarıdaki resme tıklayarak videoyu izleyin: Yüz Tanıma ile Kitlesel Gözetim Uyarısı
 
-[![Önde Gelen Yapay Zeka Araştırmacısı Yüz Tanıma Yoluyla Toplu Gözetim Uyarısı](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft'un Sorumlu Yapay Zeka Yaklaşımı")
+Sonuç olarak, AI'yı topluma getiren ilk nesil olarak bizim neslimize yönelen en büyük sorulardan biri, bilgisayarların insanlara karşı sorumlu kalmasını ve bilgisayarları tasarlayanların herkes karşısında sorumlu olmasını nasıl sağlayacağımızdır.
 
-> 🎥 Yukarıdaki görüntüye tıklayarak videoyu izleyin: Yüz Tanıma Yoluyla Toplu Gözetim Uyarısı
+## Etki değerlendirmesi
 
-Sonuç olarak, yapay zekayı topluma getiren ilk nesil olarak, bilgisayarların insanlara karşı hesap verebilir olmasını nasıl sağlayacağımız ve bilgisayarları tasarlayan insanların diğer herkese karşı hesap verebilir olmasını nasıl sağlayacağımız, neslimizin en büyük sorularından biridir.
+Bir makine öğrenimi modeli eğitmeden önce, yapay zeka sisteminin amacını; kullanım şeklinin ne olduğunu; nerede uygulanacağını; ve sistemle kimlerin etkileşimde bulunacağını anlamak için etki değerlendirmesi yapmak önemlidir. Bu, sistemi inceleyen veya test eden kişilerin potansiyel riskleri ve beklenen sonuçları belirlerken hangi faktörleri göz önünde bulundurması gerektiğini bilmelerine yardımcı olur.
 
-## Etki Değerlendirmesi
+Etki değerlendirmesi yapılırken odaklanılan alanlar şunlardır:
 
-Bir makine öğrenimi modelini eğitmeden önce, yapay zeka sisteminin amacını, planlanan kullanımını, nerede uygulanacağını ve sistemle kimlerin etkileşimde bulunacağını anlamak için bir etki değerlendirmesi yapmak önemlidir. Bunlar, sistemi değerlendiren inceleyiciler veya test edenler için potansiyel riskleri ve beklenen sonuçları belirlerken dikkate alınması gereken faktörleri anlamalarına yardımcı olur.
-
-Etki değerlendirmesi yaparken odaklanılması gereken alanlar şunlardır:
-
-* **Bireyler üzerindeki olumsuz etkiler**. Sistemin performansını engelleyen herhangi bir kısıtlama veya gereklilik, desteklenmeyen kullanım veya bilinen sınırlamaların farkında olmak, sistemin bireylere zarar verebilecek şekilde kullanılmamasını sağlamak için önemlidir.
-* **Veri gereksinimleri**. Sistemin verileri nasıl ve nerede kullanacağını anlamak, inceleyicilerin dikkate alması gereken veri gereksinimlerini (örneğin, GDPR veya HIPPA veri düzenlemeleri) keşfetmelerini sağlar. Ayrıca, verilerin kaynağı veya miktarının eğitim için yeterli olup olmadığını inceleyin.
-* **Etki özeti**. Sistemin kullanımından kaynaklanabilecek potansiyel zararların bir listesini toplayın. Makine öğrenimi yaşam döngüsü boyunca, belirlenen sorunların azaltılıp azaltılmadığını veya ele alınıp alınmadığını gözden geçirin.
-* **Altı temel ilke için uygulanabilir hedefler**. Her bir ilkenin hedeflerinin karşılanıp karşılanmadığını ve herhangi bir boşluk olup olmadığını değerlendirin.
-
-## Sorumlu Yapay Zeka ile Hata Ayıklama
-
-Bir yazılım uygulamasını hata ayıklamak gibi, bir yapay zeka sistemini hata ayıklamak, sistemdeki sorunları belirleme ve çözme sürecidir. Bir modelin beklenildiği gibi veya sorumlu bir şekilde performans göstermemesine neden olan birçok faktör vardır. Çoğu geleneksel model performans metriği, bir modelin performansının nicel toplamlarıdır ve bir modelin sorumlu yapay zeka ilkelerini nasıl ihlal ettiğini analiz etmek için yeterli değildir. Ayrıca, bir makine öğrenimi modeli, sonuçlarını neyin yönlendirdiğini anlamayı veya hata yaptığında açıklama sağlamayı zorlaştıran bir kara kutudur. Bu kursta daha sonra, yapay zeka sistemlerini hata ayıklamak için Sorumlu Yapay Zeka panosunu nasıl kullanacağımızı öğreneceğiz. Pano, veri bilimciler ve yapay zeka geliştiriciler için şu işlemleri gerçekleştirmek üzere kapsamlı bir araç sağlar:
-
-* **Hata analizi**. Modelin adalet veya güvenilirliği etkileyebilecek hata dağılımını belirlemek.
-* **Model genel görünümü**. Modelin performansında veri grupları arasında nerede farklılıklar olduğunu keşfetmek.
-* **Veri analizi**. Veri dağılımını anlamak ve adalet, kapsayıcılık ve güvenilirlik sorunlarına yol açabilecek olası önyargıları belirlemek.
-* **Model yorumlanabilirliği**. Modelin tahminlerini neyin etkilediğini veya yönlendirdiğini anlamak. Bu, modelin davranışını açıklamak için önemlidir ve şeffaflık ve hesap verebilirlik açısından kritiktir.
-
-## 🚀 Zorluk
-
-Zararların baştan önlenmesi için şunları yapmalıyız:
-
-- sistemler üzerinde çalışan insanlar arasında farklı geçmişlere ve bakış açılarına sahip olmak
-- toplumumuzun çeşitliliğini yansıtan veri setlerine yatırım yapmak
-- makine öğrenimi yaşam döngüsü boyunca sorumlu yapay zekayı tespit etmek ve düzeltmek için daha iyi yöntemler geliştirmek
-
-Model oluşturma ve kullanımı sırasında bir modelin güvenilmezliğinin açıkça görüldüğü gerçek yaşam senaryolarını düşünün. Başka neleri dikkate almalıyız?
-
-## [Ders Sonrası Test](https://ff-quizzes.netlify.app/en/ml/)
-
-## Gözden Geçirme ve Kendi Kendine Çalışma
-
-Bu derste, makine öğreniminde adalet ve adaletsizlik kavramlarının temellerini öğrendiniz.
-Bu atölyeyi izleyerek konulara daha derinlemesine dalın: 
-
-- Sorumlu yapay zeka arayışı: İlkeleri uygulamaya dökmek - Besmira Nushi, Mehrnoosh Sameki ve Amit Sharma tarafından
-
-[![Sorumlu AI Araç Kutusu: Sorumlu yapay zeka oluşturmak için açık kaynaklı bir çerçeve](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Sorumlu yapay zeka oluşturmak için açık kaynaklı bir çerçeve")
+* **Bireyler üzerindeki olumsuz etkiler**. Sistemin performansını engelleyen kısıtlamalar, desteklenmeyen kullanımlar veya bilinen sınırlamalar konusunda farkındalık, bireylere zarar verilmemesi için kritik öneme sahiptir.
+* **Veri gereksinimleri**. Sistemin veriyi nasıl ve nerede kullanacağını anlamak, inceleyenlerin uyulması gereken veri gereksinimlerini (örneğin GDPR veya HIPAA gibi) araştırmasına olanak verir. Ayrıca, veri kaynağı ve miktarının eğitime yeterli olup olmadığını kontrol etmek gerekir.
+* **Etki özeti**. Sistem kullanımından ortaya çıkabilecek olası zararların listesini toplamak. Makine öğrenimi yaşam döngüsü boyunca, belirlenen sorunların önlenip önlenmediğini incelemek.
+* **Altı temel ilkenin her biri için uygulanabilir hedefler**. Her ilkenin hedeflerinin karşılanıp karşılanmadığını değerlendirmek ve varsa eksiklikleri belirlemek.
 
 
-> 🎥 Yukarıdaki görsele tıklayarak videoyu izleyin: RAI Toolbox: Sorumlu yapay zeka oluşturmak için açık kaynaklı bir çerçeve - Besmira Nushi, Mehrnoosh Sameki ve Amit Sharma tarafından
+## Sorumlu yapay zeka ile hata ayıklama
 
-Ayrıca okuyun: 
+Bir yazılım uygulamasına hata ayıklama yapılması gibi, bir yapay zeka sistemine hata ayıklama yapmak da sistemi etkileyen hataları belirleme ve çözme sürecidir. Bir modelin beklenen veya sorumlu şekilde çalışmamasını etkileyen birçok faktör vardır. Geleneksel performans metrikleri genellikle modelin performansının niceliksel toplamlarıdır ve modelin sorumlu yapay zeka ilkelerini nasıl ihlal ettiğini analiz etmek için yeterli değildir. Ayrıca, makine öğrenimi modeli çıktısını neyin etkilediğini anlamayı zorlaştıran kara kutu gibidir ve hata yaptığında açıklama yapmak zordur. Bu derste, yapay zeka sistemlerini hata ayıklamada yardımcı olan Sorumlu Yapay Zeka kontrol panelini nasıl kullanacağımızı öğreneceğiz. Kontrol paneli, veri bilimciler ve yapay zeka geliştiricileri için şu kapsamlı araçları sunar:
 
-- Microsoft’un Sorumlu AI kaynak merkezi: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+* **Hata analizi**. Sistemin adaletini veya güvenilirliğini etkileyebilecek hata dağılımının tespiti.
+* **Model genel görünümü**. Modelin performansındaki farklılıkların veri kümeleri arasında nerede olduğunu keşfetmek.
+* **Veri analizi**. Veri dağılımını anlayarak, adalet, kapsayıcılık ve güvenilirlik sorunlarına yol açabilecek önyargıları tespit etmek.
+* **Model yorumlanabilirliği**. Modelin tahminlerini etkileyen faktörleri anlamak. Bu, şeffaflık ve sorumluluk için modelin davranışını açıklamada yardımcı olur.
 
-- Microsoft’un FATE araştırma grubu: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+
+## 🚀 Meydan okuma
+ 
+Zararların baştan engellenmesi için:
+
+- Sistemler üzerinde çalışan kişiler arasında çeşitli geçmişler ve bakış açıları olsun
+- Toplumumuzun çeşitliliğini yansıtan veri setlerine yatırım yapılsın
+- Makine öğrenimi yaşam döngüsü boyunca sorumlu yapay zekayı tespit edip düzeltmek için daha iyi yöntemler geliştirilsin
+
+Model oluşturma ve kullanımı aşamalarında güvenilmezlik belirgin olduğu gerçek yaşam senaryolarını düşünün. Başka neleri dikkate almalıyız?
+
+## [Ders sonrası quiz](https://ff-quizzes.netlify.app/en/ml/)
+
+## Gözden geçirme ve kendi kendine çalışma
+ 
+
+Bu derste, makine öğreniminde adalet ve adaletsizlik kavramlarının bazı temel bilgilerini öğrendiniz.  
+ 
+Konulara daha derinlemesine dalmak için bu atölyeyi izleyin: 
+
+- Sorumlu Yapay Zekanın Peşinde: İlkeleri Pratiğe Dökmek, Besmira Nushi, Mehrnoosh Sameki ve Amit Sharma tarafından
+
+[![Sorumlu Yapay Zeka Araç Kutusu: Sorumlu yapay zeka oluşturmak için açık kaynaklı bir çerçeve](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Sorumlu yapay zeka oluşturmak için açık kaynaklı bir çerçeve")
+
+> 🎥 Video için yukarıdaki resme tıklayın: RAI Toolbox: Besmira Nushi, Mehrnoosh Sameki ve Amit Sharma tarafından hazırlanan sorumlu yapay zeka oluşturmak için açık kaynaklı bir çerçeve
+
+Ayrıca, okuyun: 
+
+- Microsoft’un RAI kaynak merkezi: [Sorumlu Yapay Zeka Kaynakları – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+
+- Microsoft’un FATE araştırma grubu: [FATE: Yapay Zekada Adalet, Hesap Verebilirlik, Şeffaflık ve Etik - Microsoft Araştırma](https://www.microsoft.com/research/theme/fate/) 
 
 RAI Araç Kutusu: 
 
-- [Responsible AI Toolbox GitHub deposu](https://github.com/microsoft/responsible-ai-toolbox)
+- [Sorumlu Yapay Zeka Araç Kutusu GitHub deposu](https://github.com/microsoft/responsible-ai-toolbox)
 
-Azure Machine Learning'in adalet sağlama araçları hakkında okuyun:
+Azure Machine Learning'in adaleti sağlamak için araçları hakkında bilgi edinin:
 
 - [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## Ödev
 
-[RAI Toolbox’u Keşfedin](assignment.md)
+[RAI Araç Kutusunu Keşfet](assignment.md)
 
 ---
 
-**Feragatname**:  
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluğu sağlamak için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

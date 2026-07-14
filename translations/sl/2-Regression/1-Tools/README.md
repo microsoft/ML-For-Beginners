@@ -1,55 +1,55 @@
-# Začnite s Pythonom in Scikit-learn za regresijske modele
+# Začnite s Python in Scikit-learn za regresijske modele
 
-![Povzetek regresij v sketchnote](../../../../sketchnotes/ml-regression.png)
+![Povzetek regresij v sketchnote](../../../../translated_images/sl/ml-regression.4e4f70e3b3ed446e.webp)
 
 > Sketchnote avtorja [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Predavanje kviz](https://ff-quizzes.netlify.app/en/ml/)
+## [Predpredavalni kviz](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [To lekcijo lahko najdete tudi v jeziku R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Ta lekcija je na voljo tudi v R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Uvod
 
-V teh štirih lekcijah boste odkrili, kako zgraditi regresijske modele. Kmalu bomo razpravljali, za kaj so ti modeli uporabni. Preden pa začnete, poskrbite, da imate na voljo ustrezna orodja za začetek procesa!
+V teh štirih lekcijah boste odkrili, kako zgraditi regresijske modele. Kmalu bomo govorili, čemu so ti modeli namenjeni. A preden karkoli naredite, se prepričajte, da imate postavljena prava orodja za začetek procesa!
 
-V tej lekciji boste izvedeli, kako:
+V tej lekciji se boste naučili:
 
-- Pripraviti računalnik za lokalne naloge strojnega učenja.
-- Delati z Jupyter zvezki.
-- Uporabljati Scikit-learn, vključno z namestitvijo.
-- Raziskati linearno regresijo s praktično vajo.
+- Kako konfigurirati računalnik za lokalne naloge strojnega učenja.
+- Kako delati z Jupyter zvezki (notebooks).
+- Kako uporabiti Scikit-learn, vključno z namestitvijo.
+- Raziščete linearno regresijo z vajo na praktičnem primeru.
 
 ## Namestitve in konfiguracije
 
-[![ML za začetnike - Pripravite orodja za gradnjo modelov strojnega učenja](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML za začetnike - Pripravite orodja za gradnjo modelov strojnega učenja")
+[![ML za začetnike - Nastavitev orodij za gradnjo modelov strojnega učenja](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML za začetnike - Nastavite svoja orodja za gradnjo modelov strojnega učenja")
 
-> 🎥 Kliknite zgornjo sliko za kratek video o konfiguraciji računalnika za strojno učenje.
+> 🎥 Kliknite zgornjo sliko za kratek video o nastavitvi računalnika za ML.
 
-1. **Namestite Python**. Prepričajte se, da je [Python](https://www.python.org/downloads/) nameščen na vašem računalniku. Python boste uporabljali za številne naloge podatkovne znanosti in strojnega učenja. Večina računalniških sistemov že vključuje namestitev Pythona. Na voljo so tudi uporabni [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), ki olajšajo nastavitev za nekatere uporabnike.
+1. **Namestite Python**. Poskrbite, da imate [Python](https://www.python.org/downloads/) nameščen na računalniku. Python boste uporabljali za številne naloge na področju podatkovne znanosti in strojnega učenja. Večina računalniških sistemov že vsebuje namestitev Pythona. Na voljo so tudi koristni [Python Coding Paketi](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), ki nekaterim uporabnikom olajšajo nastavitev.
 
-   Nekatere uporabe Pythona pa zahtevajo eno različico programske opreme, druge pa drugo. Zato je koristno delati v [virtualnem okolju](https://docs.python.org/3/library/venv.html).
+   Nekatere uporabe Pythona zahtevajo eno različico programske opreme, druge pa drugo. Iz tega razloga je koristno delati znotraj [virtualnega okolja](https://docs.python.org/3/library/venv.html).
 
-2. **Namestite Visual Studio Code**. Prepričajte se, da imate na računalniku nameščen Visual Studio Code. Sledite tem navodilom za [namestitev Visual Studio Code](https://code.visualstudio.com/) za osnovno namestitev. Python boste uporabljali v Visual Studio Code v tem tečaju, zato se morda želite seznaniti z [nastavitvijo Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) za razvoj v Pythonu.
+2. **Namestite Visual Studio Code**. Prepričajte se, da imate Visual Studio Code nameščen na računalniku. Sledite tem navodilom za [namestitev Visual Studio Code](https://code.visualstudio.com/) za osnovno namestitev. Python boste v tem tečaju uporabljali v Visual Studio Code, zato je koristno, da osvežite znanje o tem, kako [konfigurirati Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) za razvoj v Pythonu.
 
-   > Seznanite se s Pythonom z delom skozi to zbirko [učnih modulov](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Postanite udobni z uporabo Pythona tako, da preletite to zbirko [učnih modulov](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
    > [![Nastavitev Pythona z Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Nastavitev Pythona z Visual Studio Code")
    >
-   > 🎥 Kliknite zgornjo sliko za video: uporaba Pythona v VS Code.
+   > 🎥 Kliknite zgornjo sliko za video: uporaba Pythona znotraj VS Code.
 
-3. **Namestite Scikit-learn**, tako da sledite [tem navodilom](https://scikit-learn.org/stable/install.html). Ker morate zagotoviti uporabo Pythona 3, je priporočljivo, da uporabite virtualno okolje. Če to knjižnico nameščate na računalnik Mac z M1, so na zgoraj navedeni strani posebna navodila.
+3. **Namestite Scikit-learn**, tako da sledite [tem navodilom](https://scikit-learn.org/stable/install.html). Ker morate uporabljati Python 3, je priporočljivo uporabiti virtualno okolje. Če nameščate to knjižnico na M1 Mac, so na zgoraj povezani strani posebna navodila.
 
-4. **Namestite Jupyter Notebook**. Potrebovali boste [namestitev paketa Jupyter](https://pypi.org/project/jupyter/).
+1. **Namestite Jupyter Notebook**. Potrebovali boste [namestiti paket Jupyter](https://pypi.org/project/jupyter/).
 
-## Vaše okolje za avtorstvo ML
+## Vaše razvojno okolje za ML
 
-Uporabljali boste **zvezke** za razvoj kode v Pythonu in ustvarjanje modelov strojnega učenja. Ta vrsta datoteke je pogosto orodje za podatkovne znanstvenike, prepoznate pa jih po priponi `.ipynb`.
+Za razvijanje vaše Python kode in ustvarjanje modelov strojnega učenja boste uporabljali **zvezke**. Ta tip datotek je pogosto orodje podatkovnih znanstvenikov in jih lahko prepoznate po priponi `.ipynb`.
 
-Zvezki so interaktivno okolje, ki razvijalcu omogoča tako kodiranje kot dodajanje opomb in pisanje dokumentacije okoli kode, kar je zelo uporabno za eksperimentalne ali raziskovalno usmerjene projekte.
+Zvezki so interaktivno okolje, ki razvijalcu omogoča tako pisanje kode kot dodajanje opomb in pisanje dokumentacije okoli kode, kar je zelo koristno za eksperimentalne ali raziskovalne projekte.
 
 [![ML za začetnike - Nastavitev Jupyter zvezkov za začetek gradnje regresijskih modelov](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML za začetnike - Nastavitev Jupyter zvezkov za začetek gradnje regresijskih modelov")
 
-> 🎥 Kliknite zgornjo sliko za kratek video o tej vaji.
+> 🎥 Kliknite zgornjo sliko za kratek video skozi to vajo.
 
 ### Vaja - delo z zvezkom
 
@@ -57,51 +57,51 @@ V tej mapi boste našli datoteko _notebook.ipynb_.
 
 1. Odprite _notebook.ipynb_ v Visual Studio Code.
 
-   Začel se bo Jupyter strežnik s Pythonom 3+. V zvezku boste našli območja, ki jih je mogoče `zagnati`, torej dele kode. Kodo lahko zaženete tako, da izberete ikono, ki izgleda kot gumb za predvajanje.
+   Začne se bosta zagnala strežnik Jupyter s Pythonom 3+. V zvezku boste našli dele, ki jih je možno `pognati`, kose kode. Kodo lahko pognate tako, da izberete ikono, ki izgleda kot gumb za predvajanje.
 
-2. Izberite ikono `md` in dodajte nekaj markdowna ter naslednje besedilo **# Dobrodošli v vašem zvezku**.
+1. Izberite ikono `md` in dodajte nekaj markdowna ter naslednje besedilo **# Dobrodošli v vašem zvezku**.
 
-   Nato dodajte nekaj kode v Pythonu.
+   Nato dodajte nekaj Python kode.
 
-3. Vnesite **print('hello notebook')** v blok kode.
-4. Izberite puščico za zagon kode.
+1. Vtipkajte **print('hello notebook')** v razdelek s kodo.
+1. Izberite puščico za zagon kode.
 
-   Videti bi morali natisnjeno izjavo:
+   Videli boste natisnjen izpis:
 
     ```output
     hello notebook
     ```
 
-![VS Code z odprtim zvezkom](../../../../2-Regression/1-Tools/images/notebook.jpg)
+![VS Code z odprtim zvezkom](../../../../translated_images/sl/notebook.4a3ee31f396b8832.webp)
 
-Kodo lahko prepletate z opombami, da sami dokumentirate zvezek.
+Kodo lahko prepletate s komentarji, da dokumentirate zvezek.
 
-✅ Razmislite za trenutek, kako se delovno okolje spletnega razvijalca razlikuje od okolja podatkovnega znanstvenika.
+✅ Razmislite za trenutek, kako drugačno je razvojno okolje spletnega razvijalca v primerjavi z okoljem podatkovnega znanstvenika.
 
-## Začetek dela s Scikit-learn
+## Zagon Scikit-learn
 
-Zdaj, ko je Python nastavljen v vašem lokalnem okolju in ste seznanjeni z Jupyter zvezki, se enako seznanimo s Scikit-learn (izgovorjava `sci` kot v `science`). Scikit-learn ponuja [obsežen API](https://scikit-learn.org/stable/modules/classes.html#api-ref) za izvajanje nalog strojnega učenja.
+Zdaj, ko je Python nastavljen v vašem lokalnem okolju in ste udobni z Jupyter zvezki, se seznanimo enako udobno s Scikit-learn (izgovarja se `sci` kot v `science`). Scikit-learn ponuja [obsežen API](https://scikit-learn.org/stable/modules/classes.html#api-ref), ki vam pomaga pri opravljanju nalog strojnega učenja.
 
-Po navedbah njihove [spletne strani](https://scikit-learn.org/stable/getting_started.html) je "Scikit-learn odprtokodna knjižnica strojnega učenja, ki podpira nadzorovano in nenadzorovano učenje. Prav tako ponuja različna orodja za prileganje modelov, predobdelavo podatkov, izbiro modelov in ocenjevanje ter številne druge pripomočke."
+Po njihovem [spletnem mestu](https://scikit-learn.org/stable/getting_started.html) "je Scikit-learn odprtokodna knjižnica strojnega učenja, ki podpira nadzorovano in nenadzorovano učenje. Prav tako nudi različna orodja za prilagajanje modelov, predobdelavo podatkov, izbor in vrednotenje modela ter številne druge pripomočke."
 
-V tem tečaju boste uporabljali Scikit-learn in druga orodja za gradnjo modelov strojnega učenja za izvajanje nalog, ki jih imenujemo 'tradicionalno strojno učenje'. Namenoma smo se izognili nevronskim mrežam in globokemu učenju, saj so bolje obravnavani v našem prihajajočem učnem načrtu 'AI za začetnike'.
+V tem tečaju boste uporabili Scikit-learn in druga orodja za gradnjo modelov strojnega učenja za izvedbo tistih nalog, ki jih imenujemo 'tradicionalno strojno učenje'. Zavestno smo se izognili nevronskim mrežam in globokemu učenju, saj so bolje pokriti v našem prihajajočem učnem načrtu 'AI za začetnike'.
 
-Scikit-learn omogoča enostavno gradnjo modelov in njihovo ocenjevanje za uporabo. Osredotoča se predvsem na uporabo numeričnih podatkov in vsebuje več pripravljenih naborov podatkov za uporabo kot učna orodja. Prav tako vključuje vnaprej pripravljene modele, ki jih lahko študentje preizkusijo. Raziskujmo proces nalaganja vnaprej pripravljenih podatkov in uporabe vgrajenega ocenjevalnika za prvi ML model s Scikit-learn z osnovnimi podatki.
+Scikit-learn olajša gradnjo modelov in njihovo vrednotenje glede na uporabo. Osredotoča se predvsem na numerične podatke in vsebuje več vgrajenih podatkovnih zbirk za učenje. Vključuje tudi vnaprej pripravljene modele za preizkušanje. Raziskajmo proces nalaganja že pripravljenih podatkov in uporabo vgrajenega ocenilca - prvega ML modela s Scikit-learn na osnovi osnovnih podatkov.
 
-## Vaja - vaš prvi zvezek s Scikit-learn
+## Vaja - vaš prvi Scikit-learn zvezek
 
-> Ta vadnica je bila navdihnjena z [primerom linearne regresije](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) na spletni strani Scikit-learn.
+> Ta vodič je navdihnila [linearna regresija primer](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) na Scikit-learn spletni strani.
 
 
-[![ML za začetnike - Vaš prvi projekt linearne regresije v Pythonu](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML za začetnike - Vaš prvi projekt linearne regresije v Pythonu")
+[![ML za začetnike - vaš prvi linearni regresijski projekt v Pythonu](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML za začetnike - vaš prvi linearni regresijski projekt v Pythonu")
 
-> 🎥 Kliknite zgornjo sliko za kratek video o tej vaji.
+> 🎥 Kliknite zgornjo sliko za kratek video skozi to vajo.
 
-V datoteki _notebook.ipynb_, povezani s to lekcijo, izbrišite vse celice s pritiskom na ikono 'koš za smeti'.
+V datoteki _notebook.ipynb_ povezanih s to lekcijo počistite vse celice z klikom ikone 'koš'.
 
-V tem razdelku boste delali z majhnim naborom podatkov o sladkorni bolezni, ki je vgrajen v Scikit-learn za učne namene. Predstavljajte si, da želite preizkusiti zdravljenje za bolnike s sladkorno boleznijo. Modeli strojnega učenja vam lahko pomagajo določiti, kateri bolniki bi se bolje odzvali na zdravljenje, na podlagi kombinacij spremenljivk. Tudi zelo osnovni regresijski model, ko je vizualiziran, lahko pokaže informacije o spremenljivkah, ki bi vam pomagale organizirati teoretične klinične preizkuse.
+V tem razdelku boste delali z majhnim podatkovnim nizom o diabetiku, ki je vključen v Scikit-learn za učne namene. Predstavljajte si, da želite preizkusiti zdravljenje za bolnike z diabetesom. Modeli strojnega učenja bi vam lahko pomagali določiti, kateri bolniki bi bolje reagirali na zdravljenje, glede na kombinacije spremenljivk. Tudi zelo osnovni regresijski model, ko je vizualiziran, vam lahko pokaže informacije o spremenljivkah, ki bi pomagale organizirati vaše teoretične klinične preizkuse.
 
-✅ Obstaja veliko vrst regresijskih metod, izbira pa je odvisna od vprašanja, na katerega želite odgovoriti. Če želite napovedati verjetno višino osebe določene starosti, bi uporabili linearno regresijo, saj iščete **numerično vrednost**. Če vas zanima, ali naj se določena vrsta kuhinje šteje za vegansko ali ne, iščete **kategorijsko dodelitev**, zato bi uporabili logistično regresijo. Kasneje boste izvedeli več o logistični regresiji. Razmislite o nekaterih vprašanjih, ki jih lahko postavite podatkom, in kateri od teh metod bi bila bolj primerna.
+✅ Obstaja veliko vrst regresijskih metod, izbira prave pa je odvisna od vprašanja, na katero iščete odgovor. Če želite napovedati verjetno višino osebe določene starosti, uporabite linearno regresijo, saj iščete **numerično vrednost**. Če vas zanima, ali naj se ena vrsta kuhinje šteje kot veganska ali ne, iščete **kategorijsko dodelitev**, zato bi uporabili logistično regresijo. O logistični regresiji se boste naučili več kasneje. Premislite o nekaterih vprašanjih, ki si jih lahko zastavite o podatkih, in katere od teh metod bi bile ustreznejše.
 
 Začnimo s to nalogo.
 
@@ -109,13 +109,13 @@ Začnimo s to nalogo.
 
 Za to nalogo bomo uvozili nekaj knjižnic:
 
-- **matplotlib**. To je uporabno [orodje za risanje grafov](https://matplotlib.org/), ki ga bomo uporabili za ustvarjanje linijskega grafa.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) je uporabna knjižnica za obdelavo numeričnih podatkov v Pythonu.
-- **sklearn**. To je [knjižnica Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
+- **matplotlib**. Uporabna [orodje za risanje grafov](https://matplotlib.org/), ki ga bomo uporabili za izdelavo črtnega grafa.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) je koristna knjižnica za upravljanje numeričnih podatkov v Pythonu.
+- **sklearn**. To je knjižnica [Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
 
-Uvozite nekaj knjižnic za pomoč pri nalogah.
+Uvozite nekaj knjižnic, ki vam bodo pomagale pri nalogah.
 
-1. Dodajte uvoze z vnosom naslednje kode:
+1. Dodajte uvoze tako, da vnesete naslednjo kodo:
 
    ```python
    import matplotlib.pyplot as plt
@@ -123,26 +123,26 @@ Uvozite nekaj knjižnic za pomoč pri nalogah.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Zgornja koda uvaža `matplotlib`, `numpy` in `datasets`, `linear_model` ter `model_selection` iz `sklearn`. `model_selection` se uporablja za razdelitev podatkov na učne in testne sklope.
+   Zgoraj uvažate `matplotlib`, `numpy` in uvažate `datasets`, `linear_model` ter `model_selection` iz `sklearn`. `model_selection` se uporablja za razdelitev podatkov na učne in testne sklope.
 
-### Nabor podatkov o sladkorni bolezni
+### Diabetični podatkovni niz
 
-Vgrajeni [nabor podatkov o sladkorni bolezni](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) vključuje 442 vzorcev podatkov o sladkorni bolezni z 10 značilnimi spremenljivkami, med katerimi so nekatere:
+Vgrajeni [diabetični podatkovni niz](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) vključuje 442 vzorcev podatkov o diabetesu, z 10 značilnimi spremenljivkami, nekaj naslova:
 
 - starost: starost v letih
 - bmi: indeks telesne mase
 - bp: povprečni krvni tlak
-- s1 tc: T-celice (vrsta belih krvnih celic)
+- s1 tc: T celice (vrsta belih krvnih celic)
 
-✅ Ta nabor podatkov vključuje koncept 'spola' kot značilne spremenljivke, pomembne za raziskave o sladkorni bolezni. Številni medicinski nabori podatkov vključujejo tovrstno binarno klasifikacijo. Razmislite, kako bi lahko takšne kategorizacije izključile določene dele populacije iz zdravljenja.
+✅ Ta podatkovni niz vključuje koncept 'spola' kot značilno spremenljivko, pomembno za raziskave o diabetesu. Veliko medicinskih podatkovnih nizov vključuje tovrstno binarno klasifikacijo. Premislite, kako bi takšne kategorizacije lahko izključile določene dele prebivalstva iz zdravljenj.
 
-Zdaj naložite podatke X in y.
+Zdaj naložite podatka X in y.
 
-> 🎓 Ne pozabite, da gre za nadzorovano učenje, zato potrebujemo imenovan cilj 'y'.
+> 🎓 Zapomnite si, da gre za nadzorovano učenje in potrebujemo imenovani cilj 'y'.
 
-V novi celici kode naložite nabor podatkov o sladkorni bolezni z uporabo `load_diabetes()`. Vhod `return_X_y=True` signalizira, da bo `X` matrika podatkov, `y` pa regresijski cilj.
+V novi celici s kodo naložite diabetični podatkovni niz s klicem `load_diabetes()`. Vhod `return_X_y=True` signalizira, da bo `X` podatkovna matrika, `y` pa regresijski cilj.
 
-1. Dodajte nekaj ukazov za izpis, da prikažete obliko matrike podatkov in njen prvi element:
+1. Dodajte nekaj ukazov za izpis oblike podatkovne matrike in njenega prvega elementa:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ V novi celici kode naložite nabor podatkov o sladkorni bolezni z uporabo `load_
     print(X[0])
     ```
 
-    Kar dobite kot odgovor, je nabor. Prva dva vrednosti nabora dodelite `X` in `y`. Več o [naborih](https://wikipedia.org/wiki/Tuple) lahko izveste tukaj.
+    Kar prejemate kot odgovor, je nabor dveh vrednosti (tuple). To, kar počnete, je, da dodelite prvi dve vrednosti iz nabora `X` in `y` vrstnem redu. Več o [tuple](https://wikipedia.org/wiki/Tuple) lahko preberete.
 
-    Vidite lahko, da ti podatki vsebujejo 442 elementov, oblikovanih v poljih z 10 elementi:
+    Vidite lahko, da podatki vsebujejo 442 elemente, oblikovane v tabele z 10 elementi:
 
     ```text
     (442, 10)
@@ -160,39 +160,39 @@ V novi celici kode naložite nabor podatkov o sladkorni bolezni z uporabo `load_
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Razmislite o razmerju med podatki in regresijskim ciljem. Linearna regresija napoveduje razmerja med značilnostjo X in ciljno spremenljivko y. Ali lahko v dokumentaciji najdete [cilj](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) za nabor podatkov o sladkorni bolezni? Kaj ta nabor podatkov prikazuje, glede na cilj?
+    ✅ Razmislite o povezavi med podatki in regresijskim ciljem. Linearna regresija napoveduje razmerja med značilko X in ciljno spremenljivko y. Ali lahko poiščete [cilj](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) za diabetični podatkovni niz v dokumentaciji? Kaj ta podatkovni niz prikazuje glede na cilj?
 
-2. Nato izberite del tega nabora podatkov za risanje tako, da izberete 3. stolpec nabora podatkov. To lahko storite z uporabo operatorja `:` za izbiro vseh vrstic, nato pa izberete 3. stolpec z uporabo indeksa (2). Podatke lahko preoblikujete v 2D matriko - kot je potrebno za risanje - z uporabo `reshape(n_rows, n_columns)`. Če je eden od parametrov -1, se ustrezna dimenzija izračuna samodejno.
+2. Nato izberite del tega podatkovnega niza za prikaz tako, da izberete 3. stolpec podatkovnega niza. To lahko naredite z uporabo operatorja `:`, ki izbere vse vrstice, in nato izberete 3. stolpec z indeksom (2). Podatke lahko tudi preoblikujete v 2D tabelo - kot zahtevano za prikaz - z uporabo `reshape(n_rows, n_columns)`. Če je kateri parameter -1, se ta dimenzija samodejno izračuna.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Kadarkoli natisnite podatke, da preverite njihovo obliko.
+   ✅ Kadarkoli izpišite podatke, da preverite obliko.
 
-3. Zdaj, ko imate podatke pripravljene za risanje, lahko preverite, ali lahko stroj pomaga določiti logično ločnico med številkami v tem naboru podatkov. Za to morate razdeliti tako podatke (X) kot cilj (y) na testne in učne sklope. Scikit-learn ima preprost način za to; testne podatke lahko razdelite na določenem mestu.
+3. Ko imate podatke pripravljene za prikaz, preverite, če vam lahko stroj pomaga določiti logično razdelitev števil v tem podatkovnem nizu. Za to morate razdeliti podatke (X) in cilj (y) na učne in testne sklade. Scikit-learn omogoča enostavno razdelitev testnih podatkov na določenem mestu.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Zdaj ste pripravljeni na učenje modela! Naložite model linearne regresije in ga naučite z učnimi sklopi X in y z uporabo `model.fit()`:
+4. Zdaj ste pripravljeni na učenje modela! Naložite linearni regresijski model in ga trenirajte z učnimi sklopi X in y z uporabo `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` je funkcija, ki jo boste videli v številnih knjižnicah ML, kot je TensorFlow.
+    ✅ Funkcijo `model.fit()` boste pogosto videli v knjižnicah za ML, kot je TensorFlow.
 
-5. Nato ustvarite napoved z uporabo testnih podatkov z uporabo funkcije `predict()`. To bo uporabljeno za risanje črte med skupinami podatkov.
+5. Nato ustvarite napoved z uporabo testnih podatkov, z uporabo funkcije `predict()`. To bo uporabljeno za risanje črte med podatkovnimi skupinami.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Zdaj je čas, da prikažete podatke na grafu. Matplotlib je zelo uporabno orodje za to nalogo. Ustvarite razpršeni grafikon vseh testnih podatkov X in y ter uporabite napoved za risanje črte na najbolj primernem mestu med skupinami podatkov modela.
+6. Zdaj je čas, da prikažete podatke na grafikonu. Matplotlib je zelo uporabno orodje za to nalogo. Naredite razpršeni graf (scatterplot) vseh testnih podatkov X in y ter uporabite napoved, da narišete črto na najbolj primernem mestu, med skupinami podatkov modela.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -203,22 +203,24 @@ V novi celici kode naložite nabor podatkov o sladkorni bolezni z uporabo `load_
     plt.show()
     ```
 
-   ![razpršeni grafikon, ki prikazuje podatkovne točke o sladkorni bolezni](../../../../2-Regression/1-Tools/images/scatterplot.png)
-✅ Razmislite malo o tem, kaj se tukaj dogaja. Ravna črta poteka skozi številne majhne točke podatkov, vendar kaj pravzaprav počne? Ali vidite, kako bi morali biti sposobni uporabiti to črto za napovedovanje, kje bi se nova, nevidna podatkovna točka morala uvrstiti glede na y-os grafa? Poskusite z besedami opisati praktično uporabo tega modela.
+   ![razpršeni graf prikazuje podatkovne točke o diabetesu](../../../../translated_images/sl/scatterplot.ad8b356bcbb33be6.webp)
 
-Čestitke, izdelali ste svoj prvi model linearne regresije, ustvarili napoved z njim in jo prikazali na grafu!
+
+   ✅ Razmislite malo o tem, kaj se tukaj dogaja. Ravna črta poteka skozi veliko majhnih točk podatkov, a kaj točno počne? Vidite, kako bi morali uporabiti to črto, da napoveste, kje naj bi se nova, nevidena podatkovna točka ujemala glede na y os grafa? Poskusite z besedami opisati praktično uporabo tega modela.
+
+Čestitke, zgradili ste svoj prvi linearni regresijski model, z njim ustvarili napoved in jo prikazali na grafu!
 
 ---
 ## 🚀Izziv
 
-Prikažite drugo spremenljivko iz tega nabora podatkov. Namig: uredite to vrstico: `X = X[:,2]`. Glede na cilj tega nabora podatkov, kaj lahko odkrijete o napredovanju sladkorne bolezni kot bolezni?
+Narišite drugo spremenljivko iz tega nabora podatkov. Namig: uredite to vrstico: `X = X[:,2]`. Glede na cilj tega nabora podatkov, kaj lahko odkrijete o napredovanju diabetesa kot bolezni?
 ## [Kvizi po predavanju](https://ff-quizzes.netlify.app/en/ml/)
 
-## Pregled & Samostojno učenje
+## Pregled in samostojno učenje
 
-V tem vodiču ste delali z enostavno linearno regresijo, ne pa z univariatno ali večkratno linearno regresijo. Preberite nekaj o razlikah med temi metodami ali si oglejte [ta video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+V tej vadnici ste delali s preprosto linearno regresijo, ne z enospremenljivostno ali večspremenljivostno linearno regresijo. Preberite nekaj o razlikah med temi metodami ali si oglejte [ta video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Preberite več o konceptu regresije in razmislite, kakšna vprašanja je mogoče odgovoriti s to tehniko. Vzemite [ta vodič](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), da poglobite svoje razumevanje.
+Preberite več o pojmu regresije in razmislite, kakšna vprašanja lahko ta tehnika odgovori. Oglejte si ta [vodnik](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), da poglobite svoje razumevanje.
 
 ## Naloga
 
@@ -226,5 +228,7 @@ Preberite več o konceptu regresije in razmislite, kakšna vprašanja je mogoče
 
 ---
 
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo storitve za strojno prevajanje [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da se zavedate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo strokovno človeško prevajanje. Ne prevzemamo odgovornosti za morebitna nesporazumevanja ali napačne razlage, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

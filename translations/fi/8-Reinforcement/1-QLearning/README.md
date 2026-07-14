@@ -1,47 +1,47 @@
-# Johdanto vahvistusoppimiseen ja Q-oppimiseen
+# Johdatus vahvistusoppimiseen ja Q-oppimiseen
 
-![Yhteenveto vahvistusoppimisesta koneoppimisessa sketchnotena](../../../../sketchnotes/ml-reinforcement.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Vahvistusoppimisen yhteenveto koneoppimisessa sketchnotessa](../../../../translated_images/fi/ml-reinforcement.94024374d63348db.webp)
+> Sketchnote tekijältä [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-Vahvistusoppiminen sisältää kolme tärkeää käsitettä: agentti, tilat ja joukko toimintoja per tila. Kun agentti suorittaa toiminnon tietyssä tilassa, se saa palkkion. Kuvittele tietokonepeli Super Mario. Sinä olet Mario, olet pelitasolla, seisot kallion reunalla. Yläpuolellasi on kolikko. Sinä, Mario, pelitasolla, tietyssä sijainnissa... se on tilasi. Yksi askel oikealle (toiminto) vie sinut reunalta alas, ja se antaisi sinulle matalan numeerisen pisteen. Kuitenkin hyppynapin painaminen antaisi sinulle pisteen ja pysyisit hengissä. Se on positiivinen lopputulos, ja sen pitäisi palkita sinut positiivisella numeerisella pisteellä.
+Vahvistusoppiminen sisältää kolme tärkeää käsitettä: agentin, joitain tiloja ja joukossa toimintoja kullekin tilalle. Suorittamalla toiminnon tietyssä tilassa agentti saa palkinnon. Kuvittele jälleen tietokonepeli Super Mario. Sinä olet Mario, olet pelitasolla ja seisot kallion reunalla. Ylläsi on kolikko. Sinä Mario, pelitasolla tiettyssä paikassa ... se on tilasi. Siirtyminen yhden askeleen oikealle (toiminto) vie sinut reunalta alas ja saat alhaisen numeerisen pisteen. Hyppynapin painaminen puolestaan antaa pisteen ja pysyt elossa. Se on positiivinen lopputulos ja siitä pitäisi antaa positiivinen numeerinen piste.
 
-Käyttämällä vahvistusoppimista ja simulaattoria (peliä) voit oppia pelaamaan peliä maksimoidaksesi palkkion, joka on pysyä hengissä ja kerätä mahdollisimman paljon pisteitä.
+Käyttämällä vahvistusoppimista ja simulaattoria (peliä) voit oppia pelaamaan peliä siten, että maksimoi palkinnon, eli pysyy elossa ja kerää mahdollisimman monta pistettä.
 
 [![Johdanto vahvistusoppimiseen](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
-> 🎥 Klikkaa yllä olevaa kuvaa kuullaksesi Dmitryn keskustelua vahvistusoppimisesta
+> 🎥 Klikkaa yllä olevaa kuvaa kuullaksesi Dmitryn keskustelun vahvistusoppimisesta
 
-## [Ennakkokysely](https://ff-quizzes.netlify.app/en/ml/)
+## [Ennakkokoe](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Esivaatimukset ja asennus
 
-Tässä oppitunnissa kokeilemme Python-koodia. Sinun pitäisi pystyä suorittamaan tämän oppitunnin Jupyter Notebook -koodi joko omalla tietokoneellasi tai pilvessä.
+Tässä oppitunnissa kokeilemme koodia Pythonilla. Sinun tulisi pystyä suorittamaan Jupyter Notebook -koodi tästä oppitunnista joko omalla tietokoneella tai jossain pilvessä.
 
-Voit avata [oppitunnin notebookin](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) ja käydä läpi tämän oppitunnin rakentaaksesi.
+Voit avata [oppitunnin notebookin](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) ja käydä tämän oppitunnin läpi.
 
-> **Huom:** Jos avaat tämän koodin pilvestä, sinun täytyy myös hakea [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) -tiedosto, jota käytetään notebook-koodissa. Lisää se samaan hakemistoon kuin notebook.
+> **Huom:** Jos avaat tämän koodin pilvestä, sinun tulee myös hakea [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) -tiedosto, jota käytetään notebookin koodissa. Lisää se samaan hakemistoon notebookin kanssa.
 
 ## Johdanto
 
-Tässä oppitunnissa tutkimme **[Pekka ja susi](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)** -maailmaa, joka on saanut inspiraationsa venäläisen säveltäjän [Sergei Prokofjevin](https://en.wikipedia.org/wiki/Sergei_Prokofiev) musiikillisesta sadusta. Käytämme **vahvistusoppimista** antaaksemme Pekalle mahdollisuuden tutkia ympäristöään, kerätä herkullisia omenoita ja välttää kohtaamista suden kanssa.
+Tässä oppitunnissa tutustumme **[Petteriin ja suden tarinaan](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, joka on saanut inspiraationsa venäläisen säveltäjän [Sergei Prokofjevin](https://en.wikipedia.org/wiki/Sergei_Prokofiev) musiikillisesta satuun, käytämme **vahvistusoppimista** antaa Petterin tutkia ympäristöään, kerätä herkullisia omenoita ja välttää suden kohtaamista.
 
-**Vahvistusoppiminen** (RL) on oppimistekniikka, joka mahdollistaa optimaalisen käyttäytymisen oppimisen **agentille** jossain **ympäristössä** suorittamalla lukuisia kokeita. Agentilla tässä ympäristössä tulisi olla jokin **tavoite**, joka määritellään **palkkiofunktiolla**.
+**Vahvistusoppiminen** (RL) on oppimismenetelmä, joka mahdollistaa meille agentin optimaalisen käyttäytymisen oppimisen jossain **ympäristössä** suorittamalla monia kokeita. Agentilla tässä ympäristössä on jokin **tavoite**, joka määritellään **palkintofunktion** avulla.
 
 ## Ympäristö
 
-Yksinkertaisuuden vuoksi kuvitelkaamme Pekan maailma neliötaulukoksi, jonka koko on `leveys` x `korkeus`, kuten tässä:
+Yksinkertaisuuden vuoksi pidetään Petterin maailma neliömäisenä laudana, jonka koko on `width` x `height`, kuten alla:
 
-![Pekan ympäristö](../../../../8-Reinforcement/1-QLearning/images/environment.png)
+![Petterin Ympäristö](../../../../translated_images/fi/environment.40ba3cb66256c93f.webp)
 
-Jokainen solu tässä taulukossa voi olla:
+Jokainen laudan solu voi olla:
 
-* **maa**, jolla Pekka ja muut olennot voivat kävellä.
-* **vesi**, jolla ei tietenkään voi kävellä.
-* **puu** tai **ruoho**, paikka, jossa voi levätä.
-* **omena**, joka edustaa jotain, mitä Pekka mielellään löytäisi ravinnokseen.
-* **susi**, joka on vaarallinen ja tulisi välttää.
+* **maa**, jolla Petteri ja muut olennot voivat kävellä.
+* **vesi**, jolla et tietenkään voi kävellä.
+* **puu** tai **ruoho**, paikka jossa voi levätä.
+* **omena**, joka edustaa jotain jota Petteri ilolla haluaa löytää ruoan hankkimiseksi.
+* **susi**, joka on vaarallinen ja jota tulisi välttää.
 
-On olemassa erillinen Python-moduuli, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), joka sisältää koodin tämän ympäristön kanssa työskentelyyn. Koska tämä koodi ei ole tärkeä käsitteidemme ymmärtämisen kannalta, tuomme moduulin ja käytämme sitä luodaksemme esimerkkitaulukon (koodilohko 1):
+On olemassa erillinen Python-moduuli, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), joka sisältää koodin työskentelyyn tämän ympäristön kanssa. Koska tämä koodi ei ole tärkeää käsitteidemme ymmärtämiselle, tuomme vain moduulin ja käytämme sitä luodaksemme esimerkkilaudan (koodilohko 1):
 
 ```python
 from rlboard import *
@@ -52,63 +52,63 @@ m.randomize(seed=13)
 m.plot()
 ```
 
-Tämän koodin pitäisi tulostaa ympäristön kuva, joka on samanlainen kuin yllä.
+Tämän koodin pitäisi tulostaa kuvan kaltainen esitys ympäristöstä.
 
 ## Toiminnot ja politiikka
 
-Esimerkissämme Pekan tavoitteena olisi löytää omena samalla välttäen suden ja muut esteet. Tätä varten hän voi käytännössä kävellä ympäriinsä, kunnes löytää omenan.
+Esimerkissämme Petterin tavoitteena olisi löytää omena ja välttää susi sekä muut esteet. Tätä varten hän voi kävellä ympäriinsä, kunnes löytää omenan.
 
-Siksi missä tahansa sijainnissa hän voi valita yhden seuraavista toiminnoista: ylös, alas, vasemmalle ja oikealle.
+Siksi missä tahansa sijainnissa hän voi valita seuraavista toiminnoista: ylös, alas, vasemmalle ja oikealle.
 
-Määrittelemme nämä toiminnot sanakirjana ja yhdistämme ne vastaaviin koordinaattimuutoksiin. Esimerkiksi oikealle siirtyminen (`R`) vastaisi paria `(1,0)`. (koodilohko 2):
+Määrittelemme nämä toiminnot sanakirjaksi ja yhdistämme ne vastaaviin koordinaattimuutoksiin. Esimerkiksi oikealle siirtyminen (`R`) vastaa paria `(1,0)`. (koodilohko 2):
 
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
 action_idx = { a : i for i,a in enumerate(actions.keys()) }
 ```
 
-Yhteenvetona tämän skenaarion strategia ja tavoite ovat seuraavat:
+Yhteenvetona, tämän skenaarion strategia ja tavoite ovat seuraavat:
 
-- **Strategia**, agenttimme (Pekan) strategia määritellään niin sanotulla **politiikalla**. Politiikka on funktio, joka palauttaa toiminnon missä tahansa tilassa. Meidän tapauksessamme ongelman tila esitetään taulukolla, mukaan lukien pelaajan nykyinen sijainti.
+- **Strategia**, agenttimme (Petterin) strategia määritellään niin kutsutulla **politiikalla**. Politiikka on funktio, joka palauttaa toiminnon missä tahansa tilassa. Tässä tapauksessa ongelman tila määritellään laudan avulla, sisältäen pelaajan nykyisen sijainnin.
 
-- **Tavoite**, vahvistusoppimisen tavoite on lopulta oppia hyvä politiikka, joka mahdollistaa ongelman tehokkaan ratkaisemisen. Perustana tarkastelemme kuitenkin yksinkertaisinta politiikkaa, jota kutsutaan **satunnaiseksi kävelyksi**.
+- **Tavoite**, vahvistusoppimisen tavoite on oppia lopulta hyvä politiikka, joka mahdollistaa ongelman tehokkaan ratkaisemisen. Lähtötasona pidämme yksinkertaisinta politiikkaa, nimeltään **satunnaiskävely**.
 
-## Satunnainen kävely
+## Satunnaiskävely
 
-Ratkaistaan ensin ongelmamme toteuttamalla satunnaisen kävelyn strategia. Satunnaisessa kävelyssä valitsemme seuraavan toiminnon satunnaisesti sallituista toiminnoista, kunnes saavumme omenalle (koodilohko 3).
+Ratkaistaan ensin ongelmamme toteuttamalla satunnaiskävelystrategia. Satunnaiskävelyssä valitsemme seuraavan toiminnon satunnaisesti sallituista toiminnoista, kunnes saavutamme omenan (koodilohko 3).
 
-1. Toteuta satunnainen kävely alla olevalla koodilla:
+1. Toteuta satunnaiskävely alla olevalla koodilla:
 
     ```python
     def random_policy(m):
         return random.choice(list(actions))
     
     def walk(m,policy,start_position=None):
-        n = 0 # number of steps
-        # set initial position
+        n = 0 # askelten määrä
+        # aseta alkuasento
         if start_position:
             m.human = start_position 
         else:
             m.random_start()
         while True:
             if m.at() == Board.Cell.apple:
-                return n # success!
+                return n # onnistui!
             if m.at() in [Board.Cell.wolf, Board.Cell.water]:
-                return -1 # eaten by wolf or drowned
+                return -1 # suden syömänä tai hukkui
             while True:
                 a = actions[policy(m)]
                 new_pos = m.move_pos(m.human,a)
                 if m.is_valid(new_pos) and m.at(new_pos)!=Board.Cell.water:
-                    m.move(a) # do the actual move
+                    m.move(a) # suorita varsinainen siirto
                     break
             n+=1
     
     walk(m,random_policy)
     ```
 
-    `walk`-kutsun pitäisi palauttaa vastaavan polun pituus, joka voi vaihdella eri suorituskerroilla.
+    Kutsun `walk` tulisi palauttaa polun pituus, joka voi vaihdella suorituskertojen välillä.
 
-1. Suorita kävelykokeilu useita kertoja (esimerkiksi 100) ja tulosta tuloksena saadut tilastot (koodilohko 4):
+1. Suorita kävelykokeilu useita kertoja (esim. 100), ja tulosta tuloksena saadut tilastot (koodilohko 4):
 
     ```python
     def print_statistics(policy):
@@ -125,17 +125,17 @@ Ratkaistaan ensin ongelmamme toteuttamalla satunnaisen kävelyn strategia. Satun
     print_statistics(random_policy)
     ```
 
-    Huomaa, että polun keskimääräinen pituus on noin 30–40 askelta, mikä on melko paljon, kun otetaan huomioon, että keskimääräinen etäisyys lähimpään omenaan on noin 5–6 askelta.
+    Huomaa, että polun keskipituus on noin 30-40 askelta, mikä on melko paljon, kun otetaan huomioon, että lähimmän omenan keskimatka on noin 5-6 askelta.
 
-    Voit myös nähdä, miltä Pekan liikkuminen näyttää satunnaisen kävelyn aikana:
+    Voit myös nähdä, miltä Petterin liike näyttää satunnaiskävelyn aikana:
 
-    ![Pekan satunnainen kävely](../../../../8-Reinforcement/1-QLearning/images/random_walk.gif)
+    ![Petterin satunnaiskävely](../../../../8-Reinforcement/1-QLearning/images/random_walk.gif)
 
-## Palkkiofunktio
+## Palkintofunktio
 
-Jotta politiikkamme olisi älykkäämpi, meidän täytyy ymmärtää, mitkä siirrot ovat "parempia" kuin toiset. Tätä varten meidän täytyy määritellä tavoitteemme.
+Tehdäksemme politiikasta älykkäämmän, meidän täytyy ymmärtää, mitkä liikkeet ovat "parempia" kuin toiset. Tätä varten meidän on määriteltävä tavoitteemme.
 
-Tavoite voidaan määritellä **palkkiofunktion** avulla, joka palauttaa jonkin pistemäärän jokaiselle tilalle. Mitä korkeampi numero, sitä parempi palkkiofunktio. (koodilohko 5)
+Tavoite voidaan määritellä **palkintofunktion** muodossa, joka palauttaa jonkin pistemäärän kullekin tilalle. Mitä suurempi luku, sitä parempi palkinto. (koodilohko 5)
 
 ```python
 move_reward = -0.1
@@ -154,39 +154,115 @@ def reward(m,pos=None):
     return move_reward
 ```
 
-Mielenkiintoinen asia palkkiofunktioissa on, että useimmissa tapauksissa *merkittävä palkkio annetaan vasta pelin lopussa*. Tämä tarkoittaa, että algoritmimme pitäisi jotenkin muistaa "hyvät" askeleet, jotka johtavat positiiviseen palkkioon lopussa, ja lisätä niiden merkitystä. Samoin kaikki siirrot, jotka johtavat huonoihin tuloksiin, tulisi estää.
+Mielenkiintoinen seikka palkintofunktioissa on, että useimmiten *saanemme merkittävän palkinnon vasta pelin lopussa*. Tämä tarkoittaa, että algoritmin pitäisi jotenkin muistaa "hyvät" askeleet, jotka johtivat positiiviseen palkintoon lopussa, ja lisätä niiden merkitystä. Vastaavasti kaikki liikkeet, jotka johtavat huonoihin tuloksiin, pitäisi estää.
 
 ## Q-oppiminen
 
-Algoritmi, jota käsittelemme tässä, on nimeltään **Q-oppiminen**. Tässä algoritmissa politiikka määritellään funktiolla (tai tietorakenteella), jota kutsutaan **Q-taulukoksi**. Se tallentaa kunkin toiminnon "hyvyyden" tietyssä tilassa.
+Algoritmi, josta keskustelemme tässä, on nimeltään **Q-oppiminen**. Tässä algoritmissa politiikka määritellään funktiona (tai tietorakenteena), jota kutsutaan **Q-taulukoksi**. Se tallentaa kunkin toiminnon "hyvyyden" annetussa tilassa.
 
-Sitä kutsutaan Q-taulukoksi, koska se on usein kätevää esittää taulukkona tai monidimensionaalisena matriisina. Koska taulukkomme mitat ovat `leveys` x `korkeus`, voimme esittää Q-taulukon numpy-matriisina, jonka muoto on `leveys` x `korkeus` x `len(toiminnot)`: (koodilohko 6)
+Sitä kutsutaan Q-taulukoksi, koska usein on kätevää esittää se taulukkona tai monidimensionaalisena taulukona. Koska laudallamme on mitat `width` x `height`, voimme esittää Q-taulukon numpy-taulukkona, jonka koko on `width` x `height` x `len(actions)`: (koodilohko 6)
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 ```
 
-Huomaa, että alustamme kaikki Q-taulukon arvot samalla arvolla, tässä tapauksessa - 0.25. Tämä vastaa "satunnaisen kävelyn" politiikkaa, koska kaikki siirrot jokaisessa tilassa ovat yhtä hyviä. Voimme välittää Q-taulukon `plot`-funktiolle visualisoidaksemme taulukon taulukossa: `m.plot(Q)`.
+Huomaa, että alustamme Q-taulukon kaikki arvot samalla arvolla, tässä tapauksessa - 0.25. Tämä vastaa "satunnaiskävely" politiikkaa, koska kaikki siirrot jokaisessa tilassa ovat yhtä hyviä. Voimme välittää Q-taulukon `plot`-funktiolle taulukkokuvan piirtämistä varten laudalla: `m.plot(Q)`.
 
-![Pekan ympäristö](../../../../8-Reinforcement/1-QLearning/images/env_init.png)
+![Petterin Ympäristö](../../../../translated_images/fi/env_init.04e8f26d2d60089e.webp)
 
-Jokaisen solun keskellä on "nuoli", joka osoittaa suositellun liikkumissuunnan. Koska kaikki suunnat ovat yhtä hyviä, näytetään piste.
+Jokaisen solun keskellä on "nuoli", joka osoittaa suositellun liikkumissuunan. Koska kaikki suunnat ovat yhtä hyviä, näytetään piste.
 
-Nyt meidän täytyy suorittaa simulaatio, tutkia ympäristöämme ja oppia parempi Q-taulukon arvojen jakauma, joka mahdollistaa omenan löytämisen paljon nopeammin.
+Nyt meidän täytyy ajaa simulaatio, tutkia ympäristöämme ja oppia parempi Q-taulukon arvojen jakauma, joka mahdollistaa omenan löytämisen paljon nopeammin.
 
 ## Q-oppimisen ydin: Bellmanin yhtälö
 
-Kun alamme liikkua, jokaisella toiminnolla on vastaava palkkio, eli voimme teoriassa valita seuraavan toiminnon korkeimman välittömän palkkion perusteella. Useimmissa tiloissa siirto ei kuitenkaan saavuta tavoitettamme, eli omenan löytämistä, joten emme voi heti päättää, mikä suunta on parempi.
+Kun alamme liikkua, jokaisella toiminnolla on vastaava palkkio, eli voimme teoreettisesti valita seuraavan toiminnon sen perusteella, mikä palkinto on suurin heti. Useimmissa tiloissa tämä liikku ei kuitenkaan vie meitä tavoittelemaamme omenaa kohti, joten emme voi heti päättää, kumpi suunta on parempi.
 
-> Muista, että välitön tulos ei ole tärkein, vaan lopullinen tulos, jonka saamme simulaation lopussa.
+> Muistathan, että tärkeää ei ole välitön tulos, vaan lopullinen tulos, jonka saamme simulaation lopussa.
 
-Jotta voimme ottaa huomioon viivästyneen palkkion, meidän täytyy käyttää **[dynaamisen ohjelmoinnin](https://en.wikipedia.org/wiki/Dynamic_programming)** periaatteita, jotka mahdollistavat ongelman tarkastelun rekursiivisesti.
+Ottaaksemme huomioon viivästyneen palkkion, meidän täytyy käyttää **[dynaamista ohjelmointia](https://en.wikipedia.org/wiki/Dynamic_programming)**, joka sallii meidän ajatella ongelmaa rekursiivisesti.
 
-Oletetaan, että olemme nyt tilassa *s*, ja haluamme siirtyä seuraavaan tilaan *s'*. Tekemällä niin saamme välittömän palkkion *r(s,a)*, joka määritellään palkkiofunktiolla, plus jonkin tulevan palkkion. Jos oletamme, että Q-taulukkomme heijastaa oikein kunkin toiminnon "houkuttelevuuden", niin tilassa *s'* valitsemme toiminnon *a*, joka vastaa maksimiarvoa *Q(s',a')*. Näin ollen paras mahdollinen tuleva palkkio, jonka voimme saada tilassa *s*, määritellään `max`
+Kuvitellaan, että olemme tilassa *s* ja haluamme siirtyä tilaan *s'*. Tekemällä näin saamme välittömän palkkion *r(s,a)*, joka määritellään palkintofunktiolla, sekä jonkin tulevan palkkion. Jos oletamme, että Q-taulukko heijastaa oikein jokaisen toiminnon "vetovoimaa", valitsemme tilassa *s'* toiminnon *a*, joka vastaa suurinta arvoa *Q(s',a')*. Näin paras mahdollinen tuleva palkkio tilassa *s* määritellään `max`<sub>a'</sub>*Q(s',a')* (maksimi lasketaan kaikkien mahdollisten toimintojen *a'* yli tilassa *s'*).
 
-## Politiikan tarkistaminen
+Tämä antaa **Bellmanin kaavan** Q-taulukon arvon laskemiseksi tilassa *s*, toiminnon *a* perusteella:
 
-Koska Q-taulukko listaa kunkin toiminnon "houkuttelevuuden" kussakin tilassa, sen avulla on melko helppoa määritellä tehokas navigointi maailmassamme. Yksinkertaisimmassa tapauksessa voimme valita toiminnon, joka vastaa korkeinta Q-taulukon arvoa: (koodilohko 9)
+<img src="../../../../translated_images/fi/bellman-equation.7c0c4c722e5a6b7c.webp"/>
+
+Tässä γ on niin kutsuttu **diskonttokerroin**, joka määrittää, kuinka paljon nykyistä palkkiota kannattaa arvostaa suhteessa tulevaan palkkioon ja päinvastoin.
+
+## Oppimisalgoritmi
+
+Edellisen yhtälön perusteella voimme kirjoittaa pseudokoodin oppimisalgoritmillemme:
+
+* Alusta Q-taulukko Q tasaisilla arvoilla kaikille tiloille ja toiminnoille
+* Aseta oppimisnopeus α ← 1
+* Toista simulaatio monta kertaa
+   1. Aloita satunnaisesta sijainnista
+   1. Toista
+        1. Valitse toiminto *a* tilassa *s*
+        2. Suorita toiminto siirtymällä tilaan *s'*
+        3. Jos peli päättyy tai kokonaipalkinto on liian pieni - lopeta simulaatio  
+        4. Laske palkinto *r* uudessa tilassa
+        5. Päivitä Q-funktio Bellmanin yhtälön mukaan: *Q(s,a)* ← *(1-α)Q(s,a)+α(r+γ max<sub>a'</sub>Q(s',a'))*
+        6. *s* ← *s'*
+        7. Päivitä kokonaipalkinto ja vähennä α.
+
+## Hyödyntäminen vs. tutkiminen
+
+Edellä mainitussa algoritmissa emme täsmentäneet, kuinka toiminto valitaan kohdassa 2.1. Jos valitsemme toiminnon satunnaisesti, **tutkimme** satunnaisesti ympäristöä ja todennäköisesti kuolemme usein sekä tutkimme alueita, joihin emme normaalisti menisi. Vaihtoehtoinen lähestymistapa olisi **hyödyntää** jo tiedettyjä Q-taulukon arvoja ja valita paras toiminto (korkeamman Q-arvon omaava) tilassa *s*. Tämä estää kuitenkin muiden tilojen tutkimisen, ja on todennäköistä, ettemme löydä optimaalista ratkaisua.
+
+Siten paras lähestymistapa on löytää tasapaino tutkimisen ja hyödyntämisen välillä. Tämä onnistuu valitsemalla toiminto tilassa *s* todennäköisyyksillä, jotka ovat verrannollisia Q-taulukon arvoihin. Alussa, kun Q-taulukon arvot ovat kaikki samat, valinta vastaa satunnaista valintaa, mutta oppimisen myötä seuraamme todennäköisemmin optimaalisinta reittiä ja samalla sallimme agentin valita välillä myös tutkimattoman reitin.
+
+## Pythonin toteutus
+
+Olemme nyt valmiita toteuttamaan oppimisalgoritmin. Ennen sitä tarvitsemme funktion, joka muuttaa mielivaltaiset luvut Q-taulukossa vektoriksi todennäköisyyksiä vastaaville toiminnoille.
+
+1. Luo funktio `probs()`:
+
+    ```python
+    def probs(v,eps=1e-4):
+        v = v-v.min()+eps
+        v = v/v.sum()
+        return v
+    ```
+
+    Lisäämme pienen `eps`-arvon alkuperäiseen vektoriin välttääksemme jakamisen nollalla tapauksessa, jossa kaikki vektorin komponentit ovat identtisiä.
+
+Suorita oppimisalgoritmi 5000 kokeen eli **epookin** ajan: (koodilohko 8)
+```python
+    for epoch in range(5000):
+    
+        # Valitse alkuperäinen piste
+        m.random_start()
+        
+        # Aloita matkustaminen
+        n=0
+        cum_reward = 0
+        while True:
+            x,y = m.human
+            v = probs(Q[x,y])
+            a = random.choices(list(actions),weights=v)[0]
+            dpos = actions[a]
+            m.move(dpos,check_correctness=False) # sallimme pelaajan liikkua laudan ulkopuolella, mikä päättää episodin
+            r = reward(m)
+            cum_reward += r
+            if r==end_reward or cum_reward < -1000:
+                lpath.append(n)
+                break
+            alpha = np.exp(-n / 10e5)
+            gamma = 0.5
+            ai = action_idx[a]
+            Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
+            n+=1
+```
+
+Algoritmin suorittamisen jälkeen Q-taulukon arvot on päivitetty siten, että ne määrittävät eri toimintojen vetovoiman kussakin vaiheessa. Voimme yrittää visualisoida Q-taulukon piirtämällä vektorin jokaisen solun yläpuolelle, joka osoittaa halutun liikkumissuunan. Yksinkertaisuuden vuoksi piirrämme pienen ympyrän nuolen päässä.
+
+<img src="../../../../translated_images/fi/learned.ed28bcd8484b5287.webp"/>
+
+## Politiikan tarkistus
+
+Koska Q-taulukko listaa kunkin toiminnon vetovoiman kussakin tilassa, sen käyttäminen tehokkaaseen navigointiin maailmassamme on helppoa. Yksinkertaisimmassa tapauksessa valitsemme toiminnon, jonka Q-taulukon arvo on korkein: (koodilohko 9)
 
 ```python
 def qpolicy_strict(m):
@@ -198,17 +274,18 @@ def qpolicy_strict(m):
 walk(m,qpolicy_strict)
 ```
 
-> Jos kokeilet yllä olevaa koodia useita kertoja, saatat huomata, että se joskus "jumittuu", ja sinun täytyy painaa STOP-painiketta keskeyttääksesi sen. Tämä johtuu siitä, että voi olla tilanteita, joissa kaksi tilaa "osoittavat" toisiaan optimaalisen Q-arvon suhteen, jolloin agentti päätyy liikkumaan näiden tilojen välillä loputtomasti.
+
+> Jos kokeilet yllä olevaa koodia useita kertoja, saatat huomata, että se joskus "jämähtää", ja sinun täytyy painaa STOP-painiketta muistikirjassa keskeyttääksesi sen. Tämä tapahtuu, koska voi olla tilanteita, joissa kaksi tilaa "osoittavat" toisiaan optimaalisen Q-arvon suhteen, jolloin agentti päätyy liikkumaan näiden tilojen välillä loputtomasti.
 
 ## 🚀Haaste
 
-> **Tehtävä 1:** Muokkaa `walk`-funktiota rajoittamaan polun maksimipituus tiettyyn askelmäärään (esimerkiksi 100), ja katso, kuinka yllä oleva koodi palauttaa tämän arvon ajoittain.
+> **Tehtävä 1:** Muokkaa `walk`-funktiota rajoittamaan polun maksimipituutta tiettyyn askelten määrään (esim. 100), ja katso miten yllä oleva koodi palauttaa tämän arvon silloin tällöin.
 
-> **Tehtävä 2:** Muokkaa `walk`-funktiota niin, ettei se palaa paikkoihin, joissa se on jo aiemmin käynyt. Tämä estää `walk`-toiminnon silmukoinnin, mutta agentti voi silti päätyä "jumiin" paikkaan, josta se ei pääse pois.
+> **Tehtävä 2:** Muokkaa `walk`-funktiota niin, että se ei palaa paikkoihin, joissa se on jo aiemmin käynyt. Tämä estää `walk`-funktion silmukoitumisen, mutta agentti saattaa silti jäädä "ansaan" paikkaan, josta se ei pysty pakenemaan.
 
 ## Navigointi
 
-Parempi navigointipolitiikka olisi se, jota käytimme harjoittelun aikana, ja joka yhdistää hyödyntämisen ja tutkimisen. Tässä politiikassa valitsemme kunkin toiminnon tietyllä todennäköisyydellä, suhteessa Q-taulukon arvoihin. Tämä strategia voi silti johtaa siihen, että agentti palaa jo tutkittuun paikkaan, mutta kuten alla olevasta koodista näet, se johtaa hyvin lyhyeen keskimääräiseen polkuun haluttuun sijaintiin (muista, että `print_statistics` suorittaa simulaation 100 kertaa): (koodilohko 10)
+Parempi navigointipolitiikka olisi sellainen, jota käytimme harjoittelun aikana, jossa yhdistetään hyväksikäyttö ja tutkiminen. Tässä politiikassa valitsemme jokaisen toiminnon tietyllä todennäköisyydellä, joka on verrannollinen arvoihin Q-taulukossa. Tämä strategia voi silti johtaa siihen, että agentti palaa takaisin aiemmin tutkittuun sijaintiin, mutta kuten alla olevasta koodista näet, se johtaa hyvin lyhyeen keskimääräiseen polkuun haluttuun paikkaan (muista, että `print_statistics` suorittaa simulaation 100 kertaa): (koodilohko 10)
 
 ```python
 def qpolicy(m):
@@ -220,28 +297,32 @@ def qpolicy(m):
 print_statistics(qpolicy)
 ```
 
-Kun suoritat tämän koodin, saat paljon lyhyemmän keskimääräisen polun pituuden kuin aiemmin, noin 3-6 välillä.
+Tämän koodin suorittamisen jälkeen keskimääräisen polun pituuden tulisi olla huomattavasti pienempi kuin ennen, noin 3-6 välillä.
 
 ## Oppimisprosessin tutkiminen
 
-Kuten mainitsimme, oppimisprosessi on tasapaino tutkimisen ja ongelmatilan rakenteesta saadun tiedon hyödyntämisen välillä. Olemme nähneet, että oppimisen tulokset (kyky auttaa agenttia löytämään lyhyt polku tavoitteeseen) ovat parantuneet, mutta on myös mielenkiintoista tarkastella, miten keskimääräinen polun pituus käyttäytyy oppimisprosessin aikana:
+Kuten mainitsimme, oppimisprosessi on tasapaino uuden tiedon etsimisen ja opitun tiedon hyödyntämisen välillä ongelmatilan rakenteesta. Olemme nähneet, että oppimisen tulokset (kyky auttaa agenttia löytämään lyhyt polku tavoitteeseen) ovat parantuneet, mutta on myös mielenkiintoista tarkastella, miten keskimääräinen polun pituus käyttäytyy oppimisprosessin aikana:
 
-## Oppimisen yhteenveto:
+<img src="../../../../translated_images/fi/lpathlen1.0534784add58d4eb.webp"/>
 
-- **Keskimääräinen polun pituus kasvaa**. Aluksi keskimääräinen polun pituus kasvaa. Tämä johtuu todennäköisesti siitä, että kun emme tiedä ympäristöstä mitään, olemme todennäköisesti jumissa huonoissa tiloissa, kuten vedessä tai suden luona. Kun opimme lisää ja alamme käyttää tätä tietoa, voimme tutkia ympäristöä pidempään, mutta emme silti tiedä kovin hyvin, missä omenat ovat.
+Oppimista voidaan tiivistää seuraavasti:
 
-- **Polun pituus lyhenee oppimisen edetessä**. Kun opimme tarpeeksi, agentin on helpompi saavuttaa tavoite, ja polun pituus alkaa lyhentyä. Olemme kuitenkin edelleen avoimia tutkimiselle, joten poikkeamme usein parhaasta polusta ja tutkimme uusia vaihtoehtoja, mikä tekee polusta pidemmän kuin optimaalinen.
+- **Keskimääräinen polun pituus kasvaa**. Tässä näemme, että aluksi keskimääräinen polun pituus kasvaa. Tämä johtuu todennäköisesti siitä, että kun emme tiedä ympäristöstä mitään, saatamme jäädä loukkuun huonoihin tiloihin, kuten veteen tai susiin. Kun opimme enemmän ja alamme käyttää tätä tietoa, voimme tutkia ympäristöä pidempään, mutta emme silti vielä tiedä, missä omenat ovat kovin hyvin.
 
-- **Pituus kasvaa äkillisesti**. Graafista näemme myös, että jossain vaiheessa pituus kasvaa äkillisesti. Tämä osoittaa prosessin satunnaisen luonteen, ja että voimme jossain vaiheessa "pilata" Q-taulukon kertoimet korvaamalla ne uusilla arvoilla. Tämä tulisi ihanteellisesti minimoida pienentämällä oppimisnopeutta (esimerkiksi harjoittelun loppuvaiheessa säädämme Q-taulukon arvoja vain pienellä arvolla).
+- **Polun pituus lyhenee oppimisen myötä**. Kun opimme tarpeeksi, agentin on helpompi saavuttaa tavoite, ja polun pituus alkaa vähentyä. Olemme kuitenkin yhä avoimia tutkimiselle, joten poikkeamme usein parhaalta polulta ja tutkimme uusia vaihtoehtoja, jolloin polku on pidempi kuin optimaalinen.
 
-Kaiken kaikkiaan on tärkeää muistaa, että oppimisprosessin onnistuminen ja laatu riippuvat merkittävästi parametreista, kuten oppimisnopeudesta, oppimisnopeuden vähenemisestä ja diskonttauskerroimesta. Näitä kutsutaan usein **hyperparametreiksi**, jotta ne erotetaan **parametreista**, joita optimoimme harjoittelun aikana (esimerkiksi Q-taulukon kertoimet). Parhaiden hyperparametriarvojen löytämistä kutsutaan **hyperparametrien optimoinniksi**, ja se ansaitsee oman aiheensa.
+- **Pituus kasvaa äkillisesti**. Myös havaitsemme tässä käyrässä, että jossain vaiheessa pituus kasvoi äkillisesti. Tämä kertoo prosessin stokastisesta luonteesta ja siitä, että voimme jossain vaiheessa "pilata" Q-taulukon kertoimet ylikirjoittamalla niitä uusilla arvoilla. Tämä tulisi olla minimoitu pienentämällä oppimisnopeutta (esimerkiksi harjoittelun lopussa säädämme Q-taulukon arvoja vain pienellä määrällä).
 
-## [Luennon jälkeinen kysely](https://ff-quizzes.netlify.app/en/ml/)
+Kokonaisuudessaan on tärkeää muistaa, että oppimisprosessin onnistuminen ja laatu riippuvat merkittävästi parametreista, kuten oppimisnopeudesta, oppimisnopeuden hiipumisesta ja palkkioden diskonttaustekijästä. Näitä kutsutaan usein **hyperparametreiksi**, jotta ne eroavat **parametreista**, joita optimoimme harjoittelun aikana (esimerkiksi Q-taulukon kertoimet). Parhaiden hyperparametriarvojen etsimistä kutsutaan **hyperparametrien optimoinniksi**, ja se ansaitsee oman aiheensa.
+
+## [Luentojälkeinen visailu](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Tehtävä 
-[Realistisempi maailma](assignment.md)
+[Todellisempi maailma](assignment.md)
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

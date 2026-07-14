@@ -1,6 +1,6 @@
 # Build a regression model using Scikit-learn: prepare and visualize data
 
-![Data visualization infographic](../../../../2-Regression/2-Data/images/data-visualization.png)
+![Data visualization infographic](../../../../translated_images/en/data-visualization.54e56dded7c1a804.webp)
 
 Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
@@ -10,51 +10,51 @@ Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## Introduction
 
-Now that you have the tools needed to start building machine learning models with Scikit-learn, you're ready to begin asking questions of your data. When working with data and applying ML solutions, it's crucial to know how to ask the right questions to unlock the full potential of your dataset.
+Now that you are set up with the tools you need to start tackling machine learning model building with Scikit-learn, you are ready to start asking questions of your data. As you work with data and apply ML solutions, it's very important to understand how to ask the right question to properly unlock the potentials of your dataset.
 
 In this lesson, you will learn:
 
-- How to prepare your data for model building.
+- How to prepare your data for model-building.
 - How to use Matplotlib for data visualization.
+- How to use Seaborn for more expressive data visualization.
 
 ## Asking the right question of your data
 
-The type of question you want answered will determine the ML algorithms you use. The quality of the answer you get will largely depend on the nature of your data.
+The question you need answered will determine what type of ML algorithms you will leverage. And the quality of the answer you get back will be heavily dependent on the nature of your data.
 
-Take a look at the [data](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) provided for this lesson. You can open this .csv file in VS Code. A quick glance reveals blanks, a mix of strings and numeric data, and a peculiar column called 'Package' with values like 'sacks', 'bins', and others. The data is, frankly, a bit messy.
+Take a look at the [data](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) provided for this lesson. You can open this .csv file in VS Code. A quick skim immediately shows that there are blanks and a mix of strings and numeric data. There's also a strange column called 'Package' where the data is a mix between 'sacks', 'bins' and other values. The data, in fact, is a bit of a mess.
 
 [![ML for beginners - How to Analyze and Clean a Dataset](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML for beginners - How to Analyze and Clean a Dataset")
 
-> 🎥 Click the image above for a short video on preparing the data for this lesson.
+> 🎥 Click the image above for a short video working through preparing the data for this lesson.
 
-It's rare to receive a dataset that's completely ready for building a machine learning model. In this lesson, you'll learn how to prepare a raw dataset using standard Python libraries. You'll also explore techniques for visualizing the data.
+In fact, it is not very common to be gifted a dataset that is completely ready to use to create a ML model out of the box. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
 
 ## Case study: 'the pumpkin market'
 
-In this folder, you'll find a .csv file in the root `data` folder called [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), which contains 1757 rows of data about the pumpkin market, grouped by city. This raw data was extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) provided by the United States Department of Agriculture.
+In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) which includes 1757 lines of data about the market for pumpkins, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
 
 ### Preparing data
 
-This data is in the public domain and can be downloaded in separate files for each city from the USDA website. To simplify things, we've combined all the city data into one spreadsheet, so the data has already been partially prepared. Next, let's examine the data more closely.
+This data is in the public domain. It can be downloaded in many separate files, per city, from the USDA web site. To avoid too many separate files, we have concatenated all the city data into one spreadsheet, thus we have already _prepared_ the data a bit. Next, let's take a closer look at the data.
 
 ### The pumpkin data - early conclusions
 
-What do you notice about this data? As mentioned earlier, there's a mix of strings, numbers, blanks, and odd values that need to be understood.
+What do you notice about this data? You already saw that there is a mix of strings, numbers, blanks and strange values that you need to make sense of.
 
-What question can you ask of this data using a regression technique? For example: "Predict the price of a pumpkin for sale during a given month." Looking at the data again, you'll need to make some adjustments to structure it properly for this task.
-
+What question can you ask of this data, using a Regression technique? What about "Predict the price of a pumpkin for sale during a given month". Looking again at the data, there are some changes you need to make to create the data structure necessary for the task.
 ## Exercise - analyze the pumpkin data
 
-Let's use [Pandas](https://pandas.pydata.org/) (short for `Python Data Analysis`), a powerful tool for shaping data, to analyze and prepare the pumpkin data.
+Let's use [Pandas](https://pandas.pydata.org/), (the name stands for `Python Data Analysis`) a tool very useful for shaping data, to analyze and prepare this pumpkin data.
 
 ### First, check for missing dates
 
-Start by checking for missing dates:
+You will first need to take steps to check for missing dates:
 
 1. Convert the dates to a month format (these are US dates, so the format is `MM/DD/YYYY`).
-2. Extract the month into a new column.
+2. Extract the month to a new column.
 
-Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet into a new Pandas dataframe.
+Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet in to a new Pandas dataframe.
 
 1. Use the `head()` function to view the first five rows.
 
@@ -66,15 +66,15 @@ Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet 
 
     ✅ What function would you use to view the last five rows?
 
-1. Check for missing data in the current dataframe:
+1. Check if there is missing data in the current dataframe:
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    There is missing data, but it might not affect the task at hand.
+    There is missing data, but maybe it won't matter for the task at hand.
 
-1. To simplify your dataframe, select only the columns you need using the `loc` function. This function extracts rows (first parameter) and columns (second parameter) from the original dataframe. The `:` expression below means "all rows."
+1. To make your dataframe easier to work with, select only the columns you need, using the `loc` function which extracts from the original dataframe a group of rows (passed as first parameter) and columns (passed as second parameter). The expression `:` in the case below means "all rows".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
@@ -83,9 +83,9 @@ Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet 
 
 ### Second, determine average price of pumpkin
 
-Think about how to calculate the average price of a pumpkin in a given month. Which columns would you use for this task? Hint: you'll need three columns.
+Think about how to determine the average price of a pumpkin in a given month. What columns would you pick for this task? Hint: you'll need 3 columns.
 
-Solution: Take the average of the `Low Price` and `High Price` columns to populate a new `Price` column, and convert the `Date` column to show only the month. Fortunately, based on the earlier check, there is no missing data for dates or prices.
+Solution: take the average of the `Low Price` and `High Price` columns to populate the new Price column, and convert the Date column to only show the month. Fortunately, according to the check above, there is no missing data for dates or prices.
 
 1. To calculate the average, add the following code:
 
@@ -98,21 +98,21 @@ Solution: Take the average of the `Low Price` and `High Price` columns to popula
 
    ✅ Feel free to print any data you'd like to check using `print(month)`.
 
-2. Copy your converted data into a new Pandas dataframe:
+2. Now, copy your converted data into a fresh Pandas dataframe:
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Printing your dataframe will show a clean, organized dataset ready for building your regression model.
+    Printing out your dataframe will show you a clean, tidy dataset on which you can build your new regression model.
 
 ### But wait! There's something odd here
 
-Looking at the `Package` column, pumpkins are sold in various configurations. Some are sold in '1 1/9 bushel' measures, others in '1/2 bushel' measures, some per pumpkin, some per pound, and some in large boxes of varying sizes.
+If you look at the `Package` column, pumpkins are sold in many different configurations. Some are sold in '1 1/9 bushel' measures, and some in '1/2 bushel' measures, some per pumpkin, some per pound, and some in big boxes with varying widths.
 
 > Pumpkins seem very hard to weigh consistently
 
-Examining the original data, anything with `Unit of Sale` equal to 'EACH' or 'PER BIN' also has the `Package` type listed as per inch, per bin, or 'each'. Pumpkins are difficult to weigh consistently, so let's filter the data to include only pumpkins with the string 'bushel' in their `Package` column.
+Digging into the original data, it's interesting that anything with `Unit of Sale` equalling 'EACH' or 'PER BIN' also have the `Package` type per inch, per bin, or 'each'. Pumpkins seem to be very hard to weigh consistently, so let's filter them by selecting only pumpkins with the string 'bushel' in their `Package` column.
 
 1. Add a filter at the top of the file, under the initial .csv import:
 
@@ -120,11 +120,11 @@ Examining the original data, anything with `Unit of Sale` equal to 'EACH' or 'PE
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    If you print the data now, you'll see only the 415 rows containing pumpkins sold by the bushel.
+    If you print the data now, you can see that you are only getting the 415 or so rows of data containing pumpkins by the bushel.
 
 ### But wait! There's one more thing to do
 
-Did you notice that the bushel amount varies per row? You'll need to normalize the pricing to show the price per bushel. Perform some calculations to standardize it.
+Did you notice that the bushel amount varies per row? You need to normalize the pricing so that you show the pricing per bushel, so do some math to standardize it.
 
 1. Add these lines after the block creating the new_pumpkins dataframe:
 
@@ -134,29 +134,29 @@ Did you notice that the bushel amount varies per row? You'll need to normalize t
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ According to [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), a bushel's weight depends on the type of produce, as it's a volume measurement. "A bushel of tomatoes, for example, is supposed to weigh 56 pounds... Leaves and greens take up more space with less weight, so a bushel of spinach is only 20 pounds." It's all quite complex! For simplicity, let's price by the bushel without converting to pounds. This study of bushels highlights the importance of understanding your data!
+✅ According to [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), a bushel's weight depends on the type of produce, as it's a volume measurement. "A bushel of tomatoes, for example, is supposed to weigh 56 pounds... Leaves and greens take up more space with less weight, so a bushel of spinach is only 20 pounds." It's all pretty complicated! Let's not bother with making a bushel-to-pound conversion, and instead price by the bushel. All this study of bushels of pumpkins, however, goes to show how very important it is to understand the nature of your data!
 
-Now, you can analyze pricing per unit based on bushel measurements. If you print the data again, you'll see it's standardized.
+Now, you can analyze the pricing per unit based on their bushel measurement. If you print out the data one more time, you can see how it's standardized.
 
-✅ Did you notice that pumpkins sold by the half-bushel are very expensive? Can you figure out why? Hint: Smaller pumpkins are pricier than larger ones, likely because more of them fit into a bushel, leaving less unused space compared to one large hollow pumpkin.
+✅ Did you notice that pumpkins sold by the half-bushel are very expensive? Can you figure out why? Hint: little pumpkins are way pricier than big ones, probably because there are so many more of them per bushel, given the unused space taken by one big hollow pie pumpkin.
 
 ## Visualization Strategies
 
-A data scientist's role often involves demonstrating the quality and characteristics of the data they're working with. This is done by creating visualizations—plots, graphs, and charts—that reveal relationships and gaps that might otherwise be hard to identify.
+Part of the data scientist's role is to demonstrate the quality and nature of the data they are working with. To do this, they often create interesting visualizations, or plots, graphs, and charts, showing different aspects of data. In this way, they are able to visually show relationships and gaps that are otherwise hard to uncover.
 
 [![ML for beginners - How to Visualize Data with Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML for beginners - How to Visualize Data with Matplotlib")
 
-> 🎥 Click the image above for a short video on visualizing the data for this lesson.
+> 🎥 Click the image above for a short video working through visualizing the data for this lesson.
 
-Visualizations can also help determine the most suitable machine learning technique for the data. For example, a scatterplot that follows a line suggests the data is a good candidate for linear regression.
+Visualizations can also help determine the machine learning technique most appropriate for the data. A scatterplot that seems to follow a line, for example, indicates that the data is a good candidate for a linear regression exercise.
 
-One data visualization library that works well in Jupyter notebooks is [Matplotlib](https://matplotlib.org/) (introduced in the previous lesson).
+One data visualization library that works well in Jupyter notebooks is [Matplotlib](https://matplotlib.org/) (which you also saw in the previous lesson).
 
-> Gain more experience with data visualization in [these tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
+> Get more experience with data visualization in [these tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
 ## Exercise - experiment with Matplotlib
 
-Try creating some basic plots to display the new dataframe you just created. What insights can a simple line plot provide?
+Try to create some basic plots to display the new dataframe you just created. What would a basic line plot show?
 
 1. Import Matplotlib at the top of the file, under the Pandas import:
 
@@ -174,15 +174,15 @@ Try creating some basic plots to display the new dataframe you just created. Wha
     plt.show()
     ```
 
-    ![A scatterplot showing price to month relationship](../../../../2-Regression/2-Data/images/scatterplot.png)
+    ![A scatterplot showing price to month relationship](../../../../translated_images/en/scatterplot.b6868f44cbd2051c.webp)
 
-    Is this plot useful? Does anything about it surprise you?
+    Is this a useful plot? Does anything about it surprise you?
 
-    It's not particularly useful, as it simply displays the data as a spread of points for each month.
+    It's not particularly useful as all it does is display in your data as a spread of points in a given month.
 
 ### Make it useful
 
-To create more meaningful charts, you often need to group the data. Let's try creating a plot where the y-axis shows the months and the data demonstrates the distribution.
+To get charts to display useful data, you usually need to group the data somehow. Let's try creating a plot where the y axis shows the months and the data demonstrates the distribution of data.
 
 1. Add a cell to create a grouped bar chart:
 
@@ -191,21 +191,96 @@ To create more meaningful charts, you often need to group the data. Let's try cr
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![A bar chart showing price to month relationship](../../../../2-Regression/2-Data/images/barchart.png)
+    ![A bar chart showing price to month relationship](../../../../translated_images/en/barchart.a833ea9194346d76.webp)
 
-    This visualization is more useful! It suggests that pumpkin prices peak in September and October. Does this match your expectations? Why or why not?
+    This is a more useful data visualization! It seems to indicate that the highest price for pumpkins occurs in September and October. Does that meet your expectation? Why or why not?
+
+## Exercise - experiment with Seaborn
+
+Matplotlib is powerful, but it can take a lot of code to produce a polished chart. [Seaborn](https://seaborn.pydata.org/) is a library built _on top of_ Matplotlib that is designed for statistical data visualization. It works directly with Pandas dataframes, applies attractive default styles, and lets you create informative plots with far less code. Because Seaborn returns Matplotlib objects, you can still use everything you already know about Matplotlib to fine-tune the result.
+
+> If you don't already have Seaborn installed, install it with `pip install seaborn`.
+
+1. Import Seaborn at the top of the notebook, under the other imports. It is conventionally imported as `sns`:
+
+    ```python
+    import seaborn as sns
+    ```
+
+### Scatter plots to show relationships
+
+A big part of exploring data before building a model is looking for _relationships_ between variables. A [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot) is one of the best tools for this: if the points seem to follow a line, the two variables may be correlated, which is a good sign that a linear regression model could work.
+
+1. Recreate the price-to-month scatter plot from before, this time using Seaborn's [`relplot()`](https://seaborn.pydata.org/generated/seaborn.relplot.html) (relational plot), which works directly with your dataframe columns:
+
+    ```python
+    sns.relplot(x="Price", y="Month", data=new_pumpkins)
+    ```
+
+    ![A Seaborn scatterplot showing price to month relationship](../../../../translated_images/en/relplot.a03837d8f0329cec.webp)
+
+    Notice how you pass the _column names_ and the dataframe, and Seaborn takes care of the axis labels for you.
+
+2. You can switch to a line plot by passing `kind="line"`. Seaborn even draws a shaded band showing the confidence interval around the line:
+
+    ```python
+    sns.relplot(x="Price", y="Month", kind="line", data=new_pumpkins)
+    ```
+
+    ![A Seaborn line plot showing price to month relationship](../../../../translated_images/en/lineplot.f9034ba47b1e30ee.webp)
+
+    This particular data is quite noisy, so a line plot isn't the clearest choice here — but it shows how easily you can change chart types in Seaborn.
+
+### Bar charts to show distributions
+
+
+Earlier you grouped the data by hand to create a bar chart with Matplotlib. Seaborn's [`catplot()`](https://seaborn.pydata.org/generated/seaborn.catplot.html) (categorical plot) can do the grouping and aggregation for you. By default `kind="bar"` shows the mean of each category along with a black line indicating the confidence interval.
+
+1. Create a bar chart of average price per month:
+
+    ```python
+    sns.catplot(x="Month", y="Price", data=new_pumpkins, kind="bar")
+    ```
+
+    ![A Seaborn bar chart showing the price distribution per month](../../../../translated_images/en/catplot.e73fc35fdf96242b.webp)
+
+    This confirms what you saw with Matplotlib — prices peak around September and October — but Seaborn also visualizes how much the price _varies_ within each month.
+
+### Heatmaps to show correlations
+
+Scatter plots compare two variables at a time. When you have several numeric columns, a [heatmap](https://en.wikipedia.org/wiki/Heat_map) lets you view the strength of the relationship between _every_ pair of columns at once. This is a common way to spot which features are most correlated before choosing what to feed into a model (and the same kind of chart is later used to display confusion matrices in classification).
+
+1. Build a correlation matrix with Pandas, then draw it with Seaborn's [`heatmap()`](https://seaborn.pydata.org/generated/seaborn.heatmap.html). The `annot=True` option prints the correlation values on each cell:
+
+    ```python
+    correlations = new_pumpkins[['Month', 'Low Price', 'High Price', 'Price']].corr()
+    sns.heatmap(correlations, annot=True, cmap="coolwarm")
+    ```
+
+    ![A Seaborn heatmap showing correlations between the numeric columns](../../../../translated_images/en/heatmap.bd98dce43b404c57.webp)
+
+    Values close to `1` (or `-1`) mean the columns are strongly _linearly_ correlated. Notice how `Low Price` and `High Price` are almost perfectly correlated. `Month`, on the other hand, shows only a weak linear correlation with price — even though the bar chart above revealed a clear seasonal peak in September and October. That's an important lesson: the correlation coefficient only measures _straight-line_ relationships, so it can miss seasonal or otherwise non-linear patterns. ✅ Why is it useful to look at both a heatmap *and* charts like the bar chart before deciding which columns to use?
+
+### Matplotlib or Seaborn?
+
+Both libraries are worth knowing:
+
+- **Matplotlib** gives you fine-grained control over every element of a chart and is the foundation almost every other Python plotting library builds on.
+- **Seaborn** provides higher-level functions and attractive defaults for statistical charts, works directly with dataframes, and is often quicker for exploratory data analysis.
+
+A common workflow is to reach for Seaborn to explore your data quickly, then drop down to Matplotlib when you need to customize the details.
 
 ---
 
 ## 🚀Challenge
 
-Explore the different types of visualizations offered by Matplotlib. Which types are most suitable for regression problems?
+Explore the different types of visualization that Matplotlib and Seaborn offer. Which types are most appropriate for regression problems?
 
 ## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Review & Self Study
 
-Investigate the various ways to visualize data. Make a list of available libraries and note which are best for specific tasks, such as 2D vs. 3D visualizations. What do you discover?
+Take a look at the many ways to visualize data. Make a list of the various libraries available and note which are best for given types of tasks, for example 2D visualizations vs. 3D visualizations. What do you discover?
 
 ## Assignment
 
@@ -213,5 +288,7 @@ Investigate the various ways to visualize data. Make a list of available librari
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
