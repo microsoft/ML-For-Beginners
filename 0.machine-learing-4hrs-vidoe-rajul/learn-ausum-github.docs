@@ -1,0 +1,109 @@
+If you're learning Machine Learning from a software engineer's perspective, these are the 5 GitHub repositories I'd prioritize:
+
+1. Scikit-Learn Examples
+https://github.com/scikit-learn/scikit-learn?utm_source=chatgpt.com
+
+Why: The industry-standard ML library for beginners.
+
+Learn:
+
+Linear Regression
+Logistic Regression
+Decision Trees
+Random Forest
+Feature Engineering
+Model Evaluation
+
+Start with:
+
+examples/
+2. Hands-On Machine Learning Notebooks (Aurelien Geron)
+https://github.com/ageron/handson-ml3?utm_source=chatgpt.com
+
+Why: Probably the best practical ML repository available.
+
+Learn:
+
+End-to-end ML projects
+Scikit-Learn
+TensorFlow
+Feature Engineering
+Model Deployment
+
+For someone with your background, this is the best starting point.
+
+3. Machine Learning From Scratch
+https://github.com/eriklindernoren/ML-From-Scratch?utm_source=chatgpt.com
+
+Why: Understand how algorithms work internally.
+
+Build:
+
+Linear Regression
+Logistic Regression
+KNN
+Decision Trees
+Random Forest
+PCA
+
+No heavy libraries hiding the math.
+
+4. Microsoft ML for Beginners
+https://github.com/microsoft/ML-For-Beginners?utm_source=chatgpt.com
+
+Why: Structured course with notebooks and exercises.
+
+Learn:
+
+Supervised Learning
+Unsupervised Learning
+Classification
+Regression
+Clustering
+
+Very beginner-friendly.
+
+5. Awesome Machine Learning
+https://github.com/josephmisiti/awesome-machine-learning?utm_source=chatgpt.com
+
+Why: A curated list of the entire ML ecosystem.
+
+Use it to discover:
+
+Libraries
+Courses
+Books
+Datasets
+Tools
+
+Think of it as the "directory" of ML.
+
+Recommended Learning Order
+Microsoft ML for Beginners
+Hands-On Machine Learning
+Scikit-Learn Examples
+ML From Scratch
+Awesome Machine Learning
+For Your AI Engineer Goal
+
+Given your React + Node + Python + FastAPI background, I'd follow:
+
+Week 1-2:
+Microsoft ML for Beginners
+
+Week 3-4:
+Hands-On Machine Learning
+
+Week 5:
+ML From Scratch
+
+Week 6:
+Build a project:
+Study Hours -> Score Prediction
+Customer Churn Prediction
+House Price Prediction
+
+Week 7:
+Move to LLMs, RAG, LangChain, LangGraph
+
+This path gets you to practical ML quickly without spending months on theory.
