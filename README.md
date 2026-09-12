@@ -46,6 +46,8 @@ We have a Discord learn with AI series ongoing, learn more and join us at [Learn
 
 # Machine Learning for Beginners - A Curriculum
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/ML-For-Beginners)
+
 > 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
 Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!
@@ -62,9 +64,68 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 # Getting Started
 
-Follow these steps:
-1. **Fork the Repository**: Click on the "Fork" button at the top-right corner of this page.
-2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+## 📚 Quick Documentation Links
+
+- 🔧 **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Solutions to common installation, environment, and notebook issues
+- 👩‍🏫 **[For Teachers](for-teachers.md)** - Suggestions and guidelines for classroom instruction
+- 🤝 **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to this curriculum
+- 🧪 **[Quiz Application](./quiz-app/)** - 52 interactive pre- and post-lecture assessments
+- 📄 **[Curriculum PDF](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf)** - Offline curriculum with clickable links
+
+---
+
+## 🚀 Choose Your Learning Setup
+
+### Option 1: Cloud Setup with GitHub Codespaces (Recommended — Zero Installation)
+
+Start learning immediately in your browser with Python, Jupyter, Scikit-learn, and all dependencies pre-configured:
+1. Click the **[Open in GitHub Codespaces](https://codespaces.new/microsoft/ML-For-Beginners)** badge at the top (or click the green **Code** button and select **Create codespace on main**).
+2. The environment automatically builds using the repository's `.devcontainer` configuration.
+3. Open any lesson notebook (e.g., `2-Regression/1-Tools/notebook.ipynb`) and start executing code right away!
+
+---
+
+### Option 2: Local Development Setup
+
+1. **Fork the Repository**: Click on the **Fork** button at the top-right corner of this page to create your own copy.
+2. **Clone using Sparse-Checkout** (Recommended):
+   Because this repository includes 50+ language translations, cloning everything is very large. Use sparse-checkout to download only the core curriculum:
+
+   **Bash / macOS / Linux:**
+   ```bash
+   git clone --filter=blob:none --sparse https://github.com/<your-username>/ML-For-Beginners.git
+   cd ML-For-Beginners
+   git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+   ```
+
+   **Windows (Command Prompt / PowerShell):**
+   ```cmd
+   git clone --filter=blob:none --sparse https://github.com/<your-username>/ML-For-Beginners.git
+   cd ML-For-Beginners
+   git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
+   ```
+
+3. **Set Up a Virtual Environment**:
+   ```bash
+   # Create virtual environment
+   python -m venv .venv
+
+   # Activate environment
+   # On Windows:
+   .venv\Scripts\activate
+   # On macOS/Linux:
+   source .venv/bin/activate
+   ```
+
+4. **Install Core Dependencies**:
+   ```bash
+   pip install jupyter scikit-learn pandas numpy matplotlib seaborn
+   ```
+
+5. **Start Jupyter Notebook**:
+   ```bash
+   jupyter notebook
+   ```
 
 > [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
@@ -130,6 +191,20 @@ By ensuring that the content aligns with projects, the process is made more enga
 > **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.
 
 > **A note about quizzes**: All quizzes are contained in [Quiz App folder](./quiz-app/), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder to locally host or deploy to Azure.
+
+### 🗺️ Curriculum Tracks at a Glance
+
+| Track | Focus Area | Lessons | Key Concepts & Projects |
+| :--- | :--- | :---: | :--- |
+| **1. Introduction** | ML Foundations & Ethics | Lessons 01–04 | History, core concepts, algorithmic fairness & bias |
+| **2. Regression** | Continuous Predictions | Lessons 05–08 | Scikit-learn tools, linear & polynomial regression, pumpkin prices |
+| **3. Web App** | Model Deployment | Lesson 09 | Building and deploying a Flask web application with a trained model |
+| **4. Classification** | Categorical Predictions | Lessons 10–13 | Classification algorithms, Asian & Indian cuisine recommender |
+| **5. Clustering** | Unsupervised Grouping | Lessons 14–15 | Data clustering, K-Means, exploring Nigerian musical tastes |
+| **6. NLP** | Natural Language Processing | Lessons 16–20 | Tokenization, sentiment analysis, romantic hotel reviews |
+| **7. Time Series** | Temporal Forecasting | Lessons 21–23 | Time series analysis, ARIMA, Support Vector Regressors |
+| **8. Reinforcement** | Agent-Based Learning | Lessons 24–25 | Q-Learning, OpenAI Gym, Peter and the Wolf game |
+| **9. Real-World ML** | Practical Applications | Postscript | Real-world case studies, Responsible AI (RAI) dashboard debugging |
 
 | Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
