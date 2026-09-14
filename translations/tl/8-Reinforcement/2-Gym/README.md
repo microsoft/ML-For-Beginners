@@ -1,14 +1,34 @@
-## Mga Paunang Kaalaman
+# CartPole Skating
 
-Sa araling ito, gagamit tayo ng library na tinatawag na **OpenAI Gym** upang mag-simulate ng iba't ibang **kapaligiran**. Maaari mong patakbuhin ang code ng araling ito nang lokal (halimbawa, mula sa Visual Studio Code), kung saan magbubukas ang simulation sa isang bagong window. Kapag pinapatakbo ang code online, maaaring kailanganin mong gumawa ng ilang pagbabago sa code, tulad ng inilarawan [dito](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+Ang problemang tinutugunan natin sa nakaraang aralin ay maaaring parang larong laro lamang, hindi talaga naaangkop sa mga totoong sitwasyon sa buhay. Ngunit hindi ito ang kaso, dahil maraming totoong problema sa mundo ang may katulad na sitwasyon - kabilang ang paglalaro ng Chess o Go. Magkakatulad sila, dahil mayroon din tayong board na may mga itinakdang patakaran at isang **diskretong estado**.
+
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
+
+## Panimula
+
+Sa araling ito ay gagamitin natin ang parehong mga prinsipyo ng Q-Learning sa isang problemang may **tuloy-tuloy na estado**, ibig sabihin, ang estado ay ibinibigay ng isa o higit pang mga totoong numero. Tututukan natin ang sumusunod na problema:
+
+> **Problema**: Kung nais ni Peter na makatakas mula sa lobo, kailangan niyang makagalaw nang mas mabilis. Makikita natin kung paano matututo si Peter na mag-skate, partikular, kung paano mapanatili ang balanse, gamit ang Q-Learning.
+
+![The great escape!](../../../../translated_images/tl/escape.18862db9930337e3.webp)
+
+> Nagiging malikhain si Peter at ang kanyang mga kaibigan para makatakas sa lobo! Larawan mula kay [Jen Looper](https://twitter.com/jenlooper)
+
+Gagamit tayo ng isang pinaikling bersyon ng pagbalanse na kilala bilang **CartPole** problema. Sa mundo ng cartpole, mayroon tayong pahalang na slider na maaaring ilipat pakaliwa o pakanan, at ang layunin ay balansehin ang isang patayong poste sa ibabaw ng slider.
+
+<img alt="a cartpole" src="../../../../translated_images/tl/cartpole.b5609cc0494a14f7.webp" width="200"/>
+
+## Mga Kinakailangan
+
+Sa araling ito, gagamit tayo ng isang library na tinatawag na **OpenAI Gym** upang simulahin ang iba't ibang **kapaligiran**. Maaari mong patakbuhin ang code ng araling ito nang lokal (hal., mula sa Visual Studio Code), kung saan ang simulation ay magbubukas sa bagong bintana. Kapag tumakbo ang code online, maaaring kailangan mong gumawa ng ilang pagbabago sa code, gaya ng nakasaad [dito](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
-Sa nakaraang aralin, ang mga patakaran ng laro at ang estado ay ibinigay ng `Board` class na tayo mismo ang nagtakda. Dito, gagamit tayo ng isang espesyal na **simulation environment**, na magsi-simulate ng pisika sa likod ng balancing pole. Isa sa mga pinakasikat na simulation environment para sa pagsasanay ng reinforcement learning algorithms ay tinatawag na [Gym](https://gym.openai.com/), na pinapanatili ng [OpenAI](https://openai.com/). Sa pamamagitan ng paggamit ng gym na ito, maaari tayong lumikha ng iba't ibang **kapaligiran** mula sa cartpole simulation hanggang sa mga laro ng Atari.
+Sa nakaraang aralin, ang mga patakaran ng laro at ang estado ay ibinigay ng `Board` na klase na ating inilagay. Dito gagamit tayo ng isang espesyal na **simulation environment**, na magsisimula ng pisika sa likod ng balanse ng poste. Isa sa mga pinakasikat na simulation environment para sa pagsasanay ng mga reinforcement learning algorithm ay tinatawag na [Gym](https://gym.openai.com/), na pinangangasiwaan ng [OpenAI](https://openai.com/). Sa pamamagitan ng paggamit ng gym na ito, maaari tayong gumawa ng iba't ibang **kapaligiran** mula sa simulation ng cartpole hanggang sa mga larong Atari.
 
-> **Note**: Makikita mo ang iba pang mga kapaligiran na available mula sa OpenAI Gym [dito](https://gym.openai.com/envs/#classic_control). 
+> **Tandaan**: Maaari mong makita ang iba pang mga kapaligiran mula sa OpenAI Gym [dito](https://gym.openai.com/envs/#classic_control).
 
-Una, mag-install ng gym at i-import ang mga kinakailangang library (code block 1):
+Una, i-install natin ang gym at i-import ang mga kinakailangang library (code block 1):
 
 ```python
 import sys
@@ -20,15 +40,15 @@ import numpy as np
 import random
 ```
 
-## Ehersisyo - I-initialize ang isang cartpole environment
+## Ehersisyo - i-initialize ang cartpole environment
 
-Upang magtrabaho sa problema ng cartpole balancing, kailangan nating i-initialize ang kaukulang kapaligiran. Ang bawat kapaligiran ay nauugnay sa:
+Para magtrabaho sa problemang pagbalanse ng cartpole, kailangan nating i-initialize ang kaukulang environment. Ang bawat environment ay may kaugnayan sa isang:
 
-- **Observation space** na tumutukoy sa istruktura ng impormasyon na natatanggap natin mula sa kapaligiran. Para sa problema ng cartpole, natatanggap natin ang posisyon ng pole, bilis, at ilang iba pang mga halaga.
+- **Observation space** na nagtutukoy ng istruktura ng impormasyong natatanggap natin mula sa environment. Sa cartpole na problema, natatanggap natin ang posisyon ng poste, bilis, at ilan pang mga halaga.
 
-- **Action space** na tumutukoy sa mga posibleng aksyon. Sa ating kaso, ang action space ay discrete, at binubuo ng dalawang aksyon - **kaliwa** at **kanan**. (code block 2)
+- **Action space** na nagtutukoy ng mga posibleng aksyon. Sa ating kaso, ang action space ay discrete, at binubuo ng dalawang aksyon - **kaliwa** at **kanan**. (code block 2)
 
-1. Upang mag-initialize, i-type ang sumusunod na code:
+1. Para i-initialize, i-type ang sumusunod na code:
 
     ```python
     env = gym.make("CartPole-v1")
@@ -37,11 +57,11 @@ Upang magtrabaho sa problema ng cartpole balancing, kailangan nating i-initializ
     print(env.action_space.sample())
     ```
 
-Upang makita kung paano gumagana ang kapaligiran, magpatakbo ng maikling simulation para sa 100 hakbang. Sa bawat hakbang, nagbibigay tayo ng isa sa mga aksyon na gagawin - sa simulation na ito, random lang nating pinipili ang isang aksyon mula sa `action_space`. 
+Para makita kung paano gumagana ang environment, patakbuhin natin ang isang maikling simulation na may 100 hakbang. Sa bawat hakbang, magbibigay tayo ng isa sa mga aksyon na gagawin - sa simulation na ito ay pipili lamang tayo nang random ng aksyon mula sa `action_space`.
 
-1. Patakbuhin ang code sa ibaba at tingnan kung ano ang resulta.
+1. Patakbuhin ang code sa ibaba at tingnan kung ano ang mangyayari.
 
-    ✅ Tandaan na mas mainam na patakbuhin ang code na ito sa lokal na Python installation! (code block 3)
+    ✅ Tandaan na mas mainam patakbuhin ang code na ito sa lokal na pag-install ng Python! (code block 3)
 
     ```python
     env.reset()
@@ -52,11 +72,11 @@ Upang makita kung paano gumagana ang kapaligiran, magpatakbo ng maikling simulat
     env.close()
     ```
 
-    Dapat kang makakita ng isang bagay na katulad ng larawang ito:
+    Makikita mo ng halos ganito ang imahe:
 
     ![non-balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. Sa panahon ng simulation, kailangan nating makuha ang mga obserbasyon upang magpasya kung paano kumilos. Sa katunayan, ang step function ay nagbabalik ng kasalukuyang obserbasyon, isang reward function, at ang done flag na nagpapahiwatig kung may saysay pa bang ipagpatuloy ang simulation o hindi: (code block 4)
+1. Sa panahon ng simulation, kailangan natin kumuha ng mga obserbasyon upang makapagdesisyon kung paano kumilos. Sa katunayan, ang step function ay nagbabalik ng kasalukuyang mga obserbasyon, isang reward function, at ang done flag na nagsasaad kung may saysay pa ba na ipagpatuloy ang simulation o hindi: (code block 4)
 
     ```python
     env.reset()
@@ -69,7 +89,7 @@ Upang makita kung paano gumagana ang kapaligiran, magpatakbo ng maikling simulat
     env.close()
     ```
 
-    Makakakita ka ng isang bagay na ganito sa output ng notebook:
+    Makikita mo ito sa output ng notebook na ganito:
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -85,40 +105,40 @@ Upang makita kung paano gumagana ang kapaligiran, magpatakbo ng maikling simulat
     Ang observation vector na ibinabalik sa bawat hakbang ng simulation ay naglalaman ng mga sumusunod na halaga:
     - Posisyon ng cart
     - Bilis ng cart
-    - Anggulo ng pole
-    - Bilis ng pag-ikot ng pole
+    - Anggulo ng poste
+    - Bilis ng pag-ikot ng poste
 
-1. Kunin ang minimum at maximum na halaga ng mga numerong ito: (code block 5)
+1. Kunin ang pinakamababa at pinakamataas na halaga ng mga numerong iyon: (code block 5)
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    Mapapansin mo rin na ang reward value sa bawat hakbang ng simulation ay palaging 1. Ito ay dahil ang ating layunin ay mabuhay nang mas matagal hangga't maaari, ibig sabihin, panatilihin ang pole sa isang makatwirang patayong posisyon sa pinakamahabang panahon.
+    Mapapansin mo rin na ang reward na halaga sa bawat hakbang ng simulation ay palaging 1. Ito ay dahil ang ating layunin ay mabuhay nang pinakamatagal, ibig sabihin, panatilihin ang poste sa makatwirang patayong posisyon sa pinakamahabang panahon.
 
-    ✅ Sa katunayan, ang CartPole simulation ay itinuturing na nalutas kung makakakuha tayo ng average reward na 195 sa loob ng 100 sunod-sunod na pagsubok.
+    ✅ Sa katunayan, ang CartPole simulation ay itinuturing na nalutas kung makakakuha tayo ng average reward na 195 sa loob ng 100 magkasunod na pagsubok.
 
-## State Discretization
+## Pagdiskreto ng Estado
 
-Sa Q-Learning, kailangan nating bumuo ng Q-Table na tumutukoy kung ano ang gagawin sa bawat estado. Upang magawa ito, kailangan ang estado ay **discreet**, mas partikular, dapat itong maglaman ng limitadong bilang ng mga discrete na halaga. Kaya, kailangan nating **i-discretize** ang ating mga obserbasyon, i-map ang mga ito sa isang limitadong set ng mga estado.
+Sa Q-Learning, kailangan nating bumuo ng Q-Table na nagtutukoy kung ano ang gagawin sa bawat estado. Upang magawa ito, kailangan nating gawing **diskreto** ang estado, mas partikular, dapat itong magkaroon ng hangganang bilang ng mga diskretong halaga. Kaya, kailangan nating **i-diskreto** ang ating mga obserbasyon, inilalapat ito sa isang hangganang hanay ng mga estado.
 
-May ilang paraan upang magawa ito:
+May ilang paraan para gawin ito:
 
-- **Hatiin sa mga bins**. Kung alam natin ang interval ng isang tiyak na halaga, maaari nating hatiin ang interval na ito sa isang bilang ng **bins**, at pagkatapos ay palitan ang halaga ng numero ng bin kung saan ito kabilang. Magagawa ito gamit ang numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) method. Sa kasong ito, tiyak nating malalaman ang laki ng estado, dahil ito ay depende sa bilang ng bins na pinili natin para sa digitalization.
+- **Hatiin sa mga bins**. Kung alam natin ang pagitan ng isang partikular na halaga, maaari nating hatiin ang pagitan na ito sa ilang bilang ng mga **bins**, at pagkatapos ay palitan ang halaga ng bilang ng bin kung saan ito kabilang. Maaari itong gawin gamit ang numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) na paraan. Sa ganitong kaso, eksaktong malalaman natin ang laki ng estado, dahil ito ay nakasalalay sa bilang ng mga bin na pinili natin para sa digitalization.
   
-✅ Maaari tayong gumamit ng linear interpolation upang dalhin ang mga halaga sa isang limitadong interval (halimbawa, mula -20 hanggang 20), at pagkatapos ay i-convert ang mga numero sa integers sa pamamagitan ng pag-round. Nagbibigay ito sa atin ng kaunting kontrol sa laki ng estado, lalo na kung hindi natin alam ang eksaktong saklaw ng mga input na halaga. Halimbawa, sa ating kaso, 2 sa 4 na halaga ay walang upper/lower bounds sa kanilang mga halaga, na maaaring magresulta sa walang katapusang bilang ng mga estado.
+✅ Maaari tayong gumamit ng linear interpolation upang ilagay ang mga halaga sa isang hangganang pagitan (halimbawa, mula -20 hanggang 20), at pagkatapos ay gawing integer ang mga numero sa pamamagitan ng pag-round. Nagbibigay ito ng kaunting mas kaunting kontrol sa laki ng estado, lalo na kung hindi natin alam ang eksaktong saklaw ng mga input na halaga. Halimbawa, sa ating kaso, 2 sa 4 na halaga ay walang mga itinatakdang itaas/ibabang hangganan ng mga halaga, na maaaring magresulta sa walang katapusang bilang ng mga estado.
 
-Sa ating halimbawa, gagamitin natin ang pangalawang paraan. Tulad ng mapapansin mo mamaya, sa kabila ng hindi tinukoy na upper/lower bounds, ang mga halagang iyon ay bihirang kumuha ng mga halaga sa labas ng ilang limitadong interval, kaya ang mga estado na may matinding halaga ay magiging napakabihira.
+Sa ating halimbawa, pipiliin natin ang pangalawang paraan. Tulad ng mapapansin mo mamaya, sa kabila ng hindi itinatakdang mga itaas/ibabang hangganan, bihira lamang kuhanin ng mga halagang iyon ang mga halaga sa labas ng tiyak na mga hangganang interval, kaya ang mga estado na may matinding mga halaga ay magiging bihira.
 
-1. Narito ang function na kukuha ng obserbasyon mula sa ating modelo at magpo-produce ng tuple ng 4 na integer na halaga: (code block 6)
+1. Narito ang function na tatanggap ng obserbasyon mula sa ating modelo at gagawa ng tuple ng 4 na integer na halaga: (code block 6)
 
     ```python
     def discretize(x):
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. Tuklasin din natin ang isa pang paraan ng discretization gamit ang bins: (code block 7)
+1. Tuklasin natin ang isa pang paraan ng pagdiskreto gamit ang mga bins: (code block 7)
 
     ```python
     def create_bins(i,num):
@@ -126,39 +146,39 @@ Sa ating halimbawa, gagamitin natin ang pangalawang paraan. Tulad ng mapapansin 
     
     print("Sample bins for interval (-5,5) with 10 bins\n",create_bins((-5,5),10))
     
-    ints = [(-5,5),(-2,2),(-0.5,0.5),(-2,2)] # intervals of values for each parameter
-    nbins = [20,20,10,10] # number of bins for each parameter
+    ints = [(-5,5),(-2,2),(-0.5,0.5),(-2,2)] # mga pagitan ng mga halaga para sa bawat parametro
+    nbins = [20,20,10,10] # bilang ng mga lalagyan para sa bawat parametro
     bins = [create_bins(ints[i],nbins[i]) for i in range(4)]
     
     def discretize_bins(x):
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Ngayon, magpatakbo ng maikling simulation at obserbahan ang mga discrete na halaga ng kapaligiran. Subukan ang parehong `discretize` at `discretize_bins` at tingnan kung may pagkakaiba.
+1. Patakbuhin natin ngayon ang isang maikling simulation at obserbahan ang mga diskretong halaga ng environment. Subukan mo ang pareho `discretize` at `discretize_bins` at tingnan kung may pagkakaiba.
 
-    ✅ Ang `discretize_bins` ay nagbabalik ng numero ng bin, na 0-based. Kaya para sa mga halaga ng input variable sa paligid ng 0, nagbabalik ito ng numero mula sa gitna ng interval (10). Sa `discretize`, hindi natin inalagaan ang saklaw ng mga output na halaga, na pinapayagan silang maging negatibo, kaya ang mga halaga ng estado ay hindi na-shift, at ang 0 ay tumutugma sa 0. (code block 8)
+    ✅ Ang discretize_bins ay nagbabalik ng bilang ng bin, na 0-based. Kaya para sa mga halaga ng input variable na malapit sa 0, ibinabalik nito ang numero mula sa gitna ng interval (10). Sa discretize, hindi natin pinansin ang saklaw ng output values, kaya maaari itong maging negatibo, kaya ang mga estado ay hindi na-shift, at ang 0 ay tumutugma sa 0. (code block 8)
 
     ```python
     env.reset()
     
     done = False
     while not done:
-       #env.render()
+       #ipakita.env()
        obs, rew, done, info = env.step(env.action_space.sample())
-       #print(discretize_bins(obs))
+       #print(paghati_hati_bins(obs))
        print(discretize(obs))
     env.close()
     ```
 
-    ✅ I-uncomment ang linya na nagsisimula sa env.render kung nais mong makita kung paano isinasagawa ang kapaligiran. Kung hindi, maaari mo itong isagawa sa background, na mas mabilis. Gagamitin natin ang "invisible" na pagpapatupad na ito sa panahon ng ating Q-Learning process.
+    ✅ I-uncomment ang linya na nagsisimula sa env.render kung gusto mong makita kung paano gumagana ang environment. Kung hindi, maaari mo itong patakbuhin sa background, na mas mabilis. Gagamitin natin ang "invisible" na pagpapatakbo na ito sa ating proseso ng Q-Learning.
 
-## Ang Istruktura ng Q-Table
+## Ang istruktura ng Q-Table
 
-Sa nakaraang aralin, ang estado ay isang simpleng pares ng mga numero mula 0 hanggang 8, kaya't maginhawa itong i-represent ang Q-Table gamit ang isang numpy tensor na may hugis na 8x8x2. Kung gagamit tayo ng bins discretization, ang laki ng ating state vector ay kilala rin, kaya maaari nating gamitin ang parehong paraan at i-represent ang estado gamit ang isang array na may hugis na 20x20x10x10x2 (dito ang 2 ay ang dimensyon ng action space, at ang mga unang dimensyon ay tumutugma sa bilang ng bins na pinili natin para sa bawat parameter sa observation space).
+Sa nakaraang aralin, ang estado ay isang simpleng pares ng numero mula 0 hanggang 8, kaya naging madali na i-representa ang Q-Table bilang isang numpy tensor na may hugis na 8x8x2. Kung gagamit tayo ng bins discretization, ang laki ng ating state vector ay kilala rin, kaya maaari nating gamitin ang parehong pamamaraang ito at i-representa ang estado bilang isang array ng hugis 20x20x10x10x2 (dito, ang 2 ay dimensyon ng action space, at ang mga pangunahing dimensyon ay tumutukoy sa bilang ng mga bin na pinili nating gamitin para sa bawat parameter sa observation space).
 
-Gayunpaman, kung minsan ang eksaktong dimensyon ng observation space ay hindi alam. Sa kaso ng `discretize` function, maaaring hindi tayo sigurado na ang ating estado ay nananatili sa loob ng ilang limitasyon, dahil ang ilan sa mga orihinal na halaga ay hindi bound. Kaya, gagamit tayo ng bahagyang naiibang paraan at i-represent ang Q-Table gamit ang isang dictionary. 
+Gayunpaman, minsan hindi alam ang tumpak na dimensyon ng observation space. Sa kaso ng `discretize` na function, maaaring hindi tayo sigurado na ang ating estado ay mananatili sa loob ng ilang limitasyon, dahil ang ilan sa mga orihinal na halaga ay walang hangganan. Kaya, gagamit tayo ng ibang pamamaraan at i-representa ang Q-Table bilang isang diksyunaryo.
 
-1. Gamitin ang pares *(state,action)* bilang key ng dictionary, at ang value ay tumutugma sa Q-Table entry value. (code block 9)
+1. Gamitin ang pares na *(state, action)* bilang susi ng diksyunaryo, at ang halaga ay magiging kaugnay na Q-Table entry. (code block 9)
 
     ```python
     Q = {}
@@ -168,38 +188,38 @@ Gayunpaman, kung minsan ang eksaktong dimensyon ng observation space ay hindi al
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Dito, nagde-define din tayo ng function na `qvalues()`, na nagbabalik ng listahan ng mga Q-Table value para sa isang ibinigay na estado na tumutugma sa lahat ng posibleng aksyon. Kung ang entry ay wala sa Q-Table, magbabalik tayo ng 0 bilang default.
+    Dito rin tayo nagtatakda ng function na `qvalues()`, na nagbabalik ng listahan ng mga halaga ng Q-Table para sa isang ibinigay na estado na tumutugma sa lahat ng posibleng mga aksyon. Kapag wala ang entry sa Q-Table, magbabalik tayo ng 0 bilang default.
 
-## Simulan ang Q-Learning
+## Simulan natin ang Q-Learning
 
-Ngayon, handa na tayong turuan si Peter na magbalanse!
+Handa na tayong turuan si Peter na magbalanse!
 
-1. Una, mag-set ng ilang hyperparameters: (code block 10)
+1. Una, itakda natin ang ilang hyperparameters: (code block 10)
 
     ```python
-    # hyperparameters
+    # mga hyperparameter
     alpha = 0.3
     gamma = 0.9
     epsilon = 0.90
     ```
 
-    Dito, ang `alpha` ay ang **learning rate** na tumutukoy kung hanggang saan natin dapat i-adjust ang kasalukuyang mga halaga ng Q-Table sa bawat hakbang. Sa nakaraang aralin, nagsimula tayo sa 1, at pagkatapos ay binawasan ang `alpha` sa mas mababang mga halaga sa panahon ng pagsasanay. Sa halimbawang ito, panatilihin natin itong constant para sa pagiging simple, at maaari kang mag-eksperimento sa pag-adjust ng mga halaga ng `alpha` sa ibang pagkakataon.
+    Dito, ang `alpha` ay ang **learning rate** na nagtutukoy kung hanggang saan natin dapat baguhin ang kasalukuyang mga halaga ng Q-Table sa bawat hakbang. Sa nakaraang aralin nagsimula tayo sa 1, at pagkatapos ay unti-unting binawasan ang `alpha` habang ang pagsasanay ay nagpapatuloy. Sa halimbawa na ito, panatilihin natin itong constant para sa pagiging simple, at maaari kang mag-eksperimento sa pag-adjust ng mga halaga ng `alpha` mamaya.
 
-    Ang `gamma` ay ang **discount factor** na nagpapakita kung hanggang saan natin dapat bigyang-priyoridad ang hinaharap na reward kaysa sa kasalukuyang reward.
+    Ang `gamma` ay ang **discount factor** na nagpapakita kung hanggang kailan natin priyoridadin ang hinaharap na reward kaysa sa kasalukuyang reward.
 
-    Ang `epsilon` ay ang **exploration/exploitation factor** na tumutukoy kung dapat nating paboran ang exploration kaysa sa exploitation o vice versa. Sa ating algorithm, sa `epsilon` na porsyento ng mga kaso, pipiliin natin ang susunod na aksyon ayon sa mga halaga ng Q-Table, at sa natitirang bilang ng mga kaso, magsasagawa tayo ng random na aksyon. Papayagan tayo nitong galugarin ang mga bahagi ng search space na hindi pa natin nakikita.
+    Ang `epsilon` ay ang **exploration/exploitation factor** na tumutukoy kung mas gusto natin ang exploration kaysa exploitation o kabaligtaran. Sa ating algorithm, sa `epsilon` porsyento ng mga kaso ay pipili tayo ng susunod na aksyon ayon sa mga halaga ng Q-Table, at sa natitirang mga kaso ay magsasagawa tayo ng random na aksyon. Pinapayagan tayo nitong tuklasin ang mga bahagi ng search space na hindi pa natin nasusubukan.
 
-    ✅ Sa usapin ng pagbalanse - ang pagpili ng random na aksyon (exploration) ay kikilos bilang isang random na suntok sa maling direksyon, at ang pole ay kailangang matutong bumawi ng balanse mula sa mga "pagkakamali" na iyon.
+    ✅ Sa konteksto ng pagbalanse - ang pagpili ng random na aksyon (exploration) ay magsisilbing isang random na palo sa maling direksyon, at kailangang matuto ang poste kung paano ibalik ang balanse mula sa mga "pagkakamaling" iyon.
 
-### Pagbutihin ang Algorithm
+### Pagbutihin ang algorithm
 
 Maaari rin nating gawin ang dalawang pagpapabuti sa ating algorithm mula sa nakaraang aralin:
 
-- **Kalkulahin ang average cumulative reward**, sa loob ng ilang simulation. Ipi-print natin ang progreso bawat 5000 iterations, at i-average natin ang ating cumulative reward sa panahong iyon. Nangangahulugan ito na kung makakakuha tayo ng higit sa 195 puntos - maaari nating ituring na nalutas ang problema, na may mas mataas na kalidad kaysa sa kinakailangan.
+- **Kalkulahin ang average cumulative reward**, sa isang bilang ng mga simulation. Ipi-print natin ang progreso bawat 5000 na iterasyon, at aaralin ang average ng ating cumulative reward sa loob ng panahong iyon. Nangangahulugan ito na kung makakakuha tayo ng higit sa 195 na puntos - maaari nating ituring na nalutas ang problema, na may mas mataas na kalidad kaysa sa kinakailangan.
   
-- **Kalkulahin ang maximum average cumulative result**, `Qmax`, at i-store natin ang Q-Table na tumutugma sa resulta na iyon. Kapag pinatakbo mo ang training, mapapansin mo na minsan ang average cumulative result ay nagsisimulang bumaba, at gusto nating panatilihin ang mga halaga ng Q-Table na tumutugma sa pinakamahusay na modelo na naobserbahan sa panahon ng pagsasanay.
+- **Kalkulahin ang maximum average cumulative result**, `Qmax`, at itatago natin ang Q-Table na tumutugma sa resulta na iyon. Kapag pinatakbo mo ang training mapapansin mo na minsan ang average cumulative result ay nagsisimulang bumaba, kaya nais nating panatilihin ang mga halaga ng Q-Table na tumutukoy sa pinakamahusay na modelong naobserbahan sa panahon ng pagsasanay.
 
-1. Kolektahin ang lahat ng cumulative rewards sa bawat simulation sa `rewards` vector para sa karagdagang pag-plot. (code block 11)
+1. Kolektahin lahat ng cumulative rewards sa bawat simulation sa `rewards` vector para sa susunod na pag-plot. (code block  11)
 
     ```python
     def probs(v,eps=1e-4):
@@ -214,15 +234,15 @@ Maaari rin nating gawin ang dalawang pagpapabuti sa ating algorithm mula sa naka
         obs = env.reset()
         done = False
         cum_reward=0
-        # == do the simulation ==
+        # == gawin ang simulasyon ==
         while not done:
             s = discretize(obs)
             if random.random()<epsilon:
-                # exploitation - chose the action according to Q-Table probabilities
+                # pagsasamantala - piliin ang aksyon ayon sa mga posibilidad ng Q-Table
                 v = probs(np.array(qvalues(s)))
                 a = random.choices(actions,weights=v)[0]
             else:
-                # exploration - randomly chose the action
+                # paggalugad - pumili ng aksyon nang random
                 a = np.random.randint(env.action_space.n)
     
             obs, rew, done, info = env.step(a)
@@ -231,7 +251,7 @@ Maaari rin nating gawin ang dalawang pagpapabuti sa ating algorithm mula sa naka
             Q[(s,a)] = (1 - alpha) * Q.get((s,a),0) + alpha * (rew + gamma * max(qvalues(ns)))
         cum_rewards.append(cum_reward)
         rewards.append(cum_reward)
-        # == Periodically print results and calculate average reward ==
+        # == Panandaliang iprint ang mga resulta at kalkulahin ang average na gantimpala ==
         if epoch%5000==0:
             print(f"{epoch}: {np.average(cum_rewards)}, alpha={alpha}, epsilon={epsilon}")
             if np.average(cum_rewards) > Qmax:
@@ -242,23 +262,23 @@ Maaari rin nating gawin ang dalawang pagpapabuti sa ating algorithm mula sa naka
 
 Ano ang maaaring mapansin mula sa mga resulta:
 
-- **Malapit sa ating layunin**. Napakalapit na natin sa pagkamit ng layunin na makakuha ng 195 cumulative rewards sa loob ng 100+ sunod-sunod na pagtakbo ng simulation, o maaaring naabot na natin ito! Kahit na makakuha tayo ng mas maliit na mga numero, hindi pa rin natin alam, dahil nag-a-average tayo sa loob ng 5000 pagtakbo, at 100 pagtakbo lamang ang kinakailangan sa pormal na pamantayan.
+- **Malapit sa ating layunin**. Malapit na tayong maabot ang layuning makakuha ng 195 cumulative rewards sa loob ng higit sa 100 magkasunod na pagtakbo ng simulation, o maaaring nakamit na natin ito! Kahit pa makakuha tayo ng mas maliit na mga numero, hindi pa natin tiyak, dahil ang average ay kinuwenta sa 5000 na pagtakbo, at 100 lamang ang kinakailangan sa pormal na pamantayan.
   
-- **Reward nagsisimulang bumaba**. Minsan ang reward ay nagsisimulang bumaba, na nangangahulugan na maaari nating "sirain" ang mga natutunang halaga sa Q-Table gamit ang mga bago na nagpapalala sa sitwasyon.
+- **Nagsisimulang bumaba ang reward**. Minsan nagsisimulang bumaba ang reward, na nangangahulugang maaari nating "sirain" ang mga natutunan nang mga halaga sa Q-Table gamit ang iba na nagpapalala ng sitwasyon.
 
-Ang obserbasyong ito ay mas malinaw na makikita kung i-plot natin ang progreso ng pagsasanay.
+Mas malinaw na mapapansin ito kung ipi-plot natin ang progreso ng training.
 
 ## Pag-plot ng Progreso ng Pagsasanay
 
-Sa panahon ng pagsasanay, nakolekta natin ang cumulative reward value sa bawat iteration sa `rewards` vector. Ganito ang hitsura nito kapag na-plot laban sa iteration number:
+Sa panahon ng pagsasanay, nakolekta natin ang halaga ng cumulative reward sa bawat iterasyon sa loob ng `rewards` vector. Ganito ang hitsura kapag ipini-plot ito laban sa bilang ng iterasyon:
 
 ```python
 plt.plot(rewards)
 ```
 
-![raw progress](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
+![raw  progress](../../../../translated_images/tl/train_progress_raw.2adfdf2daea09c59.webp)
 
-Mula sa graph na ito, hindi posible na masabi ang anumang bagay, dahil sa likas na katangian ng stochastic training process, ang haba ng mga session ng pagsasanay ay lubos na nag-iiba. Upang mas magkaroon ng kahulugan ang graph na ito, maaari nating kalkulahin ang **running average** sa isang serye ng mga eksperimento, sabihin nating 100. Magagawa ito nang maginhawa gamit ang `np.convolve`: (code block 12)
+Mula sa grap na ito, hindi posible na malaman ang anumang bagay, dahil dulot ng kalikasan ng stochastic training process, ang haba ng mga session ng training ay napakahaba ang pagkakaiba. Para magkaroon ng mas malinaw na pagkakaintindi sa grap, maaari nating kalkulahin ang **running average** sa serye ng mga eksperimento, sabihin natin 100. Maaari itong gawin nang madaling gamit ang `np.convolve`: (code block 12)
 
 ```python
 def running_average(x,window):
@@ -267,21 +287,24 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![training progress](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
+![training progress](../../../../translated_images/tl/train_progress_runav.c71694a8fa9ab359.webp)
 
-## Pag-iiba ng Hyperparameters
+## Pagbabago ng hyperparameters
 
-Upang gawing mas matatag ang pag-aaral, makatuwiran na i-adjust ang ilan sa ating mga hyperparameters sa panahon ng pagsasanay. Partikular:
+Para gawing mas matatag ang pagkatuto, makatuwiran na i-adjust ang ilan sa ating mga hyperparameters habang nagpapatuloy ang pagsasanay. Partikular:
 
-- **Para sa learning rate**, `alpha`, maaari tayong magsimula sa mga halaga na malapit sa 1, at pagkatapos ay patuloy na bawasan ang parameter. Sa paglipas ng panahon, makakakuha tayo ng magagandang probability values sa Q-Table, kaya't dapat nating i-adjust ang mga ito nang bahagya, at hindi ganap na i-overwrite gamit ang mga bagong halaga.
+- **Para sa learning rate**, `alpha`, maaari tayong magsimula sa mga halagang malapit sa 1, at pagkatapos ay unti-unting babaan ang parametro. Sa paglipas ng panahon, magkakaroon tayo ng magagandang probabilidad sa Q-Table, kaya dapat natin itong i-adjust nang bahagya, at huwag ganap na palitan ng mga bagong halaga.
 
-- **Dagdagan ang epsilon**. Maaaring gusto nating unti-unting taasan ang `epsilon`, upang mas kaunti ang pag-explore at mas marami ang pag-exploit. Malamang na makatuwiran na magsimula sa mas mababang halaga ng `epsilon`, at pataasin ito hanggang halos 1.
-> **Gawain 1**: Subukan ang iba't ibang halaga ng hyperparameter at tingnan kung makakamit mo ang mas mataas na kabuuang gantimpala. Nakakakuha ka ba ng higit sa 195?
-> **Task 2**: Upang pormal na malutas ang problema, kailangan mong makakuha ng 195 average na gantimpala sa loob ng 100 magkakasunod na takbo. Sukatin ito habang nagsasanay at tiyaking pormal mong nalutas ang problema!
+- **Dagdagan ang epsilon**. Maaaring gusto nating unti-unting dagdagan ang `epsilon`, upang mas konti ang exploration at mas marami ang exploitation. Mukhang makatuwiran na magsimula sa mababang halaga ng `epsilon`, at unti-unting itaas ito hanggang halos 1.
 
-## Pagtingin sa resulta sa aksyon
+> **Gawain 1**: Maglaro sa mga halaga ng hyperparameter at tingnan kung makakamit mo ang mas mataas na cumulative reward. Nakukuha mo ba ang higit sa 195?
 
-Magiging interesante na makita kung paano kumikilos ang na-train na modelo. Patakbuhin natin ang simulation at sundin ang parehong estratehiya sa pagpili ng aksyon tulad ng ginawa sa training, gamit ang sampling ayon sa probability distribution sa Q-Table: (code block 13)
+
+> **Gawain 2**: Upang pormal na malutas ang problema, kailangan mong makakuha ng average na gantimpala na 195 sa loob ng 100 sunod-sunod na pagsubok. Sukatin iyon habang nagsasanay at tiyaking pormal mo nang nalutas ang problema!
+
+## Makita ang resulta sa aksyon
+
+Magiging kawili-wili na talagang makita kung paano kumikilos ang sinanay na modelo. Patakbuhin natin ang simulasyon at sundin ang parehong estratehiya ng pagpili ng aksyon gaya ng sa panahon ng pagsasanay, sampling ayon sa probability distribution sa Q-Table: (code block 13)
 
 ```python
 obs = env.reset()
@@ -295,30 +318,32 @@ while not done:
 env.close()
 ```
 
-Makikita mo ang ganito:
+Dapat kang makakita ng isang bagay na tulad nito:
 
-![isang balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
+![a balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
 ---
 
 ## 🚀Hamunin
 
-> **Task 3**: Dito, ginamit natin ang huling kopya ng Q-Table, na maaaring hindi ang pinakamainam. Tandaan na iniimbak natin ang pinakamahusay na Q-Table sa `Qbest` na variable! Subukan ang parehong halimbawa gamit ang pinakamahusay na Q-Table sa pamamagitan ng pagkopya ng `Qbest` papunta sa `Q` at tingnan kung mapapansin mo ang pagkakaiba.
+> **Gawain 3**: Dito, ginagamit natin ang huling kopya ng Q-Table, na maaaring hindi ang pinakamainam. Tandaan na itinatago natin ang pinakamagandang gumaganang Q-Table sa variable na `Qbest`! Subukan ang parehong halimbawa gamit ang pinakamagandang gumaganang Q-Table sa pamamagitan ng pagkopya ng `Qbest` papunta sa `Q` at tingnan kung mapapansin mo ang pagkakaiba.
 
-> **Task 4**: Dito, hindi natin pinipili ang pinakamahusay na aksyon sa bawat hakbang, kundi nagsa-sample tayo gamit ang kaukulang probability distribution. Mas makatuwiran ba na palaging piliin ang pinakamahusay na aksyon, na may pinakamataas na halaga sa Q-Table? Magagawa ito gamit ang `np.argmax` na function upang malaman ang numero ng aksyon na may pinakamataas na halaga sa Q-Table. Ipatupad ang estratehiyang ito at tingnan kung mas mapapabuti ang balancing.
+> **Gawain 4**: Dito, hindi tayo pumipili ng pinakamainam na aksyon sa bawat hakbang, kundi sampling ayon sa katumbas na probability distribution. Mas makatuwiran ba na palaging piliin ang pinakamainam na aksyon, na may pinakamataas na halaga sa Q-Table? Maaaring gawin ito gamit ang `np.argmax` na function para malaman ang numero ng aksyon na may pinakamataas na halaga sa Q-Table. Ipatupad ang estratehiyang ito at tingnan kung napapabuti nito ang pagbalanse.
 
 ## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Takdang-Aralin
+## Takdang Aralin
 [Sanayin ang Mountain Car](assignment.md)
 
 ## Konklusyon
 
-Natutunan na natin kung paano sanayin ang mga ahente upang makamit ang magagandang resulta sa pamamagitan lamang ng pagbibigay sa kanila ng reward function na nagtatakda ng nais na estado ng laro, at pagbibigay sa kanila ng pagkakataong matalinong mag-explore sa search space. Matagumpay nating naipatupad ang Q-Learning algorithm sa mga kaso ng discrete at continuous na environment, ngunit may discrete na mga aksyon.
+Natutunan na natin ngayon kung paano sanayin ang mga ahente upang makamit ang magagandang resulta sa pamamagitan lamang ng pagbibigay sa kanila ng reward function na naglalarawan ng ninanais na estado ng laro, at sa pagbibigay ng pagkakataon sa kanila na matalinhagang tuklasin ang search space. Matagumpay nating naipinatupad ang Q-Learning algorithm sa mga kaso ng discrete at continuous na mga kapaligiran, pero may discrete na mga aksyon.
 
-Mahalaga ring pag-aralan ang mga sitwasyon kung saan ang estado ng aksyon ay tuloy-tuloy, at kapag ang observation space ay mas kumplikado, tulad ng imahe mula sa screen ng Atari game. Sa mga ganitong problema, madalas nating kailangang gumamit ng mas makapangyarihang mga teknik sa machine learning, tulad ng neural networks, upang makamit ang magagandang resulta. Ang mga mas advanced na paksa na ito ang magiging laman ng ating susunod na mas advanced na kurso sa AI.
+Mahalaga ring pag-aralan ang mga sitwasyon kung saan ang action state ay continuous din, at kung ang observation space ay mas kumplikado, gaya ng imahe mula sa screen ng laro sa Atari. Sa mga problemang iyon, madalas nating kailanganing gumamit ng mas makapangyarihang mga teknik sa machine learning, gaya ng neural networks, upang makamit ang magagandang resulta. Ang mga mas advanced na paksa na iyon ay bahagi ng ating paparating na mas advanced na kurso sa AI.
 
 ---
 
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,62 +1,62 @@
-# Ehita regressioonimudel Scikit-learniga: andmete ettevalmistamine ja visualiseerimine
+# Ehita regressioonimudel Scikit-learn kasutades: andmete ettevalmistamine ja visualiseerimine
 
-![Andmete visualiseerimise infograafika](../../../../translated_images/et/data-visualization.54e56dded7c1a804.webp)
+![Andmete visualiseerimise infograafik](../../../../translated_images/et/data-visualization.54e56dded7c1a804.webp)
 
-Infograafika autor: [Dasani Madipalli](https://twitter.com/dasani_decoded)
+Infograafik autorilt [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## [Eel-loengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [See õppetund on saadaval ka R-is!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
+> ### [See õppetund on saadaval R-is!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
 ## Sissejuhatus
 
-Nüüd, kui sul on olemas tööriistad, et alustada masinõppe mudelite loomist Scikit-learniga, oled valmis hakkama oma andmetele küsimusi esitama. Andmetega töötades ja ML-lahendusi rakendades on väga oluline osata esitada õigeid küsimusi, et avada oma andmekogumi potentsiaal.
+Nüüd, kui sul on olemas tööriistad masinaõppemudeli ehitamiseks Scikit-learn abil, oled valmis oma andmetest küsimusi esitama. Andmetega töötades ja masinõpperakendusi kasutades on väga oluline mõista, kuidas esitada õigeid küsimusi, et oma andmekogu potentsiaali õigesti avada.
 
-Selles õppetunnis õpid:
+Selles õppetükis õpid:
 
-- Kuidas valmistada andmeid mudeli loomiseks.
+- Kuidas ette valmistada andmeid mudeli koostamiseks.
 - Kuidas kasutada Matplotlibi andmete visualiseerimiseks.
+- Kuidas kasutada Seaborni väljendusrikkamate andmevisualiseeringute loomiseks.
 
 ## Õige küsimuse esitamine oma andmetele
 
-Küsimus, millele vastust otsid, määrab, millist tüüpi ML-algoritme sa kasutad. Vastuse kvaliteet sõltub suuresti sinu andmete olemusest.
+Sulle vajaliku vastuse küsimus määrab, milliseid ML-algoritme sa kasutad. Ja vastuse kvaliteet sõltub tugevalt sinu andmete olemusest.
 
-Vaata [andmeid](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), mis on selle õppetunni jaoks ette nähtud. Sa saad avada selle .csv-faili VS Code'is. Kiire pilk näitab kohe, et seal on tühje kohti ja segu stringidest ning numbrilistest andmetest. Seal on ka kummaline veerg nimega 'Package', kus andmed on segu 'sacks', 'bins' ja muudest väärtustest. Tegelikult on andmed üsna segased.
+Vaata [andmeid](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), mis on selle õppetunni jaoks esitatud. Saad selle .csv faili avada VS Codes. Esmane kiire ülevaade näitab kohe, et andmetes on tühjad väljad ja segamini on nii tekstid kui ka numbrilised andmed. On ka kummaline veerg nimega 'Package', kus andmed on segamini 'kottide', 'kastide' ja teiste väärtustega. Tegelikult on andmed üsna segased.
 
-[![ML algajatele - Kuidas analüüsida ja puhastada andmekogumit](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML algajatele - Kuidas analüüsida ja puhastada andmekogumit")
+[![Masinõpe algajatele - Kuidas analüüsida ja puhastada andmestikku](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "Masinõpe algajatele - Kuidas analüüsida ja puhastada andmestikku")
 
-> 🎥 Klõpsa ülaloleval pildil, et vaadata lühikest videot, mis käsitleb andmete ettevalmistamist selle õppetunni jaoks.
+> 🎥 Klõpsa ülalolevale pildile, et vaadata lühivideot, kus näidatakse, kuidas õppetunni andmeid ette valmistada.
 
-Tegelikult ei ole väga tavaline, et sulle antakse andmekogum, mis on täiesti valmis ML-mudeli loomiseks. Selles õppetunnis õpid, kuidas valmistada ette toorandmeid, kasutades standardseid Python'i teeke. Samuti õpid erinevaid tehnikaid andmete visualiseerimiseks.
+Tegelikult pole väga tavaline, et sulle kingitakse andmestik, mis on täiesti valmis masinõppemudeli loomiseks. Selles õppetükis õpid, kuidas ette valmistada toores andmestik, kasutades standardseid Python'i raamatukogusid. Samuti õpid erinevaid tehnikaid andmete visualiseerimiseks.
 
 ## Juhtumiuuring: 'kõrvitsaturg'
 
-Selles kaustas leiad .csv-faili juurkaustas `data`, nimega [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), mis sisaldab 1757 rida andmeid kõrvitsaturu kohta, rühmitatuna linnade kaupa. Need on toorandmed, mis on saadud [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) kaudu, mida levitab Ameerika Ühendriikide Põllumajandusministeerium.
+Selles kaustas leiad juurkaustast `data` kausta .csv faili nimega [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), mis sisaldab 1757 andmerida kõrvitsaturu kohta, sorteeritud linnade kaupa. See on toores andmestik, mis pärineb [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) aruannetest, mida levitab USA Põllumajandusministeerium.
 
 ### Andmete ettevalmistamine
 
-Need andmed on avalikus domeenis. Neid saab alla laadida paljudes eraldi failides, iga linna kohta, USDA veebisaidilt. Et vältida liiga paljusid eraldi faile, oleme kõik linnade andmed üheks tabeliks kokku liitnud, seega oleme andmeid juba veidi _ette valmistanud_. Järgmine samm on andmetele lähemalt pilk heita.
+Need andmed on avalikus omandis. Neid saab alla laadida paljudes eraldi failides, iga linna kohta, USDA veebisaidilt. Koputades, et vältida liiga paljusid eraldi faile, oleme ühendanud kõik linnade andmed üheks tabeliks, seega oleme juba veidi andmeid _valmistanud_. Järgmisena vaatame andmetele lähemalt.
 
-### Kõrvitsaandmed - esialgsed järeldused
+### Kõrvitsaandmed - esimesed järeldused
 
-Mida sa nende andmete kohta märkad? Sa juba nägid, et seal on segu stringidest, numbritest, tühjadest kohtadest ja kummalistest väärtustest, mida tuleb mõista.
+Mida sa märkad nende andmete kohta? Sa juba nägid, et seal on segamini tekstid, numbrid, tühjad väljad ja kummalised väärtused, mida pead mõistma.
 
-Millist küsimust sa võiksid nendele andmetele esitada, kasutades regressioonitehnikat? Näiteks: "Prognoosi kõrvitsa müügihinda teatud kuu jooksul." Vaadates andmeid uuesti, on vaja teha mõned muudatused, et luua ülesande jaoks vajalik andmestruktuur.
-
+Millise küsimuse võid esitada nende andmete kohta, kasutades regressioonitehnikat? Näiteks "Ennusta kõrvitsa hind müügil antud kuul". Andmeid vaadates tuleb mõningaid muudatusi teha, et luua sobiv andmestruktuur ülesande täitmiseks.
 ## Harjutus - analüüsi kõrvitsaandmeid
 
-Kasutame [Pandas](https://pandas.pydata.org/) (nimi tähistab `Python Data Analysis`), mis on väga kasulik tööriist andmete kujundamiseks, et analüüsida ja ette valmistada kõrvitsaandmeid.
+Kasuta [Pandas](https://pandas.pydata.org/), (nimi tuleneb sõnadest `Python Data Analysis`), väga kasulikku tööriista andmete kujundamiseks, et analüüsida ja ette valmistada neid kõrvitsaandmeid.
 
-### Esmalt kontrolli puuduvate kuupäevade olemasolu
+### Esiteks, vaata puuduvad kuupäevad
 
-Esmalt tuleb astuda samme, et kontrollida puuduvate kuupäevade olemasolu:
+Esmalt pead kontrollima puuduvate kuupäevade olemasolu:
 
-1. Konverteeri kuupäevad kuu formaati (need on USA kuupäevad, seega formaat on `MM/DD/YYYY`).
-2. Ekstraheeri kuu uude veergu.
+1. Muuda kuupäevad kuu formaati (need on USA kuupäevad, seega formaat on `KK/PP/AAAA`).
+2. Eemalda kuu uusasse veergu.
 
-Ava _notebook.ipynb_ fail Visual Studio Code'is ja impordi tabel uude Pandase andmeraami.
+Ava Visual Studio Codes fail _notebook.ipynb_ ja impordi tabel uude Pandase andmeraami.
 
-1. Kasuta `head()` funktsiooni, et vaadata esimesi viit rida.
+1. Kasuta funktsiooni `head()`, et vaadata esimesi viit rida.
 
     ```python
     import pandas as pd
@@ -64,28 +64,28 @@ Ava _notebook.ipynb_ fail Visual Studio Code'is ja impordi tabel uude Pandase an
     pumpkins.head()
     ```
 
-    ✅ Millist funktsiooni kasutaksid viimase viie rea vaatamiseks?
+    ✅ Millist funktsiooni kasutaksid viimaste viie rea vaatamiseks?
 
-1. Kontrolli, kas praeguses andmeraamis on puuduvad andmed:
+1. Kontrolli, kas andmeraamis on puuduvaid andmeid:
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    Seal on puuduvad andmed, kuid võib-olla see ei ole ülesande jaoks oluline.
+    Puuduvad andmed on olemas, kuid võib-olla see ei mõjuta antud ülesannet.
 
-1. Et muuta oma andmeraamiga töötamine lihtsamaks, vali ainult vajalikud veerud, kasutades `loc` funktsiooni, mis ekstraheerib algsest andmeraamist ridade (esimene parameeter) ja veergude (teine parameeter) grupi. Allpool olev väljend `:` tähendab "kõik read".
+1. Tee oma andmebaasiga lihtsam töötada, valides ainult vajalikud veerud, kasutades `loc` funktsiooni, mis väljavõtab originaalandmebaasist rea (esimene parameeter) ja veeru (teine parameeter). Avaldis `:` tähendab allpool "kõik read".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
     pumpkins = pumpkins.loc[:, columns_to_select]
     ```
 
-### Teiseks, määrake kõrvitsa keskmine hind
+### Teiseks, määra kõrvitsa keskmine hind
 
-Mõtle, kuidas määrata kõrvitsa keskmine hind teatud kuus. Milliseid veerge sa selleks ülesandeks valiksid? Vihje: sul on vaja 3 veergu.
+Mõtle, kuidas määrata kõrvitsa keskmine hind kindlal kuul. Milliseid veerge sa selleks valiksid? Vihje: vajate kolme veergu.
 
-Lahendus: arvuta `Low Price` ja `High Price` veergude keskmine, et täita uus Price veerg, ja konverteeri Date veerg, et näidata ainult kuud. Õnneks, vastavalt ülaltoodud kontrollile, ei ole kuupäevade või hindade osas puuduvat teavet.
+Lahendus: arvuta veergude `Low Price` ja `High Price` keskmine, et täita uus veerg Price, ja muuda Date veerg nii, et näidatakse ainult kuud. Õnneks, nagu eelnev kontroll näitas, puuduvad andmed kuupäevade või hindade osas.
 
 1. Keskmise arvutamiseks lisa järgmine kood:
 
@@ -96,35 +96,35 @@ Lahendus: arvuta `Low Price` ja `High Price` veergude keskmine, et täita uus Pr
 
     ```
 
-   ✅ Võid vabalt printida mis tahes andmeid, mida soovid kontrollida, kasutades `print(month)`.
+   ✅ Kui soovid, võid printida andmeid, nt `print(month)`, et kontrollida.
 
-2. Nüüd kopeeri konverteeritud andmed uude Pandase andmeraami:
+2. Nüüd kopeeri muudetud andmed uude Pandase andmeraami:
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Kui prindid oma andmeraami välja, näed puhast ja korrastatud andmekogumit, mille põhjal saad ehitada uue regressioonimudeli.
+    Andmeraami printimine näitab sulle puhtaid ja korras andmeid, millele saad ehitada oma regressioonimudeli.
 
 ### Aga oota! Siin on midagi kummalist
 
-Kui vaatad `Package` veergu, müüakse kõrvitsaid mitmes erinevas konfiguratsioonis. Mõned müüakse '1 1/9 bushel' mõõtühikutes, mõned '1/2 bushel' mõõtühikutes, mõned kõrvitsa kaupa, mõned naela kaupa ja mõned suurtes kastides, mille laius varieerub.
+Kui vaatad `Package` veergu, müüakse kõrvitsaid paljudes erinevates kogustes. Mõned müüakse '1 1/9 bushel' mõõtudes, mõned '1/2 bushel' mõõtudes, mõned tükiti, mõned kilo kohta ja mõned suurtes kastides erinevate laiustega.
 
-> Kõrvitsaid tundub olevat väga raske ühtlaselt kaaluda
+> Kõrvitsaid paistab olevat raske ühtlaselt kaaluda
 
-Originaalandmetesse süvenedes on huvitav, et kõik, mille `Unit of Sale` on 'EACH' või 'PER BIN', omavad ka `Package` tüüpi tolli, bin'i või 'each' kaupa. Kõrvitsaid tundub olevat väga raske ühtlaselt kaaluda, seega filtreerime need, valides ainult kõrvitsad, mille `Package` veerus on string 'bushel'.
+Originaalandmetes on huvitav, et kõik müügitüübid `Unit of Sale` väärtusega 'EACH' või 'PER BIN' on seotud ka `Package` tüübile tolli või kasti või 'üksik' põhise andmetega. Kõrvitsaid on raske ühtlaselt kaaluda, nii et filtreerime neid, valides ainult kõrvitsaid, mille `Package` veerus on sõna 'bushel'.
 
-1. Lisa filter faili algusesse, .csv importimise alla:
+1. Lisa faili algusesse filter, pärast .csv importi:
 
     ```python
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    Kui prindid andmed nüüd välja, näed, et saad ainult umbes 415 rida andmeid, mis sisaldavad kõrvitsaid bushel'i kaupa.
+    Kui nüüd andmeid prindid, näed, et saad ainult umbes 415 rida kõrvitsaid bushelites.
 
-### Aga oota! Veel üks asi, mida teha
+### Aga oota! Veel üks asi mida teha
 
-Kas märkasid, et bushel'i kogus varieerub ridade kaupa? Pead hindade normaliseerimiseks tegema matemaatilisi arvutusi, et näidata hinda bushel'i kohta.
+Kas märkasid, et busheli suurus erineb ridade lõikes? Pead hindade normaliseerimiseks näitama hinda ühe busheli kohta, tee seda matemaatiliselt.
 
 1. Lisa need read pärast plokki, mis loob new_pumpkins andmeraami:
 
@@ -134,38 +134,38 @@ Kas märkasid, et bushel'i kogus varieerub ridade kaupa? Pead hindade normalisee
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ Vastavalt [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), bushel'i kaal sõltub toodangu tüübist, kuna see on mahu mõõtühik. "Näiteks tomatite bushel peaks kaaluma 56 naela... Lehed ja rohelised võtavad rohkem ruumi vähem kaaluga, seega spinati bushel on ainult 20 naela." See kõik on üsna keeruline! Ärgem vaevugem bushel'i-naela konversiooni tegemisega ja hinnastagem bushel'i kaupa. Kõik see kõrvitsate bushel'ite uurimine näitab aga, kui oluline on mõista oma andmete olemust!
+✅ Vastavalt [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308) järgi sõltub busheli kaal toote tüübist, kuna see on mahtmõõde. "Näiteks tomatite bushel peaks kaaluma 56 naela... Lehed ja rohelised võtavad rohkem ruumi vähem kaalu tõttu, seega spinati bushel kaalub ainult 20 naela." See on üsna keeruline! Me ei viitsi teha busheli- ja naela konversiooni, vaid hindame hinda lihtsalt busheli kohta. Kõik see uurimine näitab, kui tähtis on mõista oma andmete olemust!
 
-Nüüd saad analüüsida hinnaühikut nende bushel'i mõõtühiku alusel. Kui prindid andmed veel kord välja, näed, kuidas need on standardiseeritud.
+Nüüd saad analüüsida hinnastamist ühiku kohta, mis põhineb busheli mõõdul. Kui prindid andmed veel kord, näed, et see on standardiseeritud.
 
-✅ Kas märkasid, et kõrvitsad, mida müüakse pool-bushel'i kaupa, on väga kallid? Kas oskad välja selgitada, miks? Vihje: väikesed kõrvitsad on palju kallimad kui suured, tõenäoliselt seetõttu, et neid on bushel'is palju rohkem, arvestades ühe suure õõnsa pirukakõrvitsa poolt hõivatud kasutamata ruumi.
+✅ Kas märkasid, et poolbusheli kaupa müüdavad kõrvitsad on väga kallid? Kas suudad aru saada, miks? Vihje: väiksed kõrvitsad on palju kallimad kui suured, tõenäoliselt sellepärast, et bushelis on neid palju rohkem, kuna ühe suure aukliku piruka kõrvale jääb palju kasutamata ruumi.
 
-## Visualiseerimisstrateegiad
+## Visualiseerimise strateegiad
 
-Andmeteadlase roll on näidata andmete kvaliteeti ja olemust, millega ta töötab. Selleks luuakse sageli huvitavaid visualiseeringuid, nagu graafikud, diagrammid ja joonised, mis näitavad andmete erinevaid aspekte. Nii on võimalik visuaalselt näidata seoseid ja lünki, mida muidu oleks raske avastada.
+Andmeteadlase ülesanne on näidata töötatavate andmete kvaliteeti ja olemust. Selleks loovad nad tihti huvitavaid visualiseeringuid ehk jooniseid, graafikuid ja tabeleid, mis näitavad andmete erinevaid aspekte. Nii suudavad nad näidata visuaalselt seoseid ja lünki, mida muidu on raske avastada.
 
-[![ML algajatele - Kuidas visualiseerida andmeid Matplotlibiga](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML algajatele - Kuidas visualiseerida andmeid Matplotlibiga")
+[![Masinõpe algajatele - Kuidas visualiseerida andmeid Matplotlibiga](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "Masinõpe algajatele - Kuidas visualiseerida andmeid Matplotlibiga")
 
-> 🎥 Klõpsa ülaloleval pildil, et vaadata lühikest videot, mis käsitleb andmete visualiseerimist selle õppetunni jaoks.
+> 🎥 Klõpsa ülalolevale pildile, et vaadata lühivideot, mis näitab, kuidas selle õppetunni andmeid visualiseerida.
 
-Visualiseeringud aitavad ka määrata, milline masinõppe tehnika on andmete jaoks kõige sobivam. Näiteks hajuvusdiagramm, mis näib järgivat joont, viitab sellele, et andmed sobivad hästi lineaarse regressiooni harjutuseks.
+Visualiseeringud aitavad ka määrata masinõppetehnika andmete jaoks. Näiteks hajuvusdiagramm, mille punktid paistavad järgivat joont, viitab, et andmed sobivad hästi lineaarse regressiooni ülesandeks.
 
-Üks andmete visualiseerimise teek, mis töötab hästi Jupyter'i märkmikes, on [Matplotlib](https://matplotlib.org/) (mida nägid ka eelmises õppetunnis).
+Üks andmevisualiseerimise teek, mis sobib hästi Jupyteri märkmikesse, on [Matplotlib](https://matplotlib.org/) (mida sa juba eelnevalt nägid).
 
-> Saa rohkem kogemusi andmete visualiseerimisega [nendes juhendites](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
+> Saavuta rohkem kogemusi andmete visualiseerimisel [nendes juhendites](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
-## Harjutus - katseta Matplotlibiga
+## Harjutus - eksperimenteeri Matplotlibiga
 
-Proovi luua mõned põhilised graafikud, et kuvada just loodud andmeraami. Mida näitaks põhiline joongraafik?
+Proovi luua mõned lihtsad joonised, et kuvada oma äsja loodud andmeraami. Mida näitaks lihtne joondiagramm?
 
-1. Impordi Matplotlib faili algusesse, Pandase importimise alla:
+1. Impordi faili alguses Matplotlib, Pandase importide alla:
 
     ```python
     import matplotlib.pyplot as plt
     ```
 
 1. Käivita kogu märkmik uuesti, et värskendada.
-1. Lisa märkmiku lõppu lahter, et kuvada andmed kastina:
+1. Lisa märkmiku lõppu lahter, mis joonistab andmed karbidiagrammina:
 
     ```python
     price = new_pumpkins.Price
@@ -174,17 +174,17 @@ Proovi luua mõned põhilised graafikud, et kuvada just loodud andmeraami. Mida 
     plt.show()
     ```
 
-    ![Hajuvusdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/et/scatterplot.b6868f44cbd2051c.webp)
+    ![Hajuvusdiagramm, mis näitab hinna ja kuu seost](../../../../translated_images/et/scatterplot.b6868f44cbd2051c.webp)
 
-    Kas see on kasulik graafik? Kas miski selles üllatab sind?
+    Kas see joonis on kasulik? Kas miski sind selle juures üllatab?
 
-    See ei ole eriti kasulik, kuna see lihtsalt kuvab sinu andmed punktide hajuvusena antud kuus.
+    See ei ole eriti kasulik, sest see kuvab lihtsalt andmed hajutatult punktidena antud kuus.
 
-### Muuda see kasulikuks
+### Tee sellest kasulik
 
-Et graafikud kuvaksid kasulikke andmeid, tuleb andmeid tavaliselt kuidagi rühmitada. Proovime luua graafiku, kus y-telg näitab kuud ja andmed demonstreerivad andmete jaotust.
+Kasulike diagrammide saamiseks tuleb tavaliselt andmeid kuidagi rühmitada. Proovime luua joonise, kus y-teljel on kuud ning andmed näitavad jaotust.
 
-1. Lisa lahter, et luua rühmitatud tulpdiagramm:
+1. Lisa lahter, mis loob rühmitatud tulpdiagrammi:
 
     ```python
     new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
@@ -193,25 +193,102 @@ Et graafikud kuvaksid kasulikke andmeid, tuleb andmeid tavaliselt kuidagi rühmi
 
     ![Tulpdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/et/barchart.a833ea9194346d76.webp)
 
-    See on kasulikum andmete visualiseerimine! Näib, et kõrvitsate kõrgeim hind esineb septembris ja oktoobris. Kas see vastab sinu ootustele? Miks või miks mitte?
+    See on kasulikum andmete visualiseerimine! Tundub, et kõrvitsate kõrgeim hind on septembris ja oktoobris. Kas see vastab sinu ootustele? Miks või miks mitte?
+
+## Harjutus - eksperimenteeri Seaborniga
+
+Matplotlib on võimas, kuid võib nõuda palju koodi poleeritud diagrammide loomiseks. [Seaborn](https://seaborn.pydata.org/) on raamatukogu, mis ehitatud _Matplotlibi peale_, mõeldud statistiliste andmete visualiseerimiseks. See töötab otse Pandase andmeraamidega, rakendab atraktiivseid vaikestiile ning võimaldab luua informatiivseid diagramme palju vähem koodiga. Kuna Seaborn tagastab Matplotlibi objekte, saad kasutada kõike, mida tead Matplotlibi kohta, tulemuse täiendavaks häälestamiseks.
+
+> Kui sul Seaborni veel ei ole, paigalda see käsuga `pip install seaborn`.
+
+1. Impordi Seaborn märkmiku algusesse koos ülejäänud importidega. Tavaliselt imporditakse see nimega `sns`:
+
+    ```python
+    import seaborn as sns
+    ```
+
+### Hajuvusgraafikud suhete näitamiseks
+
+Suur osa andmete uurimisest enne mudeli koostamist on otsida _seoseid_ muutujate vahel. [Hajuvusdiagramm](https://en.wikipedia.org/wiki/Scatter_plot) on selleks üks parimaid tööriistu: kui punktid paistavad järgivat joont, võivad kaks muutujat olla korreleeritud, mis on hea märk, et lineaarne regressioonimudel võib toimida.
+
+1. Reproduseeri eelmine hinna-ja-kuu hajuvusdiagramm, seekord kasutades Seaborni [`relplot()`](https://seaborn.pydata.org/generated/seaborn.relplot.html) (seoseline diagramm), mis töötab otse sinu andmeraami veergudega:
+
+    ```python
+    sns.relplot(x="Price", y="Month", data=new_pumpkins)
+    ```
+
+    ![Seaborni hajuvusdiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/et/relplot.a03837d8f0329cec.webp)
+
+    Märka, kuidas sa annad _veerunimed_ ja andmeraami ning Seaborn hoolitseb teljesiltide eest ise.
+
+2. Võid lülituda joondiagrammile, andes argumendiks `kind="line"`. Seaborn joonistab isegi varjutatud ala, mis näitab joone ümber usaldusvahemikku:
+
+    ```python
+    sns.relplot(x="Price", y="Month", kind="line", data=new_pumpkins)
+    ```
+
+    ![Seaborni joondiagramm, mis näitab hinna ja kuu suhet](../../../../translated_images/et/lineplot.f9034ba47b1e30ee.webp)
+
+    See konkreetne andmestik on üsna mürarikas, seega joondiagramm pole kõige selgem valik — kuid see näitab, kui lihtsalt saab Seabornis diagrammitüüpe vahetada.
+
+### Tulpdiagrammid jaotusnäitajate kuvamiseks
+
+
+Varem grupeerisite andmed käsitsi, et Matplotlibiga luua tulpdiagramm. Seaborn'i [`catplot()`](https://seaborn.pydata.org/generated/seaborn.catplot.html) (kategoriadiagramm) suudab teha grupeerimise ja agregatsiooni teie eest. Vaikimisi näitab `kind="bar"` iga kategooria keskmist koos musta joonisega, mis näitab usaldusintervalli.
+
+1. Looge kuu keskmise hinna tulpdiagramm:
+
+    ```python
+    sns.catplot(x="Month", y="Price", data=new_pumpkins, kind="bar")
+    ```
+
+    ![Seaborn tulpdiagramm, mis näitab hinna jaotust kuude lõikes](../../../../translated_images/et/catplot.e73fc35fdf96242b.webp)
+
+    See kinnitab, mida nägite Matplotlibiga — hinnad on tipphetkel septembris ja oktoobris — kuid Seaborn visualiseerib ka, kui palju hind iga kuu sees _muutub_.
+
+### Soojuskaardid korrelatsioonide näitamiseks
+
+Hajuvusdiagrammid võrdlevad korraga kahte muutujat. Kui teil on mitu numbrilist veergu, võimaldab [soojuskaart](https://en.wikipedia.org/wiki/Heat_map) korraga vaadata iga veerupaaride vahelise seose tugevust. See on levinud viis tuvastada, millised tunnused on kõige korreleeritumad enne, kui valida, mida mudelile sisendiks anda (ja sarnast diagrammi kasutatakse hiljem klassifikatsiooni segadusmaatriksite kuvamiseks).
+
+1. Koostage Pandasega korrelatsioonimaatriks ja joonistage see Seaborni [`heatmap()`](https://seaborn.pydata.org/generated/seaborn.heatmap.html) abil. Valik `annot=True` trükib korrelatsiooniväärtused iga lahtri peale:
+
+    ```python
+    correlations = new_pumpkins[['Month', 'Low Price', 'High Price', 'Price']].corr()
+    sns.heatmap(correlations, annot=True, cmap="coolwarm")
+    ```
+
+    ![Seaborni soojuskaart, mis näitab korrelatsioone numbriliste veergude vahel](../../../../translated_images/et/heatmap.bd98dce43b404c57.webp)
+
+    Väärtused, mis on lähedal `1`-le (või `-1`-le), tähendavad, et veerud on tugevalt _lineaarselt_ korreleeritud. Märkige, kuidas `Low Price` ja `High Price` on peaaegu täiuslikult korreleeritud. `Month` aga näitab ainult nõrka lineaarset korrelatsiooni hinnaga — kuigi ülaltoodud tulpdiagramm näitas selget hooajalist tippu septembris ja oktoobris. See on tähtis õppetund: korrelatsioonikordaja mõõdab ainult _äärtesirge_ seoseid, seega võib see hooajalisi või muid mittelineaarseid mustreid mitte tuua esile. ✅ Miks on kasulik vaadata nii soojuskaarti kui ka näiteks tulpdiagrammi enne, kui otsustate, milliseid veerge kasutada?
+
+### Matplotlib või Seaborn?
+
+Mõlemad teegid on teadmiste väärt:
+
+- **Matplotlib** annab teile väga peene kontrolli iga diagrammi elemendi üle ja on aluseks peaaegu igale teisele Pythonis kasutatavale graafikuteegile.
+- **Seaborn** pakub kõrgema taseme funktsioone ja atraktiivseid vaikeväärtusi statistiliste diagrammide jaoks, töötab otse DataFrame'idega ja on sageli kiirem esmaseks andmeanalüüsiks.
+
+Tavaliselt kasutataksegi Seaborni, et kiiresti andmeid avastada, ning vajadusel liigub seejärel detailseks kohandamiseks Matplotlibi.
 
 ---
 
 ## 🚀Väljakutse
 
-Uuri erinevaid visualiseerimise tüüpe, mida Matplotlib pakub. Millised tüübid sobivad kõige paremini regressiooniprobleemide jaoks?
+Uurige Matplotlibi ja Seaborni erinevaid visualiseerimise tüüpe. Millised on regressiooniprobleemide jaoks kõige sobivamad?
 
-## [Järelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## [Loengu järel test](https://ff-quizzes.netlify.app/en/ml/)
 
-## Ülevaade ja iseseisev õpe
+## Kordamine ja iseseisev õppimine
 
-Vaata erinevaid viise andmete visualiseerimiseks. Koosta nimekiri erinevatest teekidest ja märgi, millised sobivad kõige paremini teatud tüüpi ülesannete jaoks, näiteks 2D-visualiseeringud vs. 3D-visualiseeringud. Mida sa avastad?
+Vaadake üle erinevad viisid andmete visualiseerimiseks. Koostage nimekiri saadaolevatest teekidest ja märkige, millised sobivad konkreetselt erinevate ülesannete jaoks, näiteks 2D vs 3D visualiseerimine. Mida te avastate?
 
-## Ülesanne
+## Kodune ülesanne
 
 [Visualiseerimise uurimine](assignment.md)
 
 ---
 
-**Vastutusest loobumine**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta arusaamatuste või valesti tõlgendamise eest, mis võivad tuleneda selle tõlke kasutamisest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

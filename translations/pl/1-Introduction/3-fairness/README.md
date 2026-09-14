@@ -1,138 +1,159 @@
-# Budowanie rozwiązań Machine Learning z odpowiedzialną sztuczną inteligencją
-
-![Podsumowanie odpowiedzialnej AI w Machine Learning na szkicowej notatce](../../../../sketchnotes/ml-fairness.png)
-> Szkicowa notatka autorstwa [Tomomi Imura](https://www.twitter.com/girlie_mac)
+# Tworzenie rozwiązań uczenia maszynowego z odpowiedzialną AI
+ 
+![Podsumowanie odpowiedzialnej AI w uczeniu maszynowym w formie szkicu](../../../../translated_images/pl/ml-fairness.ef296ebec6afc98a.webp)
+> Szkic autorstwa [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
-
+ 
 ## Wprowadzenie
 
-W tym programie nauczania zaczniesz odkrywać, jak uczenie maszynowe wpływa na nasze codzienne życie. Już teraz systemy i modele są zaangażowane w codzienne zadania decyzyjne, takie jak diagnozy medyczne, zatwierdzanie kredytów czy wykrywanie oszustw. Dlatego ważne jest, aby te modele działały dobrze i dostarczały wyniki, którym można zaufać. Podobnie jak każda aplikacja programowa, systemy AI mogą nie spełniać oczekiwań lub prowadzić do niepożądanych rezultatów. Dlatego kluczowe jest zrozumienie i wyjaśnienie zachowania modelu AI.
+W tym programie nauczania zaczniesz odkrywać, jak uczenie maszynowe może wpływać i wpływa na nasze codzienne życie. Już teraz systemy i modele biorą udział w codziennych zadaniach decyzyjnych, takich jak diagnozy medyczne, zatwierdzanie pożyczek czy wykrywanie oszustw. Dlatego ważne jest, aby te modele działały dobrze i dostarczały wyniki godne zaufania. Podobnie jak każda aplikacja oprogramowania, systemy AI mogą nie spełnić oczekiwań lub mieć niepożądany rezultat. Dlatego tak istotne jest, aby rozumieć i móc wyjaśnić zachowanie modelu AI.
 
-Wyobraź sobie, co może się stać, gdy dane używane do budowy tych modeli nie uwzględniają pewnych grup demograficznych, takich jak rasa, płeć, poglądy polityczne, religia, lub gdy są one nadmiernie reprezentowane. Co, jeśli wyniki modelu są interpretowane w sposób faworyzujący pewne grupy demograficzne? Jakie są konsekwencje dla aplikacji? Co się dzieje, gdy model prowadzi do szkodliwych rezultatów? Kto jest odpowiedzialny za zachowanie systemów AI? To są pytania, które będziemy eksplorować w tym programie nauczania.
+Wyobraź sobie, co może się stać, gdy dane używane do budowy tych modeli nie zawierają pewnych grup demograficznych, takich jak rasa, płeć, poglądy polityczne, religia, lub gdy takie grupy są nierównomiernie reprezentowane. Co się stanie, gdy wyniki modelu będą interpretowane tak, aby faworyzować niektóre grupy demograficzne? Jakie będą tego konsekwencje dla aplikacji? Dodatkowo, co się stanie, gdy model da negatywny wynik i zaszkodzi ludziom? Kto jest odpowiedzialny za zachowanie systemów AI? To są pytania, które omówimy w tym programie nauczania.
 
-W tej lekcji dowiesz się:
+W tej lekcji:
 
-- Dlaczego sprawiedliwość w uczeniu maszynowym i związane z nią szkody są tak ważne.
-- Jak badać odstające przypadki i nietypowe scenariusze, aby zapewnić niezawodność i bezpieczeństwo.
-- Dlaczego projektowanie inkluzywnych systemów jest kluczowe dla wzmocnienia pozycji wszystkich ludzi.
-- Jak istotne jest chronienie prywatności i bezpieczeństwa danych oraz osób.
-- Dlaczego podejście „szklanej skrzynki” jest ważne dla wyjaśnienia zachowania modeli AI.
-- Jak odpowiedzialność buduje zaufanie do systemów AI.
+- Zwiększysz świadomość na temat znaczenia sprawiedliwości w uczeniu maszynowym oraz szkodliwych skutków związanych z niesprawiedliwością.
+- Zapoznasz się z praktyką badania wartości odstających i nietypowych scenariuszy, aby zapewnić niezawodność i bezpieczeństwo.
+- Zdobędziesz zrozumienie potrzeby upodmiotowienia wszystkich poprzez projektowanie systemów inkluzywnych.
+- Zbadasz, jak ważne jest ochronienie prywatności i bezpieczeństwa danych oraz osób.
+- Zrozumiesz znaczenie podejścia typu „szklana skrzynka” do wyjaśniania zachowania modeli AI.
+- Będziesz świadomy, jak istotna jest odpowiedzialność dla budowania zaufania do systemów AI.
 
 ## Wymagania wstępne
 
-Jako wymaganie wstępne, zapoznaj się z „Zasadami odpowiedzialnej AI” w ścieżce nauki i obejrzyj poniższy film na ten temat:
+Jako wymaganie wstępne, proszę ukończ ścieżkę nauki „Zasady odpowiedzialnej AI” oraz obejrzyj poniższy film na ten temat:
 
-Dowiedz się więcej o odpowiedzialnej AI, korzystając z tej [ścieżki nauki](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Dowiedz się więcej o odpowiedzialnej AI, śledząc tę [Ścieżkę nauki](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
-[![Podejście Microsoftu do odpowiedzialnej AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Podejście Microsoftu do odpowiedzialnej AI")
+[![Podejście Microsoft do odpowiedzialnej AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Podejście Microsoft do odpowiedzialnej AI")
 
-> 🎥 Kliknij obrazek powyżej, aby obejrzeć film: Podejście Microsoftu do odpowiedzialnej AI
+> 🎥 Kliknij obraz powyżej, aby obejrzeć film: Podejście Microsoft do odpowiedzialnej AI
 
 ## Sprawiedliwość
 
-Systemy AI powinny traktować wszystkich sprawiedliwie i unikać różnic w traktowaniu podobnych grup ludzi. Na przykład, gdy systemy AI udzielają wskazówek dotyczących leczenia medycznego, aplikacji kredytowych czy zatrudnienia, powinny wydawać takie same rekomendacje wszystkim osobom o podobnych objawach, sytuacji finansowej czy kwalifikacjach zawodowych. Każdy z nas jako człowiek nosi w sobie odziedziczone uprzedzenia, które wpływają na nasze decyzje i działania. Te uprzedzenia mogą być widoczne w danych, które wykorzystujemy do trenowania systemów AI. Czasami takie manipulacje zdarzają się nieumyślnie. Często trudno jest świadomie zauważyć, kiedy wprowadzamy uprzedzenia do danych.
+Systemy AI powinny traktować wszystkich sprawiedliwie i unikać różnicowania podobnych grup osób w różny sposób. Na przykład, gdy systemy AI udzielają wskazówek dotyczących leczenia medycznego, aplikacji o pożyczkę czy zatrudnienia, powinny udzielać tych samych rekomendacji wszystkim z podobnymi objawami, sytuacją finansową lub kwalifikacjami zawodowymi. Każdy z nas jako człowiek nosi w sobie dziedziczone uprzedzenia, które wpływają na nasze decyzje i działania. Uprzedzenia te mogą być widoczne w danych, których używamy do trenowania systemów AI. Takie manipulacje mogą czasem zachodzić nieświadomie. Często trudno jest świadomie rozpoznać, kiedy wprowadzasz stronniczość do danych.
 
-**„Niesprawiedliwość”** obejmuje negatywne skutki, czyli „szkody”, dla grupy ludzi, takich jak te zdefiniowane na podstawie rasy, płci, wieku czy statusu niepełnosprawności. Główne szkody związane ze sprawiedliwością można sklasyfikować jako:
+**„Niesprawiedliwość”** obejmuje negatywne skutki, czyli „szkody”, które dotyczą pewnej grupy ludzi, definiowanej np. przez rasę, płeć, wiek czy status niepełnosprawności. Główne szkody związane ze sprawiedliwością można sklasyfikować jako:
 
-- **Alokacja**, gdy na przykład płeć lub etniczność jest faworyzowana kosztem innych.
-- **Jakość usług**. Jeśli dane są trenowane dla jednego konkretnego scenariusza, ale rzeczywistość jest znacznie bardziej złożona, prowadzi to do słabo działającej usługi. Na przykład dozownik mydła, który nie potrafił rozpoznać osób o ciemnej skórze. [Źródło](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Oczernianie**. Niesprawiedliwe krytykowanie i etykietowanie czegoś lub kogoś. Na przykład technologia etykietowania obrazów niesławnie błędnie oznaczyła zdjęcia osób o ciemnej skórze jako goryle.
-- **Nadmierna lub niedostateczna reprezentacja**. Chodzi o to, że pewna grupa nie jest widoczna w określonym zawodzie, a każda usługa lub funkcja, która to utrwala, przyczynia się do szkody.
-- **Stereotypizacja**. Przypisywanie określonej grupie z góry ustalonych cech. Na przykład system tłumaczenia językowego między angielskim a tureckim może mieć nieścisłości wynikające ze stereotypowych skojarzeń z płcią.
+- **Alokacja**, jeśli np. jedna płeć lub etniczność jest faworyzowana nad inną.
+- **Jakość usług**. Jeśli dane są szkolone dla jednego konkretnego scenariusza, ale rzeczywistość jest znacznie bardziej złożona, prowadzi to do słabej jakości usług. Na przykład dozownik mydła, który nie jest w stanie wykryć osób o ciemnej skórze. [Odnośnik](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Oczernianie**. Niesprawiedliwe krytykowanie i etykietowanie czegoś lub kogoś. Na przykład technologia rozpoznawania obrazów niesłusznie oznaczyła zdjęcia osób o ciemnej skórze jako goryle.
+- **Nadmierna lub niedostateczna reprezentacja**. Idea, że dana grupa nie występuje w pewnym zawodzie, a każda usługa lub funkcja, która to utrzymuje, przyczynia się do szkód.
+- **Stereotypowanie**. Kojarzenie danej grupy z przypisanymi atrybutami. Na przykład system tłumaczeń między angielskim a tureckim może mieć niedokładności ze względu na słowa o stereotypowych powiązaniach z płcią.
 
-![tłumaczenie na turecki](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
+![tłumaczenie na turecki](../../../../translated_images/pl/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > tłumaczenie na turecki
 
-![tłumaczenie z powrotem na angielski](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
+![tłumaczenie z powrotem na angielski](../../../../translated_images/pl/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > tłumaczenie z powrotem na angielski
 
-Podczas projektowania i testowania systemów AI musimy upewnić się, że AI jest sprawiedliwe i nie jest zaprogramowane do podejmowania stronniczych lub dyskryminujących decyzji, których ludzie również nie powinni podejmować. Zapewnienie sprawiedliwości w AI i uczeniu maszynowym pozostaje złożonym wyzwaniem socjotechnicznym.
+Projektując i testując systemy AI, musimy zapewnić, że AI jest sprawiedliwa i nie jest zaprogramowana do podejmowania stronniczych lub dyskryminujących decyzji, których również zakazuje się ludziom. Zapewnienie sprawiedliwości w AI i uczeniu maszynowym pozostaje skomplikowanym wyzwaniem socjotechnicznym.
 
 ### Niezawodność i bezpieczeństwo
 
-Aby budować zaufanie, systemy AI muszą być niezawodne, bezpieczne i spójne w normalnych i nieoczekiwanych warunkach. Ważne jest, aby wiedzieć, jak systemy AI będą się zachowywać w różnych sytuacjach, zwłaszcza w przypadku odstających przypadków. Podczas budowania rozwiązań AI należy poświęcić znaczną uwagę temu, jak radzić sobie z szeroką gamą okoliczności, które mogą napotkać rozwiązania AI. Na przykład samochód autonomiczny musi stawiać bezpieczeństwo ludzi na pierwszym miejscu. W związku z tym AI napędzające samochód musi uwzględniać wszystkie możliwe scenariusze, które samochód może napotkać, takie jak noc, burze, zamiecie śnieżne, dzieci biegnące przez ulicę, zwierzęta domowe, roboty drogowe itd. To, jak dobrze system AI radzi sobie z szerokim zakresem warunków w sposób niezawodny i bezpieczny, odzwierciedla poziom przewidywania, który naukowiec danych lub programista AI uwzględnił podczas projektowania lub testowania systemu.
+Aby budować zaufanie, systemy AI muszą być niezawodne, bezpieczne i spójne w normalnych i nieoczekiwanych warunkach. Ważne jest, by znać zachowanie systemów AI w różnych sytuacjach, zwłaszcza gdy są wartościami odstającymi. Budując rozwiązania AI, należy poświęcić dużo uwagi na to, jak poradzić sobie z różnorodnymi okolicznościami, które system AI może napotkać. Na przykład samochód autonomiczny musi stawiać bezpieczeństwo ludzi na pierwszym miejscu. W efekcie AI napędzająca ten samochód musi rozważyć wszystkie możliwe scenariusze, takie jak noc, burze, śnieżyce, dzieci przebiegające przez ulicę, zwierzęta domowe, roboty drogowe itd. Jak dobrze system AI radzi sobie z szerokim zakresem warunków, odzwierciedla poziom przewidywań, które naukowiec danych lub deweloper AI uwzględnił podczas projektowania lub testowania systemu.
 
 > [🎥 Kliknij tutaj, aby obejrzeć film: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
 ### Inkluzywność
 
-Systemy AI powinny być projektowane tak, aby angażować i wzmacniać pozycję wszystkich ludzi. Podczas projektowania i wdrażania systemów AI naukowcy danych i programiści AI identyfikują i rozwiązują potencjalne bariery w systemie, które mogłyby nieumyślnie wykluczyć ludzi. Na przykład na świecie jest 1 miliard osób z niepełnosprawnościami. Dzięki postępowi w dziedzinie AI mogą oni łatwiej uzyskiwać dostęp do szerokiego zakresu informacji i możliwości w codziennym życiu. Rozwiązywanie barier tworzy możliwości innowacji i rozwijania produktów AI z lepszymi doświadczeniami, które przynoszą korzyści wszystkim.
+Systemy AI powinny być projektowane tak, aby angażować i upodmiotawiać wszystkich. Projektując i wdrażając systemy AI, naukowcy danych i deweloperzy AI identyfikują i usuwają potencjalne bariery w systemie, które mogą nieświadomie wykluczać ludzi. Na przykład na świecie jest 1 miliard osób z niepełnosprawnościami. Dzięki rozwojowi AI mogą one łatwiej mieć dostęp do szerokiej gamy informacji i możliwości w codziennym życiu. Usuwanie barier tworzy możliwości innowacji i opracowania produktów AI z lepszym doświadczeniem, które przynosi korzyści wszystkim.
 
 > [🎥 Kliknij tutaj, aby obejrzeć film: inkluzywność w AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
 ### Bezpieczeństwo i prywatność
 
-Systemy AI powinny być bezpieczne i szanować prywatność ludzi. Ludzie mają mniejsze zaufanie do systemów, które narażają ich prywatność, informacje lub życie na ryzyko. Podczas trenowania modeli uczenia maszynowego polegamy na danych, aby uzyskać najlepsze wyniki. W związku z tym należy wziąć pod uwagę pochodzenie danych i ich integralność. Na przykład, czy dane zostały dostarczone przez użytkownika, czy były publicznie dostępne? Następnie, pracując z danymi, kluczowe jest opracowanie systemów AI, które mogą chronić poufne informacje i opierać się atakom. W miarę jak AI staje się coraz bardziej powszechne, ochrona prywatności i zabezpieczanie ważnych informacji osobistych i biznesowych staje się coraz bardziej istotna i złożona. Problemy związane z prywatnością i bezpieczeństwem danych wymagają szczególnej uwagi w przypadku AI, ponieważ dostęp do danych jest niezbędny, aby systemy AI mogły dokonywać dokładnych i świadomych prognoz oraz podejmować decyzje dotyczące ludzi.
+Systemy AI powinny być bezpieczne i szanować prywatność ludzi. Ludzie mniej ufają systemom, które narażają ich prywatność, informacje lub życie na ryzyko. Trenując modele uczenia maszynowego, opieramy się na danych, aby uzyskać najlepsze wyniki. W związku z tym należy rozważyć pochodzenie danych i ich integralność. Na przykład, czy dane zostały przesłane przez użytkownika, czy są publicznie dostępne? Następnie, podczas pracy z danymi, kluczowe jest opracowanie systemów AI, które chronią informacje poufne i są odporne na ataki. W miarę jak AI staje się bardziej powszechna, ochrona prywatności i zabezpieczenie ważnych informacji osobistych i biznesowych staje się coraz ważniejsze i bardziej skomplikowane. Problemy prywatności i bezpieczeństwa danych wymagają szczególnej uwagi w AI, ponieważ dostęp do danych jest niezbędny, aby systemy AI mogły dokonywać dokładnych i świadomych przewidywań oraz decyzji dotyczących ludzi.
 
 > [🎥 Kliknij tutaj, aby obejrzeć film: bezpieczeństwo w AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Branża poczyniła znaczące postępy w zakresie prywatności i bezpieczeństwa, w dużej mierze dzięki regulacjom takim jak GDPR (Ogólne Rozporządzenie o Ochronie Danych).
-- Jednak w przypadku systemów AI musimy uznać napięcie między potrzebą większej ilości danych osobowych w celu uczynienia systemów bardziej osobistymi i skutecznymi – a prywatnością.
-- Podobnie jak w przypadku narodzin połączonych komputerów z internetem, obserwujemy również ogromny wzrost liczby problemów związanych z bezpieczeństwem w kontekście AI.
-- Jednocześnie widzimy, że AI jest wykorzystywane do poprawy bezpieczeństwa. Na przykład większość nowoczesnych skanerów antywirusowych jest dziś napędzana przez heurystyki AI.
-- Musimy upewnić się, że nasze procesy Data Science harmonijnie współgrają z najnowszymi praktykami dotyczącymi prywatności i bezpieczeństwa.
+- Jako branża dokonaliśmy znaczących postępów w zakresie prywatności i bezpieczeństwa, w dużej mierze dzięki regulacjom takim jak RODO (Ogólne rozporządzenie o ochronie danych).
+- Jednak w systemach AI musimy uznać napięcie między potrzebą większej ilości danych osobowych, aby uczynić systemy bardziej osobistymi i skutecznymi – a prywatnością.
+- Podobnie jak przy narodzinach połączonych komputerów z internetem, obserwujemy również gwałtowny wzrost problemów związanych z bezpieczeństwem w AI.
+- Jednocześnie widzimy, że AI jest wykorzystywana do poprawy bezpieczeństwa. Na przykład większość nowoczesnych skanerów antywirusowych opiera się obecnie na heurystykach AI.
+- Musimy zapewnić, że nasze procesy Data Science harmonijnie współgrają z najnowszymi praktykami w zakresie prywatności i bezpieczeństwa.
+
 
 ### Przejrzystość
-
-Systemy AI powinny być zrozumiałe. Kluczowym elementem przejrzystości jest wyjaśnienie zachowania systemów AI i ich komponentów. Poprawa zrozumienia systemów AI wymaga, aby interesariusze rozumieli, jak i dlaczego działają, aby mogli zidentyfikować potencjalne problemy z wydajnością, obawy dotyczące bezpieczeństwa i prywatności, uprzedzenia, praktyki wykluczające lub niezamierzone rezultaty. Wierzymy również, że ci, którzy korzystają z systemów AI, powinni być uczciwi i otwarci w kwestii tego, kiedy, dlaczego i jak decydują się je wdrażać. A także w kwestii ograniczeń systemów, z których korzystają. Na przykład, jeśli bank korzysta z systemu AI wspierającego decyzje kredytowe dla konsumentów, ważne jest, aby przeanalizować wyniki i zrozumieć, które dane wpływają na rekomendacje systemu. Rządy zaczynają regulować AI w różnych branżach, więc naukowcy danych i organizacje muszą wyjaśnić, czy system AI spełnia wymagania regulacyjne, zwłaszcza gdy pojawia się niepożądany rezultat.
+Systemy AI powinny być zrozumiałe. Kluczową częścią przejrzystości jest wyjaśnianie zachowania systemów AI i ich komponentów. Poprawa zrozumienia systemów AI wymaga, aby interesariusze rozumieli, jak i dlaczego one funkcjonują, tak aby mogli zidentyfikować potencjalne problemy z wydajnością, bezpieczeństwem i prywatnością, uprzedzeniami, praktykami wykluczającymi lub niezamierzonymi skutkami. Wierzymy również, że osoby korzystające z systemów AI powinny być uczciwe i otwarte, kiedy, dlaczego i jak decydują się je wdrożyć, a także znać ograniczenia używanych systemów. Na przykład, jeśli bank wykorzystuje system AI do wspierania decyzji kredytowych, ważne jest, aby badać wyniki i rozumieć, które dane wpływają na rekomendacje systemu. Rządy zaczynają regulować AI w różnych branżach, dlatego naukowcy danych i organizacje muszą wyjaśnić, czy system AI spełnia wymagania regulacyjne, szczególnie gdy wystąpi niepożądany wynik.
 
 > [🎥 Kliknij tutaj, aby obejrzeć film: przejrzystość w AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
 - Ponieważ systemy AI są tak złożone, trudno jest zrozumieć, jak działają i interpretować wyniki.
-- Ten brak zrozumienia wpływa na sposób zarządzania, operacjonalizacji i dokumentowania tych systemów.
-- Co ważniejsze, brak zrozumienia wpływa na decyzje podejmowane na podstawie wyników, które te systemy produkują.
+- Brak zrozumienia wpływa na sposób, w jaki systemy te są zarządzane, wdrażane i dokumentowane.
+- Co ważniejsze, brak zrozumienia wpływa na decyzje podejmowane na podstawie wyników produkowanych przez te systemy.
 
 ### Odpowiedzialność
+ 
+Osoby projektujące i wdrażające systemy AI muszą być odpowiedzialne za sposób działania swoich systemów. Potrzeba odpowiedzialności jest szczególnie ważna w przypadku technologii wrażliwych, takich jak rozpoznawanie twarzy. Ostatnio rośnie zapotrzebowanie na technologię rozpoznawania twarzy, zwłaszcza ze strony organów ścigania, które widzą potencjał tej technologii w zastosowaniach, takich jak odnajdywanie zaginionych dzieci. Jednakże technologie te mogą być potencjalnie używane przez rządy do zagrożenia podstawowym wolnościom obywateli, na przykład umożliwiając ciągłe monitorowanie określonych osób. Dlatego też naukowcy danych i organizacje muszą ponosić odpowiedzialność za wpływ ich systemów AI na jednostki lub społeczeństwo.
 
-Osoby projektujące i wdrażające systemy AI muszą być odpowiedzialne za sposób, w jaki ich systemy działają. Potrzeba odpowiedzialności jest szczególnie istotna w przypadku technologii wrażliwych, takich jak rozpoznawanie twarzy. W ostatnim czasie rośnie zapotrzebowanie na technologię rozpoznawania twarzy, zwłaszcza ze strony organizacji zajmujących się egzekwowaniem prawa, które dostrzegają potencjał tej technologii w takich zastosowaniach jak odnajdywanie zaginionych dzieci. Jednak te technologie mogą być potencjalnie wykorzystywane przez rządy do naruszania podstawowych wolności obywateli, na przykład poprzez umożliwienie ciągłego monitorowania konkretnych osób. Dlatego naukowcy danych i organizacje muszą być odpowiedzialni za to, jak ich systemy AI wpływają na jednostki lub społeczeństwo.
+[![Wiodący badacz AI ostrzega przed masową inwigilacją przez rozpoznawanie twarzy](../../../../translated_images/pl/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Podejście Microsoft do odpowiedzialnej AI")
 
-[![Czołowy badacz AI ostrzega przed masową inwigilacją za pomocą rozpoznawania twarzy](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Podejście Microsoftu do odpowiedzialnej AI")
+> 🎥 Kliknij obraz powyżej, aby obejrzeć film: Ostrzeżenia przed masową inwigilacją przez rozpoznawanie twarzy
 
-> 🎥 Kliknij obrazek powyżej, aby obejrzeć film: Ostrzeżenia przed masową inwigilacją za pomocą rozpoznawania twarzy
-
-Ostatecznie jednym z największych pytań dla naszego pokolenia, jako pierwszego pokolenia wprowadzającego AI do społeczeństwa, jest to, jak zapewnić, że komputery pozostaną odpowiedzialne wobec ludzi i jak zapewnić, że osoby projektujące komputery pozostaną odpowiedzialne wobec innych.
+Ostatecznie, jedno z największych pytań dla naszego pokolenia, jako pierwszego, które wprowadza AI do społeczeństwa, brzmi: jak zapewnić, aby komputery pozostały odpowiedzialne wobec ludzi oraz jak sprawić, by osoby projektujące komputery pozostały odpowiedzialne wobec wszystkich innych.
 
 ## Ocena wpływu
 
-Przed trenowaniem modelu uczenia maszynowego ważne jest przeprowadzenie oceny wpływu, aby zrozumieć cel systemu AI; jego zamierzone zastosowanie; miejsce wdrożenia; oraz osoby, które będą wchodzić w interakcję z systemem. Są to pomocne informacje dla recenzentów lub testerów oceniających system, aby wiedzieć, jakie czynniki należy wziąć pod uwagę przy identyfikowaniu potencjalnych ryzyk i oczekiwanych konsekwencji.
+Przed trenowaniem modelu uczenia maszynowego ważne jest przeprowadzenie oceny wpływu, aby zrozumieć cel systemu AI; do jakiego użytku jest przeznaczony; gdzie będzie wdrażany oraz kto będzie wchodził w interakcję z systemem. To jest pomocne dla recenzenta(ów) lub testerów oceniających system, którzy muszą wiedzieć, jakie czynniki wziąć pod uwagę przy identyfikowaniu potencjalnych ryzyk i przewidywanych konsekwencji.
 
-Poniżej znajdują się obszary, na których należy się skupić podczas przeprowadzania oceny wpływu:
+Poniżej przedstawiono obszary uwagi przy przeprowadzaniu oceny wpływu:
 
-* **Negatywny wpływ na jednostki**. Ważne jest, aby być świadomym wszelkich ograniczeń lub wymagań, nieobsługiwanych zastosowań lub znanych ograniczeń utrudniających działanie systemu, aby upewnić się, że system nie jest używany w sposób, który mógłby zaszkodzić jednostkom.
-* **Wymagania dotyczące danych**. Zrozumienie, jak i gdzie system będzie korzystał z danych, pozwala recenzentom zbadać wszelkie wymagania dotyczące danych, które należy uwzględnić (np. regulacje GDPR lub HIPPA). Ponadto należy sprawdzić, czy źródło lub ilość danych są wystarczające do trenowania.
-* **Podsumowanie wpływu**. Zbierz listę potencjalnych szkód, które mogą wyniknąć z używania systemu. Przez cały cykl życia ML sprawdzaj, czy zidentyfikowane problemy zostały złagodzone lub rozwiązane.
-* **Cele dla każdej z sześciu podstawowych zasad**. Oceń, czy cele wynikające z każdej zasady zostały osiągnięte i czy istnieją jakieś luki.
+* **Negatywny wpływ na jednostki**. Świadomość wszelkich ograniczeń lub wymagań, nieobsługiwanych zastosowań lub znanych ograniczeń utrudniających działanie systemu jest niezbędna, aby zapobiec wykorzystywaniu systemu w sposób mogący szkodzić jednostkom.
+* **Wymagania dotyczące danych**. Zrozumienie, jak i gdzie system będzie używał danych, pozwala recenzentom zbadać wszelkie wymagania dotyczące danych, na które należy uważać (np. przepisy RODO lub HIPAA). Dodatkowo należy sprawdzić, czy źródło lub ilość danych jest wystarczająca do treningu.
+* **Podsumowanie wpływu**. Sporządź listę potencjalnych szkód, które mogą wyniknąć z używania systemu. W trakcie cyklu życia ML sprawdź, czy kwestie te zostały zminimalizowane lub rozwiązane.
+* **Celowe cele** dla każdego z sześciu podstawowych zasad. Oceń, czy cele z każdej zasady zostały spełnione i czy istnieją jakiekolwiek luki.
 
-## Debugowanie z odpowiedzialną AI
 
-Podobnie jak debugowanie aplikacji programowej, debugowanie systemu AI jest niezbędnym procesem identyfikowania i rozwiązywania problemów w systemie. Istnieje wiele czynników, które mogą wpływać na to, że model nie działa zgodnie z oczekiwaniami lub odpowiedzialnie. Większość tradycyjnych metryk wydajności modelu to ilościowe agregaty wydajności modelu, które nie są wystarczające do analizy, w jaki sposób model narusza zasady odpowiedzialnej AI. Ponadto model uczenia maszynowego jest „czarną skrzynką”, co utrudnia zrozumienie, co napędza jego wyniki lub wyjaśnienie, dlaczego popełnia błędy. W dalszej części tego kursu nauczymy się, jak korzystać z pulpitu odpowiedzialnej AI, aby pomóc w debugowaniu systemów AI. Pulpit zapewnia kompleksowe narzędzie dla naukowców danych i programistów AI do wykonywania:
+## Debugowanie z odpowiedzialną AI  
 
-* **Analizy błędów**. Aby zidentyfikować rozkład błędów modelu, który może wpływać na sprawiedliwość lub niezawodność systemu.
-* **Przeglądu modelu**. Aby odkryć, gdzie występują różnice w wydajności modelu w różnych grupach danych.
-* **Analizy danych**. Aby zrozumieć rozkład danych i zidentyfik
-Obejrzyj ten warsztat, aby zgłębić tematy:
+Podobnie jak debugowanie aplikacji oprogramowania, debugowanie systemu AI to niezbędny proces identyfikowania i rozwiązywania problemów w systemie. Istnieje wiele czynników, które mogą wpływać na to, że model nie działa zgodnie z oczekiwaniami lub odpowiedzialnie. Większość tradycyjnych metryk wydajności modelu to ilościowe agregaty wydajności modelu, które nie wystarczają do analizy, jak model narusza zasady odpowiedzialnej AI. Ponadto model uczenia maszynowego jest czarną skrzynką, co utrudnia zrozumienie, co napędza jego wynik lub wyjaśnienie, gdy popełnia błąd. W dalszej części tego kursu nauczymy się, jak korzystać z pulpitu odpowiedzialnej AI, aby pomóc w debugowaniu systemów AI. Pulpit zapewnia całościowe narzędzie dla naukowców danych i deweloperów AI do wykonywania:
 
-- W pogoni za odpowiedzialną AI: Wprowadzenie zasad w praktykę przez Besmirę Nushi, Mehrnoosh Sameki i Amita Sharmę
+* **Analizy błędów**. Aby zidentyfikować rozkład błędów modelu, które mogą wpłynąć na sprawiedliwość lub niezawodność systemu.
+* **Przeglądu modelu**. Aby odkryć miejsca, gdzie występują różnice w wydajności modelu w różnych kohortach danych.
+* **Analizy danych**. Aby zrozumieć rozkład danych i zidentyfikować potencjalne uprzedzenia w danych, które mogą prowadzić do problemów ze sprawiedliwością, inkluzywnością i niezawodnością.
+* **Interpretowalności modelu**. Aby zrozumieć, co wpływa lub wpływa na prognozy modelu. Pomaga to wyjaśnić zachowanie modelu, co jest ważne dla przejrzystości i odpowiedzialności.
 
-[![Responsible AI Toolbox: Otwartoźródłowe narzędzie do budowy odpowiedzialnej AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Otwartoźródłowe narzędzie do budowy odpowiedzialnej AI")
 
-> 🎥 Kliknij obrazek powyżej, aby obejrzeć wideo: RAI Toolbox: Otwartoźródłowe narzędzie do budowy odpowiedzialnej AI przez Besmirę Nushi, Mehrnoosh Sameki i Amita Sharmę
+## 🚀 Wyzwanie
+ 
+Aby zapobiec pojawieniu się szkód, powinniśmy:
 
-Przeczytaj również:
+- zatrudniać osoby o różnorodnym pochodzeniu i perspektywach wśród zespołów pracujących nad systemami
+- inwestować w zestawy danych odzwierciedlające różnorodność naszego społeczeństwa
+- rozwijać lepsze metody na wszystkich etapach cyklu życia uczenia maszynowego, aby wykrywać i naprawiać problemy z odpowiedzialną AI, gdy się pojawiają
 
-- Centrum zasobów RAI Microsoftu: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+Pomyśl o scenariuszach z życia, gdzie brak wiarygodności modelu jest widoczny podczas tworzenia i używania modelu. Co jeszcze powinniśmy rozważyć?
 
-- Grupa badawcza FATE Microsoftu: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
-RAI Toolbox:
+## Podsumowanie i samodzielna nauka
+ 
 
-- [Repozytorium GitHub Responsible AI Toolbox](https://github.com/microsoft/responsible-ai-toolbox)
+W tej lekcji nauczyłeś się podstaw pojęć sprawiedliwości i niesprawiedliwości w uczeniu maszynowym.  
+ 
+Obejrzyj ten warsztat, aby zagłębić się w te tematy: 
+
+- W dążeniu do odpowiedzialnej sztucznej inteligencji: Wprowadzanie zasad w praktykę przez Besmirę Nushi, Mehrnoosh Sameki i Amit Sharmę
+
+[![Responsible AI Toolbox: An open-source framework for building responsible AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
+
+> 🎥 Kliknij obraz powyżej, aby obejrzeć wideo: RAI Toolbox: Open-source’owy framework do tworzenia odpowiedzialnej SI przez Besmirę Nushi, Mehrnoosh Sameki i Amit Sharmę
+
+Przeczytaj również: 
+
+- Centrum zasobów Microsoft ds. RAI: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+
+- Grupa badawcza Microsoft FATE: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+
+RAI Toolbox: 
+
+- [Repozytorium Responsible AI Toolbox na GitHub](https://github.com/microsoft/responsible-ai-toolbox)
 
 Przeczytaj o narzędziach Azure Machine Learning zapewniających sprawiedliwość:
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## Zadanie
 
@@ -140,5 +161,7 @@ Przeczytaj o narzędziach Azure Machine Learning zapewniających sprawiedliwoś�
 
 ---
 
-**Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby zapewnić dokładność, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dążymy do dokładności, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub niedokładności. Oryginalny dokument w jego języku źródłowym należy uznawać za autorytatywne źródło. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

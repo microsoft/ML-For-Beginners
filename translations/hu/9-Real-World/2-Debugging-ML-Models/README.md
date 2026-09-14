@@ -1,150 +1,179 @@
-# Utószó: Modellhibakeresés gépi tanulásban a Responsible AI dashboard komponenseivel
+# Utószó: Modellhibakeresés gépi tanulásban a Felelős MI irányítópult elemeinek használatával
+ 
 
 ## [Előadás előtti kvíz](https://ff-quizzes.netlify.app/en/ml/)
-
+ 
 ## Bevezetés
 
-A gépi tanulás hatással van mindennapi életünkre. Az AI egyre inkább megjelenik olyan rendszerekben, amelyek alapvetően befolyásolják az egyéneket és a társadalmat, például az egészségügyben, pénzügyekben, oktatásban és foglalkoztatásban. Például rendszerek és modellek vesznek részt napi döntéshozatali feladatokban, mint például egészségügyi diagnózisok vagy csalások észlelése. Az AI fejlődése és gyors elterjedése azonban új társadalmi elvárásokkal és növekvő szabályozással találkozik. Gyakran látjuk, hogy az AI rendszerek nem felelnek meg az elvárásoknak, új kihívásokat vetnek fel, és a kormányok elkezdik szabályozni az AI megoldásokat. Ezért fontos, hogy ezeket a modelleket elemezzük, hogy mindenki számára igazságos, megbízható, befogadó, átlátható és felelősségteljes eredményeket biztosítsanak.
+A gépi tanulás hatással van mindennapi életünkre. A mesterséges intelligencia utat tör magának a legfontosabb rendszerekben, amelyek minket, egyéneket, valamint társadalmunkat érintenek, az egészségügytől, a pénzügyeken és az oktatáson át a foglalkoztatásig. Például rendszerek és modellek vesznek részt a napi döntéshozatali feladatokban, mint az egészségügyi diagnózisok vagy a csalás felismerése. Következésképpen az MI fejlődésével és az ütemezett elterjedéssel párhuzamosan folyamatosan változó társadalmi elvárásokkal és növekvő szabályozásokkal találkozunk válaszként. Állandóan tapasztaljuk, hogy az MI-rendszerek nem felelnek meg az elvárásoknak; új kihívásokat tárnak fel; és a kormányok elkezdik szabályozni az MI-megoldásokat. Ezért fontos, hogy ezeket a modelleket elemezzük annak érdekében, hogy mindenki számára igazságos, megbízható, befogadó, átlátható és elszámoltatható eredményeket szolgáltassanak.
 
-Ebben a tananyagban gyakorlati eszközöket mutatunk be, amelyekkel megvizsgálható, hogy egy modell rendelkezik-e felelősségteljes AI problémákkal. A hagyományos gépi tanulási hibakeresési technikák általában kvantitatív számításokon alapulnak, mint például az összesített pontosság vagy az átlagos hibaveszteség. Gondoljunk bele, mi történik, ha az adatok, amelyeket a modellek építéséhez használunk, bizonyos demográfiai csoportokat nem tartalmaznak, például faji, nemi, politikai nézetek vagy vallási csoportokat, vagy aránytalanul képviselik ezeket. Mi történik akkor, ha a modell kimenete egyes demográfiai csoportokat előnyben részesít? Ez túl- vagy alulképviseletet eredményezhet az érzékeny jellemzőcsoportokban, ami igazságossági, befogadási vagy megbízhatósági problémákat okozhat. Továbbá, a gépi tanulási modelleket gyakran "fekete dobozként" kezelik, ami megnehezíti annak megértését és magyarázatát, hogy mi vezérli a modell előrejelzéseit. Ezek mind olyan kihívások, amelyekkel az adatkutatók és AI fejlesztők szembesülnek, ha nincsenek megfelelő eszközeik a modellek igazságosságának vagy megbízhatóságának hibakeresésére és értékelésére.
+Ebben a tananyagban gyakorlati eszközöket vizsgálunk, amelyekkel felmérhető, ha egy modell felelős MI-problémákkal küzd. A hagyományos gépi tanulási hibakeresési technikák jellemzően kvantitatív számításokon alapulnak, például összesített pontosság vagy átlagos hibaveszteség. Képzeljük el, mi történik, ha az adat, amelyből a modelleket építjük, hiányos bizonyos demográfiai jellemzők tekintetében, például faj, nem, politikai nézet, vallás, vagy aránytalanul képviseli ezeket a csoportokat. Mi van akkor, ha a modell kimenetét úgy értelmezik, hogy egyes demográfiai csoportokat előnyben részesítsen? Ez felül- vagy alulreprezentáltságot okozhat ezekben az érzékeny jellemzőcsoportokban, ami igazságossági, befogadási vagy megbízhatósági problémákat eredményezhet a modellnél. Egy másik tényező, hogy a gépi tanulási modelleket fekete dobozoknak tekintjük, ami megnehezíti megérteni és magyarázni, mi befolyásolja egy modell előrejelzését. Ezek mind olyan kihívások, amelyekkel az adattudósok és MI-fejlesztők szembesülnek, amikor nem rendelkeznek megfelelő eszközökkel a modell igazságosságának vagy megbízhatóságának hibakeresésére és értékelésére.
 
-Ebben a leckében megtanulhatod, hogyan végezz hibakeresést a modelleken az alábbiak segítségével:
+Ebben a leckében a modellek hibakeresését tanulhatod meg az alábbi eszközök segítségével:
 
-- **Hibaelemzés**: azonosítsd, hogy az adateloszlás mely részeinél magas a modell hibaaránya.
-- **Modelláttekintés**: végezz összehasonlító elemzést különböző adatcsoportok között, hogy felfedezd a modell teljesítménymutatóiban lévő eltéréseket.
-- **Adatelemzés**: vizsgáld meg, hol lehet túl- vagy alulképviselet az adataidban, ami a modellt egy demográfiai csoport előnyben részesítésére késztetheti egy másikkal szemben.
-- **Jellemzők fontossága**: értsd meg, mely jellemzők befolyásolják a modell előrejelzéseit globális vagy lokális szinten.
+-	**Hibaanalízis**: azonosítani, hogy az adateloszlás mely részein magas a modell hibaaránya.
+-	**Modelláttekintés**: összehasonlító elemzés végzése különböző adatkohorszok között, hogy felfedezhessük a teljesítménymutatók eltéréseit.
+-	**Adat elemzés**: vizsgálni, hol lehet túl- vagy alulreprezentált az adat, ami a modell torzulásához vezethet egyes demográfiai csoportok javára vagy hátrányára.
+-	**Jellemző fontosság**: megérteni, hogy mely jellemzők befolyásolják globális vagy lokális szinten a modell előrejelzéseit.
 
 ## Előfeltétel
 
-Előfeltételként kérjük, tekintsd át a [Felelősségteljes AI eszközök fejlesztőknek](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard) című anyagot.
+Előfeltételként kérjük, tekintsd át a [Fejlődőknek szánt felelős MI eszközök](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard) anyagot
 
-> ![Gif a felelősségteljes AI eszközökről](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
+> ![Gif a felelős MI eszközökről](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
-## Hibaelemzés
+## Hibaanalízis
 
-A hagyományos modellteljesítmény-mutatók, amelyeket a pontosság mérésére használnak, többnyire helyes és helytelen előrejelzések alapján végzett számítások. Például egy modell, amely 89%-ban pontos, és 0,001 hibaveszteséggel rendelkezik, jó teljesítményűnek tekinthető. Azonban a hibák gyakran nem oszlanak el egyenletesen az alapul szolgáló adathalmazban. Lehet, hogy 89%-os pontossági eredményt kapsz, de felfedezed, hogy az adatok bizonyos régióiban a modell 42%-ban hibázik. Az ilyen hibaminták következményei bizonyos adatcsoportokkal igazságossági vagy megbízhatósági problémákhoz vezethetnek. Fontos megérteni, hogy a modell hol teljesít jól vagy rosszul. Azok az adatrégiók, ahol a modell pontatlanságai magasak, fontos demográfiai csoportok lehetnek.
+A hagyományos modell teljesítménymutatók, amelyek pontosságot mérnek, általában arra alapoznak, hogy az előrejelzés helyes vagy helytelen volt-e. Például egy modellről megállapítani, hogy 89%-ban pontos, 0,001 hibaveszteség mellett, jó teljesítménynek számíthat. A hibák sokszor nem egyenletesen oszlanak el az alapadat-készletben. Lehet, hogy egy 89%-os pontosságot mérsz, de észreveszed, hogy az adataid különböző régióiban a modell 42%-ban hibázik. Ezek a hibamintázatok bizonyos csoportoknál igazságossági vagy megbízhatósági problémákhoz vezethetnek. Lényeges megérteni, mely területeken teljesít jól vagy rosszul a modell. Az adatterületek, ahol sok pontatlanság jelenik meg, fontos demográfiai csoportot jelenthetnek.
 
-![Modellek hibáinak elemzése és hibakeresése](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
+![A modell hibáinak elemzése és hibakeresése](../../../../translated_images/hu/ea-error-distribution.117452e1177c1dd8.webp)
 
-A RAI dashboard Hibaelemzés komponense megmutatja, hogyan oszlanak el a modellhibák különböző csoportok között egy fa vizualizáció segítségével. Ez hasznos annak azonosításában, hogy mely jellemzők vagy területek okoznak magas hibaarányt az adathalmazban. Azáltal, hogy látod, honnan származnak a modell pontatlanságai, elkezdheted vizsgálni a gyökérokokat. Adatcsoportokat is létrehozhatsz az elemzéshez. Ezek az adatcsoportok segítenek a hibakeresési folyamatban annak meghatározásában, hogy miért teljesít jól a modell az egyik csoportban, de hibázik a másikban.
+A Hibaanalízis komponens az RAI irányítópulton azt mutatja meg, hogyan oszlik el a modell hibája különböző kohorszok között egy fa vizualizáción keresztül. Ez segít azonosítani azokat a jellemzőket vagy területeket, ahol magas hibaarány van az adatbázisban. Ha látod, honnan származik a legtöbb pontatlanság, elkezdheted vizsgálni a gyökérokot. Létrehozhatsz adatkohorszokat is elemzés céljából. Ezek a kohorszok segítik a hibakeresést, hogy megértsd, miért teljesít jól egy kohorszban a modell, de hibázik egy másikban.
 
-![Hibaelemzés](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
+![Hibaanalízis](../../../../translated_images/hu/ea-error-cohort.6886209ea5d438c4.webp)
 
-A fa térkép vizuális jelzői segítenek gyorsabban megtalálni a problémás területeket. Például minél sötétebb piros színű egy fa csomópont, annál magasabb a hibaarány.
+A fa diagram vizuális jelzései gyorsabban segítenek megtalálni a problémás területeket. Például minél sötétebb piros színű egy fa csomópont, annál magasabb a hibaarány.
 
-A hőtérkép egy másik vizualizációs funkció, amelyet a felhasználók használhatnak a hibaarány vizsgálatára egy vagy két jellemző alapján, hogy megtalálják a modellhibák hozzájáruló tényezőit az egész adathalmazban vagy csoportokban.
+A hőtérképes megjelenítés egy másik vizualizációs funkció, amellyel egy vagy két jellemző alapján vizsgálhatók a hibaarányok, és az adatkészlet vagy kohorszok mentén is kereshetők a hiba hozzájárulói.
 
-![Hibaelemzés hőtérkép](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
+![Hibaanalízis hőtérkép](../../../../translated_images/hu/ea-heatmap.8d27185e28cee383.webp)
 
-Használj hibaelemzést, ha:
+Használd a hibaanalízist, amikor szükséged van:
 
-* Mélyebb megértést szeretnél szerezni arról, hogyan oszlanak el a modellhibák az adathalmazon és több bemeneti és jellemző dimenzión keresztül.
-* Fel szeretnéd bontani az összesített teljesítménymutatókat, hogy automatikusan felfedezd a hibás csoportokat, és célzott enyhítési lépéseket tegyél.
+* Mélyreható megértésre arról, hogyan oszlanak meg a modellhibák az adatokon és jellemző dimenziókon keresztül.
+* Az összesített teljesítménymutatók lebontására, hogy automatikusan felfedezd a hibás kohorszokat, és ennek alapján célzott javítási lépéseket tegyél.
 
 ## Modelláttekintés
 
-Egy gépi tanulási modell teljesítményének értékelése átfogó megértést igényel a viselkedéséről. Ez több mutató, például hibaarány, pontosság, visszahívás, precizitás vagy MAE (átlagos abszolút hiba) áttekintésével érhető el, hogy feltárjuk a teljesítménymutatók közötti eltéréseket. Egy mutató lehet, hogy kiválóan néz ki, de egy másik mutatóban pontatlanságok derülhetnek ki. Ezenkívül a mutatók összehasonlítása az egész adathalmazon vagy csoportokon belül segít rávilágítani arra, hogy a modell hol teljesít jól vagy rosszul. Ez különösen fontos annak megértésében, hogy a modell hogyan teljesít érzékeny és nem érzékeny jellemzők között (pl. beteg faja, neme vagy életkora), hogy feltárjuk a modell esetleges igazságtalanságait. Például, ha felfedezzük, hogy a modell hibásabb egy érzékeny jellemzőket tartalmazó csoportban, az igazságtalanságot jelezhet.
+Egy gépi tanulási modell értékeléséhez átfogó megértést kell szereznünk a viselkedéséről. Ezt különböző mutatók, például hibaarány, pontosság, visszahívás, precizitás vagy MAE (átlagos abszolút hiba) összevetésével lehet elérni, hogy eltéréseket fedezzünk fel a teljesítményben. Egy mutató kiemelkedő lehet, de más mutatóban pontatlanságok jelennek meg. Továbbá az egész adatkészleten vagy kohorszokon végzett összehasonlítás fényt derít arra, hol teljesít jól vagy nem a modell. Ez különösen fontos érzékeny és nem érzékeny jellemzők (például beteg bőrszíne, neme vagy kora) között, hogy felfedjük az esetleges igazságtalanságokat, amelyek a modellben lehetnek. Például ha egy érzékeny jellemzőkkel rendelkező kohorszban magasabb a hibaarány, az potenciális igazságtalanságot jelezhet.
 
-A RAI dashboard Modelláttekintés komponense nemcsak az adatreprezentáció teljesítménymutatóinak elemzésében segít egy csoportban, hanem lehetőséget ad a modell viselkedésének összehasonlítására különböző csoportok között.
+Az RAI irányítópult Modelláttekintő komponense nemcsak az adott kohorsz adatainak teljesítménymutatóit elemzi, hanem lehetőséget ad a modell viselkedésének összehasonlítására különböző kohorszok között.
 
-![Adathalmaz csoportok - modelláttekintés a RAI dashboardon](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
+![Adatkohorszok - modelláttekintés az RAI irányítópulton](../../../../translated_images/hu/model-overview-dataset-cohorts.dfa463fb527a35a0.webp)
 
-A komponens jellemző-alapú elemzési funkciója lehetővé teszi a felhasználók számára, hogy szűkítsék az adatcsoportokat egy adott jellemzőn belül, hogy anomáliákat azonosítsanak részletes szinten. Például a dashboard beépített intelligenciával automatikusan generál csoportokat egy felhasználó által kiválasztott jellemző alapján (pl. *"time_in_hospital < 3"* vagy *"time_in_hospital >= 7"*). Ez lehetővé teszi a felhasználó számára, hogy egy adott jellemzőt elkülönítsen egy nagyobb adatcsoportból, hogy lássa, ez-e a kulcsfontosságú tényező a modell hibás eredményeiben.
+A komponens jellemző-alapú elemző funkciója lehetővé teszi a felhasználók számára, hogy egy adott jellemzőn belül adat-alcsoportokra szűkítsenek, hogy finom szinten azonosítsák az anomáliákat. Például az irányítópult intelligenciája automatikusan létrehozza a kohorszokat a felhasználó által kiválasztott jellemző alapján (pl. *"time_in_hospital < 3"* vagy *"time_in_hospital >= 7"*). Ez lehetővé teszi az egyes jellemzők elkülönítését egy nagyobb adatcsoportból annak megállapítására, hogy kulcsfontosságú tényező-e a modell hibás eredményeiben.
 
-![Jellemző csoportok - modelláttekintés a RAI dashboardon](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
+![Jellemző kohorszok - modelláttekintés az RAI irányítópulton](../../../../translated_images/hu/model-overview-feature-cohorts.c5104d575ffd0c80.webp)
 
-A Modelláttekintés komponens két osztályú eltérési mutatót támogat:
+A Modelláttekintés komponens két típusú különbségmérőt támogat:
 
-**Eltérés a modell teljesítményében**: Ezek a mutatók kiszámítják az eltérést (különbséget) a kiválasztott teljesítménymutató értékei között az adatcsoportokban. Néhány példa:
+**Teljesítménybeli különbség**: Ezek a mutatók a kiválasztott teljesítménymutató értékének különbségét számolják ki az adat alkohorszai között. Néhány példa:
 
-* Pontossági arány eltérése
-* Hibaarány eltérése
-* Precizitás eltérése
-* Visszahívás eltérése
-* Átlagos abszolút hiba (MAE) eltérése
+* Pontosságbeli különbség
+* Hibaaránybeli különbség
+* Precizitásbeli különbség
+* Visszahívásbeli különbség
+* Átlagos abszolút hiba (MAE) különbség
 
-**Eltérés a kiválasztási arányban**: Ez a mutató tartalmazza a kiválasztási arány (kedvező előrejelzés) különbségét az adatcsoportok között. Példa erre a hiteljóváhagyási arány eltérése. A kiválasztási arány azt jelenti, hogy az egyes osztályok adatpontjainak hány százalékát osztályozzák 1-nek (bináris osztályozásban) vagy az előrejelzési értékek eloszlását (regresszióban).
+**Kiválasztási aránybeli különbség**: Ez a mutató a kiválasztási arány (kedvező előrejelzés) különbségét tartalmazza az alkohorszok között. Példa erre a kölcsönjóváhagyási arány különbsége. A kiválasztási arány az egyes kategóriákban 1-nek osztályozott adatpontok aránya (bináris osztályozásban), vagy az előrejelzési értékek eloszlása (regresszióban).
 
-## Adatelemzés
+## Adat elemzés
 
-> "Ha elég sokáig kínozod az adatokat, bármit bevallanak" - Ronald Coase
+> „Ha elég sokáig kínozod az adatokat, bármit beismernek.” – Ronald Coase
 
-Ez az állítás szélsőségesen hangzik, de igaz, hogy az adatok manipulálhatók bármilyen következtetés támogatására. Az ilyen manipuláció néha akaratlanul történik. Emberek vagyunk, és mindannyian rendelkezünk előítéletekkel, amelyeket gyakran nehéz tudatosan felismerni, amikor adatokat torzítunk. Az igazságosság biztosítása az AI-ban és a gépi tanulásban továbbra is összetett kihívás.
+Ez a kijelentés talán túlzónak hangzik, de igaz, hogy az adatokat manipulálni lehet bármilyen következtetés támogatására. Néha ez akaratlan is megtörténhet. Emberként mindannyian hordozunk elfogultságot, és gyakran nehéz tudatosan észrevenni, mikor vezetünk be elfogultságot az adatokba. Az igazságosság garantálása az MI-ben és a gépi tanulásban összetett kihívás.
 
-Az adatok nagy vakfoltot jelentenek a hagyományos modellteljesítmény-mutatók számára. Lehet, hogy magas pontossági eredményeket kapsz, de ez nem mindig tükrözi az adathalmazban lévő alapvető adatelfogultságot. Például, ha egy vállalat alkalmazottainak adathalmazában az ügyvezető pozíciókban 27% nő és 73% férfi van, egy álláshirdetési AI modell, amelyet ezen adatok alapján képeztek, valószínűleg főként férfi közönséget céloz meg vezetői pozíciókra. Az adatokban lévő egyensúlyhiány a modell előrejelzését egy nem előnyben részesítésére késztette. Ez igazságossági problémát tár fel, ahol nemi elfogultság van az AI modellben.
+Az adat hatalmas vakfolt a hagyományos modell teljesítménymutatókban. Lehet, hogy magas pontosságod van, de ez nem tükrözi mindig az adatokban rejlő torzításokat. Például, ha egy cég alkalmazotti adatállományában 27% női és 73% férfi felsővezető van, akkor az ezen az adaton tanított álláshirdető MI valószínűleg férfi közönséget céloz meg felső szintű pozíciókra. Az adatok aránytalansága torzítja a modell előrejelzését, egy nemi előítéletet hoz létre az MI-ben.
 
-A RAI dashboard Adatelemzés komponense segít azonosítani azokat a területeket, ahol túl- vagy alulképviselet van az adathalmazban. Segít a felhasználóknak diagnosztizálni azokat a hibák és igazságossági problémák gyökérokait, amelyeket az adatok egyensúlyhiánya vagy egy adott adatcsoport hiánya okoz. Ez lehetőséget ad a felhasználóknak arra, hogy vizualizálják az adathalmazokat előrejelzett és valós eredmények, hibacsoportok és konkrét jellemzők alapján. Néha egy alulképviselt adatcsoport felfedezése azt is feltárhatja, hogy a modell nem tanul jól, ezért magas a pontatlanság. Egy adatelfogultsággal rendelkező modell nemcsak igazságossági problémát jelent, hanem azt is mutatja, hogy a modell nem befogadó vagy megbízható.
+Az Adat elemzés komponens az RAI irányítópulton segít azonosítani a túl- vagy alulreprezentált területeket az adattömegben. Segít feltárni a hibák és igazságossági problémák gyökerező okát, amelyeket az adatok kiegyensúlyozatlansága vagy egy adott csoport hiánya okoz. A felhasználók vizualizálhatják az adatokat valódi és előrejelzett eredmények, hibacsoportok és jellemzők szerint. Néha egy alulreprezentált csoport felfedezése kiderítheti, hogy a modell nem tanul jól, ezért magas az pontatlanság. Az adatokban meglévő torzítás nem csak igazságossági probléma, hanem azt is jelzi, hogy a modell nem befogadó vagy megbízható.
 
-![Adatelemzés komponens a RAI dashboardon](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
+![Adat elemzés komponens az RAI irányítópulton](../../../../translated_images/hu/dataanalysis-cover.8d6d0683a70a5c1e.webp)
 
-Használj adatelemzést, ha:
 
-* Felfedezni szeretnéd az adathalmaz statisztikáit különböző szűrők kiválasztásával, hogy az adatokat különböző dimenziókra (más néven csoportokra) bontsd.
-* Megérteni szeretnéd az adathalmaz eloszlását különböző csoportok és jellemzőcsoportok között.
-* Meghatározni szeretnéd, hogy az igazságossággal, hibaelemzéssel és ok-okozati összefüggésekkel kapcsolatos megállapításaid (amelyeket más dashboard komponensekből származtattál) az adathalmaz eloszlásának eredményei-e.
-* Eldönteni, hogy mely területeken gyűjts több adatot, hogy enyhítsd azokat a hibákat, amelyek reprezentációs problémákból, címkezajból, jellemzőzajból, címkeelfogultságból és hasonló tényezőkből származnak.
+Használd az adat elemzést, amikor szükséged van:
 
-## Modellérthetőség
+* Az adatkészlet statisztikáinak felfedezésére különböző szűrők segítségével, hogy az adatokat különböző dimenziókra (kohorszokra) bontsd.
+* Megérteni az adatkészlet eloszlását különböző kohorszok és jellemzőcsoportok között.
+* Megállapítani, hogy az igazságossággal, hibaanalízissel és okozatisággal kapcsolatos megállapításaid (amelyek más irányítópult komponensekből származnak) az adateloszlás következményei-e.
+* Eldönteni, mely területeken kell több adatot gyűjteni a reprezentációs problémákból, osztálycímke zajból, jellemző zajból, címke torzításból és hasonló tényezőkből eredő hibák enyhítésére.
 
-A gépi tanulási modellek gyakran "fekete dobozként" működnek. Nehéz megérteni, hogy mely kulcsfontosságú adatjellemzők vezérlik a modell előrejelzéseit. Fontos, hogy átláthatóságot biztosítsunk arra vonatkozóan, hogy miért hoz egy modell bizonyos előrejelzést. Például, ha egy AI rendszer azt jósolja, hogy egy cukorbeteg páciensnél fennáll a kockázata annak, hogy 30 napon belül visszakerül a kórházba, akkor képesnek kell lennie arra, hogy támogató adatokat nyújtson, amelyek az előrejelzéséhez vezettek. A támogató adatjelzők átláthatóságot biztosítanak, hogy segítsenek az orvosoknak vagy kórházaknak jól informált döntéseket hozni. Ezenkívül az, hogy megmagyarázható, miért hozott egy modell előrejelzést egy adott páciens esetében, lehetővé teszi az egészségügyi szabályozásokkal való megfelelést. Amikor gépi tanulási modelleket használsz olyan módon, amely hatással van az emberek életére, elengedhetetlen megérteni és megmagyarázni, mi befolyásolja a modell viselkedését. A modell magyarázhatósága és érthetősége segít választ adni az alábbi helyzetekben:
+## Modell értelmezhetőség
 
-* Modellhibakeresés: Miért követte el a modell ezt a hibát? Hogyan javíthatom a modellemet?
-* Ember-AI együttműködés: Hogyan érthetem meg és bízhatok a modell döntéseiben?
-* Szabályozási megfelelés: Megfelel-e a modellem a jogi követelményeknek?
+A gépi tanulási modellek általában fekete dobozok. Nehéz megérteni, hogy mely kulcsfontosságú adatjellemzők befolyásolják egy modell előrejelzését. Fontos átláthatóságot biztosítani arról, miért adja a modell az adott előrejelzést. Például, ha egy MI-rendszer előrejelzi, hogy egy cukorbeteg beteg 30 napon belül kórházba kerül újra, akkor támogatást adó adatokat is kell szolgáltatnia, amelyek az előrejelzést vezérelték. A támogató adatindikátorok átláthatóságot hoznak, hogy az orvosok vagy kórházak megalapozott döntéseket hozhassanak. Emellett a modell előrejelzésének magyarázata az egyéni beteg esetében elszámoltathatóságot és egészségügyi szabályozási megfelelést tesz lehetővé. Amikor gépi tanulási modelleket használsz emberek életére kiható módon, alapvető, hogy megértsd és megmagyarázd, mi befolyásolja a modell viselkedését. A modellmagyarázhatóság és értelmezhetőség olyan kérdésekre ad választ, mint:
 
-A RAI dashboard Jellemzők fontossága komponense segít hibakeresésben és átfogó megértést nyújt arról, hogyan hoz egy modell előrejelzéseket. Ez egy hasznos eszköz gépi tanulási szakemberek és döntéshozók számára, hogy megmagyarázzák és bizonyítékot mutassanak arra, hogy mely jellemzők befolyásolják a modell viselkedését a szabályozási megfelelés érdekében. A felhasználók globális és lokális magyarázatokat is felfedezhetnek, hogy érvényesítsék, mely jellemzők vezérlik a modell előrejelzéseit. A globális magyarázatok felsorolják azokat a legfontosabb j
-- **Túl- vagy alulreprezentáció**. Az elképzelés az, hogy egy bizonyos csoport nem jelenik meg egy adott szakmában, és bármely szolgáltatás vagy funkció, amely ezt tovább erősíti, káros hatást gyakorol.
+* Modellhibakeresés: Miért hibázott a modellem? Hogyan javíthatom a modellem?
+* Ember-MI együttműködés: Hogyan érthetem meg, és bízhatok a modell döntéseiben?
+* Szabályozói megfelelés: Megfelel a modellem a jogi követelményeknek?
 
-### Azure RAI dashboard
+Az RAI irányítópult Jellemző fontosság komponense segít a modell hibakeresésében és átfogó megértésében, hogy miként készít előrejelzéseket. Ez egy hasznos eszköz a gépi tanulási szakemberek és döntéshozók számára is, hogy bizonyítékokat mutassanak be arra vonatkozóan, mely jellemzők befolyásolják a modell viselkedését a szabályozói megfelelés érdekében. A felhasználók felfedezhetik a globális és lokális magyarázatokat, amelyek megerősítik, hogy mely jellemzők befolyásolják egy modell előrejelzését. A globális magyarázatok a modell egész előrejelzésére ható legfontosabb jellemzőket sorolják fel. A helyi magyarázatok megmutatják, hogy egy konkrét esetben mely jellemzők vezettek az előrejelzéshez. A helyi magyarázatok értékelése segíthet egy adott eset hibakeresésében vagy auditálásában, hogy jobban megértsük, miért volt a modell előrejelzése helyes vagy helytelen.
 
-Az [Azure RAI dashboard](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) nyílt forráskódú eszközökre épül, amelyeket vezető akadémiai intézmények és szervezetek, köztük a Microsoft fejlesztettek ki. Ezek az eszközök segítik az adatkutatókat és AI fejlesztőket abban, hogy jobban megértsék a modellek viselkedését, és hogy felfedezzék és enyhítsék az AI modellek nem kívánt problémáit.
+![RAI irányítópult Jellemző fontosság komponense](../../../../translated_images/hu/9-feature-importance.cd3193b4bba3fd4b.webp)
 
-- Ismerd meg, hogyan használhatod a különböző komponenseket az RAI dashboard [dokumentációjának](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) átnézésével.
+* Globális magyarázatok: például mely jellemzők befolyásolják egy cukorbetegség újra-kórházi felvétel modell egész viselkedését?
+* Lokális magyarázatok: például miért jósolta a modell, hogy egy 60 évnél idősebb, korábbi kórházi felvételekkel rendelkező cukorbeteg beteg újrafelvételre kerül vagy nem kerül 30 napon belül?
 
-- Nézd meg néhány RAI dashboard [példa notebookot](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks), amelyek segítenek felelősségteljesebb AI forgatókönyvek hibakeresésében az Azure Machine Learning-ben.
+A modell teljesítményének vizsgálata során különböző kohorszokban a Jellemző fontosság megmutatja, hogy egy jellemző milyen hatással van az egyes kohorszokra. Segít felfedni anomáliákat, amikor egy jellemző befolyásának szintjét hasonlítjuk össze az egyes kohorszokon belül a modell hibás előrejelzéseiben. A komponens megmutatja, hogy egy jellemző mely értékei befolyásolták pozitívan vagy negatívan a modell eredményét. Például, ha a modell téves előrejelzést adott, a komponens segítségével mélyebben megnézheted, hogy mely jellemzők vagy jellemző értékek vezettek ehhez az előrejelzéshez. Ez a részletezettség nemcsak a hibakeresést segíti, hanem átláthatóságot és elszámoltathatóságot is biztosít auditálási helyzetekben. Végül a komponens segíthet az igazságossági problémák azonosításában is. Ha például egy érzékeny jellemző, mint az etnikum vagy a nem jelentős befolyással bír a modell előrejelzésére, az a modell rassz vagy nemi torzítását jelezheti.
 
+![Jellemzők befolyása](../../../../translated_images/hu/9-features-influence.3ead3d3f68a84029.webp)
+
+Használd az értelmezhetőséget, amikor szükséged van:
+
+* Megítélni az MI rendszered előrejelzéseinek megbízhatóságát azáltal, hogy megérted, mely jellemzők a legfontosabbak az előrejelzésekhez.
+* Hibakeresési folyamatot megalapozni a modell megértésével, annak megállapítására, hogy egészséges jellemzők alapján működik-e vagy csak hamis korrelációkat használ.
+* Feltárni a potenciális igazságtalansági forrásokat azáltal, hogy megvizsgálod, vannak-e érzékeny jellemzők vagy azokkal erősen korreláló jellemzők az előrejelzés alapjaként.
+* Felhasználói bizalom építése a modell döntéseibe helyi magyarázatok generálásával a döntések bemutatásához.
+* Szabályozói audit elvégzése az MI rendszered modelljeinek ellenőrzésére és a hatás figyelésére az emberekre.
+
+## Összefoglalás
+
+Az összes RAI irányítópult komponens gyakorlati eszköz a gépi tanulási modellek fejlesztéséhez, amelyek kevésbé károsak és megbízhatóbbak a társadalom számára. Javítja az emberi jogok védelmét, csökkenti a bizonyos csoportok igazságtalan megkülönböztetését vagy életlehetőségektől való kizárását; valamint a fizikai vagy lelki sérülések kockázatát. Segít emellett a modell döntéseibe vetett bizalom építésében helyi magyarázatok generálásával az eredmények szemléltetésére. Néhány potenciális kártípus a következőképpen sorolható be:
+
+- **Elosztás**, ha például egy nem vagy etnikum előnyben részesül a másikkal szemben.
+- **Szolgáltatás minősége**: Ha az adatokat egy adott helyzetre tanítják, de a valóság ennél jóval összetettebb, az gyenge szolgáltatási teljesítményhez vezet.
+- **Stereotipizálás**: Egy adott csoporthoz előre meghatározott tulajdonságok társítása.
+
+- **Lerontás**. Valami vagy valaki igazságtalan bírálata és megbélyegzése.
+- **Túl- vagy alulreprezentáltság**. Az az ötlet, hogy egy bizonyos csoport nem jelenik meg egy adott szakmában, és bármely olyan szolgáltatás vagy funkció, amely ezt tovább erősíti, káros hatású.
+
+### Azure RAI műszerfal
+ 
+Az [Azure RAI műszerfal](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) nyílt forráskódú eszközökön alapul, amelyeket vezető akadémiai intézmények és szervezetek, köztük a Microsoft fejlesztettek ki, és amelyek kulcsfontosságúak az adattudósok és az MI fejlesztők számára, hogy jobban megértsék a modell viselkedését, felfedezzék és enyhítsék az MI modellek nemkívánatos problémáit.
+
+- Ismerd meg a különböző összetevők használatát a RAI műszerfal [dokumentációjában.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
+
+- Nézd meg néhány RAI műszerfal [mintanaplóját](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) felelősebb MI forgatókönyvek hibakereséséhez az Azure Machine Learning-ben. 
+  
 ---
+## 🚀 Kihívás 
+ 
+Annak érdekében, hogy statisztikai vagy adatbeli elfogultság ne alakuljon ki az elején, a következőket kell tennünk: 
 
-## 🚀 Kihívás
+- különböző hátterű és nézőpontú emberek dolgozzanak a rendszereken 
+- befektetni olyan adatkészletekbe, amelyek társadalmunk sokszínűségét tükrözik 
+- jobb módszereket fejleszteni az elfogultság felismerésére és korrekciójára, amikor előfordul 
 
-Annak érdekében, hogy statisztikai vagy adatbeli torzítások már eleve ne kerüljenek bevezetésre, a következőket kell tennünk:
-
-- biztosítsuk, hogy a rendszereken dolgozó emberek különböző háttérrel és nézőpontokkal rendelkezzenek  
-- fektessünk be olyan adathalmazokba, amelyek tükrözik társadalmunk sokszínűségét  
-- fejlesszünk jobb módszereket a torzítások észlelésére és kijavítására, amikor azok előfordulnak  
-
-Gondolj valós életbeli helyzetekre, ahol az igazságtalanság nyilvánvaló a modellek építése és használata során. Mit kellene még figyelembe vennünk?
+Gondolj olyan valós helyzetekre, ahol a méltánytalanság nyilvánvaló a modellépítés és -használat során. Mit kellene még figyelembe vennünk? 
 
 ## [Előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
+## Áttekintés és önálló tanulás 
+ 
+Ebben a leckében megismerted a felelős MI beépítésének néhány gyakorlati eszközét a gépi tanulásban.  
 
-## Áttekintés és önálló tanulás
+Nézd meg ezt a műhelyt, hogy mélyebben belemerülj a témákba: 
 
-Ebben a leckében megismerkedtél néhány gyakorlati eszközzel, amelyek segítenek a felelősségteljes AI beépítésében a gépi tanulásba.
+- Responsible AI Dashboard: Egyablakos megoldás a RAI gyakorlati működtetésére Besmira Nushi és Mehrnoosh Sameki előadásában
 
-Nézd meg ezt a workshopot, hogy mélyebben elmerülj a témákban:
+[![Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice")
 
-- Responsible AI Dashboard: Egyablakos megoldás a felelősségteljes AI gyakorlati alkalmazásához, előadók: Besmira Nushi és Mehrnoosh Sameki
+> 🎥 Kattints a fenti képre a videó megtekintéséhez: Responsible AI Dashboard: Egyablakos megoldás a RAI gyakorlati működtetésére Besmira Nushi és Mehrnoosh Sameki előadásában
+ 
+Tekintsd át a következő anyagokat, hogy többet megtudj a felelős MI-ről és hogy hogyan lehet megbízhatóbb modelleket építeni: 
 
-[![Responsible AI Dashboard: Egyablakos megoldás a felelősségteljes AI gyakorlati alkalmazásához](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Responsible AI Dashboard: Egyablakos megoldás a felelősségteljes AI gyakorlati alkalmazásához")
-
-> 🎥 Kattints a fenti képre a videóért: Responsible AI Dashboard: Egyablakos megoldás a felelősségteljes AI gyakorlati alkalmazásához, előadók: Besmira Nushi és Mehrnoosh Sameki
-
-Használd az alábbi anyagokat, hogy többet megtudj a felelősségteljes AI-ról és arról, hogyan építhetsz megbízhatóbb modelleket:
-
-- Microsoft RAI dashboard eszközei ML modellek hibakereséséhez: [Responsible AI tools resources](https://aka.ms/rai-dashboard)
+- A Microsoft RAI műszerfal eszközei az ML modellek hibakereséséhez: [Responsible AI tools resources](https://aka.ms/rai-dashboard)
 
 - Fedezd fel a Responsible AI eszköztárat: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft RAI erőforrásközpontja: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- A Microsoft RAI erőforrásközpontja: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-- Microsoft FATE kutatócsoportja: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+- A Microsoft FATE kutatócsoportja: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
 ## Feladat
 
-[Ismerd meg az RAI dashboardot](assignment.md)
+[Fedezd fel a RAI műszerfalat](assignment.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

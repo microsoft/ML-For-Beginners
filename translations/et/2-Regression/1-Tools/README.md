@@ -1,120 +1,121 @@
-# Alusta Pythoni ja Scikit-learniga regressioonimudelite jaoks
+# Alustamine Pythoniga ja Scikit-learn regressioonimudelite jaoks
 
-![Regressioonide kokkuvõte visuaalses märkmes](../../../../translated_images/et/ml-regression.4e4f70e3b3ed446e.webp)
+![Regressioonide kokkuvõte visandina](../../../../translated_images/et/ml-regression.4e4f70e3b3ed446e.webp)
 
-> Visuaalne märge: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Visand, autor [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## [Eeloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [See õppetund on saadaval ka R-is!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [See õppetund on saadaval ka R keeles!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Sissejuhatus
 
-Nendes neljas õppetunnis õpid, kuidas luua regressioonimudeleid. Arutame peagi, milleks need vajalikud on. Enne alustamist veendu, et sul on õiged tööriistad paigas!
+Nendes neljas õppetükis õpid, kuidas ehitada regressioonimudeleid. Peagi räägime, milleks neid kasutatakse. Kuid enne kui midagi teed, veendu, et sul oleksid õiged tööriistad valmis protsessi alustamiseks!
 
-Selles õppetunnis õpid:
+Selles õppetükis õpid, kuidas:
 
-- Kuidas seadistada oma arvuti kohalike masinõppe ülesannete jaoks.
-- Kuidas töötada Jupyteri märkmikega.
-- Kuidas kasutada Scikit-learni, sealhulgas selle paigaldamist.
-- Kuidas uurida lineaarset regressiooni praktilise harjutuse kaudu.
+- Konfigureerida oma arvutit kohalike masinõppe ülesannete jaoks.
+- Töötada Jupyter Notebookidega.
+- Kasutada Scikit-learn'i, sealhulgas paigaldamist.
+- Uurida lineaarset regressiooni praktilise ülesande kaudu.
 
 ## Paigaldused ja seadistused
 
-[![ML algajatele - Seadista oma tööriistad masinõppemudelite loomiseks](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML algajatele - Seadista oma tööriistad masinõppemudelite loomiseks")
+[![Masinõpe algajatele - Seadista oma tööriistad masinõppemudelite ehitamiseks](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "Masinõpe algajatele - Seadista oma tööriistad masinõppemudelite ehitamiseks")
 
-> 🎥 Klõpsa ülaloleval pildil, et vaadata lühikest videot arvuti seadistamisest ML jaoks.
+> 🎥 Klõpsa ülalolevale pildile lühikese video jaoks, mis näitab arvuti seadistamist masinõppe jaoks.
 
-1. **Paigalda Python**. Veendu, et [Python](https://www.python.org/downloads/) on sinu arvutisse paigaldatud. Pythonit kasutatakse paljude andmeteaduse ja masinõppe ülesannete jaoks. Enamik arvutisüsteeme sisaldab juba Pythonit. Kasulikud [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) võivad samuti seadistamist lihtsustada.
+1. **Paigalda Python**. Veendu, et arvutisse on paigaldatud [Python](https://www.python.org/downloads/). Pythoni kasutatakse paljudes andmeteaduse ja masinõppe ülesannetes. Enamik arvutisüsteeme sisaldab Pythonit juba vaikimisi. Lisaks on saadaval kasulikud [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), mis lihtsustavad seadistamist mõne kasutaja jaoks.
 
-   Mõned Python kasutusviisid nõuavad ühte versiooni tarkvarast, samas kui teised vajavad teist versiooni. Seetõttu on kasulik töötada [virtuaalses keskkonnas](https://docs.python.org/3/library/venv.html).
+   Mõningad Pythoni kasutusviisid nõuavad ühte tarkvaraversiooni, teised teist. Seetõttu on kasulik töötada [virtuaalses keskkonnas](https://docs.python.org/3/library/venv.html).
 
-2. **Paigalda Visual Studio Code**. Veendu, et Visual Studio Code on sinu arvutisse paigaldatud. Järgi neid juhiseid, et [paigaldada Visual Studio Code](https://code.visualstudio.com/) põhilise paigalduse jaoks. Selles kursuses kasutad Pythonit Visual Studio Code'is, seega võib olla kasulik tutvuda, kuidas [Visual Studio Code'i seadistada](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) Python arenduseks.
+2. **Paigalda Visual Studio Code**. Veendu, et Visual Studio Code on sinu arvutis paigaldatud. Järgi juhiseid visual studio koodi [paigaldamiseks](https://code.visualstudio.com/). Selles kursuses kasutad Pythoni Visual Studio Codes, nii et võib olla kasulik värskendada teadmisi, kuidas [Visual Studio Code'i seadistada Python arenduseks](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott).
 
-   > Tutvu Pythoniga, läbides selle [õppemoodulite kogumiku](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Tutvu Pythoniga lähemalt, läbides selle kogumi [Õpi moodulid](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
-   > [![Seadista Python Visual Studio Code'iga](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Seadista Python Visual Studio Code'iga")
+   > [![Seadista Python Visual Studio Code’iga](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Seadista Python Visual Studio Code’iga")
    >
-   > 🎥 Klõpsa ülaloleval pildil, et vaadata videot: Python kasutamine VS Code'is.
+   > 🎥 Klõpsa ülalolevale pildile video vaatamiseks: Pythoni kasutamine VS Code’is.
 
-3. **Paigalda Scikit-learn**, järgides [neid juhiseid](https://scikit-learn.org/stable/install.html). Kuna pead kasutama Python 3, on soovitatav kasutada virtuaalset keskkonda. Kui paigaldad seda teeki M1 Macile, on ülaltoodud lehel spetsiaalsed juhised.
+3. **Paigalda Scikit-learn** järgides [selleid juhiseid](https://scikit-learn.org/stable/install.html). Kuna vajad Python 3 kasutamist, on soovitatav kasutada virtuaalkeskkonda. Kui paigaldate seda teeki M1 Mac süsteemile, on ülalkirjeldatud lingil erijuhised.
 
-4. **Paigalda Jupyter Notebook**. Pead [paigaldama Jupyter paketi](https://pypi.org/project/jupyter/).
+1. **Paigalda Jupyter Notebook**. Pead paigaldama [Jupyter paketi](https://pypi.org/project/jupyter/).
 
-## Sinu ML arenduskeskkond
+## Sinu masinõppe arenduskeskkond
 
-Sa hakkad kasutama **märkmikke**, et arendada oma Python koodi ja luua masinõppemudeleid. Seda tüüpi fail on andmeteadlaste seas levinud tööriist ja neid saab tuvastada nende laiendi `.ipynb` järgi.
+Kasutad **notebooke**, et arendada oma Pythoni koodi ja luua masinõppemudeleid. See failitüüp on andmeteadlaste seas populaarne, neid saab tuvastada faililaiendi `.ipynb` järgi.
 
-Märkmikud on interaktiivne keskkond, mis võimaldab arendajal nii koodi kirjutada kui ka märkmeid lisada ja dokumentatsiooni koostada, mis on eksperimentaalsete või uurimuslike projektide jaoks väga kasulik.
+Notebookid on interaktiivne keskkond, mis võimaldab arendajal nii koodi kirjutada kui märkmeid lisada ning dokumentatsiooni kirjutada. See on eriti kasulik eksperimenteerimise või uurimusprojektide korral.
 
-[![ML algajatele - Seadista Jupyter märkmikud regressioonimudelite loomiseks](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML algajatele - Seadista Jupyter märkmikud regressioonimudelite loomiseks")
+[![Masinõpe algajatele - Seadista Jupyter Notebookid regressioonimudelite ehituse alustamiseks](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "Masinõpe algajatele - Seadista Jupyter Notebookid regressioonimudelite ehituse alustamiseks")
 
-> 🎥 Klõpsa ülaloleval pildil, et vaadata lühikest videot selle harjutuse läbiviimisest.
+> 🎥 Klõpsa ülalolevale pildile lühikese video jaoks, mis selgitab viisi.
 
-### Harjutus - töö märkmikuga
+### Harjutus - töötamine notebookiga
 
 Selles kaustas leiad faili _notebook.ipynb_.
 
-1. Ava _notebook.ipynb_ Visual Studio Code'is.
+1. Ava _notebook.ipynb_ Visual Studio Codes.
 
-   Jupyter server käivitub koos Python 3+ versiooniga. Märkmikus leiad alasid, mida saab `käivitada`, koodilõike. Koodilõiku saab käivitada, valides ikooni, mis näeb välja nagu mängimise nupp.
+   Järgnevalt käivitub Jupyteri server koos Python 3+ keskkonnaga. Notebookis on kohti, mida saab `run` käivitada, need on koodilõigud. Koodibloki käivitamiseks vali ikoon, mis näeb välja nagu esitamisnupp.
 
-2. Vali `md` ikoon ja lisa veidi markdowni ning järgmine tekst **# Tere tulemast oma märkmikku**.
+1. Vali `md` ikoon ja lisa natuke markdowni tekstina: **# Welcome to your notebook**.
 
-   Järgmisena lisa veidi Python koodi.
+   Seejärel lisa natuke Pythoni koodi.
 
-3. Kirjuta **print('hello notebook')** koodilõiku.
-4. Vali nool, et koodi käivitada.
+1. Kirjuta koodiblokki **print('hello notebook')**.
+1. Vali nool, et koodi käivitada.
 
-   Näed järgmist väljundit:
+   Sa peaksid nägema väljatrükki:
 
     ```output
     hello notebook
     ```
 
-![VS Code avatud märkmikuga](../../../../translated_images/et/notebook.4a3ee31f396b8832.webp)
+![VS Code koos avatuna oleva notebookiga](../../../../translated_images/et/notebook.4a3ee31f396b8832.webp)
 
-Sa saad oma koodi vaheldumisi kommentaaridega täiendada, et märkmikku ise dokumenteerida.
+Sa võid oma koodi lisada kommentaare, et notebook iseenesest dokumenteeriks seda.
 
-✅ Mõtle hetkeks, kui erinev on veebiarendaja töökeskkond võrreldes andmeteadlase omaga.
+✅ Mõtle korraks, kui erinev on veebiarendaja töökeskkond võrreldes andmeteadlase omaga.
 
 ## Scikit-learniga alustamine
 
-Nüüd, kui Python on sinu kohalikus keskkonnas seadistatud ja oled Jupyter märkmikega mugav, on aeg saada sama mugavaks Scikit-learniga (häälda `sci` nagu `science`). Scikit-learn pakub [ulatuslikku API-d](https://scikit-learn.org/stable/modules/classes.html#api-ref), mis aitab sul ML ülesandeid täita.
+Nüüd, kui Python on sinu lokaalses keskkonnas seadistatud ja sa oled Jupyter Notebookidega harjunud, tutvume ka Scikit-learniga (hääldus 'sci' nagu 'science'). Scikit-learn pakub [ulatuslikku API-t](https://scikit-learn.org/stable/modules/classes.html#api-ref), mis aitab sul masinõppe ülesandeid teha.
 
-Nende [veebisaidi](https://scikit-learn.org/stable/getting_started.html) järgi on "Scikit-learn avatud lähtekoodiga masinõppe teek, mis toetab juhendatud ja juhendamata õppimist. See pakub ka mitmesuguseid tööriistu mudelite sobitamiseks, andmete eeltöötluseks, mudelite valikuks ja hindamiseks ning palju muid kasulikke funktsioone."
+Nende [veebilehe](https://scikit-learn.org/stable/getting_started.html) kohaselt: "Scikit-learn on avatud lähtekoodiga masinõppe teek, mis toetab juhendatud ja juhendamata õppimist. See pakub ka erinevaid tööriistu mudelite sobitamiseks, andmete ettevalmistamiseks, mudeli valikuks ja hindamiseks ning palju muud."
 
-Selles kursuses kasutad Scikit-learni ja teisi tööriistu, et luua masinõppemudeleid, mis täidavad nn "traditsioonilise masinõppe" ülesandeid. Oleme teadlikult vältinud närvivõrke ja süvaõpet, kuna need on paremini kaetud meie tulevases "AI algajatele" õppekavas.
+Selles kursuses kasutad Scikit-learn'i ja teisi tööriistu tavapäraste masinõppe mudelite ehitamiseks. Oleme teadlikult vältinud närvivõrke ja süvaõpet, sest need on põhjalikumalt käsitletud meie tulevases õppekavas 'Tehisintellekt algajatele'.
 
-Scikit-learn muudab mudelite loomise ja nende hindamise lihtsaks. See keskendub peamiselt numbriliste andmete kasutamisele ja sisaldab mitmeid valmisandmekogumeid, mida saab kasutada õppematerjalidena. Samuti sisaldab see eelvalmistatud mudeleid, mida õpilased saavad proovida. Uurime protsessi, kuidas laadida eelpakendatud andmeid ja kasutada sisseehitatud hindajat esimese ML mudeli loomiseks Scikit-learniga, kasutades põhiandmeid.
+Scikit-learn teeb mudelite ehitamise ja nende hindamise lihtsalt teostatavaks. See on keskendunud peamiselt numbrilistele andmetele ning sisaldab arenguks mitmeid valmis andmekogumeid ja mudelimalle. Uurimegi kõigepealt, kuidas laadida ettevalmistatud andmeid ja kasutada sisse ehitatud hinnangut esimeseks ML mudeliks Scikit-learniga koos lihtsate andmetega.
 
-## Harjutus - sinu esimene Scikit-learn märkmik
+## Harjutus - sinu esimene Scikit-learn notebook
 
-> See õpetus on inspireeritud [lineaarse regressiooni näitest](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) Scikit-learni veebisaidil.
+> Selle juhendi inspiratsiooniks oli Scikit-learn'i veebisaidilt leitav [lineaarse regressiooni näide](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py).
 
-[![ML algajatele - Sinu esimene lineaarse regressiooni projekt Pythonis](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML algajatele - Sinu esimene lineaarse regressiooni projekt Pythonis")
 
-> 🎥 Klõpsa ülaloleval pildil, et vaadata lühikest videot selle harjutuse läbiviimisest.
+[![Masinõpe algajatele - sinu esimene lineaarse regressiooni projekt Pythonis](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "Masinõpe algajatele - sinu esimene lineaarse regressiooni projekt Pythonis")
 
-Failis _notebook.ipynb_, mis on seotud selle õppetunniga, kustuta kõik lahtrid, vajutades prügikasti ikooni.
+> 🎥 Klõpsa ülalolevale pildile, et vaadata lühikest videot selle ülesande kohta.
 
-Selles osas töötad väikese diabeedi andmekogumiga, mis on Scikit-learnis õppimise eesmärgil sisse ehitatud. Kujuta ette, et tahad testida ravi diabeediga patsientide jaoks. Masinõppemudelid võivad aidata kindlaks teha, millised patsiendid reageeriksid ravile paremini, tuginedes muutujate kombinatsioonidele. Isegi väga lihtne regressioonimudel, kui seda visualiseerida, võib näidata teavet muutujate kohta, mis aitaksid korraldada teoreetilisi kliinilisi katseid.
+Failis _notebook.ipynb_, mis käib selle õppetüki juurde, kustuta kõik lahtrid, vajutades 'prügikasti' ikooni.
 
-✅ Regressioonimeetodeid on palju erinevaid ja millise valid, sõltub küsimusest, millele vastust otsid. Kui tahad ennustada tõenäolist pikkust inimesele teatud vanuses, kasutaksid lineaarset regressiooni, kuna otsid **numbrilist väärtust**. Kui sind huvitab, kas teatud köök peaks olema vegan või mitte, otsid **kategooria määramist**, seega kasutaksid logistilist regressiooni. Õpid logistilisest regressioonist hiljem rohkem. Mõtle veidi, milliseid küsimusi saad andmetelt küsida ja milline neist meetoditest oleks sobivam.
+Selles osas töötad väikese diabeediandmestikuga, mis on Scikit-learn'i sisse ehitatud õppeotstarbel. Kujuta ette, et soovid testida raviviisi diabeetikutele. Masinõppemudelid võivad aidata otsustada, millised patsiendid reageerivad ravile paremini, tuginedes erinevate muutujate kombineeritud väärtustele. Isegi väga lihtne regressioonimudel võib visualiseerituna näidata infot muutujate kohta, mis aitavad teoreetilisi kliinilisi katseid paremini planeerida.
 
-Alustame ülesandega.
+✅ Regressioonimeetodeid on palju ning millist valida, sõltub sellest, mida soovid leida. Kui tahad ennustada inimese tõenäolist pikkust teatud vanuses, kasutad lineaarset regressiooni, sest otsid **numbrilist väärtust**. Kui tahad teada, kas mingi köögi tüüp on vegan või mitte, otsid **kategooria määratlust**, siis kasutad logistilist regressiooni. Logistilise regressiooni kohta õpid hiljem veel. Mõtle, milliseid küsimusi sa andmetelt küsida võid ja milline meetod oleks sobivam.
 
-### Teekide importimine
+Alustame nüüd selle ülesandega.
+
+### Impordi teegid
 
 Selle ülesande jaoks impordime mõned teegid:
 
-- **matplotlib**. See on kasulik [graafikute tööriist](https://matplotlib.org/) ja kasutame seda joondiagrammi loomiseks.
+- **matplotlib**. Kasulik [graafikutööriist](https://matplotlib.org/), mida kasutame joondiagrammi loomiseks.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) on kasulik teek numbriliste andmete käsitlemiseks Pythonis.
 - **sklearn**. See on [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) teek.
 
-Impordi mõned teegid, mis aitavad ülesande täitmisel.
+Impordi vajalikud teegid, et ülesannet täita.
 
-1. Lisa impordid, kirjutades järgmise koodi:
+1. Lisa import käsud, kirjutades järgmist kood:
 
    ```python
    import matplotlib.pyplot as plt
@@ -122,26 +123,26 @@ Impordi mõned teegid, mis aitavad ülesande täitmisel.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Ülal impordid `matplotlib`, `numpy` ja impordid `datasets`, `linear_model` ja `model_selection` teegist `sklearn`. `model_selection` kasutatakse andmete jagamiseks treening- ja testkomplektideks.
+   Ülal tood imports `matplotlib`, `numpy` ja lisaks `datasets`, `linear_model` ning `model_selection` `sklearn` teegist. `model_selection` kasutatakse andmete jagamiseks treening- ja testkoguks.
 
-### Diabeedi andmekogum
+### Diabeedi andmestik
 
-Sisseehitatud [diabeedi andmekogum](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) sisaldab 442 diabeediga seotud andmeproovi, millel on 10 tunnuse muutujat, millest mõned on:
+Sisse ehitatud [diabeedi andmestik](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) sisaldab 442 proovimaterjali diabeedi kohta, 10 tunnusega, millest mõned on:
 
-- age: vanus aastates
-- bmi: kehamassiindeks
-- bp: keskmine vererõhk
-- s1 tc: T-rakud (teatud tüüpi valged verelibled)
+- vanus: vanus aastates
+- kehakaaluindeks (BMI)
+- vererõhk (bp)
+- s1 tc: T-rakud (valgete vereliblede tüüp)
 
-✅ See andmekogum sisaldab tunnuse muutujana "sugu", mis on oluline diabeedi uurimisel. Paljud meditsiinilised andmekogumid sisaldavad sellist binaarset klassifikatsiooni. Mõtle veidi, kuidas sellised kategooriad võivad teatud osa elanikkonnast ravist välja jätta.
+✅ Selle andmestiku tunnusena on “sugu”, mis on oluline diabeediuuringutes. Paljud meditsiinilised andmestikud sisaldavad sellist binaarset klassifikatsiooni. Mõtle, kuidas sellised kategooriad võivad mõjutada ja vähendada osade elanikkonna ravile pääsemist.
 
-Nüüd laadi X ja y andmed.
+Laadi nüüd X ja y andmed.
 
-> 🎓 Pea meeles, et see on juhendatud õppimine ja vajame nimetatud 'y' sihtmärki.
+> 🎓 Pea meeles, see on juhendatud õppimine ja meil peab olema nimetatud eesmärk `y`.
 
-Uues koodilahtris laadi diabeedi andmekogum, kutsudes `load_diabetes()`. Sisend `return_X_y=True` näitab, et `X` on andmemaatriks ja `y` on regressiooni sihtmärk.
+Uues koodilahtris lae diabeedi andmestik funktsiooniga `load_diabetes()`. Parameeter `return_X_y=True` annab teada, et `X` on andmemaatriks ja `y` regressiooni eesmärgi vektor.
 
-1. Lisa mõned print-käsud, et näidata andmemaatriksi kuju ja selle esimest elementi:
+1. Lisa mõned print käsud, et kuvada andmemaatriksi kuju ja esimene element:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -149,9 +150,9 @@ Uues koodilahtris laadi diabeedi andmekogum, kutsudes `load_diabetes()`. Sisend 
     print(X[0])
     ```
 
-    Saad vastuseks tupli. Mida teed, on tupli kahe esimese väärtuse määramine vastavalt `X` ja `y`. Loe rohkem [tuplite kohta](https://wikipedia.org/wiki/Tuple).
+    Tagastuseks on tuple, mille kaks esimest väärtust määrad `X` ja `y` muutujatele. Loe rohkem [tuple’ide kohta](https://wikipedia.org/wiki/Tuple).
 
-    Näed, et need andmed sisaldavad 442 üksust, mis on kujundatud 10 elemendiga massiivideks:
+    Näed, et selles andmestikus on 442 üksust, mis on kuju 10 elemendiga massiividena:
 
     ```text
     (442, 10)
@@ -159,39 +160,39 @@ Uues koodilahtris laadi diabeedi andmekogum, kutsudes `load_diabetes()`. Sisend 
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Mõtle veidi andmete ja regressiooni sihtmärgi vahelisele seosele. Lineaarne regressioon ennustab seoseid tunnuse X ja sihtmuutuja y vahel. Kas leiad diabeedi andmekogumi [sihtmärgi](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) dokumentatsioonist? Mida see andmekogum näitab, arvestades sihtmärki?
+    ✅ Mõtle natuke seosele andmete ja regressiooni eesmärgi vahel. Lineaarne regressioon ennustab seost tunnuse X ja eesmärgi y vahel. Kas leiad dokumentatsioonist diabeedi andmestiku [eesmärgi](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)? Mida see andmestik näitab, arvestades eesmärki?
 
-2. Järgmisena vali osa sellest andmekogumist, mida graafikul kuvada, valides andmekogumi 3. veeru. Seda saab teha, kasutades `:` operaatorit kõigi ridade valimiseks ja seejärel valides 3. veeru indeksi (2) abil. Samuti saad andmed kujundada 2D massiiviks - nagu graafiku jaoks vajalik - kasutades `reshape(n_rows, n_columns)`. Kui üks parameetritest on -1, arvutatakse vastav mõõde automaatselt.
+2. Vali nüüd sellest andmestikust osa, mille joonistad, valides andmestiku 3. veeru. Seda saad teha, kasutades operaatorit `:` kõigi ridade valimiseks ja seejärel veeru valimiseks indeksi (2) abil. Andmeid vajadusel ümberkujunda 2D-massiiviks joonistamiseks, kasutades `reshape(n_rows, n_columns)`. Kui üks parameetritest on -1, arvutatakse selle mõõt automaatselt.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Igal ajal prindi andmed välja, et kontrollida nende kuju.
+   ✅ Vahel prindi alati andmed välja, et veenduda vormingus.
 
-3. Nüüd, kui andmed on graafiku jaoks valmis, saad näha, kas masin suudab määrata loogilise jaotuse numbrite vahel selles andmekogumis. Selleks pead jagama nii andmed (X) kui ka sihtmärgi (y) test- ja treeningkomplektideks. Scikit-learnil on selleks lihtne viis; saad jagada oma testandmed kindlas punktis.
+3. Nüüd, kui tead, et andmed on joonistamiseks valmis, vaatame, kas masin saab aidata loogilist jaotust arvude vahel selgitada. Selleks on vaja jagada nii andmed (X) kui ka eesmärk (y) test- ja treeningkoguks. Scikit-learn pakub lihtsat meetodit andmete jagamiseks antud punktist.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Nüüd oled valmis oma mudelit treenima! Laadi lineaarse regressiooni mudel ja treeni seda oma X ja y treeningkomplektidega, kasutades `model.fit()`:
+4. Nüüd oled valmis mudelit treenima! Lae lineaarse regressiooni mudel ja treeni seda oma X ja y treeningkoguga, kasutades `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` on funktsioon, mida näed paljudes ML teekides, nagu TensorFlow
+    ✅ `model.fit()` on funktsioon, mida näed paljudes ML teekides nagu TensorFlow.
 
-5. Seejärel loo ennustus, kasutades testandmeid, funktsiooni `predict()` abil. Seda kasutatakse joone joonistamiseks kõige sobivamasse kohta andmegruppide vahel.
+5. Seejärel loo ennustus testandmete põhjal, kasutades funktsiooni `predict()`. Seda kasutatakse joonistades joon mudeli andmegruppide vahel.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Nüüd on aeg andmeid graafikul kuvada. Matplotlib on selleks ülesandeks väga kasulik tööriist. Loo hajusdiagramm kõigist X ja y testandmetest ning kasuta ennustust, et joonistada joon kõige sobivamasse kohta mudeli andmegruppide vahel.
+6. Nüüd on aeg näidata andmeid graafikus. Matplotlib on selleks väga kasulik vahend. Loo hajuvusdiagramm kõigist X ja y testandmetest ning kasuta ennustust, et joonistada joon kõige loogilisemasse kohta mudeli andmerühmituse vahele.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -202,29 +203,32 @@ Uues koodilahtris laadi diabeedi andmekogum, kutsudes `load_diabetes()`. Sisend 
     plt.show()
     ```
 
-   ![hajusdiagramm, mis näitab diabeediga seotud andmepunkte](../../../../translated_images/et/scatterplot.ad8b356bcbb33be6.webp)
-✅ Mõtle veidi, mis siin toimub. Sirgjoon kulgeb läbi paljude väikeste andmepunktide, kuid mida see täpselt teeb? Kas näed, kuidas saaksid seda joont kasutada, et ennustada, kuhu uus, seni nägemata andmepunkt peaks graafiku y-telje suhtes sobituma? Proovi sõnastada selle mudeli praktiline kasutus.
+   ![hajuvusdiagramm, mis näitab diabeedi andmepunkte](../../../../translated_images/et/scatterplot.ad8b356bcbb33be6.webp)
 
-Palju õnne, sa ehitasid oma esimese lineaarse regressioonimudeli, tegid sellega ennustuse ja kuvad selle graafikul!
+
+   ✅ Mõtle natuke selle üle, mis siin toimub. Sirgjoon jookseb läbi paljude väikeste andmepunktide, aga mida see täpselt teeb? Kas näed, kuidas sa peaksid saama seda joont kasutada selleks, et ennustada, kuhu uus, nähtamata andmepunkt võiks suhtega plot'i y-teljele sobituda? Proovi sõnastada praktiline kasutusvõimalus selle mudeli jaoks.
+
+Palju õnne, sa ehitasid oma esimese lineaarse regressioonimudeli, tegid selle abil ennustuse ja kuvastasid selle plot'is!
 
 ---
 ## 🚀Väljakutse
 
-Kuvage graafikul mõni muu muutuja sellest andmestikust. Vihje: muuda seda rida: `X = X[:,2]`. Arvestades selle andmestiku sihtmärki, mida saate avastada diabeedi kui haiguse progresseerumise kohta?
+Kuvada selle andmekogu mõni teine muutuja. Vihje: muuda seda rida: `X = X[:,2]`. Arvestades selle andmekogu sihtmärki, mida sa suudad avastada diabeedi haiguse progresseerumise kohta?
+## [Loengu järeltest](https://ff-quizzes.netlify.app/en/ml/)
 
-## [Loengu järgne viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## Ülevaade & Iseõpe
 
-## Ülevaade ja iseseisev õppimine
+Selles juhendis töötasid sa lihtsa lineaarse regressiooniga, mitte univariatiivse või mitme muutujaga lineaarse regressiooniga. Loe veidi nende meetodite erinevustest või vaata seda [videot](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Selles juhendis töötasite lihtsa lineaarse regressiooniga, mitte univariatiivse või mitme muutujaga regressiooniga. Lugege veidi nende meetodite erinevuste kohta või vaadake [seda videot](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+Loe rohkem regressiooni kontseptsioonist ja mõtle, milliseid küsimusi selle tehnikaga saab vastata. Võta see [juhend](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), et oma arusaama süvendada.
 
-Lugege rohkem regressiooni kontseptsiooni kohta ja mõelge, millistele küsimustele saab selle tehnikaga vastata. Võtke see [juhend](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), et süvendada oma arusaamist.
+## Kodune ülesanne
 
-## Ülesanne
-
-[Teistsugune andmestik](assignment.md)
+[Teine andmekogu](assignment.md)
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

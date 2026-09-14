@@ -1,55 +1,55 @@
-# Kezdjük el a Python és a Scikit-learn használatát regressziós modellekhez
+# Kezdjünk neki a Python és a Scikit-learn használatának regressziós modellekhez
 
-![Vázlat a regressziókról](../../../../sketchnotes/ml-regression.png)
+![Összegzés a regressziókról egy sketchnote-ban](../../../../translated_images/hu/ml-regression.4e4f70e3b3ed446e.webp)
 
-> Vázlatrajz: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Sketchnote készítette [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Előadás előtti kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Ez a lecke R nyelven is elérhető!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Ez az óra elérhető R-ben is!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Bevezetés
 
-Ebben a négy leckében megtanulhatod, hogyan építs regressziós modelleket. Rövidesen megbeszéljük, hogy mire használhatók ezek. De mielőtt bármibe belekezdenél, győződj meg róla, hogy a megfelelő eszközök rendelkezésre állnak a folyamat elindításához!
+Ezekben a négy leckében megismered, hogyan kell regressziós modelleket építeni. Hamarosan megbeszéljük, mire valók ezek. De mielőtt bármit is tennél, győződj meg róla, hogy a megfelelő eszközök telepítve vannak a folyamat elindításához!
 
-Ebben a leckében megtanulod:
+Ebben a leckében megtanulod, hogyan kell:
 
-- Hogyan konfiguráld a számítógéped helyi gépi tanulási feladatokhoz.
-- Hogyan dolgozz Jupyter notebookokkal.
-- Hogyan használd a Scikit-learn könyvtárat, beleértve annak telepítését.
-- Hogyan fedezd fel a lineáris regressziót egy gyakorlati feladaton keresztül.
+- Konfigurálni a számítógépedet helyi gépi tanulási feladatokhoz.
+- Jupyter Notebookokkal dolgozni.
+- Használni a Scikit-learn könyvtárat, beleértve annak telepítését is.
+- Felfedezni a lineáris regressziót egy gyakorlati feladaton keresztül.
 
-## Telepítések és konfigurációk
+## Telepítések és beállítások
 
-[![ML kezdőknek - Eszközök beállítása gépi tanulási modellek építéséhez](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML kezdőknek - Eszközök beállítása gépi tanulási modellek építéséhez")
+[![Gépi tanulás kezdőknek - Állítsd be az eszközeidet a gépi tanulási modellek építéséhez](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "Gépi tanulás kezdőknek - Állítsd be az eszközeidet a gépi tanulási modellek építéséhez")
 
-> 🎥 Kattints a fenti képre egy rövid videóért, amely bemutatja, hogyan konfiguráld a számítógéped a gépi tanuláshoz.
+> 🎥 Kattints a fenti képre egy rövid videó megtekintéséhez, amely végigvezet a számítógép gépi tanuláshoz való beállításán.
 
-1. **Telepítsd a Python-t**. Győződj meg róla, hogy a [Python](https://www.python.org/downloads/) telepítve van a számítógépeden. A Python-t számos adatfeldolgozási és gépi tanulási feladathoz fogod használni. A legtöbb számítógépes rendszer már tartalmaz Python telepítést. Hasznosak lehetnek a [Python Coding Pack-ek](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) is, amelyek megkönnyítik a beállítást néhány felhasználó számára.
+1. **Telepítsd a Pythont**. Ellenőrizd, hogy [Python](https://www.python.org/downloads/) telepítve van-e a számítógépeden. A Python sok adat tudományi és gépi tanulási feladathoz szükséges. A legtöbb rendszer már tartalmaz Python telepítést. Elérhetők hasznos [Python fejlesztőkészletek](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) is, melyek megkönnyítik a beállítást egyes felhasználók számára.
 
-   A Python bizonyos használati módjai azonban eltérő verziókat igényelhetnek. Ezért hasznos lehet egy [virtuális környezetben](https://docs.python.org/3/library/venv.html) dolgozni.
+   A Python egyes felhasználási módjai egy adott verziót igényelnek, míg mások mást. Emiatt hasznos egy [virtuális környezetben](https://docs.python.org/3/library/venv.html) dolgozni.
 
-2. **Telepítsd a Visual Studio Code-ot**. Győződj meg róla, hogy a Visual Studio Code telepítve van a számítógépedre. Kövesd ezeket az utasításokat a [Visual Studio Code telepítéséhez](https://code.visualstudio.com/). Ebben a kurzusban a Python-t a Visual Studio Code-ban fogod használni, ezért érdemes lehet felfrissíteni a tudásodat arról, hogyan [konfiguráld a Visual Studio Code-ot](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) Python fejlesztéshez.
+2. **Telepítsd a Visual Studio Code-ot**. Győződj meg róla, hogy telepítve van a Visual Studio Code a számítógépeden. Kövesd az [Visual Studio Code telepítési útmutatóját](https://code.visualstudio.com/) az alap telepítéshez. A tanfolyamban Python kódot a Visual Studio Code-ban fogsz írni, ezért érdemes átnézni, hogyan kell [Visual Studio Code-ot beállítani Python fejlesztéshez](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott).
 
-   > Ismerkedj meg a Python-nal ezeknek a [Learn moduloknak](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) a segítségével.
+   > Ismerkedj meg alaposan a Python használatával az alábbi [tanulási modulok](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) segítségével.
    >
-   > [![Python beállítása a Visual Studio Code-ban](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Python beállítása a Visual Studio Code-ban")
+   > [![Python beállítása Visual Studio Code-ban](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Python beállítása Visual Studio Code-ban")
    >
-   > 🎥 Kattints a fenti képre egy videóért: Python használata a VS Code-ban.
+   > 🎥 Kattints a fenti képre egy videó megtekintéséhez: Python használata VS Code-ban.
 
-3. **Telepítsd a Scikit-learn-t**, a [következő utasítások](https://scikit-learn.org/stable/install.html) alapján. Mivel Python 3-at kell használnod, ajánlott egy virtuális környezet használata. Ha M1 Mac-en telepíted ezt a könyvtárat, különleges utasításokat találsz a fenti oldalon.
+3. **Telepítsd a Scikit-learn könyvtárat**, az [itt található utasítások](https://scikit-learn.org/stable/install.html) alapján. Mivel Python 3-at kell használnod, ajánlott virtuális környezetet használni. Megjegyzés: ha M1 Mac-en telepíted ezt a könyvtárat, külön utasítások vannak a fenti linken.
 
-4. **Telepítsd a Jupyter Notebook-ot**. Telepítsd a [Jupyter csomagot](https://pypi.org/project/jupyter/).
+1. **Telepítsd a Jupyter Notebookot**. Szükséged lesz a [Jupyter csomag telepítésére](https://pypi.org/project/jupyter/).
 
-## A gépi tanulási fejlesztési környezeted
+## A gépi tanulási fejlesztőkörnyezeted
 
-A Python kód fejlesztéséhez és gépi tanulási modellek létrehozásához **notebookokat** fogsz használni. Ez a fájltípus az adatkutatók körében gyakori eszköz, és `.ipynb` kiterjesztéssel azonosítható.
+A Python kód fejlesztéséhez és gépi tanulási modellek létrehozásához **notebookokat** fogsz használni. Ez a fájltípus gyakori eszköz az adattudósok között, jelölése a `.ipynb` kiterjesztés.
 
-A notebookok interaktív környezetet biztosítanak, amely lehetővé teszi a fejlesztő számára, hogy kódot írjon, jegyzeteket készítsen, és dokumentációt írjon a kód köré, ami különösen hasznos kísérleti vagy kutatási projektek esetén.
+A notebookok interaktív környezetet biztosítanak, ahol a fejlesztő egyszerre tud kódolni és jegyzeteket, dokumentációt írni a kód köré, ami különösen hasznos kísérleti vagy kutatási projektekben.
 
-[![ML kezdőknek - Jupyter Notebookok beállítása regressziós modellek építéséhez](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML kezdőknek - Jupyter Notebookok beállítása regressziós modellek építéséhez")
+[![Gépi tanulás kezdőknek - Jupyter Notebookok beállítása regressziós modellekhez](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "Gépi tanulás kezdőknek - Jupyter Notebookok beállítása regressziós modellekhez")
 
-> 🎥 Kattints a fenti képre egy rövid videóért, amely bemutatja ezt a gyakorlatot.
+> 🎥 Kattints a fenti képre egy rövid videó megtekintéséhez, amely végigvezet ezen a gyakorlaton.
 
 ### Gyakorlat - dolgozz egy notebookkal
 
@@ -57,64 +57,65 @@ Ebben a mappában megtalálod a _notebook.ipynb_ fájlt.
 
 1. Nyisd meg a _notebook.ipynb_ fájlt a Visual Studio Code-ban.
 
-   Egy Jupyter szerver indul el Python 3+ környezettel. A notebookban olyan részeket találsz, amelyek `futtathatók`, azaz kódrészletek. Egy kódrészletet a lejátszás gombra hasonlító ikon kiválasztásával futtathatsz.
+   Egy Jupyter szerver elindul Python 3+ környezetben. Láthatsz majd notebook cellákat, amelyek kódblokkok, ezeket lehet `futtatni`. Egy kódblokk futtatásához válaszd a lejátszás gomb ikont.
 
-2. Válaszd ki az `md` ikont, és adj hozzá egy kis markdown szöveget, például a következőt: **# Üdvözöllek a notebookodban**.
+1. Válaszd ki az `md` ikont és adj hozzá egy kis markdown szöveget, például a következőt: **# Üdvözöl a notebookod**.
 
    Ezután adj hozzá egy kis Python kódot.
 
-3. Írd be a következő kódot: **print('hello notebook')**.
-4. Kattints a nyílra a kód futtatásához.
+1. Gépeld be a **print('hello notebook')** parancsot a kódblokkba.
+1. Kattints a nyílra a kód futtatásához.
 
-   A következő kimenetet kell látnod:
+   Látnod kell a kinyomtatott üzenetet:
 
     ```output
     hello notebook
     ```
 
-![VS Code egy megnyitott notebookkal](../../../../2-Regression/1-Tools/images/notebook.jpg)
+![VS Code egy megnyitott notebookkal](../../../../translated_images/hu/notebook.4a3ee31f396b8832.webp)
 
-A kódot megjegyzésekkel egészítheted ki, hogy önmagad számára dokumentáld a notebookot.
+Kódod kommentekkel gazdagíthatod, hogy a notebook dokumentált legyen.
 
-✅ Gondolkodj el egy percre azon, hogy mennyire különbözik egy webfejlesztő munkakörnyezete egy adatkutatóétól.
+✅ Gondolkodj el egy percre, mennyire más a webfejlesztő és az adattudós munkakörnyezete.
 
-## Scikit-learn használatának elsajátítása
+## Kész a Scikit-learn használatra
 
-Most, hogy a Python be van állítva a helyi környezetedben, és kényelmesen használod a Jupyter notebookokat, ismerkedj meg a Scikit-learn-nel (ejtsd: `száj` mint a `science`). A Scikit-learn egy [kiterjedt API-t](https://scikit-learn.org/stable/modules/classes.html#api-ref) biztosít, amely segít a gépi tanulási feladatok elvégzésében.
+Most, hogy a Python helyileg be van állítva és kényelmesen használod a Jupyter Notebookokat, ismerkedjünk meg a Scikit-learn könyvtárral is (kiejtve: "szájkit", mint a "science"). A Scikit-learn egy [kiterjedt API-t](https://scikit-learn.org/stable/modules/classes.html#api-ref) biztosít a gépi tanulási feladatok elvégzéséhez.
 
-A [weboldaluk](https://scikit-learn.org/stable/getting_started.html) szerint: "A Scikit-learn egy nyílt forráskódú gépi tanulási könyvtár, amely támogatja a felügyelt és felügyelet nélküli tanulást. Emellett különféle eszközöket biztosít a modellillesztéshez, adat-előfeldolgozáshoz, modellkiválasztáshoz és értékeléshez, valamint számos egyéb segédprogramhoz."
+A [honlapjuk](https://scikit-learn.org/stable/getting_started.html) szerint: "A Scikit-learn egy nyílt forráskódú gépi tanulási könyvtár, amely támogatja a felügyelt és felügyelet nélküli tanulást. Emellett különböző eszközöket kínál modellillesztéshez, adat-előkészítéshez, modellválasztáshoz és kiértékeléshez, valamint sok más hasznos funkciót."
 
-Ebben a kurzusban a Scikit-learn-t és más eszközöket fogsz használni gépi tanulási modellek építéséhez, hogy úgynevezett 'hagyományos gépi tanulási' feladatokat végezz. Szándékosan kerültük a neurális hálózatokat és a mélytanulást, mivel ezek jobban lefedhetők a hamarosan megjelenő 'AI kezdőknek' tananyagunkban.
+Ebben a tanfolyamban a Scikit-learn és egyéb eszközök segítségével gépi tanulási modelleket építünk, elsősorban a hagyományos gépi tanulásra fókuszálva. Szándékosan kerüljük a neurális hálózatokat és mélytanulást, mivel ezek egy külön 'Mesterséges intelligencia kezdőknek' tananyagban lesznek részletesebben tárgyalva.
 
-A Scikit-learn egyszerűvé teszi a modellek építését és értékelését. Elsősorban numerikus adatok használatára összpontosít, és számos előre elkészített adathalmazt tartalmaz tanulási célokra. Emellett előre elkészített modelleket is tartalmaz, amelyeket a diákok kipróbálhatnak. Fedezzük fel a folyamatot, amely során előre csomagolt adatokat töltünk be, és egy beépített becslőt használunk az első ML modellünkhöz a Scikit-learn segítségével.
+A Scikit-learn segítségével egyszerű modelleket építhetsz és kiértékelhetsz használatra. Elsősorban numerikus adatokat kezel és több beépített mintaadatot tartalmaz tanulási eszközként. Emellett van előre elkészített modellje is, amit a diákok kipróbálhatnak. Először nézzük meg, hogyan tölthetünk be beépített adatokat és használhatjuk beépített eldöntő modellt egy egyszerű gépi tanulási feladathoz.
 
 ## Gyakorlat - az első Scikit-learn notebookod
 
-> Ez az oktatóanyag a Scikit-learn weboldalán található [lineáris regressziós példa](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) alapján készült.
+> Ez az oktatóanyag a [lineáris regresszió példájából](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) származik a Scikit-learn honlapjáról.
 
-[![ML kezdőknek - Az első lineáris regressziós projekted Python-ban](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML kezdőknek - Az első lineáris regressziós projekted Python-ban")
 
-> 🎥 Kattints a fenti képre egy rövid videóért, amely bemutatja ezt a gyakorlatot.
+[![Gépi tanulás kezdőknek - Az első lineáris regressziós projekted Pythonban](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "Gépi tanulás kezdőknek - Az első lineáris regressziós projekted Pythonban")
 
-A leckéhez tartozó _notebook.ipynb_ fájlban töröld ki az összes cellát a 'szemetes' ikonra kattintva.
+> 🎥 Kattints a fenti képre az ehhez a feladathoz készült rövid videóért.
 
-Ebben a részben egy kis, a Scikit-learn-be beépített diabétesz adathalmazzal fogsz dolgozni tanulási célokra. Képzeld el, hogy egy kezelést szeretnél tesztelni cukorbetegek számára. A gépi tanulási modellek segíthetnek meghatározni, hogy mely betegek reagálnának jobban a kezelésre, a változók kombinációi alapján. Még egy nagyon alapvető regressziós modell is, ha vizualizáljuk, információt nyújthat a változókról, amelyek segíthetnek a klinikai vizsgálatok megszervezésében.
+A _notebook.ipynb_ fájlban, amely ehhez az órához tartozik, törölj minden cellát a 'kuka' ikon használatával.
 
-✅ Számos regressziós módszer létezik, és hogy melyiket választod, az attól függ, milyen kérdésre keresel választ. Ha például egy adott korú személy várható magasságát szeretnéd megjósolni, lineáris regressziót használnál, mivel egy **numerikus értéket** keresel. Ha viszont azt szeretnéd megtudni, hogy egy konyha típusa vegánnak tekinthető-e vagy sem, akkor egy **kategória-hozzárendelést** keresel, így logisztikus regressziót használnál. Később többet megtudhatsz a logisztikus regresszióról. Gondolkodj el azon, hogy milyen kérdéseket tehetsz fel az adatokkal kapcsolatban, és melyik módszer lenne megfelelőbb.
+Ebben a részben egy kis, a cukorbetegséggel kapcsolatos mintaadattal dolgozol majd, amely a Scikit-learnbe be van építve tanulási célokra. Képzeld el, hogy egy kezelési módszert szeretnél tesztelni cukorbetegeknél. A gépi tanulási modellek segíthetnek meghatározni, mely páciensek reagálnak jobban a kezelésre, az egyes változók kombinációi alapján. Egy nagyon egyszerű regressziós modell, ha vizualizálod, információt nyújthat azokról a változókról, amik segíthetnek a klinikai kísérletek elméleti tervezésében.
 
-Kezdjünk neki ennek a feladatnak.
+✅ Sokféle regressziós módszer létezik, és hogy melyiket választod, attól függ, milyen választ keresel. Ha például előre akarod jelezni egy adott korú személy várható magasságát, lineáris regressziót használsz, mert **numerikus értéket** keresel. Ha viszont azt akarod megtudni, hogy egy konyha vegan kategóriába esik-e vagy sem, **kategória-besorolásra** van szükséged, ezért logisztikus regressziót alkalmaznád. A logisztikus regressziót később részletesebben megismered. Gondolkodj el azon, milyen kérdéseket tehetsz fel az adatoknak, és melyik módszer lenne megfelelőbb.
+
+Kezdjünk neki a feladatnak.
 
 ### Könyvtárak importálása
 
-Ehhez a feladathoz néhány könyvtárat fogunk importálni:
+Ehhez a feladathoz néhány könyvtárat importálunk:
 
-- **matplotlib**. Ez egy hasznos [grafikonkészítő eszköz](https://matplotlib.org/), amelyet vonaldiagramok készítésére fogunk használni.
-- **numpy**. A [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) egy hasznos könyvtár numerikus adatok kezelésére Python-ban.
+- **matplotlib**. Egy hasznos [grafikus eszköz](https://matplotlib.org/), amit vonaldiagram készítéséhez fogunk használni.
+- **numpy**. A [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) egy hasznos könyvtár számadatok kezeléséhez Pythonban.
 - **sklearn**. Ez a [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) könyvtár.
 
-Importálj néhány könyvtárat a feladatok elvégzéséhez.
+Importálj néhány könyvtárat a feladat elvégzéséhez.
 
-1. Add hozzá az importokat az alábbi kód beírásával:
+1. Add hozzá az importokat a következő kód beírásával:
 
    ```python
    import matplotlib.pyplot as plt
@@ -122,26 +123,26 @@ Importálj néhány könyvtárat a feladatok elvégzéséhez.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   A fenti kódban importálod a `matplotlib`-et, a `numpy`-t, valamint a `datasets`, `linear_model` és `model_selection` modulokat a `sklearn`-ből. A `model_selection` a teszt- és tanulóhalmazok szétválasztására szolgál.
+   Fent a `matplotlib`, `numpy` könyvtárakat importálod, továbbá a `datasets`, `linear_model` és `model_selection` modulokat a `sklearn`-ből. A `model_selection` a tanító és teszt adathalmazok szétválasztására szolgál.
 
-### A diabétesz adathalmaz
+### A cukorbetegség adatállomány
 
-A beépített [diabétesz adathalmaz](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) 442 diabéteszhez kapcsolódó mintát tartalmaz, 10 jellemző változóval, amelyek közül néhány:
+A beépített [cukorbetegség adatállomány](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) 442 mintából áll, 10 jellemző változóval, amelyek közül néhány:
 
-- age: életkor években
-- bmi: testtömegindex
+- kor: életkor években
+- bmi: testtömeg-index
 - bp: átlagos vérnyomás
-- s1 tc: T-sejtek (egy típusú fehérvérsejtek)
+- s1 tc: T-sejtek (egyféle fehérvérsejt)
 
-✅ Ez az adathalmaz tartalmazza a 'nem' fogalmát, mint a diabétesz kutatás szempontjából fontos jellemző változót. Számos orvosi adathalmaz tartalmaz ilyen típusú bináris osztályozást. Gondolkodj el azon, hogy az ilyen kategorizálások hogyan zárhatnak ki bizonyos népességcsoportokat a kezelésekből.
+✅ Ez az adathalmaz tartalmazza a 'nem' fogalmát is, mint fontos jellemzőt a cukorbetegséggel kapcsolatos kutatásokban. Sok orvosi adathalmaz tartalmaz ilyen bináris besorolásokat. Gondolkodj el, hogyan zárhatnak ki bizonyos kategóriák ilyen osztályozások miatt népességcsoportokat a kezelésekből.
 
-Most töltsd be az X és y adatokat.
+Most töltsd be az X és y adathalmazokat.
 
-> 🎓 Ne feledd, hogy ez felügyelt tanulás, és szükségünk van egy megnevezett 'y' célváltozóra.
+> 🎓 Ne feledd, ez felügyelt tanulás, nekünk egy nevesített, 'y' célváltozóra van szükségünk.
 
-Egy új kódcellában töltsd be a diabétesz adathalmazt a `load_diabetes()` hívásával. A `return_X_y=True` bemenet jelzi, hogy az `X` egy adatmátrix lesz, az `y` pedig a regressziós cél.
+Egy új kódcella segítségével töltsd be a cukorbetegség adatállományt `load_diabetes()` hívásával. A `return_X_y=True` paraméter jelzi, hogy `X` adatmátrix lesz, míg az `y` a regressziós célérték.
 
-1. Adj hozzá néhány print parancsot, hogy megjelenítsd az adatmátrix alakját és az első elemét:
+1. Adj néhány print parancsot az adatmátrix alakjának és első elemének megjelenítésére:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -149,9 +150,9 @@ Egy új kódcellában töltsd be a diabétesz adathalmazt a `load_diabetes()` h�
     print(X[0])
     ```
 
-    Amit válaszként kapsz, az egy tuple. Amit csinálsz, az az, hogy a tuple első két értékét hozzárendeled az `X`-hez és az `y`-hoz. Tudj meg többet a [tuple-ökről](https://wikipedia.org/wiki/Tuple).
+    Amit visszakapsz válaszként, az egy tuple. Amit csinálsz, hogy a tuple első két elemét az `X` és `y` változókhoz rendeld. Tudj meg többet a [tuple-ökről](https://wikipedia.org/wiki/Tuple).
 
-    Láthatod, hogy ezek az adatok 442 elemet tartalmaznak, amelyek 10 elemből álló tömbökbe vannak rendezve:
+    Láthatod, hogy ez az adatállomány 442 elemből áll, melyek 10 elemes tömbökbe vannak rendezve:
 
     ```text
     (442, 10)
@@ -159,60 +160,75 @@ Egy új kódcellában töltsd be a diabétesz adathalmazt a `load_diabetes()` h�
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Gondolkodj el az adatok és a regressziós cél közötti kapcsolaton. A lineáris regresszió az X jellemző és az y célváltozó közötti kapcsolatot jósolja meg. Megtalálod a [célváltozót](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) a diabétesz adathalmaz dokumentációjában? Mit mutat ez az adathalmaz a célváltozó alapján?
+    ✅ Gondolkodj el az adatok és a regressziós célérték kapcsolatán. A lineáris regresszió az X jellemző és y célváltozó közötti kapcsolatokat becsüli meg. Meg tudod találni a [célt](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) a cukorbetegség adatállomány dokumentációjában? Mit mutat be ez az adatállomány a cél alapján?
 
-2. Ezután válassz ki egy részt ebből az adathalmazból, hogy ábrázolhasd, például az adathalmaz 3. oszlopát. Ezt a `:` operátorral teheted meg, hogy kiválaszd az összes sort, majd az index (2) segítségével kiválaszd a 3. oszlopot. Az adatokat 2D tömbbé is átalakíthatod - ahogy az ábrázoláshoz szükséges - a `reshape(n_rows, n_columns)` használatával. Ha az egyik paraméter -1, a megfelelő dimenzió automatikusan kiszámításra kerül.
+2. Ezután válassz ki egy részt az adatállományból a 3. oszlop kiválasztásával. Ezt úgy teheted meg, hogy az összes sort kiválasztod a `:` operátorral, majd az index (2) segítségével a 3. oszlopot. Az adatot átalakíthatod 2D tömbbé, amire szükség van a megjelenítéshez, a `reshape(n_rows, n_columns)` függvénnyel. Ha egy paraméter értéke -1, annak megfelelő dimenziót automatikusan kiszámítja a rendszer.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Bármikor nyomtasd ki az adatokat, hogy ellenőrizd az alakjukat.
+   ✅ Bármikor nyomtasd ki az adatot, hogy ellenőrizd az alakját.
 
-3. Most, hogy az adatok készen állnak az ábrázolásra, megnézheted, hogy egy gép segíthet-e logikus határvonalat húzni az adathalmaz számai között. Ehhez szét kell választanod az adatokat (X) és a célváltozót (y) teszt- és tanulóhalmazokra. A Scikit-learn egyszerű módot kínál erre; az adataidat egy adott ponton oszthatod szét.
+3. Most, hogy készen áll az adat a megjelenítésre, nézd meg, segíthet-e egy gép logikus elválasztást találni az adatok között. Ehhez mind az X adatokat, mind az y célértékeket fel kell osztani teszt és tanító adathalmazokra. A Scikit-learn egyszerű megoldást kínál erre: a tesztadatokat egy adott pontnál szeletelheted.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Most készen állsz a modell betanítására! Töltsd be a lineáris regressziós modellt, és tanítsd be az X és y tanulóhalmazokkal a `model.fit()` használatával:
+4. Most már készen állsz a modell edzésére! Töltsd be a lineáris regressziós modellt és edzd az X és y tanító adatokkal a `model.fit()` segítségével:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ A `model.fit()` egy olyan függvény, amelyet sok ML könyvtárban, például a TensorFlow-ban is láthatsz.
+    ✅ A `model.fit()` olyan függvény, amely sok ML könyvtárban, például a TensorFlow-ban is megtalálható.
 
-5. Ezután hozz létre egy előrejelzést a tesztadatok alapján a `predict()` függvény használatával. Ezt fogod használni a vonal meghúzásához az adathalmaz csoportjai között.
+5. Ezután készíts előrejelzést a tesztadatok alapján a `predict()` függvénnyel. Ezt a modellt felhasználhatod, hogy a modell által képzett adatcsoportok közé a legmegfelelőbb helyre vonalat rajzolj.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Most itt az ideje, hogy megjelenítsd az adatokat egy diagramon. A Matplotlib
-✅ Gondolkodj el egy kicsit azon, mi történik itt. Egy egyenes vonal halad át sok apró adatponton, de pontosan mit csinál? Látod, hogyan tudnád ezt a vonalat felhasználni arra, hogy megjósold, hol helyezkedne el egy új, még nem látott adatpont a grafikon y tengelyéhez viszonyítva? Próbáld meg szavakba önteni ennek a modellnek a gyakorlati hasznát.
+6. Most jelenítsd meg az adatokat egy ábrán. A Matplotlib nagyon hasznos eszköz erre. Készíts szórásdiagramot az összes X és y tesztadatról, és a predikció segítségével húzz vonalat a modell adatcsoportjai közé, ahol az a leglogikusabb.
 
-Gratulálok, elkészítetted az első lineáris regressziós modelledet, készítettél vele egy előrejelzést, és megjelenítetted egy grafikonon!
+    ```python
+    plt.scatter(X_test, y_test,  color='black')
+    plt.plot(X_test, y_pred, color='blue', linewidth=3)
+    plt.xlabel('Scaled BMIs')
+    plt.ylabel('Disease Progression')
+    plt.title('A Graph Plot Showing Diabetes Progression Against BMI')
+    plt.show()
+    ```
+
+   ![szórásdiagram cukorbetegség adatpontokról](../../../../translated_images/hu/scatterplot.ad8b356bcbb33be6.webp)
+
+
+   ✅ Gondolkodj egy kicsit azon, mi is történik itt. Egy egyenes vonal halad keresztül sok kis adatponton, de pontosan mit is csinál? Látod, hogyan használhatod ezt a vonalat annak előrejelzésére, hogy egy új, még nem látott adatpont hol illeszkedjen az ábra y tengelyéhez képest? Próbáld meg szavakba önteni ennek a modellnek a gyakorlati hasznát.
+
+Gratulálunk, elkészítetted az első lineáris regressziós modelledet, készítettél vele előrejelzést, és meg is jelenítettél egy ábrán!
 
 ---
 ## 🚀Kihívás
 
-Ábrázolj egy másik változót ebből az adatállományból. Tipp: szerkeszd ezt a sort: `X = X[:,2]`. Ennek az adatállománynak a célértéke alapján mit tudsz felfedezni a cukorbetegség betegségként való előrehaladásáról?
-## [Utólagos kvíz](https://ff-quizzes.netlify.app/en/ml/)
+Ábrázolj egy másik változót ebből az adathalmazból. Tipp: szerkeszd ezt a sort: `X = X[:,2]`. Tekintettel az adathalmaz célváltozójára, mit tudsz felfedezni a cukorbetegség betegségként való lefolyásáról?
+## [Előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Áttekintés és önálló tanulás
 
-Ebben a bemutatóban egyszerű lineáris regresszióval dolgoztál, nem pedig univariáns vagy többszörös lineáris regresszióval. Olvass egy kicsit ezeknek a módszereknek a különbségeiről, vagy nézd meg [ezt a videót](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+Ebben a bemutatóban egyszerű lineáris regresszióval dolgoztál, nem egyszereplős vagy többváltozós lineáris regresszióval. Olvass kicsit ezeknek a módszereknek a különbségeiről, vagy nézd meg ezt a [videót](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Olvass többet a regresszió fogalmáról, és gondolkodj el azon, milyen típusú kérdésekre lehet választ adni ezzel a technikával. Vegyél részt [ebben a bemutatóban](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), hogy elmélyítsd a tudásodat.
+Olvass többet a regresszió fogalmáról, és gondolkodj el rajta, hogy milyen kérdésekre tud választ adni ez a technika. Végezd el ezt a [gyakorlati útmutatót](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), hogy mélyebb ismeretekre tegyél szert.
 
 ## Feladat
 
-[Egy másik adatállomány](assignment.md)
+[Egy másik adathalmaz](assignment.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Fontos információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

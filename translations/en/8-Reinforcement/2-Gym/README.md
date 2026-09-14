@@ -1,14 +1,34 @@
+# CartPole Skating
+
+The problem we have been solving in the previous lesson might seem like a toy problem, not really applicable for real life scenarios. This is not the case, because many real world problems also share this scenario - including playing Chess or Go. They are similar, because we also have a board with given rules and a **discrete state**.
+
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
+
+## Introduction
+
+In this lesson we will apply the same principles of Q-Learning to a problem with **continuous state**, i.e. a state that is given by one or more real numbers. We will deal with the following problem:
+
+> **Problem**: If Peter wants to escape from the wolf, he needs to be able to move faster. We will see how Peter can learn to skate, in particular, to keep balance, using Q-Learning.
+
+![The great escape!](../../../../translated_images/en/escape.18862db9930337e3.webp)
+
+> Peter and his friends get creative to escape the wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
+
+We will use a simplified version of balancing known as a **CartPole** problem. In the cartpole world, we have a horizontal slider that can move left or right, and the goal is to balance a vertical pole on top of the slider.
+
+<img alt="a cartpole" src="../../../../translated_images/en/cartpole.b5609cc0494a14f7.webp" width="200"/>
+
 ## Prerequisites
 
-In this lesson, we will use a library called **OpenAI Gym** to simulate different **environments**. You can run the code for this lesson locally (e.g., using Visual Studio Code), in which case the simulation will open in a new window. If you're running the code online, you may need to make some adjustments, as described [here](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+In this lesson, we will be using a library called **OpenAI Gym** to simulate different **environments**. You can run this lesson's code locally (eg. from Visual Studio Code), in which case the simulation will open in a new window. When running the code online, you may need to make some tweaks to the code, as described [here](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
-In the previous lesson, the rules of the game and the state were defined by the `Board` class that we created ourselves. Here, we will use a specialized **simulation environment** to simulate the physics of the balancing pole. One of the most popular simulation environments for training reinforcement learning algorithms is called [Gym](https://gym.openai.com/), maintained by [OpenAI](https://openai.com/). Using Gym, we can create various **environments**, ranging from cartpole simulations to Atari games.
+In the previous lesson, the rules of the game and the state were given by the `Board` class which we defined ourselves. Here we will use a special **simulation environment**, which will simulate the physics behind the balancing pole. One of the most popular simulation environments for training reinforcement learning algorithms is called a [Gym](https://gym.openai.com/), which is maintained by [OpenAI](https://openai.com/). By using this gym we can create difference **environments** from a cartpole simulation to Atari games.
 
-> **Note**: You can explore other environments available in OpenAI Gym [here](https://gym.openai.com/envs/#classic_control).
+> **Note**: You can see other environments available from OpenAI Gym [here](https://gym.openai.com/envs/#classic_control). 
 
-First, let's install Gym and import the required libraries (code block 1):
+First, let's install the gym and import required libraries (code block 1):
 
 ```python
 import sys
@@ -20,15 +40,15 @@ import numpy as np
 import random
 ```
 
-## Exercise - Initialize a CartPole Environment
+## Exercise - initialize a cartpole environment
 
-To work on the cartpole balancing problem, we need to initialize the corresponding environment. Each environment is associated with:
+To work with a cartpole balancing problem, we need to initialize corresponding environment. Each environment is associated with an:
 
-- **Observation space**, which defines the structure of the information we receive from the environment. For the cartpole problem, we receive the position of the pole, velocity, and other values.
+- **Observation space** that defines the structure of information that we receive from the environment. For cartpole problem, we receive position of the pole, velocity and some other values.
 
-- **Action space**, which defines the possible actions. In this case, the action space is discrete and consists of two actions: **left** and **right**. (code block 2)
+- **Action space** that defines possible actions. In our case the action space is discrete, and consists of two actions - **left** and **right**. (code block 2)
 
-1. To initialize the environment, type the following code:
+1. To initialize, type the following code:
 
     ```python
     env = gym.make("CartPole-v1")
@@ -37,11 +57,11 @@ To work on the cartpole balancing problem, we need to initialize the correspondi
     print(env.action_space.sample())
     ```
 
-To understand how the environment works, let's run a short simulation for 100 steps. At each step, we provide an action to be taken—here, we randomly select an action from `action_space`.
+To see how the environment works, let's run a short simulation for 100 steps. At each step, we provide one of the actions to be taken - in this simulation we just randomly select an action from `action_space`. 
 
-1. Run the code below and observe the results.
+1. Run the code below and see what it leads to.
 
-    ✅ It's recommended to run this code on a local Python installation! (code block 3)
+    ✅ Remember that it is preferred to run this code on local Python installation! (code block 3)
 
     ```python
     env.reset()
@@ -52,11 +72,11 @@ To understand how the environment works, let's run a short simulation for 100 st
     env.close()
     ```
 
-    You should see something similar to this image:
+    You should be seeing something similar to this image:
 
     ![non-balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. During the simulation, we need to gather observations to decide on the next action. The `step` function returns the current observations, a reward value, and a flag (`done`) indicating whether the simulation should continue or stop: (code block 4)
+1. During simulation, we need to get observations in order to decide how to act. In fact, the step function returns current observations, a reward function, and the done flag that indicates whether it makes sense to continue the simulation or not: (code block 4)
 
     ```python
     env.reset()
@@ -69,7 +89,7 @@ To understand how the environment works, let's run a short simulation for 100 st
     env.close()
     ```
 
-    You will see output similar to this in the notebook:
+    You will end up seeing something like this in the notebook output:
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -82,36 +102,36 @@ To understand how the environment works, let's run a short simulation for 100 st
     [ 0.17617249  0.35602306 -0.21873684 -0.90998894] -> 1.0
     ```
 
-    The observation vector returned at each step contains the following values:
-    - Position of the cart
-    - Velocity of the cart
-    - Angle of the pole
-    - Rotation rate of the pole
+    The observation vector that is returned at each step of the simulation contains the following values:
+    - Position of cart
+    - Velocity of cart
+    - Angle of pole
+    - Rotation rate of pole
 
-1. Retrieve the minimum and maximum values of these numbers: (code block 5)
+1. Get min and max value of those numbers: (code block 5)
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    You may also notice that the reward value at each simulation step is always 1. This is because the goal is to survive as long as possible, i.e., to keep the pole reasonably vertical for the longest time.
+    You may also notice that reward value on each simulation step is always 1. This is because our goal is to survive as long as possible, i.e. keep the pole to a reasonably vertical position for the longest period of time.
 
-    ✅ The CartPole simulation is considered solved if we achieve an average reward of 195 over 100 consecutive trials.
+    ✅ In fact, the CartPole simulation is considered solved if we manage to get the average reward of 195 over 100 consecutive trials.
 
-## State Discretization
+## State discretization
 
-In Q-Learning, we need to build a Q-Table that defines the actions for each state. To do this, the state must be **discrete**, meaning it should consist of a finite number of discrete values. Therefore, we need to **discretize** our observations, mapping them to a finite set of states.
+In Q-Learning, we need to build Q-Table that defines what to do at each state. To be able to do this, we need state to be **discrete**, more precisely, it should contain finite number of discrete values. Thus, we need somehow to **discretize** our observations, mapping them to  a finite set of states.
 
-There are a few ways to achieve this:
+There are a few ways we can do this:
 
-- **Divide into bins**: If we know the range of a value, we can divide it into a number of **bins** and replace the value with the bin number it belongs to. This can be done using the numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) method. This approach gives precise control over the state size, as it depends on the number of bins chosen for discretization.
+- **Divide into bins**. If we know the interval of a certain value, we can divide this interval into a number of **bins**, and then replace the value by the bin number that it belongs to. This can be done using the numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) method. In this case, we will precisely know the state size, because it will depend on the number of bins we select for digitalization.
+  
+✅ We can use linear interpolation to bring values to some finite interval (say, from -20 to 20), and then convert numbers to integers by rounding them. This gives us a bit less control on the size of the state, especially if we do not know the exact ranges of input values. For example, in our case 2 out of 4 values do not have upper/lower bounds on their values, which may result in the infinite number of states.
 
-✅ Alternatively, we can use linear interpolation to map values to a finite interval (e.g., from -20 to 20) and then convert them to integers by rounding. This approach offers less control over the state size, especially if the exact ranges of input values are unknown. For example, in our case, 2 out of 4 values lack upper/lower bounds, which could result in an infinite number of states.
+In our example, we will go with the second approach. As you may notice later, despite undefined upper/lower bounds, those value rarely take values outside of certain finite intervals, thus those states with extreme values will be very rare.
 
-In this example, we'll use the second approach. As you'll notice later, despite undefined upper/lower bounds, these values rarely exceed certain finite intervals, making states with extreme values very rare.
-
-1. Here's a function that takes the observation from our model and produces a tuple of 4 integer values: (code block 6)
+1. Here is the function that will take the observation from our model and produce a tuple of 4 integer values: (code block 6)
 
     ```python
     def discretize(x):
@@ -134,9 +154,9 @@ In this example, we'll use the second approach. As you'll notice later, despite 
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Now, run a short simulation and observe the discrete environment values. Feel free to try both `discretize` and `discretize_bins` to see if there's a difference.
+1. Let's now run a short simulation and observe those discrete environment values. Feel free to try both `discretize` and `discretize_bins` and see if there is a difference.
 
-    ✅ `discretize_bins` returns the bin number, which is 0-based. For input values around 0, it returns the middle bin number (10). In `discretize`, we didn't constrain the output range, allowing negative values, so 0 corresponds directly to 0. (code block 8)
+    ✅ discretize_bins returns the bin number, which is 0-based. Thus for values of input variable around 0 it returns the number from the middle of the interval (10). In discretize, we did not care about the range of output values, allowing them to be negative, thus the state values are not shifted, and 0 corresponds to 0. (code block 8)
 
     ```python
     env.reset()
@@ -150,15 +170,15 @@ In this example, we'll use the second approach. As you'll notice later, despite 
     env.close()
     ```
 
-    ✅ Uncomment the line starting with `env.render` if you want to visualize the environment's execution. Otherwise, you can run it in the background for faster execution. We'll use this "invisible" execution during the Q-Learning process.
+    ✅ Uncomment the line starting with env.render if you want to see how the environment executes. Otherwise you can execute it in the background, which is faster. We will use this "invisible" execution during our Q-Learning process.
 
-## The Q-Table Structure
+## The Q-Table structure
 
-In the previous lesson, the state was a simple pair of numbers ranging from 0 to 8, making it convenient to represent the Q-Table as a numpy tensor with a shape of 8x8x2. If we use bin discretization, the size of our state vector is also known, so we can use a similar approach and represent the state as an array with a shape of 20x20x10x10x2 (where 2 corresponds to the action space dimension, and the first dimensions represent the number of bins chosen for each parameter in the observation space).
+In our previous lesson, the state was a simple pair of numbers from 0 to 8, and thus it was convenient to represent Q-Table by a numpy tensor with a shape of 8x8x2. If we use bins discretization, the size of our state vector is also known, so we can use the same approach and represent state by an array of shape 20x20x10x10x2 (here 2 is the dimension of action space, and first dimensions correspond to the number of bins we have selected to use for each of the parameters in observation space).
 
-However, sometimes the precise dimensions of the observation space are unknown. In the case of the `discretize` function, we can't guarantee that the state will remain within certain limits, as some original values are unbounded. Therefore, we'll use a slightly different approach and represent the Q-Table as a dictionary.
+However, sometimes precise dimensions of the observation space are not known. In case of the `discretize` function, we may never be sure that our state stays within certain limits, because some of the original values are not bound. Thus, we will use a slightly different approach and represent Q-Table by a dictionary. 
 
-1. Use the pair *(state, action)* as the dictionary key, with the corresponding Q-Table entry value as the value. (code block 9)
+1. Use the pair *(state,action)* as the dictionary key, and the value would correspond to Q-Table entry value. (code block 9)
 
     ```python
     Q = {}
@@ -168,13 +188,13 @@ However, sometimes the precise dimensions of the observation space are unknown. 
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Here, we also define a function `qvalues()` that returns a list of Q-Table values for a given state corresponding to all possible actions. If the entry isn't present in the Q-Table, it defaults to 0.
+    Here we also define a function `qvalues()`, which returns a list of Q-Table values for a given state that corresponds to all possible actions. If the entry is not present in the Q-Table, we will return 0 as the default.
 
-## Let's Start Q-Learning
+## Let's start Q-Learning
 
-Now it's time to teach Peter how to balance!
+Now we are ready to teach Peter to balance!
 
-1. First, set some hyperparameters: (code block 10)
+1. First, let's set some hyperparameters: (code block 10)
 
     ```python
     # hyperparameters
@@ -183,22 +203,23 @@ Now it's time to teach Peter how to balance!
     epsilon = 0.90
     ```
 
-    Here:
-    - `alpha` is the **learning rate**, which determines how much we adjust the current Q-Table values at each step. In the previous lesson, we started with 1 and gradually decreased `alpha` during training. In this example, we'll keep it constant for simplicity, but you can experiment with adjusting `alpha` later.
-    - `gamma` is the **discount factor**, which indicates how much we prioritize future rewards over immediate rewards.
-    - `epsilon` is the **exploration/exploitation factor**, which decides whether to favor exploration or exploitation. In our algorithm, we'll select the next action based on Q-Table values in `epsilon` percent of cases, and choose a random action in the remaining cases. This helps explore areas of the search space that haven't been visited yet.
+    Here, `alpha` is the **learning rate** that defines to which extent we should adjust the current values of Q-Table at each step. In the previous lesson we started with 1, and then decreased `alpha` to lower values during training. In this example we will keep it constant just for simplicity, and you can experiment with adjusting `alpha` values later.
 
-    ✅ In terms of balancing, choosing a random action (exploration) acts like a random push in the wrong direction, forcing the pole to learn how to recover balance from these "mistakes."
+    `gamma` is the **discount factor** that shows to which extent we should prioritize future reward over current reward.
 
-### Improve the Algorithm
+    `epsilon` is the **exploration/exploitation factor** that determines whether we should prefer exploration to exploitation or vice versa. In our algorithm, we will in `epsilon` percent of the cases select the next action according to Q-Table values, and in the remaining number of cases we will execute a random action. This will allow us to explore areas of the search space that we have never seen before. 
 
-We can make two improvements to the algorithm from the previous lesson:
+    ✅ In terms of balancing - choosing random action (exploration) would act as a random punch in the wrong direction, and the pole would have to learn how to recover the balance from those "mistakes"
 
-- **Calculate average cumulative reward** over multiple simulations. We'll print progress every 5000 iterations and average the cumulative reward over that period. If we achieve more than 195 points, we can consider the problem solved, exceeding the required quality.
+### Improve the algorithm
+
+We can also make two improvements to our algorithm from the previous lesson:
+
+- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
   
-- **Track maximum average cumulative reward**, `Qmax`, and store the Q-Table corresponding to that result. During training, you'll notice that the average cumulative reward sometimes drops, so we want to preserve the Q-Table values corresponding to the best model observed.
+- **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
 
-1. Collect all cumulative rewards from each simulation in the `rewards` vector for later plotting. (code block 11)
+1. Collect all cumulative rewards at each simulation at `rewards` vector for further plotting. (code block  11)
 
     ```python
     def probs(v,eps=1e-4):
@@ -217,11 +238,11 @@ We can make two improvements to the algorithm from the previous lesson:
         while not done:
             s = discretize(obs)
             if random.random()<epsilon:
-                # exploitation - chose the action according to Q-Table probabilities
+                # exploitation - choose the action according to Q-Table probabilities
                 v = probs(np.array(qvalues(s)))
                 a = random.choices(actions,weights=v)[0]
             else:
-                # exploration - randomly chose the action
+                # exploration - randomly choose the action
                 a = np.random.randint(env.action_space.n)
     
             obs, rew, done, info = env.step(a)
@@ -239,25 +260,25 @@ We can make two improvements to the algorithm from the previous lesson:
             cum_rewards=[]
     ```
 
-What you'll notice from the results:
+What you may notice from those results:
 
-- **Close to the goal**: We're very close to achieving the goal of 195 cumulative rewards over 100+ consecutive runs, or we may have already achieved it! Even if the numbers are slightly lower, we can't be certain because we're averaging over 5000 runs, while the formal criteria require only 100 runs.
+- **Close to our goal**. We are very close to achieving the goal of getting 195 cumulative rewards over 100+ consecutive runs of the simulation, or we may have actually achieved it! Even if we get smaller numbers, we still do not know, because we average over 5000 runs, and only 100 runs is required in the formal criteria.
   
-- **Reward drops**: Sometimes the reward starts to drop, indicating that we might overwrite well-learned Q-Table values with worse ones.
+- **Reward starts to drop**. Sometimes the reward start to drop, which means that we can "destroy" already learnt values in the Q-Table with the ones that make the situation worse.
 
-This observation becomes clearer when we plot the training progress.
+This observation is more clearly visible if we plot training progress.
 
 ## Plotting Training Progress
 
-During training, we collected cumulative reward values at each iteration in the `rewards` vector. Here's how it looks when plotted against the iteration number:
+During training, we have collected the cumulative reward value at each of the iterations into `rewards` vector. Here is how it looks when we plot it against the iteration number:
 
 ```python
 plt.plot(rewards)
 ```
 
-![raw progress](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
+![raw  progress](../../../../translated_images/en/train_progress_raw.2adfdf2daea09c59.webp)
 
-This graph doesn't provide much insight due to the stochastic nature of the training process, which causes session lengths to vary significantly. To make the graph more meaningful, we can calculate the **running average** over a series of experiments, say 100. This can be done conveniently using `np.convolve`: (code block 12)
+From this graph, it is not possible to tell anything, because due to the nature of stochastic training process the length of training sessions varies greatly. To make more sense of this graph, we can calculate the **running average** over a series of experiments, let's say 100. This can be done conveniently using `np.convolve`: (code block 12)
 
 ```python
 def running_average(x,window):
@@ -266,21 +287,24 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![training progress](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
+![training progress](../../../../translated_images/en/train_progress_runav.c71694a8fa9ab359.webp)
 
-## Adjusting Hyperparameters
+## Varying hyperparameters
 
-To make learning more stable, we can adjust some hyperparameters during training. Specifically:
+To make learning more stable, it makes sense to adjust some of our hyperparameters during training. In particular:
 
-- **Learning rate (`alpha`)**: Start with values close to 1 and gradually decrease it. Over time, as the Q-Table values become more reliable, adjustments should be smaller to avoid overwriting good values completely.
+- **For learning rate**, `alpha`, we may start with values close to 1, and then keep decreasing the parameter. With time, we will be getting good probability values in the Q-Table, and thus we should be adjusting them slightly, and not overwriting completely with new values.
 
-- **Exploration factor (`epsilon`)**: Gradually increase `epsilon` to explore less and exploit more. It might be better to start with a lower `epsilon` value and increase it to nearly 1 over time.
-> **Task 1**: Experiment with the hyperparameter values and see if you can achieve a higher cumulative reward. Are you reaching above 195?
-> **Task 2**: To formally solve the problem, you need to achieve an average reward of 195 across 100 consecutive runs. Track this during training to ensure the problem is officially solved!
+- **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`, and move up to almost 1.
+
+> **Task 1**: Play with hyperparameter values and see if you can achieve higher cumulative reward. Are you getting above 195?
+
+
+> **Task 2**: To formally solve the problem, you need to get 195 average reward across 100 consecutive runs. Measure that during training and make sure that you have formally solved the problem!
 
 ## Seeing the result in action
 
-It’s fascinating to observe how the trained model performs. Let’s run the simulation and use the same action selection strategy as during training, sampling based on the probability distribution in the Q-Table: (code block 13)
+It would be interesting to actually see how the trained model behaves. Let's run the simulation and follow the same action selection strategy as during training, sampling according to the probability distribution in Q-Table: (code block 13)
 
 ```python
 obs = env.reset()
@@ -294,7 +318,7 @@ while not done:
 env.close()
 ```
 
-You should see something similar to this:
+You should see something like this:
 
 ![a balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
@@ -302,9 +326,9 @@ You should see something similar to this:
 
 ## 🚀Challenge
 
-> **Task 3**: In this example, we used the final version of the Q-Table, which might not be the optimal one. Remember, we saved the best-performing Q-Table in the `Qbest` variable! Try running the same example using the best-performing Q-Table by copying `Qbest` into `Q` and observe if there’s any noticeable difference.
+> **Task 3**: Here, we were using the final copy of Q-Table, which may not be the best one. Remember that we have stored the best-performing Q-Table into `Qbest` variable! Try the same example with the best-performing Q-Table by copying `Qbest` over to `Q` and see if you notice the difference.
 
-> **Task 4**: In this example, we didn’t always select the best action at each step but instead sampled actions based on the corresponding probability distribution. Would it be better to always choose the best action—the one with the highest Q-Table value? This can be achieved using the `np.argmax` function to identify the action number with the highest Q-Table value. Implement this strategy and check if it improves the balancing performance.
+> **Task 4**: Here we were not selecting the best action on each step, but rather sampling with corresponding probability distribution. Would it make more sense to always select the best action, with the highest Q-Table value? This can be done by using `np.argmax` function to find out the action number corresponding to higher Q-Table value. Implement this strategy and see if it improves the balancing.
 
 ## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -313,11 +337,13 @@ You should see something similar to this:
 
 ## Conclusion
 
-We’ve now learned how to train agents to achieve strong results simply by providing them with a reward function that defines the desired state of the game and allowing them to intelligently explore the search space. We successfully applied the Q-Learning algorithm in both discrete and continuous environments, though with discrete actions.
+We have now learned how to train agents to achieve good results just by providing them a reward function that defines the desired state of the game, and by giving them an opportunity to intelligently explore the search space. We have successfully applied the Q-Learning algorithm in the cases of discrete and continuous environments, but with discrete actions.
 
-It’s also crucial to study scenarios where the action space is continuous and the observation space is more complex, such as an image from an Atari game screen. In such cases, more advanced machine learning techniques, like neural networks, are often required to achieve good results. These advanced topics will be covered in our upcoming, more advanced AI course.
+It's important to also study situations where action state is also continuous, and when observation space is much more complex, such as the image from the Atari game screen. In those problems we often need to use more powerful machine learning techniques, such as neural networks, in order to achieve good results. Those more advanced topics are the subject of our forthcoming more advanced AI course.
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

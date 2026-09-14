@@ -101,6 +101,12 @@
     "source_file": "8-Reinforcement/2-Gym/images/cartpole.png",
     "language_code": "id"
   },
+  "catplot.e73fc35fdf96242b.webp": {
+    "original_hash": "90cd4782a2f9b40dec8218b224b29c1c",
+    "translation_date": "2026-07-14T06:59:17+00:00",
+    "source_file": "2-Regression/2-Data/images/catplot.png",
+    "language_code": "id"
+  },
   "centroid.097fde836cf6c918.webp": {
     "original_hash": "c8f866ed446563d8e59087f1bca1f97d",
     "translation_date": "2026-01-16T14:29:09+00:00",
@@ -383,6 +389,12 @@
     "source_file": "2-Regression/3-Linear/images/heatmap.png",
     "language_code": "id"
   },
+  "heatmap.bd98dce43b404c57.webp": {
+    "original_hash": "7f2f2fbd993018bc01346e1eb8ae692e",
+    "translation_date": "2026-07-14T06:59:31+00:00",
+    "source_file": "2-Regression/2-Data/images/heatmap.png",
+    "language_code": "id"
+  },
   "hierarchical.bf59403aa43c8c47.webp": {
     "original_hash": "50b9bc3298659c463ae76564ca645b12",
     "translation_date": "2026-01-16T14:28:48+00:00",
@@ -471,6 +483,12 @@
     "original_hash": "0bc5432c73d2c073cab1b85d8279ff44",
     "translation_date": "2026-01-16T14:21:46+00:00",
     "source_file": "2-Regression/3-Linear/images/linear.png",
+    "language_code": "id"
+  },
+  "lineplot.f9034ba47b1e30ee.webp": {
+    "original_hash": "b3959c0ed0f02f668009c76b95c4ebbb",
+    "translation_date": "2026-07-14T06:59:40+00:00",
+    "source_file": "2-Regression/2-Data/images/lineplot.png",
     "language_code": "id"
   },
   "lobe.2fa0806408ef9923.webp": {
@@ -741,6 +759,12 @@
     "original_hash": "925552a21bb3687dfd83bb25010273f9",
     "translation_date": "2026-01-16T14:20:17+00:00",
     "source_file": "2-Regression/3-Linear/images/recipes.png",
+    "language_code": "id"
+  },
+  "relplot.a03837d8f0329cec.webp": {
+    "original_hash": "4733544cb1c2e58e987087283e66b4a5",
+    "translation_date": "2026-07-14T06:59:22+00:00",
+    "source_file": "2-Regression/2-Data/images/relplot.png",
     "language_code": "id"
   },
   "scaled.91897dfbaa26ca4a.webp": {

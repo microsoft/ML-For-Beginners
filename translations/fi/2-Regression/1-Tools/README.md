@@ -1,120 +1,121 @@
-# Aloita Pythonin ja Scikit-learnin käyttö regressiomallien kanssa
+# Aloita Pythonin ja Scikit-learnin kanssa regressiomallien tekeminen
 
-![Yhteenveto regressioista luonnosmuistiinpanossa](../../../../sketchnotes/ml-regression.png)
+![Yhteenveto regressioista sketchnote-kuvana](../../../../translated_images/fi/ml-regression.4e4f70e3b3ed446e.webp)
 
-> Luonnosmuistiinpanon tekijä [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Sketchnote tekijältä [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Esiluennon kysely](https://ff-quizzes.netlify.app/en/ml/)
+## [Alkuverkkokysely](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Tämä oppitunti on saatavilla myös R-kielellä!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Tämä opetus on saatavilla myös R:llä!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Johdanto
 
-Näissä neljässä oppitunnissa opit rakentamaan regressiomalleja. Keskustelemme pian siitä, mihin niitä käytetään. Mutta ennen kuin aloitat, varmista, että sinulla on oikeat työkalut valmiina prosessin aloittamiseen!
+Näissä neljässä oppitunnissa opit rakentamaan regressiomalleja. Keskustelemme pian, mihin niitä tarvitaan. Mutta ennen kuin aloitat, varmista, että sinulla on oikeat työkalut käytettävissä prosessin aloittamiseksi!
 
 Tässä oppitunnissa opit:
 
 - Konfiguroimaan tietokoneesi paikallisia koneoppimistehtäviä varten.
-- Työskentelemään Jupyter-notebookien kanssa.
-- Käyttämään Scikit-learnia, mukaan lukien asennus.
+- Työskentelemään Jupyter Notebookien kanssa.
+- Käyttämään Scikit-learnia, mukaan lukien asennuksen.
 - Tutustumaan lineaariseen regressioon käytännön harjoituksen avulla.
 
-## Asennukset ja konfiguroinnit
+## Asennukset ja asetukset
 
-[![ML aloittelijoille - Valmista työkalusi koneoppimismallien rakentamiseen](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML aloittelijoille - Valmista työkalusi koneoppimismallien rakentamiseen")
+[![Aloittelijoille ML - Valmistele työkalut koneoppimismallien rakentamista varten](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "Aloittelijoille ML - Valmistele työkalut koneoppimismallien rakentamista varten")
 
 > 🎥 Klikkaa yllä olevaa kuvaa lyhyen videon katsomiseksi, jossa käydään läpi tietokoneen konfigurointi ML:ää varten.
 
-1. **Asenna Python**. Varmista, että [Python](https://www.python.org/downloads/) on asennettu tietokoneellesi. Pythonia käytetään monissa data-analytiikan ja koneoppimisen tehtävissä. Useimmissa tietokonejärjestelmissä Python on jo valmiiksi asennettuna. Käytettävissä on myös hyödyllisiä [Python Coding Packeja](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), jotka helpottavat asennusta joillekin käyttäjille.
+1. **Asenna Python**. Varmista, että [Python](https://www.python.org/downloads/) on asennettu tietokoneellesi. Käytät Pythonia monissa datatieteen ja koneoppimisen tehtävissä. Useimmissa tietokonejärjestelmissä on valmiiksi asennettuna Python. On myös hyödyllisiä [Python-koodauspaketteja](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), jotka helpottavat asennusta joillekin käyttäjille.
 
-   Joissakin Pythonin käyttötapauksissa tarvitaan yksi versio ohjelmistosta, kun taas toisissa tarvitaan eri versio. Tämän vuoksi on hyödyllistä työskennellä [virtuaaliympäristössä](https://docs.python.org/3/library/venv.html).
+   Joissakin Pythonin käyttötapauksissa tarvitaan yksi ohjelmistoversio, kun taas toiset vaativat toisen version. Tästä syystä on hyödyllistä työskennellä [virtuaaliympäristössä](https://docs.python.org/3/library/venv.html).
 
-2. **Asenna Visual Studio Code**. Varmista, että Visual Studio Code on asennettu tietokoneellesi. Seuraa näitä ohjeita [Visual Studio Coden asentamiseksi](https://code.visualstudio.com/) perusasennusta varten. Tässä kurssissa käytät Pythonia Visual Studio Codessa, joten kannattaa tutustua siihen, miten [Visual Studio Code konfiguroidaan](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) Python-kehitystä varten.
+2. **Asenna Visual Studio Code**. Varmista, että sinulla on Visual Studio Code asennettuna tietokoneellesi. Noudata näitä ohjeita [Visual Studio Coden asentamiseksi](https://code.visualstudio.com/) perusasennusta varten. Aiot käyttää Pythonia Visual Studio Codessa tässä kurssissa, joten saatat haluta kerrata, miten [konfiguroidaan Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) Python-kehitystä varten.
 
-   > Tutustu Pythonin käyttöön käymällä läpi tämä kokoelma [Learn-moduuleja](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Tutustu Pythonin käyttöön työskentelemällä tämän kokoelman [Learn-moduulien](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) parissa
    >
-   > [![Pythonin konfigurointi Visual Studio Codessa](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Pythonin konfigurointi Visual Studio Codessa")
+   > [![Pythonin asennus Visual Studio Codeen](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Pythonin asennus Visual Studio Codeen")
    >
-   > 🎥 Klikkaa yllä olevaa kuvaa videon katsomiseksi: Pythonin käyttö VS Codessa.
+   > 🎥 Klikkaa yllä olevaa kuvaa näyttääksesi videon Pythonin käytöstä VS Codessa.
 
-3. **Asenna Scikit-learn** seuraamalla [näitä ohjeita](https://scikit-learn.org/stable/install.html). Koska sinun täytyy varmistaa, että käytät Python 3:a, on suositeltavaa käyttää virtuaaliympäristöä. Huomaa, että jos asennat tämän kirjaston M1 Macille, sivulla on erityisohjeita.
+3. **Asenna Scikit-learn** seuraamalla [näitä ohjeita](https://scikit-learn.org/stable/install.html). Koska sinun täytyy käyttää Python 3:sta, on suositeltavaa käyttää virtuaaliympäristöä. Huomaa, että jos asennat tätä kirjastoa M1-Macille, sivulla on erikoisohjeita.
 
-4. **Asenna Jupyter Notebook**. Sinun täytyy [asentaa Jupyter-paketti](https://pypi.org/project/jupyter/).
+1. **Asenna Jupyter Notebook**. Sinun tulee [asenna Jupyter-paketti](https://pypi.org/project/jupyter/).
 
-## ML-kehitysympäristösi
+## ML:n kirjoitusympäristö
 
-Käytät **notebookeja** Python-koodin kehittämiseen ja koneoppimismallien luomiseen. Tällainen tiedostotyyppi on yleinen työkalu data-analyytikoille, ja ne tunnistaa niiden päätteestä `.ipynb`.
+Aiot käyttää **notebookeja** Python-koodin kehittämiseen ja koneoppimismallien luomiseen. Tällainen tiedosto on yleinen työkalu datatieteilijöille, ja ne tunnistaa tiedostopäätteestä `.ipynb`.
 
-Notebookit ovat interaktiivinen ympäristö, joka mahdollistaa sekä koodauksen että dokumentaation lisäämisen koodin ympärille, mikä on erittäin hyödyllistä kokeellisiin tai tutkimusprojekteihin.
+Notebookit ovat interaktiivinen ympäristö, joka sallii kehittäjän sekä koodata että lisätä muistiinpanoja ja kirjoittaa dokumentaatiota koodin ympärille, mikä on hyödyllistä kokeellisissa tai tutkimuspainotteisissa projekteissa.
 
-[![ML aloittelijoille - Jupyter Notebookien asennus regressiomallien rakentamisen aloittamiseksi](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML aloittelijoille - Jupyter Notebookien asennus regressiomallien rakentamisen aloittamiseksi")
+[![Aloittelijoille ML - Jupyter Notebookien asennus regressiomallien rakentamisen aloittamiseksi](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "Aloittelijoille ML - Jupyter Notebookien asennus regressiomallien rakentamisen aloittamiseksi")
 
 > 🎥 Klikkaa yllä olevaa kuvaa lyhyen videon katsomiseksi, jossa käydään läpi tämä harjoitus.
 
-### Harjoitus - työskentele notebookin kanssa
+### Harjoitus - työskentely notebookin kanssa
 
 Tässä kansiossa löydät tiedoston _notebook.ipynb_.
 
 1. Avaa _notebook.ipynb_ Visual Studio Codessa.
 
-   Jupyter-palvelin käynnistyy Python 3+:lla. Löydät notebookista alueita, jotka voidaan `ajaa`, eli koodinpätkiä. Voit ajaa koodilohkon valitsemalla kuvakkeen, joka näyttää toistopainikkeelta.
+   Jupyter-palvelin käynnistyy, jossa Python 3+ on aloittaen. Löydät notebookin alueita, joita voi `ajaa`, eli koodilohkoja. Voit ajaa koodilohkon valitsemalla painikkeen, joka näyttää toistopainikkeelta.
 
-2. Valitse `md`-kuvake ja lisää hieman markdownia sekä seuraava teksti **# Tervetuloa notebookiisi**.
+1. Valitse `md`-ikoni ja lisää vähän markdown-koodia sekä seuraava teksti **# Tervetuloa notebookiisi**.
 
-   Lisää seuraavaksi Python-koodia.
+   Lisää seuraavaksi hieman Python-koodia.
 
-3. Kirjoita **print('hello notebook')** koodilohkoon.
-4. Valitse nuoli ajaaksesi koodin.
+1. Kirjoita koodilohkoon **print('hello notebook')**.
+1. Valitse nuoli koodin ajamiseksi.
 
-   Näet tulostetun lauseen:
+   Näet tulosteen:
 
     ```output
     hello notebook
     ```
 
-![VS Code avoinna notebookin kanssa](../../../../2-Regression/1-Tools/images/notebook.jpg)
+![VS Code, jossa notebook avoinna](../../../../translated_images/fi/notebook.4a3ee31f396b8832.webp)
 
-Voit yhdistää koodisi kommentteihin dokumentoidaksesi notebookin itse.
+Voit sijoittaa koodin väliin kommentteja dokumentoidaksesi notebookia itse.
 
-✅ Mieti hetki, kuinka erilainen web-kehittäjän työympäristö on verrattuna data-analyytikon työympäristöön.
+✅ Mieti hetki, kuinka erilainen web-kehittäjän työympäristö on verrattuna datatieteilijän ympäristöön.
 
-## Scikit-learnin käyttöönotto
+## Scikit-learn käyttöön
 
-Nyt kun Python on asennettu paikalliseen ympäristöösi ja olet mukautunut Jupyter-notebookeihin, tutustutaan yhtä mukavasti Scikit-learniin (lausutaan `sci` kuten `science`). Scikit-learn tarjoaa [laajan API:n](https://scikit-learn.org/stable/modules/classes.html#api-ref), joka auttaa sinua suorittamaan ML-tehtäviä.
+Nyt kun Python on asennettu paikalliseen ympäristöösi ja tunnet olosi mukavaksi Jupyter Notebookien kanssa, tutustutaan yhtä hyvin Scikit-learniin (lausutaan `sci` kuten `science`). Scikit-learn tarjoaa [laajan API:n](https://scikit-learn.org/stable/modules/classes.html#api-ref) auttamaan ML-tehtävissä.
 
-Heidän [verkkosivustonsa](https://scikit-learn.org/stable/getting_started.html) mukaan "Scikit-learn on avoimen lähdekoodin koneoppimiskirjasto, joka tukee ohjattua ja ohjaamatonta oppimista. Se tarjoaa myös erilaisia työkaluja mallien sovittamiseen, datan esikäsittelyyn, mallien valintaan ja arviointiin sekä moniin muihin hyödyllisiin toimintoihin."
+Heidän [verkkosivustonsa mukaan](https://scikit-learn.org/stable/getting_started.html) "Scikit-learn on avoimen lähdekoodin koneoppimiskirjasto, joka tukee valvottua ja valvomattomia oppimista. Se tarjoaa myös työkaluja mallin sovittamiseen, datan esikäsittelyyn, mallin valintaan ja arviointiin sekä monia muita apuvälineitä."
 
-Tässä kurssissa käytät Scikit-learnia ja muita työkaluja koneoppimismallien rakentamiseen suorittaaksesi niin sanottuja 'perinteisiä koneoppimistehtäviä'. Olemme tarkoituksella välttäneet neuroverkkoja ja syväoppimista, sillä ne käsitellään paremmin tulevassa 'AI aloittelijoille' -opetussuunnitelmassamme.
+Tässä kurssissa käytät Scikit-learnia ja muita työkaluja koneoppimismallien rakentamiseen niin sanottujen perinteisten koneoppimistehtävien suorittamiseen. Olemme tietoisesti välttäneet neuroverkkoja ja syväoppimista, jotka käsitellään paremmin tulevassa 'AI for Beginners' -oppiaineistossamme.
 
-Scikit-learn tekee mallien rakentamisesta ja niiden arvioinnista helppoa. Se keskittyy pääasiassa numeerisen datan käyttöön ja sisältää useita valmiita datasettiä oppimistyökaluiksi. Se sisältää myös valmiiksi rakennettuja malleja, joita opiskelijat voivat kokeilla. Tutustutaan prosessiin, jossa ladataan valmiiksi pakattua dataa ja käytetään sisäänrakennettua estimaattoria ensimmäisen ML-mallin luomiseen Scikit-learnilla perusdatan avulla.
+Scikit-learn tekee mallien rakentamisen ja arvioinnin helpoksi. Se keskittyy pääsääntöisesti numeerisen datan käyttöön ja sisältää valmiita datasettejä opetustarkoituksiin. Siinä on myös valmiita malleja opiskelijoiden kokeiltavaksi. Tutkitaan ensin, miten ladataan valmiiksi pakattua dataa ja käytetään sisäänrakennettua estimaattoria ensimmäisen Scikit-learn -mallin kanssa perusdatan avulla.
 
-## Harjoitus - ensimmäinen Scikit-learn notebookisi
+## Harjoitus - ensimmäinen Scikit-learn -notebookisi
 
-> Tämä opetus on saanut inspiraationsa [lineaarisen regression esimerkistä](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) Scikit-learnin verkkosivustolla.
+> Tämä opetus on inspiroitunut Scikit-learnin verkkosivun [lineaarisen regression esimerkistä](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py).
 
-[![ML aloittelijoille - Ensimmäinen lineaarisen regression projekti Pythonilla](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML aloittelijoille - Ensimmäinen lineaarisen regression projekti Pythonilla")
+
+[![Aloittelijoille ML - Ensimmäinen projektisi lineaarisessa regressiossa Pythonilla](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "Aloittelijoille ML - Ensimmäinen projektisi lineaarisessa regressiossa Pythonilla")
 
 > 🎥 Klikkaa yllä olevaa kuvaa lyhyen videon katsomiseksi, jossa käydään läpi tämä harjoitus.
 
-Poista _notebook.ipynb_-tiedostosta kaikki solut painamalla 'roskakori'-kuvaketta.
+Tyhjennä kaikki solut _notebook.ipynb_ -tiedostosta painamalla 'roskakorin' kuvaketta.
 
-Tässä osiossa työskentelet pienen datasetin kanssa, joka liittyy diabetekseen ja joka on sisäänrakennettu Scikit-learniin oppimistarkoituksia varten. Kuvittele, että haluaisit testata hoitoa diabeetikoille. Koneoppimismallit voivat auttaa sinua määrittämään, mitkä potilaat reagoisivat hoitoon paremmin, perustuen muuttujien yhdistelmiin. Jopa hyvin yksinkertainen regressiomalli, kun se visualisoidaan, voi paljastaa tietoa muuttujista, jotka auttaisivat sinua järjestämään teoreettisia kliinisiä kokeita.
+Tässä osassa työskentelet pienen diabetesaiheisen datasetin kanssa, joka on osa Scikit-learnia opetustarkoituksiin. Kuvittele, että haluaisit testata hoitokeinoa diabeetikoilla. Koneoppimismallit voivat auttaa määrittämään, mitkä potilaat reagoisivat hoitoon paremmin eri muuttujayhdistelmien perusteella. Jo hyvin peruskäyttöinen regressiomalli, kun se visualisoidaan, voi näyttää tietoja muuttujista, jotka auttaisivat teoreettisten kliinisten kokeiden järjestämistä.
 
-✅ Regressiomenetelmiä on monenlaisia, ja valinta riippuu siitä, mitä haluat selvittää. Jos haluat ennustaa todennäköistä pituutta tietyn ikäiselle henkilölle, käyttäisit lineaarista regressiota, koska etsit **numeerista arvoa**. Jos haluat selvittää, pitäisikö tiettyä ruokakulttuuria pitää vegaanisena vai ei, etsit **kategoriaa**, joten käyttäisit logistista regressiota. Opit lisää logistisesta regressiosta myöhemmin. Mieti hetki, mitä kysymyksiä voisit esittää datasta ja mikä näistä menetelmistä olisi sopivampi.
+✅ Regressiomenetelmiä on monia, ja valinta riippuu etsimästäsi vastauksesta. Jos haluat ennustaa tietyn ikäisen henkilön mahdollisen pituuden, käytät lineaarista regressiota, koska tarvitset **numeerisen arvon**. Jos taas haluat selvittää, pitäisikö erään ruokalajin luokitella vegaaniseksi, etsit **kategorian määrittämistä** ja käyttäisit logistista regressiota. Opit logistisesta regressiosta myöhemmin. Mieti hieman kysymyksiä, joita voit dataan esittää, ja mitkä menetelmät olisivat sopivimpia.
 
-Aloitetaan tehtävä.
+Aloitetaan tehtävästä.
 
 ### Kirjastojen tuonti
 
-Tätä tehtävää varten tuomme joitakin kirjastoja:
+Tätä tehtävää varten tuotamme joitakin kirjastoja:
 
-- **matplotlib**. Se on hyödyllinen [graafinen työkalu](https://matplotlib.org/), ja käytämme sitä viivakaavion luomiseen.
+- **matplotlib**. Se on hyödyllinen [graafinen työkalu](https://matplotlib.org/), jota käytämme viivakaavion luomiseen.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) on hyödyllinen kirjasto numeerisen datan käsittelyyn Pythonissa.
 - **sklearn**. Tämä on [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) -kirjasto.
 
-Tuo joitakin kirjastoja auttamaan tehtävissäsi.
+Tuo joitakin kirjastoja tehtävien tueksi.
 
-1. Lisää tuonnit kirjoittamalla seuraava koodi:
+1. Lisää tuontikoodit kirjoittamalla seuraava koodi:
 
    ```python
    import matplotlib.pyplot as plt
@@ -122,26 +123,26 @@ Tuo joitakin kirjastoja auttamaan tehtävissäsi.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Yllä tuodaan `matplotlib`, `numpy` sekä `datasets`, `linear_model` ja `model_selection` `sklearn`-kirjastosta. `model_selection` käytetään datan jakamiseen harjoitus- ja testijoukkoihin.
+   Yllä tuot `matplotlib`in, `numpyn` ja `datasets`, `linear_model` sekä `model_selection` tuodaan `sklearn`ista. `model_selection` on tarkoitettu datan jakamiseen harjoitus- ja testisarjoihin.
 
 ### Diabetes-datasetti
 
-Sisäänrakennettu [diabetes-datasetti](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) sisältää 442 näytettä diabetekseen liittyvästä datasta, jossa on 10 ominaisuusmuuttujaa, joista osa sisältää:
+Sisäänrakennettu [diabetes-datasetti](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) sisältää 442 näytettä diabetesta koskevaa dataa, 10 piirre-muuttujaa, joista osa on:
 
-- age: ikä vuosina
-- bmi: kehon massan indeksi
+- age: ikä vuosissa
+- bmi: painoindeksi
 - bp: keskimääräinen verenpaine
-- s1 tc: T-solut (eräänlainen valkosolu)
+- s1 tc: T-solut (eräs valkosolutyyppi)
 
-✅ Tämä datasetti sisältää 'sukupuolen' käsitteen tärkeänä ominaisuusmuuttujana diabetekseen liittyvässä tutkimuksessa. Monet lääketieteelliset datasetit sisältävät tällaisen binääriluokituksen. Mieti hetki, miten tällaiset luokitukset saattavat sulkea pois tiettyjä väestönosia hoidoista.
+✅ Tämä datasetti sisältää 'sukupuoli' -käsitteen piirre-muuttujana, mikä on tärkeä diabetestutkimuksissa. Monet lääketieteelliset datasetit sisältävät tällaisen binaariluokittelun. Mieti hetki, miten tällaiset luokitukset voivat sulkea pois osia väestöstä hoidoista.
 
-Lataa nyt X- ja y-data.
+Ladataan nyt X- ja y-data.
 
-> 🎓 Muista, että tämä on ohjattua oppimista, ja tarvitsemme nimetyn 'y'-kohteen.
+> 🎓 Muista, että tämä on valvottua oppimista, ja tarvitsemme nimettyä 'y' kohdetta.
 
-Uudessa koodisolussa lataa diabetes-datasetti kutsumalla `load_diabetes()`. Syöte `return_X_y=True` ilmoittaa, että `X` on datamatriisi ja `y` on regressiotavoite.
+Lisää uuteen koodisoluun diabetes-datasetin latauskutsu `load_diabetes()`. Parametri `return_X_y=True` tarkoittaa, että `X` on datamatriisi ja `y` on regressiokohde.
 
-1. Lisää joitakin tulostuskäskyjä näyttämään datamatriisin muoto ja sen ensimmäinen elementti:
+1. Lisää print-komennot näyttämään datamatriisin muoto ja sen ensimmäinen alkio:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -149,9 +150,9 @@ Uudessa koodisolussa lataa diabetes-datasetti kutsumalla `load_diabetes()`. Syö
     print(X[0])
     ```
 
-    Saat vastauksena tuplen. Teet niin, että määrität tuplen kaksi ensimmäistä arvoa `X`:lle ja `y`:lle. Lue lisää [tuplista](https://wikipedia.org/wiki/Tuple).
+    Saat vastauksena tuplen. Teet siten, että tuple:n kaksi ensimmäistä arvoa annetaan muuttujille `X` ja `y`. Lue lisää [tupleista](https://wikipedia.org/wiki/Tuple).
 
-    Näet, että tämä data sisältää 442 kohdetta, jotka on muotoiltu 10 elementin taulukoiksi:
+    Näet, että data sisältää 442 kohdetta, joissa kussakin on 10 alkiota taulukkona:
 
     ```text
     (442, 10)
@@ -159,39 +160,39 @@ Uudessa koodisolussa lataa diabetes-datasetti kutsumalla `load_diabetes()`. Syö
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Mieti hetki datan ja regressiotavoitteen välistä suhdetta. Lineaarinen regressio ennustaa suhteita ominaisuuden X ja tavoitemuuttujan y välillä. Voitko löytää [tavoitteen](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) diabetes-datasetille dokumentaatiosta? Mitä tämä datasetti havainnollistaa, kun otetaan huomioon tavoite?
+    ✅ Mieti hetki datan ja regressiokohteen välistä suhdetta. Lineaarinen regressio ennustaa suhteita piirteiden X ja kohde-muuttujan y välillä. Löydätkö [kohteen](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) diabetes-datakokonaisuudesta dokumentaatiosta? Mitä datasetti esittää kyseisen kohteen perusteella?
 
-2. Valitse seuraavaksi osa tästä datasetistä piirtämistä varten valitsemalla datasetin 3. sarake. Voit tehdä tämän käyttämällä `:`-operaattoria valitaksesi kaikki rivit ja sitten valitsemalla 3. sarakkeen indeksillä (2). Voit myös muotoilla datan 2D-taulukoksi - kuten vaaditaan piirtämistä varten - käyttämällä `reshape(n_rows, n_columns)`. Jos yksi parametreista on -1, vastaava ulottuvuus lasketaan automaattisesti.
+2. Valitse seuraavaksi osa tästä datasetistä plottia varten valitsemalla datan 3. sarake. Voit tehdä sen käyttämällä `:`-operaattoria kaikkien rivien valitsemiseen ja sitten 3. sarakkeen valitsemiseen indeksillä (2). Voit myös muotoilla datan uudelleen 2-ulotteiseksi taulukoksi - joka vaaditaan plottia varten - käyttäen `reshape(n_rivit, n_sarakkeet)`. Jos jompikumpi parametristä on -1, vastaava ulottuvuus lasketaan automaattisesti.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Tulosta data milloin tahansa tarkistaaksesi sen muodon.
+   ✅ Tulosta milloin tahansa data tarkistaaksesi sen muodon.
 
-3. Nyt kun sinulla on data valmiina piirtämistä varten, voit nähdä, voiko kone auttaa määrittämään loogisen jaon numeroiden välillä tässä datasetissä. Tätä varten sinun täytyy jakaa sekä data (X) että tavoite (y) testaus- ja harjoitusjoukkoihin. Scikit-learn tarjoaa yksinkertaisen tavan tehdä tämä; voit jakaa testidatasi tietyssä pisteessä.
+3. Nyt kun sinulla on data valmiina plottiin, voit kokeilla, voisiko kone auttaa määrittämään loogisen rajan lukujen välille tässä datasetissä. Tätä varten sinun täytyy jakaa sekä data (X) että kohde (y) testiin ja harjoitusjoukkoon. Scikit-learn tarjoaa yksinkertaisen tavan tehdä tämä, avulla voit jakaa testidatan tietystä kohdasta.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Nyt olet valmis kouluttamaan mallisi! Lataa lineaarinen regressiomalli ja kouluta sitä X- ja y-harjoitusjoukoilla käyttämällä `model.fit()`:
+4. Nyt olet valmis kouluttamaan mallisi! Lataa lineaarinen regressiomalli ja kouluta se X- ja y-harjoitusjoukoillasi käyttämällä `model.fit()`-funktiota:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` on funktio, jonka näet monissa ML-kirjastoissa, kuten TensorFlowssa.
+    ✅ `model.fit()`-funktion näet monissa ML-kirjastoissa, kuten TensorFlowssa
 
-5. Luo sitten ennuste testidatan avulla käyttämällä funktiota `predict()`. Tätä käytetään piirtämään viiva dataryhmien välille.
+5. Tee sitten ennuste testidatalle funktiolla `predict()`. Tätä käytetään piirtämään viiva dataryhmien väliin.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Nyt on aika näyttää data kaaviossa. Matplotlib on erittäin hyödyllinen työkalu tähän tehtävään. Luo scatterplot kaikesta X- ja y-testidatasta ja käytä ennustetta piirtääksesi viiva sopivimpaan kohtaan dataryhmien välillä.
+6. On aika näyttää data plottina. Matplotlib on erittäin hyödyllinen tähän tehtävään. Luo hajontakuvio kaikista X- ja y-testidatasta ja käytä ennustetta piirtääksesi viiva mahdollisimman sopivaan kohtaan mallin dataryhmien välille.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -202,29 +203,32 @@ Uudessa koodisolussa lataa diabetes-datasetti kutsumalla `load_diabetes()`. Syö
     plt.show()
     ```
 
-   ![scatterplot, joka näyttää datapisteet diabetekseen liittyen](../../../../2-Regression/1-Tools/images/scatterplot.png)
-✅ Mieti hetki, mitä tässä tapahtuu. Suora viiva kulkee monien pienten datapisteiden läpi, mutta mitä se oikeastaan tekee? Voitko nähdä, miten tämän viivan avulla pitäisi pystyä ennustamaan, mihin uusi, ennennäkemätön datapiste sijoittuu suhteessa kuvaajan y-akseliin? Yritä pukea sanoiksi tämän mallin käytännön hyöty.
+   ![hajontakuvio, joka näyttää datapisteitä diabetestä koskien](../../../../translated_images/fi/scatterplot.ad8b356bcbb33be6.webp)
 
-Onnittelut, loit ensimmäisen lineaarisen regressiomallisi, teit ennusteen sen avulla ja esittelit sen kuvaajassa!
+
+   ✅ Mieti hetki, mitä tässä tapahtuu. Suora viiva kulkee monien pienten datapisteiden läpi, mutta mitä se tarkalleen tekee? Näetkö, miten tämän viivan pitäisi pystyä ennustamaan, mihin uusi, näkymätön datapiste sopisi suhteen kuvaajan y-akseliin? Yritä muotoilla käytännön hyöty tämän mallin käytöstä.
+
+Onnittelut, rakensit ensimmäisen lineaarisen regressiomallisi, teit sillä ennusteen ja näytit sen kuvaajassa!
 
 ---
 ## 🚀Haaste
 
-Piirrä kuvaaja, jossa käytetään eri muuttujaa tästä datasetistä. Vinkki: muokkaa tätä riviä: `X = X[:,2]`. Tämän datasetin tavoitteen perusteella, mitä pystyt päättelemään diabeteksen etenemisestä sairautena?
-
-## [Luennon jälkeinen kysely](https://ff-quizzes.netlify.app/en/ml/)
+Kuvioi toinen muuttuja tästä aineistosta. Vihje: muokkaa tätä riviä: `X = X[:,2]`. Kun otetaan huomioon tämän aineiston tavoite, mitä voit havaita diabeteksen etenemisestä sairautena?
+## [Luentotestin jälkeinen visailu](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Kertaus & Itseopiskelu
 
-Tässä opetusmateriaalissa työskentelit yksinkertaisen lineaarisen regression parissa, etkä univariaatin tai monimuuttujaisen regression kanssa. Lue hieman näiden menetelmien eroista tai katso [tämä video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+Tässä tutoriaalissa työskentelit yksinkertaisen lineaarisen regressiomallin kanssa, etkä univariaatin tai moninkertaisen lineaarisen regressiomallin kanssa. Lue hieman näiden menetelmien eroista tai tutustu [tähän videoon](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Lue lisää regressiokonseptista ja pohdi, millaisiin kysymyksiin tällä tekniikalla voidaan vastata. Syvennä ymmärrystäsi ottamalla [tämä opetusohjelma](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott).
+Lue lisää regressiokäsitteestä ja pohdi, millaisia kysymyksiä tällä tekniikalla voidaan vastata. Käy tämä [tutoriaali](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) syventääksesi ymmärrystäsi.
 
 ## Tehtävä
 
-[Eri datasetti](assignment.md)
+[Eri aineisto](assignment.md)
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

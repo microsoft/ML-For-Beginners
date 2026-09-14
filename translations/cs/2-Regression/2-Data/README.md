@@ -1,62 +1,62 @@
 # Vytvoření regresního modelu pomocí Scikit-learn: příprava a vizualizace dat
 
-![Infografika vizualizace dat](../../../../2-Regression/2-Data/images/data-visualization.png)
+![Infografika vizualizace dat](../../../../translated_images/cs/data-visualization.54e56dded7c1a804.webp)
 
 Infografika od [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Kvíz před lekcí](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Tato lekce je dostupná v R!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
+> ### [Tato lekce je dostupná i v R!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
 ## Úvod
 
-Nyní, když máte k dispozici nástroje potřebné k zahájení práce na vytváření modelů strojového učení pomocí Scikit-learn, jste připraveni začít klást otázky svým datům. Při práci s daty a aplikaci řešení ML je velmi důležité vědět, jak položit správnou otázku, abyste mohli plně využít potenciál svého datasetu.
+Nyní, když máte připravené nástroje potřebné k začátku tvorby strojového učení s Scikit-learn, jste připraveni začít pokládat otázky svým datům. Při práci s daty a aplikaci ML řešení je velmi důležité vědět, jak správně otázky klást, aby bylo možné správně odemknout potenciály vaší datové sady.
 
 V této lekci se naučíte:
 
-- Jak připravit data pro vytváření modelů.
+- Jak připravit svá data pro tvorbu modelu.
 - Jak používat Matplotlib pro vizualizaci dat.
+- Jak používat Seaborn pro expresivnější vizualizaci dat.
 
-## Kladení správných otázek svým datům
+## Klást správné otázky svým datům
 
-Otázka, na kterou potřebujete odpověď, určí, jaký typ algoritmů ML budete používat. Kvalita odpovědi, kterou získáte, bude silně záviset na povaze vašich dat.
+Otázka, na kterou potřebujete znát odpověď, určí, jaký typ ML algoritmů budete využívat. A kvalita odpovědi, kterou obdržíte, bude silně záviset na povaze vašich dat.
 
-Podívejte se na [data](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) poskytnutá pro tuto lekci. Tento soubor .csv můžete otevřít ve VS Code. Rychlý pohled okamžitě ukáže, že jsou zde prázdné hodnoty a směs textových a číselných dat. Je zde také zvláštní sloupec nazvaný 'Package', kde jsou data směsí hodnot jako 'sacks', 'bins' a dalších. Data jsou vlastně trochu chaotická.
+Podívejte se na [data](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) poskytnutá pro tuto lekci. Tento .csv soubor si můžete otevřít ve VS Code. Rychlý pohled okamžitě ukáže, že tam jsou prázdná místa a mix textových a číselných dat. Také je tam zvláštní sloupec s názvem 'Package', kde jsou data smíšená mezi 'sacky', 'koše' a další hodnoty. Data jsou vlastně trochu nepořádek.
 
-[![ML pro začátečníky - Jak analyzovat a čistit dataset](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML pro začátečníky - Jak analyzovat a čistit dataset")
+[![ML pro začátečníky - Jak analyzovat a čistit datovou sadu](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML pro začátečníky - Jak analyzovat a čistit datovou sadu")
 
 > 🎥 Klikněte na obrázek výše pro krátké video o přípravě dat pro tuto lekci.
 
-Ve skutečnosti není příliš běžné dostat dataset, který je zcela připraven k použití pro vytvoření modelu ML bez jakýchkoli úprav. V této lekci se naučíte, jak připravit surový dataset pomocí standardních knihoven Pythonu. Naučíte se také různé techniky vizualizace dat.
+Ve skutečnosti není moc běžné dostat datovou sadu, která je zcela připravená k okamžitému použití pro vytvoření ML modelu. V této lekci se naučíte, jak připravit surová data pomocí standardních knihoven Pythonu. Také poznáte různé techniky vizualizace dat.
 
 ## Případová studie: 'trh s dýněmi'
 
-V této složce najdete soubor .csv v kořenové složce `data` nazvaný [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), který obsahuje 1757 řádků dat o trhu s dýněmi, rozdělených do skupin podle měst. Jedná se o surová data získaná z [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice), která distribuuje Ministerstvo zemědělství Spojených států.
+V této složce najdete .csv soubor v hlavní složce `data` nazvaný [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), který obsahuje 1757 řádků dat o trhu s dýněmi, rozdělených do skupin podle měst. Jedná se o surová data extrahovaná z [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice), distribuovaná Ministerstvem zemědělství USA.
 
 ### Příprava dat
 
-Tato data jsou veřejně dostupná. Mohou být stažena v mnoha samostatných souborech, podle města, z webu USDA. Abychom se vyhnuli příliš mnoha samostatným souborům, spojili jsme všechna data měst do jedné tabulky, takže jsme data již _částečně připravili_. Nyní se podívejme na data podrobněji.
+Tato data jsou veřejně dostupná. Lze je stáhnout v mnoha oddělených souborech podle jednotlivých měst ze stránek USDA. Abychom se vyhnuli příliš mnoha samostatným souborům, spojili jsme všechna data ze měst do jedné tabulky, takže jsme data už trochu _připravili_. Nyní se podívejme podrobněji na data.
 
 ### Data o dýních - první závěry
 
-Co si všimnete na těchto datech? Už jste viděli, že je zde směs textů, čísel, prázdných hodnot a zvláštních hodnot, které je třeba pochopit.
+Co si o těchto datech všimnete? Už jste viděli, že tam jsou smíšené texty, čísla, prázdná místa a zvláštní hodnoty, které je potřeba pochopit.
 
-Jakou otázku můžete položit těmto datům pomocí regresní techniky? Co třeba "Předpovědět cenu dýně na prodej během daného měsíce". Při pohledu na data je třeba provést určité změny, aby se vytvořila datová struktura potřebná pro tento úkol.
+Jakou otázku můžete položit těmto datům využitím regresní techniky? Co třeba "Předpovědět cenu dýně na prodej během určitého měsíce". Když se znovu podíváte na data, je potřeba provést některé změny, abyste vytvořili datovou strukturu potřebnou pro tento úkol.
+## Cvičení - analyzujte data o dýních
 
-## Cvičení - analýza dat o dýních
-
-Použijme [Pandas](https://pandas.pydata.org/) (název znamená `Python Data Analysis`), nástroj velmi užitečný pro tvarování dat, k analýze a přípravě těchto dat o dýních.
+Použijme [Pandas](https://pandas.pydata.org/), (název znamená `Python Data Analysis`) nástroj velmi užitečný pro tvarování dat, pro analýzu a přípravu těchto dat o dýních.
 
 ### Nejprve zkontrolujte chybějící data
 
-Nejprve budete muset podniknout kroky k ověření chybějících dat:
+Nejprve bude potřeba prověřit případná chybějící data:
 
-1. Převést data na formát měsíce (jedná se o americká data, takže formát je `MM/DD/YYYY`).
-2. Extrahovat měsíc do nového sloupce.
+1. Převeďte data na formát měsíce (jedná se o americká data, takže formát je `MM/DD/YYYY`).
+2. Extrahujte měsíc do nového sloupce.
 
-Otevřete soubor _notebook.ipynb_ ve Visual Studio Code a importujte tabulku do nového dataframe Pandas.
+Otevřete soubor _notebook.ipynb_ ve Visual Studio Code a naimportujte tabulku do nového Pandas dataframe.
 
-1. Použijte funkci `head()`, abyste zobrazili prvních pět řádků.
+1. Použijte funkci `head()` k zobrazení prvních pěti řádků.
 
     ```python
     import pandas as pd
@@ -64,28 +64,28 @@ Otevřete soubor _notebook.ipynb_ ve Visual Studio Code a importujte tabulku do 
     pumpkins.head()
     ```
 
-    ✅ Jakou funkci byste použili k zobrazení posledních pěti řádků?
+    ✅ Jakou funkci použijete pro zobrazení posledních pěti řádků?
 
-1. Zkontrolujte, zda v aktuálním dataframe chybí data:
+1. Zkontrolujte, zda v aktuálním dataframe nejsou chybějící data:
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    Chybí data, ale možná to nebude mít vliv na daný úkol.
+    Nějaká chybějící data jsou, ale možná to pro daný úkol nebude vadit.
 
-1. Aby byl váš dataframe snazší na práci, vyberte pouze sloupce, které potřebujete, pomocí funkce `loc`, která extrahuje z původního dataframe skupinu řádků (předaná jako první parametr) a sloupců (předaná jako druhý parametr). Výraz `:` v níže uvedeném případě znamená "všechny řádky".
+1. Aby bylo snazší s dataframe pracovat, vyberte si jen sloupce, které potřebujete, použitím funkce `loc`, která z původního dataframe vybere skupinu řádků (jako první parametr) a sloupců (jako druhý parametr). Výraz `:` znamená "všechny řádky".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
     pumpkins = pumpkins.loc[:, columns_to_select]
     ```
 
-### Dále určete průměrnou cenu dýně
+### Druhé, určete průměrnou cenu dýně
 
-Přemýšlejte o tom, jak určit průměrnou cenu dýně v daném měsíci. Jaké sloupce byste si vybrali pro tento úkol? Nápověda: budete potřebovat 3 sloupce.
+Přemýšlejte, jak zjistit průměrnou cenu dýně za daný měsíc. Jaké sloupce byste pro tento úkol vybrali? Tip: potřebujete tři sloupce.
 
-Řešení: vezměte průměr sloupců `Low Price` a `High Price`, abyste naplnili nový sloupec Price, a převeďte sloupec Date tak, aby zobrazoval pouze měsíc. Naštěstí podle výše uvedené kontroly nechybí žádná data pro datumy nebo ceny.
+Řešení: vezměte průměr sloupců `Low Price` a `High Price` pro vyplnění nového sloupce Cena, a převeďte sloupec Date tak, aby ukazoval jen měsíc. Naštěstí podle předchozí kontroly chybí data pro datum nebo ceny.
 
 1. Pro výpočet průměru přidejte následující kód:
 
@@ -96,37 +96,37 @@ Přemýšlejte o tom, jak určit průměrnou cenu dýně v daném měsíci. Jak�
 
     ```
 
-   ✅ Neváhejte si vytisknout jakákoli data, která chcete zkontrolovat, pomocí `print(month)`.
+   ✅ Klidně si vytiskněte jakákoliv data pomocí `print(month)`, chcete-li je zkontrolovat.
 
-2. Nyní zkopírujte převedená data do nového dataframe Pandas:
+2. Nyní zkopírujte převedená data do nového Pandas dataframe:
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Pokud si vytisknete svůj dataframe, uvidíte čistý, upravený dataset, na kterém můžete vytvořit nový regresní model.
+    Vytištěný dataframe vám ukáže čistou a přehlednou datovou sadu, na které můžete stavět svůj nový regresní model.
 
-### Ale počkejte! Něco je tu zvláštní
+### Ale počkejte! Něco tu není v pořádku
 
-Pokud se podíváte na sloupec `Package`, dýně se prodávají v mnoha různých konfiguracích. Některé se prodávají v mírách '1 1/9 bushel', některé v '1/2 bushel', některé na kus, některé na libru a některé ve velkých krabicích s různými šířkami.
+Pokud se podíváte na sloupec `Package`, dýně jsou prodávány v mnoha různých konfiguracích. Některé jsou prodávány v měrách '1 1/9 koše', jiné v '1/2 koše', některé po kusech, jiné za libru, a některé ve velkých krabicích různé šířky.
 
-> Dýně se zdají být velmi těžké vážit konzistentně
+> Dýně se zdá být velmi obtížné vážit konzistentně
 
-Při zkoumání původních dat je zajímavé, že vše, co má `Unit of Sale` rovné 'EACH' nebo 'PER BIN', má také typ `Package` na palec, na bin nebo 'each'. Dýně se zdají být velmi těžké vážit konzistentně, takže je filtrujme výběrem pouze dýní s řetězcem 'bushel' ve sloupci `Package`.
+Při zkoumání původních dat je zajímavé, že cokoli, kde je `Unit of Sale` rovno 'EACH' nebo 'PER BIN', má také typ `Package` ve znacích palec, koš nebo 'each'. Dýně se zdá být velmi obtížné vážit konzistentně, proto je vyfiltrujme tak, že vybereme jen dýně se stringem 'bushel' ve sloupci `Package`.
 
-1. Přidejte filtr na začátek souboru, pod počáteční import .csv:
+1. Přidejte filtr na začátek souboru, pod inicializační import .csv:
 
     ```python
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    Pokud nyní vytisknete data, uvidíte, že získáváte pouze asi 415 řádků dat obsahujících dýně podle bushelu.
+    Pokud nyní vytisknete data, můžete vidět, že se zobrazují jen asi 415 řádků obsahujících dýně podle košů.
 
-### Ale počkejte! Je tu ještě jedna věc, kterou je třeba udělat
+### Ale počkejte! Ještě je potřeba něco udělat
 
-Všimli jste si, že množství bushelu se liší podle řádku? Musíte normalizovat ceny tak, aby ukazovaly ceny za bushel, takže proveďte nějaké výpočty pro standardizaci.
+Všimli jste si, že množství koše se liší podle řádku? Je potřeba normalizovat ceny tak, aby ukazovaly cenu za koš, takže proveďte matematické úpravy pro standardizaci.
 
-1. Přidejte tyto řádky po bloku vytvářejícím dataframe new_pumpkins:
+1. Přidejte následující řádky po bloku vytvářejícím nový `new_pumpkins` dataframe:
 
     ```python
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1 1/9'), 'Price'] = price/(1 + 1/9)
@@ -134,38 +134,38 @@ Všimli jste si, že množství bushelu se liší podle řádku? Musíte normali
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ Podle [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308) váha bushelu závisí na typu produktu, protože se jedná o objemové měření. "Bushel rajčat, například, by měl vážit 56 liber... Listy a zelenina zabírají více prostoru s menší váhou, takže bushel špenátu váží pouze 20 liber." Je to všechno docela komplikované! Nebudeme se zabývat konverzí bushelu na libry, místo toho budeme určovat cenu podle bushelu. Všechny tyto studie bushelů dýní však ukazují, jak velmi důležité je pochopit povahu vašich dat!
+✅ Podle [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308) závisí váha koše na typu produktu, protože jde o měření objemu. "Koš rajčat například váží přibližně 56 liber... Listy a zelenina zabírají více místa a váží méně, takže koš špenátu váží pouze 20 liber." Je to poměrně komplikované! Raději nebudeme provádět převod koše na libry, a místo toho budeme ceny uvádět za koš. Toto studium objemu košů dýní však ukazuje, jak je důležité rozumět povaze svých dat!
 
-Nyní můžete analyzovat ceny za jednotku na základě jejich měření bushelu. Pokud si data vytisknete ještě jednou, uvidíte, jak jsou standardizována.
+Nyní můžete analyzovat ceny za jednotku podle jejich měření košem. Pokud data vytisknete znovu, uvidíte, jak jsou standardizovaná.
 
-✅ Všimli jste si, že dýně prodávané na půl bushelu jsou velmi drahé? Dokážete zjistit proč? Nápověda: malé dýně jsou mnohem dražší než velké, pravděpodobně proto, že jich je mnohem více na bushel, vzhledem k nevyužitému prostoru, který zabírá jedna velká dutá dýně na koláč.
+✅ Všimli jste si, že dýně prodávané po polovině koše jsou velmi drahé? Dokážete přijít na důvod? Tip: malé dýně jsou mnohem dražší než velké, pravděpodobně proto, že jich je v koši mnohem více, vzhledem k nevyužitému prostoru zabranému jednou velkou dutou dýní na koláč.
 
 ## Strategie vizualizace
 
-Součástí role datového vědce je demonstrovat kvalitu a povahu dat, se kterými pracuje. K tomu často vytvářejí zajímavé vizualizace, jako jsou grafy, diagramy a tabulky, které ukazují různé aspekty dat. Tímto způsobem mohou vizuálně ukázat vztahy a mezery, které by jinak bylo těžké odhalit.
+Částí práce datového vědce je ukázat kvalitu a povahu dat, se kterými pracuje. Často vytváří zajímavé vizualizace, tedy grafy, diagramy a schémata, ukazující různé aspekty dat. Tímto způsobem mohou vizuálně ukázat vztahy a mezery, které by jinak byly těžko odhalitelné.
 
-[![ML pro začátečníky - Jak vizualizovat data pomocí Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML pro začátečníky - Jak vizualizovat data pomocí Matplotlib")
+[![ML pro začátečníky - Jak vizualizovat data s Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML pro začátečníky - Jak vizualizovat data s Matplotlib")
 
-> 🎥 Klikněte na obrázek výše pro krátké video o vizualizaci dat pro tuto lekci.
+> 🎥 Klikněte na obrázek výše pro krátké video o tom, jak vizualizovat data pro tuto lekci.
 
-Vizualizace mohou také pomoci určit techniku strojového učení, která je pro data nejvhodnější. Například scatterplot, který se zdá sledovat linii, naznačuje, že data jsou dobrým kandidátem pro cvičení lineární regrese.
+Vizualizace také mohou pomoci určit nejvhodnější techniku strojového učení pro daná data. Například rozptylový graf, který následuje přímku, naznačuje, že data jsou dobrým kandidátem pro úlohu lineární regrese.
 
-Jedna knihovna pro vizualizaci dat, která dobře funguje v Jupyter notebooku, je [Matplotlib](https://matplotlib.org/) (kterou jste viděli i v předchozí lekci).
+Jedna knihovna pro vizualizaci dat, která dobře funguje v Jupyter noteboocích, je [Matplotlib](https://matplotlib.org/) (kterou jste také viděli v předchozí lekci).
 
-> Získejte více zkušeností s vizualizací dat v [těchto tutoriálech](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
+> Získejte více zkušeností s vizualizací dat v [těchto návodech](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
 ## Cvičení - experimentujte s Matplotlib
 
-Zkuste vytvořit základní grafy pro zobrazení nového dataframe, který jste právě vytvořili. Co by ukázal základní čárový graf?
+Zkuste vytvořit základní grafy pro zobrazení nového dataframe, který jste právě vytvořili. Co by základní čárový graf ukázal?
 
-1. Importujte Matplotlib na začátek souboru, pod import Pandas:
+1. Naimportujte Matplotlib na začátku souboru, pod import Pandas:
 
     ```python
     import matplotlib.pyplot as plt
     ```
 
-1. Znovu spusťte celý notebook, aby se aktualizoval.
-1. Na konec notebooku přidejte buňku pro vykreslení dat jako box:
+1. Znovu spusťte celý notebook pro jeho obnovení.
+1. Na konci notebooku přidejte buňku pro vykreslení dat jako box:
 
     ```python
     price = new_pumpkins.Price
@@ -174,44 +174,121 @@ Zkuste vytvořit základní grafy pro zobrazení nového dataframe, který jste 
     plt.show()
     ```
 
-    ![Scatterplot ukazující vztah mezi cenou a měsícem](../../../../2-Regression/2-Data/images/scatterplot.png)
+    ![Rozptylový graf zobrazující vztah ceny k měsíci](../../../../translated_images/cs/scatterplot.b6868f44cbd2051c.webp)
 
-    Je tento graf užitečný? Překvapilo vás na něm něco?
+    Je to užitečný graf? Překvapí vás na něm něco?
 
-    Není příliš užitečný, protože pouze zobrazuje vaše data jako rozptyl bodů v daném měsíci.
+    Není příliš užitečný, protože pouze zobrazuje vaše data jako rozptyl bodů pro daný měsíc.
 
-### Udělejte to užitečné
+### Aby byl užitečný
 
-Aby grafy zobrazovaly užitečná data, obvykle je třeba data nějak seskupit. Zkusme vytvořit graf, kde osa y ukazuje měsíce a data demonstrují rozložení dat.
+Pro zobrazení užitečných dat obvykle potřebujete data nějak seskupit. Zkuste vytvořit graf, kde osa y bude zobrazovat měsíce a graf ukáže rozložení dat.
 
-1. Přidejte buňku pro vytvoření seskupeného sloupcového grafu:
+1. Přidejte buňku, která vytvoří seskupený sloupcový graf:
 
     ```python
     new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Sloupcový graf ukazující vztah mezi cenou a měsícem](../../../../2-Regression/2-Data/images/barchart.png)
+    ![Sloupcový graf zobrazující vztah ceny k měsíci](../../../../translated_images/cs/barchart.a833ea9194346d76.webp)
 
-    Toto je užitečnější vizualizace dat! Zdá se, že naznačuje, že nejvyšší cena za dýně se vyskytuje v září a říjnu. Odpovídá to vašemu očekávání? Proč ano nebo ne?
+    Toto je užitečnější vizualizace dat! Zdá se, že nejvyšší cena dýní nastává v září a říjnu. Odpovídá to vašim očekáváním? Proč ano, nebo proč ne?
+
+## Cvičení - experimentujte se Seaborn
+
+Matplotlib je mocný, ale tvorba dokonale vypadajícího grafu může vyžadovat hodně kódu. [Seaborn](https://seaborn.pydata.org/) je knihovna postavená _nad_ Matplotlib navržená pro statistickou vizualizaci dat. Pracuje přímo s Pandas dataframe, aplikuje příjemné výchozí styly a umožňuje vytvářet informativní grafy s mnohem menším množstvím kódu. Protože Seaborn vrací objekty Matplotlib, můžete stále používat vše, co už o Matplotlib víte, k doladění výsledku.
+
+> Pokud ještě nemáte Seaborn nainstalovaný, nainstalujte jej pomocí `pip install seaborn`.
+
+1. Naimportujte Seaborn na začátku notebooku, pod ostatní importy. Obvykle se importuje jako `sns`:
+
+    ```python
+    import seaborn as sns
+    ```
+
+### Rozptylové grafy pro ukázku vztahů
+
+Velká část prozkoumávání dat před tvorbou modelu spočívá ve hledání _vztahů_ mezi proměnnými. [Rozptylový graf](https://cs.wikipedia.org/wiki/XY_graf) je jedním z nejlepších nástrojů pro toto: pokud body vypadají, že následují přímku, tyto dvě proměnné mohou být korelované, což je dobré znamení, že model lineární regrese by mohl fungovat.
+
+1. Znovu vytvořte scatterplot ceny vůči měsíci, tentokrát pomocí Seaborn funkce [`relplot()`](https://seaborn.pydata.org/generated/seaborn.relplot.html) (relační graf), která pracuje přímo s vašimi databázovými sloupci:
+
+    ```python
+    sns.relplot(x="Price", y="Month", data=new_pumpkins)
+    ```
+
+    ![Rozptylový graf Seaborn zobrazující vztah ceny k měsíci](../../../../translated_images/cs/relplot.a03837d8f0329cec.webp)
+
+    Všimněte si, jak předáváte _názvy sloupců_ a dataframe a Seaborn pak za vás přidá popisky os.
+
+2. Můžete změnit graf na čárový pomocí `kind="line"`. Seaborn dokonce vykreslí stinný pruh ukazující interval spolehlivosti kolem čáry:
+
+    ```python
+    sns.relplot(x="Price", y="Month", kind="line", data=new_pumpkins)
+    ```
+
+    ![Čárový graf Seaborn zobrazující vztah ceny k měsíci](../../../../translated_images/cs/lineplot.f9034ba47b1e30ee.webp)
+
+    Tato konkrétní data jsou poměrně hlučná, takže čárový graf zde není nejjasnější volbou — ale ukazuje, jak snadno lze v Seaborn měnit typ grafu.
+
+### Sloupcové grafy pro zobrazení rozložení
+
+
+Dříve jste data ručně seskupili, abyste vytvořili pruhový graf pomocí Matplotlib. Seabornova funkce [`catplot()`](https://seaborn.pydata.org/generated/seaborn.catplot.html) (kategorický graf) může seskupování a agregaci udělat za vás. Ve výchozím nastavení `kind="bar"` zobrazuje průměr každé kategorie spolu s černou čarou označující interval spolehlivosti.
+
+1. Vytvořte pruhový graf průměrné ceny za měsíc:
+
+    ```python
+    sns.catplot(x="Month", y="Price", data=new_pumpkins, kind="bar")
+    ```
+
+    ![Sloupcový graf v Seabornu zobrazující rozložení cen podle měsíců](../../../../translated_images/cs/catplot.e73fc35fdf96242b.webp)
+
+    To potvrzuje to, co jste viděli v Matplotlibu — ceny vrcholí kolem září a října — ale Seaborn také vizualizuje, jak moc se cena _liší_ v rámci jednotlivých měsíců.
+
+### Tepelné mapy pro zobrazení korelací
+
+Bodové grafy porovnávají vždy dva proměnné najednou. Když máte několik číselných sloupců, [tepelná mapa](https://en.wikipedia.org/wiki/Heat_map) vám umožňuje zobrazit sílu vztahu mezi _každým_ párem sloupců najednou. Toto je běžný způsob, jak zjistit, které prvky jsou nejvíce korelované před výběrem toho, co použít do modelu (a stejný typ grafu se později používá k zobrazení matic záměny v klasifikaci).
+
+1. Vytvořte korelační matici pomocí Pandas a pak ji nakreslete pomocí Seabornovy funkce [`heatmap()`](https://seaborn.pydata.org/generated/seaborn.heatmap.html). Možnost `annot=True` vytiskne hodnoty korelace do každé buňky:
+
+    ```python
+    correlations = new_pumpkins[['Month', 'Low Price', 'High Price', 'Price']].corr()
+    sns.heatmap(correlations, annot=True, cmap="coolwarm")
+    ```
+
+    ![Tepelná mapa v Seabornu zobrazující korelace mezi číselnými sloupci](../../../../translated_images/cs/heatmap.bd98dce43b404c57.webp)
+
+    Hodnoty blízké `1` (nebo `-1`) znamenají, že sloupce jsou silně _lineárně_ korelované. Všimněte si, že `Low Price` a `High Price` jsou téměř dokonale korelované. `Month` naopak vykazuje pouze slabou lineární korelaci s cenou — ačkoli pruhový graf výše ukázal zřetelný sezonní vrchol v září a říjnu. To je důležitá lekce: korelační koeficient měří pouze _přímočaré_ vztahy, takže může přehlédnout sezónní či jiné nelineární vzory. ✅ Proč je užitečné podívat se před rozhodnutím, které sloupce použít, jak na tepelnou mapu, *tak* na grafy jako pruhový graf?
+
+### Matplotlib nebo Seaborn?
+
+Obě knihovny stojí za to znát:
+
+- **Matplotlib** vám dává detailní kontrolu nad každým prvkem grafu a je základem, na kterém staví téměř všechny ostatní Python knihovny pro grafiku.
+- **Seaborn** poskytuje vyšší úroveň funkcí a atraktivní výchozí nastavení pro statistické grafy, pracuje přímo s datovými rámci a často je rychlejší pro průzkumnou analýzu dat.
+
+Běžný pracovní postup je začít Seabornem pro rychlý průzkum dat a poté přejít do Matplotlibu, když chcete přizpůsobit detaily.
 
 ---
 
 ## 🚀Výzva
 
-Prozkoumejte různé typy vizualizací, které Matplotlib nabízí. Které typy jsou nejvhodnější pro regresní problémy?
+Prozkoumejte různé typy vizualizací, které Matplotlib a Seaborn nabízejí. Které typy jsou nejvhodnější pro regresní problémy?
 
-## [Kvíz po lekci](https://ff-quizzes.netlify.app/en/ml/)
+## [Kvíz po přednášce](https://ff-quizzes.netlify.app/en/ml/)
 
-## Přehled & Samostudium
+## Přehled a samostudium
 
-Podívejte se na různé způsoby vizualizace dat. Udělejte si seznam různých dostupných knihoven a poznamenejte si, které jsou nejlepší pro dané typy úkolů, například 2D vizualizace vs. 3D vizualizace. Co objevíte?
+Podívejte se na mnoho způsobů, jak vizualizovat data. Vytvořte seznam dostupných knihoven a poznamenejte, které jsou nejlepší pro různé typy úkolů, například 2D vizualizace vs. 3D vizualizace. Co objevíte?
 
-## Úkol
+## Zadání
 
 [Prozkoumání vizualizace](assignment.md)
 
 ---
 
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). Ačkoli se snažíme o přesnost, mějte na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Neodpovídáme za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
