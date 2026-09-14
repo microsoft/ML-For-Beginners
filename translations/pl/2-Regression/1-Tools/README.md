@@ -1,55 +1,55 @@
-# Rozpocznij pracę z Pythonem i Scikit-learn dla modeli regresji
+# Zacznij z Pythonem i Scikit-learn dla modeli regresji
 
-![Podsumowanie regresji w formie sketchnotu](../../../../translated_images/pl/ml-regression.4e4f70e3b3ed446e.webp)
+![Podsumowanie regresji w formie notatki szkicowej](../../../../translated_images/pl/ml-regression.4e4f70e3b3ed446e.webp)
 
-> Sketchnote autorstwa [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Notatka szkicowa autorstwa [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Ta lekcja dostępna jest w R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Ta lekcja jest dostępna również w R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
-## Wstęp
+## Wprowadzenie
 
-W tych czterech lekcjach odkryjesz, jak budować modele regresji. Wkrótce omówimy, do czego służą. Ale zanim zaczniesz, upewnij się, że masz odpowiednie narzędzia do rozpoczęcia pracy!
+W tych czterech lekcjach odkryjesz, jak budować modele regresyjne. Wkrótce omówimy, do czego one służą. Ale zanim zaczniesz cokolwiek robić, upewnij się, że masz właściwe narzędzia, by rozpocząć proces!
 
-W tej lekcji nauczysz się:
+W tej lekcji nauczysz się jak:
 
-- Konfigurować swój komputer do lokalnych zadań uczenia maszynowego.
+- Skonfigurować komputer do lokalnych zadań uczenia maszynowego.
 - Pracować z Jupyter Notebooks.
-- Używać Scikit-learn, w tym instalować tę bibliotekę.
-- Eksplorować regresję liniową na praktycznym ćwiczeniu.
+- Korzystać ze Scikit-learn, w tym instalacji.
+- Poznać regresję liniową przez ćwiczenie praktyczne.
 
 ## Instalacje i konfiguracje
 
-[![ML dla początkujących - Skonfiguruj narzędzia do tworzenia modeli uczenia maszynowego](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML dla początkujących - Skonfiguruj swoje narzędzia do tworzenia modeli uczenia maszynowego")
+[![ML dla początkujących - Przygotuj swoje narzędzia do budowania modeli uczenia maszynowego](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML dla początkujących - Przygotuj swoje narzędzia do budowania modeli uczenia maszynowego")
 
-> 🎥 Kliknij powyższy obraz, aby zobaczyć krótki film pokazujący konfigurację komputera do ML.
+> 🎥 Kliknij powyższy obraz, aby obejrzeć krótki film pokazujący konfigurację komputera do ML.
 
-1. **Zainstaluj Pythona**. Upewnij się, że [Python](https://www.python.org/downloads/) jest zainstalowany na Twoim komputerze. Będziesz używać Pythona dla wielu zadań z zakresu analizy danych i uczenia maszynowego. Większość systemów komputerowych ma już zainstalowanego Pythona. Dostępne są również przydatne [Pakiety do Kodowania w Pythonie](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), które ułatwiają konfigurację niektórym użytkownikom.
+1. **Zainstaluj Pythona**. Upewnij się, że [Python](https://www.python.org/downloads/) jest zainstalowany na twoim komputerze. Będziesz używać Pythona do wielu zadań związanych z data science i uczeniem maszynowym. Większość systemów komputerowych ma już zainstalowanego Pythona. Są też dostępne przydatne [pakiety do kodowania w Pythonie](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), które ułatwiają instalację niektórym użytkownikom.
 
-   Jednak niektóre zastosowania Pythona wymagają jednej wersji oprogramowania, a inne innej wersji. Dlatego warto pracować w ramach [środowiska wirtualnego](https://docs.python.org/3/library/venv.html).
+   Niektóre zastosowania Pythona wymagają jednak różnych wersji oprogramowania. Dlatego korzystne jest pracowanie w ramach [wirtualnego środowiska](https://docs.python.org/3/library/venv.html).
 
-2. **Zainstaluj Visual Studio Code**. Upewnij się, że masz zainstalowany Visual Studio Code na swoim komputerze. Postępuj zgodnie z instrukcjami, aby [zainstalować Visual Studio Code](https://code.visualstudio.com/) w podstawowej instalacji. Będziesz używać Pythona w Visual Studio Code podczas tego kursu, więc warto się także zapoznać z tym, jak [konfigurować Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) do pracy z Pythonem.
+2. **Zainstaluj Visual Studio Code**. Upewnij się, że masz zainstalowany Visual Studio Code na swoim komputerze. Postępuj według tych instrukcji, by [zainstalować Visual Studio Code](https://code.visualstudio.com/) - podstawowa instalacja. W tym kursie będziesz używać Pythona w Visual Studio Code, więc warto nauczyć się, jak [konfigurować Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) do pracy z Pythonem.
 
-   > Zapoznaj się z Pythonem, realizując tę kolekcję [modułów nauki](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Zapoznaj się z Pythonem, pracując z tym zbiorem [modułów Learn](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
-   > [![Konfiguracja Pythona w Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Konfiguracja Pythona w Visual Studio Code")
+   > [![Konfiguracja Pythona z Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Konfiguracja Pythona z Visual Studio Code")
    >
-   > 🎥 Kliknij powyższy obraz, aby zobaczyć film: używanie Pythona wewnątrz VS Code.
+   > 🎥 Kliknij powyższy obraz, by obejrzeć film: użycie Pythona w VS Code.
 
-3. **Zainstaluj Scikit-learn**, postępując zgodnie z [tym instrukcjami](https://scikit-learn.org/stable/install.html). Ponieważ musisz mieć pewność, że używasz Pythona 3, zaleca się korzystanie ze środowiska wirtualnego. Uwaga, jeśli instalujesz tę bibliotekę na M1 Macu, są specjalne instrukcje na stronie powyżej.
+3. **Zainstaluj Scikit-learn**, postępując zgodnie z [tym instrukcjami](https://scikit-learn.org/stable/install.html). Ponieważ musisz używać Pythona 3, zalecane jest korzystanie z wirtualnego środowiska. Jeśli instalujesz tę bibliotekę na Macu M1, na powyższej stronie są specjalne wskazówki.
 
-1. **Zainstaluj Jupyter Notebook**. Będziesz musiał [zainstalować pakiet Jupyter](https://pypi.org/project/jupyter/).
+1. **Zainstaluj Jupyter Notebook**. Będziesz musiał [zainstalować paczkę Jupyter](https://pypi.org/project/jupyter/).
 
-## Twoje środowisko do pracy z ML
+## Twoje środowisko do tworzenia ML
 
-Będziesz używać **notebooków** do tworzenia kodu w Pythonie oraz tworzenia modeli uczenia maszynowego. Ten typ pliku jest popularnym narzędziem wśród analityków danych i można go rozpoznać po rozszerzeniu `.ipynb`.
+Będziesz korzystać z **notebooków** do tworzenia kodu w Pythonie i budowania modeli uczenia maszynowego. Ten typ pliku jest powszechnym narzędziem dla data scientistów i można go rozpoznać po rozszerzeniu `.ipynb`.
 
-Notebooki to interaktywne środowisko, które pozwala programiście zarówno pisać kod, jak i dodawać notatki oraz dokumentację wokół kodu, co jest bardzo przydatne w projektach eksperymentalnych lub badawczych.
+Notebooki to interaktywne środowiska, które pozwalają programiście kodować oraz dodawać notatki i dokumentację do kodu, co jest bardzo pomocne w projektach eksperymentalnych lub badawczych.
 
-[![ML dla początkujących - Konfiguracja Jupyter Notebooks do rozpoczęcia budowy modeli regresji](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML dla początkujących - Konfiguracja Jupyter Notebooks do rozpoczęcia budowy modeli regresji")
+[![ML dla początkujących - Skonfiguruj Jupyter Notebooks, by zacząć budować modele regresji](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML dla początkujących - Skonfiguruj Jupyter Notebooks, by zacząć budować modele regresji")
 
-> 🎥 Kliknij powyższy obraz, aby zobaczyć krótki film przedstawiający to ćwiczenie.
+> 🎥 Kliknij powyższy obraz, by obejrzeć krótki film z tym ćwiczeniem.
 
 ### Ćwiczenie - praca z notebookiem
 
@@ -57,11 +57,11 @@ W tym folderze znajdziesz plik _notebook.ipynb_.
 
 1. Otwórz _notebook.ipynb_ w Visual Studio Code.
 
-   Serwer Jupyter uruchomi się z Pythonem 3+. Znajdziesz obszary notebooka, które można `uruchomić`, fragmenty kodu. Możesz uruchomić blok kodu, wybierając ikonę wyglądającą jak przycisk odtwarzania.
+   Uruchomi się serwer Jupyter z Pythonem 3+. Znajdziesz obszary notebooka, które możesz `uruchomić`, fragmenty kodu. Możesz wykonać blok kodu, wybierając ikonę przypominającą przycisk „play”.
 
-1. Wybierz ikonę `md` i dodaj trochę markdown, wpisując następujący tekst **# Welcome to your notebook**.
+1. Wybierz ikonę `md` i dodaj trochę markdownu, wstawiając tekst **# Witaj w swoim notebooku**.
 
-   Następnie dodaj trochę kodu Python.
+   Następnie dodaj trochę kodu Pythona.
 
 1. Wpisz **print('hello notebook')** w bloku kodu.
 1. Wybierz strzałkę, aby uruchomić kod.
@@ -74,34 +74,34 @@ W tym folderze znajdziesz plik _notebook.ipynb_.
 
 ![VS Code z otwartym notebookiem](../../../../translated_images/pl/notebook.4a3ee31f396b8832.webp)
 
-Możesz przeplatać swój kod komentarzami, aby dokumentować notebook dla samego siebie.
+Możesz przeplatać swój kod komentarzami, by samodokumentować notebook.
 
-✅ Pomyśl przez chwilę, jak bardzo różni się środowisko pracy web developera od środowiska naukowca danych.
+✅ Pomyśl przez chwilę, jak bardzo różni się środowisko pracy programisty webowego od środowiska data scientist.
 
-## Uruchomienie Scikit-learn
+## Start ze Scikit-learn
 
-Teraz, gdy Python jest skonfigurowany w Twoim lokalnym środowisku, a Ty czujesz się pewnie z Jupyter Notebooks, zaznajomimy się również ze Scikit-learn (wymowa `sci` jak w `science`). Scikit-learn dostarcza [obszerny API](https://scikit-learn.org/stable/modules/classes.html#api-ref), który pomoże Ci wykonywać zadania ML.
+Teraz, gdy Python jest skonfigurowany w twoim lokalnym środowisku, a ty czujesz się komfortowo z Jupyter Notebooks, poznajmy równie dobrze Scikit-learn (wymowa `sci` jak w „science”). Scikit-learn oferuje [obszerny API](https://scikit-learn.org/stable/modules/classes.html#api-ref), które pomaga wykonać zadania ML.
 
-Według ich [strony internetowej](https://scikit-learn.org/stable/getting_started.html), „Scikit-learn jest otwartoźródłową biblioteką do uczenia maszynowego, która wspiera uczenie nadzorowane i nienadzorowane. Zapewnia także różnorodne narzędzia do dopasowywania modeli, przetwarzania wstępnego danych, wyboru modelu i ewaluacji oraz wiele innych użytecznych funkcji.”
+Według ich [strony internetowej](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn to biblioteka open source do uczenia maszynowego wspierająca uczenie nadzorowane i nienadzorowane. Dostarcza także narzędzia do dopasowywania modeli, przetwarzania danych, wyboru i oceny modeli oraz wiele innych użyteczności."
 
-W tym kursie będziesz korzystać ze Scikit-learn i innych narzędzi, aby budować modele uczenia maszynowego wykonujące tzw. „tradycyjne zadania uczenia maszynowego”. Świadomie uniknęliśmy sieci neuronowych i głębokiego uczenia, gdyż są one lepiej omówione w naszym nadchodzącym kursie „AI dla początkujących”.
+W tym kursie będziesz używać Scikit-learn i innych narzędzi do budowania modeli uczenia maszynowego w tzw. „tradycyjnych” zadaniach uczenia maszynowego. Świadomie uniknęliśmy sieci neuronowych i głębokiego uczenia, ponieważ są one lepiej omówione w naszym nadchodzącym kursie „AI dla początkujących”.
 
-Scikit-learn ułatwia tworzenie modeli i ocenianie ich do użytku. Skupia się przede wszystkim na danych liczbowych i zawiera kilka gotowych zbiorów danych służących jako narzędzia do nauki. Obejmuje także gotowe modele do wypróbowania przez uczniów. Najpierw przyjrzyjmy się procesowi ładowania gotowych danych i użycia wbudowanego estymatora, aby stworzyć pierwszy model ML w Scikit-learn z podstawowymi danymi.
+Scikit-learn ułatwia budowanie modeli i ich ewaluację. Skupia się głównie na danych liczbowych i zawiera kilka gotowych zestawów danych do użytku edukacyjnego. Obejmuje też wbudowane modele do przetestowania przez uczniów. Poznajmy proces ładowania gotowych danych i używania wbudowanego estymatora, aby stworzyć Twój pierwszy model ML w Scikit-learn na podstawie podstawowych danych.
 
-## Ćwiczenie - Twój pierwszy notatnik Scikit-learn
+## Ćwiczenie - twój pierwszy notebook Scikit-learn
 
-> Ten samouczek był inspirowany [przykładem regresji liniowej](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) na stronie Scikit-learn.
+> Ten samouczek został zainspirowany [przykładem regresji liniowej](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) na stronie Scikit-learn.
 
 
 [![ML dla początkujących - Twój pierwszy projekt regresji liniowej w Pythonie](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML dla początkujących - Twój pierwszy projekt regresji liniowej w Pythonie")
 
-> 🎥 Kliknij powyższy obraz, aby zobaczyć krótki film przedstawiający to ćwiczenie.
+> 🎥 Kliknij powyższy obraz, aby obejrzeć krótki film z tym ćwiczeniem.
 
-W pliku _notebook.ipynb_ powiązanym z tą lekcją wyczyść wszystkie komórki, klikając ikonę „kosza”.
+W pliku _notebook.ipynb_ powiązanym z tą lekcją, wyczyść wszystkie komórki, klikając ikonę „kosza”.
 
-W tej sekcji będziesz pracować z małym zbiorem danych o cukrzycy, który jest wbudowany w Scikit-learn do celów edukacyjnych. Wyobraź sobie, że chcesz przetestować leczenie dla pacjentów z cukrzycą. Modele uczenia maszynowego mogą pomóc ustalić, którzy pacjenci lepiej zareagują na leczenie na podstawie kombinacji różnych zmiennych. Nawet bardzo prosty model regresji, gdy zostanie zwizualizowany, może dostarczyć informacji o zmiennych, które pomogą Ci zorganizować teoretyczne badania kliniczne.
+W tej sekcji będziesz pracować z małym zestawem danych o cukrzycy, który jest wbudowany w Scikit-learn do celów edukacyjnych. Wyobraź sobie, że chcesz przetestować leczenie dla pacjentów cukrzycowych. Modele uczenia maszynowego mogą pomóc określić, którzy pacjenci zareagują lepiej na terapię, na podstawie kombinacji zmiennych. Nawet bardzo podstawowy model regresji, gdy jest wizualizowany, może pokazać informacje o zmiennych, które pomogłyby Ci zaplanować teoretyczne badania kliniczne.
 
-✅ Istnieje wiele typów metod regresji, a wybór zależy od pytania, na które chcesz odpowiedzieć. Jeśli chcesz przewidzieć prawdopodobny wzrost osoby w danym wieku, użyjesz regresji liniowej, ponieważ szukasz **wartości liczbowej**. Jeśli natomiast chcesz odkryć, czy dany typ kuchni powinien być uznany za wegański, szukasz **przypisania do kategorii**, więc użyjesz regresji logistycznej. O regresji logistycznej dowiesz się więcej później. Pomyśl trochę o pytaniach, które możesz zadać danym, i która z tych metod byłaby odpowiednia.
+✅ Istnieje wiele metod regresji, a której użyjesz zależy od pytania, na które chcesz odpowiedzieć. Jeśli chcesz przewidzieć prawdopodobny wzrost osoby w danym wieku, użyjesz regresji liniowej, bo szukasz **wartości liczbowej**. Jeśli chcesz sprawdzić, czy dana kuchnia powinna być uznana za wegańską, interesuje Cię **przypisanie do kategorii**, więc użyjesz regresji logistycznej. O regresji logistycznej dowiesz się więcej później. Pomyśl chwilę o pytaniach, które możesz zadać danym, i która z tych metod byłaby bardziej odpowiednia.
 
 Zaczynajmy zadanie.
 
@@ -109,8 +109,8 @@ Zaczynajmy zadanie.
 
 Do tego zadania zaimportujemy kilka bibliotek:
 
-- **matplotlib**. To przydatne [narzędzie do tworzenia wykresów](https://matplotlib.org/), którego użyjemy do narysowania wykresu liniowego.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) to przydatna biblioteka do obsługi danych liczbowych w Pythonie.
+- **matplotlib**. To przydatne [narzędzie do tworzenia wykresów](https://matplotlib.org/). Użyjemy go do stworzenia wykresu liniowego.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) to przydatna biblioteka do obsługi danych numerycznych w Pythonie.
 - **sklearn**. To biblioteka [Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
 
 Zaimportuj biblioteki, które pomogą Ci w zadaniach.
@@ -123,26 +123,26 @@ Zaimportuj biblioteki, które pomogą Ci w zadaniach.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Powyżej importujesz skróty `matplotlib`, `numpy` oraz importujesz `datasets`, `linear_model` i `model_selection` z `sklearn`. `model_selection` służy do dzielenia danych na zestawy treningowe i testowe.
+   Powyżej importujesz `matplotlib`, `numpy` oraz importujesz `datasets`, `linear_model` i `model_selection` z `sklearn`. `model_selection` służy do dzielenia danych na zestawy treningowe i testowe.
 
 ### Zbiór danych o cukrzycy
 
-Wbudowany [zbiór danych o cukrzycy](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) zawiera 442 próbki danych dotyczących cukrzycy, z 10 zmiennymi cechowymi, z których niektóre to:
+Wbudowany [zbiór danych o cukrzycy](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) zawiera 442 próbki danych dotyczących cukrzycy, z 10 zmiennymi cech, z których niektóre to:
 
 - wiek: wiek w latach
 - bmi: wskaźnik masy ciała
 - bp: średnie ciśnienie krwi
-- s1 tc: limfocyty T (rodzaj białych krwinek)
+- s1 tc: komórki T (rodzaj białych krwinek)
 
-✅ Ten zbiór danych zawiera koncepcję „płci” jako zmiennej cechowej istotnej dla badań nad cukrzycą. Wiele medycznych zbiorów danych zawiera tego rodzaju binarną klasyfikację. Przemyśl, jak takie kategoryzacje mogą wykluczać pewne części populacji z leczenia.
+✅ Ten zbiór danych zawiera koncepcję „płci” jako zmiennej cechowej ważnej w badaniach nad cukrzycą. Wiele medycznych zbiorów zawiera tego rodzaju binarne klasyfikacje. Pomyśl trochę, jak takie kategoryzacje mogą wykluczać części populacji z leczenia.
 
 Teraz załaduj dane X i y.
 
-> 🎓 Pamiętaj, że to uczenie nadzorowane i potrzebujemy nazwanej zmiennej celowej 'y'.
+> 🎓 Pamiętaj, to jest uczenie nadzorowane i potrzebujemy nazwanego celu 'y'.
 
-W nowej komórce kodu załaduj zbiór danych o cukrzycy, wywołując `load_diabetes()`. Parametr `return_X_y=True` sygnalizuje, że `X` będzie macierzą danych, a `y` docelową zmienną regresji.
+W nowej komórce kodu załaduj zbiór danych o cukrzycy, wywołując `load_diabetes()`. Parametr `return_X_y=True` oznacza, że `X` będzie macierzą danych, a `y` celem regresji.
 
-1. Dodaj polecenia print, aby pokazać kształt macierzy danych i jej pierwszy element:
+1. Dodaj kilka poleceń print, aby pokazać kształt macierzy danych i jej pierwszy element:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ W nowej komórce kodu załaduj zbiór danych o cukrzycy, wywołując `load_diabe
     print(X[0])
     ```
 
-    To, co otrzymujesz jako odpowiedź, to krotka. Przypisujesz dwie pierwsze wartości krotki do `X` oraz `y`. Dowiedz się więcej [o krotkach](https://wikipedia.org/wiki/Tuple).
+    To co otrzymujesz w odpowiedzi, to krotka. Przypisujesz dwie pierwsze wartości krotki do zmiennych `X` i `y`. Dowiedz się więcej [o krotkach](https://wikipedia.org/wiki/Tuple).
 
-    Widać, że dane zawierają 442 elementy uformowane w tablice po 10 elementów:
+    Widzisz, że dane zawierają 442 elementy ułożone w tablice o 10 elementach:
 
     ```text
     (442, 10)
@@ -160,39 +160,39 @@ W nowej komórce kodu załaduj zbiór danych o cukrzycy, wywołując `load_diabe
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Pomyśl trochę o relacji między danymi a celem regresji. Regresja liniowa przewiduje zależności między cechą X a zmienną docelową y. Czy w dokumentacji możesz znaleźć [cel](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) dla zbioru danych o cukrzycy? Co ten zbiór danych pokazuje, biorąc pod uwagę ten cel?
+    ✅ Pomyśl trochę o relacji między danymi a celem regresji. Regresja liniowa przewiduje zależności między cechą X a zmienną celu y. Czy potrafisz znaleźć [cel](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) dla zbioru danych o cukrzycy w dokumentacji? Co ten zbiór danych demonstruje, biorąc pod uwagę cel?
 
-2. Następnie wybierz część tego zbioru do wykreślenia, wybierając 3 kolumnę zbioru. Możesz to zrobić, używając operatora `:`, aby wybrać wszystkie wiersze, a następnie wybierając 3 kolumnę za pomocą indeksu (2). Możesz również przekształcić dane w tablicę 2D — wymaganą do wykresu — używając `reshape(n_rows, n_columns)`. Jeśli jeden z parametrów to -1, odpowiadający mu wymiar jest obliczany automatycznie.
+2. Następnie wybierz część tego zbioru, którą wyświetlisz, wybierając 3 kolumnę zbioru. Zrób to, używając operatora `:`, by wybrać wszystkie wiersze, a potem wybierz trzecią kolumnę za pomocą indeksu (2). Możesz także przekształcić dane do tablicy 2D - jak wymagane do wykresu - używając `reshape(n_rows, n_columns)`. Jeśli jeden z parametrów to -1, odpowiedni wymiar jest wyliczany automatycznie.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ W każdym momencie wypisz dane, aby sprawdzić ich kształt.
+   ✅ W każdej chwili wypisz dane, aby sprawdzić ich kształt.
 
-3. Teraz, gdy masz dane gotowe do wykresu, sprawdź, czy maszyna może pomóc ustalić logiczny podział między liczbami w tym zbiorze. Aby to zrobić, musisz podzielić zarówno dane (X), jak i cel (y) na zestawy testowe i treningowe. Scikit-learn ma prosty sposób na to — możesz podzielić dane testowe w wyznaczonym punkcie.
+3. Teraz, gdy masz dane gotowe do wykresu, zobacz, czy maszyna może pomóc określić logiczny podział danych w zbiorze. Aby to zrobić, musisz podzielić dane (X) i cel (y) na zestawy testowe i treningowe. Scikit-learn oferuje prosty sposób na to; możesz podzielić swoje dane testowe w określonym miejscu.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Teraz jesteś gotowy, aby wytrenować swój model! Załaduj model regresji liniowej i wytrenuj go na swoich zestawach treningowych X i y przy użyciu `model.fit()`:
+4. Teraz jesteś gotów do trenowania modelu! Wczytaj model regresji liniowej i wytrenuj go na swoich zestawach treningowych X i y, używając `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` to funkcja, którą zobaczysz w wielu bibliotekach ML, np. w TensorFlow
+    ✅ `model.fit()` to funkcja, którą zobaczysz w wielu bibliotekach ML, jak TensorFlow
 
-5. Następnie wykonaj predykcję za pomocą danych testowych, używając funkcji `predict()`. To posłuży do narysowania linii między grupami danych
+5. Następnie stwórz predykcję używając danych testowych, korzystając z funkcji `predict()`. Posłuży ona do narysowania linii pomiędzy grupami danych
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Teraz czas pokazać dane na wykresie. Matplotlib jest bardzo przydatnym narzędziem do tego zadania. Stwórz wykres punktowy wszystkich danych testowych X i y, a następnie użyj predykcji, aby narysować linię w najbardziej odpowiednim miejscu, między grupami danych modelu.
+6. Czas pokazać dane na wykresie. Matplotlib to bardzo przydatne narzędzie do tego zadania. Stwórz wykres rozrzutu wszystkich danych testowych X i y, a następnie użyj predykcji, aby narysować linię w najbardziej odpowiednim miejscu, pomiędzy grupowaniami danych modelu.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -203,24 +203,23 @@ W nowej komórce kodu załaduj zbiór danych o cukrzycy, wywołując `load_diabe
     plt.show()
     ```
 
-   ![wykres punktowy pokazujący punkty danych dotyczące cukrzycy](../../../../translated_images/pl/scatterplot.ad8b356bcbb33be6.webp)
+   ![wykres rozrzutu pokazujący punkty danych o cukrzycy](../../../../translated_images/pl/scatterplot.ad8b356bcbb33be6.webp)
 
+   ✅ Pomyśl chwilę, co tu się dzieje. Prosta linia przechodzi przez wiele małych punktów danych, ale co ona właściwie robi? Czy widzisz, jak możesz użyć tej linii, by przewidzieć, gdzie powinien pasować nowy, niewidziany punkt danych w relacji do osi y wykresu? Spróbuj ubrać w słowa praktyczne zastosowanie tego modelu.
 
-   ✅ Pomyśl trochę o tym, co się tutaj dzieje. Prosta linia przebiega przez wiele małych punktów danych, ale co dokładnie robi? Czy widzisz, jak powinieneś móc użyć tej linii, aby przewidzieć, gdzie nowy, niewidziany punkt danych powinien się znaleźć w odniesieniu do osi y wykresu? Spróbuj opisać praktyczne zastosowanie tego modelu.
-
-Gratulacje, zbudowałeś swój pierwszy model regresji liniowej, utworzyłeś na jego podstawie predykcję i wyświetliłeś ją na wykresie!
+Gratulacje, stworzyłeś pierwszy model regresji liniowej, wygenerowałeś prognozę i wyświetliłeś ją na wykresie!
 
 ---
 ## 🚀Wyzwanie
 
-Wykreśl inną zmienną z tego zbioru danych. Podpowiedź: zmodyfikuj tę linię: `X = X[:,2]`. Biorąc pod uwagę cel tego zbioru danych, co możesz odkryć na temat postępu cukrzycy jako choroby?
+Narysuj wykres innej zmiennej z tego zbioru danych. Podpowiedź: edytuj tę linię: `X = X[:,2]`. Biorąc pod uwagę cel tego zbioru, co możesz odkryć na temat postępu cukrzycy jako choroby?
 ## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
-## Przegląd i samodzielna nauka
+## Powtórka & Samodzielna nauka
 
-W tym samouczku pracowałeś z prostą regresją liniową, a nie z jednoliniową lub wieloliniową regresją liniową. Przeczytaj trochę o różnicach między tymi metodami lub obejrzyj [ten film](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+W tym tutorialu pracowałeś z prostą regresją liniową, a nie regresją jednowymiarową lub wieloraką. Przeczytaj trochę o różnicach między tymi metodami lub obejrzyj [ten film](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Przeczytaj więcej na temat pojęcia regresji i zastanów się, na jakie pytania można odpowiedzieć za pomocą tej techniki. Skorzystaj z tego [samouczka](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), aby pogłębić swoją wiedzę.
+Przeczytaj więcej na temat koncepcji regresji i zastanów się, jakie pytania można odpowiedzieć za pomocą tej techniki. Skorzystaj z tego [samouczka](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), aby pogłębić swoją wiedzę.
 
 ## Zadanie
 
