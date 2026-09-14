@@ -66,6 +66,8 @@ Follow these steps:
 1. **Fork the Repository**: Click on the "Fork" button at the top-right corner of this page.
 2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
+> 💡 **Quick Start Tip:** Want to start in a browser without setting up Python locally? Use [GitHub Codespaces](https://github.com/features/codespaces) to create a cloud development environment for your fork. Open the green **Code** menu, select **Codespaces**, and create a codespace; install each lesson's required dependencies inside it as needed.
+
 > [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 > 🔧 **Need help?** Check our [Troubleshooting Guide](TROUBLESHOOTING.md) for solutions to common issues with installation, setup, and running lessons.
