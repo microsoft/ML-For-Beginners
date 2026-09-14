@@ -12,8 +12,8 @@
     "language_code": "fa"
   },
   "1-Introduction/2-history-of-ML/README.md": {
-    "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2025-09-04T22:41:05+00:00",
+    "original_hash": "e6b5247d6b4dc821434070bdb58e8285",
+    "translation_date": "2026-09-14T20:22:44+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "fa"
   },
@@ -24,8 +24,8 @@
     "language_code": "fa"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
-    "translation_date": "2026-07-14T03:27:38+00:00",
+    "original_hash": "0c620ca2c6d2828e9a838ecec5f01265",
+    "translation_date": "2026-09-14T20:21:30+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "fa"
   },
@@ -54,8 +54,8 @@
     "language_code": "fa"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
-    "translation_date": "2026-07-14T03:23:38+00:00",
+    "original_hash": "1f4f6c95404d528041bcc36784771084",
+    "translation_date": "2026-09-14T20:23:51+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "fa"
   },
@@ -456,8 +456,8 @@
     "language_code": "fa"
   },
   "7-TimeSeries/README.md": {
-    "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
-    "translation_date": "2025-09-03T22:41:38+00:00",
+    "original_hash": "722526664e764a2290e1def74afa5139",
+    "translation_date": "2026-09-14T20:16:44+00:00",
     "source_file": "7-TimeSeries/README.md",
     "language_code": "fa"
   },
@@ -564,8 +564,8 @@
     "language_code": "fa"
   },
   "README.md": {
-    "original_hash": "3e3a6c7e68e0afe7e2276ac046e4d7a0",
-    "translation_date": "2026-04-20T19:39:02+00:00",
+    "original_hash": "8bba8faed876aa7bbc92b759a350b1d8",
+    "translation_date": "2026-09-14T20:09:49+00:00",
     "source_file": "README.md",
     "language_code": "fa"
   },
@@ -592,11 +592,22 @@
       "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
       "source_file": "sketchnotes/LICENSE.md",
       "language_code": "fa",
-      "failure_date": "2026-07-14T03:22:46+00:00",
+      "failure_date": "2026-09-14T20:15:59+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
+      "translator_version": "0.20.1",
+      "failure_policy_version": 1
+    },
+    "5-Clustering/README.md": {
+      "original_hash": "c78940a1b03da1de13bd97527f9e6606",
+      "source_file": "5-Clustering/README.md",
+      "language_code": "fa",
+      "failure_date": "2026-09-14T20:16:29+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.1",
       "failure_policy_version": 1
     }
   },
@@ -607,8 +618,8 @@
     "language_code": "fa"
   },
   "for-teachers.md": {
-    "original_hash": "b37de02054fa6c0438ede6fabe1fdfb8",
-    "translation_date": "2025-09-03T22:14:05+00:00",
+    "original_hash": "4b5b4e11bf182a803261b55a19d3ee70",
+    "translation_date": "2026-09-14T20:07:18+00:00",
     "source_file": "for-teachers.md",
     "language_code": "fa"
   },
