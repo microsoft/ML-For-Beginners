@@ -1,155 +1,157 @@
 # Zgodovina strojnega učenja
 
-![Povzetek zgodovine strojnega učenja v sketchnote](../../../../sketchnotes/ml-history.png)
+![Povzetek zgodovine strojnega učenja v sketchnote](../../../../translated_images/sl/ml-history.a1bdfd4ce1f464d9.webp)
 > Sketchnote avtorja [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Predhodni kviz](https://ff-quizzes.netlify.app/en/ml/)
+## [Pred-predavalni kviz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
 [![ML za začetnike - Zgodovina strojnega učenja](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML za začetnike - Zgodovina strojnega učenja")
 
-> 🎥 Kliknite zgornjo sliko za kratek video, ki obravnava to lekcijo.
+> 🎥 Kliknite na zgornjo sliko za kratek video, ki obravnava to lekcijo.
 
 V tej lekciji bomo pregledali glavne mejnike v zgodovini strojnega učenja in umetne inteligence.
 
-Zgodovina umetne inteligence (UI) kot področja je tesno povezana z zgodovino strojnega učenja, saj so algoritmi in računalniški napredki, ki podpirajo strojno učenje, prispevali k razvoju UI. Pomembno je vedeti, da so se ta področja kot ločeni raziskovalni smeri začela oblikovati v 50. letih prejšnjega stoletja, vendar so pomembna [algoritmična, statistična, matematična, računalniška in tehnična odkritja](https://wikipedia.org/wiki/Timeline_of_machine_learning) predhodila in prekrivala to obdobje. Pravzaprav ljudje razmišljajo o teh vprašanjih že [stoletja](https://wikipedia.org/wiki/History_of_artificial_intelligence): ta članek obravnava zgodovinske intelektualne temelje ideje o 'mislečem stroju.'
+Zgodovina umetne inteligence (UI) kot področja je prepletena z zgodovino strojnega učenja, saj so algoritmi in računalniški napredki, ki podpirajo strojno učenje, vplivali na razvoj UI. Uporno si je zapomniti, da so se ta področja kot samostojne vede začela oblikovati v 50. letih prejšnjega stoletja, vendar so pomembna [algoritemska, statistična, matematična, računalniška in tehnična odkritja](https://wikipedia.org/wiki/Timeline_of_machine_learning) nastala in prekrivala to obdobje že prej. Pravzaprav ljudje razmišljajo o teh vprašanjih že [stotine let](https://wikipedia.org/wiki/History_of_artificial_intelligence): ta članek obravnava zgodovinska intelektualna izhodišča ideje 'mišljajočega stroja.'
 
 ---
-## Pomembna odkritja
+## Opazna odkritja
 
-- 1763, 1812 [Bayesov izrek](https://wikipedia.org/wiki/Bayes%27_theorem) in njegovi predhodniki. Ta izrek in njegove aplikacije so osnova za sklepanje, saj opisujejo verjetnost dogodka na podlagi predhodnega znanja.
-- 1805 [Teorija najmanjših kvadratov](https://wikipedia.org/wiki/Least_squares) francoskega matematika Adriena-Marieja Legendra. Ta teorija, o kateri se boste učili v enoti o regresiji, pomaga pri prilagajanju podatkov.
-- 1913 [Markovske verige](https://wikipedia.org/wiki/Markov_chain), poimenovane po ruskem matematiku Andreju Markovu, opisujejo zaporedje možnih dogodkov na podlagi prejšnjega stanja.
+- 1763, 1812 [Bayesov izrek](https://wikipedia.org/wiki/Bayes%27_theorem) in njegovi predhodniki. Ta izrek in njegove aplikacije temeljijo na sklepanju, ki opisuje verjetnost dogodka glede na predhodno znanje.
+- 1805 [Teorija najmanjših kvadratov](https://wikipedia.org/wiki/Least_squares) francoskega matematika Adriena-Marieja Legendreja. O tej teoriji bomo izvedeli v naši enoti o regresiji, pomaga pri prilagajanju podatkov.
+- 1913 [Markovljevi procesi](https://wikipedia.org/wiki/Markov_chain), poimenovani po ruskem matematiku Andreju Markovu, se uporabljajo za opis zaporedja možnih dogodkov glede na prejšnje stanje.
 - 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) je vrsta linearnega klasifikatorja, ki ga je izumil ameriški psiholog Frank Rosenblatt in je osnova za napredek v globokem učenju.
 
 ---
 
-- 1967 [Najbližji sosed](https://wikipedia.org/wiki/Nearest_neighbor) je algoritem, prvotno zasnovan za načrtovanje poti. V kontekstu strojnega učenja se uporablja za prepoznavanje vzorcev.
-- 1970 [Povratno širjenje](https://wikipedia.org/wiki/Backpropagation) se uporablja za učenje [feedforward nevronskih mrež](https://wikipedia.org/wiki/Feedforward_neural_network).
-- 1982 [Rekurentne nevronske mreže](https://wikipedia.org/wiki/Recurrent_neural_network) so umetne nevronske mreže, izpeljane iz feedforward mrež, ki ustvarjajo časovne grafe.
+- 1967 [Najbližji sosed](https://wikipedia.org/wiki/Nearest_neighbor) je algoritem, prvotno zasnovan za načrtovanje poti. V kontekstu strojnega učenja se uporablja za odkrivanje vzorcev.
+- 1970 [Algoritem backpropagation](https://wikipedia.org/wiki/Backpropagation) se uporablja za treniranje [federiranih nevronskih mrež](https://wikipedia.org/wiki/Feedforward_neural_network).
+- 1982 [Rekurentne nevronske mreže](https://wikipedia.org/wiki/Recurrent_neural_network) so umetne nevronske mreže, izpeljane iz fidervand nevronskih mrež, ki ustvarjajo časovne grafe.
 
-✅ Raziščite. Kateri drugi datumi so po vašem mnenju ključni v zgodovini strojnega učenja in umetne inteligence?
-
----
-## 1950: Stroji, ki mislijo
-
-Alan Turing, resnično izjemna oseba, ki je bil [leta 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) izbran za največjega znanstvenika 20. stoletja, je zaslužen za postavitev temeljev koncepta 'stroja, ki lahko misli.' Soočen je bil s skeptiki in lastno potrebo po empiričnih dokazih tega koncepta, deloma z ustvarjanjem [Turingovega testa](https://www.bbc.com/news/technology-18475646), ki ga boste raziskali v lekcijah o obdelavi naravnega jezika.
+✅ Naredite malo raziskave. Kateri drugi datumi izstopajo kot ključni v zgodovini ML in UI?
 
 ---
-## 1956: Poletni raziskovalni projekt na Dartmouthu
+## 1950: Stroji, ki razmišljajo
 
-"Poletni raziskovalni projekt o umetni inteligenci na Dartmouthu je bil ključen dogodek za umetno inteligenco kot področje," in prav tukaj je bil skovan izraz 'umetna inteligenca' ([vir](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+Alan Turing, izjemna osebnost, ki ga je [javnost leta 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) izbrala za največjega znanstvenika 20. stoletja, velja za tistega, ki je pomagal položiti temelje za koncept 'stroja, ki zna razmišljati'. Sooči se je z dvomljivci in svojo potrebo po empiričnih dokazih tega koncepta deloma z ustvarjanjem [Turingovega testa](https://www.bbc.com/news/technology-18475646), ki ga boste raziskali v naših lekcijah NLP.
 
-> Vsak vidik učenja ali katera koli druga značilnost inteligence je načeloma mogoče tako natančno opisati, da jo lahko stroj simulira.
+---
+## 1956: Poletni raziskovalni projekt Dartmouth
+
+"Poletni raziskovalni projekt Dartmouth o umetni inteligenci je bil ključni dogodek za umetno inteligenco kot področje," in prav tukaj je bil skovan izraz 'umetna inteligenca' ([vir](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+
+> Vsak vidik učenja ali katera koli druga lastnost inteligence se načeloma lahko tako natančno opiše, da je mogoče narediti stroj, ki jo simulira.
 
 ---
 
-Vodja raziskave, profesor matematike John McCarthy, je upal, "da bo mogoče nadaljevati na podlagi domneve, da je vsak vidik učenja ali katera koli druga značilnost inteligence načeloma mogoče tako natančno opisati, da jo lahko stroj simulira." Med udeleženci je bil tudi drug pomemben raziskovalec na tem področju, Marvin Minsky.
+Vodilni raziskovalec, profesor matematike John McCarthy, je upal "nadaljevati na podlagi predpostavke, da je vsak vidik učenja ali katera koli druga lastnost inteligence načeloma tako natančno opisan, da ga je mogoče simulirati z napravo." Udeleženci so med drugim bili tudi drugi strokovnjaki na tem področju, kot je Marvin Minsky.
 
-Delavnica je zaslužna za spodbujanje več razprav, vključno z "vzponom simboličnih metod, sistemov, osredotočenih na omejena področja (zgodnji ekspertni sistemi), in deduktivnih sistemov v primerjavi z induktivnimi sistemi." ([vir](https://wikipedia.org/wiki/Dartmouth_workshop)).
+Delavnica je bila zaslužna za začetek in spodbujanje več razprav, vključno z "vzrastjo simboličnih metod, sistemov osredotočenih na omejene domene (zgodnji ekspertski sistemi) ter deduktivnih sistemov v primerjavi z induktivnimi sistemi." ([vir](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
 ---
 ## 1956 - 1974: "Zlata leta"
 
-Od 50. let do sredine 70. let je vladal optimizem, da bi UI lahko rešila številne težave. Leta 1967 je Marvin Minsky samozavestno izjavil: "V eni generaciji ... bo problem ustvarjanja 'umetne inteligence' v veliki meri rešen." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+Od 50. let do sredine 70. let je optimizem cvetel v upanju, da bo umetna inteligenca rešila številne probleme. Leta 1967 je Marvin Minsky samozavestno dejal, da bo "v eni generaciji ... problem ustvarjanja 'umetne inteligence' bistveno rešen." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
 
-Raziskave obdelave naravnega jezika so cvetele, iskanje je postalo bolj izpopolnjeno in zmogljivo, ter ustvarjen je bil koncept 'mikro-svetov', kjer so bile preproste naloge izvedene z uporabo navodil v preprostem jeziku.
+Raziskave naravnega jezikovnega procesiranja so cvetele, iskanje je bilo izpopolnjeno in močnejše, uveden je bil koncept 'mikrosvetov', kjer so bile preproste naloge opravljene z navodili v preprostem jeziku.
 
 ---
 
-Raziskave so bile dobro financirane s strani vladnih agencij, napredek je bil dosežen na področju računalništva in algoritmov, ter prototipi inteligentnih strojev so bili zgrajeni. Nekateri od teh strojev vključujejo:
+Raziskave so bile dobro financirane s strani vladnih agencij, doseženi so bili napredki v računanju in algoritmih ter zgrajeni prototipi inteligentnih strojev. Med temi stroji so:
 
-* [Robot Shakey](https://wikipedia.org/wiki/Shakey_the_robot), ki se je lahko premikal in 'inteligentno' odločal, kako opraviti naloge.
+* [Shakey robot](https://wikipedia.org/wiki/Shakey_the_robot), ki je lahko manevriral in sam odločal o izvajanju nalog 'inteligentno'.
 
-    ![Shakey, inteligentni robot](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
+    ![Shakey, inteligenten robot](../../../../translated_images/sl/shakey.4dc17819c447c05b.webp)
     > Shakey leta 1972
 
 ---
 
-* Eliza, zgodnji 'klepetalni robot', je lahko komunicirala z ljudmi in delovala kot primitivni 'terapevt'. Več o Elizi boste izvedeli v lekcijah o obdelavi naravnega jezika.
+* Eliza, zgodnji 'chatterbot', je lahko komuniciral z ljudmi in deloval kot primitiven 'terapevt'. O Elizi boste izvedeli več v lekcijah NLP.
 
-    ![Eliza, bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
-    > Različica Elize, klepetalnega robota
+    ![Eliza, bot](../../../../translated_images/sl/eliza.84397454cda9559b.webp)
+    > Ena različica Elize, chatbot
 
 ---
 
-* "Svet blokov" je bil primer mikro-sveta, kjer so se bloki lahko zlagali in razvrščali, ter so se izvajali eksperimenti pri učenju strojev za sprejemanje odločitev. Napredki, doseženi z knjižnicami, kot je [SHRDLU](https://wikipedia.org/wiki/SHRDLU), so pomagali pri razvoju obdelave jezika.
+* "Blocks world" je bil primer mikrosveta, kjer se lahko kocke zložijo in razvrstijo, ter preizkušali so eksperimente za učenje strojev odločanja. Napredki, ustvarjeni z knjižnicami, kot je [SHRDLU](https://wikipedia.org/wiki/SHRDLU), so pomagali pospešiti obdelavo jezika.
 
-    [![svet blokov s SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "svet blokov s SHRDLU")
+    [![blocks world s SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world s SHRDLU")
 
-    > 🎥 Kliknite zgornjo sliko za video: Svet blokov s SHRDLU
+    > 🎥 Kliknite zgornjo sliko za video: Blocks world s SHRDLU
 
 ---
 ## 1974 - 1980: "Zima UI"
 
-Do sredine 70. let je postalo jasno, da je bila kompleksnost ustvarjanja 'inteligentnih strojev' podcenjena in da so bile obljube, glede na razpoložljivo računalniško moč, pretirane. Financiranje se je zmanjšalo, zaupanje v področje pa je upadlo. Nekateri problemi, ki so vplivali na zaupanje, vključujejo:
+Do sredine 70. let je postalo jasno, da je kompleksnost ustvarjanja 'inteligentnih strojev' podcenjena in da je obljuba glede razpoložljive računalniške moči precenjena. Financiranje se je izsušilo in zaupanje v področje je upadlo. Nekateri dejavniki, ki so vplivali na to so bili:
 ---
-- **Omejitve**. Računalniška moč je bila prešibka.
-- **Kombinatorna eksplozija**. Število parametrov, ki jih je bilo treba naučiti, je eksponentno naraščalo, brez vzporednega razvoja računalniške moči in zmogljivosti.
-- **Pomanjkanje podatkov**. Pomanjkanje podatkov je oviralo proces testiranja, razvoja in izboljševanja algoritmov.
-- **Ali postavljamo prava vprašanja?**. Začela so se postavljati vprašanja o samih vprašanjih, ki so jih raziskovalci zastavljali:
-  - Turingovi testi so bili postavljeni pod vprašaj, med drugim tudi s teorijo 'kitajske sobe', ki je trdila, da "programiranje digitalnega računalnika lahko ustvari videz razumevanja jezika, vendar ne more ustvariti pravega razumevanja." ([vir](https://plato.stanford.edu/entries/chinese-room/))
-  - Etika uvajanja umetnih inteligenc, kot je "terapevt" ELIZA, v družbo je bila izzvana.
-
----
-
-Hkrati so se začele oblikovati različne šole misli o UI. Ustanovila se je dihotomija med ["neurejeno" in "urejeno UI"](https://wikipedia.org/wiki/Neats_and_scruffies). _Neurejeni_ laboratoriji so urejali programe, dokler niso dosegli želenih rezultatov. _Urejeni_ laboratoriji so se osredotočali na logiko in formalno reševanje problemov. ELIZA in SHRDLU sta bila znana _neurejena_ sistema. V 80. letih, ko se je pojavilo povpraševanje po reproducibilnosti sistemov strojnega učenja, je _urejen_ pristop postopoma prevladal, saj so njegovi rezultati bolj razložljivi.
+- **Omejitve**. Računalniška moč je bila preveč omejena.
+- **Kombinatorični eksponentni porast**. Število parametrov, ki jih je bilo treba naučiti, je eksponentno naraščalo, ko so od računalnikov zahtevali več, brez sorazmernega razvoja računske moči in zmogljivosti.
+- **Pomanjkanje podatkov**. Pomanjkanje podatkov je oviralo testiranje, razvoj in izboljševanje algoritmov.
+- **Ali postavljamo prava vprašanja?**. Tudi postavljena vprašanja so začeli podvomiti. Raziskovalci so naleteli na kritike glede svojih pristopov:
+  - Turingovi testi so bili izpodbijani z različnimi idejami, med drugim s 'teorijo kitajske sobe', ki je trdila, da "programiranje digitalnega računalnika lahko daje vtis, da razume jezik, a ne more resnično razumeti." ([vir](https://plato.stanford.edu/entries/chinese-room/))
+  - Izpostavljene so bile etične dileme uvajanja umetnih inteligenc, kot je "terapevt" ELIZA v družbo.
 
 ---
-## 1980: Ekspertni sistemi
 
-Z rastjo področja je postala njegova korist za poslovanje bolj očitna, v 80. letih pa se je razširila uporaba 'ekspertnih sistemov'. "Ekspertni sistemi so bili med prvimi resnično uspešnimi oblikami programske opreme umetne inteligence (UI)." ([vir](https://wikipedia.org/wiki/Expert_system)).
-
-Ta vrsta sistema je pravzaprav _hibridna_, saj delno vključuje pravila, ki določajo poslovne zahteve, in sklepni mehanizem, ki uporablja sistem pravil za sklepanje novih dejstev.
-
-To obdobje je prineslo tudi večjo pozornost nevronskim mrežam.
+Hkrati so se začele oblikovati različne šole razmišljanja v UI. Nastala je dihotomija med ["scruffy" (nereden) in "neat" (urejen) UI](https://wikipedia.org/wiki/Neats_and_scruffies) praksami. _Scruffy_ laboratoriji so ure in ure spreminjali programe, dokler niso dosegli želenih rezultatov. _Neat_ laboratoriji so se "osredotočali na logiko in formalno reševanje problemov." ELIZA in SHRDLU sta bila znana _scruffy_ sistema. V 80. letih, ko je nastala potreba po reproducibilnosti ML sistemov, je _neat_ pristop postopoma prevladal, saj so njegovi rezultati bolj pojasnjivi.
 
 ---
-## 1987 - 1993: Ohladitev UI
+## Ekspertski sistemi v 80. letih
 
-Razširitev specializirane strojne opreme za ekspertne sisteme je imela nesrečen učinek, da je postala preveč specializirana. Pojav osebnih računalnikov je prav tako tekmoval s temi velikimi, specializiranimi, centraliziranimi sistemi. Začela se je demokratizacija računalništva, ki je sčasoma tlakovala pot za sodobno eksplozijo velikih podatkov.
+Ko se je področje razvijalo, je bilo vedno bolj jasno, kako koristno je za podjetja, v 80. letih pa je prišlo tudi do razširitve 'ekspertskih sistemov'. "Ekspertski sistemi so bili med prvimi res uspešnimi oblikami programske opreme za umetno inteligenco (UI)." ([vir](https://wikipedia.org/wiki/Expert_system)).
+
+Ta tip sistema je v resnici _hibridni_, delno sestavljen iz pravnega motorja, ki opredeljuje poslovne zahteve, in sklepalnega motorja, ki je temeljil na sistemu pravil za izpeljavo novih dejstev.
+
+V tem obdobju je tudi začela naraščati pozornost do nevronskih mrež.
+
+---
+## 1987 - 1993: UI 'Premor'
+
+Razširjenost specializirane strojne opreme za ekspertske sisteme je privedla do prevelike specializacije. Vzpon osebnih računalnikov je izzival tudi te velike, specializirane, centralizirane sisteme. Pričel se je proces demokratizacije računalništva, ki je pozneje odprl pot za sodoben razcvet velikih podatkov.
 
 ---
 ## 1993 - 2011
 
-To obdobje je prineslo novo ero za strojno učenje in umetno inteligenco, da bi lahko rešila nekatere težave, ki so jih povzročili pomanjkanje podatkov in računalniške moči. Količina podatkov se je začela hitro povečevati in postajati bolj dostopna, tako v dobrem kot slabem, še posebej z uvedbo pametnega telefona okoli leta 2007. Računalniška moč se je eksponentno povečala, algoritmi pa so se razvijali vzporedno. Področje je začelo dosegati zrelost, saj so se svobodomiselni dnevi preteklosti začeli oblikovati v pravo disciplino.
+To obdobje je prineslo novo dobo za ML in UI, da se rešijo nekatere težave, ki so jih prej povzročala pomanjkanje podatkov in računalniške moči. Količina podatkov se je začela hitro povečevati in postajala širše dostopna, za dobro ali slabo, predvsem s pojavom pametnih telefonov okoli leta 2007. Računalniška moč je eksponentno naraščala, algoritmi pa so se razvijali z njo. Področje je začelo dozorevati, saj so se dnevi nenehnih eksperimentov iz preteklosti začeli oblikovati v pravo disciplino.
 
 ---
 ## Danes
 
-Danes strojno učenje in umetna inteligenca vplivata na skoraj vsak del našega življenja. To obdobje zahteva skrbno razumevanje tveganj in možnih učinkov teh algoritmov na človeška življenja. Kot je dejal Brad Smith iz Microsofta: "Informacijska tehnologija odpira vprašanja, ki segajo v samo srčiko temeljnih zaščit človekovih pravic, kot sta zasebnost in svoboda izražanja. Ta vprašanja povečujejo odgovornost tehnoloških podjetij, ki ustvarjajo te izdelke. Po našem mnenju zahtevajo tudi premišljeno vladno regulacijo in razvoj norm glede sprejemljive uporabe" ([vir](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Danes strojno učenje in umetna inteligenca segata skoraj v vsak del naših življenj. Ta doba zahteva previdno razumevanje tveganj in potencialnih učinkov teh algoritmov na človeška življenja. Kot je dejal Brad Smith iz Microsofta, "Informacijska tehnologija odpira vprašanja, ki segajo do bistva temeljnih človekovih pravic, kot sta zasebnost in svoboda izražanja. Ta vprašanja povečujejo odgovornost tehnoloških podjetij, ki ustvarjajo te izdelke. Po našem mnenju to zahteva tudi premišljeno državno regulacijo in razvoj norm glede sprejemljivih uporab." ([vir](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 ---
 
-Kaj prinaša prihodnost, ostaja neznano, vendar je pomembno razumeti te računalniške sisteme ter programsko opremo in algoritme, ki jih poganjajo. Upamo, da vam bo ta učni načrt pomagal pridobiti boljše razumevanje, da boste lahko sami presodili.
+Še ni znano, kaj prinaša prihodnost, vendar je pomembno razumeti te računalniške sisteme ter programsko opremo in algoritme, ki jih poganjajo. Upamo, da vam bo ta učni program pomagal pridobiti boljše razumevanje, da boste lahko sami sprejeli odločitev.
 
 [![Zgodovina globokega učenja](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Zgodovina globokega učenja")
-> 🎥 Kliknite zgornjo sliko za video: Yann LeCun razpravlja o zgodovini globokega učenja v tem predavanju
+> 🎥 Kliknite na zgornjo sliko za video: Yann LeCun razpravlja o zgodovini globokega učenja v tej predavanju
 
 ---
 ## 🚀Izziv
 
-Poglobite se v enega od teh zgodovinskih trenutkov in izvedite več o ljudeh, ki stojijo za njimi. Obstajajo fascinantni liki, in nobeno znanstveno odkritje ni bilo ustvarjeno v kulturnem vakuumu. Kaj odkrijete?
+Poglobite se v enega od teh zgodovinskih trenutkov in spoznajte več o ljudeh, ki stojijo za njimi. So fascinantni liki, nobeno znanstveno odkritje ni nastalo v kulturnem vakumu. Kaj odkrijete?
 
-## [Kviz po predavanju](https://ff-quizzes.netlify.app/en/ml/)
-
----
-## Pregled in samostojno učenje
-
-Tukaj so predmeti za ogled in poslušanje:
-
-[Ta podcast, kjer Amy Boyd razpravlja o razvoju UI](http://runasradio.com/Shows/Show/739)
-
-[![Zgodovina UI avtorice Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Zgodovina UI avtorice Amy Boyd")
+## [Po-predavalni kviz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
+## Pregled & Samostojno učenje
 
-## Naloga
+Tukaj je nekaj stvari za gledanje in poslušanje:
+
+[Ta podcast, kjer Amy Boyd razpravlja o evoluciji UI](http://runasradio.com/Shows/Show/739)
+
+[![Zgodovina UI, Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Zgodovina UI, Amy Boyd")
+
+---
+
+## Domača naloga
 
 [Ustvarite časovnico](assignment.md)
 
 ---
 
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo storitve za strojno prevajanje [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo strokovno človeško prevajanje. Ne prevzemamo odgovornosti za morebitna nesporazumevanja ali napačne razlage, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

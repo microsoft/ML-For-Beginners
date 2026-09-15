@@ -4,52 +4,52 @@
 
 > Sketchnote door [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lezing quiz](https://ff-quizzes.netlify.app/en/ml/)
+## [Pre-college quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Deze les is ook beschikbaar in R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Introductie
 
-In deze vier lessen ontdek je hoe je regressiemodellen bouwt. We zullen binnenkort bespreken waar deze voor dienen. Maar voordat je iets doet, zorg ervoor dat je de juiste tools klaar hebt staan om aan het proces te beginnen!
+In deze vier lessen ontdek je hoe je regressiemodellen bouwt. We zullen zo bespreken waar die voor zijn. Maar voordat je iets doet, zorg dat je de juiste tools klaar hebt staan om het proces te starten!
 
 In deze les leer je hoe je:
 
 - Je computer configureert voor lokale machine learning taken.
 - Werkt met Jupyter Notebooks.
 - Scikit-learn gebruikt, inclusief installatie.
-- Lineaire regressie onderzoekt via een praktische oefening.
+- Lineaire regressie verkent met een praktische oefening.
 
 ## Installaties en configuraties
 
-[![ML voor beginners - Stel je tools klaar om Machine Learning modellen te bouwen](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML voor beginners - Stel je tools klaar om Machine Learning modellen te bouwen")
+[![ML voor beginners - Configureer je tools klaar om Machine Learning modellen te bouwen](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML voor beginners - Configureer je tools klaar om Machine Learning modellen te bouwen")
 
-> 🎥 Klik op de afbeelding hierboven voor een korte video waarin wordt uitgelegd hoe je je computer configureert voor ML.
+> 🎥 Klik op de afbeelding hierboven voor een korte video waarin je door de configuratie van je computer voor ML wordt geleid.
 
-1. **Installeer Python**. Zorg ervoor dat [Python](https://www.python.org/downloads/) op je computer is geïnstalleerd. Je zult Python voor veel data science en machine learning taken gebruiken. De meeste computersystemen hebben al een Python-installatie. Er zijn ook handige [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) beschikbaar om de installatie voor sommige gebruikers te vergemakkelijken.
+1. **Installeer Python**. Zorg dat [Python](https://www.python.org/downloads/) op je computer is geïnstalleerd. Je gebruikt Python voor veel data science en machine learning taken. De meeste computersystemen hebben al een Python-installatie. Er zijn ook handige [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) beschikbaar om het opzetten voor sommige gebruikers makkelijker te maken.
 
-   Sommige toepassingen van Python vereisen echter een specifieke versie van de software, terwijl andere een andere versie nodig hebben. Daarom is het handig om binnen een [virtuele omgeving](https://docs.python.org/3/library/venv.html) te werken.
+   Sommige toepassingen van Python vereisen echter één versie van de software, terwijl andere een andere versie behoeven. Daarom is het handig om binnen een [virtuele omgeving](https://docs.python.org/3/library/venv.html) te werken.
 
-2. **Installeer Visual Studio Code**. Zorg dat je Visual Studio Code op je computer hebt geïnstalleerd. Volg deze instructies om [Visual Studio Code te installeren](https://code.visualstudio.com/) voor de basisinstallatie. Je gaat in deze cursus Python gebruiken in Visual Studio Code, dus het is handig om te leren hoe je [Visual Studio Code configureert](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) voor Python-ontwikkeling.
+2. **Installeer Visual Studio Code**. Zorg dat Visual Studio Code op je computer is geïnstalleerd. Volg deze instructies om [Visual Studio Code te installeren](https://code.visualstudio.com/) voor de basisinstallatie. Je gaat Python in Visual Studio Code gebruiken in deze cursus, dus je kunt ook de tijd nemen om te leren hoe je [Visual Studio Code configureert](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) voor Python-ontwikkeling.
 
-   > Maak je vertrouwd met Python door deze verzameling van [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) door te lopen
+   > Raken vertrouwd met Python door deze verzameling [Learn-modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) door te werken.
    >
    > [![Python instellen met Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Python instellen met Visual Studio Code")
    >
    > 🎥 Klik op de afbeelding hierboven voor een video: Python gebruiken binnen VS Code.
 
-3. **Installeer Scikit-learn** door [deze instructies](https://scikit-learn.org/stable/install.html) te volgen. Omdat je moet zorgen dat je Python 3 gebruikt, wordt aanbevolen een virtuele omgeving te gebruiken. Let op, als je deze bibliotheek op een M1 Mac installeert, staan er speciale instructies op de gelinkte pagina.
+3. **Installeer Scikit-learn**, door de [instructies hier te volgen](https://scikit-learn.org/stable/install.html). Omdat je moet zorgen dat je Python 3 gebruikt, is het aan te raden om een virtuele omgeving te gebruiken. Let op: als je deze bibliotheek op een M1 Mac installeert, zijn er speciale instructies op de bovenstaande pagina.
 
-1. **Installeer Jupyter Notebook**. Je moet het [Jupyter-pakket installeren](https://pypi.org/project/jupyter/).
+1. **Installeer Jupyter Notebook**. Je moet het [Jupyter pakket installeren](https://pypi.org/project/jupyter/).
 
-## Je ML-ontwikkelomgeving
+## Je ML ontwikkelomgeving
 
-Je gaat **notebooks** gebruiken om je Python-code te ontwikkelen en machine learning modellen te maken. Dit type bestand is een veelgebruikt hulpmiddel voor datawetenschappers en ze zijn te herkennen aan hun achtervoegsel of extensie `.ipynb`.
+Je gaat **notebooks** gebruiken om je Python-code te ontwikkelen en machine learning modellen te maken. Dit type bestand is een veelgebruikt hulpmiddel voor datawetenschappers en ze zijn te herkennen aan hun suffix of extensie `.ipynb`.
 
-Notebooks zijn een interactieve omgeving die de ontwikkelaar toestaat om zowel code te schrijven als aantekeningen te maken en documentatie rond de code te schrijven, wat erg handig is voor experimentele of onderzoeksgerichte projecten.
+Notebooks zijn een interactieve omgeving die de ontwikkelaar in staat stelt om zowel code te schrijven als notities en documentatie toe te voegen rondom de code, wat erg nuttig is voor experimentele of onderzoeksgerichte projecten.
 
-[![ML voor beginners - Stel Jupyter Notebooks in om met regressiemodellen te beginnen](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML voor beginners - Stel Jupyter Notebooks in om met regressiemodellen te beginnen")
+[![ML voor beginners - Stel Jupyter Notebooks in om regressiemodellen te bouwen](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML voor beginners - Stel Jupyter Notebooks in om regressiemodellen te bouwen")
 
-> 🎥 Klik op de afbeelding hierboven voor een korte video waarin deze oefening wordt doorlopen.
+> 🎥 Klik op de afbeelding hierboven voor een korte video die deze oefening doorloopt.
 
 ### Oefening - werk met een notebook
 
@@ -57,63 +57,63 @@ In deze map vind je het bestand _notebook.ipynb_.
 
 1. Open _notebook.ipynb_ in Visual Studio Code.
 
-   Een Jupyter-server zal starten met Python 3+ actief. Je vindt delen van de notebook die je kunt `runnen`, stukjes code. Je kunt een codeblok uitvoeren door te klikken op het icoon dat eruitziet als een play-knop.
+   Er zal een Jupyter server starten met Python 3+ actief. Je vindt gedeeltes van het notebook die je kunt `runnen`, stukjes code. Je kunt een codeblok uitvoeren door te klikken op het icoontje dat eruitziet als een afspeelknop.
 
-1. Selecteer het `md`-icoon en voeg wat markdown toe, en de volgende tekst **# Welkom in je notebook**.
+1. Selecteer het `md` icoon en voeg wat markdown toe, en de volgende tekst **# Welkom in je notebook**.
 
-   Voeg vervolgens wat Python-code toe.
+   Voeg daarna wat Python code toe.
 
 1. Typ **print('hello notebook')** in het codeblok.
-1. Selecteer de pijl om de code uit te voeren.
+1. Selecteer de pijl om de code te runnen.
 
-   Je zou het volgende geprinte statement moeten zien:
+   Je zou de volgende afgedrukte tekst moeten zien:
 
     ```output
     hello notebook
     ```
 
-![VS Code met een open notebook](../../../../translated_images/nl/notebook.4a3ee31f396b8832.webp)
+![VS Code met een geopend notebook](../../../../translated_images/nl/notebook.4a3ee31f396b8832.webp)
 
-Je kunt je code afwisselen met commentaar om zo de notebook zelf te documenteren.
+Je kunt je code afwisselen met commentaren om je notebook zelf te documenteren.
 
-✅ Denk eens na over hoe verschillend de werkomgeving van een webontwikkelaar is ten opzichte van die van een datawetenschapper.
+✅ Denk even na over hoe anders de werkomgeving van een webontwikkelaar is in vergelijking met die van een datawetenschapper.
 
 ## Aan de slag met Scikit-learn
 
-Nu Python is geïnstalleerd in je lokale omgeving en je comfortabel bent met Jupyter Notebooks, laten we ook vertrouwd raken met Scikit-learn (uitgesproken als `sci` zoals in `science`). Scikit-learn biedt een [uitgebreide API](https://scikit-learn.org/stable/modules/classes.html#api-ref) om je te helpen bij ML-taken.
+Nu Python is ingesteld op je lokale omgeving en je vertrouwd bent met Jupyter Notebooks, laten we ook vertrouwd raken met Scikit-learn (spreek uit als `sci` zoals in `science`). Scikit-learn biedt een [uitgebreide API](https://scikit-learn.org/stable/modules/classes.html#api-ref) om je te helpen ML taken uit te voeren.
 
-Volgens hun [website](https://scikit-learn.org/stable/getting_started.html) is "Scikit-learn een open source machine learning bibliotheek die zowel supervised als unsupervised learning ondersteunt. Het biedt ook diverse tools voor model fitting, datavoorbewerking, modelselectie en evaluatie, en vele andere hulpmiddelen."
+Volgens hun [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is een open source machine learning bibliotheek die zowel supervised als unsupervised learning ondersteunt. Het biedt ook diverse tools voor model fitting, datapreprocessing, modelselectie en evaluatie, en vele andere hulpmiddelen."
 
-In deze cursus gebruik je Scikit-learn en andere tools om machine learning modellen te bouwen voor wat wij 'traditionele machine learning' taken noemen. We hebben bewust neurale netwerken en deep learning buiten beschouwing gelaten, aangezien deze beter worden behandeld in onze komende 'AI voor Beginners' curriculum.
+In deze cursus gebruik je Scikit-learn en andere tools om machine learning modellen te bouwen waarmee we 'traditionele machine learning' taken uitvoeren. We hebben bewust neurale netwerken en deep learning vermeden, omdat die beter behandeld worden in ons aankomende curriculum 'AI voor Beginners'.
 
-Scikit-learn maakt het eenvoudig om modellen te bouwen en te evalueren voor gebruik. Het richt zich voornamelijk op het werken met numerieke data en bevat verschillende kant-en-klare datasets als leermaterialen. Het bevat ook voorgebouwde modellen die studenten kunnen uitproberen. Laten we het proces verkennen van het laden van voorverpakte data en het gebruiken van een ingebouwde estimator om het eerste ML-model met Scikit-learn te maken met wat basisdata.
+Scikit-learn maakt het gemakkelijk om modellen te bouwen en te evalueren. Het is vooral gericht op het gebruik van numerieke data en bevat verschillende kant-en-klare datasets om te gebruiken als leermiddelen. Het bevat ook vooraf gebouwde modellen voor studenten om te proberen. Laten we het proces verkennen van het laden van voorverpakte data en het gebruiken van een ingebouwde estimator om je eerste ML-model te maken met Scikit-learn met wat basisdata.
 
 ## Oefening - je eerste Scikit-learn notebook
 
-> Deze tutorial is geïnspireerd op het [lineaire regressie voorbeeld](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) op de website van Scikit-learn.
+> Deze tutorial is geïnspireerd door het [lineaire regressie voorbeeld](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) op de Scikit-learn website.
 
 
-[![ML voor beginners - Je eerste lineaire regressieproject in Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML voor beginners - Je eerste lineaire regressieproject in Python")
+[![ML voor beginners - Je Eerste Lineaire Regressie Project in Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML voor beginners - Je Eerste Lineaire Regressie Project in Python")
 
 > 🎥 Klik op de afbeelding hierboven voor een korte video waarin deze oefening wordt doorlopen.
 
-In het _notebook.ipynb_-bestand dat bij deze les hoort, maak je alle cellen leeg door op het 'prullenbak'-icoon te drukken.
+In het bestand _notebook.ipynb_ dat bij deze les hoort, maak alle cellen leeg door op het 'prullenbak' icoon te klikken.
 
-In deze sectie werk je met een kleine dataset over diabetes, die ingebouwd is in Scikit-learn voor leerdoeleinden. Stel je voor dat je een behandeling voor diabetespatiënten wilt testen. Machine Learning modellen kunnen je helpen bepalen welke patiënten beter op de behandeling zouden reageren, op basis van combinaties van variabelen. Zelfs een heel eenvoudig regressiemodel kan, zodra het gevisualiseerd is, informatie tonen over variabelen die je kunnen helpen je theoretische klinische proeven te organiseren.
+In deze sectie werk je met een kleine dataset over diabetes die ingebouwd is in Scikit-learn voor leermiddelen. Stel je voor dat je een behandeling voor diabetici wilde testen. Machine learning modellen kunnen je helpen bepalen welke patiënten beter op de behandeling reageren op basis van combinaties van variabelen. Zelfs een heel eenvoudig regressiemodel kan, wanneer gevisualiseerd, informatie tonen over variabelen die je zouden helpen je theoretische klinische onderzoeken te organiseren.
 
-✅ Er zijn veel soorten regressiemethoden, en welke je kiest hangt af van het antwoord dat je zoekt. Wil je bijvoorbeeld de waarschijnlijke lengte voorspellen voor een persoon van een bepaalde leeftijd, dan gebruik je lineaire regressie, omdat je op zoek bent naar een **numerieke waarde**. Ben je geïnteresseerd in het ontdekken of een type keuken als veganistisch beschouwd moet worden, dan zoek je een **categorie-toewijzing** en gebruik je logistische regressie. Daar leer je later meer over. Denk eens na over vragen die je aan data kunt stellen en welke van deze methoden daar het meest geschikt voor zou zijn.
+✅ Er zijn veel soorten regressiemethoden, en welke je kiest hangt af van het antwoord dat je zoekt. Wil je de waarschijnlijke lengte voorspellen voor een persoon van een bepaalde leeftijd, gebruik je lineaire regressie, omdat je een **numerieke waarde** zoekt. Ben je geïnteresseerd in te ontdekken of een keuken als veganistisch beschouwd moet worden, dan zoek je een **categorietoewijzing** en gebruik je logistische regressie. Je leert later meer over logistische regressie. Denk even na over de vragen die je aan data kunt stellen en welke van deze methoden het meest geschikt is.
 
 Laten we aan deze taak beginnen.
 
 ### Bibliotheken importeren
 
-Voor deze taak importeren we enkele bibliotheken:
+Voor deze taak importeren we een paar bibliotheken:
 
-- **matplotlib**. Het is een handig [grafiekhulpmiddel](https://matplotlib.org/) en we gebruiken het om een lijngrafiek te maken.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is een nuttige bibliotheek voor het omgaan met numerieke data in Python.
+- **matplotlib**. Het is een handige [grafiektool](https://matplotlib.org/) en we gebruiken het om een lijngrafiek te maken.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is een handige bibliotheek voor het omgaan met numerieke data in Python.
 - **sklearn**. Dit is de [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) bibliotheek.
 
-Importeer enkele bibliotheken om je taken te helpen uitvoeren.
+Importeer enkele bibliotheken om je te helpen met je taken.
 
 1. Voeg de imports toe door de volgende code te typen:
 
@@ -123,26 +123,26 @@ Importeer enkele bibliotheken om je taken te helpen uitvoeren.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Boven importeer je `matplotlib`, `numpy` en je importeert `datasets`, `linear_model` en `model_selection` uit `sklearn`. `model_selection` wordt gebruikt om data te splitsen in trainings- en testsets.
+   Boven importeer je `matplotlib`, `numpy` en je importeert `datasets`, `linear_model` en `model_selection` van `sklearn`. `model_selection` wordt gebruikt om data in trainings- en testsets te splitsen.
 
 ### De diabetes dataset
 
-De ingebouwde [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) bevat 442 datapunten over diabetes, met 10 kenmerkenvariabelen, waarvan enkele zijn:
+De ingebouwde [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) bevat 442 datasets over diabetes, met 10 feature-variabelen, waaronder:
 
 - leeftijd: leeftijd in jaren
 - bmi: body mass index
 - bp: gemiddelde bloeddruk
 - s1 tc: T-cellen (een type witte bloedcellen)
 
-✅ Deze dataset bevat het concept 'geslacht' als een kenmerkvariabele die belangrijk is voor onderzoek naar diabetes. Veel medische datasets bevatten dit soort binaire classificaties. Denk eens na over hoe dergelijke categorisaties sommige delen van een bevolking zouden kunnen uitsluiten van behandelingen.
+✅ Deze dataset bevat het concept 'geslacht' als een belangrijke featurevariabele in het onderzoek rondom diabetes. Veel medische datasets bevatten dit type binaire classificatie. Denk na over hoe zulke categoriseringen bepaalde delen van de bevolking kunnen uitsluiten van behandelingen.
 
-Laad nu de X- en y-data in.
+Laad nu de X- en y-data.
 
-> 🎓 Onthoud, dit is supervised learning, en we hebben een benoemde 'y' target nodig.
+> 🎓 Denk eraan, dit is supervised learning en we hebben een benoemde 'y' target nodig.
 
-Laad in een nieuwe codecel de diabetes dataset door `load_diabetes()` aan te roepen. De invoer `return_X_y=True` geeft aan dat `X` een datamatrix zal zijn en `y` het regressiedoel.
+Laad in een nieuwe codecel de diabetes dataset door `load_diabetes()` aan te roepen. De invoer `return_X_y=True` betekent dat `X` een datamatrijs zal zijn, en `y` het regressiedoel.
 
-1. Voeg wat printcommando's toe om de vorm van de datamatrix en het eerste element te tonen:
+1. Voeg printopdrachten toe om de vorm van de datamatrijs en het eerste element te tonen:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ Laad in een nieuwe codecel de diabetes dataset door `load_diabetes()` aan te roe
     print(X[0])
     ```
 
-    Wat je terugkrijgt als antwoord is een tuple. Wat je doet is de twee eerste waarden van de tuple toewijzen aan respectievelijk `X` en `y`. Leer meer [over tuples](https://wikipedia.org/wiki/Tuple).
+    Wat je terugkrijgt als respons is een tuple. Wat je doet is de eerste twee waarden van de tuple toewijzen aan respectievelijk `X` en `y`. Lees meer [over tuples](https://wikipedia.org/wiki/Tuple).
 
-    Je kunt zien dat deze data 442 items bevat die zijn gevormd als arrays van 10 elementen:
+    Je ziet dat deze data 442 items bevat, geordend in arrays van 10 elementen:
 
     ```text
     (442, 10)
@@ -160,39 +160,39 @@ Laad in een nieuwe codecel de diabetes dataset door `load_diabetes()` aan te roe
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Denk eens na over de relatie tussen de data en het regressiedoel. Lineaire regressie voorspelt relaties tussen kenmerk X en doelvariabele y. Kun je het [doel](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) voor de diabetes dataset in de documentatie vinden? Wat laat deze dataset zien, gezien dat doel?
+    ✅ Denk even na over de relatie tussen de data en het regressiedoel. Lineaire regressie voorspelt relaties tussen feature X en targetvariabele y. Kun je het [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) voor de diabetes dataset in de documentatie vinden? Wat toont deze dataset, gegeven dat target?
 
-2. Selecteer vervolgens een deel van deze dataset om te plotten door de 3e kolom van de dataset te kiezen. Je kunt dit doen door met het `:`-operator alle rijen te selecteren en dan de 3e kolom te selecteren met index (2). Je kunt de data ook herschikken naar een 2D-array, wat nodig is voor plotten, door `reshape(n_rows, n_columns)` te gebruiken. Als één van de parameters -1 is, wordt die dimensie automatisch berekend.
+2. Selecteer vervolgens een deel van deze dataset om te plotten door de 3e kolom van de dataset te nemen. Dit doe je door de `:` operator te gebruiken om alle rijen te selecteren en de 3e kolom te selecteren met index (2). Je kunt de data ook opnieuw vormgeven tot een 2D-array - zoals nodig is om te plotten - met `reshape(n_rows, n_columns)`. Als een van de parameters -1 is, wordt de overeenkomstige dimensie automatisch berekend.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Print op elk moment de data om de vorm te controleren.
+   ✅ Print de data op elk moment om de vorm te checken.
 
-3. Nu je data klaar is om geplot te worden, kun je kijken of een machine kan helpen een logische scheiding te bepalen tussen de getallen in deze dataset. Om dit te doen, moet je zowel de data (X) als het doel (y) splitsen in test- en trainingsets. Scikit-learn heeft hier een eenvoudige manier voor; je kunt je testdata op een gegeven punt splitsen.
+3. Nu je data klaar is om te plotten, kun je zien of een machine kan helpen bij het bepalen van een logische scheiding tussen de getallen in deze dataset. Hiervoor moet je zowel de data (X) als het target (y) splitsen in test- en trainingssets. Scikit-learn heeft hier een eenvoudige manier voor; je kunt je testdata op een punt splitsen.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Nu ben je klaar om je model te trainen! Laad het lineaire regressiemodel en train het met je X en y trainingssets via `model.fit()`:
+4. Nu ben je klaar om je model te trainen! Laad het lineaire regressiemodel en train het met je X- en y-trainingssets via `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` is een functie die je in veel ML-bibliotheken zoals TensorFlow zult zien
+    ✅ `model.fit()` is een functie die je in veel ML-bibliotheken ziet, zoals TensorFlow
 
-5. Maak daarna een voorspelling met de testdata, met de functie `predict()`. Dit wordt gebruikt om de lijn te tekenen tussen de datagroepen
+5. Maak vervolgens een voorspelling met de testdata, met de functie `predict()`. Dit wordt gebruikt om de lijn te trekken tussen de gegevensgroepen.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Nu is het tijd om de data te tonen in een grafiek. Matplotlib is een erg handig hulpmiddel hiervoor. Maak een spreidingsdiagram van alle X- en y-testdata, en gebruik de voorspelling om een lijn te tekenen op de meest geschikte plek, tussen de model-data-groepen.
+6. Tijd om de data weer te geven in een plot. Matplotlib is erg handig voor deze taak. Maak een scatterplot van alle X en y testdata en gebruik de voorspelling om een lijn te tekenen op de meest logische plek tussen de modelgegevensgroepen.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -203,24 +203,23 @@ Laad in een nieuwe codecel de diabetes dataset door `load_diabetes()` aan te roe
     plt.show()
     ```
 
-   ![een spreidingsdiagram met datapunten rond diabetes](../../../../translated_images/nl/scatterplot.ad8b356bcbb33be6.webp)
+   ![een scatterplot die datapunten laat zien rondom diabetes](../../../../translated_images/nl/scatterplot.ad8b356bcbb33be6.webp)
 
+   ✅ Denk na over wat hier gebeurt. Een rechte lijn gaat door veel kleine stippen data heen, maar wat doet hij precies? Zie je hoe je deze lijn zou kunnen gebruiken om te voorspellen waar een nieuwe, ongeziene datapunt zou moeten passen ten opzichte van de y-as van de plot? Probeer in woorden te vatten wat het praktische nut is van dit model.
 
-   ✅ Denk even na over wat hier gebeurt. Er loopt een rechte lijn door veel kleine datapunten, maar wat doet die lijn precies? Zie je hoe je deze lijn zou kunnen gebruiken om te voorspellen waar een nieuw, onbekend datapunt zou moeten passen in relatie tot de y-as van de plot? Probeer in woorden te vatten wat het praktische gebruik van dit model is.
-
-Gefeliciteerd, je hebt je eerste lineaire regressiemodel gebouwd, een voorspelling ermee gemaakt, en deze weergegeven in een plot!
+Gefeliciteerd, je hebt je eerste lineaire regressiemodel gebouwd, een voorspelling gemaakt en die geplot!
 
 ---
 ## 🚀Uitdaging
 
-Plot een andere variabele uit deze dataset. Tip: bewerk deze regel: `X = X[:,2]`. Gezien het doel van deze dataset, wat kun je ontdekken over de progressie van diabetes als ziekte?
-## [Quiz na de les](https://ff-quizzes.netlify.app/en/ml/)
+Plot een andere variabele uit deze dataset. Tip: bewerk deze regel: `X = X[:,2]`. Gegeven het target van deze dataset, wat kun je ontdekken over de progressie van diabetes als ziekte?
+## [Post-college quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Review & Zelfstudie
 
-In deze tutorial werkte je met eenvoudige lineaire regressie, in plaats van univariate of meervoudige lineaire regressie. Lees wat over de verschillen tussen deze methoden, of bekijk [deze video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+In deze tutorial werkte je met eenvoudige lineaire regressie, in plaats van univariate of multivariate lineaire regressie. Lees wat over de verschillen tussen deze methoden, of bekijk [deze video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Lees meer over het concept regressie en denk na over wat voor soort vragen met deze techniek beantwoord kunnen worden. Volg deze [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) om je begrip te verdiepen.
+Lees meer over het concept regressie en denk na over welke soorten vragen met deze techniek beantwoord kunnen worden. Volg deze [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) om je begrip te verdiepen.
 
 ## Opdracht
 

@@ -1,33 +1,35 @@
-# Klasterizavimo modeliai mašininio mokymosi srityje
+# Klasterizavimo modeliai mašininiam mokymuisi
 
-Klasterizavimas yra mašininio mokymosi užduotis, kurios tikslas – surasti objektus, panašius vienas į kitą, ir sugrupuoti juos į grupes, vadinamas klasteriais. Kas skiria klasterizavimą nuo kitų mašininio mokymosi metodų, yra tai, kad procesas vyksta automatiškai. Iš tiesų, galima sakyti, kad tai yra priešingybė prižiūrimam mokymuisi.
+Klasterizavimas yra mašininio mokymosi užduotis, kurioje siekiama rasti tarpusavyje panašius objektus ir sugrupuoti juos į grupes, vadinamas klasteriais. Kas skiria klasterizavimą nuo kitų mašininio mokymosi metodų, tai kad procesas vyksta automatiškai, iš tikrųjų, galima sakyti, kad tai priešingybė priežiūriniam mokymuisi.
 
-## Regioninė tema: klasterizavimo modeliai Nigerijos auditorijos muzikiniam skoniui 🎧
+## Regioninė tema: klasterizavimo modeliai Nigerijos auditorijos muzikos skonio analizėje 🎧
 
-Nigerijos įvairialypė auditorija turi skirtingus muzikinius skonius. Naudojant duomenis, surinktus iš Spotify (įkvėpta [šio straipsnio](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), pažvelkime į kai kurias Nigerijoje populiarias dainas. Šis duomenų rinkinys apima informaciją apie įvairių dainų „šokamumo“ balą, „akustiškumą“, garsumą, „kalbamumą“, populiarumą ir energiją. Bus įdomu atrasti šių duomenų dėsningumus!
+Nigerijos įvairialypė auditorija turi įvairius muzikos skonius. Naudodami duomenis, surinktus iš Spotify (įkvėpti [šio straipsnio](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), pažvelkime į kai kurias Nigerijoje populiarias dainas. Ši duomenų bazė apima duomenis apie įvairių dainų „šokiamumą“, „akustinį lygį“, garsumą, „kalbėjimą“, populiarumą ir energiją. Bus įdomu atrasti šių duomenų modelius!
 
-![Patefono nuotrauka](../../../translated_images/lt/turntable.f2b86b13c53302dc.webp)
+![Grotuvas](../../../translated_images/lt/turntable.f2b86b13c53302dc.webp)
 
-> Nuotrauka <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> iš <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> Nuotrauka <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcelos Laskoski</a> iš <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-Šioje pamokų serijoje jūs atrasite naujus būdus analizuoti duomenis naudojant klasterizavimo technikas. Klasterizavimas yra ypač naudingas, kai jūsų duomenų rinkinyje nėra etikečių. Jei etiketės yra, tada klasifikavimo technikos, kurias išmokote ankstesnėse pamokose, gali būti naudingesnės. Tačiau tais atvejais, kai norite grupuoti nepažymėtus duomenis, klasterizavimas yra puikus būdas atrasti dėsningumus.
+Šių pamokų serijoje atraskite naujus duomenų analizės būdus, naudodami klasterizavimo technikas. Klasterizavimas ypač naudingas, kai jūsų duomenų rinkinyje trūksta žymių. Jei žymės yra, tada galbūt naudingesnės gali būti klasifikavimo technikos, kurias mokėtės ankstesnėse pamokose. Bet jei norite sugrupuoti nepažymėtus duomenis, klasterizavimas yra puikus būdas atrasti modelius.
 
-> Yra naudingų mažo kodo įrankių, kurie gali padėti jums išmokti dirbti su klasterizavimo modeliais. Išbandykite [Azure ML šiai užduočiai](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
+> Yra naudingi žemo kodo įrankiai, kurie gali padėti išmokti dirbti su klasterizavimo modeliais. Išbandykite [Azure ML šiai užduočiai](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## Pamokos
 
 1. [Įvadas į klasterizavimą](1-Visualize/README.md)
 2. [K-Means klasterizavimas](2-K-Means/README.md)
 
-## Kreditas
+## Autoriai
 
-Šios pamokos buvo parašytos su 🎶 [Jen Looper](https://www.twitter.com/jenlooper), su naudingomis apžvalgomis iš [Rishit Dagli](https://rishit_dagli) ir [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan).
+Šios pamokos sukurtos su 🎶 pagal [Jen Looper](https://www.twitter.com/jenlooper) už pagalbą dėkingi [Rishit Dagli](https://rishit_dagli/) ir [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan).
 
-[Nigerijos dainų](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) duomenų rinkinys buvo gautas iš Kaggle, surinktas iš Spotify.
+[Nigerijos dainų](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) duomenų rinkinys gautas iš Kaggle, surinktas iš Spotify.
 
-Naudingi K-Means pavyzdžiai, kurie padėjo sukurti šią pamoką, apima šį [irisų tyrimą](https://www.kaggle.com/bburns/iris-exploration-pca-k-means-and-gmm-clustering), šį [įvadinį užrašų knygelės pavyzdį](https://www.kaggle.com/prashant111/k-means-clustering-with-python) ir šį [hipotetinį NVO pavyzdį](https://www.kaggle.com/ankandash/pca-k-means-clustering-hierarchical-clustering).
+Naudingi K-Means pavyzdžiai, kurie padėjo sudaryti šią pamoką, yra šis [gėlės iris tyrimas](https://www.kaggle.com/bburns/iris-exploration-pca-k-means-and-gmm-clustering), šis [įvadinis užrašų knygelės pavyzdys](https://www.kaggle.com/prashant111/k-means-clustering-with-python) ir šis [hipotetinis NVO pavyzdys](https://www.kaggle.com/ankandash/pca-k-means-clustering-hierarchical-clustering).
 
 ---
 
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

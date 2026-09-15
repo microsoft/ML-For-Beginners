@@ -12,8 +12,8 @@
     "language_code": "sw"
   },
   "1-Introduction/2-history-of-ML/README.md": {
-    "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2025-09-05T16:08:39+00:00",
+    "original_hash": "e6b5247d6b4dc821434070bdb58e8285",
+    "translation_date": "2026-09-15T04:01:47+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "sw"
   },
@@ -24,8 +24,8 @@
     "language_code": "sw"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
-    "translation_date": "2026-07-14T04:16:35+00:00",
+    "original_hash": "0c620ca2c6d2828e9a838ecec5f01265",
+    "translation_date": "2026-09-15T04:00:44+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "sw"
   },
@@ -54,8 +54,8 @@
     "language_code": "sw"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
-    "translation_date": "2026-07-14T04:12:21+00:00",
+    "original_hash": "1f4f6c95404d528041bcc36784771084",
+    "translation_date": "2026-09-15T04:03:05+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "sw"
   },
@@ -282,8 +282,8 @@
     "language_code": "sw"
   },
   "5-Clustering/README.md": {
-    "original_hash": "b28a3a4911584062772c537b653ebbc7",
-    "translation_date": "2025-09-05T15:39:08+00:00",
+    "original_hash": "c78940a1b03da1de13bd97527f9e6606",
+    "translation_date": "2026-09-15T03:59:15+00:00",
     "source_file": "5-Clustering/README.md",
     "language_code": "sw"
   },
@@ -456,8 +456,8 @@
     "language_code": "sw"
   },
   "7-TimeSeries/README.md": {
-    "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
-    "translation_date": "2025-09-05T15:27:33+00:00",
+    "original_hash": "722526664e764a2290e1def74afa5139",
+    "translation_date": "2026-09-15T03:59:24+00:00",
     "source_file": "7-TimeSeries/README.md",
     "language_code": "sw"
   },
@@ -564,8 +564,8 @@
     "language_code": "sw"
   },
   "README.md": {
-    "original_hash": "3e3a6c7e68e0afe7e2276ac046e4d7a0",
-    "translation_date": "2026-04-20T19:23:24+00:00",
+    "original_hash": "8bba8faed876aa7bbc92b759a350b1d8",
+    "translation_date": "2026-09-15T03:54:32+00:00",
     "source_file": "README.md",
     "language_code": "sw"
   },
@@ -592,11 +592,11 @@
       "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
       "source_file": "sketchnotes/LICENSE.md",
       "language_code": "sw",
-      "failure_date": "2026-07-14T04:11:26+00:00",
+      "failure_date": "2026-09-15T03:59:02+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
+      "translator_version": "0.20.1",
       "failure_policy_version": 1
     }
   },
@@ -607,8 +607,8 @@
     "language_code": "sw"
   },
   "for-teachers.md": {
-    "original_hash": "b37de02054fa6c0438ede6fabe1fdfb8",
-    "translation_date": "2025-09-05T15:06:38+00:00",
+    "original_hash": "4b5b4e11bf182a803261b55a19d3ee70",
+    "translation_date": "2026-09-15T03:52:26+00:00",
     "source_file": "for-teachers.md",
     "language_code": "sw"
   },

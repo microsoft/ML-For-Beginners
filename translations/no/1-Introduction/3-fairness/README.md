@@ -1,46 +1,46 @@
-# Bygge maskinlæringsløsninger med ansvarlig KI
+# Bygge maskinlæringsløsninger med ansvarlig AI
  
-![Oppsummering av ansvarlig KI i maskinlæring i en sketchnote](../../../../translated_images/no/ml-fairness.ef296ebec6afc98a.webp)
+![Sammendrag av ansvarlig AI i maskinlæring i en sketchnote](../../../../translated_images/no/ml-fairness.ef296ebec6afc98a.webp)
 > Sketchnote av [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz før forelesningen](https://ff-quizzes.netlify.app/en/ml/)
+## [Forhåndsquiz](https://ff-quizzes.netlify.app/en/ml/)
  
 ## Introduksjon
 
-I dette pensumet vil du begynne å oppdage hvordan maskinlæring kan og påvirker vårt dagligliv. Allerede nå er systemer og modeller involvert i daglige beslutningsoppgaver, som helseforebyggende diagnoser, lånbehandling eller oppdagelse av svindel. Derfor er det viktig at disse modellene fungerer godt for å gi pålitelige resultater. Som med enhver programvareapplikasjon vil KI-systemer kunne skuffe eller gi uønskede resultater. Derfor er det essensielt å kunne forstå og forklare oppførselen til en KI-modell.
+I dette pensumet vil du begynne å oppdage hvordan maskinlæring kan og påvirker vårt daglige liv. Selv nå er systemer og modeller involvert i daglige beslutningsoppgaver, slik som helsediagnoser, lånegodkjenninger eller å oppdage svindel. Derfor er det viktig at disse modellene fungerer godt for å gi resultater som er pålitelige. Som med enhver programvareapplikasjon, vil AI-systemer kunne skuffe forventninger eller ha et uønsket resultat. Derfor er det essensielt å kunne forstå og forklare oppførselen til en AI-modell.
 
-Tenk på hva som kan skje når dataene du bruker til å bygge disse modellene mangler visse demografiske grupper, som rase, kjønn, politisk syn, religion, eller overrepresenterer slike grupper. Hva skjer når modellens output tolkes som favorisering av en demografisk gruppe? Hva er konsekvensen for applikasjonen? I tillegg, hva skjer når modellen gir et uheldig utfall og skader mennesker? Hvem har ansvaret for KI-systemenes oppførsel? Dette er noen av spørsmålene vi vil utforske i dette pensumet.
+Tenk over hva som kan skje når dataene du bruker for å bygge disse modellene mangler visse demografiske grupper, som rase, kjønn, politisk syn, religion, eller overrepresenterer slike grupper uforholdsmessig. Hva skjer når modellens output tolkes til fordel for noen demografiske grupper? Hva er konsekvensene for applikasjonen? I tillegg, hva skjer når modellen har et negativt utfall og skader mennesker? Hvem er ansvarlig for AI-systemets oppførsel? Dette er noen av spørsmålene vi vil utforske i dette pensumet.
 
 I denne leksjonen vil du:
 
-- Øke bevisstheten om viktigheten av rettferdighet i maskinlæring og skader knyttet til rettferdighet.
+- Øke bevisstheten rundt viktigheten av rettferdighet i maskinlæring og skader knyttet til rettferdighet.
 - Bli kjent med praksisen med å utforske avvik og uvanlige scenarioer for å sikre pålitelighet og sikkerhet.
 - Få forståelse for behovet for å styrke alle ved å designe inkluderende systemer.
-- Utforske hvor viktig det er å beskytte personvern og sikkerhet for data og mennesker.
-- Se viktigheten av en «glassboks»-tilnærming for å forklare oppførselen til KI-modeller.
-- Være bevisst på hvordan ansvarlighet er essensielt for å bygge tillit til KI-systemer.
+- Utforske hvor viktig det er å beskytte personvern og datasikkerhet.
+- Se viktigheten av å benytte en åpen tilnærming for å forklare oppførselen til AI-modeller.
+- Være oppmerksom på hvordan ansvarlighet er viktig for å bygge tillit til AI-systemer.
 
-## Forutsetninger
+## Forutsetning
 
-Som en forutsetning, vennligst følg læringsstien "Ansvarlige prinsipper for KI" og se videoen nedenfor om temaet:
+Som forutsetning, vennligst gjennomfør "Responsible AI Principles" læringssti og se videoen nedenfor om temaet:
 
-Lær mer om ansvarlig KI ved å følge denne [Læringsstien](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Lær mer om ansvarlig AI ved å følge denne [Læringsstien](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
-[![Microsofts tilnærming til ansvarlig KI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsofts tilnærming til ansvarlig KI")
+[![Microsofts tilnærming til ansvarlig AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsofts tilnærming til ansvarlig AI")
 
-> 🎥 Klikk på bildet over for en video: Microsofts tilnærming til ansvarlig KI
+> 🎥 Klikk på bildet ovenfor for en video: Microsofts tilnærming til ansvarlig AI
 
 ## Rettferdighet
 
-KI-systemer bør behandle alle rettferdig og unngå å påvirke like grupper av mennesker på forskjellige måter. For eksempel, når KI-systemer gir veiledning om medisinsk behandling, lånesøknader eller ansettelse, bør de gi de samme anbefalingene til alle med lignende symptomer, økonomiske situasjon eller faglige kvalifikasjoner. Hver og en av oss bærer med oss arvede skjevheter som påvirker våre beslutninger og handlinger. Disse skjevhetene kan være synlige i dataene vi bruker til å trene KI-systemer. Slike skjevheter kan noen ganger oppstå utilsiktet. Det er ofte vanskelig bevisst å vite når man introduserer skjevhet i data.
+AI-systemer bør behandle alle rettferdig og unngå å påvirke like grupper av mennesker på forskjellige måter. For eksempel, når AI-systemer gir veiledning om medisinsk behandling, lånesøknader eller ansettelser, bør de gi samme anbefalinger til alle med lignende symptomer, økonomiske forhold eller faglige kvalifikasjoner. Hver av oss mennesker bærer med oss arvede skjevheter som påvirker våre beslutninger og handlinger. Disse skjevhetene kan være synlige i dataene vi bruker til å trene AI-systemer. Slike manipulasjoner kan noen ganger skje utilsiktet. Det er ofte vanskelig å bevisst vite når du introduserer skjevheter i data.
 
-**«Urettferdighet»** omfatter negative konsekvenser, eller «skader», for en gruppe mennesker, slik som de definert ut ifra rase, kjønn, alder eller funksjonshemming. Hovedtyper av skader knyttet til rettferdighet kan klassifiseres som:
+**"Urettferdighet"** omfatter negative konsekvenser, eller "skader", for en gruppe mennesker, slik som de definert ut ifra rase, kjønn, alder eller funksjonshemming. De viktigste rettferdighetsrelaterte skadene kan klassifiseres som:
 
-- **Fordeling**, hvis for eksempel kjønn eller etnisitet favoriseres fremfor en annen.
-- **Kvalitet på tjenesten**. Hvis dataene er trent for én spesifikk situasjon, men virkeligheten er mye mer kompleks, fører det til en dårlig tjeneste. For eksempel, en håndsåpedispenser som ikke kunne registrere personer med mørk hud. [Referanse](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Fordømmelse**. Å urettferdig kritisere og merke noe eller noen. For eksempel etiketterte en bildeteknologi beryktet bilder av mørkhudede personer som gorillaer.
-- **Over- eller underrepresentasjon**. Tanken er at en viss gruppe ikke sees i et yrke, og enhver tjeneste eller funksjon som opprettholder dette, bidrar til skade.
-- **Stereotypier**. Å knytte en gitt gruppe til forhåndstildelte kjennetegn. For eksempel kan en språköversettelsestjeneste mellom engelsk og tyrkisk ha unøyaktigheter på grunn av ord med stereotype kjønnsforeninger.
+- **Fordeling**, hvis for eksempel ett kjønn eller en etnisitet favoriseres over en annen.
+- **Tjenestekvalitet**. Hvis du trener data for ett spesifikt scenario, men virkeligheten er mye mer kompleks, fører det til en tjeneste som presterer dårlig. For eksempel en håndsåpedispenser som ikke ser ut til å kunne oppfatte personer med mørk hud. [Referanse](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Nedvurdering**. Å urettferdig kritisere og merke noe eller noen. For eksempel en bildeetiketteringsteknologi som beryktet merket bilder av mørkhudede personer som gorillaer.
+- **Over- eller underrepresentasjon**. Ideen er at en viss gruppe ikke sees i et bestemt yrke, og enhver tjeneste eller funksjon som fortsetter å fremme dette bidrar til skade.
+- **Stereotypisering**. Assosiere en gruppe med forhåndstildelte egenskaper. For eksempel kan et språköversettelsessystem mellom engelsk og tyrkisk ha unøyaktigheter på grunn av ord med stereotypiske kjønnsforeninger.
 
 ![oversettelse til tyrkisk](../../../../translated_images/no/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > oversettelse til tyrkisk
@@ -48,98 +48,97 @@ KI-systemer bør behandle alle rettferdig og unngå å påvirke like grupper av 
 ![oversettelse tilbake til engelsk](../../../../translated_images/no/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > oversettelse tilbake til engelsk
 
-Når vi designer og tester KI-systemer, må vi sikre at KI er rettferdig og ikke programmert til å ta skjeve eller diskriminerende beslutninger, som også mennesker er forbudt å gjøre. Å garantere rettferdighet i KI og maskinlæring forblir en kompleks sosioteknisk utfordring.
+Når vi designer og tester AI-systemer, må vi sikre at AI er rettferdig og ikke programmert til å ta skjeve eller diskriminerende beslutninger, noe mennesker også er forhindret fra å gjøre. Å garantere rettferdighet i AI og maskinlæring er fortsatt en kompleks sosioteknisk utfordring.
 
 ### Pålitelighet og sikkerhet
 
-For å bygge tillit må KI-systemene være pålitelige, sikre og konsistente under normale og uventede forhold. Det er viktig å vite hvordan KI-systemer vil oppføre seg i ulike situasjoner, spesielt når det gjelder avvik. Når man bygger KI-løsninger, må det legges betydelig fokus på hvordan man håndterer et bredt spekter av omstendigheter som KI-løsningene kan møte. For eksempel må en selvkjørende bil sette menneskers sikkerhet som høyeste prioritet. Som et resultat må KI som driver bilen vurdere alle mulige scenarioer som bilen kan møte, som natt, tordenvær eller snøstormer, barn som løper over gaten, kjæledyr, veiarbeid osv. Hvor godt et KI-system kan håndtere et bredt spekter av forhold pålitelig og trygt reflekterer hvor godt datavitenskapsmannen eller utvikleren har forutsett dette under design eller testing av systemet.
+For å bygge tillit må AI-systemer være pålitelige, sikre og konsistente under normale og uventede forhold. Det er viktig å vite hvordan AI-systemer oppfører seg i ulike situasjoner, spesielt når de er avvik. Når man bygger AI-løsninger, må det legges stor vekt på hvordan man håndterer et bredt spekter av omstendigheter AI-løsningene kan møte. For eksempel må en selvkjørende bil sette menneskers sikkerhet høyest. Derfor må AI som styrer bilen ta hensyn til alle mulige scenarioer bilen kan komme over, som natt, tordenvær eller snøstormer, barn som løper over gaten, kjæledyr, veiarbeid osv. Hvor godt et AI-system kan håndtere et bredt spekter av forhold pålitelig og trygt reflekterer nivået av forutseenhet dataforskeren eller AI-utvikleren tok hensyn til under design eller testing av systemet.
 
-> [🎥 Klikk her for en video: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Klikk her for en video: Pålitelighet og sikkerhet i AI](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
 ### Inkludering
 
-KI-systemer bør designes for å engasjere og styrke alle. Når datavitenskapsfolk og KI-utviklere designer og implementerer KI-systemer, identifiserer og adresserer de potensielle barrierer i systemet som utilsiktet kan utelukke mennesker. For eksempel er det 1 milliard mennesker med funksjonshemninger i verden. Med fremskritt innen KI kan de lettere få tilgang til et bredt spekter av informasjon og muligheter i hverdagen. Ved å adressere barrierene skapes muligheter for å innovere og utvikle KI-produkter med bedre opplevelser som gagner alle.
+AI-systemer bør designes for å engasjere og styrke alle. Når man designer og implementerer AI-systemer, identifiserer og adresserer dataforskere og utviklere potensielle barrierer i systemet som utilsiktet kan ekskludere mennesker. For eksempel er det 1 milliard mennesker med funksjonshemming i verden. Med AI sin fremgang kan de lettere få tilgang til et bredt spekter av informasjon og muligheter i hverdagen. Ved å adressere barrierene skaper man muligheter for innovasjon og utvikling av AI-produkter med bedre brukeropplevelser som gagner alle.
 
-> [🎥 Klikk her for en video: inkludering i KI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Klikk her for en video: Inkludering i AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
 ### Sikkerhet og personvern
 
-KI-systemer bør være trygge og respektere menneskers personvern. Folk har mindre tillit til systemer som setter deres personvern, informasjon eller liv i fare. Når vi trener maskinlæringsmodeller, er vi avhengige av data for å produsere de beste resultatene. I så måte må datakildens opprinnelse og integritet vurderes. For eksempel, var dataene brukersendte eller offentlig tilgjengelige? Videre, under arbeid med data, er det avgjørende å utvikle KI-systemer som kan beskytte konfidensiell informasjon og motstå angrep. Etter hvert som KI blir mer utbredt, blir det stadig viktigere og mer komplekst å beskytte personvern og sikre viktige personlige og forretningsmessige opplysninger. Personvern og datasikkerhet krever spesielt nøye oppmerksomhet for KI fordi tilgang til data er essensielt for at KI-systemer kan lage nøyaktige og informerte prediksjoner og beslutninger om mennesker.
+AI-systemer bør være trygge og respektere menneskers personvern. Folk har mindre tillit til systemer som setter deres privatliv, informasjon eller liv i fare. Når man trener maskinlæringsmodeller, er vi avhengig av data for å oppnå best mulig resultater. Da må opprinnelsen til dataene og integriteten vurderes. For eksempel, kom dataene fra brukeren selv eller var det offentlig tilgjengelig? Videre er det avgjørende å utvikle AI-systemer som kan beskytte konfidensiell informasjon og motstå angrep. Ettersom AI blir mer utbredt, blir det stadig viktigere og mer komplekst å beskytte personvern og sikre viktig personlig og forretningsinformasjon. Spesielt krever personvern og datasikkerhet grundig oppmerksomhet i AI fordi datatilgang er avgjørende for at AI-systemer kan gjøre nøyaktige og informerte prediksjoner og beslutninger om mennesker.
 
-> [🎥 Klikk her for en video: sikkerhet i KI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Klikk her for en video: Sikkerhet i AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
 - Som bransje har vi gjort betydelige fremskritt innen personvern og sikkerhet, drevet i stor grad av regelverk som GDPR (General Data Protection Regulation).
-- Likevel må vi med KI-systemer erkjenne spenningen mellom behovet for mer personlig data for å gjøre systemene mer personlige og effektive – og personvern.
-- Akkurat som med internettets fødsel og kobling av datamaskiner, ser vi en stor økning i sikkerhetsutfordringer knyttet til KI.
-- Samtidig har vi sett at KI brukes til å forbedre sikkerheten. For eksempel drives de fleste moderne antivirus-skannere i dag av KI-heuristikker.
-- Vi må sikre at våre datavitenskapsprosesser harmonerer med de nyeste praksisene for personvern og sikkerhet.
+- Likevel må vi med AI-systemer erkjenne spenningen mellom behovet for mer personlig data for å gjøre systemene mer personlige og effektive – og personvern.
+- Akkurat som ved internettets fødsel med tilkoblede datamaskiner, ser vi også en stor økning i antall sikkerhetsproblemer knyttet til AI.
+- Samtidig har vi sett AI brukt til å forbedre sikkerhet. For eksempel drives de fleste moderne antivirusprogrammer i dag av AI-basert heuristikk.
+- Vi må sikre at våre data science-prosesser harmonerer med de nyeste personvern- og sikkerhetspraksisene.
 
 
 ### Åpenhet
-KI-systemer bør være forståelige. En avgjørende del av transparens er å forklare oppførselen til KI-systemer og deres komponenter. For å bedre forståelsen av KI-systemer må interessenter forstå hvordan og hvorfor de fungerer slik, slik at de kan identifisere potensielle ytelsesproblemer, sikkerhets- og personvernbekymringer, skjevheter, ekskluderende praksiser eller utilsiktede konsekvenser. Vi mener også at de som bruker KI-systemer bør være ærlige og åpne om når, hvorfor og hvordan de velger å sette dem i drift, samt systemenes begrensninger. For eksempel, hvis en bank bruker et KI-system for å støtte sine beslutninger om forbrukerlån, er det viktig å undersøke resultatene og forstå hvilke data som påvirker systemets anbefalinger. Regjeringer begynner å regulere KI på tvers av bransjer, så datavitenskapsfolk og organisasjoner må forklare om et KI-system oppfyller regulatoriske krav, spesielt ved uønskede utfall.
+AI-systemer bør være forståelige. En viktig del av åpenhet er å forklare oppførselen til AI-systemer og deres komponenter. Bedre forståelse av AI-systemer krever at interessenter forstår hvordan og hvorfor de fungerer slik at de kan identifisere potensielle ytelsesproblemer, sikkerhets- og personvernhensyn, skjevheter, ekskluderende praksiser eller utilsiktede resultater. Vi mener også at de som bruker AI-systemer bør være ærlige og åpne om når, hvorfor og hvordan de velger å bruke dem, samt begrensningene ved systemene de benytter. For eksempel, hvis en bank bruker et AI-system til å støtte sine forbrukslånsbeslutninger, er det viktig å undersøke resultatene og forstå hvilke data som påvirker systemets anbefalinger. Regjeringer begynner å regulere AI på tvers av industrier, så dataforskere og organisasjoner må forklare om et AI-system oppfyller regulatoriske krav, spesielt når det er et uønsket resultat.
 
-> [🎥 Klikk her for en video: åpenhet i KI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Klikk her for en video: Åpenhet i AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Fordi KI-systemer er så komplekse, er det vanskelig å forstå hvordan de fungerer og tolke resultatene.
-- Denne mangelen på forståelse påvirker hvordan disse systemene styres, operasjonaliseres og dokumenteres.
-- Enda viktigere påvirker denne mangelen på forståelse beslutningene som tas basert på resultatene disse systemene produserer.
+- Fordi AI-systemer er så komplekse, er det vanskelig å forstå hvordan de fungerer og tolke resultatene.
+- Denne mangelen på forståelse påvirker måten disse systemene forvaltes, operasjonaliseres og dokumenteres på.
+- Enda viktigere påvirker denne mangelen på forståelse beslutningene som tas basert på systemenes resultater.
 
 ### Ansvarlighet
  
-Personene som designer og setter i drift KI-systemer må være ansvarlige for hvordan systemene opererer. Behovet for ansvarlighet er spesielt viktig ved sensitive teknologier som ansiktsgjenkjenning. Nylig har det vært økende etterspørsel etter ansiktsgjenkjenningsteknologi, spesielt fra politiorganisasjoner som ser teknologien som nyttig for å finne savnede barn. Men disse teknologiene kan potensielt brukes av en regjering til å sette innbyggernes grunnleggende friheter i fare, for eksempel ved å muliggjøre kontinuerlig overvåkning av spesifikke individer. Derfor må datavitenskapsfolk og organisasjoner ta ansvar for hvordan deres KI-system påvirker individer eller samfunnet.
+De som designer og deployerer AI-systemer må holdes ansvarlige for hvordan systemene deres opererer. Behovet for ansvarlighet er særlig viktig for sensitive teknologier som ansiktsgjenkjenning. Nylig har det vært en økende etterspørsel etter ansiktsgjenkjenningsteknologi, spesielt fra rettshåndhevende myndigheter som ser potensialet i teknologien for bruk som å finne savnede barn. Disse teknologiene kan imidlertid potensielt bli brukt av en regjering til å sette borgernes grunnleggende friheter i fare, for eksempel ved å muliggjøre kontinuerlig overvåkning av spesifikke individer. Derfor må dataforskere og organisasjoner være ansvarlige for hvordan deres AI-system påvirker individer eller samfunnet.
 
-[![Ledende AI-forsker advarer om masseovervåkning gjennom ansiktsgjenkjenning](../../../../translated_images/no/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsofts tilnærming til ansvarlig KI")
+[![Ledende AI-forsker advarer mot masseovervåkning gjennom ansiktsgjenkjenning](../../../../translated_images/no/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsofts tilnærming til ansvarlig AI")
 
-> 🎥 Klikk på bildet over for en video: Advarsler om masseovervåkning gjennom ansiktsgjenkjenning 
+> 🎥 Klikk på bildet ovenfor for en video: Advarsler om masseovervåkning gjennom ansiktsgjenkjenning
 
-Til syvende og sist er et av de største spørsmålene for vår generasjon, som den første generasjonen som bringer KI ut i samfunnet, hvordan sikre at datamaskiner forblir ansvarlige overfor mennesker og hvordan sikre at de som designer datamaskiner forblir ansvarlige overfor alle andre.
+Til syvende og sist er et av de største spørsmålene for vår generasjon, som er den første som introduserer AI i samfunnet, hvordan man sikrer at datamaskiner forblir ansvarlige overfor mennesker og hvordan de som designer datamaskiner forblir ansvarlige overfor alle andre.
 
-## Konsekvensvurdering
+## Påvirkningsvurdering
 
-Før man trener en maskinlæringsmodell, er det viktig å utføre en konsekvensvurdering for å forstå formålet med KI-systemet; hva den tiltenkte bruken er; hvor det skal tas i bruk; og hvem som skal interagere med systemet. Dette er nyttig for evaluatorer eller testere som skal gjennomgå systemet for å vite hvilke faktorer de må ta hensyn til når de identifiserer potensielle risikoer og forventede konsekvenser.
+Før du trener en maskinlæringsmodell, er det viktig å gjennomføre en påvirkningsvurdering for å forstå hensikten med AI-systemet; hva den tiltenkte bruken er; hvor det skal implementeres; og hvem som vil samhandle med systemet. Dette er nyttig for vurderere eller testere som evaluerer systemet for å vite hvilke faktorer de bør ta hensyn til når de identifiserer potensielle risikoer og forventede konsekvenser.
 
-Følgende områder bør fokuseres på ved gjennomføring av en konsekvensvurdering:
+Følgende er fokusområder ved gjennomføring av en påvirkningsvurdering:
 
-* **Advers effekt på enkeltpersoner**. Å være bevisst eventuelle restriksjoner eller krav, uoffisiell bruk eller kjente begrensninger som hindrer systemets ytelse, er avgjørende for å sikre at systemet ikke brukes på en måte som kan skade personer.
-* **Datakrav**. Å forstå hvordan og hvor systemet vil bruke data gir evaluatorer mulighet til å utforske eventuelle datakrav du må være oppmerksom på (f.eks. GDPR eller HIPAA). Videre bør det undersøkes om datakilden eller mengden data er tilstrekkelig for trening.
-* **Sammendrag av konsekvenser**. Lag en liste over potensielle skader som kan oppstå ved bruk av systemet. Gjennom ML-livssyklusen bør det vurderes om de identifiserte problemene er mitigert eller adressert.
-* **Gjeldende mål** for hver av de seks kjerneprinsippene. Vurder om målene for hvert prinsipp er oppnådd og om det er eventuelle gap.
+* **Negativ påvirkning på individer**. Det er avgjørende å være klar over eventuelle restriksjoner eller krav, uautorisert bruk eller kjente begrensninger som hindrer systemets ytelse for å sikre at systemet ikke brukes på en måte som kan skade individer.
+* **Datakrav**. Å forstå hvordan og hvor systemet skal bruke data gjør det mulig for vurderere å utforske eventuelle datakrav du må ta hensyn til (f.eks. GDPR eller HIPAA-reguleringer). I tillegg bør man undersøke om kilden og mengden data er tilstrekkelig for trening.
+* **Oppsummering av påvirkning**. Samle en liste over potensielle skader som kan oppstå ved bruk av systemet. Gjennom hele ML-livssyklusen må det vurderes om identifiserte problemer blir redusert eller adressert.
+* **Gjeldene mål** for hvert av de seks kjerneprinsippene. Vurdere om målene i hver av prinsippene er oppfylt og om det finnes noen hull.
 
 
-## Feilsøking med ansvarlig KI
+## Feilsøking med ansvarlig AI
 
-På samme måte som ved feilsøking i en programvareapplikasjon, er feilsøking av et KI-system en nødvendig prosess for å identifisere og løse problemer i systemet. Mange faktorer kan påvirke at en modell ikke presterer som forventet eller ansvarlig. De fleste tradisjonelle modellprestasjon-målinger er kvantitative aggregater av modellens ytelse, noe som ikke er tilstrekkelig til å analysere hvordan en modell bryter de ansvarlige KI-prinsippene. Dessuten er en maskinlæringsmodell en svart boks som gjør det vanskelig å forstå hva som driver utfallet eller gi forklaring når den gjør en feil. Senere i dette kurset vil vi lære hvordan vi kan bruke Ansvarlig KI-dashbordet for å hjelpe med feilsøking av KI-systemer. Dashbordet gir et helhetlig verktøy for datavitenskapsfolk og KI-utviklere for å utføre:
+På samme måte som feilsøking av en programvareapplikasjon, er feilsøking av et AI-system en nødvendig prosess for å identifisere og løse problemer i systemet. Mange faktorer kan påvirke at en modell ikke presterer som forventet eller ansvarlig. De fleste tradisjonelle modellprestasjonsscore er kvantitative aggregater av modellens ytelse, som ikke er tilstrekkelige for å analysere hvordan en modell bryter med prinsippene for ansvarlig AI. Videre er en maskinlæringsmodell en svart boks som gjør det vanskelig å forstå hva som driver resultatet eller gi forklaring når den gjør en feil. Senere i dette kurset vil vi lære hvordan man bruker dashbordet for ansvarlig AI til å hjelpe med å feilsøke AI-systemer. Dashbordet gir et helhetlig verktøy for dataforskere og AI-utviklere til å utføre:
 
-* **Feilanalyse**. For å identifisere feildistribusjonen til modellen som kan påvirke systemets rettferdighet eller pålitelighet.
-* **Modelloversikt**. For å oppdage hvor det finnes forskjeller i modellens ytelse på tvers av datakohorter.
-* **Dataanalyse**. For å forstå datadistribusjonen og identifisere potensiell skjevhet i data som kan føre til problemer med rettferdighet, inkludering og pålitelighet.
-* **Modellforklarbarhet**. For å forstå hva som påvirker eller innvirker på modellens prediksjoner. Dette hjelper med å forklare modellens oppførsel, noe som er viktig for åpenhet og ansvarlighet.
+* **Feilanalyse**. For å identifisere feiltall i modellen som kan påvirke systemets rettferdighet eller pålitelighet.
+* **Modelloversikt**. For å oppdage hvor det er ulikheter i modellens ytelse på tvers av datagrupper.
+* **Dataanalyse**. For å forstå datadistribusjonen og identifisere eventuelle skjevheter i dataene som kan føre til problemer med rettferdighet, inkludering og pålitelighet.
+* **Modelltolkbarhet**. For å forstå hva som påvirker eller styrer modellens prediksjoner. Dette hjelper med å forklare modellens oppførsel, som er viktig for åpenhet og ansvarlighet.
 
 
 ## 🚀 Utfordring
  
 For å forhindre at skader oppstår i utgangspunktet, bør vi:
 
-- ha mangfold i bakgrunn og perspektiver blant de som jobber med systemer
+- ha mangfold i bakgrunn og perspektiver blant de som jobber med systemene
 - investere i datasett som reflekterer mangfoldet i samfunnet vårt
-- utvikle bedre metoder gjennom hele maskinlæringslivssyklusen for å oppdage og rette opp i ansvarlig KI når det oppstår
+- utvikle bedre metoder gjennom hele maskinlæringslivssyklusen for å oppdage og rette opp uansvarlig AI når det oppstår
 
-Tenk på reelle scenarioer der en modells upålitelighet er tydelig i modellbygging og bruk. Hva mer bør vi vurdere?
+Tenk på virkelige scenarioer hvor en modells upålitelighet er tydelig i modellbygging og bruk. Hva mer bør vi vurdere?
 
-## [Quiz etter forelesningen](https://ff-quizzes.netlify.app/en/ml/)
+## [Etter-forelesningsquiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Gjennomgang & Selvstudium
  
-
-I denne leksjonen har du lært noen grunnleggende begreper om rettferdighet og urettferdighet i maskinlæring.  
+I denne leksjonen har du lært noen grunnleggende konsepter om rettferdighet og urettferdighet i maskinlæring.
  
-Se denne workshopen for å fordype deg i temaene: 
+Se denne workshopen for å fordype deg i temaene:
 
-- I jakten på ansvarlig AI: Å bringe prinsipper til praksis av Besmira Nushi, Mehrnoosh Sameki og Amit Sharma
+- På jakt etter ansvarlig AI: Bringe prinsipper til praksis av Besmira Nushi, Mehrnoosh Sameki og Amit Sharma
 
-[![Responsible AI Toolbox: Et åpen kildekode-rammeverk for bygging av ansvarlig AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Et åpen kildekode-rammeverk for bygging av ansvarlig AI")
+[![Responsible AI Toolbox: Et åpen kildekode rammeverk for å bygge ansvarlig AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Et åpen kildekode rammeverk for å bygge ansvarlig AI")
 
-> 🎥 Klikk på bildet over for en video: RAI Toolbox: Et åpen kildekode-rammeverk for bygging av ansvarlig AI av Besmira Nushi, Mehrnoosh Sameki og Amit Sharma
+> 🎥 Klikk på bildet over for en video: RAI Toolbox: Et åpen kildekode rammeverk for å bygge ansvarlig AI av Besmira Nushi, Mehrnoosh Sameki, og Amit Sharma
 
 Les også: 
 
@@ -149,7 +148,7 @@ Les også:
 
 RAI Toolbox: 
 
-- [Responsible AI Toolbox GitHub-repositorium](https://github.com/microsoft/responsible-ai-toolbox)
+- [Responsible AI Toolbox GitHub repository](https://github.com/microsoft/responsible-ai-toolbox)
 
 Les om Azure Machine Learnings verktøy for å sikre rettferdighet:
 

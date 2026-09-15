@@ -1,6 +1,6 @@
-# Începeți cu Python și Scikit-learn pentru modele de regresie
+# Începe cu Python și Scikit-learn pentru modele de regresie
 
-![Sumar al regresiilor într-un sketchnote](../../../../translated_images/ro/ml-regression.4e4f70e3b3ed446e.webp)
+![Rezumat al regresiilor într-un sketchnote](../../../../translated_images/ro/ml-regression.4e4f70e3b3ed446e.webp)
 
 > Sketchnote de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -10,63 +10,63 @@
 
 ## Introducere
 
-În aceste patru lecții, veți descoperi cum să construiți modele de regresie. Vom discuta în curând la ce folosesc acestea. Dar înainte să faceți orice, asigurați-vă că aveți instrumentele potrivite pentru a începe procesul!
+În aceste patru lecții, vei descoperi cum să construiești modele de regresie. Vom discuta în curând la ce servesc acestea. Dar înainte de a face orice, asigură-te că ai uneltele potrivite pregătite pentru a începe procesul!
 
-În această lecție, veți învăța cum să:
+În această lecție, vei învăța cum să:
 
-- Configurați computerul pentru sarcini locale de învățare automată.
-- Lucrați cu Jupyter Notebooks.
-- Folosiți Scikit-learn, inclusiv instalarea.
-- Explorați regresia liniară printr-un exercițiu practic.
+- Configurezi calculatorul pentru sarcini locale de învățare automată.
+- Lucrezi cu Jupyter Notebooks.
+- Folosești Scikit-learn, inclusiv instalarea.
+- Explorezi regresia liniară printr-un exercițiu practic.
 
-## Instalări și configurații
+## Instalări și configurări
 
-[![ML pentru începători - Configurați-vă instrumentele pregătite pentru a construi modele de învățare automată](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML pentru începători -Configurați-vă instrumentele pregătite pentru a construi modele de învățare automată")
+[![ML pentru începători - Configurează-ți uneltele pregătite să construiești modele de Machine Learning](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML pentru începători - Configurează-ți uneltele pregătite să construiești modele de Machine Learning")
 
-> 🎥 Faceți clic pe imaginea de mai sus pentru un scurt videoclip despre configurarea computerului pentru ML.
+> 🎥 Fă click pe imaginea de mai sus pentru un scurt video despre configurarea calculatorului pentru ML.
 
-1. **Instalați Python**. Asigurați-vă că [Python](https://www.python.org/downloads/) este instalat pe computerul dumneavoastră. Veți folosi Python pentru multe sarcini de știința datelor și învățare automată. Majoritatea sistemelor de operare au deja o instalare Python. Există pachete utile [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) disponibile, pentru a ușura configurarea pentru unii utilizatori.
+1. **Instalează Python**. Asigură-te că [Python](https://www.python.org/downloads/) este instalat pe calculatorul tău. Vei folosi Python pentru multe sarcini de știința datelor și învățare automată. Cele mai multe sisteme de calcul au deja instalat Python. Există și [Pachete de codare Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) utile disponibile, pentru a ușura configurarea pentru unii utilizatori.
 
-   Totuși, unele utilizări ale Python cer o anumită versiune a software-ului, iar altele necesită o altă versiune. Din acest motiv, este util să lucrați într-un [mediu virtual](https://docs.python.org/3/library/venv.html).
+   Unele utilizări ale Python necesită o versiune a software-ului, în timp ce altele cer o versiune diferită. Din acest motiv, este util să lucrezi într-un [mediu virtual](https://docs.python.org/3/library/venv.html).
 
-2. **Instalați Visual Studio Code**. Asigurați-vă că aveți instalat Visual Studio Code pe computer. Urmați aceste instrucțiuni pentru a [instala Visual Studio Code](https://code.visualstudio.com/) pentru instalarea de bază. Veți folosi Python în Visual Studio Code în acest curs, așa că poate doriți să vă familiarizați cu modul de a [configura Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) pentru dezvoltarea Python.
+2. **Instalează Visual Studio Code**. Verifică dacă ai Visual Studio Code instalat pe calculator. Urmează aceste instrucțiuni pentru a [instala Visual Studio Code](https://code.visualstudio.com/) pentru instalarea de bază. Vei folosi Python în Visual Studio Code în acest curs, așa că s-ar putea să vrei să te familiarizezi cu modul de a [configura Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) pentru dezvoltarea în Python.
 
-   > Familiarizați-vă cu Python parcurgând această colecție de [module Learn](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Familiarizează-te cu Python lucrând prin această colecție de [module Learn](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
-   > [![Configurare Python cu Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Configurare Python cu Visual Studio Code")
+   > [![Configurează Python cu Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Configurează Python cu Visual Studio Code")
    >
-   > 🎥 Faceți clic pe imaginea de mai sus pentru un videoclip: folosirea Python în VS Code.
+   > 🎥 Fă click pe imaginea de mai sus pentru un video: utilizarea Python în VS Code.
 
-3. **Instalați Scikit-learn**, urmând [aceste instrucțiuni](https://scikit-learn.org/stable/install.html). Deoarece trebuie să vă asigurați că folosiți Python 3, se recomandă să utilizați un mediu virtual. Rețineți că, dacă instalați această bibliotecă pe un Mac M1, există instrucțiuni speciale pe pagina legată mai sus.
+3. **Instalează Scikit-learn**, urmând [aceste instrucțiuni](https://scikit-learn.org/stable/install.html). Deoarece trebuie să te asiguri că folosești Python 3, este recomandat să folosești un mediu virtual. Notă, dacă instalezi această bibliotecă pe un Mac M1, există instrucțiuni speciale pe pagina legată mai sus.
 
-1. **Instalați Jupyter Notebook**. Veți avea nevoie să [instalați pachetul Jupyter](https://pypi.org/project/jupyter/).
+1. **Instalează Jupyter Notebook**. Va trebui să [instalezi pachetul Jupyter](https://pypi.org/project/jupyter/).
 
-## Mediul dvs. de dezvoltare ML
+## Mediul tău de creare ML
 
-Veți folosi **notebook-uri** pentru a dezvolta codul Python și pentru a crea modele de învățare automată. Acest tip de fișier este un instrument comun pentru oamenii de știință în date și poate fi recunoscut după sufixul sau extensia `.ipynb`.
+Vei folosi **notebook-uri** pentru a-ți dezvolta codul Python și a crea modele de învățare automată. Acest tip de fișier este un instrument comun pentru oamenii de știința datelor și poate fi identificat după sufixul sau extensia `.ipynb`.
 
-Notebook-urile sunt un mediu interactiv care permite dezvoltatorului să scrie cod, să adauge note și să documenteze codul, ceea ce este foarte util pentru proiecte experimentale sau orientate spre cercetare.
+Notebook-urile sunt un mediu interactiv care permite dezvoltatorului să scrie cod și să adauge note și documentație în jurul codului, ceea ce este foarte util pentru proiecte orientate spre cercetare sau experimentare.
 
-[![ML pentru începători - Configurați Jupyter Notebooks pentru a începe construirea modelelor de regresie](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML pentru începători - Configurați Jupyter Notebooks pentru a începe construirea modelelor de regresie")
+[![ML pentru începători - Configurează Jupyter Notebooks pentru a începe să construiești modele de regresie](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML pentru începători - Configurează Jupyter Notebooks pentru a începe să construiești modele de regresie")
 
-> 🎥 Faceți clic pe imaginea de mai sus pentru un scurt videoclip despre acest exercițiu.
+> 🎥 Fă click pe imaginea de mai sus pentru un scurt video care detaliază acest exercițiu.
 
-### Exercițiu - lucrați cu un notebook
+### Exercițiu - lucrează cu un notebook
 
-În acest dosar, veți găsi fișierul _notebook.ipynb_.
+În acest folder vei găsi fișierul _notebook.ipynb_.
 
-1. Deschideți _notebook.ipynb_ în Visual Studio Code.
+1. Deschide _notebook.ipynb_ în Visual Studio Code.
 
-   Un server Jupyter va porni cu Python 3+ lansat. Veți găsi zone în notebook care pot fi `run`, bucăți de cod. Puteți rula un bloc de cod selectând iconița care arată ca un buton de redare.
+   Un server Jupyter va porni cu Python 3+ pornit. Vei găsi zone ale notebook-ului care pot fi `run`, bucăți de cod. Poți rula un bloc de cod selectând iconița ce arată ca un buton de redare.
 
-1. Selectați iconița `md` și adăugați puțin markdown, și următorul text **# Bine ați venit în notebook-ul vostru**.
+1. Selectează iconița `md` și adaugă puțin markdown și textul următor **# Bine ai venit în notebook-ul tău**.
 
-   Apoi, adăugați cod Python.
+   Apoi, adaugă cod Python.
 
-1. Tastați **print('hello notebook')** în blocul de cod.
-1. Selectați săgeata pentru a rula codul.
+1. Scrie **print('hello notebook')** în blocul de cod.
+1. Selectează săgeata pentru a rula codul.
 
-   Ar trebui să vedeți instrucțiunea afișată:
+   Ar trebui să vezi declarația afișată:
 
     ```output
     hello notebook
@@ -74,48 +74,48 @@ Notebook-urile sunt un mediu interactiv care permite dezvoltatorului să scrie c
 
 ![VS Code cu un notebook deschis](../../../../translated_images/ro/notebook.4a3ee31f396b8832.webp)
 
-Puteți combina codul cu comentarii pentru a auto-documenta notebook-ul.
+Poți intercala codul tău cu comentarii pentru a auto-documenta notebook-ul.
 
-✅ Gândiți-vă pentru un minut cât de diferit este mediul de lucru al unui dezvoltator web față de cel al unui om de știință în date.
+✅ Gândește-te pentru o clipă cât de diferit este mediul de lucru al unui dezvoltator web față de cel al unui om de știința datelor.
 
-## Pregătire și rulare cu Scikit-learn
+## Configurat și gata de lucru cu Scikit-learn
 
-Acum că Python este configurat în mediul local și sunteți confortabil cu Jupyter Notebooks, haideți să devenim la fel de confortabili cu Scikit-learn (pronunțați `sci` ca în `science`). Scikit-learn oferă o [API extinsă](https://scikit-learn.org/stable/modules/classes.html#api-ref) pentru a vă ajuta să realizați sarcini de ML.
+Acum că Python este configurat în mediul tău local și ești confortabil cu Jupyter Notebooks, să devenim la fel de confortabili cu Scikit-learn (pronunță-l `sci` ca în `science`). Scikit-learn oferă un [API extins](https://scikit-learn.org/stable/modules/classes.html#api-ref) pentru a te ajuta să efectuezi sarcini de ML.
 
-Conform [site-ului lor](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn este o bibliotecă open source de învățare automată care suportă învățare supravegheată și nesupravegheată. De asemenea, oferă diverse unelte pentru ajustarea modelelor, preprocesarea datelor, selecția și evaluarea modelelor și multe alte utilități."
+Conform site-ului lor [web](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn este o bibliotecă open source de învățare automată care suportă învățarea supravegheată și nesupravegheată. De asemenea, oferă diverse unelte pentru ajustarea modelelor, preprocesarea datelor, selecția și evaluarea modelelor și multe alte utilități."
 
-În acest curs, veți folosi Scikit-learn și alte instrumente pentru a construi modele de învățare automată care să realizeze ceea ce numim sarcini 'tradiționale de învățare automată'. Am evitat deliberat rețelele neuronale și deep learning, deoarece acestea sunt mai bine acoperite în viitorul nostru curriculum 'AI pentru începători'.
+În acest curs, vei folosi Scikit-learn și alte unelte pentru a construi modele de învățare automată pentru a realiza ceea ce numim sarcini de 'învățare automată tradițională'. Am evitat intenționat rețelele neuronale și deep learning, deoarece acestea sunt mai bine acoperite în curriculumul nostru viitor 'AI pentru începători'.
 
-Scikit-learn face simplă construirea și evaluarea modelelor pentru utilizare. Se concentrează în principal pe folosirea datelor numerice și conține mai multe seturi de date gata făcute pentru a fi folosite ca instrumente de învățare. Include, de asemenea, modele predefinite pentru studenți. Să explorăm procesul de încărcare a datelor preambalate și să folosim un estimator încorporat pentru primul model ML cu Scikit-learn și date de bază.
+Scikit-learn face simplă construirea și evaluarea modelelor pentru utilizare. Se concentrează în special pe folosirea datelor numerice și conține mai multe seturi de date gata făcute pentru învățare. Include și modele predefinite pentru studenți. Haide să explorăm procesul de încărcare a datelor preambalate și utilizarea unui estimator încorporat pentru a crea primul tău model ML cu Scikit-learn cu niște date de bază.
 
-## Exercițiu - primul vostru notebook Scikit-learn
+## Exercițiu - primul tău notebook Scikit-learn
 
 > Acest tutorial a fost inspirat de [exemplul de regresie liniară](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) de pe site-ul Scikit-learn.
 
 
-[![ML pentru începători - Primul vostru proiect de regresie liniară în Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML pentru începători - Primul vostru proiect de regresie liniară în Python")
+[![ML pentru începători - Primul tău proiect de regresie liniară în Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML pentru începători - Primul tău proiect de regresie liniară în Python")
 
-> 🎥 Faceți clic pe imaginea de mai sus pentru un scurt videoclip despre acest exercițiu.
+> 🎥 Fă click pe imaginea de mai sus pentru un scurt video care detaliază acest exercițiu.
 
-În fișierul _notebook.ipynb_ asociat acestei lecții, ștergeți toate celulele apăsând iconița 'coș de gunoi'.
+În fișierul _notebook.ipynb_ atașat acestei lecții, golește toate celulele apăsând iconița „coș de gunoi”.
 
-În această secțiune, veți lucra cu un set mic de date despre diabet care este încorporat în Scikit-learn pentru scopuri de învățare. Imaginați-vă că doriți să testați un tratament pentru pacienții cu diabet. Modelele de învățare automată v-ar putea ajuta să determinați care pacienți vor răspunde mai bine la tratament în funcție de combinații de variabile. Chiar și un model foarte simplu de regresie, atunci când este vizualizat, ar putea arăta informații despre variabile care v-ar ajuta să organizați teoretic studiile clinice.
+În această secțiune, vei lucra cu un set de date mic despre diabet care este încorporat în Scikit-learn pentru scopuri educaționale. Imaginează-ți că vrei să testezi un tratament pentru pacienții cu diabet. Modelele de învățare automată te-ar putea ajuta să determini care pacienți ar răspunde mai bine la tratament, bazat pe combinații de variabile. Chiar și un model de regresie foarte simplu, când este vizualizat, ar putea arăta informații despre variabile care te-ar ajuta să organizezi teoretic studiile clinice.
 
-✅ Există multe tipuri de metode de regresie, iar alegerea depinde de răspunsul pe care îl căutați. Dacă doriți să preziceți înălțimea probabilă a unei persoane la o anumită vârstă, veți folosi regresia liniară, deoarece căutați o **valoare numerică**. Dacă sunteți interesat să descoperiți dacă un tip de bucătărie este considerat vegan sau nu, căutați o **atributie de categorie**, deci ați folosi regresia logistică. Veți învăța mai târziu despre regresia logistică. Gândiți-vă puțin la întrebările pe care le puteți pune datelor și la care dintre aceste metode ar fi mai potrivită.
+✅ Există multe tipuri de metode de regresie, iar pe care o alegi depinde de răspunsul pe care îl cauți. Dacă vrei să prezici înălțimea probabilă pentru o persoană de o anumită vârstă, vei folosi regresie liniară, deoarece cauți o **valoare numerică**. Dacă te interesează să descoperi dacă un tip de bucătărie ar trebui considerat vegan sau nu, cauți o **alocare într-o categorie**, deci vei folosi regresia logistică. Vei învăța mai multe despre regresia logistică mai târziu. Gândește-te puțin la întrebările pe care le poți pune datelor și care dintre aceste metode ar fi mai potrivită.
 
 Să începem această sarcină.
 
-### Importați biblioteci
+### Importă biblioteci
 
 Pentru această sarcină vom importa câteva biblioteci:
 
-- **matplotlib**. Este un [instrument de graficare](https://matplotlib.org/) util pe care îl vom folosi pentru a crea un grafic liniar.
+- **matplotlib**. Este un [instrument de grafică](https://matplotlib.org/) util și îl vom folosi pentru a crea un grafic de linie.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) este o bibliotecă utilă pentru manipularea datelor numerice în Python.
 - **sklearn**. Aceasta este biblioteca [Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
 
-Importați câteva biblioteci pentru a vă ajuta cu sarcinile.
+Importă câteva biblioteci pentru a te ajuta cu sarcinile tale.
 
-1. Adăugați importurile tastând următorul cod:
+1. Adaugă importurile scriind următorul cod:
 
    ```python
    import matplotlib.pyplot as plt
@@ -123,26 +123,26 @@ Importați câteva biblioteci pentru a vă ajuta cu sarcinile.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   De mai sus importați `matplotlib`, `numpy` și importați `datasets`, `linear_model` și `model_selection` din `sklearn`. `model_selection` este folosit pentru împărțirea datelor în seturi de antrenament și test.
+   Mai sus imporți `matplotlib`, `numpy` și imporți `datasets`, `linear_model` și `model_selection` din `sklearn`. `model_selection` este folosit pentru a împărți datele în seturi de antrenament și test.
 
-### Setul de date despre diabet
+### Setul de date diabet
 
-Setul de date încorporat [diabet](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) include 442 de mostre de date legate de diabet, cu 10 variabile caracteristice, dintre care unele includ:
+Setul de date încorporat [diabet](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) include 442 de eșantioane de date despre diabet, cu 10 variabile caracteristice, unele dintre ele fiind:
 
-- vârstă: vârsta în ani
+- age: vârsta (ani)
 - bmi: indicele de masă corporală
 - bp: tensiunea arterială medie
 - s1 tc: celule T (un tip de globule albe)
 
-✅ Acest set de date include conceptul de 'sex' ca o variabilă caracteristică importantă pentru cercetarea diabetului. Multe seturi medicale de date includ acest tip de clasificare binară. Gândiți-vă puțin la cum astfel de categorii ar putea exclude anumite părți ale populației de la tratamente.
+✅ Acest set de date include conceptul de „sex” ca variabilă caracteristică importantă în cercetarea diabetului. Multe seturi medicale includ acest tip de clasificare binară. Gândește-te puțin cum astfel de clasificări pot exclude anumite părți ale populației de la tratamente.
 
-Acum, încărcați datele X și y.
+Acum, încarcă datele X și y.
 
-> 🎓 Amintiți-vă, aceasta este învățare supravegheată, și avem nevoie de o țintă denumită 'y'.
+> 🎓 Amintește-ți, aceasta este învățare supravegheată, și avem nevoie de o țintă numită 'y'.
 
-Într-o celulă nouă de cod, încărcați setul de date pentru diabet apelând `load_diabetes()`. Intrarea `return_X_y=True` semnalează faptul că `X` va fi o matrice de date, iar `y` va fi ținta regresiei.
+Într-o celulă nouă de cod, încarcă setul de date diabet apelând `load_diabetes()`. Input-ul `return_X_y=True` semnalează că `X` va fi o matrice de date, iar `y` va fi ținta regresiei.
 
-1. Adăugați câteva comenzi print pentru a arăta forma matricei de date și primul său element:
+1. Adaugă câteva comenzi print pentru a afișa forma matricei de date și primul său element:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ Acum, încărcați datele X și y.
     print(X[0])
     ```
 
-    Ce primiți ca răspuns este un tuplu. Ce faceți este să atribuiți primele două valori ale tuplei la `X` și `y` respectiv. Aflați mai multe [despre tuple](https://wikipedia.org/wiki/Tuple).
+    Ce primești ca răspuns este un tuplu. Ceea ce faci este să atribui primele două valori ale tuplului la `X` și `y`, respectiv. Află mai multe [despre tupluri](https://wikipedia.org/wiki/Tuple).
 
-    Puteți vedea că acest set de date are 442 de itemi formați în array-uri cu câte 10 elemente:
+    Poți vedea că aceste date au 442 de elemente structurate în array-uri de 10 elemente:
 
     ```text
     (442, 10)
@@ -160,39 +160,39 @@ Acum, încărcați datele X și y.
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Gândiți-vă puțin la relația dintre date și ținta regresiei. Regresia liniară prezice relații între caracteristica X și variabila țintă y. Puteți găsi [ținta](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) pentru setul de date diabet în documentație? Ce demonstrează acest set de date, având ținta?
+    ✅ Gândește-te puțin la relația dintre date și ținta regresiei. Regresia liniară prezice relații între caracteristica X și variabila target y. Poți găsi [ținta](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) pentru setul de date diabet în documentație? Ce demonstrează acest set de date, având în vedere ținta?
 
-2. În continuare, selectați o porțiune din acest set de date pentru grafic prin selectarea celei de-a 3-a coloane din setul de date. Puteți face asta folosind operatorul `:` pentru a selecta toate rândurile, apoi selectând a 3-a coloană folosind indexul (2). Puteți, de asemenea, să remodelați datele pentru a fi un array 2D - necesar pentru graficare - folosind `reshape(n_rânduri, n_coloane)`. Dacă unul dintre parametri este -1, dimensiunea respectivă se calculează automat.
+2. Apoi, selectează o porțiune din acest set de date pentru a face o plotare, selectând coloana a 3-a a setului. Poți face asta folosind operatorul `:` pentru a selecta toate rândurile, apoi selectând coloana a 3-a prin indexul (2). Poți de asemenea rearanja datele să fie un array 2D—cum e necesar pentru plotare—folosind `reshape(n_rows, n_columns)`. Dacă unul din parametri este -1, dimensiunea corespunzătoare este calculată automat.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Oricând, afișați datele pentru a verifica forma lor.
+   ✅ Oricând, afișează datele pentru a verifica forma lor.
 
-3. Acum că aveți datele pregătite pentru graficare, puteți vedea dacă o mașină poate ajuta să determine o separare logică între numerele din acest set de date. Pentru aceasta trebuie să împărțiți atât datele (X), cât și ținta (y) în seturi de testare și antrenament. Scikit-learn oferă o metodă simplă pentru asta; puteți diviza setul de testare la un punct dat.
+3. Acum că ai date pregătite pentru a fi plotate, vezi dacă un calculator poate determina o împărțire logică între numerele din acest set. Pentru asta, trebuie să împarți datele (X) și ținta (y) în seturi de test și antrenament. Scikit-learn oferă un mod simplu de a face asta; poți împărți datele de test la un punct dat.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Acum sunteți gata să antrenați modelul! Încărcați modelul de regresie liniară și antrenați-l cu seturile de antrenament X și y folosind `model.fit()`:
+4. Acum ești gata să-ți antrenezi modelul! Încarcă modelul de regresie liniară și antrenează-l cu seturile tale de antrenament X și y folosind `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` este o funcție pe care o veți vedea în multe biblioteci ML cum ar fi TensorFlow
+    ✅ `model.fit()` este o funcție pe care o vei vedea în multe biblioteci de ML, cum ar fi TensorFlow
 
-5. Apoi, creați o predicție folosind datele de testare, utilizând funcția `predict()`. Aceasta va fi folosită pentru a trasa linia între grupurile de date
+5. Apoi, creează o predicție folosind datele de test, folosind funcția `predict()`. Aceasta va fi folosită pentru a desena linia între grupurile de date
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Acum este momentul să afișați datele într-un grafic. Matplotlib este un instrument foarte util pentru această sarcină. Creați un grafic de dispersie (scatterplot) al tuturor datelor X și y de testare, și folosiți predicția pentru a desena o linie în locul cel mai potrivit, între grupările de date ale modelului.
+6. Acum este timpul să afișezi datele într-un grafic. Matplotlib este un instrument foarte util pentru această sarcină. Creează un scatterplot cu toate datele de test X și y și folosește predicția pentru a trasa o linie în cel mai potrivit loc, între grupările de date ale modelului.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -203,26 +203,25 @@ Acum, încărcați datele X și y.
     plt.show()
     ```
 
-   ![un scatterplot care arată puncte de date în jurul diabetului](../../../../translated_images/ro/scatterplot.ad8b356bcbb33be6.webp)
+   ![un scatterplot care arată punctele de date despre diabet](../../../../translated_images/ro/scatterplot.ad8b356bcbb33be6.webp)
 
+   ✅ Gândește-te puțin ce se întâmplă aici. O linie dreaptă trece prin multe puncte mici de date, dar ce face exact? Poți vedea cum ar trebui să poți folosi această linie pentru a prezice unde ar trebui să se încadreze un punct de date nou, nevăzut, în relație cu axa y a graficului? Încearcă să exprimi în cuvinte utilizarea practică a acestui model.
 
-   ✅ Gândește-te puțin la ce se întâmplă aici. O linie dreaptă trece prin multe puncte mici de date, dar ce face exact? Poți vedea cum ar trebui să folosești această linie pentru a prezice unde ar trebui să se potrivească un punct de date nou, nevăzut, în raport cu axa y a graficului? Încearcă să pui în cuvinte utilizarea practică a acestui model.
-
-Felicitări, ai construit primul tău model de regresie liniară, ai creat o predicție cu acesta și ai afișat-o într-un grafic!
+Felicitări, ți-ai construit primul model de regresie liniară, ai creat o predicție cu el și ai afișat-o într-un grafic!
 
 ---
 ## 🚀Provocare
 
-Grafică o variabilă diferită din acest set de date. Sfat: editează această linie: `X = X[:,2]`. Având în vedere ținta acestui set de date, ce poți descoperi despre progresia diabetului ca boală?
+Plotează o variabilă diferită din acest set de date. Sugestie: editează această linie: `X = X[:,2]`. Având în vedere ținta acestui set de date, ce poți descoperi despre progresia diabetului ca boală?
 ## [Chestionar post-lectură](https://ff-quizzes.netlify.app/en/ml/)
 
-## Recapitulare & Studiu individual
+## Recapitulare & Auto-studiu
 
-În acest tutorial, ai lucrat cu regresia liniară simplă, mai degrabă decât cu regresia liniară univariată sau multiplă. Citește puțin despre diferențele dintre aceste metode sau aruncă o privire la [acest videoclip](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+În acest tutorial, ai lucrat cu regresie liniară simplă, nu cu regresie liniară univariată sau multiplă. Citește puțin despre diferențele dintre aceste metode sau urmărește [acest video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Citește mai multe despre conceptul de regresie și gândește-te la ce fel de întrebări pot fi rezolvate cu această tehnică. Urmează acest [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) pentru a-ți aprofunda înțelegerea.
+Citiți mai multe despre conceptul de regresie și gândiți-vă la ce fel de întrebări pot fi răspunse prin această tehnică. Parcurgeți acest [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) pentru a vă aprofunda înțelegerea.
 
-## Tema
+## Sarcină
 
 [Un set de date diferit](assignment.md)
 

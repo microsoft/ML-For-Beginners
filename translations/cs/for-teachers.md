@@ -1,28 +1,30 @@
 ## Pro pedagogy
 
-Chcete použít tento vzdělávací program ve své třídě? Neváhejte!
+Chtěli byste použít tento učební plán ve své třídě? Klidně použijte!
 
-Ve skutečnosti ho můžete použít přímo na GitHubu pomocí GitHub Classroom.
+Ve skutečnosti ho můžete použít přímo v GitHubu pomocí GitHub Classroom.
 
-K tomu si tento repozitář forkněte. Budete potřebovat vytvořit repozitář pro každou lekci, takže budete muset každou složku extrahovat do samostatného repozitáře. Tímto způsobem může [GitHub Classroom](https://classroom.github.com/classrooms) zpracovat každou lekci zvlášť.
+K tomu si vytvořte fork tohoto repozitáře. Budete potřebovat vytvořit repozitář pro každou lekci, takže budete muset vyjmout každou složku do samostatného repozitáře. Takto si [GitHub Classroom](https://classroom.github.com/classrooms) může načíst každou lekci zvlášť.
 
-Tyto [podrobné instrukce](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) vám poskytnou představu, jak nastavit svou třídu.
+Tyto [úplné pokyny](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) vám poskytnou představu, jak svou třídu nastavit.
 
 ## Použití repozitáře tak, jak je
 
-Pokud chcete použít tento repozitář v jeho aktuální podobě, bez použití GitHub Classroom, je to také možné. Budete muset komunikovat se svými studenty, kterou lekci mají společně projít.
+Pokud chcete tento repozitář použít tak, jak je, bez použití GitHub Classroom, lze to také. Budete muset se studenty komunikovat, na které lekci spolu budou pracovat.
 
-V online formátu (Zoom, Teams nebo jiném) můžete vytvořit breakout místnosti pro kvízy a mentorovat studenty, aby se připravili na učení. Poté pozvěte studenty, aby se zúčastnili kvízů a odeslali své odpovědi jako 'issues' v určitém čase. Totéž můžete udělat s úkoly, pokud chcete, aby studenti pracovali společně veřejně.
+V online formátu (Zoom, Teams nebo jiný) můžete vytvořit breakout místnosti pro kvízy a mentorovat studenty, aby se připravili na učení. Poté pozvěte studenty, aby složili kvízy a odevzdali své odpovědi jako 'issues' ve stanovený čas. Totéž můžete udělat s úkoly, pokud chcete, aby studenti pracovali společně otevřeně.
 
-Pokud preferujete více soukromý formát, požádejte své studenty, aby si forknuli vzdělávací program, lekci po lekci, do svých vlastních soukromých repozitářů na GitHubu a dali vám přístup. Poté mohou dokončit kvízy a úkoly soukromě a odeslat je vám prostřednictvím issues na vašem třídním repozitáři.
+Pokud preferujete soukromější formát, požádejte studenty, aby si provedli fork učebnice, lekci po lekci, do svých vlastních GitHub repozitářů jako soukromých repozitářů a dali vám přístup. Pak mohou dokončit kvízy a úkoly soukromě a poslat je vám jako issues do vašeho třídního repozitáře.
 
-Existuje mnoho způsobů, jak to v online třídě zorganizovat. Dejte nám prosím vědět, co vám funguje nejlépe!
+Existuje mnoho způsobů, jak to udělat v online formátu třídy. Dejte nám prosím vědět, co vám vyhovuje nejvíce!
 
-## Prosíme, podělte se o své názory!
+## Prosíme, řekněte nám vaše názory!
 
-Chceme, aby tento vzdělávací program fungoval pro vás i vaše studenty. Prosíme, dejte nám [zpětnou vazbu](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
+Chceme, aby tento učební plán fungoval pro vás a vaše studenty. Prosíme, dejte nám [zpětnou vazbu](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
 
 ---
 
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). Ačkoli se snažíme o přesnost, mějte na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace doporučujeme profesionální lidský překlad. Neodpovídáme za žádné nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
