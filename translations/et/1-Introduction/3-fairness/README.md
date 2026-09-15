@@ -1,46 +1,46 @@
-# Vastutustundliku tehisintellektiga masinõppe lahenduste loomine
+# Masinõppe lahenduste loomine vastutustundliku tehisintellektiga
  
-![Vastutustundliku tehisintellekti kokkuvõte masinõppes joonistatud märkmetena](../../../../translated_images/et/ml-fairness.ef296ebec6afc98a.webp)
-> Joonismärkus autorilt [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Vastutustundliku tehisintellekti kokkuvõte masinõppes joonistusena](../../../../translated_images/et/ml-fairness.ef296ebec6afc98a.webp)
+> Joonistus autorilt [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Eel-loengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
  
 ## Sissejuhatus
 
-Selles õppekavas hakkate avastama, kuidas masinõpe mõjutab ja võib mõjutada meie igapäevaelu. Juba praegu osalevad süsteemid ja mudelid igapäevastes otsustusülesannetes, nagu tervishoiudiagnoosid, laenude heakskiitmine või pettuste tuvastamine. Seepärast on oluline, et need mudelid töötaksid hästi ja pakuksid usaldusväärseid tulemusi. Nagu iga tarkvararakenduse puhul, võivad ka tehisintellekti süsteemid mitte vastata ootustele või anda soovimatuid tulemusi. Seetõttu on oluline mõista ja osata selgitada tehisintellekti mudeli käitumist. 
+Selles õppekavas hakkate avastama, kuidas masinõpe mõjutab ja mõjutab meie igapäevaelu. Isegi praegu on süsteemid ja mudelid igapäevastes otsustusülesannetes, nagu tervishoiudiagnoosid, laenuandmine või pettuste tuvastamine. Seega on oluline, et need mudelid töötaksid hästi, pakkudes usaldusväärseid tulemusi. Nagu iga tarkvararakendus, võivad ka tehisintellektisüsteemid mitte vastata ootustele või anda soovimatuid tulemusi. Seetõttu on oluline mõista ja selgitada tehisintellektimudelite käitumist. 
 
-Kujutage ette, mis võib juhtuda, kui andmed, mida kasutate nende mudelite loomiseks, puudutavad teatud demograafilisi rühmi, näiteks rassi, sugu, poliitilist vaadet, usku või esindavad selliseid rühmi ebaproportsionaalselt. Mis saab siis, kui mudeli väljundit tõlgendatakse ühekülgselt mõne demograafilise rühma kasuks? Millised on tagajärjed rakendusele? Lisaks, mis juhtub, kui mudel annab kahjuliku tulemuse inimestele? Kes vastutab tehisintellekti süsteemi käitumise eest? Need on mõned küsimused, mida selles õppekavas uurime. 
+Kujutage ette, mis võib juhtuda, kui andmed, mida te kasutate nende mudelite loomiseks, puuduvad teatud demograafilised rühmad, nagu rass, sugu, poliitilised vaated, religioon või esindavad ebaproportsionaalselt mõnda demograafilist rühma. Mis juhtub, kui mudeli väljund tõlgendatakse teatud demograafilist rühma soosivaks? Mis on selle rakenduse tagajärg? Lisaks, mis juhtub, kui mudelil on kahjulik väljund ja see kahjustab inimesi? Kes vastutab tehisintellektisüsteemide käitumise eest? Need on mõned küsimused, mida selles õppekavas uurime. 
 
-Selles õppetükis:
+Selles õppetükis: 
 
-- Suurendate teadlikkust õiglusest masinõppes ja sellega seotud kahjudest.
-- Tutvute haruliste juhtumite ja ebatavaliste stsenaariumite uurimise praktikaga, et tagada usaldusväärsus ja ohutus.
-- Saate aru vajadusest võimestada kõiki, kujundades kaasavaid süsteeme.
-- Uurite, kui tähtis on kaitsta andmete ja inimeste privaatsust ja turvalisust.
-- Näete, kui oluline on läbipaistva lähenemisega selgitada tehisintellekti mudelite käitumist.
-- Olete teadlik sellest, kui oluline on vastutus, et ehitada usaldust tehisintellekti süsteemide vastu.
+- Teadlikkuse tõstmine õigluse tähtsusest masinõppes ja õiglusega seotud kahjude kohta.
+- Harjutada äärmuste ja ebatavaliste stsenaariumide uurimist usaldusväärsuse ja ohutuse tagamiseks.
+- Mõista vajadust kõiki võimestada kaasavate süsteemide kujundamise kaudu.
+- Uurida, kui tähtis on kaitsta andmete ja inimeste privaatsust ja turvalisust.
+- Näha klaaskasti lähenemise olulisust tehisintellektimudelite käitumise selgitamisel.
+- Olla teadlik vastutusest kui usalduse ehitamise alusest tehisintellektisüsteemides.
 
-## Eelteadmised
+## Eeldused
 
-Eelteadmise jaoks palun läbitage „Vastutustundliku tehisintellekti põhimõtted“ õpperada ja vaadake allolevat videot sellel teemal:
+Eeldusena läbige palun "Vastutustundliku tehisintellekti põhimõtted" õpitee ja vaadake allolevat videot sellel teemal:
 
-Lisateavet vastutustundliku tehisintellekti kohta leiate järgides seda [Õpperada](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Lisateave vastutustundliku tehisintellekti kohta, järgides seda [õppeteed](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
-[![Microsofti lähenemine vastutustundlikule tehisintellektile](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsofti lähenemine vastutustundlikule AI-le")
+[![Microsofti lähenemine vastutustundlikule tehisintellektile](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsofti lähenemine vastutustundlikule tehisintellektile")
 
 > 🎥 Klõpsake ülaloleval pildil video vaatamiseks: Microsofti lähenemine vastutustundlikule tehisintellektile
 
 ## Õiglus
 
-Tehisintellekti süsteemid peaksid kõigi suhtes käituma õiglaselt ega tohi mõjutada sarnaseid inimrühmi erinevalt. Näiteks kui tehisintellekti süsteemid annavad juhiseid meditsiinilise ravi, laenutaotluste või töölevõtmise kohta, peaksid nad tegema samad soovitused kõigile, kellel on sarnased sümptomid, rahalised olud või kutseoskused. Me kõik kanname kaasas päritud eelarvamusi, mis mõjutavad meie otsuseid ja tegusid. Need eelarvamused võivad olla nähtavad andmetes, mida kasutame tehisintellekti süsteemide koolitamiseks. Selline manipulatsioon võib juhtuda sageli tahtmatult. Teadlikult on sageli keeruline teada, millal andmetesse eelarvamus sisse juhitakse. 
+Tehisintellektisüsteemid peaksid kõiki õiglaselt kohtlema ega tohi mõjutada sarnaseid inimrühmi erinevalt. Näiteks, kui tehisintellektisüsteemid annavad juhiseid meditsiinilise ravi, laenutaotluste või töölevõtmise kohta, peaksid nad tegema samad soovitused kõigile, kellel on sarnased sümptomid, rahalised tingimused või kutseoskused. Igaüks meist kannab endas pärandatud eelarvamusi, mis mõjutavad meie otsuseid ja tegevusi. Need eelarvamused võivad andmetes, mida kasutame tehisintellekti koolitamiseks, ilmne olla. Mõnikord võib selline manipulatsioon toimuda tahtmatult. Teadvustatult on sageli raske teada, millal andmeid kallutatakse. 
 
-**„Ebaõiglus“** hõlmab negatiivseid mõjusid või „kahjusid“ teatud inimrühma jaoks, näiteks rassi, soo, vanuse või puude seisundi alusel määratletud rühmasid. Peamised õiglusest tulenevad kahjud võib klassifitseerida järgmiselt: 
+**„Õiglust mittevastavus“** hõlmab negatiivseid mõjusid ehk „kahjusid“ teatud inimrühmadele, nagu rass, sugu, vanus või puude staatus. Peamised õiglust puudutavad kahjud võib liigitada järgmiselt: 
 
-- **Jaotus**, kui näiteks üks sugu või etniline rühm saab teise ees eelise.
-- **Teenuse kvaliteet**. Kui treenite mudelit ainult konkreetse stsenaariumi jaoks, kuid tegelikkus on palju keerukam, viib see kehva teeninduse tulemuseni. Näiteks käsiseebidosaator, mis tundus olevat võimetu märkama tumeda nahaga inimesi. [Allikas](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Määrimine**. Ebaõiglane kriitika ja märgistamine kellegi või millegi kohta. Näiteks pildituvastustehnoloogia ekslikult märkis tumeda nahavärviga inimeste pilte gorilladena.
-- **Liigne või vähene esindatus**. Mõte on see, et teatud rühma ei ole nähtud teatud ametis ja mis tahes teenus või funktsioon, mis jätkab seda edendamist, põhjustab kahju.
-- **Stereotüüpimine**. Antud rühma seostamine eelmääratud omadustega. Näiteks inglise ja türgi keele tõlketehnoloogia võib sisaldada ebatäpseid tõlkeid seoses sõnadega, mis on seotud sugude stereotüüpiga.
+- **Jaotamine**, kui näiteks ühte sugu või etnilist rühma eelistatakse teise ees.
+- **Teenuse kvaliteet**. Kui andmeid koolitatakse ainult ühe konkreetse stsenaariumi jaoks, kuid tegelikkus on palju keerulisem, võib see põhjustada kehva toimivusega teenuse. Näiteks käsepumbal, mis ei suutnud näida tundvat tumedanahalisi inimesi. [Viide](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Alandamine**. Ebaõiglane kritiseerimine ja sildistamine. Näiteks pildituvastustehnoloogia vales altveerinevusena märgistas tumedanahaliste inimeste pilte gorilladena.
+- **Üle- või alerepresentatsioon**. Näide on teatud rühma puudumine mõnes ametis, ning teenus või funktsioon, mis seda soodustab, aitab kahju tekitada.
+- **Stereotüübid**. Määratud rühmale eelnevalt määratud omaduste seostamine. Näiteks inglise ja türgi vahelise keeletõlkesüsteemi ebatäpsused seoses sooliste stereotüüpidega seotud sõnadega.
 
 ![tõlge türgi keelde](../../../../translated_images/et/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > tõlge türgi keelde
@@ -48,116 +48,115 @@ Tehisintellekti süsteemid peaksid kõigi suhtes käituma õiglaselt ega tohi m�
 ![tõlge tagasi inglise keelde](../../../../translated_images/et/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > tõlge tagasi inglise keelde
 
-Tehisintellekti süsteemide loomisel ja testimisel peame tagama, et AI oleks õiglane ega oleks programmeeritud tegema kallutatud või diskrimineerivaid otsuseid, mida ka inimestel on keelatud teha. Õigluse tagamine tehisintellektis ja masinõppes on siiski keeruline sotsiaal-tehniline väljakutse. 
+Tehisintellektisüsteemide kujundamisel ja testimisel peame tagama, et tehisintellekt on õiglane ega ole programmeeritud tegema kallutatud või diskrimineerivaid otsuseid, mida inimestelgi on keelatud teha. Õigluse tagamine tehisintellektis ja masinõppes on endiselt keeruline sotsiaal-tehniline väljakutse. 
 
 ### Usaldusväärsus ja ohutus
 
-Usalduse loomiseks peavad tehisintellekti süsteemid olema usaldusväärsed, ohutud ja järjepidevad nii tavatingimustes kui ka ootamatutes olukordades. On oluline teada, kuidas tehisintellekti süsteemid käituvad erinevates olukordades, eriti haruldastes juhtumites. Masinõppelahenduste loomisel tuleb pöörata suurt tähelepanu sellele, kuidas käsitleda AI lahenduste võimalikke olukordi. Näiteks peab isesõitev auto panema inimeste ohutuse esikohale. Seetõttu peab autot juhiv AI arvestama kõigi võimalike stsenaariumitega, millega auto võib kokku puutuda, nagu öö, äikesetormid või lumetormid, tänavat ületavad lapsed, lemmikloomad, teetööd jms. Kuidas hästi suudab AI süsteem usaldusväärselt ja ohutult toime tulla erinevate tingimustega, peegeldab andmeteadlase või AI arendaja kavandamisel või testimisel arvestatud ettevalmistuse taset.  
+Usalduse loomiseks peavad tehisintellektisüsteemid olema usaldusväärsed, ohutud ja järjekindlad nii tavatingimustes kui ootamatutes olukordades. On oluline teada, kuidas tehisintellekt käitub mitmesugustes olukordades, eriti äärmustes. Tehisintellektilahenduste loomisel peab olema suur rõhk sellel, kuidas lahendada erinevaid olukordi, millega need kokku puutuvad. Näiteks isesõitev auto peab seadma inimeste ohutuse esikohale. Seetõttu peab auto juhtimiseks kasutatav tehisintellekt arvestama kõigi võimalike olukordadega, näiteks öö, äikesetormid või lumesajud, laste jooks minek üle tee, lemmikloomad, teetööd jne. Kui hästi suudab tehisintellekt usaldusväärselt ja ohutult erinevate tingimustega toime tulla, peegeldab see seda, kui põhjalikult on andmeteadlane või arendaja disaini või testimise käigus ette mõelnud.  
 
-> [🎥 Klõpsake siia video vaatamiseks: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Klõpsake videole: Usaldusväärsus ja ohutus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
-### Kaasavus
+### Kaasatus
 
-Tehisintellekti süsteemid peaksid olema loodud nii, et kaasavad ja jõustavad kõiki. AI süsteemide loomisel ja rakendamisel tuvastavad andmeteadlased ja arendajad süsteemis potentsiaalsed takistused, mis võivad tahtmatult inimesi välistada. Näiteks maailmas on miljard puudega inimest. AI arenguga pääsevad nad oma igapäevaelus hõlpsamalt ligi erinevale infole ja võimalustele. Takistuste kõrvaldamine loob võimalused uuendusteks ja arendab AI tooteid paremate kogemustega, mis kasu toovad kõigile. 
+Tehisintellekti süsteeme tuleks kujundada nii, et need kaasaksid ja võimestaksid kõiki inimesi. Andmeteadlased ja arendajad otsivad ja lahendavad süsteemi võimalikke takistusi, mis võivad tahtmatult inimesi välistada. Näiteks on maailmas umbes 1 miljard inimest, kellel on puue. Tehisintellekti arenguga pääsevad nad lihtsamalt ligi informatsioonile ja võimalustele oma igapäevaelus. Takistuste kõrvaldamine loob võimalusi uuendusteks ja paremate kogemustega tehisintellektitoodete loomiseks, mis kasu toovad kõigile. 
 
-> [🎥 Klõpsake siia video vaatamiseks: kaasavus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Klõpsake videole: Kaasatus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
-### Turvalisus ja privaatsus
+### Turvalisus ja privaatsus 
 
-AI süsteemid peaksid olema ohutud ja austama inimeste privaatsust. Inimestel on väiksem usaldus süsteemidesse, mis panevad ohtu nende privaatsuse, info või elu. Masinõppemudelite koolitamisel sõltume andmetest, et saavutada parimad tulemused. Selle juures tuleb arvestada andmete päritolu ja terviklikkust. Näiteks, kas andmed esitas kasutaja või olid need avalikult kättesaadavad? Järgmiseks on oluline arendada AI süsteeme, mis kaitsevad konfidentsiaalset infot ja taluvad rünnakuid. AI laiemaks levikuks muutub privaatsuse kaitse ja olulise isiku- ning ärilise info turvalisus üha kriitilisemaks ja keerulisemaks. Privaatsuse ja andmeturbe probleemid vajavad AI puhul eriti head tähelepanu, sest ligipääs andmetele on AI süsteemide jaoks hädavajalik täpsete ja teadlike prognooside ning otsuste tegemiseks.
+Tehisintellektisüsteemid peavad olema turvalised ja austama inimeste privaatsust. Inimestel on vähem usaldust selliste süsteemide vastu, mis ohustavad nende privaatsust, andmeid või elu. Masinõppemudelite koolitamisel tugineb tulemuste saavutamine andmetele. Seetõttu tuleb hinnata andmete päritolu ja terviklikkust. Näiteks, kas andmed esitas kasutaja või olid avalikult kättesaadavad? Samuti on väga oluline arendada tehisintellektisüsteeme, mis suudavad kaitsta konfidentsiaalset teavet ja taluda rünnakuid. Tehisintellekti levikuga muutub privaatsuse kaitse ja oluliste isiku- ning ärandmete turvamine üha olulisemaks ja keerukamaks teemaks. Privaatsus ja andmekaitse vajavad eriti tähelepanu, kuna andmete kättesaadavus on vajalik täpsete ja hästi informeeritud otsuste tegemiseks tehisintellektisüsteemide poolt. 
 
-> [🎥 Klõpsake siia video vaatamiseks: turvalisus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Klõpsake videole: Turvalisus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Tööstusena oleme saavutanud märkimisväärseid edusamme privaatsuse ja turvalisuse valdkonnas, mida on oluliselt toetanud sellised regulatsioonid nagu GDPR (üldine andmekaitse määrus). 
-- Kuid tehisintellekti süsteemides peame tunnistama pingeid, mis on andmekoguse suurenemise vajaduse ja privaatsuse vahel, et muuta süsteeme isikupärasemaks ja efektiivsemaks. 
-- Nagu interneti ja ühendatud arvutite sünniga, on meil ka AI-ga seotud turvalisusega seotud probleemide arv märkimisväärselt kasvanud. 
-- Samal ajal on AI-d kasutatud ka turvalisuse parandamiseks. Näiteks on enamik tänapäeva viirusetõrjetarkvara võimsad AI heuristikale toetuvad skannerid. 
-- Peame tagama, et meie andmeteaduse protsessid sobituksid harmooniliselt uusimate privaatsus- ja turvatavadega. 
+- Tööstusena oleme saavutanud märkimisväärseid edusamme privaatsuse ja turvalisuse valdkonnas, mida on oluliselt toetanud sellised regulatsioonid nagu GDPR (Isikuandmete kaitse üldmäärus). 
+- Kuid tehisintellektisüsteemide puhul peame tunnistama pinget personaalsema ja tõhusama süsteemi loomise ning privaatsuse vahel. 
+- Nagu juhtus internetiühendusega arvutite sünniga, näeme ka tehisintellekti puhul turvaintsidentide hulga kasvu. 
+- Samal ajal on tehisintellekti kasutatud turvalisuse parandamiseks. Näiteks on enamik tänapäevaseid viirusetõrjeskännerid juhitud tehisintellekti heuristikatest. 
+- Me peame tagama, et andmeteaduse protsessid oleksid kooskõlas uusimate privaatsuse ja turvalisuse tavadega. 
 
 
 ### Läbipaistvus
-AI süsteemid peaksid olema arusaadavad. Läbipaistvuse oluline osa on tehisintellekti süsteemide ja nende komponentide käitumise selgitamine. AI süsteemide parema mõistmise tagamiseks peavad sidusrühmad mõistma, kuidas ja miks need töötavad, et tuvastada võimalikke jõudlusprobleeme, ohutus- ja privaatsusküsimusi, eelarvamusi, välistavaid praktikaid või soovimatuid tulemusi. Usume ka, et need, kes AI süsteeme kasutavad, peaksid ausalt ja avameelselt selgitama, millal, miks ja kuidas nad otsustavad neid rakendada. Samuti piiranguid nende süsteemide suhtes, mida nad kasutavad. Näiteks kui pank kasutab tehisintellekti süsteemi tarbijalaenude otsuste toetamiseks, on oluline analüüsida tulemusi ja mõista, millised andmed mõjutavad süsteemi soovitusi. Valitsused hakkavad AI-d erinevates valdkondades reguleerima, seega peavad andmeteadlased ja organisatsioonid selgitama, kas tehisintellekti süsteem vastab regulatiivsetele nõuetele, eriti kui toimub soovimatu tulemus. 
+Tehisintellektisüsteemid peaksid olema arusaadavad. Läbipaistvuse oluline osa on tehisintellektisüsteemide ja nende komponentide käitumise selgitamine. Tehisintellekti parema mõistmise tagamiseks peab huvigruppidele olema arusaadav, kuidas ja miks süsteemid töötavad, et tuvastada võimalikke jõudluse probleeme, ohutus- ja privaatsusmuresid, kallutatusi, välistavaid praktikaid või soovimatut tulemusi. Usume ka, et tehisintellekti kasutajad peaksid ausalt ja avameelselt rääkima, millal, miks ja kuidas nad neid kasutusele võtavad, samuti kasutatavate süsteemide piirangutest. Näiteks kui pank kasutab tehisintellekti süsteemi tarbijalaenude otsuste toetamiseks, on oluline uurida tulemusi ja mõista, millised andmed mõjutavad süsteemi soovitusi. Valitsused hakkavad regulaatorina tehisintellekti kõigis tööstusharudes reguleerima, seega peavad andmeteadlased ja organisatsioonid selgitama, kas tehisintellektisüsteem vastab regulatiivsetele nõuetele, eriti kui tekib soovimatu tulemus. 
 
-> [🎥 Klõpsake siia video vaatamiseks: läbipaistvus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Klõpsake videole: Läbipaistvus tehisintellektis](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Kuna AI süsteemid on nii keerulised, on raske aru saada, kuidas need töötavad ja tulemusi tõlgendada. 
-- See arusaamatus mõjutab seda, kuidas neid süsteeme haldatakse, rakendatakse ja dokumenteeritakse. 
-- Veelgi olulisem on see, et arusaamatus mõjutab otsuseid, mis tehakse nendesüsteemides toodetud tulemuste põhjal. 
+- Kuna tehisintellektisüsteemid on nii keerukad, on raske mõista, kuidas need töötavad ja tõlgendada tulemusi. 
+- See puudus mõjutab nende süsteemide haldamist, rakendamist ja dokumenteerimist. 
+- Olulisem on, et see arusaamatus mõjutab otsuseid, mis tehakse nende süsteemide toodetud tulemuste põhjal. 
 
 ### Vastutus
  
-Tehisintellekti süsteeme kujundavad ja juurutavad inimesed peavad olema vastutavad oma süsteemide toimimise eest. Vastutuse vajadus on eriti oluline tundlike tehnoloogiate, näiteks näotuvastuse puhul. Viimasel ajal on kasvanud nõudlus näotuvastustehnoloogia järele, eriti õiguskaitseorganisatsioonide poolt, kes näevad tehnoloogias potentsiaali näiteks kadunud laste leidmisel. Kuid neid tehnoloogiaid võiks valitsus kasutada oma kodanike põhivabaduste ohustamiseks, näiteks võimaldades konkreetsete isikute pidevat jälgimist. Seega peavad andmeteadlased ja organisatsioonid olema vastutavad selle eest, kuidas nende AI süsteemi mõju mõjutab üksikisikuid või ühiskonda.
+Tehisintellektisüsteemide disainerid ja kasutuselevõtjad peavad vastutama süsteemide toimimise eest. Vastutus on eriti oluline tundlike tehnoloogiate puhul, nagu näotuvastus. Viimasel ajal on kasvanud nõudlus näotuvastustehnoloogia järele, eriti õiguskaitseorganisatsioonid näevad selles potentsiaali kadunud laste leidmiseks. Kuid need tehnoloogiad võiksid valitsuse poolt potentsiaalselt kasutada oma kodanike põhiõiguste ohustamiseks, näiteks võimaldades pidevat jälgimist konkreetsetest isikutest. Seega peavad andmeteadlased ja organisatsioonid vastutama selle eest, kuidas nende tehisintellektisüsteem mõjutab üksikisikuid või ühiskonda.
 
-[![Juhtiv tehisintellekti teadlane hoiatab näotuvastuse massilise järelvalve eest](../../../../translated_images/et/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsofti lähenemine vastutustundlikule AI-le")
+[![Juhtiv tehisintellekti uurija hoiatab näotuvastuse kaudu toimuva massijälgimise eest](../../../../translated_images/et/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsofti lähenemine vastutustundlikule tehisintellektile")
 
-> 🎥 Klõpsake ülaloleval pildil video vaatamiseks: hoiatused näotuvastuse massilise järelvalve kohta
+> 🎥 Klõpsake ülaloleval pildil video vaatamiseks: Hoiduge massijälgimisest näotuvastuse kaudu
 
-Lõppkokkuvõttes on üks suurimaid küsimusi meie põlvkonnale, kes toob AI esmakordselt ühiskonda, kuidas tagada, et arvutid jäävad inimeste suhtes vastutavaks ning kuidas tagada, et arvuteid kujundavad inimesed jäävad vastutavaks kõigi teiste ees.
+Lõppkokkuvõttes on üheks suurimaks küsimuseks meie põlvkonnale, kes on esimene, kes toob tehisintellekti ühiskonda, kuidas tagada, et arvutid jäävad inimestele vastutavaks ja kuidas tagada, et arvuteid kujundavad inimesed jäävad vastutavaks kõigi teiste ees.
 
-## Mõjuhinnang
+## Mõjuhindamine 
 
-Enne masinõppemudeli koolitamist on oluline läbi viia mõjuhinnang, et mõista AI süsteemi eesmärki; milline on kavandatud kasutus; kus see juurutatakse; ja kes süsteemiga suhtleb. Need on abiks süsteemi hindajatele või testijatele, et teada, milliseid tegureid tuleb riskide ja oodatavate tagajärgede tuvastamisel arvestada.
+Enne masinõppemudeli koolitamist on oluline läbi viia mõjuhindamine, et mõista tehisintellektisüsteemi eesmärki; mis on kavandatud kasutus; kus seda rakendatakse; ja kes süsteemiga suhtlevad. Need on abiks ülevaatajatele või testijatele süsteemi hindamisel, et teada saada, mida võtta arvesse võimalike riskide ja oodatavate tagajärgede tuvastamisel.
 
-Mõjuhinnangu läbiviimisel keskendutakse järgmistele valdkondadele:
+Järgnevad on keskendatavad valdkonnad mõjuhindamise läbiviimisel:
 
-* **Negatiivne mõju üksikisikutele**. Oluline on olla teadlik piirangutest või nõuetest, toetust mittesaavast kasutusest või teadaolevatest piirangutest, mis takistavad süsteemi jõudlust, et tagada süsteemi ohutu kasutamine.
-* **Andmenõuded**. Mõistmine, kuidas ja kus süsteem andmeid kasutab, võimaldab hindajatel uurida, milliseid andmenõudeid tuleks arvesse võtta (nt GDPR või HIPAA andmekaitsenõuded). Kontrollige ka, kas andmete allikas ja kogus on piisavad mudeli koolitamiseks.
-* **Mõjude kokkuvõte**. Koostage võimalikest kahjudest nimekiri, mis võivad süsteemi kasutusest tekkida. Läbi masinõppe kogu elutsükli vaadake üle, kas tuvastatud probleemid on leevendatud või lahendatud.
-* **Rakendatavad eesmärgid** kõigi kuue põhialuse jaoks. Hinnake, kas iga põhimõtte eesmärgid on täidetud ja kas esinevad lüngad.
+* **Negatiivne mõju üksikisikutele**. Teadlikkus kõigist piirangutest või nõuetest, lubamatust kasutamisest või teadaolevatest piirangutest, mis takistavad süsteemi toimimist, on ülioluline, et tagada süsteemi kasutamine ohutult.
+* **Andmenõuded**. Arusaamine, kuidas ja kus süsteem andmeid kasutab, võimaldab ülevaatajatel uurida, milliseid andmenõudeid tuleb arvesse võtta (nt GDPR või HIPAA andmekaitse), ning hinnata, kas andmete allikas või kogus on mudeli koolitamiseks piisav.
+* **Kokkuvõte mõjust**. Koostada nimekiri võimalikest kahjudest, mis võivad süsteemi kasutamisest tekkida. ML elutsükli jooksul hinnata, kas probleemid on lahendatud või leevendatud.
+* **Rakendatavad eesmärgid** kõigi kuue põhialuse kohta. Hinnata, kas iga põhimõtte eesmärgid on täidetud ja kas on tühimikke.
 
 
-## Silumistegevused vastutustundliku AI-ga  
+## Vastutustundlik AI silumine  
 
-Sarnaselt tarkvararakenduse silumisele on AI süsteemi silumine vajalik protsess süsteemi vigade tuvastamiseks ja lahendamiseks. Paljud tegurid võivad mõjutada mudeli ootuspärast ja vastutustundlikku toimimist. Enamik traditsioonilisi mudelijõudluse mõõdikuid on mudeli tulemuslikkuse kvantitatiivsed agregaadid, mis ei piisa selleks, et analüüsida, kuidas mudel rikub vastutustundliku AI põhimõtteid. Lisaks on masinõppemudel must kast, mis teeb keeruliseks selle väljundi põhjendamise või vea tekke selgitamise. Selle kursuse edenedes õpime kasutama Vastutustundliku AI juhtpaneeli AI süsteemide silumiseks. Juhtpaneel pakub terviklikku tööriista andmeteadlastele ja arendajatele, et teha järgmist:
+Nagu tarkvararakenduse silumine, on ka tehisintellektisüsteemi silumine vajalik protsess süsteemis esinevate probleemide tuvastamiseks ja lahendamiseks. Mudeli mittetäielik või vastutustundetu toimimine võib olla tingitud mitmetest teguritest. Enamik traditsioonilisi mudeli tulemuslikkuse mõõdikuid on mudeli kvantitatiivsed kokkuvõtted, mis ei ole piisavad vastutustundliku AI põhimõtete rikkumise analüüsimiseks. Lisaks on masinõppemudel must kast, mis teeb raskeks mõista tulemuste põhjusi või selgitada vigu. Kursuse hilisemas osas õpime kasutama Vastutustundliku AI armatuurlaua tööriista, mis aitab AI süsteeme siluda. Armatuurlaud pakub andmeteadlastele ja arendajatele holistilist tööriista:
 
-* **Vigade analüüs**. Mudeli vea jaotuse tuvastamiseks, mis võib mõjutada süsteemi õiglust või usaldusväärsust.
-* **Mudeli ülevaade**. Avastada, kus mudeli jõudluses esineb erinevusi andmekogumite vahel.
-* **Andmete analüüs**. Andmete jaotuse mõistmiseks ja võimaliku kallutatuse tuvastamiseks, mis võib põhjustada õiglus-, kaasavuse ja usaldusväärsuse probleeme.
-* **Mudeli tõlgendatavus**. Mõista, mis mõjutab või suunab mudeli prognoose. See aitab selgitada mudeli käitumist, mis on oluline läbipaistvuse ja vastutuse saavutamiseks.
+* **Vigade analüüs**. Mudeli vead, mis võivad mõjutada süsteemi õiglust või usaldusväärsust.
+* **Mudeli ülevaade**. Erinevuste tuvastamine mudeli toimimises eri andmekogumite puhul.
+* **Andmete analüüs**. Andmete jaotuse mõistmine ning võimaliku kallutatuse tuvastamine, mis võib põhjustada õigluse, kaasatuse ja usaldusväärsuse probleeme.
+* **Mudeli tõlgendatavus**. Mõista, mis mõjutab mudeli prognoose. See aitab selgitada mudeli käitumist, mis on oluline läbipaistvuse ja vastutuse jaoks.
 
 
 ## 🚀 Väljakutse 
  
-Kahjude ennetamiseks peaksime: 
+Kahjude tekkimise vältimiseks tuleks:
 
-- omama mitmekesist tausta ja vaatenurki süsteemide loomisel töötavate inimeste seas
-- investeerima andmestikesse, mis peegeldavad meie ühiskonna mitmekesisust
-- arendama paremaid meetodeid kogu masinõppe elutsükli jooksul, et avastada ja parandada vastutustundlikku AI-d esinevaid probleeme
+- meeskonnas olla mitmekesine erinevate taustade ja perspektiividega inimeste osas
+- investeerida andmekogumitesse, mis peegeldavad meie ühiskonna mitmekesisust
+- arendada masinõppe elutsükli jooksul paremaid meetodeid vastutustundetu AI avastamiseks ja parandamiseks
 
-Mõelge reaalse elu olukordadele, kus mudeli usaldusväärsus on ehituses ja kasutuses ilmne. Mida muud tuleks kaaluda? 
+Mõelge reaalse elu stsenaariumitele, kus mudeli usaldusväärsuse puudumine on ilmne mudelite loomisel ja kasutamisel. Mida veel peaksime arvesse võtma? 
 
-## [Järgneva loengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## [Pärast loengut viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
-## Ülevaade ja iseseisev õppimine
+## Kordamine ja iseseisev õpe 
  
-
-Selles õppetükis olete õppinud mõningaid masinõppe õiglust ja ebaõiglust käsitlevate mõistete põhialuseid.  
+Selles õppetükis olete õppinud mõningaid põhiteadmisi õiglusest ja ebaõiglusest masinõppes.  
  
-Vaadake seda töötuba, et teemadesse põhjalikumalt süveneda: 
+Vaadake seda töötuba teemasse süvenemiseks: 
 
-- Vastutustundliku tehisintellekti poole: põhimõtete rakendamine praktikas, esinejad Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
+- Vastutustundliku tehisintellekti poole püüdlemine: põhimõtete rakendamine praktikas autoritelt Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
 
-[![Vastutustundliku tehisintellekti tööriistakomplekt: avatud lähtekoodiga raamistik vastutustundliku tehisintellekti loomiseks](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
+[![Vastutustundliku tehisintellekti tööriistakomplekt: avatud lähtekoodiga raamistik vastutustundliku tehisintellekti loomiseks](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Avatud lähtekoodiga raamistik vastutustundliku tehisintellekti loomiseks")
 
-> 🎥 Klõpsake ülaloleval pildil video vaatamiseks: Vastutustundliku tehisintellekti tööriistakomplekt, esitavad Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
+> 🎥 Klõpsake ülaloleval pildil, et vaadata videot: RAI Toolbox: Avatud lähtekoodiga raamistik vastutustundliku tehisintellekti loomiseks autoritelt Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
 
-Samuti lugege: 
+Loe ka: 
 
-- Microsofti vastutustundliku tehisintellekti ressursside keskpunkt: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsofti RAI ressursikeskus: [Vastutustundliku tehisintellekti ressursid – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-- Microsofti FATE uurimisrühm: [FATE: õiglus, vastutus, läbipaistvus ja eetika tehisintellektis - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+- Microsofti FATE uurimisrühm: [FATE: Õiglus, vastutus, läbipaistvus ja eetika tehisintellektis - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
 RAI Toolbox: 
 
-- [Vastutustundliku tehisintellekti tööriistakomplekti GitHub reposiit](https://github.com/microsoft/responsible-ai-toolbox)
+- [Vastutustundliku tehisintellekti tööriistakomplekti GitHub hoidla](https://github.com/microsoft/responsible-ai-toolbox)
 
-Lugege Azure Machine Learning vahendite kohta, mis aitavad tagada õigluse:
+Loe Azure Machine Learning tööriistadest õiglust tagamiseks:
 
 - [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## Ülesanne
 
-[Uurige RAI Toolboxi](assignment.md)
+[Avasta RAI Toolbox](assignment.md)
 
 ---
 
