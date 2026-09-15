@@ -1,28 +1,30 @@
-# Utangulizi wa utabiri wa mfululizo wa muda
+# Utangulizi wa utabiri wa mfululizo wa wakati
 
-Utabiri wa mfululizo wa muda ni nini? Ni kuhusu kutabiri matukio ya baadaye kwa kuchambua mwenendo wa zamani.
+Utabiri wa mfululizo wa wakati ni nini? Ni kuhusu kutabiri matukio ya baadaye kwa kuchambua mwelekeo wa yaliyopita.
 
-## Mada ya kikanda: matumizi ya umeme duniani ✨
+## Mada ya kikanda: matumizi ya umeme duniani kote ✨
 
-Katika masomo haya mawili, utatambulishwa kwenye utabiri wa mfululizo wa muda, eneo ambalo halijulikani sana katika ujifunzaji wa mashine lakini lina thamani kubwa sana kwa matumizi ya viwanda na biashara, pamoja na nyanja nyingine. Ingawa mitandao ya neva inaweza kutumika kuboresha matumizi ya mifano hii, tutazisoma katika muktadha wa ujifunzaji wa mashine wa jadi, ambapo mifano husaidia kutabiri utendaji wa baadaye kwa kuzingatia ya zamani.
+Katika masomo haya mawili, utatambulishwa kwa utabiri wa mfululizo wa wakati, eneo ambalo linafahamika kidogo katika kujifunza mashine lakini ni muhimu sana kwa matumizi ya viwanda na biashara, miongoni mwa nyanja zingine. Wakati mitandao ya neva inaweza kutumika kuongeza ufanisi wa modeli hizi, tutaizunguza katika muktadha wa kujifunza mashine za jadi kwani modeli husaidia kutabiri utendaji wa baadaye kulingana na yaliyopita.
 
-Mwelekeo wetu wa kikanda ni matumizi ya umeme duniani, seti ya data ya kuvutia kujifunza kuhusu utabiri wa matumizi ya nguvu za umeme za baadaye kwa kuzingatia mifumo ya mzigo wa zamani. Unaweza kuona jinsi aina hii ya utabiri inaweza kuwa na manufaa makubwa katika mazingira ya biashara.
+Mwelekeo wetu wa kikanda ni matumizi ya umeme duniani, seti ya data ya kuvutia kujifunza kuhusu utabiri wa matumizi ya nguvu za baadaye kulingana na mifumo ya mzigo wa zamani. Unaweza kuona jinsi aina hii ya utabiri inaweza kusaidia sana katika mazingira ya biashara.
 
-![gridi ya umeme](../../../7-TimeSeries/images/electric-grid.jpg)
+![electric grid](../../../translated_images/sw/electric-grid.0c21d5214db09ffa.webp)
 
-Picha na [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ya minara ya umeme barabarani huko Rajasthan kwenye [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Picha na [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) ya minara ya umeme kwenye barabara huko Rajasthan kwenye [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Masomo
 
-1. [Utangulizi wa utabiri wa mfululizo wa muda](1-Introduction/README.md)
-2. [Kujenga mifano ya mfululizo wa muda ya ARIMA](2-ARIMA/README.md)
-3. [Kujenga Support Vector Regressor kwa utabiri wa mfululizo wa muda](3-SVR/README.md)
+1. [Utangulizi wa utabiri wa mfululizo wa wakati](1-Introduction/README.md)
+2. [Ujenzi wa modeli za ARIMA za mfululizo wa wakati](2-ARIMA/README.md)
+3. [Ujenzi wa Support Vector Regressor kwa utabiri wa mfululizo wa wakati](3-SVR/README.md)
 
-## Credits
+## Mikopo
 
-"Utangulizi wa utabiri wa mfululizo wa muda" uliandikwa kwa ⚡️ na [Francesca Lazzeri](https://twitter.com/frlazzeri) na [Jen Looper](https://twitter.com/jenlooper). Noti za mafunzo zilionekana mtandaoni kwa mara ya kwanza katika [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) awali ziliandikwa na Francesca Lazzeri. Somo la SVR liliandikwa na [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
+"Utangulizi wa utabiri wa mfululizo wa wakati" ulitengenezwa kwa ⚡️ na [Francesca Lazzeri](https://twitter.com/frlazzeri) na [Jen Looper](https://twitter.com/jenlooper). Vitabu vya kumbukumbu vilionekana mtandaoni katika [hifadhidata ya Azure "Deep Learning For Time Series"](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) iliyoandikwa awali na Francesca Lazzeri. Somo la SVR liliandikwa na [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
 
 ---
 
-**Kanusho**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
