@@ -79,7 +79,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 ### Option 1: Cloud Setup with GitHub Codespaces (Recommended — Zero Installation)
 
 Start learning immediately in your browser with Python, Jupyter, Scikit-learn, and all dependencies pre-configured:
-1. Click the **[Open in GitHub Codespaces](https://codespaces.new/microsoft/ML-For-Beginners)** badge at the top (or click the green **Code** button and select **Create codespace on main**).
+1. If you want to save or push your work, fork this repository first and create the Codespace from your fork's **Code** menu; the **[Open in GitHub Codespaces](https://codespaces.new/microsoft/ML-For-Beginners)** badge targets the upstream repository.
 2. The environment automatically builds using the repository's `.devcontainer` configuration.
 3. Open any lesson notebook (e.g., `2-Regression/1-Tools/notebook.ipynb`) and start executing code right away!
 
