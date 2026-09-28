@@ -143,7 +143,7 @@ AI സംവിധാനം രൂപകൽപ്പന ചെയ്ത് വ�
 
 അതോടൊപ്പം, വായിക്കൂ: 
 
-- മൈക്രോസോഫ്റ്റിന്റെ RAI സ്രോതസ് കേന്ദ്രം: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- മൈക്രോസോഫ്റ്റിന്റെ RAI സ്രോതസ് കേന്ദ്രം: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - മൈക്രോസോഫ്റ്റിന്റെ FATE ഗവേഷണ സംഘം: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

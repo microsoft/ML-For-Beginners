@@ -155,7 +155,7 @@ Tham khảo các tài liệu sau để tìm hiểu thêm về AI có trách nhi�
 
 - Khám phá bộ công cụ AI có trách nhiệm: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Trung tâm tài nguyên RAI của Microsoft: [Tài nguyên AI có trách nhiệm – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Trung tâm tài nguyên RAI của Microsoft: [Tài nguyên AI có trách nhiệm – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Nhóm nghiên cứu FATE của Microsoft: [FATE: Công bằng, Trách nhiệm, Minh bạch và Đạo đức trong AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

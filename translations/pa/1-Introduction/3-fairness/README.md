@@ -143,7 +143,7 @@ AI ਸਿਸਟਮ ਸਮਝਣ ਯੋਗ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ
 
 ਇਸਦੇ ਅਲਾਵਾ, ਪੜ੍ਹੋ: 
 
-- ਮਾਈਕਰੋਸੋਫ਼ਟ ਦਾ RAI ਸਰੋਤ ਕੇਂਦਰ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- ਮਾਈਕਰੋਸੋਫ਼ਟ ਦਾ RAI ਸਰੋਤ ਕੇਂਦਰ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - ਮਾਈਕਰੋਸੋਫ਼ਟ ਦਾ FATE ਰਿਸਰਚ ਗਰੁੱਪ: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

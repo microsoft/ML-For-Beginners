@@ -149,7 +149,7 @@ Oglejte si naslednje materiale, da se naučite več o odgovorni umetni inteligen
 
 - Raziščite orodja odgovorne umetne inteligence: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoftov center virov za RAI: [Viri odgovorne umetne inteligence – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoftov center virov za RAI: [Viri odgovorne umetne inteligence – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoftova raziskovalna skupina FATE: [FATE: Pravičnost, odgovornost, transparentnost in etika v umetni inteligenci - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

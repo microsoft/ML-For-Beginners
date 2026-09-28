@@ -143,7 +143,7 @@
 
 นอกจากนี้ อ่านเพิ่มเติมได้ที่: 
 
-- ศูนย์ทรัพยากร RAI ของ Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- ศูนย์ทรัพยากร RAI ของ Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - กลุ่มวิจัย FATE ของ Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

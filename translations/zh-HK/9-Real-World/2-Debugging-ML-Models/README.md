@@ -160,7 +160,7 @@ RAI儀表板的特徵重要性元件幫助您調試並全面了解模型如何�
 
 - 探索負責任 AI 工具包：[Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft 的 RAI 資源中心：[負責任 AI 資源 – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft 的 RAI 資源中心：[負責任 AI 資源 – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoft 的 FATE 研究小組：[FATE：AI 中的公平性、問責性、透明性和倫理 - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

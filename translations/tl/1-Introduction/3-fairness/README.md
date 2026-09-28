@@ -143,7 +143,7 @@ Panoorin ang workshop na ito upang mas malalim na tuklasin ang mga paksa:
 
 Basahin din: 
 
-- Sentro ng mga mapagkukunan ng RAI ng Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Sentro ng mga mapagkukunan ng RAI ng Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Pangkat ng pananaliksik ng FATE ng Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

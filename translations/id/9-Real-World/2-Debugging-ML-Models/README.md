@@ -161,7 +161,7 @@ Referensi materi berikut untuk mempelajari lebih lanjut tentang AI yang bertangg
 
 - Jelajahi toolkit AI yang bertanggung jawab: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Pusat sumber daya RAI Microsoft: [Sumber Daya AI yang Bertanggung Jawab – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Pusat sumber daya RAI Microsoft: [Sumber Daya AI yang Bertanggung Jawab – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Kelompok penelitian FATE Microsoft: [FATE: Keadilan, Akuntabilitas, Transparansi, dan Etika dalam AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

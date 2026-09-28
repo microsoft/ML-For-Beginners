@@ -143,7 +143,7 @@ AI 系統應該是可理解的。透明度的重要部分是解釋 AI 系統及�
 
 另外，請參閱： 
 
-- 微軟的 RAI 資源中心：[Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- 微軟的 RAI 資源中心：[Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - 微軟的 FATE 研究團隊：[FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

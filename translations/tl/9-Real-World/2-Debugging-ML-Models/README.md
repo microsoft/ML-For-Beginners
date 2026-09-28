@@ -155,7 +155,7 @@ Gamitin ang mga sumusunod na materyales upang matuto pa tungkol sa responsableng
 
 - Tuklasin ang Responsible AI toolkit: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Resource center ng Microsoft RAI: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Resource center ng Microsoft RAI: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - FATE research group ng Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

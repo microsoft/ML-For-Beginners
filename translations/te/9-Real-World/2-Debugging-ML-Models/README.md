@@ -160,7 +160,7 @@ RAI డాష్‌బోర్డ్‌లో లక్షణ ప్రామ�
 
 - బాధ్యతాయుత AI టూల్‌కిట్‌ను అన్వేషించండి: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft యొక్క RAI వనరుల కేంద్రం: [బాధ్యతాయుత AI వనరులు – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft యొక్క RAI వనరుల కేంద్రం: [బాధ్యతాయుత AI వనరులు – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoft యొక్క FATE పరిశోధనా గ్రూప్: [FATE: న్యాయం, బాధ్యత, పారదర్శకత, మరియు AIలో నైతికత - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

@@ -163,7 +163,7 @@ Pro další poznatky o odpovědné AI a jak budovat důvěryhodnější modely p
 
 - Prozkoumejte soupravu nástrojů Responsible AI: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Výzkumná skupina Microsoftu FATE: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

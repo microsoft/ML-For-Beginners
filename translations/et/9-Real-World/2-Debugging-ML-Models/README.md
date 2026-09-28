@@ -154,7 +154,7 @@ Viita järgmistele materjalidele, et õppida rohkem vastutustundliku tehisintell
 
 - Uuri vastutustundliku tehisintellekti tööriistakomplekti: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsofti RAI ressursikeskus: [Vastutustundliku tehisintellekti ressursid – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsofti RAI ressursikeskus: [Vastutustundliku tehisintellekti ressursid – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsofti FATE uurimisrühm: [FATE: Õiglus, vastutus, läbipaistvus ja eetika tehisintellektis - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

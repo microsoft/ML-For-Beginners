@@ -143,7 +143,7 @@ AI системи треба да буду разумљиви. Кључни де
 
 Такође прочитајте: 
 
-- Microsoft-ов центар ресурса за одговорну вештачку интелигенцију: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft-ов центар ресурса за одговорну вештачку интелигенцију: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft-ова FATE истраживачка група: [FATE: Правичност, одговорност, транспарентност и етика у AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

@@ -163,7 +163,7 @@ RAI ਡੈਸ਼ਬੋਰਡ ਦਾ ਫੀਚਰ ਮਹੱਤਵ ਕਾਂਪੋ
 
 - ਜ਼ਿੰਮੇਵਾਰ AI ਟੂਲਕਿਟ ਜਾਚੋ: [ਗਿਟਹੱਬ](https://github.com/microsoft/responsible-ai-toolbox)
 
-- ਮਾਇਕਰੋਸੌਫਟ ਦਾ RAI ਸ੍ਰੋਤ ਕੇਂਦਰ: [ਜ਼ਿੰਮੇਵਾਰ AI ਸਰੋਤ – ਮਾਇਕਰੋਸੌਫਟ AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- ਮਾਇਕਰੋਸੌਫਟ ਦਾ RAI ਸ੍ਰੋਤ ਕੇਂਦਰ: [ਜ਼ਿੰਮੇਵਾਰ AI ਸਰੋਤ – ਮਾਇਕਰੋਸੌਫਟ AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - ਮਾਇਕਰੋਸੌਫਟ ਦੀ FATE ਰਿਸਰਚ ਟੀਮ: [FATE: ਨਿਆਂਸੰਗਤਾ, ਜਵਾਬਦੇਹੀ, ਪਾਰਦਰਸ਼ਤਾ ਅਤੇ ਨੈਤਿਕਤਾ AI ਵਿੱਚ - ਮਾਇਕਰੋਸੌਫਟ ਖੋਜ](https://www.microsoft.com/research/theme/fate/) 
 

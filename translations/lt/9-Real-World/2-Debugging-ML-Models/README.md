@@ -163,7 +163,7 @@ Naudokite šiuos šaltinius, kad sužinotumėte daugiau apie atsakingą DI ir ka
 
 - Išnagrinėkite Atsakingo DI įrankių rinkinį: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft RAI išteklių centras: [Atsakingo DI ištekliai – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft RAI išteklių centras: [Atsakingo DI ištekliai – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft FATE tyrimų grupė: [FATE: Sąžiningumas, Atsakomybė, Skaidrumas ir Etika DI srityje – Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

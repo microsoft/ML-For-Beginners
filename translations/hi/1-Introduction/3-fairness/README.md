@@ -143,7 +143,7 @@ AI सिस्टम को समझने योग्य होना चा
 
 साथ ही, पढ़ें: 
 
-- माइक्रोसॉफ्ट का RAI संसाधन केंद्र: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- माइक्रोसॉफ्ट का RAI संसाधन केंद्र: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - माइक्रोसॉफ्ट का FATE अनुसंधान समूह: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

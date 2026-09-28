@@ -144,7 +144,7 @@ Consultă următoarele materiale pentru a afla mai multe despre AI responsabilă
 
 - Explorează toolkit-ul AI responsabil: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Centrul de resurse RAI de la Microsoft: [Resurse AI Responsabile – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Centrul de resurse RAI de la Microsoft: [Resurse AI Responsabile – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Grupul de cercetare FATE de la Microsoft: [FATE: Echitate, Responsabilitate, Transparență și Etică în AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

@@ -163,7 +163,7 @@ Tekintsd át a következő anyagokat, hogy többet megtudj a felelős MI-ről é
 
 - Fedezd fel a Responsible AI eszköztárat: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- A Microsoft RAI erőforrásközpontja: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- A Microsoft RAI erőforrásközpontja: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - A Microsoft FATE kutatócsoportja: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

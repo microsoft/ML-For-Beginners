@@ -155,7 +155,7 @@
 
 - חקרו את ערכת הכלים ל-AI אחראי: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- מרכז המשאבים של Microsoft ל-AI אחראי: [משאבי AI אחראי – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- מרכז המשאבים של Microsoft ל-AI אחראי: [משאבי AI אחראי – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - קבוצת המחקר FATE של Microsoft: [FATE: צדק, אחריות, שקיפות ואתיקה ב-AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

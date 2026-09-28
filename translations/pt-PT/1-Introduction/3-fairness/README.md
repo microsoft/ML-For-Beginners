@@ -143,7 +143,7 @@ Veja este workshop para aprofundar os temas:
 
 Também leia: 
 
-- Centro de recursos de RAI da Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Centro de recursos de RAI da Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Grupo de investigação FATE da Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

@@ -161,7 +161,7 @@ Referera till följande material för att lära dig mer om ansvarsfull AI och hu
 
 - Utforska Responsible AI-verktygslådan: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsofts RAI-resurscenter: [Resurser för Responsible AI – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsofts RAI-resurscenter: [Resurser för Responsible AI – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsofts FATE-forskningsgrupp: [FATE: Rättvisa, Ansvar, Transparens och Etik inom AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

@@ -163,7 +163,7 @@ RAI ড্যাশবোর্ডের সব কম্পোনেন্ট�
 
 - দায়িত্বশীল AI টুলকিট অন্বেষণ করুন: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- মাইক্রোসফটের RAI রিসোর্স সেন্টার: [দায়িত্বশীল AI রিসোর্স – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- মাইক্রোসফটের RAI রিসোর্স সেন্টার: [দায়িত্বশীল AI রিসোর্স – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - মাইক্রোসফটের FATE গবেষণা গ্রুপ: [FATE: ন্যায্যতা, হিসাবদারি, স্বচ্ছতা এবং AI-তে নীতি - মাইক্রোসফট রিসার্চ](https://www.microsoft.com/research/theme/fate/) 
 

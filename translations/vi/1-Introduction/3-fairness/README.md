@@ -143,7 +143,7 @@ Xem hội thảo này để tìm hiểu sâu hơn về các chủ đề:
 
 Ngoài ra, hãy đọc: 
 
-- Trung tâm tài nguyên RAI của Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Trung tâm tài nguyên RAI của Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Nhóm nghiên cứu FATE của Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

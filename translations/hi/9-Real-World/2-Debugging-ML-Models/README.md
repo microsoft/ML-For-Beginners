@@ -149,7 +149,7 @@ RAI डैशबोर्ड का फीचर इंपॉर्टेंस 
 
 - जिम्मेदार AI टूलकिट का अन्वेषण करें: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft का RAI संसाधन केंद्र: [जिम्मेदार AI संसाधन – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft का RAI संसाधन केंद्र: [जिम्मेदार AI संसाधन – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoft का FATE अनुसंधान समूह: [FATE: AI में निष्पक्षता, जवाबदेही, पारदर्शिता, और नैतिकता - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

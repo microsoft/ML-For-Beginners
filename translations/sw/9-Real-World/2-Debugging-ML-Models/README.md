@@ -155,7 +155,7 @@ Rejelea nyenzo zifuatazo ili kujifunza zaidi kuhusu AI inayowajibika na jinsi ya
 
 - Chunguza zana za AI inayowajibika: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Kituo cha rasilimali cha RAI cha Microsoft: [Rasilimali za AI Inayowajibika – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Kituo cha rasilimali cha RAI cha Microsoft: [Rasilimali za AI Inayowajibika – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Kikundi cha utafiti cha FATE cha Microsoft: [FATE: Uadilifu, Uwajibikaji, Uwazi, na Maadili katika AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

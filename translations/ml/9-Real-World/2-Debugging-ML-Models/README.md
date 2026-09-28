@@ -160,7 +160,7 @@ RAI ഡാഷ്ബോർഡിലെ സവിശേഷതാ പ്രാധ�
 
 - Responsible AI ടൂൾകിറ്റ് പരിശോധിക്കുക: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- മൈക്രോസോഫ്റ്റിന്റെ RAI റിസോഴ്‌സ് സെന്റർ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- മൈക്രോസോഫ്റ്റിന്റെ RAI റിസോഴ്‌സ് സെന്റർ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - മൈക്രോസോഫ്റ്റിന്റെ FATE ഗവേഷണ സംഘം: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

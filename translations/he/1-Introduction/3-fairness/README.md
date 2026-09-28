@@ -143,7 +143,7 @@
 
 בנוסף, קראו: 
 
-- מרכז המשאבים של מיקרוסופט לבינה מלאכותית אחראית: [משאבי בינה מלאכותית אחראית – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- מרכז המשאבים של מיקרוסופט לבינה מלאכותית אחראית: [משאבי בינה מלאכותית אחראית – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - קבוצת המחקר FATE של מיקרוסופט: [FATE: הוגנות, אחריות, שקיפות ואתיקה בבינה מלאכותית - מחקר מיקרוסופט](https://www.microsoft.com/research/theme/fate/) 
 

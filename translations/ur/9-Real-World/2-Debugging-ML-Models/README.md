@@ -145,7 +145,7 @@ RAI ڈیش بورڈ کا خصوصیات کی اہمیت کا جزو آپ کو ڈ
 
 - ذمہ دار AI ٹول کٹ کو دریافت کریں: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft کا RAI وسائل مرکز: [ذمہ دار AI وسائل – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft کا RAI وسائل مرکز: [ذمہ دار AI وسائل – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoft کا FATE تحقیقاتی گروپ: [FATE: انصاف، جوابدہی، شفافیت، اور AI میں اخلاقیات - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

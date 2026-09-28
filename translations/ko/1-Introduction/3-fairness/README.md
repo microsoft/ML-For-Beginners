@@ -143,7 +143,7 @@ AI 시스템을 설계하고 배포하는 사람들은 그 시스템의 작동 �
 
 또한, 다음을 읽어보세요: 
 
-- Microsoft의 RAI 리소스 센터: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft의 RAI 리소스 센터: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft의 FATE 연구 그룹: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

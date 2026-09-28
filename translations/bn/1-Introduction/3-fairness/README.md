@@ -143,7 +143,7 @@ AI সিস্টেম বোঝাপড়াযোগ্য হওয়া
 
 এছাড়াও পড়ুন: 
 
-- মাইক্রোসফটের RAI রিসোর্স সেন্টার: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- মাইক্রোসফটের RAI রিসোর্স সেন্টার: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - মাইক্রোসফটের FATE গবেষণা দল: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

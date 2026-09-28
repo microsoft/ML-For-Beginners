@@ -160,7 +160,7 @@ RAI ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ನ ಲಕ್ಷಣ ಮಹತ್�
 
 - ಜವಾಬ್ದಾರಿಯುತ AI ಟೂಲ್‌ಕಿಟ್ ಅನ್ವೇಷಿಸಿ: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- ಮೈಕ್ರೋಸಾಫ್ಟ್‌ನ RAI ಸಂಪನ್ಮೂಲ ಕೇಂದ್ರ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- ಮೈಕ್ರೋಸಾಫ್ಟ್‌ನ RAI ಸಂಪನ್ಮೂಲ ಕೇಂದ್ರ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - ಮೈಕ್ರೋಸಾಫ್ಟ್‌ನ FATE ಸಂಶೋಧನಾ ಗುಂಪು: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 
