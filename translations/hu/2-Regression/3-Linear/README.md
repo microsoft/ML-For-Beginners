@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 A lineáris regresszió egy másik típusa a polinomiális regresszió. Bár néha lineáris kapcsolat van a változók között – például minél nagyobb egy tök térfogata, annál magasabb az ára –, néha ezek a kapcsolatok nem ábrázolhatók síkkal vagy egyenes vonallal.
 
-✅ Itt vannak [további példák](https://online.stat.psu.edu/stat501/lesson/9/9.8) olyan adatokra, amelyek polinomiális regressziót igényelhetnek.
+✅ Itt vannak [további példák](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) olyan adatokra, amelyek polinomiális regressziót igényelhetnek.
 
 Nézzük meg újra a Dátum és Ár közötti kapcsolatot. Ez a pontfelhő valóban úgy néz ki, hogy feltétlenül egy egyenes vonallal kell elemezni? Nem ingadozhatnak az árak? Ilyen esetben polinomiális regressziót használhatunk.
 

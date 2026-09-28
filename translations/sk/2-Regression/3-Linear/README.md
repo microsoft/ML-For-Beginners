@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Ďalším typom lineárnej regresie je polynomická regresia. Zatiaľ čo niekedy existuje lineárny vzťah medzi premennými — čím väčšia tekvica objemom, tým vyššia cena — niekedy tieto vzťahy nemožno zobraziť rovinnou alebo priamkou.
 
-✅ Tu je [niekoľko ďalších príkladov](https://online.stat.psu.edu/stat501/lesson/9/9.8) údajov, ktoré by mohli využiť polynomickú regresiu.
+✅ Tu je [niekoľko ďalších príkladov](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) údajov, ktoré by mohli využiť polynomickú regresiu.
 
 Pozrite sa znova na vzťah medzi Dátumom a Cenou. Zdá sa, že tento rozptylový graf by určite mal byť analyzovaný priamkou? Nemôžu ceny kolísať? V takom prípade môžete skúsiť polynomickú regresiu.
 

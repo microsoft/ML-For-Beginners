@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Innym typem regresji liniowej jest regresja wielomianowa. Choć czasem między zmiennymi zachodzi liniowa zależność – im większa dynia pod względem objętości, tym wyższa cena – czasami takie zależności nie mogą być przedstawione jako płaszczyzna czy linia prosta.
 
-✅ Oto [kilka kolejnych przykładów](https://online.stat.psu.edu/stat501/lesson/9/9.8) danych, które mogą wymagać regresji wielomianowej
+✅ Oto [kilka kolejnych przykładów](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) danych, które mogą wymagać regresji wielomianowej
 
 Spójrz jeszcze raz na związek między Datą a Ceną. Czy ten wykres punktowy musi koniecznie być analizowany za pomocą linii prostej? Czy ceny nie mogą się wahać? W takim przypadku można spróbować regresji wielomianowej.
 

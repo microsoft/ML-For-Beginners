@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Aina nyingine ya Linear Regression ni Polynomial Regression. Ingawa wakati mwingine kuna uhusiano wa mstari kati ya vigezo - kadri buibui linavyokuwa kubwa kwa kiasi, ndivyo bei inavyokuwa juu - wakati mwingine uhusiano huu hauwezi kuchorwa kama usawa au mstari wa moja kwa moja.
 
-✅ Hapa kuna [mifano zaidi](https://online.stat.psu.edu/stat501/lesson/9/9.8) ya data ambayo inaweza kutumia Polynomial Regression
+✅ Hapa kuna [mifano zaidi](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) ya data ambayo inaweza kutumia Polynomial Regression
 
 Tazama tena uhusiano kati ya Tarehe na Bei. Je, mchoro huu wa points unaonekana kama unapaswa kuchambuliwa kwa kutumia mstari wa moja kwa moja? Je, bei hasi zinaweza kubadilika? Katika kesi hii, unaweza kujaribu polynomial regression.
 

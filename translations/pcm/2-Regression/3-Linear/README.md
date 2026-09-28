@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Another Kind of Linear Regression na Polynomial Regression. Sometimes, di relationship between variables be linear - di bigger di pumpkin volume, di higher di price - but sometimes di relationship no dey fit plot as plane or straight line. 
 
-✅ Here be [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data wey Polynomial Regression fit use
+✅ Here be [some more examples](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) of data wey Polynomial Regression fit use
 
 Make you check di relationship between Date and Price again. Dis scatterplot be like e suppose analyze by straight line? Prices no fit dey change? For dis kain case, you fit try polynomial regression.
 

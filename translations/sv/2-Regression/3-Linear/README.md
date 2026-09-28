@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 En annan typ av linjär regression är polynomregression. Även om det ibland finns ett linjärt samband mellan variabler - ju större pumpa i volym, desto högre pris - kan dessa samband ibland inte plottas som ett plan eller en rät linje. 
 
-✅ Här är [några fler exempel](https://online.stat.psu.edu/stat501/lesson/9/9.8) på data som kan använda polynomregression
+✅ Här är [några fler exempel](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) på data som kan använda polynomregression
 
 Ta en närmare titt på sambandet mellan Datum och Pris. Verkar denna spridningsdiagram nödvändigtvis måste analyseras med en rak linje? Kan inte priserna fluktuera? I detta fall kan du prova polynomregression.
 

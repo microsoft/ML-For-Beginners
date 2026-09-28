@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 En anden type af Lineær Regression er Polynomiel Regression. Mens der nogle gange er et lineært forhold mellem variable – jo større græskar i volumen, desto højere pris – kan disse forhold nogle gange ikke vises som et plan eller en lige linje.
 
-✅ Her er [flere eksempler](https://online.stat.psu.edu/stat501/lesson/9/9.8) på data, der kunne bruge Polynomiel Regression.
+✅ Her er [flere eksempler](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) på data, der kunne bruge Polynomiel Regression.
 
 Tag et nyt kig på forholdet mellem Dato og Pris. Virker denne spredningsgraf som om den nødvendigvis skal analyseres med en lige linje? Kan priser ikke svinge? I dette tilfælde kan du prøve polynomiel regression.
 

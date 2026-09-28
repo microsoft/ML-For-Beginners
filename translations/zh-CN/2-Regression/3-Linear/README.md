@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 另一种线性回归是多项式回归。尽管有时候变量间存在线性关系——比如体积越大的南瓜价格越高——但有时这些关系无法用平面或直线表达。
 
-✅ 这里有一些[更多示例](https://online.stat.psu.edu/stat501/lesson/9/9.8)展示了适合使用多项式回归的数据
+✅ 这里有一些[更多示例](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples)展示了适合使用多项式回归的数据
 
 再看看日期和价格的关系。这个散点图一定要用直线分析吗？价格难道不会波动吗？这时，就可以尝试多项式回归。
 

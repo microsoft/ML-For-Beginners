@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Another type of Linear Regression is Polynomial Regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
 
-✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use Polynomial Regression
+✅ Here are [some more examples](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) of data that could use Polynomial Regression
 
 Take another look at the relationship between Date and Price. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Can't prices fluctuate? In this case, you can try polynomial regression.
 
