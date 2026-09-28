@@ -236,7 +236,7 @@ plt.plot(X_test,pred)
 
 Otro tipo de Regresión Lineal es la Regresión Polinómica. Aunque a veces existe una relación lineal entre variables — cuanto mayor el volumen de la calabaza, mayor el precio — a veces estas relaciones no pueden representarse como un plano o línea recta.
 
-✅ Aquí hay [algunos ejemplos más](https://online.stat.psu.edu/stat501/lesson/9/9.8) de datos que podrían usar Regresión Polinómica
+✅ Aquí hay [algunos ejemplos más](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) de datos que podrían usar Regresión Polinómica
 
 Observa de nuevo la relación entre Fecha y Precio. ¿Parece que este diagrama de dispersión deba necesariamente analizarse con una línea recta? ¿No pueden fluctuar los precios? En este caso, puedes probar regresión polinómica.
 

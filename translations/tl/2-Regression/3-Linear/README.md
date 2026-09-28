@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Isa pang uri ng Linear Regression ang Polynomial Regression. Habang minsan may linear na ugnayan sa pagitan ng mga variable - mas malaki ang kalabasa sa volume, mas mataas ang presyo - minsan ang mga ugnayang ito ay hindi maipapakita bilang isang patag o tuwid na linya.
 
-✅ Narito ang [ilang karagdagang halimbawa](https://online.stat.psu.edu/stat501/lesson/9/9.8) ng data na maaaring gumamit ng Polynomial Regression
+✅ Narito ang [ilang karagdagang halimbawa](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) ng data na maaaring gumamit ng Polynomial Regression
 
 Tingnan muli ang relasyon sa pagitan ng Date at Price. Mukhang dapat bang pag-aralan ito gamit ang isang tuwid na linya? Hindi ba pwedeng mag-iba-iba ang mga presyo? Sa kasong ito, maaari mong subukan ang polynomial regression.
 

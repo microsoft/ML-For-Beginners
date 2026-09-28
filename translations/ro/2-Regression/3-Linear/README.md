@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Un alt tip de Regresie Liniară este Regresia Polinomială. Deși uneori există o relație liniară între variabile - cu cât dovleacul este mai mare ca volum, cu atât prețul este mai mare - uneori aceste relații nu pot fi reprezentate printr-o plană sau o linie dreaptă.
 
-✅ Iată [câteva exemple în plus](https://online.stat.psu.edu/stat501/lesson/9/9.8) de date care pot folosi Regresia Polinomială
+✅ Iată [câteva exemple în plus](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) de date care pot folosi Regresia Polinomială
 
 Priviți din nou relația dintre Data și Preț. Acest diagramă de dispersie pare că trebuie neapărat să fie analizată printr-o linie dreaptă? Nu pot prețurile să fluctueze? În acest caz, puteți încerca regresia polinomială.
 

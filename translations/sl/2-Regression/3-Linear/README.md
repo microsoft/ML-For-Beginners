@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Druga vrsta linearne regresije je polinomska regresija. Medtem ko včasih obstaja linearna povezava med spremenljivkami – večja kot je buča v volumenu, višja je cena – včasih takšnih povezav ni mogoče opisati z ravnino ali ravno črto.
 
-✅ Tukaj je [nekaj dodatnih primerov](https://online.stat.psu.edu/stat501/lesson/9/9.8) podatkov, ki bi jih lahko obravnavali s polinomsko regresijo.
+✅ Tukaj je [nekaj dodatnih primerov](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) podatkov, ki bi jih lahko obravnavali s polinomsko regresijo.
 
 Poglejmo še enkrat razmerje med datumom in ceno. Ali ta razpršeni graf nujno zahteva analizo z ravno črto? Se cene ne morejo spreminjati? V takem primeru lahko poskusite polinomsko regresijo.
 

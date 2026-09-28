@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 另一種線性迴歸類型是多項式迴歸。有時候變量之間是線性關係 — 譬如南瓜體積越大，價格越高 — 但有時這些關係無法用平面或直線表示。
 
-✅ 這裡有一些[更多範例](https://online.stat.psu.edu/stat501/lesson/9/9.8)適合使用多項式迴歸的資料
+✅ 這裡有一些[更多範例](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples)適合使用多項式迴歸的資料
 
 再看看日期與價格的關係。散點圖是否一定要用直線分析？價格難道不會波動？此時可以嘗試多項式迴歸。
 

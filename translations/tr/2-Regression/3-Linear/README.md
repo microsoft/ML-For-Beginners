@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Lineer regresyonun diğer bir türü Polinom Regresyonudur. Bazen değişkenler arasında lineer bir ilişki olsa da - hacimce kabak ne kadar büyükse fiyat o kadar yüksek - bazen bu ilişkiler düzlem veya doğru olarak çizilemez.
 
-✅ İşte Polinom Regresyonu kullanılabilecek [başka bazı örnekler](https://online.stat.psu.edu/stat501/lesson/9/9.8)
+✅ İşte Polinom Regresyonu kullanılabilecek [başka bazı örnekler](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples)
 
 Tarih ve Fiyat arasındaki ilişkiye tekrar bakalım. Bu saçılım grafiği mutlaka bir doğru ile mi analiz edilmeli? Fiyatlar dalgalanamaz mı? Bu durumda polinom regresyonu deneyebilirsiniz.
 

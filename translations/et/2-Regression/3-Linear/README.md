@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Teine lineaarse regressiooni tüüp on polünoomne regressioon. Kuigi mõnikord on muutujate vahel lineaarne seos — suurem kõrvits mahu poolest tähendab kõrgemat hinda — siis mõnikord ei saa neid seoseid joonistada tasapinnana ega sirgel joonel.
 
-✅ Siin on [mõned muud näited](https://online.stat.psu.edu/stat501/lesson/9/9.8) andmetest, mille puhul võiks kasutada polünoomset regressiooni
+✅ Siin on [mõned muud näited](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) andmetest, mille puhul võiks kasutada polünoomset regressiooni
 
 Vaatame uuesti kuupäeva ja hinna suhet. Kas see hajuvusdiagramm tundub tingimata sobivat sirgel joonel analüüsimiseks? Kas hinnad ei võiks kõikuda? Sellisel juhul võite proovida polünoomset regressiooni.
 

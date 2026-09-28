@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Un altro tipo di regressione lineare è la Regressione Polinomiale. Mentre a volte c'è una relazione lineare tra variabili - più grande è la zucca in volume, più alto è il prezzo - a volte queste relazioni non possono essere rappresentate come un piano o linea retta.
 
-✅ Ecco [alcuni esempi in più](https://online.stat.psu.edu/stat501/lesson/9/9.8) di dati che potrebbero usare la Regressione Polinomiale
+✅ Ecco [alcuni esempi in più](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) di dati che potrebbero usare la Regressione Polinomiale
 
 Guarda di nuovo la relazione tra Data e Prezzo. Questo scatterplot sembra dover necessariamente essere analizzato con una linea retta? I prezzi non possono fluttuare? In questo caso, puoi provare la regressione polinomiale.
 

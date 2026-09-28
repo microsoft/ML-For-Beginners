@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Outro tipo de Regressão Linear é a Regressão Polinomial. Embora por vezes haja uma relação linear entre variáveis - quanto maior a abóbora em volume, maior o preço - por vezes essas relações não podem ser representadas como um plano ou linha reta. 
 
-✅ Aqui estão [mais alguns exemplos](https://online.stat.psu.edu/stat501/lesson/9/9.8) de dados que poderiam usar Regressão Polinomial
+✅ Aqui estão [mais alguns exemplos](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) de dados que poderiam usar Regressão Polinomial
 
 Dê outra vista de olhos à relação entre Data e Preço. Este gráfico de dispersão parece necessariamente deva ser analisado por uma linha reta? Não podem os preços oscilar? Neste caso, pode tentar regressão polinomial.
 

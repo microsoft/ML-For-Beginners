@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Dalším typem lineární regrese je polynomická regrese. Zatímco někdy existuje lineární vztah mezi proměnnými – čím větší je dýně objemem, tím vyšší je cena – jindy tyto vztahy nelze znázornit jako rovinu nebo přímku.
 
-✅ Zde jsou [další příklady](https://online.stat.psu.edu/stat501/lesson/9/9.8) dat, která by mohla využít polynomickou regresi.
+✅ Zde jsou [další příklady](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) dat, která by mohla využít polynomickou regresi.
 
 Podívejte se znovu na vztah mezi Datem a Cenou. Zdá se vám, že by tento bodový graf nutně měl být analyzován přímkou? Nemohou ceny kolísat? V takovém případě můžete zkusit polynomickou regresi.
 

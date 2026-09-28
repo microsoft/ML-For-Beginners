@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 En annen type lineær regresjon er polynomisk regresjon. Selv om det noen ganger eksisterer et lineært forhold mellom variabler - jo større gresskaret er i volum, jo høyere pris - kan det noen ganger hende at disse forholdene ikke kan plottes som et plan eller en rett linje.
 
-✅ Her er [noen flere eksempler](https://online.stat.psu.edu/stat501/lesson/9/9.8) på data som kan bruke polynomisk regresjon
+✅ Her er [noen flere eksempler](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) på data som kan bruke polynomisk regresjon
 
 Ta en titt på forholdet mellom Dato og Pris igjen. Virker det som om denne spredningsdiagrammet nødvendigvis bør analyseres med en rett linje? Kan ikke priser variere? I dette tilfellet kan du prøve polynomisk regresjon.
 

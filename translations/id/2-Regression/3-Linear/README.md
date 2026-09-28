@@ -239,7 +239,7 @@ plt.plot(X_test,pred)
 
 Jenis lain dari Regresi Linear adalah Regresi Polinomial. Kadang-kadang ada hubungan linear antar variabel - semakin besar volume labu, semakin tinggi harganya - namun terkadang hubungan ini tidak bisa diplot sebagai bidang atau garis lurus.
 
-✅ Berikut adalah [beberapa contoh lagi](https://online.stat.psu.edu/stat501/lesson/9/9.8) data yang dapat menggunakan Regresi Polinomial
+✅ Berikut adalah [beberapa contoh lagi](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) data yang dapat menggunakan Regresi Polinomial
 
 Perhatikan kembali hubungan antara Tanggal dan Harga. Apakah scatterplot ini harus dianalisis dengan garis lurus? Apakah harga tidak bisa berfluktuasi? Dalam kasus ini, Anda bisa mencoba regresi polinomial.
 
