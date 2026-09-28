@@ -143,7 +143,7 @@ Pogledajte ovaj radionicu za dublje razumijevanje tema:
 
 Također, pročitajte: 
 
-- Microsoftov centar resursa za odgovornu umjetnu inteligenciju: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoftov centar resursa za odgovornu umjetnu inteligenciju: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoftova istraživačka grupa FATE: [FATE: Poštenje, Odgovornost, Transparentnost i Etika u AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

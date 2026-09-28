@@ -143,7 +143,7 @@ Podívejte se na tento workshop, ve kterém se do těchto témat ponoříte hlou
 
 Také si přečtěte: 
 
-- Centrum zdrojů pro odpovědnou AI Microsoftu: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Centrum zdrojů pro odpovědnou AI Microsoftu: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Výzkumná skupina FATE Microsoftu: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

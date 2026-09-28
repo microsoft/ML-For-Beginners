@@ -148,7 +148,7 @@ RAIダッシュボードの特徴重要度コンポーネントは、モデル�
 
 - 責任あるAIツールキットを探索する：[Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- MicrosoftのRAIリソースセンター：[責任あるAIリソース – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- MicrosoftのRAIリソースセンター：[責任あるAIリソース – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - MicrosoftのFATE研究グループ：[FATE: AIにおける公平性、説明責任、透明性、倫理 - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

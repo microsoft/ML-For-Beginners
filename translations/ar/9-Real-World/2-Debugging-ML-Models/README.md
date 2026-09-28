@@ -160,7 +160,7 @@
 
 - استكشف مجموعة أدوات الذكاء الاصطناعي المسؤول: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- مركز موارد Microsoft RAI: [موارد الذكاء الاصطناعي المسؤول – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- مركز موارد Microsoft RAI: [موارد الذكاء الاصطناعي المسؤول – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - مجموعة أبحاث FATE التابعة لـ Microsoft: [FATE: العدالة، المساءلة، الشفافية، والأخلاقيات في الذكاء الاصطناعي - أبحاث Microsoft](https://www.microsoft.com/research/theme/fate/)
 

@@ -163,7 +163,7 @@
 
 - Εξερευνήστε το κιτ εργαλείων Responsible AI: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Κέντρο πόρων RAI της Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Κέντρο πόρων RAI της Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Ομάδα έρευνας FATE της Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

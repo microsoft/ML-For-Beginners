@@ -155,7 +155,7 @@
 
 - ابزارک هوش مصنوعی مسئولانه را بررسی کنید: [گیت‌هاب](https://github.com/microsoft/responsible-ai-toolbox)
 
-- مرکز منابع RAI مایکروسافت: [منابع هوش مصنوعی مسئولانه – مایکروسافت AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- مرکز منابع RAI مایکروسافت: [منابع هوش مصنوعی مسئولانه – مایکروسافت AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - گروه تحقیقاتی FATE مایکروسافت: [FATE: عدالت، پاسخگویی، شفافیت و اخلاق در هوش مصنوعی - تحقیقات مایکروسافت](https://www.microsoft.com/research/theme/fate/)
 

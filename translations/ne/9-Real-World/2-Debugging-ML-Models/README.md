@@ -163,7 +163,7 @@ RAI ड्यासबोर्डको विशेषता महत्व �
 
 - जिम्मेवार AI टूलकिट अन्वेषण गर्नुहोस्: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- माइक्रोसफ्टको RAI स्रोत केन्द्र: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- माइक्रोसफ्टको RAI स्रोत केन्द्र: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - माइक्रोसफ्टको FATE अनुसन्धान समूह: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

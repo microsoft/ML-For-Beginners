@@ -158,7 +158,7 @@
 
 - ស្វែងរកឧបករណ៍កញ្ចប់Responsible AI៖ [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- មជ្ឈមណ្ឌលធនធាន RAI របស់ Microsoft៖ [Resources Responsible AI – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- មជ្ឈមណ្ឌលធនធាន RAI របស់ Microsoft៖ [Resources Responsible AI – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - ក្រុមស្រាវជ្រាវ FATE របស់ Microsoft៖ [FATE: ព្រមព្រៀង ភាពទទួលខុសត្រូវ ភាពបង្ហាញបាន និងទ្រឹស្តីសីលធម៌ក្នុង AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

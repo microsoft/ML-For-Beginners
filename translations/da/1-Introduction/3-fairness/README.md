@@ -143,7 +143,7 @@ Se denne workshop for at dykke dybere ned i emnerne:
 
 Læs også: 
 
-- Microsofts RAI ressourcecenter: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsofts RAI ressourcecenter: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsofts FATE forskergruppe: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

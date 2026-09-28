@@ -163,7 +163,7 @@ RAI டாஷ்போர்டின் அம்ச முக்கியத�
 
 - பொறுப்பான AI கருவிப்பெட்டியை ஆராயுங்கள்: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft இன் RAI வள மையம்: [பொறுப்பான AI வளங்கள் – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft இன் RAI வள மையம்: [பொறுப்பான AI வளங்கள் – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft இன் FATE ஆராய்ச்சி குழு: [FATE: AI இல் நீதி, பொறுப்புணர்வு, வெளிப்படையானம் மற்றும் ஒழுக்கநிலை - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

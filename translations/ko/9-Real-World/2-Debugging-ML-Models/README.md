@@ -160,7 +160,7 @@ RAI 대시보드의 모든 구성 요소는 사회에 덜 해롭고 더 신뢰�
 
 - 책임 있는 AI 툴킷 탐색: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft의 RAI 리소스 센터: [책임 있는 AI 리소스 – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft의 RAI 리소스 센터: [책임 있는 AI 리소스 – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoft의 FATE 연구 그룹: [FATE: 공정성, 책임성, 투명성, 윤리성 in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

@@ -143,7 +143,7 @@ Tazama warsha hii ili kuzama zaidi kwenye mada:
 
 Pia, soma: 
 
-- Kituo cha rasilimali cha RAI cha Microsoft: [Rasilimali za AI Yenye Uwajibikaji – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Kituo cha rasilimali cha RAI cha Microsoft: [Rasilimali za AI Yenye Uwajibikaji – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Kundi la utafiti la FATE la Microsoft: [FATE: Haki, Uwajibikaji, Uwazi, na Maadili katika AI - Utafiti wa Microsoft](https://www.microsoft.com/research/theme/fate/) 
 

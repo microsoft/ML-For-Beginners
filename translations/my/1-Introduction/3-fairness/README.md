@@ -143,7 +143,7 @@ AI စနစ်များကို ဒီဇိုင်းဆွဲပြီ�
 
 ထပ်မံဖတ်ရှုရန် - 
 
-- Microsoft ၏ RAI အရင်းအမြစ်စင်တာ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft ၏ RAI အရင်းအမြစ်စင်တာ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft ၏ FATE သုတေသနအဖွဲ့: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

@@ -143,7 +143,7 @@
 
 ផងដែរ សូមអាន៖ 
 
-- មជ្ឈមណ្ឌលធនធាន RAI របស់ Microsoft: [ធនធាន AI ដែលមានការទទួលខុសត្រូវ – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- មជ្ឈមណ្ឌលធនធាន RAI របស់ Microsoft: [ធនធាន AI ដែលមានការទទួលខុសត្រូវ – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - ក្រុមស្រាវជ្រាវ FATE របស់ Microsoft: [FATE៖ ភាពយុត្តិធម៌ ការទទួលខុសត្រូវ ភាពត្រឹមត្រូវ និងទស្សនៈអំពី AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

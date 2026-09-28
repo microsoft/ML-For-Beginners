@@ -143,7 +143,7 @@ AI 系统应当易于理解。透明度的关键部分是解释 AI 系统及其�
 
 另请阅读： 
 
-- 微软的 RAI 资源中心：[Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- 微软的 RAI 资源中心：[Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - 微软的 FATE 研究组：[FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

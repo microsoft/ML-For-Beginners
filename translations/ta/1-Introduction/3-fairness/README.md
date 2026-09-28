@@ -143,7 +143,7 @@ AI அமைப்புகளை வடிவமைத்து வெளிய
 
 மேலும், வாசிக்கவும்: 
 
-- மைக்ரோசாஃப்ட் RAI வளக்கழகம்: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- மைக்ரோசாஃப்ட் RAI வளக்கழகம்: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - மைக்ரோசாஃப்ட் FATE ஆராய்ச்சி குழு: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

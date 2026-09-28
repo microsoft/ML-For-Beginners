@@ -143,7 +143,7 @@
 
 Επίσης, διαβάστε: 
 
-- κέντρο πόρων RAI της Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- κέντρο πόρων RAI της Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - η ερευνητική ομάδα FATE της Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

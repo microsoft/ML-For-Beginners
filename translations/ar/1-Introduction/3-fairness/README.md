@@ -143,7 +143,7 @@
 
 اقرأ أيضاً: 
 
-- مركز موارد الذكاء الاصطناعي المسؤول من مايكروسوفت: [موارد الذكاء الاصطناعي المسؤول – مايكروسوفت AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- مركز موارد الذكاء الاصطناعي المسؤول من مايكروسوفت: [موارد الذكاء الاصطناعي المسؤول – مايكروسوفت AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - مجموعة أبحاث FATE من مايكروسوفت: [FATE: العدالة، المساءلة، الشفافية، والأخلاقيات في الذكاء الاصطناعي - أبحاث مايكروسوفت](https://www.microsoft.com/research/theme/fate/) 
 

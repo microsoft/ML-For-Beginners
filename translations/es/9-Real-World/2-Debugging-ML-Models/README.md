@@ -161,7 +161,7 @@ Consulta los siguientes materiales para aprender más sobre IA responsable y có
 
 - Explora el kit de herramientas de IA responsable: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Centro de recursos de IA responsable de Microsoft: [Recursos de IA Responsable – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Centro de recursos de IA responsable de Microsoft: [Recursos de IA Responsable – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Grupo de investigación FATE de Microsoft: [FATE: Equidad, Responsabilidad, Transparencia y Ética en IA - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

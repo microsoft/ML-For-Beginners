@@ -163,7 +163,7 @@
 
 - สำรวจชุดเครื่องมือ Responsible AI: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- ศูนย์ทรัพยากร RAI ของ Microsoft: [ทรัพยากร Responsible AI – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- ศูนย์ทรัพยากร RAI ของ Microsoft: [ทรัพยากร Responsible AI – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - กลุ่มวิจัย FATE ของ Microsoft: [FATE: ความเป็นธรรม ความรับผิดชอบ ความโปร่งใส และจริยธรรมใน AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

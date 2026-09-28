@@ -161,7 +161,7 @@ Raadpleeg de volgende materialen om meer te leren over verantwoorde AI en hoe je
 
 - Verken de Responsible AI-toolkit: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoft’s RAI-resourcecentrum: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoft’s RAI-resourcecentrum: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoft’s FATE-onderzoeksgroep: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

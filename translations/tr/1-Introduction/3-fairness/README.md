@@ -143,7 +143,7 @@ Konulara daha derinlemesine dalmak için bu atölyeyi izleyin:
 
 Ayrıca, okuyun: 
 
-- Microsoft’un RAI kaynak merkezi: [Sorumlu Yapay Zeka Kaynakları – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft’un RAI kaynak merkezi: [Sorumlu Yapay Zeka Kaynakları – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft’un FATE araştırma grubu: [FATE: Yapay Zekada Adalet, Hesap Verebilirlik, Şeffaflık ve Etik - Microsoft Araştırma](https://www.microsoft.com/research/theme/fate/) 
 

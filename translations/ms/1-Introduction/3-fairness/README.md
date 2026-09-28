@@ -143,7 +143,7 @@ Tonton bengkel ini untuk mendalami topik-topik berikut:
 
 Juga, baca: 
 
-- Pusat sumber RAI Microsoft: [Sumber AI Bertanggungjawab – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Pusat sumber RAI Microsoft: [Sumber AI Bertanggungjawab – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Kumpulan penyelidikan FATE Microsoft: [FATE: Keadilan, Akauntabiliti, Ketelusan, dan Etika dalam AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

@@ -143,7 +143,7 @@ Vaadake seda töötuba, et teemadesse põhjalikumalt süveneda:
 
 Samuti lugege: 
 
-- Microsofti vastutustundliku tehisintellekti ressursside keskpunkt: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsofti vastutustundliku tehisintellekti ressursside keskpunkt: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsofti FATE uurimisrühm: [FATE: õiglus, vastutus, läbipaistvus ja eetika tehisintellektis - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

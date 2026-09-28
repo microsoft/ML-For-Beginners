@@ -143,7 +143,7 @@ AI ವ್ಯವಸ್ಥೆಗಳು ವಿನ್ಯಾಸ ಮತ್ತು ನ�
 
 ಈ ಕೆಳಗಿನ ಸಹ ಓದಿ: 
 
-- ಮೈಕ್ರೋಸಾಫ್ಟ್ ನ RAI ಸಂಪನ್ಮೂಲ ಕೇಂದ್ರ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- ಮೈಕ್ರೋಸಾಫ್ಟ್ ನ RAI ಸಂಪನ್ಮೂಲ ಕೇಂದ್ರ: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - ಮೈಕ್ರೋಸಾಫ್ಟ್ ನ FATE ಸಂಶೋಧನಾ ತಂಡ: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

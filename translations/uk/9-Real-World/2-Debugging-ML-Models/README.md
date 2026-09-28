@@ -163,7 +163,7 @@
 
 - Вивчайте набір інструментів Responsible AI: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Центр ресурсів Responsible AI від Microsoft: [Відповідальні ресурси ШІ – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Центр ресурсів Responsible AI від Microsoft: [Відповідальні ресурси ШІ – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Дослідницька група FATE від Microsoft: [FATE: Справедливість, Відповідальність, Прозорість та Етика в ШІ - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

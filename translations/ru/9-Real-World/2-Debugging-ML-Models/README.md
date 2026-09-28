@@ -160,7 +160,7 @@
 
 - Изучите набор инструментов ответственного ИИ: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Центр ресурсов Microsoft по ответственному ИИ: [Ресурсы по ответственному ИИ – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Центр ресурсов Microsoft по ответственному ИИ: [Ресурсы по ответственному ИИ – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Исследовательская группа Microsoft FATE: [FATE: Справедливость, подотчётность, прозрачность и этика в ИИ - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

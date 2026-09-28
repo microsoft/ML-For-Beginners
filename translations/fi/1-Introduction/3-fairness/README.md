@@ -143,7 +143,7 @@ Katso tämä työpaja saadaksesi syvällisempää tietoa aiheista:
 
 Tutustu myös: 
 
-- Microsoftin RAI-resurssikeskus: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoftin RAI-resurssikeskus: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoftin FATE-tutkimusryhmä: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

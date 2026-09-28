@@ -143,7 +143,7 @@
 
 همچنین بخوانید: 
 
-- مرکز منابع هوش مصنوعی مسئول ماکروسافت: [منابع هوش مصنوعی مسئول – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- مرکز منابع هوش مصنوعی مسئول ماکروسافت: [منابع هوش مصنوعی مسئول – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - گروه پژوهشی FATE ماکروسافت: [FATE: عدالت، پاسخگویی، شفافیت و اخلاق در هوش مصنوعی - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

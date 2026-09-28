@@ -144,7 +144,7 @@ Tutustu seuraaviin materiaaleihin oppiaksesi lisää vastuullisesta tekoälystä
 
 - Tutustu vastuullisen tekoälyn työkalupakkiin: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoftin RAI-resurssikeskus: [Vastuullisen tekoälyn resurssit – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Microsoftin RAI-resurssikeskus: [Vastuullisen tekoälyn resurssit – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - Microsoftin FATE-tutkimusryhmä: [FATE: Reiluus, vastuullisuus, läpinäkyvyys ja etiikka tekoälyssä - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

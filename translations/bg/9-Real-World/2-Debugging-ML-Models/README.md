@@ -163,7 +163,7 @@
 
 - Разгледайте комплекта за отговорен AI: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Центърът за ресурси на Microsoft за RAI: [Отговорни AI ресурси – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Центърът за ресурси на Microsoft за RAI: [Отговорни AI ресурси – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Изследователската група на Microsoft FATE: [FATE: Справедливост, Отговорност, Прозрачност и Етика в AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

@@ -160,7 +160,7 @@ RAI仪表板的所有组件都是帮助您构建对社会更少伤害、更值�
 
 - 探索负责任 AI 工具包：[Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- 微软的 RAI 资源中心：[负责任 AI 资源 – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- 微软的 RAI 资源中心：[负责任 AI 资源 – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices)
 
 - 微软的 FATE 研究组：[FATE：AI 中的公平性、问责性、透明性和伦理 - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 

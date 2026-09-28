@@ -143,7 +143,7 @@ AI వ్యవస్థలను రూపకల్పన చేసి అమ�
 
 అదనంగా చదవండి: 
 
-- Microsoft యొక్క RAI రిసోర్స్ సెంటర్: [బాధ్యతగల AI వనరులు – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Microsoft యొక్క RAI రిసోర్స్ సెంటర్: [బాధ్యతగల AI వనరులు – Microsoft AI](https://www.microsoft.com/en-us/ai/tools-practices) 
 
 - Microsoft యొక్క FATE పరిశోధనా గుంపు: [FATE: ఎఫైర్‌నెస్, అకౌంటబిలిటీ, పారదర్శకత మరియు AIలో నైతికత - Microsoft రీసర్చ్](https://www.microsoft.com/research/theme/fate/) 
 
