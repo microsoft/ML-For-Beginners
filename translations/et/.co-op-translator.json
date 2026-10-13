@@ -24,8 +24,8 @@
     "language_code": "et"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "9a6b702d1437c0467e3c5c28d763dac2",
-    "translation_date": "2025-10-11T11:26:33+00:00",
+    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
+    "translation_date": "2026-07-14T00:20:25+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "et"
   },
@@ -54,8 +54,8 @@
     "language_code": "et"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
-    "translation_date": "2025-10-11T11:43:52+00:00",
+    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
+    "translation_date": "2026-07-14T00:18:55+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "et"
   },
@@ -72,8 +72,8 @@
     "language_code": "et"
   },
   "2-Regression/2-Data/README.md": {
-    "original_hash": "7c077988328ebfe33b24d07945f16eca",
-    "translation_date": "2025-10-11T11:47:54+00:00",
+    "original_hash": "a58b2c4d16c6b122643391745ac15af6",
+    "translation_date": "2026-07-14T00:19:41+00:00",
     "source_file": "2-Regression/2-Data/README.md",
     "language_code": "et"
   },
@@ -87,6 +87,12 @@
     "original_hash": "a39c15d63f3b2795ee2284a82b986b93",
     "translation_date": "2025-10-11T11:48:40+00:00",
     "source_file": "2-Regression/2-Data/solution/Julia/README.md",
+    "language_code": "et"
+  },
+  "2-Regression/2-Data/solution/notebook.ipynb": {
+    "original_hash": "96b95f8cf473481f2f371de8156f1571",
+    "translation_date": "2026-07-13T23:59:50+00:00",
+    "source_file": "2-Regression/2-Data/solution/notebook.ipynb",
     "language_code": "et"
   },
   "2-Regression/3-Linear/README.md": {
@@ -580,6 +586,19 @@
     "translation_date": "2025-10-11T11:13:28+00:00",
     "source_file": "TROUBLESHOOTING.md",
     "language_code": "et"
+  },
+  "__translation_failures__": {
+    "sketchnotes/LICENSE.md": {
+      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
+      "source_file": "sketchnotes/LICENSE.md",
+      "language_code": "et",
+      "failure_date": "2026-07-14T00:17:39+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    }
   },
   "docs/_sidebar.md": {
     "original_hash": "68dd06c685f6ce840e0acfa313352e7c",

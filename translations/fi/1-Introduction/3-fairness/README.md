@@ -1,125 +1,147 @@
-# Rakentamassa koneoppimisratkaisuja vastuullisen tekoälyn avulla
+# Koneoppimissovellusten rakentaminen vastuullisella tekoälyllä
+ 
+![Yhteenveto vastuullisesta tekoälystä koneoppimisessa sketchnotena](../../../../translated_images/fi/ml-fairness.ef296ebec6afc98a.webp)
+> Sketchnote tekijältä [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-![Yhteenveto vastuullisesta tekoälystä koneoppimisessa sketchnotessa](../../../../sketchnotes/ml-fairness.png)
-> Sketchnote: [Tomomi Imura](https://www.twitter.com/girlie_mac)
-
-## [Ennakkotesti](https://ff-quizzes.netlify.app/en/ml/)
-
+## [Ennakkokysely](https://ff-quizzes.netlify.app/en/ml/)
+ 
 ## Johdanto
 
-Tässä oppimateriaalissa alat tutkia, miten koneoppiminen vaikuttaa ja voi vaikuttaa jokapäiväiseen elämäämme. Jo nyt järjestelmät ja mallit osallistuvat päivittäisiin päätöksentekotehtäviin, kuten terveydenhuollon diagnooseihin, lainapäätöksiin tai petosten havaitsemiseen. On siis tärkeää, että nämä mallit toimivat luotettavasti ja tuottavat luottamusta herättäviä tuloksia. Kuten mikä tahansa ohjelmistosovellus, myös tekoälyjärjestelmät voivat epäonnistua tai tuottaa ei-toivottuja tuloksia. Siksi on olennaista ymmärtää ja selittää tekoälymallin käyttäytymistä.
+Tässä opetussuunnitelmassa alat tutkia, miten koneoppiminen voi vaikuttaa ja vaikuttaa jo arkeemme. Järjestelmät ja mallit ovat jo nyt mukana päivittäisissä päätöksentekotehtävissä, kuten terveydenhuollon diagnooseissa, lainojen hyväksynnöissä tai petosten havaitsemisessa. Tästä syystä on tärkeää, että nämä mallit toimivat hyvin ja tuottavat luotettavia tuloksia. Kuten mikä tahansa ohjelmistosovellus, tekoälyjärjestelmät voivat epäonnistua odotuksissa tai tuottaa ei-toivottuja tuloksia. Siksi on olennaista ymmärtää ja pystyä selittämään tekoälymallin käyttäytyminen.
 
-Kuvittele, mitä voi tapahtua, jos käyttämäsi data mallien rakentamiseen ei sisällä tiettyjä väestöryhmiä, kuten rotua, sukupuolta, poliittisia näkemyksiä tai uskontoa, tai jos se edustaa näitä ryhmiä epätasapainoisesti. Entä jos mallin tuloksia tulkitaan suosivan tiettyä väestöryhmää? Mitä seurauksia sillä on sovellukselle? Lisäksi, mitä tapahtuu, jos malli tuottaa haitallisia tuloksia ja vahingoittaa ihmisiä? Kuka on vastuussa tekoälyjärjestelmän käyttäytymisestä? Näitä kysymyksiä tutkimme tässä oppimateriaalissa.
+Kuvittele, mitä voi tapahtua, kun mallin rakentamisessa käytetyissä tiedoissa puuttuu tiettyjä väestöryhmiä, kuten rotu, sukupuoli, poliittinen näkemys, uskonto, tai aineisto edustaa tällaisia ryhmiä epäsuhteisesti. Entä kun mallin tuotos tulkitaan suosivan jotakin väestöryhmää? Mikä on tämän sovelluksen seuraus? Lisäksi, mitä tapahtuu, kun malli tuottaa kielteisen lopputuloksen ja vahingoittaa ihmisiä? Kuka on vastuussa tekoälyjärjestelmän käyttäytymisestä? Näitä kysymyksiä käsitellään tässä opetussuunnitelmassa.
 
-Tässä oppitunnissa:
+Tässä oppitunnissa opit:
 
-- Opit ymmärtämään oikeudenmukaisuuden merkityksen koneoppimisessa ja siihen liittyvät haitat.
-- Tutustut poikkeamien ja epätavallisten tilanteiden tutkimiseen luotettavuuden ja turvallisuuden varmistamiseksi.
-- Ymmärrät, miksi on tärkeää suunnitella kaikille osallistavia järjestelmiä.
-- Tutkit, miksi on olennaista suojella ihmisten ja datan yksityisyyttä ja turvallisuutta.
-- Näet, miksi on tärkeää käyttää "lasilaatikko"-lähestymistapaa tekoälymallien käyttäytymisen selittämiseksi.
-- Opit, miksi vastuu on keskeistä tekoälyjärjestelmien luottamuksen rakentamisessa.
+- Tietoisuuden lisääminen oikeudenmukaisuuden merkityksestä koneoppimisessa ja oikeudenmukaisuuteen liittyvistä vahingoista.
+- Tutustuminen poikkeuksiin ja epätavallisiin tilanteisiin laadunvarmistuksen ja turvallisuuden takaamiseksi.
+- Ymmärrys tarpeesta voimaannuttaa kaikki suunnittelemalla osallistavia järjestelmiä.
+- Tutkia kuinka tärkeää on suojella tiedon ja ihmisten yksityisyyttä ja turvallisuutta.
+- Näyttää lasilaatikkomenetelmän merkitys tekoälymallien käyttäytymisen selittämisessä.
+- Huomioida, kuinka vastuullisuus on välttämätöntä luottamuksen rakentamiseksi tekoälyjärjestelmiin.
 
 ## Esitiedot
 
-Esitietona suositellaan "Vastuullisen tekoälyn periaatteet" -oppimispolun suorittamista ja alla olevan videon katsomista aiheesta:
+Esitietona ota "Vastuullisen tekoälyn periaatteet" -oppimispolku ja katso alla oleva video aiheesta:
 
-Lisätietoja vastuullisesta tekoälystä löydät tästä [oppimispolusta](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Lue lisää Vastuullisesta tekoälystä seuraamalla tätä [Oppimispolkua](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
 [![Microsoftin lähestymistapa vastuulliseen tekoälyyn](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoftin lähestymistapa vastuulliseen tekoälyyn")
 
-> 🎥 Klikkaa yllä olevaa kuvaa: Microsoftin lähestymistapa vastuulliseen tekoälyyn
+> 🎥 Klikkaa yllä olevaa kuvaa nähdäksesi videon: Microsoftin lähestymistapa vastuulliseen tekoälyyn
 
 ## Oikeudenmukaisuus
 
-Tekoälyjärjestelmien tulisi kohdella kaikkia oikeudenmukaisesti ja välttää vaikuttamasta eri ryhmiin eri tavoin. Esimerkiksi, kun tekoälyjärjestelmät antavat suosituksia lääketieteellisestä hoidosta, lainahakemuksista tai työllistymisestä, niiden tulisi antaa samat suositukset kaikille, joilla on samanlaiset oireet, taloudelliset olosuhteet tai ammatilliset pätevyydet. Meillä kaikilla ihmisillä on perittyjä ennakkoluuloja, jotka vaikuttavat päätöksiimme ja toimintaamme. Nämä ennakkoluulot voivat näkyä datassa, jota käytämme tekoälyjärjestelmien kouluttamiseen. Tällainen manipulointi voi joskus tapahtua tahattomasti. On usein vaikeaa tietoisesti tietää, milloin tuot datassa esiin ennakkoluuloja.
+Tekoälyjärjestelmien tulisi kohdella kaikkia oikeudenmukaisesti ja välttää vaikuttamasta samanlaisiin ihmisryhmiin eri tavoin. Esimerkiksi kun tekoälyjärjestelmät antavat ohjeita lääketieteellisestä hoidosta, lainahakemuksista tai työllistymisestä, niiden tulisi antaa samanlaiset suositukset kaikille, joilla on samankaltaiset oireet, taloudellinen tilanne tai ammatilliset pätevyydet. Me ihmisinä kannamme mukanamme perittyjä ennakkoluuloja, jotka vaikuttavat päätöksiimme ja tekoihimme. Nämä ennakkoluulot voivat näkyä myös data-aineistoissa, joita käytämme tekoälyjärjestelmien kouluttamiseen. Tällainen manipulaatio voi joskus tapahtua tahattomasti. On usein vaikeaa tiedostaa, milloin tuomme vinoumaa dataan.
 
-**"Epäoikeudenmukaisuus"** kattaa negatiiviset vaikutukset tai "haitat" tietylle ihmisryhmälle, kuten rodun, sukupuolen, iän tai vammaisuuden perusteella. Oikeudenmukaisuuteen liittyvät haitat voidaan luokitella seuraavasti:
+**”Epäoikeudenmukaisuus”** sisältää negatiiviset vaikutukset tai ”vahingot” tietylle ihmisryhmälle, kuten rotu, sukupuoli, ikä tai vammaisuus. Merkittävät oikeudenmukaisuuteen liittyvät haitat voidaan luokitella seuraavasti:
 
-- **Allokaatio**, jos esimerkiksi sukupuolta tai etnisyyttä suositaan toisen kustannuksella.
-- **Palvelun laatu**. Jos data koulutetaan tiettyyn skenaarioon, mutta todellisuus on paljon monimutkaisempi, se johtaa huonosti toimivaan palveluun. Esimerkiksi käsisaippua-annostelija, joka ei tunnista tumman ihon sävyjä. [Viite](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Halventaminen**. Epäreilu kritiikki tai leimaaminen. Esimerkiksi kuvantunnistusteknologia, joka virheellisesti luokitteli tumman ihon sävyisiä ihmisiä gorilloiksi.
-- **Yli- tai aliedustus**. Tietyn ryhmän näkymättömyys tietyssä ammatissa, ja palvelut tai toiminnot, jotka ylläpitävät tätä, aiheuttavat haittaa.
-- **Stereotypiointi**. Tietyn ryhmän yhdistäminen ennalta määrättyihin ominaisuuksiin. Esimerkiksi kielikäännösjärjestelmä englannin ja turkin välillä voi sisältää epätarkkuuksia sukupuoleen liittyvien stereotypioiden vuoksi.
+- **Jakautuminen**, jos esimerkiksi sukupuolta tai etnistä ryhmää suositaan toisen yli.
+- **Palvelun laatu**. Jos data on koulutettu vain yhteen tiettyyn tilanteeseen, mutta todellisuus on paljon monimutkaisempi, tuloksena on huonosti toimiva palvelu. Esimerkiksi käsisaippua-annostelija, joka ei tunnistanut tummaihoisia ihmisiä. [Lähde](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Halventaminen**. Epäreilu kriittisyys ja leimaaminen jotakin tai jotakuta kohtaan. Esimerkiksi kuvantunnistusteknologia väärin luokitteli tummaihoisia ihmisiä gorilloiksi.
+- **Liiallinen tai puutteellinen edustavuus**. Ajatus siitä, että tietty ryhmä ei ole näkyvä tietyssä ammatissa, ja kaikki palvelut tai toiminnot, jotka ylläpitävät tätä, vahingoittavat.
+- **Stereotypioiden luominen**. Tietyn ryhmän yhdistäminen ennalta annettuihin ominaisuuksiin. Esimerkiksi englannin ja turkin kielen käännösjärjestelmässä voi esiintyä epätarkkuuksia, koska sanoilla on sukupuoleen liittyviä stereotypioita.
 
-![käännös turkiksi](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
+![käännös turkiksi](../../../../translated_images/fi/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > käännös turkiksi
 
-![käännös takaisin englanniksi](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
+![käännös takaisin englanniksi](../../../../translated_images/fi/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > käännös takaisin englanniksi
 
-Kun suunnittelemme ja testaamme tekoälyjärjestelmiä, meidän on varmistettava, että tekoäly on oikeudenmukainen eikä ohjelmoitu tekemään puolueellisia tai syrjiviä päätöksiä, joita ihmisetkään eivät saa tehdä. Oikeudenmukaisuuden takaaminen tekoälyssä ja koneoppimisessa on edelleen monimutkainen sosio-tekninen haaste.
+Kun suunnittelemme ja testaamme tekoälyjärjestelmiä, meidän tulee varmistaa, että tekoäly on oikeudenmukaista eikä ohjelmoitu tekemään vinoutuneita tai syrjiviä päätöksiä, joista ihmisiltäkin on kiellettyä. Vastuullisuuden takaaminen tekoälyssä ja koneoppimisessa on edelleen monimutkainen yhteiskunnallinen haaste.
 
 ### Luotettavuus ja turvallisuus
 
-Luottamuksen rakentamiseksi tekoälyjärjestelmien on oltava luotettavia, turvallisia ja johdonmukaisia sekä normaaleissa että odottamattomissa olosuhteissa. On tärkeää tietää, miten tekoälyjärjestelmät käyttäytyvät erilaisissa tilanteissa, erityisesti poikkeustilanteissa. Tekoälyratkaisuja rakennettaessa on keskityttävä huomattavasti siihen, miten käsitellä monenlaisia olosuhteita, joita tekoälyratkaisut voivat kohdata. Esimerkiksi itseohjautuvan auton on asetettava ihmisten turvallisuus etusijalle. Tämän vuoksi auton tekoälyn on otettava huomioon kaikki mahdolliset skenaariot, kuten yö, ukkosmyrskyt tai lumimyrskyt, kadulle juoksevat lapset, lemmikit, tietyömaat jne. Se, kuinka hyvin tekoälyjärjestelmä pystyy käsittelemään laajan valikoiman olosuhteita luotettavasti ja turvallisesti, heijastaa sitä, kuinka hyvin datatieteilijä tai tekoälykehittäjä on ennakoinut tilanteita suunnittelussa tai testauksessa.
+Luottamuksen rakentamiseksi tekoälyjärjestelmien tulee olla luotettavia, turvallisia ja johdonmukaisia normaaleissa ja odottamattomissa tilanteissa. On tärkeää tietää, miten tekoäly toimii erilaisissa tilanteissa, erityisesti poikkeustapauksissa. Kun rakennetaan tekoälyratkaisuja, on keskeistä keskittyä siihen, miten järjestelmä käsittelee laajaa kirjoa tilanteita, joita se kohtaisi. Esimerkiksi itseajavan auton tulee asettaa ihmisten turvallisuus etusijalle. Siksi auton tekoälyn täytyy ottaa huomioon kaikki mahdolliset tilanteet, kuten yö, ukkosmyrskyt, lumimyrskyt, lapset juoksemassa kadun poikki, lemmikit, tienrakennustyöt jne. Kuinka hyvin tekoäly pystyy luotettavasti ja turvallisesti käsittelemään monenlaista tilannetta heijastaa,data scientistin tai tekoälyn kehittäjän ennakointikykyä suunnittelun ja testauksen aikana.
 
 > [🎥 Klikkaa tästä videoon: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
-### Osallistavuus
+### Osallisuus
 
-Tekoälyjärjestelmät tulisi suunnitella siten, että ne osallistavat ja voimaannuttavat kaikkia. Tekoälyjärjestelmiä suunnitellessaan ja toteuttaessaan datatieteilijät ja tekoälykehittäjät tunnistavat ja ratkaisevat järjestelmän mahdolliset esteet, jotka voisivat tahattomasti sulkea ihmisiä ulkopuolelle. Esimerkiksi maailmassa on miljardi vammaista ihmistä. Tekoälyn kehityksen myötä he voivat helpommin saada pääsyn laajaan valikoimaan tietoa ja mahdollisuuksia jokapäiväisessä elämässään. Esteiden poistaminen luo mahdollisuuksia innovoida ja kehittää tekoälytuotteita, jotka tarjoavat parempia kokemuksia kaikille.
+Tekoälyjärjestelmät tulee suunnitella siten, että ne aktivoivat ja voimaannuttavat kaikkia. Tekoälytieteilijät ja kehittäjät tunnistavat ja poistavat järjestelmän potentiaaliset esteet, jotka voivat tahattomasti syrjiä ihmisiä. Esimerkiksi maailmassa on miljardi ihmistä, joilla on vamma. Tekoälyn kehittyessä he voivat helpommin saada pääsyn monenlaiseen tietoon ja mahdollisuuksiin arjessaan. Esteiden poistaminen luo mahdollisuuksia innovoida ja kehittää tekoälytuotteita, jotka tarjoavat parempia käyttökokemuksia ja hyödyttävät kaikkia.
 
-> [🎥 Klikkaa tästä videoon: osallistavuus tekoälyssä](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Klikkaa tästä videoon: osallisuus tekoälyssä](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
 ### Turvallisuus ja yksityisyys
 
-Tekoälyjärjestelmien tulisi olla turvallisia ja kunnioittaa ihmisten yksityisyyttä. Ihmiset luottavat vähemmän järjestelmiin, jotka vaarantavat heidän yksityisyytensä, tietonsa tai elämänsä. Koneoppimismalleja koulutettaessa luotamme dataan parhaiden tulosten saavuttamiseksi. Tällöin datan alkuperä ja eheys on otettava huomioon. Esimerkiksi, onko data käyttäjän toimittamaa vai julkisesti saatavilla? Lisäksi datan kanssa työskenneltäessä on tärkeää kehittää tekoälyjärjestelmiä, jotka voivat suojata luottamuksellisia tietoja ja vastustaa hyökkäyksiä. Tekoälyn yleistyessä yksityisyyden suojaaminen ja tärkeiden henkilö- ja yritystietojen turvaaminen on yhä kriittisempää ja monimutkaisempaa. Yksityisyyteen ja tietoturvaan liittyvät kysymykset vaativat erityistä huomiota tekoälyssä, koska datan saatavuus on olennaista tekoälyjärjestelmien tarkkojen ja perusteltujen ennusteiden ja päätösten tekemiseksi.
+Tekoälyjärjestelmien tulee olla turvallisia ja kunnioittaa ihmisten yksityisyyttä. Ihmiset luottavat vähemmän järjestelmiin, jotka asettavat heidän yksityisyytensä, tietonsa tai henkensä vaaraan. Koneoppimismallien kouluttamisessa luotamme dataan parhaiden tulosten tuottamiseksi. Tässä yhteydessä datan alkuperä ja eheys tulee ottaa huomioon. Esimerkiksi, onko data käyttäjän lähettämää vai julkisesti saatavilla? Työskennellessä datan kanssa on keskeistä kehittää tekoälyjärjestelmiä, jotka voivat suojella luottamuksellisia tietoja ja kestää hyökkäyksiä. Kun tekoälyn käyttö kasvaa, yksityisyyden suojaaminen ja tärkeiden henkilö- ja liiketietojen turvaaminen tulee yhä tärkeämmäksi ja monimutkaisemmaksi. Yksityisyys- ja tietoturva-asioihin on kiinnitettävä erityistä huomiota tekoälyn kohdalla, koska tieto on välttämätöntä, jotta tekoäly pystyy tekemään tarkkoja ja tietoon perustuvia ennusteita ja päätöksiä ihmisistä.
 
 > [🎥 Klikkaa tästä videoon: turvallisuus tekoälyssä](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Teollisuutena olemme saavuttaneet merkittäviä edistysaskeleita yksityisyydessä ja turvallisuudessa, erityisesti GDPR:n (General Data Protection Regulation) kaltaisten säädösten ansiosta.
-- Tekoälyjärjestelmien kohdalla meidän on kuitenkin tunnustettava jännite henkilökohtaisemman datan tarpeen ja yksityisyyden välillä.
-- Kuten internetin myötä yhdistettyjen tietokoneiden syntyessä, myös tekoälyyn liittyvien turvallisuusongelmien määrä on kasvanut merkittävästi.
-- Samalla olemme nähneet tekoälyn käytön turvallisuuden parantamisessa. Esimerkiksi useimmat modernit virustorjuntaohjelmat perustuvat tekoälyyn.
-- Meidän on varmistettava, että datatieteen prosessimme sulautuvat harmonisesti uusimpiin yksityisyyden ja turvallisuuden käytäntöihin.
+- Toimialana olemme tehneet merkittäviä edistysaskelia yksityisyyden ja turvallisuuden saralla, mihin osaltaan ovat vaikuttaneet voimakkaasti säädökset kuten GDPR (Yleinen tietosuoja-asetus).
+- Kuitenkin tekoälyjärjestelmien kohdalla meidän tulee hyväksyä jännite tarpeen välillä saada enemmän henkilökohtaista dataa tehdä järjestelmistä henkilökohtaisempia ja tehokkaampia – ja yksityisyyden välillä.
+- Samoin kuin internetin ja yhdistettyjen tietokoneiden synnyn aikaan, myös tekoälyyn liittyvien tietoturvaongelmien määrä on kasvanut huomattavasti.
+- Samalla tekoälyä on käytetty turvallisuuden parantamiseen. Esimerkiksi useimmat nykyaikaiset virustorjuntaohjelmat käyttävät tekoälyä heuristiikkana.
+- Meidän tulee varmistaa, että datatieteelliset prosessimme ovat yhteensopivia viimeisimpien yksityisyys- ja turvallisuuskäytäntöjen kanssa.
+
 
 ### Läpinäkyvyys
-
-Tekoälyjärjestelmien tulisi olla ymmärrettäviä. Läpinäkyvyyden keskeinen osa on tekoälyjärjestelmien ja niiden komponenttien käyttäytymisen selittäminen. Tekoälyjärjestelmien ymmärtämisen parantaminen edellyttää, että sidosryhmät ymmärtävät, miten ja miksi ne toimivat, jotta he voivat tunnistaa mahdolliset suorituskykyongelmat, turvallisuus- ja yksityisyyshuolenaiheet, puolueellisuudet, poissulkevat käytännöt tai ei-toivotut tulokset. Lisäksi uskomme, että niiden, jotka käyttävät tekoälyjärjestelmiä, tulisi olla rehellisiä ja avoimia siitä, milloin, miksi ja miten he päättävät ottaa ne käyttöön. Samoin heidän tulisi kertoa järjestelmien rajoituksista. Esimerkiksi, jos pankki käyttää tekoälyjärjestelmää tukemaan kuluttajalainapäätöksiä, on tärkeää tarkastella tuloksia ja ymmärtää, mitkä tiedot vaikuttavat järjestelmän suosituksiin. Hallitukset ovat alkaneet säännellä tekoälyä eri toimialoilla, joten datatieteilijöiden ja organisaatioiden on selitettävä, täyttääkö tekoälyjärjestelmä sääntelyvaatimukset, erityisesti silloin, kun tulos on ei-toivottu.
+Tekoälyjärjestelmien tulee olla ymmärrettäviä. Olennainen osa läpinäkyvyyttä on tekoälyjärjestelmien ja niiden osien käyttäytymisen selittäminen. Tekoälyjärjestelmien ymmärtämisen parantaminen edellyttää, että sidosryhmät ymmärtävät, miten ja miksi ne toimivat, jotta he voivat tunnistaa mahdolliset suorituskykyongelmat, turvallisuus- ja yksityisyysongelmat, vinoumat, syrjivät käytännöt tai ei-toivotut lopputulokset. Uskomme myös, että tekoälyjärjestelmiä käyttävien tulee olla rehellisiä ja avoimia siitä, milloin, miksi ja miten he ottavat ne käyttöön. Samoin järjestelmien rajoituksista, joita he käyttävät. Esimerkiksi, jos pankki käyttää tekoälyjärjestelmää tukemaan kuluttajalainapäätöksiä, on tärkeää tarkastella tuloksia ja ymmärtää, mikä data vaikuttaa järjestelmän suosituksiin. Hallitukset alkavat säädellä tekoälyä eri aloilla, joten datatieteilijöiden ja organisaatioiden täytyy pystyä selittämään, täyttääkö tekoälyjärjestelmä säädösvaatimukset, etenkin kun lopputulos on epätoivottu.
 
 > [🎥 Klikkaa tästä videoon: läpinäkyvyys tekoälyssä](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Koska tekoälyjärjestelmät ovat niin monimutkaisia, niiden toiminnan ymmärtäminen ja tulosten tulkitseminen on vaikeaa.
-- Tämä ymmärryksen puute vaikuttaa siihen, miten näitä järjestelmiä hallitaan, otetaan käyttöön ja dokumentoidaan.
-- Tämä ymmärryksen puute vaikuttaa vielä enemmän päätöksiin, joita tehdään näiden järjestelmien tuottamien tulosten perusteella.
+- Koska tekoälyjärjestelmät ovat niin monimutkaisia, on vaikea ymmärtää, miten ne toimivat, ja tulkita tuloksia.
+- Tämä ymmärryksen puute vaikuttaa siihen, miten järjestelmiä hallinnoidaan, otetaan käyttöön ja dokumentoidaan.
+- Tämä ymmärryksen puute vaikuttaa vielä merkittävimmin päätöksiin, joita tehdään järjestelmien tuottamien tulosten perusteella.
 
-### Vastuu
+### Vastuullisuus
+ 
+Ihmisten, jotka suunnittelevat ja ottavat käyttöön tekoälyjärjestelmiä, on oltava vastuussa niiden toiminnasta. Vastuullisuuden tarve korostuu erityisesti arkaluontoisten teknologioiden, kuten kasvojentunnistuksen, kohdalla. Viime aikoina on lisääntynyt kysyntä kasvojentunnistusteknologialle, erityisesti lainvalvontajärjestöjen keskuudessa, jotka näkevät sen potentiaalin esimerkiksi kadonneiden lasten löytämisessä. Kuitenkin näitä teknologioita voisi mahdollisesti käyttää hallitus asettamaan kansalaistensa perusoikeuksia vaaraan, esimerkiksi sallimalla jatkuvan valvonnan tiettyjä henkilöitä kohtaan. Näin ollen datatieteilijöiden ja organisaatioiden on oltava vastuussa siitä, miten heidän tekoälyjärjestelmänsä vaikuttaa yksilöihin tai yhteiskuntaan.
 
-Tekoälyjärjestelmiä suunnittelevien ja käyttävien ihmisten on oltava vastuussa siitä, miten heidän järjestelmänsä toimivat. Vastuun tarve on erityisen tärkeä arkaluonteisten teknologioiden, kuten kasvojentunnistuksen, kohdalla. Viime aikoina kasvojentunnistusteknologian kysyntä on kasvanut, erityisesti lainvalvontaviranomaisten keskuudessa, jotka näkevät teknologian potentiaalin esimerkiksi kadonneiden lasten löytämisessä. Näitä teknologioita voitaisiin kuitenkin käyttää hallitusten toimesta vaarantamaan kansalaisten perusoikeuksia, esimerkiksi mahdollistamalla jatkuva tiettyjen henkilöiden valvonta. Siksi datatieteilijöiden ja organisaatioiden on oltava vastuussa siitä, miten heidän tekoälyjärjestelmänsä vaikuttavat yksilöihin tai yhteiskuntaan.
+[![Huippuluokan tekoälytutkija varoittaa massavalvonnasta kasvojentunnistuksen avulla](../../../../translated_images/fi/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoftin lähestymistapa vastuulliseen tekoälyyn")
 
-[![Johtava tekoälytutkija varoittaa kasvojentunnistuksen massavalvonnasta](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoftin lähestymistapa vastuulliseen tekoälyyn")
+> 🎥 Klikkaa yllä olevaa kuvaa videoon: Varotoimet massavalvontaa vastaan kasvojentunnistuksen avulla
 
-> 🎥 Klikkaa yllä olevaa kuvaa: Varoituksia kasvojentunnistuksen massavalvonnasta
-
-Lopulta yksi sukupolvemme suurimmista kysymyksistä, ensimmäisenä sukupolvena, joka tuo tekoälyn yhteiskuntaan, on se, miten varmistamme, että tietokoneet pysyvät vastuussa ihmisille ja miten varmistamme, että tietokoneita suunnittelevat ihmiset pysyvät vastuussa kaikille muille.
+Lopulta yksi suurimmista sukupolveamme koskevista kysymyksistä, kun olemme ensimmäinen tekoälyn yhteiskuntaan tuova sukupolvi, on miten varmistamme, että tietokoneet pysyvät vastuullisina ihmisille ja että tietokoneita suunnittelevat ihmiset pysyvät vastuullisina kaikille muille.
 
 ## Vaikutusten arviointi
 
-Ennen koneoppimismallin kouluttamista on tärkeää suorittaa vaikutusten arviointi ymmärtääkseen tekoälyjärjestelmän tarkoitus, sen aiottu käyttö, missä se otetaan käyttöön ja ketkä ovat vuorovaikutuksessa järjestelmän kanssa. Nämä ovat hyödyllisiä arvioijille tai testaajille, jotta he tietävät, mitkä tekijät on otettava huomioon mahdollisia riskejä ja odotettuja seurauksia tunnistettaessa.
+Ennen koneoppimismallin kouluttamista on tärkeää tehdä vaikutusten arviointi ymmärtääkseen tekoälyjärjestelmän tarkoituksen; millainen sen suunniteltu käyttötarkoitus on; missä sitä käytetään ja keiden kanssa järjestelmä toimii. Nämä tiedot auttavat arvioijia tai testaajia ottamaan huomioon tekijät, kun he tunnistavat mahdollisia riskejä ja odotettuja seurauksia.
 
-Seuraavat ovat keskeisiä alueita vaikutusten arvioinnissa:
+Alla on painopistealueita vaikutusten arvioinnissa:
 
-- **Haitalliset vaikutukset yksilöihin**. On tärkeää olla tietoinen kaikista rajoituksista tai vaatimuksista, tukemattomasta käytöstä tai tunnetuista rajoituksista, jotka voivat haitata järjestelmän suorituskykyä, jotta varmistetaan, ettei järjestelmää käytetä tavalla, joka voisi aiheuttaa haittaa yksilöille.
-- **Datan vaatimukset**. Ymmärtämällä, miten ja missä järjestelmä käyttää dataa, arvioijat voivat tutkia mahdollisia datavaatimuksia, jotka on otettava huomioon (esim. GDPR- tai HIPPA-säädökset). Lisäksi on tarkasteltava, onko datan lähde tai määrä riittävä koulutukseen.
-- **Vaikutusten yhteenveto**. Kerää lista mahdollisista haitoista, joita järjestelmän käytöstä voi aiheutua. Koko koneoppimisen elinkaaren ajan tarkista, onko tunnistettuja ongelmia lievennetty tai ratkaistu.
-- **Sovellettavat tavoitteet** kuudelle ydinperiaatteelle. Arvioi, täyttyvätkö kunkin periaatteen tavoitteet ja onko niissä puutteita.
-
-## Vastuullisen tekoälyn debuggaus
-
-Kuten ohjelmistosovelluksen debuggaus, myös tekoälyjärjestelmän debuggaus on välttämätön prosessi järjestelmän ongelmien tunnistamiseksi ja ratkaisemiseksi. On monia tekijöitä, jotka voivat vaikuttaa siihen, että malli ei toimi odotetusti tai vastuullisesti. Useimmat perinteiset mallin suorituskykymittarit ovat määrällisiä yhteenvetoja mallin suorituskyvystä, eivätkä ne riitä analysoimaan, miten malli rikkoo vastuullisen tekoälyn periaatteita. Lisäksi koneoppimismalli on "musta laatikko", mikä vaikeuttaa sen tulosten ymmärtämistä tai selittämistä, kun se tekee virheen. Myöhemmin tässä kurssissa opimme käyttämään vastuullisen tekoälyn hallintapaneelia tekoälyjärjestelmien debuggaamiseen. Hallintapaneeli tarjoaa kokonaisvaltaisen työkalun datatieteilijöille ja tekoälykehittäjille seuraaviin tarkoituksiin:
-
-- **Virheanalyysi**. Mallin virhejakautuman tunnistaminen, joka voi vaikuttaa järjestelmän oikeudenmukaisuuteen tai luotett
-Katso tämä työpaja, joka syventyy aiheisiin: 
-
-- Vastuullisen tekoälyn tavoittelu: Periaatteiden tuominen käytäntöön, esittäjät Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
-
-[![Responsible AI Toolbox: Avoimen lähdekoodin kehys vastuullisen tekoälyn rakentamiseen](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Avoimen lähdekoodin kehys vastuullisen tekoälyn rakentamiseen")
+* **Haitalliset vaikutukset yksilöihin**. On tärkeää olla tietoinen rajoituksista tai vaatimuksista, tuettomista käyttötarkoituksista tai tunnetuista rajoituksista, jotka häiritsevät järjestelmän suorituskykyä, jotta vältetään haitalliset vaikutukset yksilöihin.
+* **Datan vaatimukset**. Ymmärtämällä, miten ja missä järjestelmä käyttää dataa, arvioijat voivat tutkia mahdollisia datavaatimuksia (esim. GDPR- tai HIPAA-säädökset). Lisäksi on tarkasteltava, onko datan lähde tai määrä riittävä koulutukseen.
+* **Vaikutusten yhteenveto**. Kerää lista mahdollisista haittavaikutuksista, joita järjestelmän käyttö voisi aiheuttaa. Koneoppimiselinkaaren aikana arvioi, onko tunnistetut ongelmat lievennetty tai korjattu.
+* **Sovellettavat tavoitteet** kullekin kuudesta perusperiaatteesta. Arvioi, täyttyvätkö periaatteiden tavoitteet ja onko puutteita.
 
 
-> 🎥 Klikkaa yllä olevaa kuvaa nähdäksesi videon: RAI Toolbox: Avoimen lähdekoodin kehys vastuullisen tekoälyn rakentamiseen, esittäjät Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
+## Virheiden korjaus vastuullisella tekoälyllä
 
-Lue myös: 
+Samoin kuin ohjelmistosovelluksen virheenkorjaus, myös tekoälyjärjestelmän virheenkorjaus on välttämätön prosessi järjestelmän ongelmien tunnistamiseksi ja ratkaisemiseksi. On monia tekijöitä, jotka voivat vaikuttaa siihen, että malli ei toimi odotetusti tai vastuullisesti. Useimmat perinteiset mallin suorituskykymittarit ovat mallin suorituskyvyn numeerisia yhteenlaskuja, mutta ne eivät riitä analysoimaan, miten malli rikkoo vastuullisen tekoälyn periaatteita. Lisäksi koneoppimismalli on musta laatikko, mikä tekee vaikeaksi ymmärtää, mikä ohjaa sen tuloksia tai selittää virheitä. Myöhemmin tässä kurssissa opimme käyttämään vastuullisen tekoälyn hallintapaneelia auttamaan tekoälyjärjestelmien virheenkorjauksessa. Hallintapaneeli tarjoaa kokonaisvaltaisen työkalun datatieteilijöille ja tekoälyn kehittäjille seuraaviin tehtäviin:
+
+* **Virheanalyysi**. Mallin virheiden jakautumisen tunnistaminen, mikä voi vaikuttaa järjestelmän oikeudenmukaisuuteen tai luotettavuuteen.
+* **Mallin yleiskatsaus**. Mallin suorituskyvyn erojen tunnistaminen eri datajoukoissa.
+* **Datan analyysi**. Datan jakautumisen ymmärtäminen ja mahdollisten vinoumien tunnistaminen, jotka voivat johtaa oikeudenmukaisuuden, osallisuuden ja luotettavuuden ongelmiin.
+* **Mallin tulkittavuus**. Ymmärtää, mikä vaikuttaa tai ohjaa mallin ennusteita. Tämä auttaa selittämään mallin käyttäytymistä, mikä on tärkeää läpinäkyvyyden ja vastuullisuuden kannalta.
+
+
+## 🚀 Haaste
+ 
+Estääksemme vahinkojen syntymisen, meidän tulisi:
+
+- varmistaa, että järjestelmien parissa työskentelee monipuolisesti eri taustoista ja näkökulmista tulevia ihmisiä
+- investoida aineistoihin, jotka heijastavat yhteiskuntamme monimuotoisuutta
+- kehittää parempia menetelmiä koneoppimisen elinkaaren aikana vastuullisen tekoälyn tunnistamiseen ja korjaamiseen
+
+Mieti tosielämän tilanteita, joissa mallin epäluotettavuus tulee ilmi mallin rakentamisessa ja käytössä. Mitä muuta meidän pitäisi ottaa huomioon?
+
+## [Jälkikysely](https://ff-quizzes.netlify.app/en/ml/)
+
+## Kertaus & Itsenäinen opiskelu
+ 
+
+Tässä oppitunnissa olet oppinut joitakin koneoppimisen oikeudenmukaisuuden ja epäoikeudenmukaisuuden käsitteiden perusteita.  
+ 
+Katso tämä työpaja saadaksesi syvällisempää tietoa aiheista: 
+
+- Kohti vastuullista tekoälyä: Periaatteiden vieminen käytäntöön, esittäjinä Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
+
+[![Vastuullisen tekoälyn työkalupakki: Avoimen lähdekoodin kehys vastuullisen tekoälyn rakentamiseen](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
+
+> 🎥 Klikkaa yllä olevaa kuvaa videoon: RAI Toolbox: Avoimen lähdekoodin kehys vastuullisen tekoälyn rakentamiseen, esittäjinä Besmira Nushi, Mehrnoosh Sameki ja Amit Sharma
+
+Tutustu myös: 
 
 - Microsoftin RAI-resurssikeskus: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
@@ -127,7 +149,7 @@ Lue myös:
 
 RAI Toolbox: 
 
-- [Responsible AI Toolbox GitHub -repository](https://github.com/microsoft/responsible-ai-toolbox)
+- [Responsible AI Toolboxin GitHub-repositorio](https://github.com/microsoft/responsible-ai-toolbox)
 
 Lue Azure Machine Learningin työkaluista, jotka varmistavat oikeudenmukaisuuden:
 
@@ -139,5 +161,7 @@ Lue Azure Machine Learningin työkaluista, jotka varmistavat oikeudenmukaisuuden
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

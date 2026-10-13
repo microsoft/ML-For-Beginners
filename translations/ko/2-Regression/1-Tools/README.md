@@ -1,120 +1,121 @@
-# Python과 Scikit-learn으로 회귀 모델 시작하기
+# 회귀 모델을 위한 Python과 Scikit-learn 시작하기
 
-![스케치노트로 요약된 회귀](../../../../sketchnotes/ml-regression.png)
+![스케치노트에 정리된 회귀 요약](../../../../translated_images/ko/ml-regression.4e4f70e3b3ed446e.webp)
 
-> 스케치노트: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> 스케치노트 작성자 [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [강의 전 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
+## [수업 전 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [이 강의는 R에서도 제공됩니다!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [이 수업은 R로도 제공됩니다!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## 소개
 
-이 네 가지 강의에서는 회귀 모델을 구축하는 방법을 배웁니다. 회귀 모델이 무엇을 위한 것인지 곧 논의할 것입니다. 하지만 그 전에, 과정을 시작하기 위해 적절한 도구가 준비되어 있는지 확인하세요!
+이 네 개의 수업에서 회귀 모델을 어떻게 구축하는지 배우게 될 것입니다. 이것들이 무엇을 위한 것인지 곧 설명하겠습니다. 하지만 무엇을 하기에 앞서, 프로세스를 시작하기 위한 올바른 도구들이 갖추어져 있는지 확인하십시오!
 
-이 강의에서 배우게 될 내용:
+이 수업에서는 다음을 배우게 됩니다:
 
-- 로컬 머신 러닝 작업을 위한 컴퓨터 설정
-- Jupyter 노트북 사용법
-- Scikit-learn 설치 및 사용법
-- 실습을 통해 선형 회귀 탐구
+- 컴퓨터를 로컬 머신러닝 작업을 위해 구성하는 방법.
+- Jupyter 노트북 작업하기.
+- 설치를 포함한 Scikit-learn 사용법.
+- 실습을 통한 선형 회귀 탐색.
 
-## 설치 및 설정
+## 설치 및 구성
 
-[![초보자를 위한 머신 러닝 - 머신 러닝 모델 구축을 위한 도구 설정](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "초보자를 위한 머신 러닝 - 머신 러닝 모델 구축을 위한 도구 설정")
+[![초보자를 위한 ML - 머신러닝 모델 구축 준비를 위한 도구 설정](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "초보자를 위한 ML - 머신러닝 모델 구축 준비를 위한 도구 설정")
 
-> 🎥 위 이미지를 클릭하면 머신 러닝을 위한 컴퓨터 설정 과정을 다룬 짧은 영상을 볼 수 있습니다.
+> 🎥 위 이미지를 클릭하면 컴퓨터를 ML용으로 구성하는 과정을 담은 짧은 영상이 나옵니다.
 
-1. **Python 설치**. [Python](https://www.python.org/downloads/)이 컴퓨터에 설치되어 있는지 확인하세요. Python은 데이터 과학 및 머신 러닝 작업에 많이 사용됩니다. 대부분의 컴퓨터 시스템에는 이미 Python이 설치되어 있습니다. 일부 사용자에게는 설정을 쉽게 해주는 [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott)도 유용할 수 있습니다.
+1. **Python 설치**. 컴퓨터에 [Python](https://www.python.org/downloads/)이 설치되어 있는지 확인하세요. 데이터 과학과 머신러닝 작업에 많이 사용됩니다. 대부분의 컴퓨터 시스템에는 이미 Python이 설치되어 있습니다. 일부 사용자들을 위해 설치를 쉽게 해주는 유용한 [Python 코딩 팩](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott)도 있습니다.
 
-   하지만 Python의 일부 사용 사례는 특정 버전을 요구할 수 있습니다. 따라서 [가상 환경](https://docs.python.org/3/library/venv.html)에서 작업하는 것이 유용합니다.
+   하지만 Python 사용 용도에 따라 소프트웨어 버전이 다르게 요구될 수 있으므로, [가상 환경](https://docs.python.org/3/library/venv.html)에서 작업하는 것이 유용합니다.
 
-2. **Visual Studio Code 설치**. 컴퓨터에 Visual Studio Code가 설치되어 있는지 확인하세요. [Visual Studio Code 설치](https://code.visualstudio.com/)에 대한 지침을 따라 기본 설치를 완료하세요. 이 강의에서는 Visual Studio Code에서 Python을 사용할 예정이므로, [Visual Studio Code를 Python 개발에 맞게 설정](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott)하는 방법을 익혀두는 것이 좋습니다.
+2. **Visual Studio Code 설치**. 컴퓨터에 Visual Studio Code가 설치되어 있는지 확인하세요. 기본 설치를 위한 [Visual Studio Code 설치법](https://code.visualstudio.com/)을 따르세요. 이번 과정에서는 Visual Studio Code에서 Python을 사용할 것이므로, [Visual Studio Code에서 Python 개발 설정법](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott)을 익히는 것도 좋습니다.
 
-   > Python에 익숙해지려면 이 [Learn 모듈 모음](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)을 살펴보세요.
+   > 이 [학습 모듈 모음](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)을 통해 Python에 익숙해지세요.
    >
-   > [![Visual Studio Code로 Python 설정](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Visual Studio Code로 Python 설정")
+   > [![VS Code에서 Python 설정하기](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "VS Code에서 Python 설정하기")
    >
-   > 🎥 위 이미지를 클릭하면 VS Code에서 Python을 사용하는 방법에 대한 영상을 볼 수 있습니다.
+   > 🎥 위 이미지를 클릭하면 VS Code 내에서 Python을 사용하는 영상이 나옵니다.
 
-3. **Scikit-learn 설치**. [이 지침](https://scikit-learn.org/stable/install.html)을 따라 Scikit-learn을 설치하세요. Python 3을 사용해야 하므로 가상 환경을 사용하는 것이 권장됩니다. M1 Mac에 이 라이브러리를 설치하는 경우, 위 링크에 특별 지침이 나와 있습니다.
+3. <strong>Scikit-learn 설치</strong>는 [이 안내](https://scikit-learn.org/stable/install.html)를 따르세요. Python 3를 사용해야 하므로 가상 환경 사용을 권장합니다. Mac M1에서 설치할 경우 위 링크 페이지에 특수 지침이 있습니다.
 
-4. **Jupyter Notebook 설치**. [Jupyter 패키지 설치](https://pypi.org/project/jupyter/)가 필요합니다.
+1. **Jupyter Notebook 설치**. [Jupyter 패키지](https://pypi.org/project/jupyter/)를 설치해야 합니다.
 
-## 머신 러닝 작성 환경
+## 머신러닝 개발 환경
 
-Python 코드 개발 및 머신 러닝 모델 생성을 위해 **노트북**을 사용할 것입니다. 이 파일 형식은 데이터 과학자들이 자주 사용하는 도구로, `.ipynb` 확장자로 식별됩니다.
+Python 코드 작성과 머신러닝 모델 생성에 <strong>노트북</strong>을 사용할 것입니다. 이 파일 유형은 데이터 과학자들이 흔히 쓰는 도구로 `.ipynb` 확장자를 가집니다.
 
-노트북은 개발자가 코드를 작성하고, 코드에 대한 주석을 추가하며, 문서를 작성할 수 있는 대화형 환경을 제공합니다. 이는 실험적이거나 연구 지향적인 프로젝트에 매우 유용합니다.
+노트북은 개발자가 코딩과 노트, 문서 작성을 같이 할 수 있는 대화형 환경으로, 실험적이거나 연구 중심 프로젝트에 매우 유용합니다.
 
-[![초보자를 위한 머신 러닝 - 회귀 모델 구축을 위한 Jupyter 노트북 설정](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "초보자를 위한 머신 러닝 - 회귀 모델 구축을 위한 Jupyter 노트북 설정")
+[![초보자를 위한 ML - Jupyter 노트북 설정하여 회귀 모델 시작](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "초보자를 위한 ML - Jupyter 노트북 설정하여 회귀 모델 시작")
 
-> 🎥 위 이미지를 클릭하면 이 연습 과정을 다룬 짧은 영상을 볼 수 있습니다.
+> 🎥 위 이미지를 클릭하면 이 실습 과정을 담은 짧은 영상이 나옵니다.
 
-### 연습 - 노트북 작업하기
+### 실습 - 노트북 작업
 
-이 폴더에서 _notebook.ipynb_ 파일을 찾을 수 있습니다.
+이 폴더에 _notebook.ipynb_ 파일이 있습니다.
 
 1. Visual Studio Code에서 _notebook.ipynb_를 엽니다.
 
-   Jupyter 서버가 Python 3+와 함께 시작됩니다. 노트북의 특정 영역에서 `실행(run)`할 수 있는 코드 블록을 찾을 수 있습니다. 코드 블록은 재생 버튼 모양의 아이콘을 선택하여 실행할 수 있습니다.
+   Python 3+와 함께 Jupyter 서버가 시작됩니다. 노트북 내에서 `실행(run)` 가능한 코드 조각들을 볼 수 있습니다. 재생 버튼 모양 아이콘을 클릭해 코드 블록을 실행할 수 있습니다.
 
-2. `md` 아이콘을 선택하고, 다음 텍스트를 추가하여 약간의 마크다운을 작성합니다: **# Welcome to your notebook**.
+1. `md` 아이콘을 선택하고 마크다운 문법으로 다음 텍스트를 입력하세요: **# Welcome to your notebook**.
 
-   다음으로, Python 코드를 추가합니다.
+   이어서 Python 코드를 몇 줄 추가합니다.
 
-3. 코드 블록에 **print('hello notebook')**을 입력합니다.
-4. 화살표를 선택하여 코드를 실행합니다.
+1. 코드 블록에 **print('hello notebook')** 을 입력합니다.
+1. 실행 화살표를 선택하여 코드를 실행하세요.
 
-   출력 결과로 다음과 같은 문구가 표시됩니다:
+   출력문이 나타나는 것을 볼 수 있을 것입니다:
 
     ```output
     hello notebook
     ```
 
-![노트북이 열려 있는 VS Code](../../../../2-Regression/1-Tools/images/notebook.jpg)
+![노트북이 열려있는 VS Code](../../../../translated_images/ko/notebook.4a3ee31f396b8832.webp)
 
-코드와 함께 주석을 추가하여 노트북을 스스로 문서화할 수 있습니다.
+코드 사이에 주석을 넣어 노트북을 자가 문서화할 수 있습니다.
 
-✅ 웹 개발자의 작업 환경과 데이터 과학자의 작업 환경이 얼마나 다른지 잠시 생각해 보세요.
+✅ 웹 개발자 작업 환경과 데이터 과학자의 작업 환경이 얼마나 다른지 잠시 생각해 보세요.
 
 ## Scikit-learn 시작하기
 
-이제 로컬 환경에 Python이 설정되었고, Jupyter 노트북에 익숙해졌으니, Scikit-learn에도 익숙해져 봅시다. Scikit-learn은 머신 러닝 작업을 수행하는 데 도움을 주는 [광범위한 API](https://scikit-learn.org/stable/modules/classes.html#api-ref)를 제공합니다.
+로컬 환경에 Python을 설치하고 Jupyter 노트북을 익혔다면, 이제 Scikit-learn도 편안하게 사용해 봅시다 (`sci`는 `science`의 발음과 같습니다). Scikit-learn은 머신러닝 작업에 도움이 되는 [광범위한 API](https://scikit-learn.org/stable/modules/classes.html#api-ref)를 제공합니다.
 
-Scikit-learn의 [웹사이트](https://scikit-learn.org/stable/getting_started.html)에 따르면, "Scikit-learn은 지도 학습 및 비지도 학습을 지원하는 오픈 소스 머신 러닝 라이브러리입니다. 또한 모델 피팅, 데이터 전처리, 모델 선택 및 평가, 기타 다양한 유틸리티를 제공합니다."
+공식 [웹사이트](https://scikit-learn.org/stable/getting_started.html)에 따르면 "Scikit-learn은 감독 및 비감독 학습을 지원하는 오픈 소스 머신러닝 라이브러리입니다. 모델 적합, 데이터 전처리, 모델 선택 및 평가, 기타 다양한 유틸리티를 제공합니다."
 
-이 강의에서는 Scikit-learn 및 기타 도구를 사용하여 '전통적인 머신 러닝' 작업을 수행하는 머신 러닝 모델을 구축할 것입니다. 신경망과 딥러닝은 다루지 않으며, 이는 곧 제공될 'AI for Beginners' 커리큘럼에서 다룰 예정입니다.
+이 과정에서 Scikit-learn과 기타 도구를 사용해 전통적인 머신러닝 작업을 수행하는 모델을 구축할 것입니다. 신경망과 딥러닝은 의도적으로 제외했으며, 향후 'AI for Beginners' 커리큘럼에서 자세히 다룰 예정입니다.
 
-Scikit-learn은 모델을 구축하고 평가하는 과정을 간단하게 만들어 줍니다. 주로 숫자 데이터를 사용하는 데 초점이 맞춰져 있으며, 학습 도구로 사용할 수 있는 여러 가지 사전 제작된 데이터셋을 포함하고 있습니다. 또한 학생들이 시도해볼 수 있는 사전 제작된 모델도 포함되어 있습니다. 이제 사전 패키지 데이터와 기본 데이터를 사용하여 첫 번째 머신 러닝 모델을 구축하는 과정을 살펴봅시다.
+Scikit-learn은 모델을 쉽게 구축하고 평가할 수 있게 해 줍니다. 주로 수치 데이터를 사용하는 데 중점을 두며, 학습 도구로 사용할 몇 가지 준비된 데이터셋도 포함되어 있습니다. 학생들이 시도해볼 수 있는 사전 제작 모델도 있습니다. 먼저, 기본 데이터를 사용해 미리 포장된 데이터 로딩과 내장 추정기를 사용하는 기본 ML 모델 과정을 살펴봅시다.
 
-## 연습 - 첫 번째 Scikit-learn 노트북
+## 실습 - 첫 번째 Scikit-learn 노트북
 
 > 이 튜토리얼은 Scikit-learn 웹사이트의 [선형 회귀 예제](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py)에서 영감을 받았습니다.
 
-[![초보자를 위한 머신 러닝 - Python에서 첫 번째 선형 회귀 프로젝트](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "초보자를 위한 머신 러닝 - Python에서 첫 번째 선형 회귀 프로젝트")
 
-> 🎥 위 이미지를 클릭하면 이 연습 과정을 다룬 짧은 영상을 볼 수 있습니다.
+[![초보자를 위한 ML - Python에서 첫 선형 회귀 프로젝트](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "초보자를 위한 ML - Python에서 첫 선형 회귀 프로젝트")
 
-이 강의와 관련된 _notebook.ipynb_ 파일에서 모든 셀을 '휴지통' 아이콘을 눌러 비웁니다.
+> 🎥 위 이미지를 클릭하면 이 실습에 관한 짧은 영상이 나옵니다.
 
-이 섹션에서는 학습 목적으로 Scikit-learn에 내장된 당뇨병 관련 소규모 데이터셋을 사용합니다. 당뇨병 환자에 대한 치료를 테스트하려 한다고 가정해 봅시다. 머신 러닝 모델은 변수 조합을 기반으로 어떤 환자가 치료에 더 잘 반응할지 결정하는 데 도움을 줄 수 있습니다. 시각화된 매우 기본적인 회귀 모델조차도 이론적 임상 시험을 조직하는 데 도움이 되는 변수에 대한 정보를 보여줄 수 있습니다.
+_notebook.ipynb_ 파일에서, 모든 셀을 '휴지통' 아이콘을 눌러 삭제하세요.
 
-✅ 회귀 방법에는 여러 가지가 있으며, 어떤 방법을 선택할지는 찾고자 하는 답에 따라 다릅니다. 예를 들어, 특정 나이에 대한 예상 키를 예측하려면 선형 회귀를 사용합니다. 이는 **숫자 값**을 찾고 있기 때문입니다. 반면, 특정 요리가 비건인지 아닌지를 알아내고 싶다면 **범주 할당**을 찾고 있는 것이므로 로지스틱 회귀를 사용합니다. 이후에 로지스틱 회귀에 대해 더 배우게 될 것입니다. 데이터를 통해 어떤 질문을 할 수 있을지, 그리고 어떤 방법이 더 적합할지 잠시 생각해 보세요.
+여기서는 학습 목적용으로 Scikit-learn에 내장된 당뇨병에 관한 작은 데이터셋을 사용합니다. 당뇨 환자 치료법을 평가해 보고자 한다고 가정해 보세요. 머신러닝 모델은 변수 조합에 근거해 어떤 환자가 치료에 더 잘 반응할지 예측하는 데 도움을 줄 수 있습니다. 시각화된 기본 회귀 모델조차, 이론적 임상시험 구성에 도움이 될 변수 정보를 보여줄 수 있습니다.
 
-이제 시작해 봅시다.
+✅ 회귀 방법에는 여러 유형이 있으며 선택하는 방법은 찾고자 하는 답변에 달려 있습니다. 특정 연령대 사람의 예상 키를 예측하고 싶다면 선형 회귀를 사용합니다. 이는 **수치 값을** 찾기 때문입니다. 어떤 요리가 비건으로 분류되어야 하는지 알고 싶다면, **범주 할당** 문제이므로 로지스틱 회귀를 사용합니다. 로지스틱 회귀는 나중에 더 배울 것입니다. 데이터에 대해 질문할 수 있는 것들과 어떤 방법이 적절할지 잠시 생각해 보세요.
+
+이제 이 작업을 시작해 봅시다.
 
 ### 라이브러리 가져오기
 
-이 작업을 위해 몇 가지 라이브러리를 가져옵니다:
+이 작업을 위해 일부 라이브러리를 불러오겠습니다:
 
-- **matplotlib**. [그래프 도구](https://matplotlib.org/)로 유용하며, 선 그래프를 생성하는 데 사용할 것입니다.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html)는 Python에서 숫자 데이터를 처리하는 데 유용한 라이브러리입니다.
-- **sklearn**. 이는 [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) 라이브러리입니다.
+- **matplotlib**. 유용한 [그래프 도구](https://matplotlib.org/)이며 선 그래프를 만드는 데 사용할 것입니다.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html)는 파이썬에서 수치 데이터를 다루는 데 유용한 라이브러리입니다.
+- **sklearn**. 이것은 [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) 라이브러리입니다.
 
-작업에 필요한 라이브러리를 가져옵니다.
+작업을 돕기 위해 라이브러리를 임포트하세요.
 
-1. 다음 코드를 입력하여 라이브러리를 가져옵니다:
+1. 다음 코드를 입력하여 임포트합니다:
 
    ```python
    import matplotlib.pyplot as plt
@@ -122,26 +123,26 @@ Scikit-learn은 모델을 구축하고 평가하는 과정을 간단하게 만�
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   위 코드에서는 `matplotlib`, `numpy`를 가져오고, `sklearn`에서 `datasets`, `linear_model`, `model_selection`을 가져옵니다. `model_selection`은 데이터를 학습 및 테스트 세트로 나누는 데 사용됩니다.
+   위 코드는 `matplotlib`, `numpy`를 임포트하며, `sklearn`에서 `datasets`, `linear_model`, `model_selection`을 가져옵니다. `model_selection`은 데이터를 훈련 세트와 테스트 세트로 분할하는 데 사용됩니다.
 
 ### 당뇨병 데이터셋
 
-내장된 [당뇨병 데이터셋](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)에는 당뇨병과 관련된 442개의 샘플 데이터와 10개의 특징 변수가 포함되어 있습니다. 일부 변수는 다음과 같습니다:
+내장된 [당뇨병 데이터셋](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)은 당뇨병 관련 442개의 샘플과 10개의 특성 변수를 포함합니다. 일부 변수는 다음과 같습니다:
 
-- age: 나이 (연도 단위)
-- bmi: 체질량지수
+- age: 나이(년 단위)
+- bmi: 체질량 지수
 - bp: 평균 혈압
-- s1 tc: T-세포 (백혈구의 한 종류)
+- s1 tc: T-세포(백혈구의 일종)
 
-✅ 이 데이터셋에는 당뇨병 연구에서 중요한 특징 변수로 '성별' 개념이 포함되어 있습니다. 많은 의료 데이터셋에는 이러한 이진 분류가 포함되어 있습니다. 이러한 분류가 인구의 특정 부분을 치료에서 배제할 가능성에 대해 잠시 생각해 보세요.
+✅ 이 데이터셋은 연구에 중요한 '성별'을 특성 변수로 포함합니다. 많은 의학 데이터셋에 이런 이진 분류가 포함되어 있습니다. 이런 분류 기준이 인구 일부를 치료 대상에서 제외할 수 있다는 점을 생각해보세요.
 
-이제 X와 y 데이터를 로드합니다.
+이제 X와 y 데이터를 불러옵니다.
 
-> 🎓 이는 지도 학습(supervised learning)이며, 명명된 'y' 타겟이 필요합니다.
+> 🎓 이 것은 감독 학습이므로 'y' 타겟이 필요하다는 점을 기억하세요.
 
-새로운 코드 셀에서 `load_diabetes()`를 호출하여 당뇨병 데이터셋을 로드합니다. 입력값 `return_X_y=True`는 `X`가 데이터 행렬이 되고, `y`가 회귀 타겟이 됨을 나타냅니다.
+새로운 코드 셀에서 `load_diabetes()`를 호출해 당뇨병 데이터셋을 불러오세요. 입력값 `return_X_y=True`는 `X`가 데이터 매트릭스, `y`가 회귀 타겟임을 나타냅니다.
 
-1. 데이터 행렬의 모양과 첫 번째 요소를 표시하는 몇 가지 print 명령을 추가합니다:
+1. 데이터 매트릭스의 형태와 첫 번째 요소를 출력하는 코드를 추가합니다:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -149,9 +150,9 @@ Scikit-learn은 모델을 구축하고 평가하는 과정을 간단하게 만�
     print(X[0])
     ```
 
-    반환값은 튜플입니다. 튜플의 첫 번째 두 값을 각각 `X`와 `y`에 할당합니다. [튜플에 대해 더 알아보기](https://wikipedia.org/wiki/Tuple).
+    반환되는 값은 튜플입니다. 이 튜플의 처음 두 값을 각각 `X`와 `y`로 할당하는 것입니다. [튜플에 대해 더 알아보기](https://wikipedia.org/wiki/Tuple).
 
-    이 데이터는 442개의 항목으로 구성되어 있으며, 각 항목은 10개의 요소로 이루어진 배열로 되어 있음을 확인할 수 있습니다:
+    이 데이터가 442 개의 항목으로 구성되며 각 항목은 10요소 배열임을 알 수 있습니다:
 
     ```text
     (442, 10)
@@ -159,39 +160,39 @@ Scikit-learn은 모델을 구축하고 평가하는 과정을 간단하게 만�
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ 데이터와 회귀 타겟 간의 관계에 대해 잠시 생각해 보세요. 선형 회귀는 특징 X와 타겟 변수 y 간의 관계를 예측합니다. 당뇨병 데이터셋의 [타겟](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)을 문서에서 찾을 수 있나요? 이 데이터셋은 무엇을 보여주고 있나요?
+    ✅ 데이터와 회귀 타겟 간의 관계를 잠시 생각해보세요. 선형 회귀는 특성 X와 타겟 변수 y 간 관계를 예측합니다. 문서에서 당뇨병 데이터셋의 [타겟](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)을 찾을 수 있나요? 이 타겟을 고려할 때 이 데이터셋이 무엇을 보여주는지 생각해 보세요.
 
-2. 다음으로, 데이터셋의 3번째 열을 선택하여 플롯합니다. `:` 연산자를 사용하여 모든 행을 선택한 다음, 인덱스(2)를 사용하여 3번째 열을 선택할 수 있습니다. 또한 `reshape(n_rows, n_columns)`를 사용하여 데이터를 2D 배열로 재구성할 수 있습니다. 매개변수 중 하나가 -1이면 해당 차원이 자동으로 계산됩니다.
+2. 다음으로, 데이터셋의 일부를 선택해 플로팅합니다. 데이터셋의 3번째 열을 선택하세요. `:` 연산자로 모든 행을 선택하고 인덱스 2로 3번째 열을 선택할 수 있습니다. 플로팅에 필요한 2D 배열로 변경하려면 `reshape(n_rows, n_columns)`를 사용하세요. 매개변수 중 하나가 -1이면 해당 차원이 자동 계산됩니다.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ 데이터의 모양을 확인하려면 언제든지 데이터를 출력하세요.
+   ✅ 데이터 모양을 확인하기 위해 언제든 출력해 보세요.
 
-3. 이제 데이터를 플롯할 준비가 되었으니, 머신이 이 데이터셋의 숫자 간 논리적 분리를 결정할 수 있는지 확인할 수 있습니다. 이를 위해 데이터(X)와 타겟(y)을 테스트 및 학습 세트로 나눌 필요가 있습니다. Scikit-learn은 이를 간단히 수행할 수 있는 방법을 제공합니다. 특정 지점에서 테스트 데이터를 나눌 수 있습니다.
+3. 이제 플로팅할 데이터가 준비되었으니, 머신이 이 데이터 숫자 사이에 논리적 구분을 짓도록 해봅니다. 이를 위해서는 데이터(X)와 타겟(y)을 테스트 세트와 학습 세트로 분할해야 합니다. Scikit-learn에는 이를 쉽게 하는 방법이 있습니다. 원하는 지점에서 테스트 데이터를 분할할 수 있습니다.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. 이제 모델을 학습시킬 준비가 되었습니다! 선형 회귀 모델을 로드하고, `model.fit()`을 사용하여 X 및 y 학습 세트로 학습시킵니다:
+4. 이제 모델 학습 준비가 되었습니다! 선형 회귀 모델을 불러와 `model.fit()`으로 X와 y 학습 세트로 학습시킵니다:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()`은 TensorFlow와 같은 많은 머신 러닝 라이브러리에서 볼 수 있는 함수입니다.
+    ✅ `model.fit()` 함수는 TensorFlow 등 많은 ML 라이브러리에서 공통으로 사용됩니다.
 
-5. 그런 다음, `predict()` 함수를 사용하여 테스트 데이터를 기반으로 예측을 생성합니다. 이는 데이터 그룹 간의 선을 그리는 데 사용됩니다.
+5. 그런 다음, `predict()` 함수를 이용해 테스트 데이터를 기반으로 예측을 만듭니다. 이를 통해 데이터 그룹 사이에 선을 그릴 수 있습니다.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. 이제 데이터를 플롯에 표시할 시간입니다. Matplotlib은 이 작업에 매우 유용한 도구입니다. 모든 X 및 y 테스트 데이터의 산점도를 생성하고, 예측을 사용하여 데이터 그룹 간 가장 적절한 위치에 선을 그립니다.
+6. 이제 데이터를 그래프로 나타냅니다. Matplotlib은 이를 위해 매우 유용합니다. 모든 X와 y 테스트 데이터를 산점도로 나타내고, 모델의 데이터 그룹 간 가장 적절한 위치에 예측된 선을 그리세요.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -202,23 +203,24 @@ Scikit-learn은 모델을 구축하고 평가하는 과정을 간단하게 만�
     plt.show()
     ```
 
-   ![당뇨병 데이터를 나타내는 산점도](../../../../2-Regression/1-Tools/images/scatterplot.png)
-✅ 여기서 무슨 일이 일어나고 있는지 잠시 생각해 보세요. 많은 작은 데이터 점들을 관통하는 직선이 있습니다. 하지만 이 직선이 정확히 무엇을 하고 있는 걸까요? 이 직선을 사용하여 새로운, 보지 못한 데이터 포인트가 플롯의 y축과 어떤 관계를 맺어야 하는지 예측할 수 있다는 것을 이해할 수 있나요? 이 모델의 실질적인 사용 방법을 말로 표현해 보세요.
+   ![당뇨병 주변 데이터 포인트를 나타내는 산점도](../../../../translated_images/ko/scatterplot.ad8b356bcbb33be6.webp)
 
-축하합니다! 첫 번째 선형 회귀 모델을 구축하고, 이를 사용해 예측을 생성한 뒤 플롯에 표시했습니다!
+
+   ✅ 여기서 무슨 일이 일어나고 있는지 조금 생각해 보세요. 여러 개의 작은 데이터 점을 통과하는 직선이 있는데, 정확히 무엇을 하고 있는 걸까요? 이 직선을 사용하여 새로운, 본 적 없는 데이터 포인트가 플롯의 y축과 어떤 관계를 맺어야 하는지 예측할 수 있어야 한다는 점을 볼 수 있나요? 이 모델의 실질적인 용도를 말로 표현해 보세요.
+
+축하합니다, 첫 번째 선형 회귀 모델을 만들고, 이를 사용해 예측을 수행했으며, 플롯에 표시했습니다!
 
 ---
 ## 🚀도전 과제
 
-이 데이터셋에서 다른 변수를 플롯해 보세요. 힌트: 이 줄을 수정하세요: `X = X[:,2]`. 이 데이터셋의 목표를 고려했을 때, 당뇨병이 질병으로서 어떻게 진행되는지에 대해 무엇을 발견할 수 있나요?
-
+이 데이터셋에서 다른 변수를 플로팅해 보세요. 힌트: 이 줄을 수정하세요: `X = X[:,2]`. 이 데이터셋의 목표 값을 고려할 때, 당뇨병이라는 질병의 진행에 대해 무엇을 발견할 수 있나요?
 ## [강의 후 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
 
-## 복습 및 자기 학습
+## 복습 & 자기 주도 학습
 
-이 튜토리얼에서는 단변량 또는 다변량 선형 회귀가 아닌 간단한 선형 회귀를 사용했습니다. 이러한 방법들 간의 차이에 대해 조금 읽어보거나 [이 비디오](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)를 확인해 보세요.
+이 튜토리얼에서는 단순 선형 회귀를 다뤘으며, 단변량 또는 다중 선형 회귀와는 다릅니다. 이 방법들 간의 차이점에 대해 조금 읽어 보거나, [이 영상](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)을 참조하세요.
 
-회귀의 개념에 대해 더 읽어보고 이 기술로 어떤 종류의 질문에 답할 수 있는지 생각해 보세요. 이 [튜토리얼](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott)을 통해 이해를 심화해 보세요.
+회귀 개념에 대해 더 읽고, 이 기법으로 어떤 질문들에 답할 수 있는지 생각해 보세요. 이해를 깊게 하려면 이 [튜토리얼](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott)을 통해 학습해 보세요.
 
 ## 과제
 
@@ -226,5 +228,7 @@ Scikit-learn은 모델을 구축하고 평가하는 과정을 간단하게 만�
 
 ---
 
-**면책 조항**:  
-이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서를 해당 언어로 작성된 상태에서 권위 있는 자료로 간주해야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.  
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**면책 조항**:
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 기하기 위해 노력하고 있으나, 자동 번역은 오류나 부정확한 부분이 있을 수 있음을 유의하시기 바랍니다. 원본 문서의 원어본이 권위 있는 자료로 간주되어야 합니다. 중요한 정보의 경우, 전문가의 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

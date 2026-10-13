@@ -13,7 +13,7 @@
   },
   "1-Introduction/2-history-of-ML/README.md": {
     "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2025-09-06T07:06:44+00:00",
+    "translation_date": "2026-07-14T02:55:51+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "pa"
   },
@@ -24,8 +24,8 @@
     "language_code": "pa"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "9a6b702d1437c0467e3c5c28d763dac2",
-    "translation_date": "2025-09-06T07:03:15+00:00",
+    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
+    "translation_date": "2026-07-14T02:57:24+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "pa"
   },
@@ -54,8 +54,8 @@
     "language_code": "pa"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
-    "translation_date": "2025-09-06T06:50:17+00:00",
+    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
+    "translation_date": "2026-07-14T02:45:23+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "pa"
   },
@@ -72,8 +72,8 @@
     "language_code": "pa"
   },
   "2-Regression/2-Data/README.md": {
-    "original_hash": "7c077988328ebfe33b24d07945f16eca",
-    "translation_date": "2025-09-06T06:51:45+00:00",
+    "original_hash": "a58b2c4d16c6b122643391745ac15af6",
+    "translation_date": "2026-07-14T02:48:19+00:00",
     "source_file": "2-Regression/2-Data/README.md",
     "language_code": "pa"
   },
@@ -87,6 +87,12 @@
     "original_hash": "a39c15d63f3b2795ee2284a82b986b93",
     "translation_date": "2025-08-29T16:56:18+00:00",
     "source_file": "2-Regression/2-Data/solution/Julia/README.md",
+    "language_code": "pa"
+  },
+  "2-Regression/2-Data/solution/notebook.ipynb": {
+    "original_hash": "96b95f8cf473481f2f371de8156f1571",
+    "translation_date": "2026-07-14T02:32:18+00:00",
+    "source_file": "2-Regression/2-Data/solution/notebook.ipynb",
     "language_code": "pa"
   },
   "2-Regression/3-Linear/README.md": {
@@ -115,7 +121,7 @@
   },
   "2-Regression/4-Logistic/README.md": {
     "original_hash": "abf86d845c84330bce205a46b382ec88",
-    "translation_date": "2025-09-06T06:48:36+00:00",
+    "translation_date": "2026-07-14T02:46:57+00:00",
     "source_file": "2-Regression/4-Logistic/README.md",
     "language_code": "pa"
   },
@@ -139,7 +145,7 @@
   },
   "3-Web-App/1-Web-App/README.md": {
     "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
-    "translation_date": "2025-09-06T07:07:24+00:00",
+    "translation_date": "2026-07-14T02:54:59+00:00",
     "source_file": "3-Web-App/1-Web-App/README.md",
     "language_code": "pa"
   },
@@ -157,7 +163,7 @@
   },
   "4-Classification/1-Introduction/README.md": {
     "original_hash": "aaf391d922bd6de5efba871d514c6d47",
-    "translation_date": "2025-09-06T07:10:09+00:00",
+    "translation_date": "2026-07-14T02:50:09+00:00",
     "source_file": "4-Classification/1-Introduction/README.md",
     "language_code": "pa"
   },
@@ -223,7 +229,7 @@
   },
   "4-Classification/4-Applied/README.md": {
     "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
-    "translation_date": "2025-09-06T07:09:21+00:00",
+    "translation_date": "2026-07-14T02:49:09+00:00",
     "source_file": "4-Classification/4-Applied/README.md",
     "language_code": "pa"
   },
@@ -283,7 +289,7 @@
   },
   "6-NLP/1-Introduction-to-NLP/README.md": {
     "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
-    "translation_date": "2025-09-06T07:19:50+00:00",
+    "translation_date": "2026-07-14T02:39:50+00:00",
     "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
     "language_code": "pa"
   },
@@ -295,7 +301,7 @@
   },
   "6-NLP/2-Tasks/README.md": {
     "original_hash": "5f3cb462e3122e1afe7ab0050ccf2bd3",
-    "translation_date": "2025-09-06T07:15:46+00:00",
+    "translation_date": "2026-07-14T02:42:14+00:00",
     "source_file": "6-NLP/2-Tasks/README.md",
     "language_code": "pa"
   },
@@ -307,7 +313,7 @@
   },
   "6-NLP/3-Translation-Sentiment/README.md": {
     "original_hash": "be03c8182982b87ced155e4e9d1438e8",
-    "translation_date": "2025-09-06T07:21:25+00:00",
+    "translation_date": "2026-07-14T02:41:13+00:00",
     "source_file": "6-NLP/3-Translation-Sentiment/README.md",
     "language_code": "pa"
   },
@@ -331,7 +337,7 @@
   },
   "6-NLP/4-Hotel-Reviews-1/README.md": {
     "original_hash": "8d32dadeda93c6fb5c43619854882ab1",
-    "translation_date": "2025-09-06T07:17:55+00:00",
+    "translation_date": "2026-07-14T02:38:54+00:00",
     "source_file": "6-NLP/4-Hotel-Reviews-1/README.md",
     "language_code": "pa"
   },
@@ -355,7 +361,7 @@
   },
   "6-NLP/5-Hotel-Reviews-2/README.md": {
     "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
-    "translation_date": "2025-09-06T07:22:48+00:00",
+    "translation_date": "2026-07-14T02:44:11+00:00",
     "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
     "language_code": "pa"
   },
@@ -391,7 +397,7 @@
   },
   "7-TimeSeries/1-Introduction/README.md": {
     "original_hash": "662b509c39eee205687726636d0a8455",
-    "translation_date": "2025-09-06T06:54:47+00:00",
+    "translation_date": "2026-07-14T03:01:10+00:00",
     "source_file": "7-TimeSeries/1-Introduction/README.md",
     "language_code": "pa"
   },
@@ -457,7 +463,7 @@
   },
   "8-Reinforcement/1-QLearning/README.md": {
     "original_hash": "911efd5e595089000cb3c16fce1beab8",
-    "translation_date": "2025-09-06T07:11:50+00:00",
+    "translation_date": "2026-07-14T02:51:58+00:00",
     "source_file": "8-Reinforcement/1-QLearning/README.md",
     "language_code": "pa"
   },
@@ -481,7 +487,7 @@
   },
   "8-Reinforcement/2-Gym/README.md": {
     "original_hash": "107d5bb29da8a562e7ae72262d251a75",
-    "translation_date": "2025-09-06T07:14:05+00:00",
+    "translation_date": "2026-07-14T02:53:47+00:00",
     "source_file": "8-Reinforcement/2-Gym/README.md",
     "language_code": "pa"
   },
@@ -511,7 +517,7 @@
   },
   "9-Real-World/1-Applications/README.md": {
     "original_hash": "83320d6b6994909e35d830cebf214039",
-    "translation_date": "2025-09-06T06:59:52+00:00",
+    "translation_date": "2026-07-14T03:00:11+00:00",
     "source_file": "9-Real-World/1-Applications/README.md",
     "language_code": "pa"
   },
@@ -523,7 +529,7 @@
   },
   "9-Real-World/2-Debugging-ML-Models/README.md": {
     "original_hash": "df2b538e8fbb3e91cf0419ae2f858675",
-    "translation_date": "2025-09-06T07:01:30+00:00",
+    "translation_date": "2026-07-14T02:59:05+00:00",
     "source_file": "9-Real-World/2-Debugging-ML-Models/README.md",
     "language_code": "pa"
   },
@@ -580,6 +586,19 @@
     "translation_date": "2025-10-03T12:43:02+00:00",
     "source_file": "TROUBLESHOOTING.md",
     "language_code": "pa"
+  },
+  "__translation_failures__": {
+    "sketchnotes/LICENSE.md": {
+      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
+      "source_file": "sketchnotes/LICENSE.md",
+      "language_code": "pa",
+      "failure_date": "2026-07-14T02:36:41+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    }
   },
   "docs/_sidebar.md": {
     "original_hash": "68dd06c685f6ce840e0acfa313352e7c",

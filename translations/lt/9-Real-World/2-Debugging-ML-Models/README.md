@@ -1,148 +1,179 @@
-# Postscriptas: Modelių derinimas mašininio mokymosi srityje naudojant atsakingos dirbtinio intelekto (AI) prietaisų skydelio komponentus
+# Priedas: Modelio derinimas mašininio mokymosi srityje naudojant Atsakingos AI skydelio komponentus
+ 
 
-## [Prieš paskaitą pateikiamas testas](https://ff-quizzes.netlify.app/en/ml/)
-
+## [Prieš paskaitą testas](https://ff-quizzes.netlify.app/en/ml/)
+ 
 ## Įvadas
 
-Mašininis mokymasis daro įtaką mūsų kasdieniam gyvenimui. Dirbtinis intelektas (AI) vis dažniau naudojamas svarbiose sistemose, kurios veikia tiek mus kaip individus, tiek mūsų visuomenę – nuo sveikatos priežiūros, finansų, švietimo iki įdarbinimo. Pavyzdžiui, sistemos ir modeliai dalyvauja kasdieniuose sprendimų priėmimo procesuose, tokiuose kaip sveikatos priežiūros diagnozės ar sukčiavimo aptikimas. Dėl to AI pažanga ir spartus jos pritaikymas susiduria su besikeičiančiais visuomenės lūkesčiais ir augančiu reguliavimu. Nuolat matome sritis, kuriose AI sistemos neatitinka lūkesčių, atskleidžia naujus iššūkius, o vyriausybės pradeda reguliuoti AI sprendimus. Todėl svarbu analizuoti šiuos modelius, kad jie užtikrintų teisingus, patikimus, įtraukius, skaidrius ir atsakingus rezultatus visiems.
+Mašininis mokymasis veikia mūsų kasdienį gyvenimą. Dirbtinis intelektas įsilieja į kai kurias svarbiausias sistemas, kurios veikia mus kaip individų ir kaip visuomenę, nuo sveikatos priežiūros, finansų, švietimo iki užimtumo. Pavyzdžiui, sistemos ir modeliai dalyvauja kasdieniniame sprendimų priėmime, tokiose užduotyse kaip sveikatos diagnostika ar sukčiavimo aptikimas. Todėl dirbtinio intelekto pažanga kartu su sparčiu jos diegimu susiduria su kintančiomis visuomenės lūkesčiais ir augančia reglamentacija. Nuolat matome sritis, kuriose AI sistemos nesugeba patenkinti lūkesčius; jos atskleidžia naujus iššūkius; o vyriausybės pradeda reglamentuoti AI sprendimus. Todėl svarbu, kad šie modeliai būtų analizuojami siekiant pateikti sąžiningus, patikimus, įtraukius, skaidrius ir atsakingus rezultatus visiems.
 
-Šioje mokymo programoje nagrinėsime praktinius įrankius, kurie gali būti naudojami siekiant įvertinti, ar modelis turi atsakingo AI problemų. Tradiciniai mašininio mokymosi derinimo metodai dažniausiai grindžiami kiekybiniais skaičiavimais, tokiais kaip apibendrintas tikslumas ar vidutinė klaidų nuostolių vertė. Įsivaizduokite, kas gali nutikti, jei duomenys, kuriuos naudojate šiems modeliams kurti, neturi tam tikrų demografinių duomenų, tokių kaip rasė, lytis, politinės pažiūros, religija, arba jei šie demografiniai duomenys yra neproporcingai atstovaujami. O kas, jei modelio rezultatai interpretuojami taip, kad būtų palankūs tam tikrai demografinei grupei? Tai gali sukelti per didelį arba nepakankamą jautrių savybių grupių atstovavimą, dėl kurio modelis gali tapti neteisingas, neįtraukus ar nepatikimas. Kitas veiksnys yra tas, kad mašininio mokymosi modeliai laikomi „juodosiomis dėžėmis“, todėl sunku suprasti ir paaiškinti, kas lemia modelio prognozes. Visa tai yra iššūkiai, su kuriais susiduria duomenų mokslininkai ir AI kūrėjai, kai jie neturi tinkamų įrankių modelio teisingumui ar patikimumui įvertinti ir derinti.
+Šiame mokymo plane apžvelgsime praktinius įrankius, kuriuos galima naudoti norint įvertinti, ar modelis turi atsakingo AI problemas. Tradicinės mašininio mokymosi derinimo technikos dažniausiai yra grindžiamos kiekybiniais skaičiavimais, tokiais kaip apibendrintas tikslumas arba vidutinė klaidos nuostolio reikšmė. Įsivaizduokite, kas gali nutikti, jei duomenys, kuriais naudojatės kurdami modelius, neapima tam tikrų demografinių grupių, pavyzdžiui, rasės, lyties, politinių pažiūrų ar religijos, arba neproporcingai atstovauja tokias grupes. O kas jei modelio rezultatai yra interpretuojami taip, kad būtų palankūs kai kuriai demografiniai grupei? Tai gali sukelti pernelyg didelį arba nepakankamą šių jautrių požymių grupių atstovavimą, dėl ko kyla sąžiningumo, įtraukimo ar patikimumo problemos. Kitas faktorius yra tas, kad mašininio mokymosi modeliai dažnai laikomi juodosiomis dėžėmis, dėl ko sunku suprasti ir paaiškinti, kas lemia modelio prognozę. Visos šios problemos kyla duomenų mokslininkams ir AI kūrėjams, kai jie neturi tinkamų įrankių modelio derinimui ir sąžiningumo ar patikimumo vertinimui.
 
-Šioje pamokoje sužinosite, kaip derinti savo modelius naudojant:
+Šioje pamokoje sužinosite apie modelių derinimą naudojant:
 
-- **Klaidų analizę**: nustatyti, kur jūsų duomenų pasiskirstyme modelis turi didelius klaidų rodiklius.
-- **Modelio apžvalgą**: atlikti lyginamąją analizę tarp skirtingų duomenų grupių, kad būtų galima aptikti modelio veikimo rodiklių skirtumus.
-- **Duomenų analizę**: ištirti, kur gali būti per didelis arba nepakankamas duomenų atstovavimas, kuris gali iškreipti modelį, kad jis būtų palankus vienai demografinei grupei, o ne kitai.
-- **Savybių svarbą**: suprasti, kurios savybės lemia modelio prognozes globaliu ar lokaliu lygmeniu.
+- **Klaidų analizę**: nustatyti, kur jūsų duomenų pasiskirstyme modelis turi didelį klaidų dažnį.
+- **Modelio apžvalgą**: atlikti palyginamąją analizę tarp skirtingų duomenų kohortų, kad būtų atrastos modelio našumo metrikų skirtumai.
+- **Duomenų analizę**: tirti, kur gali būti pernelyg daug arba per mažai tam tikrų duomenų, kas gali iškreipti modelį palankiai nuteikiant prieš vieną demografinę grupę kitos sąskaita.
+- **Požymių svarbą**: suprasti, kokie požymiai lemia modelio prognozes globaliu ar lokaliu lygiu.
 
-## Privalomos žinios
+## Reikalavimai
 
-Prieš pradedant, rekomenduojame peržiūrėti [Atsakingo AI įrankius kūrėjams](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard).
+Prieš tęsiant, peržiūrėkite [Atsakingo AI įrankiai kūrėjams](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
 
-> ![Gif apie atsakingo AI įrankius](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
+> ![Gif apie Atsakingo AI įrankius](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
 ## Klaidų analizė
 
-Tradiciniai modelio veikimo rodikliai, naudojami tikslumui matuoti, dažniausiai grindžiami teisingų ir neteisingų prognozių skaičiavimais. Pavyzdžiui, nustatyti, kad modelis yra tikslus 89 % atvejų su klaidų nuostoliu 0,001, gali būti laikoma geru veikimu. Tačiau klaidos dažnai nėra tolygiai pasiskirsčiusios jūsų pagrindiniuose duomenyse. Galite gauti 89 % modelio tikslumo įvertinimą, tačiau pastebėti, kad tam tikrose duomenų srityse modelis nesėkmingas 42 % atvejų. Šių nesėkmių pasekmės tam tikrose duomenų grupėse gali sukelti teisingumo ar patikimumo problemų. Svarbu suprasti, kuriose srityse modelis veikia gerai, o kuriose – ne. Duomenų sritys, kuriose modelis turi daug netikslumų, gali būti svarbios demografinės grupės.
+Tradicinės modelio darbo rodiklių metrikos, matuojant tikslumą, dažniausiai grindžiamos teisingų ir neteisingų prognozių skaičiavimais. Pavyzdžiui, modelio tikslumas 89 % su klaidos nuostoliu 0,001 gali būti vertinamas kaip geras rezultatas. Klaidos dažnai nėra vienodai pasiskirsčiusios duomenų rinkinyje. Galite turėti 89 % tikslumą, bet sužinoti, kad tam tikrose duomenų srityse modelis nepavyksta net 42 % atvejų. Tokie klaidų pasiskirstymo modeliai tam tikrose duomenų grupėse gali sukelti sąžiningumo arba patikimumo problemas. Svarbu suprasti sritis, kuriose modelis veikia gerai arba blogai. Duomenų sritys, kur modelis turi daug netikslumų, gali būti reikšminga duomenų demografinė grupė.  
 
-![Analizuokite ir derinkite modelio klaidas](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
+![Analizuokite ir derinkite modelio klaidas](../../../../translated_images/lt/ea-error-distribution.117452e1177c1dd8.webp)
 
-Klaidų analizės komponentas RAI prietaisų skydelyje iliustruoja, kaip modelio nesėkmės pasiskirsto įvairiose grupėse, naudodamas medžio vizualizaciją. Tai naudinga nustatant savybes ar sritis, kuriose jūsų duomenyse yra didelis klaidų rodiklis. Matydami, iš kur kyla dauguma modelio netikslumų, galite pradėti tirti pagrindinę priežastį. Taip pat galite kurti duomenų grupes analizei atlikti. Šios duomenų grupės padeda derinimo procese nustatyti, kodėl modelis veikia gerai vienoje grupėje, bet daro klaidas kitoje.
+Klaidų analizės komponentas Atsakingo AI skydelyje rodo, kaip modelio klaidos pasiskirsčiusios tarp įvairių kohortų medžio vizualizacijoje. Tai naudinga nustatant požymius ar sritis, kuriose duomenų rinkinyje yra didelis klaidų dažnis. Matydami, iš kur daugiausia kyla netikslumai, galite pradėti tirti pagrindines priežastis. Taip pat galite sukurti duomenų kohortas analizės atlikimui. Šios kohortos padeda derinimo procese suprasti, kodėl modelio našumas yra geras vienoje kohortoje, bet klaidingas kitoje.   
 
-![Klaidų analizė](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
+![Klaidų analizė](../../../../translated_images/lt/ea-error-cohort.6886209ea5d438c4.webp)
 
-Medžio žemėlapio vizualiniai indikatoriai padeda greičiau nustatyti problemų sritis. Pavyzdžiui, kuo tamsesnė raudona spalva medžio mazge, tuo didesnis klaidų rodiklis.
+Vizualiniai indikatoriai medžio žemėlapyje padeda greičiau surasti problemines sritis. Pavyzdžiui, kuo tamsesnė raudonos spalvos atspalvio medžio šaka, tuo didesnis klaidų dažnumas.  
 
-Šilumos žemėlapis yra dar viena vizualizacijos funkcija, kurią naudotojai gali naudoti klaidų rodikliui tirti, naudodami vieną ar dvi savybes, kad nustatytų modelio klaidų priežastis visame duomenų rinkinyje ar grupėse.
+Karštinių žemėlapis yra dar viena vizualizavimo galimybė, kuri leidžia vartotojams tirti klaidų dažnį, naudojant vieną arba du požymius ir taip rasti modelio klaidų priežastis visame duomenų rinkinyje ar kohortose.
 
-![Klaidų analizės šilumos žemėlapis](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
+![Klaidų analizės karštinių žemėlapis](../../../../translated_images/lt/ea-heatmap.8d27185e28cee383.webp)
 
-Naudokite klaidų analizę, kai reikia:
+Naudokite klaidų analizę, kai jums reikia:
 
-* Giliai suprasti, kaip modelio nesėkmės pasiskirsto duomenų rinkinyje ir keliose įvesties bei savybių dimensijose.
-* Išskaidyti apibendrintus veikimo rodiklius, kad automatiškai atrastumėte klaidingas grupes ir informuotumėte apie tikslines problemų sprendimo priemones.
+* Giliai suprasti, kaip modelio klaidos pasiskirsčiusios duomenų rinkinyje ir tarp kelių įvesties bei požymių dimensijų.
+* Išskaidyti bendrą našumo metriką, kad automatiškai būtų atrastos klaidų turinčios kohortos ir būtų galima planuoti tikslingas pataisymo priemones.
 
 ## Modelio apžvalga
 
-Mašininio mokymosi modelio veikimo vertinimas reikalauja holistinio jo elgsenos supratimo. Tai galima pasiekti peržiūrint daugiau nei vieną rodiklį, pvz., klaidų rodiklį, tikslumą, atšaukimą, tikslumą ar MAE (vidutinę absoliučią klaidą), kad būtų galima nustatyti veikimo rodiklių skirtumus. Vienas veikimo rodiklis gali atrodyti puikiai, tačiau netikslumai gali išryškėti kitame rodiklyje. Be to, rodiklių palyginimas visame duomenų rinkinyje ar grupėse padeda atskleisti, kur modelis veikia gerai, o kur – ne. Tai ypač svarbu norint pamatyti modelio veikimą tarp jautrių ir nejautrių savybių (pvz., paciento rasės, lyties ar amžiaus), kad būtų galima atskleisti galimą modelio neteisingumą. Pavyzdžiui, atradus, kad modelis yra klaidingesnis grupėje, kurioje yra jautrių savybių, galima atskleisti galimą modelio neteisingumą.
+Norint įvertinti mašininio mokymosi modelio našumą, reikia holistiškai suprasti jo elgseną. Tai galima pasiekti peržiūrint ne tik vieną metriką, pavyzdžiui, klaidų dažnį, tikslumą, atgaminimą, tikslumą ar vidutinę absoliučią klaidą (MAE), ir ieškant skirtumų tarp našumo metrikoje. Viena metrika gali atrodyti puikiai, bet klaidos gali būti atskleistos kitoje. Be to, lyginant šias metrikas tarp viso duomenų rinkinio ar kohortų, galima pamatyti, kur modelis veikia gerai, o kur ne. Tai ypač svarbu matant modelio našumą tarp jautrių ir nejautrių požymių (pvz., paciento rasės, lyties ar amžiaus), kad būtų atskleista galimai nelygi modelio veikla. Pavyzdžiui, jei modelis klaidingesnis kohortoje, kur yra jautrūs požymiai, tai gali atskleisti neteisingumą.
 
-Modelio apžvalgos komponentas RAI prietaisų skydelyje padeda ne tik analizuoti duomenų atstovavimo veikimo rodiklius grupėje, bet ir suteikia naudotojams galimybę palyginti modelio elgseną skirtingose grupėse.
+Atsakingo AI skydelio Modelio apžvalgos komponentas padeda ne tik analizuoti našumo metrikas pagal duomenų kohortas, bet ir suteikia vartotojams galimybę palyginti modelio elgseną tarp skirtingų kohortų.
 
-![Duomenų grupės – modelio apžvalga RAI prietaisų skydelyje](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
+![Duomenų kohortos - modelio apžvalga RAI skydelyje](../../../../translated_images/lt/model-overview-dataset-cohorts.dfa463fb527a35a0.webp)
 
-Komponento savybių pagrindu atliekama analizė leidžia naudotojams susiaurinti duomenų pogrupius tam tikroje savybėje, kad būtų galima nustatyti anomalijas detaliu lygmeniu. Pavyzdžiui, prietaisų skydelyje yra įmontuotas intelektas, kuris automatiškai generuoja grupes pagal naudotojo pasirinktą savybę (pvz., *"time_in_hospital < 3"* arba *"time_in_hospital >= 7"*). Tai leidžia naudotojui atskirti tam tikrą savybę nuo didesnės duomenų grupės, kad pamatytų, ar ji yra pagrindinis modelio klaidingų rezultatų veiksnys.
+Komponento funkcija, leidžianti analizuoti rūšiuojant pagal požymius, leidžia vartotojams susiaurinti duomenų pogrupius pagal tam tikrą požymį ir nustatyti anomalijas detaliau. Pavyzdžiui, skydelyje yra integruotas įdirbis, automatiškai generuojantis kohortas pagal vartotojo pasirinktą požymį (pvz., *"time_in_hospital < 3"* arba *"time_in_hospital >= 7"*). Tai leidžia atskirti tam tikrą požymį iš didesnės grupės ir pažiūrėti, ar jis yra lemiamas veiksnys modelio klaidų prognozėse.
 
-![Savybių grupės – modelio apžvalga RAI prietaisų skydelyje](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
+![Požymių kohortos - modelio apžvalga RAI skydelyje](../../../../translated_images/lt/model-overview-feature-cohorts.c5104d575ffd0c80.webp)
 
-Modelio apžvalgos komponentas palaiko dviejų klasių skirtumų rodiklius:
+Modelio apžvalgos komponentas palaiko dvi skirtumų metrikų klases:
 
-**Skirtumai modelio veikime**: Šie rodikliai apskaičiuoja skirtumus (skirtumą) pasirinktų veikimo rodiklių reikšmėse tarp duomenų pogrupių. Štai keli pavyzdžiai:
+**Modelio našumo skirtumu**: Ši metrikų grupė apskaičiuoja skirtumus (nuokrypius) pasirinkto našumo rodiklio reikšmėse tarp duomenų pogrupių. Štai keletas pavyzdžių:
 
-* Tikslumo rodiklio skirtumas
-* Klaidų rodiklio skirtumas
 * Tikslumo skirtumas
-* Atšaukimo skirtumas
+* Klaidos dažnio skirtumas
+* Tikslumo (precision) skirtumas
+* Atgaminimo (recall) skirtumas
 * Vidutinės absoliučios klaidos (MAE) skirtumas
 
-**Skirtumai pasirinkimo rodiklyje**: Šis rodiklis apima skirtumą pasirinkimo rodiklyje (palankioje prognozėje) tarp pogrupių. Pavyzdžiui, tai gali būti paskolų patvirtinimo rodiklių skirtumas. Pasirinkimo rodiklis reiškia duomenų taškų dalį kiekvienoje klasėje, klasifikuotą kaip 1 (dvejetainėje klasifikacijoje), arba prognozių reikšmių pasiskirstymą (regresijoje).
+**Pasirinkimo dažnio skirtumas**: Ši metrika nurodo skirtumą pasirinkimo dažnyje (palankios prognozės) tarp pogrupių. Pavyzdys būtų skirtumas patvirtinant paskolas. Pasirinkimo dažnis reiškia duomenų taškų, priskirtų klasei 1 (dvigubos klasifikacijos atveju) arba paskirstytų pagal prognozes (regresijoje), dalį kiekvienoje klasėje.
 
 ## Duomenų analizė
 
-> „Jei pakankamai ilgai kankinsite duomenis, jie prisipažins bet ką“ – Ronald Coase
+> „Jei ilgai kankinsi duomenis, jie prisipažins bet kam“ – Ronaldas Coase
 
-Šis teiginys skamba ekstremaliai, tačiau tiesa, kad duomenis galima manipuliuoti, kad jie palaikytų bet kokią išvadą. Tokia manipuliacija kartais gali įvykti netyčia. Kaip žmonės, mes visi turime šališkumų, ir dažnai sunku sąmoningai suvokti, kada įvedate šališkumą į duomenis. Užtikrinti teisingumą AI ir mašininio mokymosi srityje išlieka sudėtingas iššūkis.
+Ši frazė skamba radikaliai, bet tiesa yra ta, kad duomenis galima manipuliuoti, siekiant paremti bet kokias išvadas. Kartais tokia manipuliacija gali būti netyčinė. Kaip žmonės, mes visi turime savo šališkumų, ir dažnai sunku sąmoningai pastebėti, kai įtraukiame šališkumą į duomenis. Užtikrinti sąžiningumą AI ir mašininio mokymosi srityse išlieka sudėtinga užduotis.
 
-Duomenys yra didelė akloji zona tradiciniams modelio veikimo rodikliams. Galite turėti aukštus tikslumo rodiklius, tačiau tai ne visada atspindi pagrindinį duomenų šališkumą, kuris gali būti jūsų duomenų rinkinyje. Pavyzdžiui, jei darbuotojų duomenų rinkinyje 27 % moterų užima vadovaujančias pareigas įmonėje, o 73 % vyrų yra tame pačiame lygyje, darbo skelbimų AI modelis, apmokytas pagal šiuos duomenis, gali daugiausia taikyti vyrų auditorijai aukšto lygio darbo pozicijoms. Šis duomenų disbalansas iškreipė modelio prognozę, kad ji būtų palanki vienai lyčiai. Tai atskleidžia teisingumo problemą, kai AI modelis turi lyčių šališkumą.
+Duomenys yra didelė aklavietė tradicinėms modelio darbo metrikoms. Galite turėti aukštus tikslumo rodiklius, bet tai ne visada atspindi gilesnį duomenų rinkinio šališkumą. Pavyzdžiui, jei darbuotojų duomenų rinkinyje 27 % vyrų užima vykdomąsias pareigas, o 73 % moterų yra toje pačioje pozicijoje, dirbtinio intelekto modelis, mokytas pagal šiuos duomenis, gali pagrinde taikyti savo skelbimus vyrams dėl aukštesnių pareigų. Ši duomenų disbalanso problema iškreipia modelio prognozes, leidžiant joms būti palankia vienam lyčiui. Tai atskleidžia sąžiningumo problemą, kai AI modelyje egzistuoja lyties šališkumas.
 
-Duomenų analizės komponentas RAI prietaisų skydelyje padeda nustatyti sritis, kuriose duomenų rinkinyje yra per didelis arba nepakankamas atstovavimas. Jis padeda naudotojams diagnozuoti klaidų ir teisingumo problemų, atsirandančių dėl duomenų disbalanso ar tam tikros duomenų grupės atstovavimo trūkumo, pagrindines priežastis. Tai suteikia naudotojams galimybę vizualizuoti duomenų rinkinius pagal prognozuojamus ir faktinius rezultatus, klaidų grupes ir specifines savybes. Kartais atradus nepakankamai atstovaujamą duomenų grupę taip pat galima pastebėti, kad modelis nesimoko tinkamai, todėl yra didelis netikslumas. Modelis, turintis duomenų šališkumą, yra ne tik teisingumo problema, bet ir rodo, kad modelis nėra įtraukus ar patikimas.
+Duomenų analizės komponentas Atsakingo AI skydelyje padeda identifikuoti sritis, kuriose duomenų rinkinyje yra per didelis arba per mažas tam tikrų grupių atstovavimas. Tai leidžia vartotojams diagnozuoti klaidų ir sąžiningumo problemas, kilusias dėl duomenų disbalanso arba tam tikrų grupių trūkumo. Komponentas suteikia galimybę vizualizuoti duomenų rinkinius pagal prognozuotus ir faktinius rezultatus, klaidų grupes ir konkrečius požymius. Kartais atradus nepakankamai atstovaujamą grupę, galima suprasti, kad modelis blogai mokosi, stebint didelį netikslumų kiekį. Modelis, turintis duomenų šališkumą, yra ne tik sąžiningumo problema, bet ir rodo, kad modelis nėra įtraukiantis ar patikimas.
 
-![Duomenų analizės komponentas RAI prietaisų skydelyje](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
+![Duomenų analizės komponentas Atsakingo AI skydelyje](../../../../translated_images/lt/dataanalysis-cover.8d6d0683a70a5c1e.webp)
+
 
 Naudokite duomenų analizę, kai reikia:
 
-* Tyrinėti savo duomenų rinkinio statistiką, pasirenkant skirtingus filtrus, kad suskaidytumėte duomenis į skirtingas dimensijas (dar vadinamas grupėmis).
-* Suprasti savo duomenų rinkinio pasiskirstymą skirtingose grupėse ir savybių grupėse.
-* Nustatyti, ar jūsų išvados, susijusios su teisingumu, klaidų analize ir priežastingumu (gautos iš kitų prietaisų skydelio komponentų), yra jūsų duomenų rinkinio pasiskirstymo rezultatas.
-* Nuspręsti, kuriose srityse rinkti daugiau duomenų, kad būtų sumažintos klaidos, atsirandančios dėl atstovavimo problemų, žymų triukšmo, savybių triukšmo, žymų šališkumo ir panašių veiksnių.
+* Tirti duomenų rinkinio statistiką, pasirenkant skirtingus filtrus, kad jūsų duomenys būtų suskirstyti į skirtingas dimensijas (dar vadinamas kohortomis).
+* Suprasti duomenų paskirstymą skirtingose kohortose ir požymių grupėse.
+* Nustatyti, ar jūsų išvados apie sąžiningumą, klaidų analizę ir priežastingumą (gautos iš kitų skydelio komponentų) yra duomenų paskirstymo rezultatas.
+* Nuspręsti, kuriose srityse reikia rinkti daugiau duomenų, kad būtų sumažintos klaidos, kylančios dėl atstovavimo problemų, žymėjimo triukšmo, požymių triukšmo, žymėjimo šališkumo ir panašių veiksnių.
 
-## Modelio interpretacija
+## Modelio aiškinamumas
 
-Mašininio mokymosi modeliai dažnai laikomi „juodosiomis dėžėmis“. Suprasti, kurios pagrindinės duomenų savybės lemia modelio prognozę, gali būti sudėtinga. Svarbu užtikrinti skaidrumą, kodėl modelis priima tam tikrą prognozę. Pavyzdžiui, jei AI sistema prognozuoja, kad diabetu sergantis pacientas rizikuoja būti pakartotinai hospitalizuotas per mažiau nei 30 dienų, ji turėtų pateikti duomenis, kurie pagrindžia šią prognozę. Turint tokius duomenų rodiklius, atsiranda skaidrumas, kuris padeda gydytojams ar ligoninėms priimti gerai pagrįstus sprendimus. Be to, galimybė paaiškinti, kodėl modelis priėmė tam tikrą prognozę konkrečiam pacientui, leidžia užtikrinti atitiktį sveikatos reguliavimams. Kai naudojate mašininio mokymosi modelius, kurie daro įtaką žmonių gyvenimams, būtina suprasti ir paaiškinti, kas lemia modelio elgseną. Modelio paaiškinamumas ir interpretacija padeda atsakyti į klausimus tokiose situacijose kaip:
+Mašininio mokymosi modeliai dažnai laikomi juodosiomis dėžėmis. Sunku suprasti, kokie svarbiausi duomenų požymiai lemia modelio prognozę. Svarbu užtikrinti skaidrumą, kodėl modelis daro tam tikrą prognozę. Pvz., jei AI sistema prognozuoja, kad diabetu sergantis pacientas bus vėl priimtas į ligoninę per mažiau nei 30 dienų, ji turi pateikti palaikomus duomenis, kurie lėmė šią prognozę. Turint tokius duomenų indikatorius, skaidrumas padeda klinikams ar ligoninėms priimti gerai informuotus sprendimus. Be to, galimybė paaiškinti, kodėl modelis pateikė prognozę konkrečiam pacientui, užtikrina atsakomybę pagal sveikatos reguliavimą. Naudojant mašininio mokymosi modelius žmonių gyvenime, itin svarbu suprasti ir paaiškinti, kas įtakoja modelio elgseną. Modelio paaiškinamumas ir aiškinamumas padeda atsakyti į klausimus tokiose situacijose kaip:
 
-* Modelio derinimas: Kodėl mano modelis padarė šią klaidą? Kaip galiu pagerinti savo modelį?
-* Žmogaus ir AI bendradarbiavimas: Kaip galiu suprasti ir pasitikėti modelio sprendimais?
-* Reguliavimo atitiktis: Ar mano modelis atitinka teisės aktų reikalavimus?
+* Modelio derinimas: kodėl mano modelis padarė šią klaidą? Kaip galiu patobulinti modelį?
+* Žmogaus ir AI bendradarbiavimas: kaip galiu suprasti ir pasitikėti modelio sprendimais?
+* Reguliacinis atitikimas: ar modelis atitinka teisės reikalavimus?
 
-Savybių svarbos komponentas RAI prietaisų skydelyje padeda derinti ir gauti išsamų supratimą apie tai, kaip modelis priima prognozes. Tai taip pat naudingas įrankis mašininio mokymosi specialistams ir sprendimų priėmėjams, norint paaiškinti ir pateikti įrodymus apie savybes, kurios daro įtaką modelio elgsenai, siekiant užtikrinti reguliavimo atitiktį. Naudotojai gali tyrinėti tiek globalius, tiek lokalius paaiškinimus, kad patvirtintų, kurios savybės lemia modelio prognozę. Globalūs paaiškinimai pateikia pagrindines savybes, kurios paveikė bendrą modelio prognozę. Lokalieji paaiškinimai parodo, kurios savybės lėmė modelio prognozę konkrečiu atveju. Galimybė įvertinti lokalius paaiškinimus taip pat naudinga derinant ar audituojant konkretų atvejį, siekiant geriau suprasti ir interpretuoti, kodėl modelis priėmė tikslią ar
-- **Per didelė arba per maža reprezentacija**. Idėja yra ta, kad tam tikra grupė nėra matoma tam tikroje profesijoje, o bet kokia paslauga ar funkcija, kuri toliau skatina tokį reiškinį, prisideda prie žalos.
+Atsakingo AI skydelio Požymių svarbos komponentas padeda derinti ir išsamiai suprasti, kaip modelis priima sprendimus. Tai taip pat naudinga mašininio mokymosi specialistams ir sprendimų priėmėjams, siekiant paaiškinti ir pateikti įrodymus, kokie požymiai veikia modelio elgseną dėl reguliavimo atitikimo. Toliau vartotojai gali tirti tiek globalius, tiek lokalius paaiškinimus, kad patvirtintų, kokie požymiai lemia modelio prognozę. Globalūs paaiškinimai pateikia svarbiausių požymių, kurie turėjo poveikį modeliui apskritai, sąrašą. Lokalieji paaiškinimai rodo, kurie požymiai nulėmė modelio prognozę konkrečiam atvejui. Lokaliųjų paaiškinimų vertinimas taip pat naudingas derinant ar tikrinant specifinį atvejį, siekiant geriau suprasti ir paaiškinti, kodėl modelis padarė tikslią ar netikslią prognozę.
 
-### Azure RAI prietaisų skydelis
+![Požymių svarbos komponentas Atsakingo AI skydelyje](../../../../translated_images/lt/9-feature-importance.cd3193b4bba3fd4b.webp)
 
-[Azure RAI prietaisų skydelis](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) yra sukurtas remiantis atvirojo kodo įrankiais, kuriuos sukūrė pirmaujančios akademinės institucijos ir organizacijos, įskaitant Microsoft. Šie įrankiai yra labai naudingi duomenų mokslininkams ir AI kūrėjams, siekiant geriau suprasti modelio elgseną, aptikti ir sumažinti nepageidaujamus AI modelių aspektus.
+* Globalūs paaiškinimai: pavyzdžiui, kokie požymiai veikia bendrą diabeto ligoninės pakartotinio priėmimo modelio elgseną?
+* Lokalieji paaiškinimai: pavyzdžiui, kodėl diabetu sergantis pacientas, vyresnis nei 60 m., turintis ankstesnių hospitalizacijų, buvo prognozuotas būti arba nebūti priimtas vėl per 30 dienų?
 
-- Sužinokite, kaip naudoti skirtingus komponentus, peržiūrėdami RAI prietaisų skydelio [dokumentaciją.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
+Derinant modelio našumą skirtingose kohortose, Požymių svarbos komponentas rodo, kokį poveikį požymis turi tarp kohortų. Tai padeda atskleisti anomalijas, lyginant požymių įtaką modelio klaidingoms prognozėms. Komponentas gali parodyti, kurios požymių reikšmės teigiamai arba neigiamai paveikė modelio rezultatą. Pavyzdžiui, jei modelis padarė netikslią prognozę, komponentas leidžia gilintis ir nustatyti, kurie požymiai ar požymių reikšmės nulėmė prognozę. Toks detalus lygis naudingas ne tik derinimui, bet ir skaidrumui bei atsakomybės užtikrinimui auditavimo metu. Galiausiai, komponentas gali padėti atpažinti sąžiningumo problemas. Pvz., jei jautrus požymis, kaip etninė kilmė ar lytis, yra labai svarbus modelio prognozei, tai gali būti rasinės arba lyties šališkumo ženklas modelyje.
 
-- Peržiūrėkite keletą RAI prietaisų skydelio [pavyzdinių užrašų knygelių](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks), skirtų atsakingesnių AI scenarijų derinimui Azure Machine Learning aplinkoje.
+![Požymių svarba](../../../../translated_images/lt/9-features-influence.3ead3d3f68a84029.webp)
 
+Naudokite aiškinamumą, kai jums reikia:
+
+* Nustatyti, kiek patikimos jūsų AI sistemos prognozės, suprantant, kurie požymiai yra svarbiausi prognozėms.
+* Pradėti modelio derinimą, pirmiausia jį suprantant ir nustatant, ar modelis naudoja sveikus požymius, ar tik klaidingus koreliacijų ryšius.
+* Atpažinti galimus neteisingumo šaltinius, suprantant, ar modelis savo prognozes grindžia jautriais požymiais ar tais, kurie labai susiję su jais.
+* Stiprinti vartotojų pasitikėjimą modelio sprendimais, generuojant lokalius paaiškinimus, kurie iliustruoja jų rezultatus.
+* Atlikti reguliavimo auditą AI sistemai, kad būtų patvirtinti modeliai ir stebimas modelio sprendimų poveikis žmonėms.
+
+## Išvados
+
+Visi Atsakingo AI skydelio komponentai yra praktiški įrankiai, padedantys kurti mašininio mokymosi modelius, kurie yra mažiau žalingi ir patikimesni visuomenei. Tai gerina žmogaus teisių apsaugą nuo grėsmių; diskriminacijos ar tam tikrų grupių pašalinimo iš gyvenimo galimybių; taip pat fizinės ar psichologinės žalos rizikos mažinimą. Tai taip pat leidžia kurti pasitikėjimą modelio sprendimais generuojant lokalius paaiškinimus, kurie iliustruoja jų rezultatus. Kai kurios galimos žalos gali būti klasifikuojamos kaip:
+
+- **Paskirstymas**, pavyzdžiui, kai viena lytis ar etninė grupė yra palankesnė už kitą.
+- **Paslaugos kokybė**. Jei mokote duomenis vienai konkrečiai situacijai, bet realybė yra kur kas sudėtingesnė, tai lemia prastą paslaugos kokybę.
+- **Stereotipizavimas**. Susiejiant tam tikrą grupę su iš anksto priskirtais atributais.
+
+- **Niekolinimas**. Neteisingai kritikuoti ir pažymėti ką nors ar ką nors.
+- **Perdėta arba nepakankama atstovavimas**. Idėja yra ta, kad tam tikros grupės tam tikroje profesijoje nematoma, ir bet koks paslaugų ar funkcijų skatinimas, kuris tai palaiko, prisideda prie žalos.
+
+### Azure RAI informacijos suvestinė
+ 
+[Azure RAI informacijos suvestinė](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) sukurta naudojant atviro kodo įrankius, parengtus pirmaujančių akademinių institucijų ir organizacijų, įskaitant Microsoft, kurie yra svarbūs duomenų mokslininkams ir DI kūrėjams geriau suprasti modelio elgseną, atrasti ir sumažinti nepageidaujamas problemas DI modeliuose.
+
+- Sužinokite, kaip naudotis skirtingais komponentais, peržiūrėdami RAI informacijos suvestinės [dokumentaciją.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
+
+- Peržiūrėkite kai kuriuos RAI informacijos suvestinės [pavyzdinius užrašų knygeles](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks), skirtus atsakingesnio DI scenarijų derinimui Azure Machine Learning aplinkoje. 
+  
 ---
-## 🚀 Iššūkis
+## 🚀 Iššūkis 
+ 
+Kad būtų išvengta statistinių ar duomenų šališkumų atsiradimo iš esmės, turėtume: 
 
-Kad statistiniai ar duomenų šališkumai nebūtų įtraukti nuo pat pradžių, turėtume:
+- turėti skirtingų patirčių ir požiūrių įvairovę sistemų kūrime dirbančių žmonių tarpe 
+- investuoti į duomenų rinkinius, atspindinčius mūsų visuomenės įvairovę 
+- tobulinti geresnius metodus, skirtus šališkumui aptikti ir taisyti, kai jis pasireiškia 
 
-- užtikrinti, kad sistemų kūrime dalyvautų žmonės iš įvairių aplinkybių ir perspektyvų
-- investuoti į duomenų rinkinius, kurie atspindi mūsų visuomenės įvairovę
-- kurti geresnius metodus šališkumui aptikti ir ištaisyti, kai jis pasireiškia
+Pagalvokite apie realius scenarijus, kur neteisingumas yra akivaizdus modelių kūrime ir naudojime. Ką dar turėtume apsvarstyti? 
 
-Pagalvokite apie realaus gyvenimo scenarijus, kur modelių kūrime ir naudojime akivaizdus neteisingumas. Ką dar turėtume apsvarstyti?
+## [Po paskaitos viktorina](https://ff-quizzes.netlify.app/en/ml/)
+## Peržiūra ir savarankiškas mokymasis 
+ 
+Šioje pamokoje išmokote kai kurių praktinių atsakingo DI įrankių taikymo mašininio mokymosi srityje.  
 
-## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
-## Peržiūra ir savarankiškas mokymasis
+Peržiūrėkite šį seminarą, kad giliau įsigilintumėte į temas: 
 
-Šioje pamokoje sužinojote apie praktinius įrankius, kaip įtraukti atsakingą AI į mašininį mokymąsi.
+- Atsakingo DI informacijos suvestinė: Viena vieta, skirta atsakingo DI pritaikymui praktikoje, pristato Besmira Nushi ir Mehrnoosh Sameki
 
-Peržiūrėkite šį seminarą, kad giliau pasinertumėte į temas:
+[![Atsakingo DI informacijos suvestinė: Viena vieta, skirta atsakingo DI pritaikymui praktikoje](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Atsakingo DI informacijos suvestinė: Viena vieta, skirta atsakingo DI pritaikymui praktikoje")
 
-- Atsakingo AI prietaisų skydelis: Vieno langelio principas RAI praktiniam įgyvendinimui, Besmira Nushi ir Mehrnoosh Sameki
+> 🎥 Spustelėkite paveikslėlį aukščiau, kad peržiūrėtumėte vaizdo įrašą: Atsakingo DI informacijos suvestinė: Viena vieta, skirta atsakingo DI pritaikymui praktikoje, pristato Besmira Nushi ir Mehrnoosh Sameki
+ 
+Naudokite šiuos šaltinius, kad sužinotumėte daugiau apie atsakingą DI ir kaip kurti patikimesnius modelius: 
 
-[![Atsakingo AI prietaisų skydelis: Vieno langelio principas RAI praktiniam įgyvendinimui](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Atsakingo AI prietaisų skydelis: Vieno langelio principas RAI praktiniam įgyvendinimui")
+- Microsoft RAI informacijos suvestinės įrankiai mašininio mokymosi modelių derinimui: [Atsakingo DI įrankių ištekliai](https://aka.ms/rai-dashboard)
 
-> 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą: Atsakingo AI prietaisų skydelis: Vieno langelio principas RAI praktiniam įgyvendinimui, Besmira Nushi ir Mehrnoosh Sameki
+- Išnagrinėkite Atsakingo DI įrankių rinkinį: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-Naudokitės šiais šaltiniais, kad sužinotumėte daugiau apie atsakingą AI ir kaip kurti patikimesnius modelius:
+- Microsoft RAI išteklių centras: [Atsakingo DI ištekliai – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-- Microsoft RAI prietaisų skydelio įrankiai ML modelių derinimui: [Atsakingo AI įrankių šaltiniai](https://aka.ms/rai-dashboard)
-
-- Susipažinkite su Atsakingo AI įrankių rinkiniu: [Github](https://github.com/microsoft/responsible-ai-toolbox)
-
-- Microsoft RAI išteklių centras: [Atsakingo AI ištekliai – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
-
-- Microsoft FATE tyrimų grupė: [FATE: Sąžiningumas, Atsakomybė, Skaidrumas ir Etika AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+- Microsoft FATE tyrimų grupė: [FATE: Sąžiningumas, Atsakomybė, Skaidrumas ir Etika DI srityje – Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
 ## Užduotis
 
-[Susipažinkite su RAI prietaisų skydeliu](assignment.md)
+[Išnagrinėkite RAI informacijos suvestinę](assignment.md)
 
 ---
 
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Dėl svarbios informacijos rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius naudojant šį vertimą.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

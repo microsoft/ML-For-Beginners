@@ -1,24 +1,24 @@
-# Érzelemfelismerés szállodai vélemények alapján
+# Érzelemelemzés szállodai értékelésekkel
 
-Most, hogy részletesen megvizsgáltad az adatállományt, itt az ideje, hogy szűrd az oszlopokat, majd NLP technikákat alkalmazz az adatállományon, hogy új betekintést nyerj a szállodákról.
+Miután részletesen megvizsgáltad az adatkészletet, itt az ideje, hogy kiszűrd a megfelelő oszlopokat, majd NLP technikákat alkalmazz az adatkészleten, hogy új betekintést nyerhess a szállodákról.
 
 ## [Előadás előtti kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
-### Szűrési és érzelemfelismerési műveletek
+### Szűrés és érzelemelemzési műveletek
 
-Ahogy valószínűleg észrevetted, az adatállományban van néhány probléma. Néhány oszlop haszontalan információval van tele, mások hibásnak tűnnek. Ha helyesek is, nem világos, hogyan számították ki őket, és az eredmények nem ellenőrizhetők független számításokkal.
+Valószínűleg észrevetted, hogy az adatkészletnek vannak problémái. Egyes oszlopok haszontalan információkat tartalmaznak, mások hibásnak tűnnek. Ha helyesek, akkor sem világos, hogyan számították ki őket, és az eredményeket nem lehet saját számításokkal függetlenül ellenőrizni.
 
-## Gyakorlat: további adatfeldolgozás
+## Gyakorlat: egy kicsit több adatfeldolgozás
 
-Tisztítsd meg az adatokat egy kicsit jobban. Adj hozzá oszlopokat, amelyek később hasznosak lesznek, módosítsd más oszlopok értékeit, és teljesen törölj bizonyos oszlopokat.
+Tiszítsd meg az adatokat még egy kicsit. Adj hozzá hasznos oszlopokat, módosítsd más oszlopok értékeit, és bizonyos oszlopokat teljesen távolíts el.
 
 1. Kezdeti oszlopfeldolgozás
 
-   1. Töröld a `lat` és `lng` oszlopokat.
+   1. Távolítsd el a `lat` és `lng` oszlopokat
 
-   2. Cseréld ki a `Hotel_Address` értékeit az alábbi értékekre (ha a cím tartalmazza a város és az ország nevét, változtasd meg csak a városra és az országra).
+   2. Cseréld ki a `Hotel_Address` értékeket az alábbiakra (ha a cím tartalmazza a város és az ország nevét is, csak a várost és az országot hagyd meg).
 
-      Ezek az adatállományban szereplő egyetlen városok és országok:
+      Ezek a városok és országok találhatók az adatkészletben:
 
       Amszterdam, Hollandia
 
@@ -30,7 +30,7 @@ Tisztítsd meg az adatokat egy kicsit jobban. Adj hozzá oszlopokat, amelyek ké
 
       Párizs, Franciaország
 
-      Bécs, Ausztria 
+      Bécs, Ausztria
 
       ```python
       def replace_address(row):
@@ -47,171 +47,171 @@ Tisztítsd meg az adatokat egy kicsit jobban. Adj hozzá oszlopokat, amelyek ké
           elif "Vienna" in row["Hotel_Address"]:
               return "Vienna, Austria" 
       
-      # Replace all the addresses with a shortened, more useful form
+      # Cserélje le az összes címet egy rövidebb, hasznosabb formára
       df["Hotel_Address"] = df.apply(replace_address, axis = 1)
-      # The sum of the value_counts() should add up to the total number of reviews
+      # A value_counts() összege meg kell, hogy egyezzen a teljes értékelésszámmal
       print(df["Hotel_Address"].value_counts())
       ```
 
-      Most már lekérdezheted az ország szintű adatokat:
+      Most már lekérdezheted az adatokat ország szinten is:
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | Hotel_Address          | Hotel_Name |
-      | :--------------------- | :--------: |
-      | Amsterdam, Netherlands |    105     |
-      | Barcelona, Spain       |    211     |
-      | London, United Kingdom |    400     |
-      | Milan, Italy           |    162     |
-      | Paris, France          |    458     |
-      | Vienna, Austria        |    158     |
+      | Hotel_Cím              | Szálloda_Neve |
+      | :--------------------- | :--------:   |
+      | Amszterdam, Hollandia  |    105       |
+      | Barcelona, Spanyolország |    211     |
+      | London, Egyesült Királyság |    400     |
+      | Milánó, Olaszország    |    162       |
+      | Párizs, Franciaország  |    458       |
+      | Bécs, Ausztria         |    158       |
 
-2. Szállodai meta-vélemény oszlopok feldolgozása
+2. Szállodai meta-értékelési oszlopok feldolgozása
 
-  1. Töröld az `Additional_Number_of_Scoring` oszlopot.
+  1. Távolítsd el az `Additional_Number_of_Scoring` oszlopot
 
-  1. Cseréld ki a `Total_Number_of_Reviews` értékét az adott szállodához tartozó vélemények tényleges számával az adatállományban.
+  1. Cseréld le a `Total_Number_of_Reviews` értékét a valós, az adatkészletben szereplő értékre
 
-  1. Cseréld ki az `Average_Score` értékét a saját számított átlagos pontszámunkkal.
+  1. Cseréld le az `Average_Score` értékét a saját, kiszámított pontra
 
   ```python
-  # Drop `Additional_Number_of_Scoring`
+  # Töröld az `Additional_Number_of_Scoring` értéket
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
-  # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
+  # Cseréld le a `Total_Number_of_Reviews` és az `Average_Score` értékeket a saját számított értékeinkre
   df.Total_Number_of_Reviews = df.groupby('Hotel_Name').transform('count')
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-3. Vélemény oszlopok feldolgozása
+3. Értékelési oszlopok feldolgozása
 
-   1. Töröld a `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` és `days_since_review` oszlopokat.
+   1. Távolítsd el a `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` és `days_since_review` oszlopokat
 
-   2. Hagyd meg a `Reviewer_Score`, `Negative_Review` és `Positive_Review` oszlopokat változatlanul.
+   2. Hagyd meg változatlanul a `Reviewer_Score`, `Negative_Review` és `Positive_Review` oszlopokat,
      
-   3. Egyelőre hagyd meg a `Tags` oszlopot.
+   3. Hagyd meg most a `Tags` oszlopot is
 
-     - A következő szakaszban további szűrési műveleteket végzünk a címkéken, majd a címkék törlésre kerülnek.
+     - A következő szakaszban további szűrőműveleteket végzünk a címkéken, majd a címkék eltávolításra kerülnek
 
-4. Véleményező oszlopok feldolgozása
+4. Értékelői oszlopok feldolgozása
 
-  1. Töröld a `Total_Number_of_Reviews_Reviewer_Has_Given` oszlopot.
+  1. Távolítsd el a `Total_Number_of_Reviews_Reviewer_Has_Given` oszlopot
   
-  2. Hagyd meg a `Reviewer_Nationality` oszlopot.
+  2. Hagyd meg a `Reviewer_Nationality` oszlopot
 
 ### Címke oszlopok
 
-A `Tag` oszlop problémás, mivel egy lista (szöveg formájában) van tárolva az oszlopban. Sajnos az alrészek sorrendje és száma nem mindig ugyanaz. Nehéz az ember számára azonosítani a releváns kifejezéseket, mivel 515,000 sor és 1427 szálloda van, és mindegyiknek kissé eltérő lehetőségei vannak, amelyeket a véleményező választhatott. Itt jön képbe az NLP. A szöveget átvizsgálva megtalálhatod a leggyakoribb kifejezéseket, és megszámolhatod őket.
+A `Tag` oszlop problémás, mivel egy felsorolás (szöveges formában) van benne tárolva. Sajnos az alcímek száma és sorrendje nem mindig egyezik meg. Nehéz az embernek azonosítani a fontos kifejezéseket, mert 515 000 sor, és 1427 szálloda van, mindegyik egy kicsit eltérő lehetőségekkel, amiből a véleményező választhatott. Itt jön jól az NLP. Átvizsgálhatod a szöveget, megtalálhatod a leggyakoribb kifejezéseket, és megszámolhatod őket.
 
-Sajnos nem az egyes szavak érdekelnek minket, hanem több szóból álló kifejezések (pl. *Üzleti út*). Egy több szóból álló gyakorisági eloszlás algoritmus futtatása ekkora adatmennyiségen (6762646 szó) rendkívül sok időt vehet igénybe, de anélkül, hogy megnéznénk az adatokat, úgy tűnik, hogy ez szükséges költség. Itt jön jól az exploratív adatvizsgálat, mivel láttál egy mintát a címkékből, például `[' Üzleti út  ', ' Egyedül utazó ', ' Egyágyas szoba ', ' 5 éjszakát maradt ', ' Mobil eszközről küldve ']`, elkezdheted megkérdezni, hogy lehetséges-e jelentősen csökkenteni a feldolgozást. Szerencsére lehetséges - de először néhány lépést kell követned, hogy meghatározd az érdekes címkéket.
+Sajnos nem egyszavas kifejezések érdekelnek, hanem több szóból álló kifejezések (pl. *Üzleti út*). Egy több szavas gyakorisági eloszlás végrehajtása ekkora adatmennyiségen (6 762 646 szó) rendkívül hosszú időt venne igénybe, de az adatok ismerete nélkül ez szükségesnek tűnik. Itt jön jól a felderítő adat elemzés, mert láttál már címkemintát, mint például `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']`, így elkezdheted keresni a módját, hogyan csökkentsd jelentősen a feldolgozandó adatot. Szerencsére lehet – de először néhány lépést kell követni a fontos címkék meghatározásához.
 
 ### Címkék szűrése
 
-Ne feledd, hogy az adatállomány célja az érzelmek és oszlopok hozzáadása, amelyek segítenek kiválasztani a legjobb szállodát (számodra vagy esetleg egy ügyfél számára, aki szállodai ajánló botot szeretne készíteni). Fel kell tenned magadnak a kérdést, hogy a címkék hasznosak-e vagy sem a végső adatállományban. Íme egy értelmezés (ha más célból lenne szükséged az adatállományra, különböző címkék maradhatnak benne/kieshetnek):
+Ne feledd, hogy az adatkészlet célja érzelem hozzáadása és olyan oszlopok létrehozása, amelyek segítenek a legjobb szálloda kiválasztásában (saját magad vagy egy ügyfél számára, aki szállodai ajánló bot fejlesztését kéri). El kell döntened, hogy a címkék hasznosak-e vagy sem a végső adatkészletben. Íme egy értelmezés (más célra más címkék maradhatnak bent vagy kerülhetnek ki):
 
-1. Az utazás típusa releváns, ezt meg kell tartani.
-2. A vendégcsoport típusa fontos, ezt meg kell tartani.
-3. Az a szoba, lakosztály vagy stúdió típusa, amelyben a vendég tartózkodott, irreleváns (minden szállodában alapvetően ugyanazok a szobák vannak).
-4. Az eszköz, amelyről a véleményt beküldték, irreleváns.
-5. Az éjszakák száma, amelyet a véleményező ott töltött, *lehet*, hogy releváns, ha hosszabb tartózkodást a szálloda kedvelésével társítasz, de ez erőltetett, és valószínűleg irreleváns.
+1. Az utazás típusa releváns, ennek meg kell maradnia
+2. A vendégcsoport típusa fontos, ennek meg kell maradnia
+3. A vendég által használt szoba, lakosztály vagy stúdió típusa nem releváns (minden szállodában lényegében ugyanazok a szobák vannak)
+4. Az eszköz, amin az értékelést benyújtották, nem releváns
+5. Az eltöltött éjszakák száma *lehet* releváns, ha azt feltételezed, hogy a hosszabb tartózkodás a szálloda jobban tetszésével jár, de ez megkérdőjelezhető és valószínűleg nem számít
 
-Összefoglalva, **tarts meg 2 fajta címkét, és távolítsd el a többit**.
+Összefoglalva, **2 fajta címkét tarts meg, a többit távolítsd el**.
 
-Először nem akarod megszámolni a címkéket, amíg nem kerülnek jobb formátumba, tehát ez azt jelenti, hogy el kell távolítani a szögletes zárójeleket és az idézőjeleket. Ezt többféleképpen megteheted, de a leggyorsabbat szeretnéd, mivel sok adat feldolgozása hosszú időt vehet igénybe. Szerencsére a pandas egyszerű módot kínál mindegyik lépés elvégzésére.
+Először nem akarod megszámolni a címkéket, amíg nincsenek megfelelő formátumban, ezért el kell távolítani a szögletes zárójeleket és a idézőjeleket. Többféleképpen lehet ezt megtenni, de a leggyorsabbat érdemes választani, mert sok adat feldolgozása hosszú időt vehet igénybe. Szerencsére a pandas egyszerű eszközöket kínál ezekhez a lépésekhez.
 
 ```Python
-# Remove opening and closing brackets
+# Távolítsa el a nyitó és záró zárójeleket
 df.Tags = df.Tags.str.strip("[']")
-# remove all quotes too
+# távolítsa el az összes idézőjelet is
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Minden címke valami ilyesmivé válik: `Üzleti út, Egyedül utazó, Egyágyas szoba, 5 éjszakát maradt, Mobil eszközről küldve`.
+Minden címke olyanná válik, mint: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`.
 
-Ezután találunk egy problémát. Néhány vélemény vagy sor 5 oszlopot tartalmaz, néhány 3-at, néhány 6-ot. Ez az adatállomány létrehozásának eredménye, és nehéz javítani. Szeretnéd megszámolni az egyes kifejezések gyakoriságát, de ezek különböző sorrendben vannak minden véleményben, így a számolás hibás lehet, és egy szálloda nem kapja meg azt a címkét, amelyet megérdemelt volna.
+Ezután egy problémát találunk. Néhány értékelés vagy sor 5 oszlopból áll, néhány 3-ból, mások 6-ból. Ez az adatkészlet létrehozásának módjából ered, és nehéz orvosolni. Meg akarod számolni az egyes kifejezéseket, de azok különböző sorrendben vannak az értékelésekben, így a megszámlálás hibázhat, és lehet, hogy egy szálloda nem kap megérdemelt címkét.
 
-Ehelyett a különböző sorrendet az előnyünkre fordítjuk, mivel minden címke több szóból áll, de vesszővel is el van választva! A legegyszerűbb módja ennek az, hogy létrehozunk 6 ideiglenes oszlopot, amelyekbe minden címkét beillesztünk a címke sorrendjének megfelelő oszlopba. Ezután egyesítheted a 6 oszlopot egy nagy oszlopba, és futtathatod a `value_counts()` metódust az eredményoszlopon. Ha ezt kinyomtatod, látni fogod, hogy 2428 egyedi címke volt. Íme egy kis minta:
+Ehelyett a sorrendet a javunkra fordítjuk, mert mindegyik címke több szóból áll, de vesszővel van elválasztva! A legegyszerűbb megoldás 6 ideiglenes oszlop létrehozása, mindegyikbe a címke a maga sorrendjében kerül. Ezeket azután egy nagy oszlopba egyesítjük, és ráfuttatjuk a `value_counts()` metódust. Az eredmény 2428 egyedi címke volt. Íme egy kis minta:
 
-| Címke                          | Szám   |
-| ------------------------------ | ------ |
-| Szabadidős utazás              | 417778 |
-| Mobil eszközről küldve         | 307640 |
-| Pár                            | 252294 |
-| 1 éjszakát maradt              | 193645 |
-| 2 éjszakát maradt              | 133937 |
-| Egyedül utazó                  | 108545 |
-| 3 éjszakát maradt              | 95821  |
-| Üzleti út                      | 82939  |
-| Csoport                        | 65392  |
-| Fiatal gyermekes család        | 61015  |
-| 4 éjszakát maradt              | 47817  |
-| Kétszemélyes szoba             | 35207  |
-| Standard kétszemélyes szoba    | 32248  |
-| Superior kétszemélyes szoba    | 31393  |
-| Idősebb gyermekes család       | 26349  |
-| Deluxe kétszemélyes szoba      | 24823  |
-| Kétszemélyes vagy ikerszoba    | 22393  |
-| 5 éjszakát maradt              | 20845  |
-| Standard kétszemélyes vagy ikerszoba | 17483  |
-| Klasszikus kétszemélyes szoba  | 16989  |
-| Superior kétszemélyes vagy ikerszoba | 13570 |
-| 2 szoba                        | 12393  |
+| Címke                         | Darabszám |
+| ------------------------------ | --------- |
+| Szabadidős utazás             | 417778    |
+| Mobil eszközről benyújtva    | 307640    |
+| Pár                           | 252294    |
+| 1 éjszakát eltöltött          | 193645    |
+| 2 éjszakát eltöltött          | 133937    |
+| Egyedül utazó                 | 108545    |
+| 3 éjszakát eltöltött          | 95821     |
+| Üzleti út                    | 82939     |
+| Csoport                      | 65392     |
+| Fiatal gyerekes család       | 61015     |
+| 4 éjszakát eltöltött          | 47817     |
+| Kétszemélyes szoba           | 35207     |
+| Standard kétszemélyes szoba  | 32248     |
+| Superior kétszemélyes szoba  | 31393     |
+| Nagyobb gyerekes család      | 26349     |
+| Deluxe kétszemélyes szoba    | 24823     |
+| Kétszemélyes vagy iker szoba| 22393     |
+| 5 éjszakát eltöltött          | 20845     |
+| Standard kétszemélyes vagy iker szoba | 17483     |
+| Klasszikus kétszemélyes szoba | 16989     |
+| Superior kétszemélyes vagy iker szoba | 13570     |
+| 2 szoba                     | 12393     |
 
-Néhány gyakori címke, mint például `Mobil eszközről küldve`, nem hasznos számunkra, így okos dolog lehet eltávolítani őket, mielőtt megszámolnánk a kifejezések előfordulását, de ez olyan gyors művelet, hogy benne hagyhatod őket, és figyelmen kívül hagyhatod.
+Néhány gyakori címke, mint a `Mobil eszközről benyújtva` haszontalan számunkra, ezért okos dolog lehet eltávolítani őket a címke előfordulás megszámlálása előtt, de a művelet olyan gyors, hogy bent is hagyhatod és figyelmen kívül hagyhatod.
 
-### Az éjszakák számát jelző címkék eltávolítása
+### Az eltöltött éjszakák címkék eltávolítása
 
-Ezeknek a címkéknek az eltávolítása az első lépés, amely kissé csökkenti a figyelembe veendő címkék számát. Ne feledd, hogy nem távolítod el őket az adatállományból, csak úgy döntesz, hogy nem veszed figyelembe őket értékként a vélemények adatállományában.
+Ezek eltávolítása az első lépés, enyhén csökkenti a figyelembe vett címkék számát. Megjegyzendő, hogy nem az adatkészletből távolítod el őket, csak a számlálás/megőrzés céljára nem veszed figyelembe.
 
-| Tartózkodás hossza | Szám   |
-| ------------------ | ------ |
-| 1 éjszakát maradt  | 193645 |
-| 2 éjszakát maradt  | 133937 |
-| 3 éjszakát maradt  | 95821  |
-| 4 éjszakát maradt  | 47817  |
-| 5 éjszakát maradt  | 20845  |
-| 6 éjszakát maradt  | 9776   |
-| 7 éjszakát maradt  | 7399   |
-| 8 éjszakát maradt  | 2502   |
-| 9 éjszakát maradt  | 1293   |
-| ...                | ...    |
+| Tartózkodás hossza | Darabszám |
+| ------------------ | --------- |
+| 1 éjszakát eltöltött | 193645    |
+| 2 éjszakát eltöltött | 133937    |
+| 3 éjszakát eltöltött | 95821     |
+| 4 éjszakát eltöltött | 47817     |
+| 5 éjszakát eltöltött | 20845     |
+| 6 éjszakát eltöltött | 9776      |
+| 7 éjszakát eltöltött | 7399      |
+| 8 éjszakát eltöltött | 2502      |
+| 9 éjszakát eltöltött | 1293      |
+| ...                | ...       |
 
-Számos különféle szoba, lakosztály, stúdió, apartman stb. van. Mindegyik nagyjából ugyanazt jelenti, és nem releváns számodra, így távolítsd el őket a figyelembe vételből.
+Rengeteg különböző szoba, lakosztály, stúdió, apartman stb. van. Ezek nagyjából ugyanazt jelentik és nem relevánsak számodra, ezért távolítsd el őket a figyelembevételből.
 
-| Szobatípus                  | Szám   |
-| --------------------------- | ------ |
-| Kétszemélyes szoba          | 35207  |
-| Standard kétszemélyes szoba | 32248  |
-| Superior kétszemélyes szoba | 31393  |
-| Deluxe kétszemélyes szoba   | 24823  |
-| Kétszemélyes vagy ikerszoba | 22393  |
-| Standard kétszemélyes vagy ikerszoba | 17483 |
-| Klasszikus kétszemélyes szoba | 16989 |
-| Superior kétszemélyes vagy ikerszoba | 13570 |
+| Szoba típusa                     | Darabszám |
+| ------------------------------- | --------- |
+| Kétszemélyes szoba              | 35207     |
+| Standard kétszemélyes szoba     | 32248     |
+| Superior kétszemélyes szoba     | 31393     |
+| Deluxe kétszemélyes szoba       | 24823     |
+| Kétszemélyes vagy iker szoba   | 22393     |
+| Standard kétszemélyes vagy iker szoba | 17483     |
+| Klasszikus kétszemélyes szoba   | 16989     |
+| Superior kétszemélyes vagy iker szoba | 13570     |
 
-Végül, és ez örömteli (mivel nem igényelt sok feldolgozást), a következő *hasznos* címkék maradnak:
+Végül, és ez örömteli (mert alig volt feldolgozás), a következő *hasznos* címke marad meg:
 
-| Címke                                         | Szám   |
-| --------------------------------------------- | ------ |
-| Szabadidős utazás                             | 417778 |
-| Pár                                           | 252294 |
-| Egyedül utazó                                 | 108545 |
-| Üzleti út                                     | 82939  |
-| Csoport (összevonva Barátokkal utazók címkével) | 67535  |
-| Fiatal gyermekes család                       | 61015  |
-| Idősebb gyermekes család                      | 26349  |
-| Háziállattal                                  | 1405   |
+| Címke                                         | Darabszám |
+| --------------------------------------------- | --------- |
+| Szabadidős utazás                            | 417778    |
+| Pár                                           | 252294    |
+| Egyedül utazó                                | 108545    |
+| Üzleti út                                    | 82939     |
+| Csoport (egybevonva a baráti utazókkal)     | 67535     |
+| Fiatal gyerekes család                        | 61015     |
+| Nagyobb gyerekes család                       | 26349     |
+| Háziállattal                                  | 1405      |
 
-Érvelhetsz azzal, hogy a `Barátokkal utazók` nagyjából ugyanaz, mint a `Csoport`, és ez igaz lenne, ha összevonnád őket, ahogy fentebb. A helyes címkék azonosításához szükséges kód megtalálható itt: [Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+Az is vitatható, hogy a `Travellers with friends` többé-kevésbé ugyanaz, mint a `Group`, és jogos őket összevonni a fentiek szerint. A helyes címkék azonosításának kódja a [Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
 
-Az utolsó lépés az, hogy új oszlopokat hozz létre ezekhez a címkékhez. Ezután minden véleménysor esetében, ha a `Tag` oszlop megegyezik az egyik új oszloppal, adj hozzá egy 1-est, ha nem, adj hozzá egy 0-t. Az eredmény egy összesítés lesz arról, hogy hány véleményező választotta ezt a szállodát (összesítve) például üzleti vagy szabadidős célra, vagy hogy háziállattal érkezett-e, és ez hasznos információ lehet szálloda ajánlásakor.
+Az utolsó lépés, hogy új oszlopokat hozz létre ezeknek a címkéknek. Minden értékelői sorban, ha a `Tag` oszlop megegyezik az új oszlop egyikével, akkor 1-et adj hozzá, ha nem, akkor 0-t. Az eredményként megkapod, hogy összesen hány értékelő választotta adott szállodát, például üzleti útra vagy szabadidős utazásra, vagy háziállat hozatalára, és ez hasznos információ a szállodai ajánláshoz.
 
 ```python
-# Process the Tags into new columns
-# The file Hotel_Reviews_Tags.py, identifies the most important tags
-# Leisure trip, Couple, Solo traveler, Business trip, Group combined with Travelers with friends, 
-# Family with young children, Family with older children, With a pet
+# A címkék feldolgozása új oszlopokká
+# A Hotel_Reviews_Tags.py fájl azonosítja a legfontosabb címkéket
+# Szabadidős utazás, Pár, Egyéni utazó, Üzleti út, Csoport kombinálva Baráti utazókkal,
+# Család kisgyermekkel, Család nagyobb gyerekkel, Háziállattal
 df["Leisure_trip"] = df.Tags.apply(lambda tag: 1 if "Leisure trip" in tag else 0)
 df["Couple"] = df.Tags.apply(lambda tag: 1 if "Couple" in tag else 0)
 df["Solo_traveler"] = df.Tags.apply(lambda tag: 1 if "Solo traveler" in tag else 0)
@@ -223,25 +223,25 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ```
 
-### Az adatállomány mentése
+### Mentés
 
-Végül mentsd el az adatállományt az aktuális állapotában egy új néven.
+Végül mentsd az adatkészletet az aktuális állapotában egy új néven.
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
 
-# Saving new data file with calculated columns
+# Új adatfájl mentése kiszámított oszlopokkal
 print("Saving results to Hotel_Reviews_Filtered.csv")
 df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 ```
 
-## Érzelemfelismerési műveletek
+## Érzelemelemzés műveletek
 
-Ebben az utolsó szakaszban érzelemfelismerést alkalmazol a vélemény oszlopokra, és az eredményeket elmented egy adatállományban.
+Ebben a végső szakaszban végezd el az érzelemelemzést az értékelői oszlopokon, és mentsd az eredményt egy új adatkészletbe.
 
 ## Gyakorlat: a szűrt adatok betöltése és mentése
 
-Ne feledd, hogy most a korábban mentett szűrt adatállományt töltöd be, **nem** az eredeti adatállományt.
+Jegyezd meg, hogy most a szűrt adatkészletet töltöd be, amelyet a korábbi szakaszban mentettél, **nem** az eredetit.
 
 ```python
 import time
@@ -251,53 +251,77 @@ from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
 
-# Load the filtered hotel reviews from CSV
+# Töltse be a szűrt szállodai véleményeket CSV-ből
 df = pd.read_csv('../../data/Hotel_Reviews_Filtered.csv')
 
-# You code will be added here
+# Az Ön kódja ide kerül hozzáadásra
 
 
-# Finally remember to save the hotel reviews with new NLP data added
+# Végül ne felejtse el elmenteni a szállodai véleményeket az új NLP adatokkal együtt
 print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
 ### Stop szavak eltávolítása
 
-Ha érzelemfelismerést futtatnál a negatív és pozitív vélemény oszlopokon, az hosszú időt vehet igénybe. Egy erős teszt laptopon, gyors CPU-val tesztelve 12-14 percet vett igénybe, attól függően, hogy melyik érzelemfelismerési könyvtárat használták. Ez viszonylag hosszú idő, így érdemes megvizsgálni, hogy lehet-e gyorsítani.
+Ha az érzelemelemzést futtatnád a negatív és pozitív értékelői oszlopokon, az hosszú időt venne igénybe. Egy erős tesztlaptopon, gyors CPU-val 12-14 percig tartott, attól függően mely érzelemelemző könyvtárat használták. Ez viszonylag hosszú idő, ezért érdemes megvizsgálni a gyorsítás lehetőségét.
 
-A stop szavak, vagyis olyan gyakori angol szavak eltávolítása, amelyek nem változtatják meg egy mondat érzelmi töltetét, az első lépés. Ezek eltávolításával az érzelemfelismerés gyorsabban fut, de nem lesz kevésbé pontos (mivel a stop szavak nem befolyásolják az érzelmi töltetet, de lassítják az elemzést).
+A stop szavak, azaz gyakori angol szavak, amelyek nem befolyásolják a mondat érzelmi töltetét, eltávolítása az első lépés. Eltávolításukkal gyorsabb lehet az érzelemelemzés, de nem lesz kevésbé pontos (mivel a stop szavak nem befolyásolják az érzelmet, csak lassítják az elemzést).
 
-A leghosszabb negatív vélemény 395 szóból állt, de a stop szavak eltávolítása után 195 szóból.
+A leghosszabb negatív értékelés 395 szóból állt, de a stop szavak eltávolítása után már csak 195 szóból.
 
-A stop szavak eltávolítása szintén gyors művelet, 515,000 sorból álló 2 vélemény oszlopból a stop szavak eltávolítása 3,3 másodpercet vett igénybe a teszt eszközön. Ez kissé több vagy kevesebb időt vehet igénybe nálad, attól függően, hogy milyen gyors a CPU-d, mennyi RAM-od van, van-e SSD-d, és néhány más tényezőtől. A művelet relatív rövidsége azt jelenti, hogy ha javítja az érzelemfelismerés idejét, akkor érdemes elvégezni.
+A stop szavak eltávolítása szintén gyors művelet volt: két értékelési oszlopból több mint 515 000 sorból 3,3 másodperc alatt megtörtént teszt környezetben. A tényleges idő kissé eltérhet a készülék CPU sebességétől, RAM-tól, SSD meglététől és egyéb tényezőktől függően. Az elég rövid végrehajtás miatt, ha ezzel csökkenthető az érzelemelemzés ideje, akkor megéri megtenni.
 
-@@CODE_BLOCK_
-Az NLTK különböző érzelemelemzőket kínál, amelyekkel tanulhatsz, és helyettesítheted őket, hogy megnézd, az érzelem mennyire pontos vagy kevésbé pontos. Itt a VADER érzelemelemzést használjuk.
+```python
+from nltk.corpus import stopwords
 
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, 2014. június.
+# Töltse be a szállodai értékeléseket CSV-ből
+df = pd.read_csv("../../data/Hotel_Reviews_Filtered.csv")
+
+# Távolítsa el a stop szavakat - sok szöveg esetén lassú lehet!
+# Ryan Han (ryanxjhan a Kaggle-en) nagyszerű bejegyzést írt a különböző stop szavak eltávolítási módszerek teljesítményének méréséről
+# https://www.kaggle.com/ryanxjhan/fast-stop-words-removal # Ryan által ajánlott módszer használata
+start = time.time()
+cache = set(stopwords.words("english"))
+def remove_stopwords(review):
+    text = " ".join([word for word in review.split() if word not in cache])
+    return text
+
+# Távolítsa el a stop szavakat mindkét oszlopból
+df.Negative_Review = df.Negative_Review.apply(remove_stopwords)   
+df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
+```
+
+### Érzelemelemzés végrehajtása
+
+Most kiszámolod az érzelemelemzést mind a negatív, mind a pozitív értékelésekhez, és az eredményt két új oszlopban tárolod. Az érzelem pontosságát az fogja mutatni, hogy összehasonlítod a véleményező pontszámával ugyanarra az értékelésre. Például, ha a negatív értékelés érzelmi töltete 1 (rendkívül pozitív), és a pozitív értékelés is 1, de a véleményező a legalacsonyabb pontszámot adta a szállodának, akkor vagy az értékelő szövege nem felel meg a pontszámnak, vagy az érzelemelemző nem ismerte fel helyesen az érzelmet. Várható, hogy az érzelem pontszámok néha teljesen hibásak lesznek, és ezt gyakran meg lehet magyarázni, pl. az értékelés lehet nagyon szarkasztikus: "Persze, nagyon élveztem, hogy fűtés nélküli szobában aludtam", és az érzelemelemző pozitívnak gondolja, míg egy ember tudja, hogy szarkazmus.
+
+Az NLTK többféle érzelemelemzőt is kínál, amiket kipróbálhatsz, hogy lássad, melyik mennyire pontos. Itt a VADER érzelemelemzést használjuk.
+
+
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: Egy takarékos, szabályalapú modell a közösségi média szövegeinek érzelemelemzésére. Nyolcadik Nemzetközi Konferencia a Webblogokról és a Közösségi Médiumokról (ICWSM-14). Ann Arbor, MI, 2014. június.
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-# Create the vader sentiment analyser (there are others in NLTK you can try too)
+# Hozd létre a vader érzelemelemzőt (az NLTK-ban vannak más lehetőségek is, amelyeket kipróbálhatsz)
 vader_sentiment = SentimentIntensityAnalyzer()
-# Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
+# Hutto, C.J. & Gilbert, E.E. (2014). VADER: Egy takarékos, szabályalapú modell a közösségi média szövegének érzelemelemzéséhez. Nyolcadik Nemzetközi Weblogok és Közösségi Média Konferencia (ICWSM-14). Ann Arbor, MI, 2014 június.
 
-# There are 3 possibilities of input for a review:
-# It could be "No Negative", in which case, return 0
-# It could be "No Positive", in which case, return 0
-# It could be a review, in which case calculate the sentiment
+# Egy véleményhez 3 bemeneti lehetőség van:
+# Lehet "Nincs negatív", ekkor térj vissza 0-val
+# Lehet "Nincs pozitív", ekkor térj vissza 0-val
+# Lehet egy vélemény, ekkor számold ki az érzelmet
 def calc_sentiment(review):    
     if review == "No Negative" or review == "No Positive":
         return 0
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Később, amikor a programodban készen állsz az érzelem kiszámítására, alkalmazhatod azt minden egyes értékelésre az alábbi módon:
+Később a programban, amikor készen állsz az érzelem kiszámítására, ezt alkalmazhatod minden értékelésre a következő módon:
 
 ```python
-# Add a negative sentiment and positive sentiment column
+# Adj hozzá egy negatív érzelmi töltetű és egy pozitív érzelmi töltetű oszlopot
 print("Calculating sentiment columns for both positive and negative reviews")
 start = time.time()
 df["Negative_Sentiment"] = df.Negative_Review.apply(calc_sentiment)
@@ -306,7 +330,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Ez körülbelül 120 másodpercet vesz igénybe a számítógépemen, de ez minden gépen eltérő lehet. Ha ki szeretnéd nyomtatni az eredményeket, és megnézni, hogy az érzelem megfelel-e az értékelésnek:
+Ez körülbelül 120 másodpercet vesz igénybe a számítógépemen, de gépenként eltérő lehet. Ha ki akarod nyomtatni az eredményeket és megnézni, hogy az érzelem egyezik-e az értékeléssel:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -315,44 +339,45 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-Az utolsó dolog, amit a fájllal meg kell tenni, mielőtt a kihívásban használnád, az az, hogy elmented! Érdemes átrendezni az összes új oszlopot is, hogy könnyebb legyen velük dolgozni (emberi szempontból ez csak egy kozmetikai változtatás).
+A legutolsó teendő a fájllal a kihívás előtt, hogy elmentsd! Érdemes megfontolnod az új oszlopok átrendezését is, hogy könnyebben kezelhetők legyenek (egy ember számára ez csak esztétikai változtatás).
 
 ```python
-# Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
+# Átrendezni az oszlopokat (Ez csak kozmetikai, de megkönnyíti a későbbi adatfelfedezést)
 df = df.reindex(["Hotel_Name", "Hotel_Address", "Total_Number_of_Reviews", "Average_Score", "Reviewer_Score", "Negative_Sentiment", "Positive_Sentiment", "Reviewer_Nationality", "Leisure_trip", "Couple", "Solo_traveler", "Business_trip", "Group", "Family_with_young_children", "Family_with_older_children", "With_a_pet", "Negative_Review", "Positive_Review"], axis=1)
 
 print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-Az egész kódot futtatnod kell [az elemző jegyzetfüzethez](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (miután futtattad [a szűrő jegyzetfüzetet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), hogy létrehozd a Hotel_Reviews_Filtered.csv fájlt).
+Futtasd le az egész kódot a [elemzési jegyzetfüzethez](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (miután lefuttattad a [szűrő jegyzetfüzetet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) a Hotel_Reviews_Filtered.csv fájl előállításához).
 
-Összefoglalva, a lépések:
+Ismétlésképpen, a lépések a következők:
 
-1. Az eredeti adatállomány **Hotel_Reviews.csv** a korábbi leckében került feltárásra [az explorer jegyzetfüzettel](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
-2. A Hotel_Reviews.csv fájlt [a szűrő jegyzetfüzet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) szűri, amelynek eredménye **Hotel_Reviews_Filtered.csv**
-3. A Hotel_Reviews_Filtered.csv fájlt [az érzelemelemző jegyzetfüzet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) dolgozza fel, amelynek eredménye **Hotel_Reviews_NLP.csv**
-4. Használd a Hotel_Reviews_NLP.csv fájlt az alábbi NLP kihívásban
+1. Az eredeti adathalmaz fájl, a **Hotel_Reviews.csv** az előző leckében került feltérképezésre a [feltérképező jegyzetfüzet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb) segítségével
+2. A Hotel_Reviews.csv a [szűrő jegyzetfüzet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) által szűrésre kerül, ami **Hotel_Reviews_Filtered.csv** fájlt eredményez
+3. A Hotel_Reviews_Filtered.csv a [érzelemelemző jegyzetfüzet](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) által feldolgozásra kerül, amely **Hotel_Reviews_NLP.csv** fájlt eredményez
+4. Használd a Hotel_Reviews_NLP.csv-t az alábbi NLP kihívásban
 
 ### Következtetés
 
-Amikor elkezdted, volt egy adatállományod oszlopokkal és adatokkal, de nem mindegyik volt ellenőrizhető vagy használható. Feltártad az adatokat, kiszűrted, amire nincs szükséged, átalakítottad a címkéket valami hasznosabbá, kiszámítottad a saját átlagokat, hozzáadtál néhány érzelem oszlopot, és remélhetőleg érdekes dolgokat tanultál a természetes szöveg feldolgozásáról.
+Amikor elkezdted, volt egy adathalmazod oszlopokkal és adatokkal, de nem mindegyiket lehetett ellenőrizni vagy használni. Feltérképezted az adatokat, kiszűrted, amire nincs szükséged, címkéket hasznos információvá alakítottad, kiszámoltad a saját átlagaidat, hozzáadtál néhány érzelem oszlopot, és remélhetőleg érdekes dolgokat tanultál a természetes szöveg feldolgozásáról.
 
-## [Utólagos kvíz](https://ff-quizzes.netlify.app/en/ml/)
+## [Előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Kihívás
 
-Most, hogy elemezted az adatállományt érzelem szempontjából, próbáld meg alkalmazni azokat a stratégiákat, amelyeket ebben a tananyagban tanultál (például klaszterezést), hogy mintákat találj az érzelmek körül.
+Most, hogy az adathalmazod elemzésre került érzelem szempontjából, nézd meg, hogy a tanult stratégiákat (pl. klaszterezés) alkalmazva meg tudod-e találni az érzelem körüli mintázatokat.
 
 ## Áttekintés és önálló tanulás
 
-Vedd fel [ezt a Learn modult](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott), hogy többet tanulj, és különböző eszközöket használj az érzelmek feltárására a szövegben.
+Vedd [ezt a Learn modult](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) hogy többet tanulj és különböző eszközöket használj a szöveg érzelemének feltérképezésére.
+## Feladat 
 
-## Feladat
-
-[Próbálj ki egy másik adatállományt](assignment.md)
+[Próbálj ki egy másik adathalmazt](assignment.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Fontos információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,47 +1,47 @@
 # Bevezetés a megerősítéses tanulásba és a Q-tanulásba
 
-![A gépi tanulás megerősítésének összefoglalása egy sketchnote-ban](../../../../sketchnotes/ml-reinforcement.png)
-> Sketchnote: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Összegzés a megerősítéses tanulásról gépi tanulásban egy vázlatjegyzetben](../../../../translated_images/hu/ml-reinforcement.94024374d63348db.webp)
+> Vázlatjegyzet készítette: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-A megerősítéses tanulás három fontos fogalmat foglal magában: az ügynököt, az állapotokat és az állapotonkénti cselekvések halmazát. Egy adott állapotban végrehajtott cselekvésért az ügynök jutalmat kap. Képzeljük el újra a Super Mario számítógépes játékot. Te vagy Mario, egy pályán állsz egy szakadék szélén. Fölötted egy érme van. Az, hogy te Mario vagy, egy adott pályán, egy adott pozícióban... ez az állapotod. Ha egy lépést jobbra lépsz (egy cselekvés), leesel a szakadékba, és alacsony pontszámot kapsz. Ha viszont megnyomod az ugrás gombot, pontot szerzel, és életben maradsz. Ez egy pozitív kimenetel, amiért pozitív pontszámot kell kapnod.
+A megerősítéses tanulás három fontos fogalmat foglal magában: az ágentet, néhány állapotot és állapotonként egy cselekvési halmazt. Egy adott állapotban végrehajtott cselekedetért az ágens jutalmat kap. Gondoljunk újra a Super Mario számítógépes játékra. Te vagy Mario, egy játék szinten, egy szikla szélén állsz. Fent feletted egy érme van. Te, mint Mario, egy játékszinten, egy adott pozícióban... ez az állapotod. Egy lépés jobbra (cselekvés) átesne a sziklaperemen, és ez alacsony numerikus pontszámot eredményezne. Azonban a ugrás gomb megnyomásával pontot szerezhetnél, és életben maradnál. Ez egy pozitív eredmény, ami pozitív numerikus pontszámot kell, hogy adjon.
 
-A megerősítéses tanulás és egy szimulátor (a játék) segítségével megtanulhatod, hogyan játszd a játékot úgy, hogy maximalizáld a jutalmat, vagyis életben maradj, és minél több pontot szerezz.
+Megerősítéses tanulás és egy szimulátor (a játék) használatával megtanulhatod, hogyan játszd a játékot úgy, hogy maximalizáld a jutalmat, ami az életben maradás és minél több pont szerzése.
 
 [![Bevezetés a megerősítéses tanulásba](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
-> 🎥 Kattints a fenti képre, hogy meghallgasd Dmitry előadását a megerősítéses tanulásról.
+> 🎥 Kattints a fent látható képre, hogy meghallgasd Dmitry előadását a megerősítéses tanulásról
 
 ## [Előadás előtti kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Előfeltételek és beállítás
 
-Ebben a leckében Pythonban fogunk kódot kipróbálni. Képesnek kell lenned futtatni a Jupyter Notebook kódját, akár a saját számítógépeden, akár a felhőben.
+Ebben az órában kódokat fogunk kipróbálni Pythonban. Képesnek kell lenned futtatni a Jupyter Notebook kódját ennek a leckének, akár a számítógépeden, akár a felhőben.
 
-Megnyithatod [a lecke notebookját](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb), és végigmehetsz a leckén, hogy felépítsd a példát.
+Megnyithatod [a lecke jegyzetfüzetét](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb), és végigkövetheted a leckét a felépítéshez.
 
-> **Megjegyzés:** Ha a kódot a felhőből nyitod meg, le kell töltened az [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) fájlt is, amelyet a notebook kód használ. Helyezd el ugyanabban a könyvtárban, ahol a notebook található.
+> **Megjegyzés:** Ha a kódot a felhőből nyitod meg, akkor le kell töltened a [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) fájlt is, amely a notebook kódban használatos. Tedd ezt a jegyzetfüzet könyvtárába.
 
 ## Bevezetés
 
-Ebben a leckében **[Péter és a farkas](https://hu.wikipedia.org/wiki/P%C3%A9ter_%C3%A9s_a_farkas)** világát fogjuk felfedezni, amelyet egy orosz zeneszerző, [Szergej Prokofjev](https://hu.wikipedia.org/wiki/Szergej_Prokofjev) zenés meséje ihletett. A **megerősítéses tanulás** segítségével Pétert irányítjuk, hogy felfedezze a környezetét, ízletes almákat gyűjtsön, és elkerülje a farkassal való találkozást.
+Ebben a leckében felfedezzük a **[Péter és a farkas](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)** világát, melyet egy orosz zeneszerző, [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev) zenés meséje ihletett. Megerősítéses tanulást fogunk alkalmazni, hogy Péter felfedezhesse a környezetét, gyűjtheesse az ízletes almákat, és elkerülhesse a farkast.
 
-A **megerősítéses tanulás** (RL) egy olyan tanulási technika, amely lehetővé teszi számunkra, hogy egy **ügynök** optimális viselkedését tanuljuk meg egy adott **környezetben**, számos kísérlet lefuttatásával. Az ügynöknek ebben a környezetben van egy **célja**, amelyet egy **jutalomfüggvény** határoz meg.
+A **Megerősítéses tanulás** (RL) egy olyan tanulási technika, amely lehetővé teszi számunkra, hogy egy **ágens** optimális viselkedését megtanuljuk egy adott **környezetben** sok kísérlet segítségével. Az ágensnek ebben a környezetben van egy **célja**, amelyet egy **jutalomfüggvény** határoz meg.
 
 ## A környezet
 
-Egyszerűség kedvéért tekintsük Péter világát egy `szélesség` x `magasság` méretű négyzet alakú táblának, például így:
+Az egyszerűség kedvéért tekintsük Péter világát egy `szélesség` x `magasság` méretű négyzetes táblának, így:
 
-![Péter környezete](../../../../8-Reinforcement/1-QLearning/images/environment.png)
+![Péter környezete](../../../../translated_images/hu/environment.40ba3cb66256c93f.webp)
 
-A tábla minden cellája lehet:
+A táblán minden cella lehet:
 
-* **talaj**, amin Péter és más lények járhatnak.
-* **víz**, amin nyilvánvalóan nem lehet járni.
-* **fa** vagy **fű**, ahol pihenni lehet.
-* egy **alma**, amit Péter örömmel találna meg, hogy táplálkozzon.
-* egy **farkas**, ami veszélyes, és el kell kerülni.
+* **föld**, amelyen Péter és más lények járhatnak.
+* **víz**, amelyen természetesen nem lehet járni.
+* egy **fa** vagy **fű**, ahol meg lehet pihenni.
+* egy **alma**, ami valami olyasmit jelent, amit Péter örömmel találna meg, hogy táplálkozhasson.
+* egy **farkas**, amely veszélyes és kerülendő.
 
-Van egy külön Python modul, az [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), amely tartalmazza a kódot a környezettel való munkához. Mivel ez a kód nem fontos a fogalmak megértéséhez, importáljuk a modult, és használjuk a minta tábla létrehozásához (kódblokk 1):
+Van egy külön Python modul, a [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), amely tartalmazza a kódot a környezettel való munkához. Mivel ez a kód nem fontos a fogalmak megértéséhez, importáljuk a modult, és használjuk a minta tábla létrehozásához (kódblokk 1):
 
 ```python
 from rlboard import *
@@ -52,63 +52,63 @@ m.randomize(seed=13)
 m.plot()
 ```
 
-Ez a kód egy, a fentiekhez hasonló környezetet fog megjeleníteni.
+Ez a kód ki kell, hogy írjon egy képet a környezetről, amely hasonló a fentiekhez.
 
-## Cselekvések és stratégia
+## Cselekvések és szabályzat
 
-Példánkban Péter célja az alma megtalálása, miközben elkerüli a farkast és más akadályokat. Ehhez lényegében addig sétálhat, amíg meg nem találja az almát.
+Péter célja példánkban az volna, hogy megtaláljon egy almát, miközben elkerüli a farkast és egyéb akadályokat. Ehhez lényegében körbejárhat, amíg talál egy almát.
 
 Ezért bármely pozícióban választhat a következő cselekvések közül: fel, le, balra és jobbra.
 
-Ezeket a cselekvéseket egy szótárként definiáljuk, és a megfelelő koordinátaváltozásokhoz rendeljük. Például a jobbra mozgás (`R`) egy `(1,0)` párnak felel meg. (kódblokk 2):
+Ezeket a cselekvéseket egy szótárként definiáljuk, és hozzárendeljük az adott koordinátaváltozásokat. Például a jobbra való mozgás (`R`) egy `(1,0)` párnak felel meg (kódblokk 2):
 
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
 action_idx = { a : i for i,a in enumerate(actions.keys()) }
 ```
 
-Összefoglalva, a forgatókönyv stratégiája és célja a következő:
+Összefoglalva, a stratégia és a cél az alábbiak:
 
-- **A stratégia**, az ügynökünk (Péter) stratégiáját egy úgynevezett **politika** határozza meg. A politika egy olyan függvény, amely bármely adott állapotban visszaadja a cselekvést. Esetünkben a probléma állapotát a tábla és a játékos aktuális pozíciója képviseli.
+- **A stratégia** az ágensemnek (Péter) egy ún. **szabályzat** által van megadva. Egy szabályzat egy függvény, ami visszaadja az adott állapotban végrehajtandó cselekvést. A mi esetünkben a probléma állapota a tábla, beleértve a játékos pillanatnyi pozícióját.
 
-- **A cél**, a megerősítéses tanulás célja egy jó politika megtanulása, amely lehetővé teszi a probléma hatékony megoldását. Az alapként vegyük figyelembe a legegyszerűbb politikát, az úgynevezett **véletlenszerű sétát**.
+- **A cél**, a megerősítéses tanulásban, hogy végül megtanuljunk egy jó szabályzatot, amely hatékonyan megoldja a problémát. Mégis, kiindulásként vegyük a legegyszerűbb szabályzatot, az ún. **véletlenszerű sétát**.
 
 ## Véletlenszerű séta
 
-Először oldjuk meg a problémát egy véletlenszerű séta stratégiával. A véletlenszerű séta során véletlenszerűen választjuk ki a következő cselekvést az engedélyezett cselekvések közül, amíg el nem érjük az almát (kódblokk 3).
+Először oldjuk meg problémánkat a véletlenszerű séta stratégiával. Véletlenszerű sétával véletlenszerűen választjuk ki a következő cselekvést az engedélyezett cselekvések közül, amíg el nem érjük az almát (kódblokk 3).
 
-1. Valósítsd meg a véletlenszerű sétát az alábbi kóddal:
+1. Valósítsuk meg a véletlenszerű sétát az alábbi kóddal:
 
     ```python
     def random_policy(m):
         return random.choice(list(actions))
     
     def walk(m,policy,start_position=None):
-        n = 0 # number of steps
-        # set initial position
+        n = 0 # lépések száma
+        # állítsa be a kezdő pozíciót
         if start_position:
             m.human = start_position 
         else:
             m.random_start()
         while True:
             if m.at() == Board.Cell.apple:
-                return n # success!
+                return n # siker!
             if m.at() in [Board.Cell.wolf, Board.Cell.water]:
-                return -1 # eaten by wolf or drowned
+                return -1 # farkas elnyelte vagy vízbe fulladt
             while True:
                 a = actions[policy(m)]
                 new_pos = m.move_pos(m.human,a)
                 if m.is_valid(new_pos) and m.at(new_pos)!=Board.Cell.water:
-                    m.move(a) # do the actual move
+                    m.move(a) # hajtsa végre a tényleges lépést
                     break
             n+=1
     
     walk(m,random_policy)
     ```
 
-    A `walk` hívás visszaadja a megfelelő útvonal hosszát, amely futtatásonként változhat.
+    A `walk` hívás vissza kell, hogy adja az adott út hosszát, amely egyik futásról a másikra változhat.
 
-1. Futtasd le a séta kísérletet többször (például 100-szor), és nyomtasd ki az eredményeket (kódblokk 4):
+1. Futtasd a séta kísérletet több alkalommal (például 100), és írd ki az eredménystatisztikát (kódblokk 4):
 
     ```python
     def print_statistics(policy):
@@ -125,17 +125,17 @@ Először oldjuk meg a problémát egy véletlenszerű séta stratégiával. A v
     print_statistics(random_policy)
     ```
 
-    Figyeld meg, hogy az útvonal átlagos hossza körülbelül 30-40 lépés, ami elég sok, tekintve, hogy az átlagos távolság a legközelebbi almáig körülbelül 5-6 lépés.
+    Megjegyzés: az átlagos út hossza kb. 30-40 lépés, ami elég sok, figyelembe véve, hogy az átlagos távolság a legközelebbi almához kb. 5-6 lépés.
 
-    Azt is láthatod, hogyan mozog Péter a véletlenszerű séta során:
+    Megnézheted, hogyan néz ki Péter mozgása a véletlenszerű séta során:
 
     ![Péter véletlenszerű sétája](../../../../8-Reinforcement/1-QLearning/images/random_walk.gif)
 
 ## Jutalomfüggvény
 
-Ahhoz, hogy a politikánk intelligensebb legyen, meg kell értenünk, mely lépések "jobbak", mint mások. Ehhez meg kell határoznunk a célunkat.
+Ahhoz, hogy szabályzatunk okosabb legyen, meg kell értenünk, mely lépések "jobbak", mint mások. Ehhez definiálnunk kell a célunkat.
 
-A cél egy **jutalomfüggvény** segítségével határozható meg, amely minden állapothoz visszaad egy pontszámot. Minél magasabb a szám, annál jobb a jutalomfüggvény. (kódblokk 5)
+A célt egy **jutalomfüggvénnyel** határozhatjuk meg, amely minden állapothoz pontszámot rendel. Minél nagyobb a szám, annál jobb a jutalomfüggvény. (kódblokk 5)
 
 ```python
 move_reward = -0.1
@@ -154,39 +154,115 @@ def reward(m,pos=None):
     return move_reward
 ```
 
-A jutalomfüggvények érdekessége, hogy a legtöbb esetben *csak a játék végén kapunk jelentős jutalmat*. Ez azt jelenti, hogy az algoritmusunknak valahogy emlékeznie kell a "jó" lépésekre, amelyek pozitív jutalomhoz vezettek a végén, és növelnie kell azok fontosságát. Hasonlóképpen, minden olyan lépést, amely rossz eredményhez vezet, el kell kerülni.
+Érdekes, hogy a jutalomfüggvények többségében *a jelentős jutalmat csak a játék végén kapjuk meg*. Ez azt jelenti, hogy algoritmusunknak valahogy meg kell jegyeznie azokat a "jó" lépéseket, amelyek pozitív jutalomhoz vezetnek a végén, és azok fontosságát növelnie kell. Hasonlóképpen, minden rossz eredményhez vezető lépést ösztönözni kell, hogy elkerülje az algoritmus.
 
 ## Q-tanulás
 
-Az algoritmus, amelyet itt tárgyalunk, a **Q-tanulás**. Ebben az algoritmusban a politika egy **Q-tábla** nevű függvénnyel (vagy adatszerkezettel) van meghatározva. Ez rögzíti az egyes cselekvések "jóságát" egy adott állapotban.
+Egy algoritmus, amelyet itt megvitatunk, a **Q-tanulás**. Ebben az algoritmusban a szabályzat egy függvénnyel (vagy adatszerkezettel) van definiálva, amit **Q-táblának** nevezünk. Ez rögzíti az egyes állapotokban elérhető cselekvések "jósságát".
 
-Q-táblának hívják, mert gyakran kényelmes táblázatként vagy többdimenziós tömbként ábrázolni. Mivel a táblánk mérete `szélesség` x `magasság`, a Q-táblát egy numpy tömbként ábrázolhatjuk, amelynek alakja `szélesség` x `magasság` x `len(cselekvések)`: (kódblokk 6)
+Q-táblának hívjuk, mert gyakran kényelmes táblázatként vagy többdimenziós tömbként ábrázolni. Mivel a táblánk mérete `szélesség` x `magasság`, a Q-táblát egy numpy tömbbel ábrázolhatjuk, amelynek alakja `szélesség` x `magasság` x `len(cselekvések)`: (kódblokk 6)
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 ```
 
-Figyeld meg, hogy a Q-tábla összes értékét egyenlő értékkel inicializáljuk, esetünkben 0,25-tel. Ez megfelel a "véletlenszerű séta" politikának, mert minden lépés minden állapotban egyformán jó. A Q-táblát átadhatjuk a `plot` függvénynek, hogy vizualizáljuk a táblát a táblán: `m.plot(Q)`.
+Vegyük észre, hogy a Q-tábla összes értékét egyenlőre inicializáljuk, nálunk ez 0.25. Ez megfelel a "véletlenszerű séta" szabályzatnak, mert minden lépés minden állapotban egyformán jó. A Q-táblát átadhatjuk a `plot` függvénynek, hogy megjelenítsük azt a táblán: `m.plot(Q)`.
 
-![Péter környezete](../../../../8-Reinforcement/1-QLearning/images/env_init.png)
+![Péter környezete](../../../../translated_images/hu/env_init.04e8f26d2d60089e.webp)
 
-A cellák közepén egy "nyíl" látható, amely a mozgás preferált irányát jelzi. Mivel minden irány egyenlő, egy pont jelenik meg.
+Minden cella közepén egy "nyíl" jelzi az előnyben részesített mozgásirányt. Mivel minden irány egyenlő, egy pont van megjelenítve helyette.
 
-Most el kell indítanunk a szimulációt, felfedeznünk a környezetet, és meg kell tanulnunk a Q-tábla értékeinek jobb eloszlását, amely lehetővé teszi számunkra, hogy sokkal gyorsabban megtaláljuk az utat az almához.
+Most futtatnunk kell a szimulációt, felfedezni környezetünket, és megtanulni egy jobb Q-tábla értékeloszlást, amely gyorsabban megtalálja az almához vezető utat.
 
-## A Q-tanulás lényege: Bellman-egyenlet
+## Q-tanulás lényege: Bellman-egyenlet
 
-Amint elkezdünk mozogni, minden cselekvéshez tartozik egy megfelelő jutalom, azaz elméletileg kiválaszthatjuk a következő cselekvést a legmagasabb azonnali jutalom alapján. Azonban a legtöbb állapotban a lépés nem éri el a célunkat, hogy elérjük az almát, így nem tudjuk azonnal eldönteni, melyik irány a jobb.
+Amikor elindulunk, minden cselekvéshez tartozik egy jutalom, vagyis elméletileg kiválaszthatnánk a következő cselekvést a legmagasabb azonnali jutalom alapján. Azonban a legtöbb állapotban a lépés nem teljesíti célunkat, vagyis nem jutunk az almához, így nem dönthetünk azonnal, melyik irány a jobb.
 
-> Ne feledd, hogy nem az azonnali eredmény számít, hanem a végső eredmény, amelyet a szimuláció végén kapunk.
+> Ne feledd, hogy nem az azonnali eredmény számít, hanem a végső eredmény, amit a szimuláció végén kapunk meg.
 
-Ahhoz, hogy figyelembe vegyük ezt a késleltetett jutalmat, a **[dinamikus programozás](https://hu.wikipedia.org/wiki/Dinamikus_programoz%C3%A1s)** elveit kell alkalmaznunk, amelyek lehetővé teszik, hogy rekurzívan gondolkodjunk a problémánkról.
+A késleltetett jutalom figyelembe vételéhez a **[dinamikus programozás](https://en.wikipedia.org/wiki/Dynamic_programming)** elveit kell alkalmaznunk, amelyek lehetővé teszik a probléma rekurzív megfontolását.
 
-Tegyük fel, hogy most az *s* állapotban vagyunk, és a következő állapotba, *s'*-be akarunk lépni. Ezzel megkapjuk az azonnali jutalmat, *r(s,a)*, amelyet a jutalomfüggvény határoz meg, plusz némi jövőbeli jutalmat. Ha feltételezzük, hogy a Q-táblánk helyesen tükrözi az egyes cselekvések "vonzerejét", akkor az *s'* állapotban egy olyan *a* cselekvést választunk, amely a *Q(s',a')* maximális értékének felel meg. Így az *s* állapotban elérhető legjobb jövőbeli jutalom a következőképpen lesz meghatározva: `max`
+Tegyük fel, hogy most az *s* állapotban vagyunk, és a következő *s'* állapotba akarunk lépni. Ezzel kapjuk az azonnali jutalmat *r(s,a)* a jutalomfüggvényből, plusz egy jövőbeni jutalmat. Ha feltételezzük, hogy a Q-tábla helyesen tükrözi a cselekvések "vonzerejét", akkor az *s'* állapotban kiválasztjuk az *a* cselekvést, amely a *Q(s',a')* legmagasabb értékéhez tartozik. Így a legjobb jövőbeni jutalom az *s* állapotban legyen a `max`<sub>a'</sub>*Q(s',a')* (a maximum az összes lehetséges *a'* cselekvésen számított).
 
-## A szabály ellenőrzése
+Ez adja a **Bellman formula**-t a Q-tábla értékének kiszámításához az *s* állapotban, adott *a* cselekvésnél:
 
-Mivel a Q-tábla felsorolja az egyes állapotokban végrehajtható cselekvések "vonzerejét", könnyen használható hatékony navigáció meghatározására a világunkban. A legegyszerűbb esetben kiválaszthatjuk azt a cselekvést, amely a legmagasabb Q-tábla értékhez tartozik: (kód blokk 9)
+<img src="../../../../translated_images/hu/bellman-equation.7c0c4c722e5a6b7c.webp"/>
+
+Itt γ az ún. **diszkont faktor**, amely meghatározza, milyen mértékben preferáljuk a jelenlegi jutalmat a jövőbelivel szemben és fordítva.
+
+## Tanulási algoritmus
+
+A fenti egyenlet alapján most megírhatjuk pszeudokódban a tanulási algoritmust:
+
+* Inicializáljuk a Q-táblát Q azonos számokkal minden állapothoz és cselekvéshez
+* Beállítjuk a tanulási rátát α ← 1
+* Ismételjük meg a szimulációt sokszor
+   1. Induljunk véletlenszerű pozícióból
+   1. Ismételjük
+        1. Válasszuk ki a cselekvést *a* az állapot *s*-ben
+        2. Hajtsuk végre a cselekvést, lépjünk az új *s'* állapotba
+        3. Ha vége a játéknak, vagy a teljes jutalom túl kicsi - lépjünk ki a szimulációból  
+        4. Számítsuk ki a jutalmat *r* az új állapotban
+        5. Frissítsük a Q-függvényt a Bellman-egyenlet szerint: *Q(s,a)* ← *(1-α)Q(s,a)+α(r+γ max<sub>a'</sub>Q(s',a'))*
+        6. *s* ← *s'*
+        7. Frissítsük a teljes jutalmat és csökkentsük az α-t.
+
+## Kiaknázás vs. felfedezés
+
+A fenti algoritmusban nem részleteztük, pontosan hogyan válasszuk ki a cselekvést a 2.1 lépésben. Ha véletlenszerűen választunk, akkor véletlenszerűen felfedezzük a környezetet, és gyakran meghalhatunk, valamint bejárhatunk olyan területeket is, ahová egyébként nem mennénk. Alternatív megoldás, hogy kiaknázod a Q-tábla ismert értékeit, és így a legjobb cselekvést választod az adott állapotban (magasabb Q-értékű). Ez azonban megakadályozza a többi állapot felfedezését, és valószínűleg nem találjuk meg az optimális megoldást.
+
+Ezért a legjobb megközelítés egyensúlyt teremteni a felfedezés és a kiaknázás között. Ezt úgy érhetjük el, ha az állapotban lévő cselekvéseket a Q-tábla értékeinek arányában választjuk ki valószínűséggel. Eleinte, amikor minden Q-érték azonos, ez véletlenszerű választásnak felel meg, de ahogy többet tanulunk a környezetünkről, egyre valószínűbb, hogy követjük az optimális útvonalat, miközben az ágnes néha felfedező útra is mehet.
+
+## Python megvalósítás
+
+Most készen állunk a tanulási algoritmus megvalósítására. Mielőtt ezt megtennénk, szükségünk van egy függvényre, amely a Q-tábla tetszőleges számait átalakítja a megfelelő cselekvések valószínűségi vektorává.
+
+1. Hozd létre a `probs()` függvényt:
+
+    ```python
+    def probs(v,eps=1e-4):
+        v = v-v.min()+eps
+        v = v/v.sum()
+        return v
+    ```
+
+    Egy kis `eps` értéket adunk hozzá az eredeti vektorhoz, hogy elkerüljük a 0-val való osztást az induló esetben, amikor a vektor összetevői azonosak.
+
+Futtasd az algoritmust 5000 kísérlet, ún. **epocha** során: (kódblokk 8)
+```python
+    for epoch in range(5000):
+    
+        # Válassz kezdeti pontot
+        m.random_start()
+        
+        # Kezdd el az utazást
+        n=0
+        cum_reward = 0
+        while True:
+            x,y = m.human
+            v = probs(Q[x,y])
+            a = random.choices(list(actions),weights=v)[0]
+            dpos = actions[a]
+            m.move(dpos,check_correctness=False) # Megengedjük, hogy a játékos a táblán kívülre lépjen, ami az epizód végét jelenti
+            r = reward(m)
+            cum_reward += r
+            if r==end_reward or cum_reward < -1000:
+                lpath.append(n)
+                break
+            alpha = np.exp(-n / 10e5)
+            gamma = 0.5
+            ai = action_idx[a]
+            Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
+            n+=1
+```
+
+Az algoritmus futása után a Q-táblát frissíteni kell azzal az értékkel, amely meghatározza a különböző cselekvések vonzerejét minden lépésnél. Megpróbálhatjuk vizualizálni a Q-táblát azáltal, hogy minden cellában megjelenítünk egy vektort, ami a kívánt mozgás irányába mutat. Egyszerűség kedvéért egy kis kört rajzolunk nyílhegy helyett.
+
+<img src="../../../../translated_images/hu/learned.ed28bcd8484b5287.webp"/>
+
+## A szabályzat ellenőrzése
+
+Mivel a Q-tábla felsorolja az egyes cselekvések "vonzerősségét" minden állapotban, könnyű vele hatékony navigációt definiálni a világunkban. A legegyszerűbb esetben a legmagasabb Q-táblabeli értékhez tartozó cselekvést választjuk: (kódblokk 9)
 
 ```python
 def qpolicy_strict(m):
@@ -198,17 +274,18 @@ def qpolicy_strict(m):
 walk(m,qpolicy_strict)
 ```
 
-> Ha többször kipróbálod a fenti kódot, észreveheted, hogy néha "elakad", és a jegyzetfüzetben a STOP gombot kell megnyomnod a megszakításhoz. Ez azért történik, mert előfordulhatnak olyan helyzetek, amikor két állapot "mutat" egymásra az optimális Q-értékek alapján, ilyenkor az ügynök végtelenül mozoghat ezek között az állapotok között.
+
+> Ha többször is lefuttatod a fenti kódot, észreveheted, hogy néha "lefagy", és a megszakításhoz meg kell nyomnod a STOP gombot a jegyzetfüzetben. Ez azért fordul elő, mert előfordulhat olyan helyzet, amikor két állapot "mutat egymásra" az optimális Q-érték tekintetében, ilyenkor az ágensek végtelenül mozognak ezek között az állapotok között.
 
 ## 🚀Kihívás
 
-> **Feladat 1:** Módosítsd a `walk` függvényt úgy, hogy korlátozza az út maximális hosszát egy bizonyos lépésszámra (például 100), és figyeld meg, hogy a fenti kód időnként visszaadja ezt az értéket.
+> **1. feladat:** Módosítsd a `walk` függvényt, hogy korlátozd a maximális út hosszát egy bizonyos lépésszámra (például 100 lépés), és figyeld, hogy a fenti kód időről időre visszaadja ezt az értéket.
 
-> **Feladat 2:** Módosítsd a `walk` függvényt úgy, hogy ne térjen vissza olyan helyekre, ahol korábban már járt. Ez megakadályozza, hogy a `walk` ciklusba kerüljön, azonban az ügynök még mindig "csapdába" eshet egy olyan helyen, ahonnan nem tud kijutni.
+> **2. feladat:** Módosítsd a `walk` függvényt úgy, hogy ne térjen vissza azokhoz a helyekhez, ahol már járt korábban. Ez megakadályozza, hogy a `walk` ciklikusan mozogjon, azonban az ágensek még így is csapdába eshetnek egy olyan helyen, ahonnan nem tudnak elmenekülni.
 
 ## Navigáció
 
-Egy jobb navigációs szabály az lenne, amit a tanulás során használtunk, amely kombinálja a kihasználást és a felfedezést. Ebben a szabályban minden cselekvést egy bizonyos valószínűséggel választunk ki, amely arányos a Q-tábla értékeivel. Ez a stratégia még mindig eredményezheti, hogy az ügynök visszatér egy már felfedezett helyre, de ahogy az alábbi kódból látható, ez nagyon rövid átlagos útvonalat eredményez a kívánt helyre (ne feledd, hogy a `print_statistics` 100-szor futtatja a szimulációt): (kód blokk 10)
+Egy jobb navigációs politika az, amit a tanulás során használtunk, amely kombinálja a kihasználást és a felfedezést. Ebben a politikában minden egyes akciót bizonyos valószínűséggel választunk ki, arányosan a Q-tábla értékeivel. Ez a stratégia még mindig eredményezheti, hogy az ágensek visszatérjenek egy már felfedezett helyre, de, ahogy a lenti kódból látható, nagyon rövid átlagos utat eredményez a kívánt helyhez (emlékezz rá, hogy a `print_statistics` százszor futtatja a szimulációt): (kódblokk 10)
 
 ```python
 def qpolicy(m):
@@ -220,28 +297,32 @@ def qpolicy(m):
 print_statistics(qpolicy)
 ```
 
-A kód futtatása után sokkal rövidebb átlagos útvonalhosszt kell kapnod, 3-6 lépés körül.
+Ennek a kódnak a lefuttatása után sokkal kisebb átlagos út hosszt kell kapni, mint korábban, körülbelül 3-6 között.
 
 ## A tanulási folyamat vizsgálata
 
-Ahogy említettük, a tanulási folyamat egyensúlyozás a felfedezés és a problématér szerkezetéről szerzett tudás kihasználása között. Láttuk, hogy a tanulás eredményei (az ügynök képessége, hogy rövid utat találjon a célhoz) javultak, de az is érdekes, hogy megfigyeljük, hogyan viselkedik az átlagos útvonalhossz a tanulási folyamat során:
+Ahogy említettük, a tanulási folyamat az új ismeretek felfedezése és hasznosítása közötti egyensúly. Láttuk, hogy a tanulás eredménye (az ágensek segítségével a célhoz vezető rövid út megtalálásának képessége) javult, de érdekes megfigyelni, hogyan viselkedik az átlagos út hossz a tanulási folyamat során:
 
-## A tanulságok összefoglalása:
+<img src="../../../../translated_images/hu/lpathlen1.0534784add58d4eb.webp"/>
 
-- **Az átlagos útvonalhossz növekszik**. Amit itt látunk, az az, hogy eleinte az átlagos útvonalhossz növekszik. Ez valószínűleg azért van, mert amikor semmit sem tudunk a környezetről, hajlamosak vagyunk rossz állapotokba, vízbe vagy farkasok közé kerülni. Ahogy többet tanulunk és elkezdjük használni ezt a tudást, hosszabb ideig tudjuk felfedezni a környezetet, de még mindig nem tudjuk pontosan, hol vannak az almák.
+A tanulságok összefoglalva:
 
-- **Az útvonalhossz csökken, ahogy többet tanulunk**. Miután eleget tanultunk, az ügynök számára könnyebbé válik a cél elérése, és az útvonalhossz csökkenni kezd. Azonban még mindig nyitottak vagyunk a felfedezésre, így gyakran eltérünk az optimális úttól, és új lehetőségeket fedezünk fel, ami hosszabb utat eredményez.
+- **Az átlagos út hossz nő**. Amit itt látunk, az az, hogy kezdetben az átlagos út hossz nő. Valószínűleg azért, mert amikor semmit sem tudunk a környezetről, akkor könnyen csapdába eshetünk rossz állapotokban, például vízben vagy a farkasnál. Ahogy többet tanulunk és használjuk ezt a tudást, hosszabb ideig tudjuk felfedezni a környezetet, de még mindig nem ismerjük jól, hol vannak az almák.
 
-- **A hossz hirtelen megnő**. Amit ezen a grafikonon még megfigyelhetünk, az az, hogy egy ponton az útvonalhossz hirtelen megnőtt. Ez a folyamat sztochasztikus természetét jelzi, és azt, hogy bizonyos pontokon "elronthatjuk" a Q-tábla együtthatóit azzal, hogy új értékekkel felülírjuk őket. Ezt ideálisan minimalizálni kellene a tanulási ráta csökkentésével (például a tanulás végéhez közeledve csak kis értékkel módosítjuk a Q-tábla értékeit).
+- **Az út hossz csökken, ahogy többet tanulunk**. Miután elég sokat megtanultunk, az ügynök számára könnyebb elérni a célt, és az út hossza elkezd csökkeni. Azonban még mindig nyitottak vagyunk a felfedezésre, így gyakran eltérünk a legjobb úttól, és új lehetőségeket fedezünk fel, ami az út hosszát az optimálisnál hosszabbá teszi.
 
-Összességében fontos megjegyezni, hogy a tanulási folyamat sikere és minősége jelentősen függ a paraméterektől, mint például a tanulási ráta, a tanulási ráta csökkenése és a diszkontfaktor. Ezeket gyakran **hiperparamétereknek** nevezik, hogy megkülönböztessék őket a **paraméterektől**, amelyeket a tanulás során optimalizálunk (például a Q-tábla együtthatói). A legjobb hiperparaméter értékek megtalálásának folyamatát **hiperparaméter optimalizációnak** nevezzük, és ez egy külön témát érdemel.
+- **A hossz hirtelen megnő**. A grafikonon azt is megfigyelhetjük, hogy egy ponton a hossz hirtelen megnőtt. Ez a folyamat sztochasztikus jellegére utal, és arra, hogy egy ponton "tönkretehetjük" a Q-tábla együtthatóit, ha új értékekkel felülírjuk azokat. Ezt ideális esetben csökkenteni kell a tanulási ráta visszaesésével (például a tanulás végén csak kis mértékben módosítjuk a Q-tábla értékeit).
 
-## [Utó-előadás kvíz](https://ff-quizzes.netlify.app/en/ml/)
+Összességében fontos megjegyezni, hogy a tanulási folyamat sikere és minősége jelentősen függ a paraméterektől, mint például a tanulási ráta, a tanulási ráta csökkenése és a diszkont faktor. Ezeket gyakran **hiperparamétereknek** nevezzük, hogy elkülönítsük őket a **paraméterektől**, amelyeket a tanulás során optimalizálunk (például a Q-tábla együtthatóit). A legjobb hiperparaméter értékek megtalálásának folyamatát **hiperparaméter optimalizációnak** nevezzük, ami egy külön téma.
 
-## Feladat 
-[Egy reálisabb világ](assignment.md)
+## [Előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
+
+## Feladat
+[Egy valósághűbb világ](assignment.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

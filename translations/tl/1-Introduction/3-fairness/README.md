@@ -1,149 +1,167 @@
-# Paggawa ng Solusyon sa Machine Learning gamit ang Responsible AI
-
-![Buod ng Responsible AI sa Machine Learning sa isang sketchnote](../../../../sketchnotes/ml-fairness.png)
+# Paggawa ng mga Solusyon sa Machine Learning gamit ang responsable na AI
+ 
+![Buod ng responsable na AI sa Machine Learning sa isang sketchnote](../../../../translated_images/tl/ml-fairness.ef296ebec6afc98a.webp)
 > Sketchnote ni [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
-
+ 
 ## Panimula
 
-Sa kurikulum na ito, sisimulan mong tuklasin kung paano nakakaapekto ang machine learning sa ating pang-araw-araw na buhay. Sa kasalukuyan, ang mga sistema at modelo ay ginagamit sa mga desisyon sa araw-araw tulad ng mga diagnosis sa pangangalaga ng kalusugan, pag-apruba ng pautang, o pagtuklas ng pandaraya. Kaya mahalaga na ang mga modelong ito ay gumana nang maayos upang magbigay ng mga resulta na mapagkakatiwalaan. Tulad ng anumang software application, ang mga sistema ng AI ay maaaring hindi umabot sa inaasahan o magdulot ng hindi kanais-nais na resulta. Kaya mahalaga na maunawaan at maipaliwanag ang pag-uugali ng isang AI model.
+Sa kurikulm na ito, sisimulan mong tuklasin kung paano nakakaapekto ang machine learning sa ating pang-araw-araw na buhay. Kahit ngayon, ang mga sistema at modelo ay kasali sa mga gawain ng pang-araw-araw na paggawa ng desisyon, tulad ng mga diagnosis sa pangangalagang pangkalusugan, pag-apruba ng mga pautang o pagtukoy ng pandaraya. Kaya mahalaga na ang mga modelong ito ay gumana nang maayos upang makapagbigay ng mga resulta na mapagkakatiwalaan. Katulad ng anumang aplikasyon ng software, ang mga sistema ng AI ay maaaring hindi makamit ang mga inaasahan o magkaroon ng hindi kanais-nais na resulta. Kaya mahalaga na maunawaan at maipaliwanag ang pag-uugali ng isang AI na modelo.
 
-Isipin kung ano ang maaaring mangyari kapag ang data na ginagamit mo upang bumuo ng mga modelong ito ay kulang sa ilang demograpiko tulad ng lahi, kasarian, pananaw sa politika, relihiyon, o hindi pantay na kinakatawan ang mga demograpikong ito. Paano kung ang output ng modelo ay pabor sa isang demograpiko? Ano ang magiging epekto nito sa aplikasyon? Bukod dito, ano ang mangyayari kapag ang modelo ay nagkaroon ng masamang resulta at nakapinsala sa mga tao? Sino ang may pananagutan sa pag-uugali ng mga sistema ng AI? Ito ang ilan sa mga tanong na ating susuriin sa kurikulum na ito.
+Isipin kung ano ang maaaring mangyari kapag ang datos na ginagamit mo upang gumawa ng mga modelong ito ay kulang sa ilang demograpiko, tulad ng lahi, kasarian, pananaw pampolitika, relihiyon, o hindi pantay na kinakatawan ang mga demograpikong ito. Paano kung ang output ng modelo ay naipakahulugan upang paboran ang ilang demograpiko? Ano ang magiging epekto nito sa aplikasyon? Bukod dito, ano ang mangyayari kapag ang modelo ay nagkaroon ng masamang resulta at nakapipinsala sa mga tao? Sino ang may pananagutan sa pag-uugali ng mga sistema ng AI? Ito ang ilan sa mga tanong na tatalakayin natin sa kurikulm na ito.
 
 Sa araling ito, ikaw ay:
 
-- Magkakaroon ng kamalayan sa kahalagahan ng pagiging patas sa machine learning at mga pinsalang kaugnay nito.
-- Malalaman ang kahalagahan ng pagsusuri sa mga outliers at hindi pangkaraniwang sitwasyon upang matiyak ang pagiging maaasahan at kaligtasan.
-- Mauunawaan ang pangangailangan na bigyang kapangyarihan ang lahat sa pamamagitan ng pagdidisenyo ng mga inklusibong sistema.
-- Susuriin ang kahalagahan ng pagprotekta sa privacy at seguridad ng data at mga tao.
-- Makikita ang kahalagahan ng "glass box" na diskarte upang maipaliwanag ang pag-uugali ng mga modelo ng AI.
-- Magiging maingat sa kung paano mahalaga ang pananagutan upang makabuo ng tiwala sa mga sistema ng AI.
+- Magpapataas ng iyong kamalayan sa kahalagahan ng katarungan sa machine learning at mga pinsalang may kaugnayan sa katarungan.
+- Maging pamilyar sa pagsasanay ng pagsusuri sa mga outliers at mga hindi pangkaraniwang senaryo upang matiyak ang pagiging maaasahan at kaligtasan
+- Makakakuha ng pag-unawa sa pangangailangan na bigyang kapangyarihan ang lahat sa pamamagitan ng pagdidisenyo ng mga inklusibong sistema
+- Tuklasin kung gaano kahalaga ang protektahan ang privacy at seguridad ng datos at mga tao
+- Makita ang kahalagahan ng pagkakaroon ng glass box na pamamaraan upang ipaliwanag ang pag-uugali ng mga AI na modelo
+- Maging maingat kung paano mahalaga ang pananagutan upang makabuo ng tiwala sa mga sistema ng AI
 
 ## Paunang Kaalaman
 
 Bilang paunang kaalaman, mangyaring kunin ang "Responsible AI Principles" Learn Path at panoorin ang video sa ibaba tungkol sa paksa:
 
-Matuto pa tungkol sa Responsible AI sa pamamagitan ng pagsunod sa [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Matuto pa tungkol sa Responsable na AI sa pamamagitan ng pagsunod sa [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
 [![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 
-> 🎥 I-click ang imahe sa itaas para sa video: Microsoft's Approach to Responsible AI
+> 🎥 Pindutin ang larawan sa itaas para sa video: Microsoft's Approach to Responsible AI
 
-## Pagiging Patas
+## Katarungan
 
-Ang mga sistema ng AI ay dapat tratuhin ang lahat nang patas at iwasan ang pag-apekto sa mga katulad na grupo ng tao sa iba't ibang paraan. Halimbawa, kapag ang mga sistema ng AI ay nagbibigay ng gabay sa paggamot sa medikal, aplikasyon ng pautang, o trabaho, dapat silang magbigay ng parehong rekomendasyon sa lahat ng may magkatulad na sintomas, kalagayan sa pananalapi, o kwalipikasyon sa propesyon. Bawat isa sa atin bilang tao ay may dalang likas na bias na nakakaapekto sa ating mga desisyon at aksyon. Ang mga bias na ito ay maaaring makita sa data na ginagamit natin upang sanayin ang mga sistema ng AI. Ang ganitong manipulasyon ay minsan nangyayari nang hindi sinasadya. Madalas mahirap malaman nang may kamalayan kung kailan ka nagdadala ng bias sa data.
+Dapat tratuhin nang patas ng mga sistema ng AI ang lahat at iwasan ang pagapekto nang magkakaibang paraan sa mga magkakatulad na grupo ng mga tao. Halimbawa, kapag ang mga sistema ng AI ay nagbibigay ng gabay sa medikal na paggamot, aplikasyon ng pautang, o trabaho, dapat silang magbigay ng parehong rekomendasyon sa lahat na may magkakaparehong sintomas, kalagayan sa pananalapi, o kwalipikasyon sa propesyon. Bawat isa sa atin bilang tao ay may dala-dalang mga pinanggalingang pagkiling na nakakaapekto sa ating mga desisyon at kilos. Ang mga pagkiling na ito ay maaaring makikita sa datos na ginagamit natin upang sanayin ang mga sistema ng AI. Ang ganitong manipulasyon ay maaaring mangyari nang hindi sinasadya. Madalas mahirap malay-tao na malaman kung kailan ka nagdadagdag ng pagkiling sa datos.
 
-Ang **“Kawalan ng Pagiging Patas”** ay sumasaklaw sa mga negatibong epekto, o “pinsala”, para sa isang grupo ng tao, tulad ng mga tinukoy batay sa lahi, kasarian, edad, o kalagayan ng kapansanan. Ang mga pangunahing pinsalang kaugnay ng pagiging patas ay maaaring uriin bilang:
+**“Hindi patas”** ay sumasaklaw sa mga negatibong epekto, o "pinsala", para sa isang grupo ng mga tao, tulad ng mga tinutukoy ayon sa lahi, kasarian, edad, o katayuan sa kapansanan. Ang mga pangunahing pinsalang may kaugnayan sa katarungan ay maaaring iklase bilang:
 
-- **Paglalaan**, kung ang isang kasarian o etnisidad ay pinapaboran kaysa sa iba.
-- **Kalidad ng serbisyo**. Kung sinanay mo ang data para sa isang partikular na sitwasyon ngunit mas kumplikado ang realidad, nagdudulot ito ng mahinang serbisyo. Halimbawa, isang dispenser ng sabon na hindi makadetect ng mga taong may maitim na balat. [Sanggunian](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Pagkakalait**. Hindi patas na pagbatikos o pag-label sa isang bagay o tao. Halimbawa, isang teknolohiya sa pag-label ng imahe na maling tinukoy ang mga imahe ng mga taong may maitim na balat bilang gorilya.
-- **Sobra o kulang na representasyon**. Ang ideya na ang isang grupo ay hindi nakikita sa isang partikular na propesyon, at anumang serbisyo o function na patuloy na nagpo-promote nito ay nagdudulot ng pinsala.
-- **Stereotyping**. Pag-uugnay ng isang grupo sa mga pre-assigned na katangian. Halimbawa, isang sistema ng pagsasalin ng wika sa pagitan ng Ingles at Turkish ay maaaring magkaroon ng mga kamalian dahil sa mga salitang may stereotypical na kaugnayan sa kasarian.
+- **Alokasyon**, kung halimbawa ay pinapaboran ang isang kasarian o etnisidad kaysa sa iba.
+- **Kalidad ng serbisyo**. Kapag sinanay mo ang datos para sa isang tiyak na senaryo subalit mas komplikado ang realidad, magreresulta ito sa mahina na serbisyo. Halimbawa, isang dispenser ng sabon sa kamay na hindi makita ang mga taong may maitim na balat. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Pang-iinsulto**. Hindi patas na pagsaway at paglalagay ng label sa isang bagay o tao. Halimbawa, ang teknolohiya sa pag-label ng imahe ay kilalang maling inilalagay ang label sa mga larawan ng mga taong may maitim na balat bilang mga gorilya.
+- **Sobra o kulang na representasyon**. Ang ideya ay may isang grupo na hindi nakikita sa isang tiyak na propesyon, at anumang serbisyo o tungkuling nagpapatuloy sa ganito ay nagdudulot ng pinsala.
+- **Stereotyping**. Pag-uugnay sa isang grupo ng mga pre-natukoy na mga katangian. Halimbawa, isang sistema ng pagsasalin ng wika sa pagitan ng Ingles at Turkish ay maaaring magkaroon ng mga kamalian dahil sa mga salita na may stereotypical na kaugnayan sa kasarian.
 
-![pagsasalin sa Turkish](../../../../1-Introduction/3-fairness/images/gender-bias-translate-en-tr.png)
+![pagsasalin sa Turkish](../../../../translated_images/tl/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > pagsasalin sa Turkish
 
-![pagsasalin pabalik sa Ingles](../../../../1-Introduction/3-fairness/images/gender-bias-translate-tr-en.png)
+![pagsasalin pabalik sa Ingles](../../../../translated_images/tl/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > pagsasalin pabalik sa Ingles
 
-Kapag nagdidisenyo at sumusubok ng mga sistema ng AI, kailangan nating tiyakin na ang AI ay patas at hindi naka-program upang gumawa ng biased o diskriminatoryong desisyon, na ipinagbabawal din sa mga tao. Ang pagtiyak ng pagiging patas sa AI at machine learning ay nananatiling isang kumplikadong hamon sa teknolohiya at lipunan.
+Kapag nagdidisenyo at sumusubok ng mga sistema ng AI, kailangan nating matiyak na ang AI ay patas at hindi naka-program upang gumawa ng mga pagkiling o mapanirang desisyon, na ipinagbabawal din sa mga tao. Ang pagtiyak ng katarungan sa AI at machine learning ay nananatiling isang kumplikadong sociotechnical na hamon.
 
-### Pagiging Maaasahan at Kaligtasan
+### Pagiging maaasahan at kaligtasan
 
-Upang makabuo ng tiwala, ang mga sistema ng AI ay kailangang maging maaasahan, ligtas, at pare-pareho sa normal at hindi inaasahang mga kondisyon. Mahalagang malaman kung paano mag-uugali ang mga sistema ng AI sa iba't ibang sitwasyon, lalo na kapag may mga outliers. Kapag gumagawa ng mga solusyon sa AI, kailangang magbigay ng malaking pansin sa kung paano haharapin ang iba't ibang sitwasyon na maaaring maranasan ng mga solusyon sa AI. Halimbawa, ang isang self-driving car ay kailangang unahin ang kaligtasan ng mga tao. Bilang resulta, ang AI na nagpapatakbo ng kotse ay kailangang isaalang-alang ang lahat ng posibleng senaryo na maaaring maranasan ng kotse tulad ng gabi, bagyo, o snowstorm, mga bata na tumatakbo sa kalsada, mga alagang hayop, mga konstruksyon sa kalsada, at iba pa. Ang kakayahan ng isang sistema ng AI na maayos na makayanan ang malawak na hanay ng mga kondisyon ay sumasalamin sa antas ng anticipation na isinasaalang-alang ng data scientist o AI developer sa disenyo o pagsubok ng sistema.
+Upang makabuo ng tiwala, ang mga sistema ng AI ay kailangang maging maaasahan, ligtas, at pare-pareho sa ilalim ng mga normal at hindi inaasahang mga kundisyon. Mahalaga na malaman kung paano kikilos ang mga sistema ng AI sa iba't ibang mga sitwasyon, lalo na kapag sila ay mga outliers. Kapag gumagawa ng mga solusyon sa AI, kailangan ng malaking pokus kung paano haharapin ang iba't ibang mga sitwasyon na maaaring maranasan ng mga solusyong ito. Halimbawa, ang isang self-driving na kotse ay kailangang unahin ang kaligtasan ng mga tao. Bilang resulta, ang AI na nagpapatakbo sa kotse ay kailangang isaalang-alang ang lahat ng posibleng senaryo na maaaring maranasan ng kotse tulad ng gabi, malalakas na bagyo o snowstorm, mga batang tumatakbo sa kalsada, mga alagang hayop, mga konstruksyon ng kalsada, atbp. Kung gaano kahusay ang kayang hawakan ng isang sistema ng AI sa malawak na hanay ng mga kundisyon nang maaasahan at ligtas ay nagpapakita ng antas ng pag-asang isinasaalang-alang ng data scientist o AI developer sa panahon ng disenyo o pagsubok ng sistema.
 
-> [🎥 I-click dito para sa video: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Pindutin dito para sa isang video: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
 ### Inklusibidad
 
-Ang mga sistema ng AI ay dapat idisenyo upang makisali at magbigay kapangyarihan sa lahat. Kapag nagdidisenyo at nagpapatupad ng mga sistema ng AI, ang mga data scientist at AI developer ay tumutukoy at tinutugunan ang mga potensyal na hadlang sa sistema na maaaring hindi sinasadyang mag-exclude ng mga tao. Halimbawa, mayroong 1 bilyong tao na may kapansanan sa buong mundo. Sa pag-unlad ng AI, mas madali nilang ma-access ang malawak na hanay ng impormasyon at mga oportunidad sa kanilang pang-araw-araw na buhay. Sa pamamagitan ng pagtugon sa mga hadlang, nagkakaroon ng pagkakataon na mag-innovate at bumuo ng mga produkto ng AI na may mas mahusay na karanasan na kapaki-pakinabang para sa lahat.
+Ang mga sistema ng AI ay dapat idisenyo upang makisali at bigyang kapangyarihan ang lahat. Kapag nagdidisenyo at nagpapatupad ng mga sistema ng AI, tinutukoy at tinutugunan ng mga data scientist at AI developer ang mga potensyal na hadlang sa sistema na maaaring hindi sinasadyang mag-iwan ng mga tao. Halimbawa, mayroong 1 bilyong tao na may kapansanan sa buong mundo. Sa pag-unlad ng AI, maaari nilang mas madaling ma-access ang malawak na saklaw ng impormasyon at mga oportunidad sa kanilang pang-araw-araw na buhay. Sa pamamagitan ng pagtugon sa mga hadlang, lumilikha ito ng mga oportunidad upang mag-imbento at bumuo ng mga produktong AI na may mas mahusay na karanasan na kapaki-pakinabang sa lahat.
 
-> [🎥 I-click dito para sa video: inclusiveness in AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Pindutin dito para sa isang video: inklusibidad sa AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
-### Seguridad at Privacy
+### Seguridad at privacy
 
-Ang mga sistema ng AI ay dapat maging ligtas at igalang ang privacy ng mga tao. Ang mga tao ay mas kaunti ang tiwala sa mga sistema na naglalagay sa kanilang privacy, impormasyon, o buhay sa panganib. Kapag nagsasanay ng mga modelo ng machine learning, umaasa tayo sa data upang makabuo ng pinakamahusay na resulta. Sa paggawa nito, ang pinagmulan ng data at integridad nito ay dapat isaalang-alang. Halimbawa, ang data ba ay isinumite ng user o pampublikong magagamit? Susunod, habang nagtatrabaho sa data, mahalagang bumuo ng mga sistema ng AI na maaaring protektahan ang kumpidensyal na impormasyon at labanan ang mga pag-atake. Habang nagiging mas laganap ang AI, ang pagprotekta sa privacy at pag-secure ng mahalagang personal at impormasyon ng negosyo ay nagiging mas kritikal at kumplikado. Ang mga isyu sa privacy at seguridad ng data ay nangangailangan ng espesyal na pansin para sa AI dahil ang access sa data ay mahalaga para sa mga sistema ng AI upang makagawa ng tumpak at may kaalamang mga hula at desisyon tungkol sa mga tao.
+Ang mga sistema ng AI ay dapat na ligtas at igalang ang privacy ng mga tao. Mas malaki ang kawalan ng tiwala ng mga tao sa mga sistema na inilalagay sa panganib ang kanilang privacy, impormasyon, o buhay. Kapag nagsasanay ng mga machine learning na modelo, umaasa tayo sa datos upang makagawa ng pinakamahuhusay na resulta. Sa paggawa nito, dapat isaalang-alang ang pinagmulan ng datos at integridad nito. Halimbawa, ang datos ba ay isinumite ng user o pampublikong available? Sunod, habang nagtatrabaho sa datos, mahalaga ang pagbuo ng mga sistema ng AI na makakaprotekta sa kumpidensyal na impormasyon at makatatagal sa mga pag-atake. Habang mas laganap ang AI, ang pagprotekta sa privacy at seguridad ng mahahalagang personal at pang-negosyong impormasyon ay nagiging mas kritikal at kumplikado. Ang mga isyu sa privacy at seguridad ng datos ay nangangailangan ng masusing pansin para sa AI dahil ang access sa datos ay mahalaga upang makagawa ang mga sistema ng AI ng tumpak at may batayan na mga prediksyon at desisyon tungkol sa mga tao.
 
-> [🎥 I-click dito para sa video: security in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Pindutin dito para sa isang video: seguridad sa AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Bilang isang industriya, nakagawa tayo ng makabuluhang pag-unlad sa Privacy & Security, na pinasigla ng mga regulasyon tulad ng GDPR (General Data Protection Regulation).
-- Gayunpaman, sa mga sistema ng AI, kailangan nating kilalanin ang tensyon sa pagitan ng pangangailangan para sa mas personal na data upang gawing mas personal at epektibo ang mga sistema – at privacy.
-- Tulad ng sa pagsilang ng mga konektadong computer sa internet, nakikita rin natin ang malaking pagtaas sa bilang ng mga isyu sa seguridad na nauugnay sa AI.
-- Kasabay nito, nakikita natin ang AI na ginagamit upang mapabuti ang seguridad. Halimbawa, karamihan sa mga modernong anti-virus scanner ay pinapagana ng AI heuristics ngayon.
-- Kailangan nating tiyakin na ang ating mga proseso sa Data Science ay maayos na nakikiayon sa pinakabagong mga kasanayan sa privacy at seguridad.
+- Bilang isang industriya nakagawa kami ng malalaking pag-unlad sa Privacy at seguridad, na lubos na pinatibay ng mga regulasyon tulad ng GDPR (General Data Protection Regulation).
+- Ngunit sa mga sistema ng AI kailangan nating kilalanin ang tensyon sa pagitan ng pangangailangan para sa mas maraming personal na datos upang gawing mas personal at epektibo ang mga sistema – at ang privacy.
+- Katulad ng pagsilang ng mga nakakonektang computer sa internet, nakikita rin natin ang malaking pagdami ng mga isyu sa seguridad na may kaugnayan sa AI.
+- Kasabay nito, nakita natin ang paggamit ng AI upang mapabuti ang seguridad. Halimbawa, karamihan sa mga modernong anti-virus scanners ay pinapatakbo ng mga AI heuristics ngayon.
+- Kailangan nating matiyak na ang ating mga proseso sa Data Science ay naghahalo nang mapayapa sa pinakabagong mga kasanayan sa privacy at seguridad.
+
 
 ### Transparency
+Dapat na maintindihan ang mga sistema ng AI. Isang mahalagang bahagi ng transparency ay ang pagpapaliwanag sa pag-uugali ng mga sistema ng AI at mga bahagi nito. Ang pagpapahusay sa pag-unawa sa mga sistema ng AI ay nangangailangan na maintindihan ng mga stakeholder kung paano at bakit ito gumagana upang matukoy kung may mga potensyal na isyu sa pagganap, mga alalahanin sa kaligtasan at privacy, mga pagkiling, mga gawi ng pagsasantabi, o hindi inaasahang mga resulta. Naniniwala rin kami na ang mga gumagamit ng mga sistema ng AI ay dapat maging tapat at bukas tungkol sa kung kailan, bakit, at paano nila pinipili gamitin ang mga ito, pati na rin ang mga limitasyon ng mga sistemang ginagamit nila. Halimbawa, kung ang isang bangko ay gumagamit ng isang sistema ng AI upang suportahan ang mga desisyon nito sa pautang sa mga consumer, mahalaga na suriin ang mga resulta at maunawaan kung aling datos ang nakakaimpluwensya sa mga rekomendasyon ng sistema. Nagsisimula nang i-regulate ng mga gobyerno ang AI sa iba't ibang industriya, kaya ang mga data scientist at mga organisasyon ay kailangang ipaliwanag kung ang isang AI na sistema ay sumusunod sa mga regulasyon, lalo na kung may hindi kanais-nais na resulta.
 
-Ang mga sistema ng AI ay dapat na naiintindihan. Isang mahalagang bahagi ng transparency ay ang pagpapaliwanag sa pag-uugali ng mga sistema ng AI at kanilang mga bahagi. Ang pagpapabuti ng pag-unawa sa mga sistema ng AI ay nangangailangan na maunawaan ng mga stakeholder kung paano at bakit gumagana ang mga ito upang matukoy ang mga potensyal na isyu sa pagganap, mga alalahanin sa kaligtasan at privacy, bias, mga eksklusibong kasanayan, o hindi inaasahang resulta. Naniniwala rin kami na ang mga gumagamit ng mga sistema ng AI ay dapat maging tapat at bukas tungkol sa kung kailan, bakit, at paano nila pinipili na i-deploy ang mga ito, pati na rin ang mga limitasyon ng mga sistemang ginagamit nila. Halimbawa, kung ang isang bangko ay gumagamit ng isang sistema ng AI upang suportahan ang mga desisyon sa pagpapautang sa consumer, mahalagang suriin ang mga resulta at maunawaan kung aling data ang nakakaimpluwensya sa mga rekomendasyon ng sistema. Ang mga gobyerno ay nagsisimulang mag-regulate ng AI sa iba't ibang industriya, kaya ang mga data scientist at organisasyon ay dapat ipaliwanag kung ang isang sistema ng AI ay nakakatugon sa mga kinakailangan sa regulasyon, lalo na kapag may hindi kanais-nais na resulta.
+> [🎥 Pindutin dito para sa isang video: transparency sa AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-> [🎥 I-click dito para sa video: transparency in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
-
-- Dahil ang mga sistema ng AI ay napakakomplikado, mahirap maunawaan kung paano gumagana ang mga ito at ma-interpret ang mga resulta.
-- Ang kakulangan ng pag-unawa na ito ay nakakaapekto sa paraan ng pamamahala, pagpapatakbo, at dokumentasyon ng mga sistemang ito.
-- Ang kakulangan ng pag-unawa na ito ay mas mahalaga dahil nakakaapekto ito sa mga desisyon na ginawa gamit ang mga resulta na ginawa ng mga sistemang ito.
+- Dahil napakakomplekado ng mga sistema ng AI, mahirap maintindihan kung paano sila gumagana at bigyang-kahulugan ang mga resulta.
+- Ang kakulangan ng pag-unawa na ito ay nakakaapekto sa paraan ng pamamahala, pagpapatakbo, at pagdodokumento sa mga sistemang ito.
+- Ang kakulangan ng pag-unawang ito ay higit na nakakaapekto sa mga desisyong ginawa gamit ang mga resulta na nilalabas ng mga sistemang ito.
 
 ### Pananagutan
+ 
+Ang mga taong nagdidisenyo at nagpapatupad ng mga sistema ng AI ay dapat managot kung paano gumagana ang kanilang mga sistema. Ang pangangailangan para sa pananagutan ay lalong mahalaga sa mga sensitibong teknolohiya tulad ng facial recognition. Kamakailan lamang, lumalaki ang demand para sa facial recognition technology, lalo na mula sa mga organisasyon ng batas na nakikita ang potensyal ng teknolohiya sa mga gamit tulad ng paghahanap sa mga nawawalang bata. Gayunpaman, ang mga teknolohiyang ito ay maaaring gamitin ng isang gobyerno upang ilagay sa panganib ang mga pangunahing kalayaan ng kanilang mga mamamayan sa pamamagitan ng, halimbawa, pagpapa-igting ng tuloy-tuloy na pagmamanman sa mga partikular na indibidwal. Kaya, kailangang maging responsable ang mga data scientist at mga organisasyon sa kung paano nakaaapekto ang kanilang sistema ng AI sa mga indibidwal o lipunan.
 
-Ang mga tao na nagdidisenyo at nag-deploy ng mga sistema ng AI ay dapat managot sa kung paano gumagana ang kanilang mga sistema. Ang pangangailangan para sa pananagutan ay partikular na mahalaga sa mga sensitibong teknolohiya tulad ng facial recognition. Kamakailan, nagkaroon ng lumalaking demand para sa facial recognition technology, lalo na mula sa mga organisasyon ng pagpapatupad ng batas na nakikita ang potensyal ng teknolohiya sa mga gamit tulad ng paghahanap ng mga nawawalang bata. Gayunpaman, ang mga teknolohiyang ito ay maaaring potensyal na gamitin ng isang gobyerno upang ilagay sa panganib ang mga pangunahing kalayaan ng kanilang mga mamamayan, halimbawa, sa pamamagitan ng pagpapagana ng tuloy-tuloy na surveillance ng mga partikular na indibidwal. Kaya, ang mga data scientist at organisasyon ay kailangang maging responsable sa kung paano nakakaapekto ang kanilang sistema ng AI sa mga indibidwal o lipunan.
+[![Pangunahing AI Researcher Nagbabala sa Mass Surveillance sa Pamamagitan ng Facial Recognition](../../../../translated_images/tl/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
 
-[![Leading AI Researcher Warns of Mass Surveillance Through Facial Recognition](../../../../1-Introduction/3-fairness/images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
+> 🎥 Pindutin ang larawan sa itaas para sa video: Mga Babala tungkol sa Mass Surveillance sa Pamamagitan ng Facial Recognition
 
-> 🎥 I-click ang imahe sa itaas para sa video: Warnings of Mass Surveillance Through Facial Recognition
+Sa huli, isa sa pinakamalaking tanong para sa ating henerasyon, bilang unang henerasyon na nagdadala ng AI sa lipunan, ay paano matitiyak na mananatiling may pananagutan ang mga computer sa mga tao at paano matitiyak na ang mga tao na nagdidisenyo ng computer ay mananatiling may pananagutan sa lahat ng iba pa.
 
-Sa huli, isa sa pinakamalaking tanong para sa ating henerasyon, bilang unang henerasyon na nagdadala ng AI sa lipunan, ay kung paano masisiguro na ang mga computer ay mananatiling accountable sa mga tao at kung paano masisiguro na ang mga tao na nagdidisenyo ng mga computer ay mananatiling accountable sa lahat.
+## Pagsusuri ng Epekto
 
-## Pagtatasa ng Epekto
+Bago sanayin ang isang machine learning na modelo, mahalaga na magsagawa ng pagsusuri ng epekto upang maunawaan ang layunin ng AI system; kung ano ang inaasahang gamit nito; saan ito ilalagay; at sino ang makikipag-ugnayan sa sistema. Mahalaga ito para sa mga tagasuri o tagasubok na nag-evaluate sa sistema upang malaman kung anu-anong mga salik ang isasaalang-alang sa pagtukoy ng mga potensyal na panganib at inaasahang mga epekto.
 
-Bago sanayin ang isang modelo ng machine learning, mahalagang magsagawa ng impact assessment upang maunawaan ang layunin ng sistema ng AI; kung ano ang nilalayong paggamit nito; kung saan ito ide-deploy; at sino ang makikipag-ugnayan sa sistema. Ang mga ito ay kapaki-pakinabang para sa reviewer(s) o tester na nag-evaluate sa sistema upang malaman kung anong mga salik ang dapat isaalang-alang kapag tinutukoy ang mga potensyal na panganib at inaasahang kahihinatnan.
+Ang mga sumusunod ay mga pokus kapag nagsasagawa ng pagsusuri ng epekto:
 
-Ang mga sumusunod ay mga lugar ng pokus kapag nagsasagawa ng impact assessment:
+* **Masamang epekto sa mga indibidwal**. Ang pagiging mulat sa anumang paghihigpit o kinakailangan, di-suportadong paggamit o anumang kilalang limitasyon na nakahahadlang sa pagganap ng sistema ay mahalaga upang matiyak na hindi ginagamit ang sistema sa paraang maaaring makasama sa mga indibidwal.
+* **Mga pangangailangan sa datos**. Ang pag-unawa kung paano at saan gagamitin ng sistema ang datos ay nagbibigay-daan sa mga tagasuri na tuklasin ang anumang kinakailangang datos na dapat isaalang-alang (hal., GDPR o HIPAA na mga regulasyon sa datos). Bukod dito, suriin kung sapat ang pinagmulan o dami ng datos para sa pagsasanay.
+* **Buod ng epekto**. Magtipon ng listahan ng mga potensyal na pinsala na maaaring lumitaw mula sa paggamit ng sistema. Sa buong lifecycle ng ML, suriin kung ang mga isyung natukoy ay naiiwasan o natutugunan.
+* **Nalalapat na mga layunin** para sa bawat isa sa anim na pangunahing prinsipyo. Suriin kung natutupad ang mga layunin mula sa bawat prinsipyo at kung may mga puwang.
 
-* **Masamang epekto sa mga indibidwal**. Ang pagiging maalam sa anumang limitasyon o kinakailangan, hindi suportadong paggamit, o anumang kilalang limitasyon na humahadlang sa pagganap ng sistema ay mahalaga upang matiyak na ang sistema ay hindi ginagamit sa paraang maaaring magdulot ng pinsala sa mga indibidwal.
-* **Mga kinakailangan sa data**. Ang pag-unawa kung paano at saan gagamitin ng sistema ang data ay nagbibigay-daan sa mga reviewer na tuklasin ang anumang mga kinakailangan sa data na dapat mong tandaan (hal., GDPR o HIPPA data regulations). Bukod dito, suriin kung ang pinagmulan o dami ng data ay sapat para sa pagsasanay.
-* **Buod ng epekto**. Magtipon ng listahan ng mga potensyal na pinsala na maaaring lumitaw mula sa paggamit ng sistema. Sa buong lifecycle ng ML, suriin kung ang mga isyung natukoy ay naibsan o natugunan.
-* **Mga naaangkop na layunin** para sa bawat isa sa anim na pangunahing prinsipyo. Suriin kung ang mga layunin mula sa bawat prinsipyo ay natutugunan at kung mayroong anumang mga puwang.
 
-## Pag-debug gamit ang Responsible AI
+## Pag-debug gamit ang responsable na AI
 
-Katulad ng pag-debug ng isang software application, ang pag-debug ng isang sistema ng AI ay isang kinakailangang proseso ng pagtukoy at paglutas ng mga isyu sa sistema. Maraming mga salik ang maaaring makaapekto sa isang modelo na hindi gumagana ayon sa inaasahan o responsable. Karamihan sa mga tradisyunal na sukatan ng pagganap ng modelo ay mga dami ng aggregate ng pagganap ng modelo, na hindi sapat upang suriin kung paano nilalabag ng isang modelo ang mga prinsipyo ng Responsible AI. Bukod dito, ang isang modelo ng machine learning ay isang black box na nagpapahirap na maunawaan kung ano ang nagdudulot ng resulta nito o magbigay ng paliwanag kapag nagkamali ito. Sa susunod na bahagi ng kursong ito, matutunan natin kung paano gamitin ang Responsible AI dashboard upang makatulong sa pag-debug ng mga sistema ng AI. Ang dashboard ay nagbibigay ng holistic na tool para sa mga data scientist at AI developer upang magsagawa ng:
+Katulad ng pag-debug ng isang software application, ang pag-debug ng isang sistema ng AI ay isang kinakailangang proseso ng pagtukoy at paglutas ng mga isyu sa sistema. Maraming salik ang maaaring makaapekto sa isang modelo na hindi gumana ayon sa inaasahan o responsableng paraan. Karamihan sa mga tradisyunal na sukatan ng pagganap ng modelo ay mga quantitavive na buod ng pagganap ng modelo, na hindi sapat upang suriin kung paano nilalabag ng modelo ang mga prinsipyo ng responsable na AI. Bukod dito, ang isang machine learning na modelo ay isang itim na kahon na nagpapahirap na maintindihan kung ano ang nagtutulak ng resulta nito o magbigay ng paliwanag kapag nagkamali ito. Sa kalaunan ng kursong ito, matututuhan natin kung paano gamitin ang Responsible AI dashboard upang makatulong sa pag-debug ng mga sistema ng AI. Ang dashboard ay nagbibigay ng holistikong kasangkapan para sa mga data scientist at AI developer upang magsagawa ng:
 
-* **Error analysis**. Upang matukoy ang pamamahagi ng error ng modelo na maaaring makaapekto sa pagiging patas o pagiging maaasahan ng sistema.
-* **Model overview**. Upang matuklasan kung saan may mga pagkakaiba sa pagganap ng modelo sa iba't ibang data cohorts.
-* **Data analysis**. Upang maunawaan ang pamamahagi ng data at matukoy ang anumang potensyal na bias sa data na maaaring magdulot ng mga isyu sa pagiging patas, inklusibidad, at pagiging maaasahan.
-* **Model interpretability**. Upang maunawaan kung ano ang nakakaapekto o nakakaimpluwensya sa mga hula ng modelo. Nakakatulong ito sa pagpapaliwanag ng pag-uugali ng modelo, na mahalaga para sa transparency at pananagutan.
+* **Pagsusuri ng error**. Upang tukuyin ang pamamahagi ng error ng modelo na maaaring makaapekto sa katarungan o pagiging maaasahan ng sistema.
+* **Pangkalahatang-ideya ng modelo**. Upang matuklasan kung saan may mga hindi pagkakapantay-pantay sa pagganap ng modelo sa iba't ibang cohort ng datos.
+* **Pagsusuri ng datos**. Upang maunawaan ang pamamahagi ng datos at matukoy ang anumang potensyal na pagkiling sa datos na maaaring magdala sa mga isyu sa katarungan, inklusibidad, at pagiging maaasahan.
+* **Paliwanag sa modelo**. Upang maunawaan kung ano ang nakakaapekto o nakakaimpluwensya sa mga prediksyon ng modelo. Nakakatulong ito sa pagpapaliwanag ng pag-uugali ng modelo, na mahalaga para sa transparency at pananagutan.
+
 
 ## 🚀 Hamon
+ 
+Upang maiwasan ang mga pinsala na maipakilala sa unang pagkakataon, dapat tayong:
 
-Upang maiwasan ang mga pinsala na maipakilala sa
-Panoorin ang workshop na ito para mas maintindihan ang mga paksa:
+- magkaroon ng pagkakaiba-iba ng mga pinagmulan at pananaw sa mga taong nagtatrabaho sa mga sistema
+- mamuhunan sa mga dataset na sumasalamin sa pagkakaiba-iba ng ating lipunan
+- bumuo ng mas mahusay na mga pamamaraan sa buong lifecycle ng machine learning upang tuklasin at itama ang responsable na AI kapag ito ay nangyayari
 
-- Sa paghahangad ng responsableng AI: Paglalapat ng mga prinsipyo sa praktika nina Besmira Nushi, Mehrnoosh Sameki, at Amit Sharma
+Isipin ang mga totoong buhay na senaryo kung saan maliwanag ang kawalan ng tiwala sa isang modelo sa paggawa at paggamit ng modelo. Ano pa ang dapat nating isaalang-alang?
 
-[![Responsible AI Toolbox: Isang open-source framework para sa paggawa ng responsableng AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: Isang open-source framework para sa paggawa ng responsableng AI")
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-> 🎥 I-click ang imahe sa itaas para sa video: RAI Toolbox: Isang open-source framework para sa paggawa ng responsableng AI nina Besmira Nushi, Mehrnoosh Sameki, at Amit Sharma
+## Pagrepaso at Sariling Pag-aaral
+ 
 
-Basahin din:
+Sa araling ito, natutunan mo ang ilang batayan ng mga konsepto ng katarungan at hindi katarungan sa machine learning.  
+ 
+Panoorin ang workshop na ito upang mas malalim na tuklasin ang mga paksa: 
 
-- Resource center ng Microsoft para sa RAI: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Sa pagsisikap para sa responsableng AI: Pagsasagawa ng mga prinsipyo sa praktika nina Besmira Nushi, Mehrnoosh Sameki at Amit Sharma
 
-- FATE research group ng Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+[![Responsible AI Toolbox: An open-source framework for building responsible AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
 
-RAI Toolbox:
+> 🎥 I-click ang larawan sa itaas para sa isang video: RAI Toolbox: Isang open-source na balangkas para sa paggawa ng responsableng AI nina Besmira Nushi, Mehrnoosh Sameki, at Amit Sharma
+
+Basahin din: 
+
+- Sentro ng mga mapagkukunan ng RAI ng Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+
+- Pangkat ng pananaliksik ng FATE ng Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+
+RAI Toolbox: 
 
 - [Responsible AI Toolbox GitHub repository](https://github.com/microsoft/responsible-ai-toolbox)
 
-Basahin ang tungkol sa mga tools ng Azure Machine Learning para masiguro ang pagiging patas:
+Basahin tungkol sa mga kasangkapan ng Azure Machine Learning upang matiyak ang katarungan:
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
-## Gawain
+## Takdang Aralin
 
 [Galugarin ang RAI Toolbox](assignment.md)
 
 ---
 
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

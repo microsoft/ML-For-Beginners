@@ -1,47 +1,47 @@
-# Úvod do posilovaného učení a Q-Learningu
+# Úvod do posilovaného učení a Q-učení
 
-![Shrnutí posilovaného učení v oblasti strojového učení ve sketchnote](../../../../sketchnotes/ml-reinforcement.png)
+![Shrnutí posilování v strojovém učení ve sketchnote](../../../../translated_images/cs/ml-reinforcement.94024374d63348db.webp)
 > Sketchnote od [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-Posilované učení zahrnuje tři důležité koncepty: agenta, stavy a sadu akcí pro každý stav. Prováděním akce ve specifickém stavu získává agent odměnu. Představte si opět počítačovou hru Super Mario. Vy jste Mario, nacházíte se v úrovni hry, stojíte vedle okraje útesu. Nad vámi je mince. Vy jako Mario, v herní úrovni, na konkrétní pozici... to je váš stav. Posun o krok doprava (akce) vás přivede přes okraj, což by vám přineslo nízké číselné skóre. Stisknutí tlačítka skoku by vám však umožnilo získat bod a zůstat naživu. To je pozitivní výsledek, který by vám měl přinést pozitivní číselné skóre.
+Posilované učení zahrnuje tři důležité koncepty: agenta, nějaké stavy a sadu akcí pro každý stav. Provedením akce ve specifikovaném stavu agent obdrží odměnu. Opět si představte počítačovou hru Super Mario. Jste Mario, jste v úrovni hry, stojíte vedle okraje útesu. Nad vámi je mince. Vy jako Mario, v úrovni hry, na konkrétní pozici ... to je váš stav. Posun o krok doprava (akce) by vás přivedl přes hranu, což by vám přineslo nízké číselné skóre. Nicméně stisknutí tlačítka skoku by vám dovolilo získat bod a zůstat naživu. To je pozitivní výsledek a měl by být oceněn kladným číselným skóre.
 
-Pomocí posilovaného učení a simulátoru (hry) se můžete naučit, jak hru hrát, abyste maximalizovali odměnu, což znamená zůstat naživu a získat co nejvíce bodů.
+Použitím posilovaného učení a simulátoru (hry) se můžete naučit, jak hrát hru tak, aby bylo dosaženo maximální odměny, což je přežití a získání co nejvíce bodů.
 
 [![Úvod do posilovaného učení](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
-> 🎥 Klikněte na obrázek výše a poslechněte si Dmitryho, jak diskutuje o posilovaném učení.
+> 🎥 Klikněte na obrázek výše a poslechněte si Dmitryho, jak diskutuje o posilovaném učení
 
-## [Kvíz před lekcí](https://ff-quizzes.netlify.app/en/ml/)
+## [Přednáškový kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Předpoklady a nastavení
+## Požadavky a nastavení
 
-V této lekci budeme experimentovat s kódem v Pythonu. Měli byste být schopni spustit kód v Jupyter Notebooku z této lekce, buď na svém počítači, nebo někde v cloudu.
+V této lekci budeme experimentovat s kódem v Pythonu. Měli byste být schopni spustit kód Jupyter Notebooku z této lekce, buď na svém počítači nebo někde v cloudu.
 
 Můžete otevřít [notebook lekce](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) a projít si tuto lekci krok za krokem.
 
-> **Poznámka:** Pokud otevíráte tento kód z cloudu, musíte také stáhnout soubor [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), který se používá v kódu notebooku. Přidejte jej do stejného adresáře jako notebook.
+> **Poznámka:** Pokud otevíráte tento kód z cloudu, je také potřeba stáhnout soubor [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), který se používá v kódu notebooku. Přidejte jej do stejného adresáře jako notebook.
 
 ## Úvod
 
-V této lekci prozkoumáme svět **[Petr a vlk](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, inspirovaný hudební pohádkou ruského skladatele [Sergeje Prokofjeva](https://en.wikipedia.org/wiki/Sergei_Prokofiev). Použijeme **posilované učení**, aby Petr mohl prozkoumat své prostředí, sbírat chutná jablka a vyhnout se setkání s vlkem.
+V této lekci prozkoumáme svět **[Petra a vlka](https://cs.wikipedia.org/wiki/Petr_a_vlk)**, inspirovaný hudební pohádkou od ruského skladatele, [Sergeje Prokofjeva](https://en.wikipedia.org/wiki/Sergei_Prokofiev). Použijeme **posilované učení**, aby Petr prozkoumal své prostředí, sbíral chutná jablka a vyhnul se setkání s vlkem.
 
-**Posilované učení** (RL) je technika učení, která nám umožňuje naučit se optimální chování **agenta** v nějakém **prostředí** prostřednictvím mnoha experimentů. Agent v tomto prostředí by měl mít nějaký **cíl**, definovaný pomocí **funkce odměny**.
+**Posilované učení** (RL) je učební technika, která nám umožňuje naučit se optimální chování **agenta** v nějakém **prostředí** pomocí mnoha experimentů. Agent v tomto prostředí by měl mít nějaký **cíl**, definovaný **funkcí odměny**.
 
 ## Prostředí
 
-Pro jednoduchost si představme Petrov svět jako čtvercovou desku o velikosti `šířka` x `výška`, jako je tato:
+Pro jednoduchost si představme Petrův svět jako čtvercovou desku o rozměrech `width` x `height`, takto:
 
-![Petrovo prostředí](../../../../8-Reinforcement/1-QLearning/images/environment.png)
+![Petrovo prostředí](../../../../translated_images/cs/environment.40ba3cb66256c93f.webp)
 
-Každá buňka na této desce může být:
+Každá buňka v této desce může být:
 
-* **zem**, po které Petr a další bytosti mohou chodit.
-* **voda**, po které samozřejmě nemůžete chodit.
+* **země**, po které mohou Petr a další tvory chodit.
+* **voda**, po které samozřejmě chodit nelze.
 * **strom** nebo **tráva**, místo, kde si můžete odpočinout.
-* **jablko**, což představuje něco, co by Petr rád našel, aby se nakrmil.
+* **jablko**, které představuje něco, co by Petr rád našel, aby se nasytit.
 * **vlk**, který je nebezpečný a měl by být vyhnut.
 
-Existuje samostatný modul v Pythonu, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), který obsahuje kód pro práci s tímto prostředím. Protože tento kód není důležitý pro pochopení našich konceptů, importujeme modul a použijeme jej k vytvoření vzorové desky (blok kódu 1):
+Existuje samostatný Python modul, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), který obsahuje kód pro práci s tímto prostředím. Jelikož tento kód není důležitý pro pochopení našich konceptů, naimportujeme modul a použijeme jej k vytvoření pracovní desky (blok kódu 1):
 
 ```python
 from rlboard import *
@@ -52,63 +52,63 @@ m.randomize(seed=13)
 m.plot()
 ```
 
-Tento kód by měl vytisknout obrázek prostředí podobný tomu výše.
+Tento kód by měl vypsat obrázek prostředí podobný tomuto výše.
 
 ## Akce a politika
 
-V našem příkladu by Petrovým cílem bylo najít jablko, zatímco se vyhýbá vlkovi a dalším překážkám. K tomu může v podstatě chodit, dokud nenajde jablko.
+V našem příkladu by Petrův cíl byl najít jablko a zároveň se vyhnout vlkovi a jiným překážkám. Aby toho dosáhl, může v podstatě chodit dokola, dokud nenajde jablko.
 
-Proto může na jakékoli pozici zvolit jednu z následujících akcí: nahoru, dolů, doleva a doprava.
+Proto může na jakékoli pozici vybírat jednu z následujících akcí: nahoru, dolů, vlevo a vpravo.
 
-Tyto akce definujeme jako slovník a mapujeme je na dvojice odpovídajících změn souřadnic. Například pohyb doprava (`R`) by odpovídal dvojici `(1,0)`. (blok kódu 2):
+Tyto akce definujeme jako slovník a namapujeme je na dvojice odpovídajících změn souřadnic. Například pohyb vpravo (`R`) odpovídá dvojici `(1,0)`. (blok kódu 2):
 
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
 action_idx = { a : i for i,a in enumerate(actions.keys()) }
 ```
 
-Shrneme-li, strategie a cíl tohoto scénáře jsou následující:
+Na závěr je strategie a cíl tohoto scénáře následující:
 
-- **Strategie** našeho agenta (Petra) je definována tzv. **politikou**. Politika je funkce, která vrací akci v daném stavu. V našem případě je stav problému reprezentován deskou, včetně aktuální pozice hráče.
+- **Strategie**, našeho agenta (Petra) je definována tzv. **politikou**. Politika je funkce, která vrací akci pro daný stav. V našem případě je stav problému reprezentován deskou včetně aktuální pozice hráče.
 
-- **Cíl** posilovaného učení je nakonec naučit se dobrou politiku, která nám umožní problém efektivně vyřešit. Jako základ však zvažme nejjednodušší politiku nazvanou **náhodná chůze**.
+- **Cíl**, posilovaného učení je nakonec naučit se dobrou politiku, která nám umožní problém efektivně vyřešit. Nicméně jako základní přístup vezměme nejjednodušší politiku nazvanou **náhodná chůze**.
 
 ## Náhodná chůze
 
-Nejprve vyřešíme náš problém implementací strategie náhodné chůze. Při náhodné chůzi budeme náhodně vybírat další akci z povolených akcí, dokud nedosáhneme jablka (blok kódu 3).
+Nejdříve vyřešíme náš problém implementací strategie náhodné chůze. Při náhodné chůzi náhodně vybereme další akci ze povolených akcí, dokud nedosáhneme jablka (blok kódu 3).
 
-1. Implementujte náhodnou chůzi pomocí níže uvedeného kódu:
+1. Implementujte náhodnou chůzi pomocí kódu níže:
 
     ```python
     def random_policy(m):
         return random.choice(list(actions))
     
     def walk(m,policy,start_position=None):
-        n = 0 # number of steps
-        # set initial position
+        n = 0 # počet kroků
+        # nastav počáteční pozici
         if start_position:
             m.human = start_position 
         else:
             m.random_start()
         while True:
             if m.at() == Board.Cell.apple:
-                return n # success!
+                return n # úspěch!
             if m.at() in [Board.Cell.wolf, Board.Cell.water]:
-                return -1 # eaten by wolf or drowned
+                return -1 # snězen vlkem nebo utonut
             while True:
                 a = actions[policy(m)]
                 new_pos = m.move_pos(m.human,a)
                 if m.is_valid(new_pos) and m.at(new_pos)!=Board.Cell.water:
-                    m.move(a) # do the actual move
+                    m.move(a) # proveď skutečný pohyb
                     break
             n+=1
     
     walk(m,random_policy)
     ```
 
-    Volání `walk` by mělo vrátit délku odpovídající cesty, která se může lišit od jednoho spuštění k druhému.
+    Volání `walk` by mělo vrátit délku odpovídající cesty, která se může při různých bězích lišit. 
 
-1. Spusťte experiment chůze několikrát (řekněme 100krát) a vytiskněte výsledné statistiky (blok kódu 4):
+1. Proveďte experiment chůze několikrát (např. 100x) a vytiskněte získanou statistiku (blok kódu 4):
 
     ```python
     def print_statistics(policy):
@@ -125,17 +125,17 @@ Nejprve vyřešíme náš problém implementací strategie náhodné chůze. Př
     print_statistics(random_policy)
     ```
 
-    Všimněte si, že průměrná délka cesty je kolem 30-40 kroků, což je poměrně hodně, vzhledem k tomu, že průměrná vzdálenost k nejbližšímu jablku je kolem 5-6 kroků.
+    Všimněte si, že průměrná délka cesty je kolem 30-40 kroků, což je dost, vzhledem k tomu, že průměrná vzdálenost k nejbližšímu jablku je kolem 5-6 kroků.
 
-    Můžete také vidět, jak vypadá Petrov pohyb během náhodné chůze:
+    Můžete také vidět, jak vypadají Petrovy pohyby během náhodné chůze:
 
     ![Petrova náhodná chůze](../../../../8-Reinforcement/1-QLearning/images/random_walk.gif)
 
 ## Funkce odměny
 
-Aby byla naše politika inteligentnější, musíme pochopit, které kroky jsou "lepší" než jiné. K tomu musíme definovat náš cíl.
+Abychom naši politiku učinili inteligentnější, musíme pochopit, které kroky jsou „lepší“ než jiné. K tomu je potřeba definovat náš cíl.
 
-Cíl může být definován pomocí **funkce odměny**, která vrátí nějakou hodnotu skóre pro každý stav. Čím vyšší číslo, tím lepší funkce odměny. (blok kódu 5)
+Cíl můžeme definovat pomocí **funkce odměny**, která vrací určitou hodnotu skóre pro každý stav. Čím vyšší číslo, tím lepší odměna. (blok kódu 5)
 
 ```python
 move_reward = -0.1
@@ -154,39 +154,115 @@ def reward(m,pos=None):
     return move_reward
 ```
 
-Zajímavé na funkcích odměny je, že ve většině případů *dostáváme podstatnou odměnu až na konci hry*. To znamená, že náš algoritmus by měl nějakým způsobem zapamatovat "dobré" kroky, které vedou k pozitivní odměně na konci, a zvýšit jejich důležitost. Podobně by měly být odrazeny všechny kroky, které vedou k špatným výsledkům.
+Zajímavé na funkcích odměny je to, že většinou *dostáváme podstatnou odměnu až na konci hry*. To znamená, že algoritmus by měl nějak pamatovat „dobré“ kroky vedoucí k pozitivní odměně na konci a zvyšovat jejich váhu. Podobně by měly být odrazovány kroky vedoucí k špatným výsledkům.
 
-## Q-Learning
+## Q-učení
 
-Algoritmus, který zde budeme diskutovat, se nazývá **Q-Learning**. V tomto algoritmu je politika definována funkcí (nebo datovou strukturou) nazvanou **Q-Tabulka**. Ta zaznamenává "kvalitu" každé akce v daném stavu.
+Algoritmus, který zde diskutujeme, se nazývá **Q-učení**. V tomto algoritmu je politika definována funkcí (nebo datovou strukturou) nazývanou **Q-tabulka**. Ta zaznamenává „dobrý“ nebo „špatný“ vliv každé akce v daném stavu.
 
-Nazývá se Q-Tabulka, protože je často výhodné ji reprezentovat jako tabulku nebo vícerozměrné pole. Protože naše deska má rozměry `šířka` x `výška`, můžeme Q-Tabulku reprezentovat pomocí numpy pole s tvarem `šířka` x `výška` x `len(actions)`: (blok kódu 6)
+Nazývá se Q-tabulka, protože je často pohodlné ji představit jako tabulku nebo vícerozměrné pole. Protože má naše deska rozměry `width` x `height`, můžeme Q-tabulku reprezentovat pomocí numpy pole tvaru `width` x `height` x `len(actions)`: (blok kódu 6)
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 ```
 
-Všimněte si, že inicializujeme všechny hodnoty Q-Tabulky stejnou hodnotou, v našem případě - 0.25. To odpovídá politice "náhodné chůze", protože všechny kroky v každém stavu jsou stejně dobré. Q-Tabulku můžeme předat funkci `plot`, abychom ji vizualizovali na desce: `m.plot(Q)`.
+Všimněte si, že všechny hodnoty Q-tabulky inicializujeme na stejnou hodnotu, v našem případě 0,25. To odpovídá politice „náhodné chůze“, protože všechny akce v každém stavu jsou stejně dobré. Můžeme předat Q-tabulku funkci `plot` pro vizualizaci tabulky na desce: `m.plot(Q)`.
 
-![Petrovo prostředí](../../../../8-Reinforcement/1-QLearning/images/env_init.png)
+![Petrovo prostředí](../../../../translated_images/cs/env_init.04e8f26d2d60089e.webp)
 
-Uprostřed každé buňky je "šipka", která označuje preferovaný směr pohybu. Protože všechny směry jsou stejné, je zobrazen bod.
+Ve středu každé buňky je „šípka“, která ukazuje preferovaný směr pohybu. Protože jsou všechny směry stejné, zobrazuje se tečka.
 
-Nyní musíme spustit simulaci, prozkoumat naše prostředí a naučit se lepší rozložení hodnot Q-Tabulky, které nám umožní najít cestu k jablku mnohem rychleji.
+Nyní potřebujeme spustit simulaci, prozkoumat naše prostředí a naučit se lepší rozdělení hodnot v Q-tabulce, které nám umožní najít cestu k jablku mnohem rychleji.
 
-## Podstata Q-Learningu: Bellmanova rovnice
+## Podstata Q-učení: Bellmanova rovnice
 
-Jakmile se začneme pohybovat, každá akce bude mít odpovídající odměnu, tj. teoreticky můžeme vybrat další akci na základě nejvyšší okamžité odměny. Ve většině stavů však krok nedosáhne našeho cíle dosáhnout jablka, a proto nemůžeme okamžitě rozhodnout, který směr je lepší.
+Jakmile začneme pohybovat, každá akce bude mít odpovídající odměnu, tedy teoreticky můžeme zvolit další akci na základě nejvyšší okamžité odměny. Nicméně v většině stavů tah nepřinese cíl dosáhnout jablko, a proto nemůžeme ihned rozhodnout, který směr je lepší.
 
-> Pamatujte, že nezáleží na okamžitém výsledku, ale spíše na konečném výsledku, který získáme na konci simulace.
+> Pamatujte, že ne okamžitý výsledek je důležitý, ale konečný výsledek, kterého dosáhneme na konci simulace.
 
-Abychom zohlednili tuto zpožděnou odměnu, musíme použít principy **[dynamického programování](https://en.wikipedia.org/wiki/Dynamic_programming)**, které nám umožňují přemýšlet o našem problému rekurzivně.
+Abychom mohli zohlednit tuto odloženou odměnu, musíme použít principy **[dynamického programování](https://cs.wikipedia.org/wiki/Dynamick%C3%A9_programov%C3%A1n%C3%AD)**, které nám umožňují uvažovat o našem problému rekurzivně.
 
-Předpokládejme, že se nyní nacházíme ve stavu *s* a chceme se přesunout do dalšího stavu *s'*. Tím získáme okamžitou odměnu *r(s,a)*, definovanou funkcí odměny, plus nějakou budoucí odměnu. Pokud předpokládáme, že naše Q-Tabulka správně odráží "atraktivitu" každé akce, pak ve stavu *s'* zvolíme akci *a*, která odpovídá maximální hodnotě *Q(s',a')*. Tím pádem nejlepší možná budoucí odměna, kterou bychom mohli získat ve stavu *s*, bude definována jako `max`
+Předpokládejme, že jsme nyní ve stavu *s* a chceme přejít do dalšího stavu *s'*. Tímto dostaneme okamžitou odměnu *r(s,a)*, definovanou funkcí odměny, plus nějakou budoucí odměnu. Pokud předpokládáme, že naše Q-tabulka správně odráží „atraktivitu“ každé akce, pak ve stavu *s'* zvolíme akci *a*, která odpovídá maximální hodnotě *Q(s',a')*. Nejlepší možná budoucí odměna ve stavu *s* bude tedy definována jako `max`<sub>a'</sub>*Q(s',a')* (maximum je počítáno přes všechny možné akce *a'* ve stavu *s'*).
+
+To nám dává **Bellmanův vzorec** pro výpočet hodnoty Q-tabule ve stavu *s*, vzhledem k akci *a*:
+
+<img src="../../../../translated_images/cs/bellman-equation.7c0c4c722e5a6b7c.webp"/>
+
+Zde γ je tzv. **diskontní faktor**, který určuje, do jaké míry byste měli preferovat současnou odměnu před budoucí odměnou a naopak.
+
+## Učební algoritmus
+
+Na základě výše uvedené rovnice nyní můžeme napsat pseudokód našeho učebního algoritmu:
+
+* Inicializujte Q-tabulku Q stejnými čísly pro všechny stavy a akce
+* Nastavte rychlost učení α ← 1
+* Opakujte simulaci mnohokrát
+   1. Začněte na náhodné pozici
+   1. Opakujte
+        1. Vyberte akci *a* ve stavu *s*
+        2. Proveďte akci přesunem do nového stavu *s'*
+        3. Pokud narazíme na konec hry, nebo je celková odměna příliš malá - ukončete simulaci  
+        4. Spočítejte odměnu *r* v novém stavu
+        5. Aktualizujte Q-funkci podle Bellmanovy rovnice: *Q(s,a)* ← *(1-α)Q(s,a)+α(r+γ max<sub>a'</sub>Q(s',a'))*
+        6. *s* ← *s'*
+        7. Aktualizujte celkovou odměnu a snižte α.
+
+## Využití vs. průzkum
+
+V výše uvedeném algoritmu jsme nespecifikovali, jak přesně vybrat akci v kroku 2.1. Pokud vybíráme akci náhodně, budeme náhodně **průzkoumávat** prostředí a je pravděpodobné, že často zemřeme a budeme prozkoumávat oblasti, kam bychom normálně nešli. Alternativní přístup je **využívat** hodnoty Q-tabulky, které už známe, a zvolit nejlepší akci (s vyšší hodnotou Q) ve stavu *s*. To nás však připraví o průzkum jiných stavů a pravděpodobně nenajdeme optimální řešení.
+
+Nejlepší tedy je najít rovnováhu mezi průzkumem a využíváním. To lze udělat tak, že akci ve stavu *s* zvolíme s pravděpodobností úměrnou hodnotám v Q-tabulce. Na začátku, když jsou všechny hodnoty Q-tabulek stejné, to odpovídá náhodnému výběru, ale jak se učíme více o prostředí, pravděpodobněji půjdeme optimální cestou, přičemž agent si občas zvolí neprozkoumanou cestu.
+
+## Implementace v Pythonu
+
+Jsme nyní připraveni implementovat učební algoritmus. Než to uděláme, potřebujeme také funkci, která převede libovolná čísla v Q-tabulce na vektor pravděpodobností pro odpovídající akce.
+
+1. Vytvořte funkci `probs()`:
+
+    ```python
+    def probs(v,eps=1e-4):
+        v = v-v.min()+eps
+        v = v/v.sum()
+        return v
+    ```
+
+    Přidáváme několik `eps` k původnímu vektoru, abychom se vyhnuli dělení nulou v počátečním případě, kdy jsou všechny složky vektoru stejné.
+
+Proveďte učební algoritmus přes 5000 experimentů, nazývaných také **epochy**: (blok kódu 8)
+```python
+    for epoch in range(5000):
+    
+        # Vyberte počáteční bod
+        m.random_start()
+        
+        # Začněte cestovat
+        n=0
+        cum_reward = 0
+        while True:
+            x,y = m.human
+            v = probs(Q[x,y])
+            a = random.choices(list(actions),weights=v)[0]
+            dpos = actions[a]
+            m.move(dpos,check_correctness=False) # dovolujeme hráči pohybovat se mimo plán, což ukončuje epizodu
+            r = reward(m)
+            cum_reward += r
+            if r==end_reward or cum_reward < -1000:
+                lpath.append(n)
+                break
+            alpha = np.exp(-n / 10e5)
+            gamma = 0.5
+            ai = action_idx[a]
+            Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
+            n+=1
+```
+
+Po provedení tohoto algoritmu by měla být Q-tabulka aktualizována hodnotami definujícími atraktivitu různých akcí v každém kroku. Můžeme zkusit vizualizovat Q-tabulku vykreslením vektoru v každé buňce, který bude ukazovat požadovaný směr pohybu. Pro jednoduchost kreslíme malý kruh místo šipky.
+
+<img src="../../../../translated_images/cs/learned.ed28bcd8484b5287.webp"/>
 
 ## Kontrola politiky
 
-Protože Q-Tabulka uvádí "atraktivitu" každé akce v každém stavu, je poměrně snadné ji použít k definování efektivní navigace v našem světě. V nejjednodušším případě můžeme vybrat akci odpovídající nejvyšší hodnotě v Q-Tabulce: (kódový blok 9)
+Protože Q-tabulka uvádí „atraktivitu“ každé akce v každém stavu, je poměrně jednoduché ji použít k definování efektivní navigace v našem světě. V nejjednodušším případě můžeme vybrat akci odpovídající nejvyšší hodnotě v Q-tabulce: (blok kódu 9)
 
 ```python
 def qpolicy_strict(m):
@@ -198,17 +274,18 @@ def qpolicy_strict(m):
 walk(m,qpolicy_strict)
 ```
 
-> Pokud výše uvedený kód vyzkoušíte několikrát, můžete si všimnout, že se někdy "zasekne" a je třeba stisknout tlačítko STOP v notebooku, abyste ho přerušili. K tomu dochází, protože mohou nastat situace, kdy si dva stavy "ukazují" na sebe z hlediska optimální hodnoty Q, což vede k tomu, že agent se mezi těmito stavy pohybuje nekonečně.
+
+> Pokud vyzkoušíte výše uvedený kód několikrát, můžete si všimnout, že se někdy "zasekne" a je potřeba v notebooku stisknout tlačítko STOP k jeho přerušení. To se děje proto, že mohou nastat situace, kdy dva stavy „ukazují“ na sebe z hlediska optimální hodnoty Q (Q-Value), v takovém případě agent skončí pohybováním se mezi těmito stavy donekonečna.
 
 ## 🚀Výzva
 
-> **Úkol 1:** Upravte funkci `walk` tak, aby omezila maximální délku cesty na určitý počet kroků (například 100), a sledujte, jak výše uvedený kód tuto hodnotu čas od času vrací.
+> **Úkol 1:** Upravte funkci `walk` tak, aby omezila maximální délku cesty na určitý počet kroků (například 100), a sledujte, jak výše uvedený kód tuto hodnotu občas vrací.
 
-> **Úkol 2:** Upravte funkci `walk` tak, aby se nevracela na místa, kde již byla. Tím se zabrání tomu, aby se `walk` opakovala, nicméně agent může stále skončit "uvězněný" na místě, odkud se nemůže dostat.
+> **Úkol 2:** Upravte funkci `walk` tak, aby se nevracela na místa, kde již dříve byla. Tím se zabrání zasekávání funkce `walk`, ovšem agent se může i tak ocitnout „uvězněn“ na místě, ze kterého není schopen uniknout.
 
 ## Navigace
 
-Lepší navigační politika by byla ta, kterou jsme použili během tréninku, která kombinuje využívání a zkoumání. V této politice budeme vybírat každou akci s určitou pravděpodobností, úměrnou hodnotám v Q-Tabulce. Tato strategie může stále vést k tomu, že se agent vrátí na pozici, kterou již prozkoumal, ale jak můžete vidět z níže uvedeného kódu, vede k velmi krátké průměrné cestě k požadovanému místu (pamatujte, že `print_statistics` spouští simulaci 100krát): (kódový blok 10)
+Lepší navigační politikou bude ta, kterou jsme používali během tréninku, kombinující využití poznatků a průzkum. V této politice vybereme každou akci s určitou pravděpodobností, úměrnou hodnotám v Q-tabuli. Tato strategie může stále způsobit, že se agent vrátí na místo, které již prozkoumal, ale jak je vidět z níže uvedeného kódu, vede to k velmi krátké průměrné délce cesty k požadovanému cíli (pamatujte, že `print_statistics` spouští simulaci 100x): (kódový blok 10)
 
 ```python
 def qpolicy(m):
@@ -220,21 +297,23 @@ def qpolicy(m):
 print_statistics(qpolicy)
 ```
 
-Po spuštění tohoto kódu byste měli získat mnohem kratší průměrnou délku cesty než dříve, v rozmezí 3-6.
+Po spuštění tohoto kódu byste měli dostat mnohem menší průměrnou délku cesty než dříve, v rozsahu 3–6.
 
 ## Zkoumání procesu učení
 
-Jak jsme zmínili, proces učení je rovnováhou mezi zkoumáním a využíváním získaných znalostí o struktuře prostoru problému. Viděli jsme, že výsledky učení (schopnost pomoci agentovi najít krátkou cestu k cíli) se zlepšily, ale je také zajímavé sledovat, jak se průměrná délka cesty chová během procesu učení:
+Jak jsme zmínili, proces učení je rovnováha mezi průzkumem a využíváním získaných znalostí o struktuře problémového prostoru. Viděli jsme, že výsledky učení (schopnost pomoci agentovi najít krátkou cestu k cíli) se zlepšily, ale je také zajímavé sledovat, jak se průměrná délka cesty chová během procesu učení:
 
-## Shrnutí poznatků:
+<img src="../../../../translated_images/cs/lpathlen1.0534784add58d4eb.webp"/>
 
-- **Průměrná délka cesty se zvyšuje**. Na začátku vidíme, že průměrná délka cesty roste. Pravděpodobně je to způsobeno tím, že když o prostředí nic nevíme, máme tendenci uvíznout ve špatných stavech, jako je voda nebo vlk. Jak se dozvídáme více a začneme tyto znalosti využívat, můžeme prostředí prozkoumávat déle, ale stále nevíme, kde přesně jsou jablka.
+Učení lze shrnout takto:
 
-- **Délka cesty se s učením zkracuje**. Jakmile se naučíme dostatečně, je pro agenta snazší dosáhnout cíle a délka cesty se začne zkracovat. Stále však zůstáváme otevření zkoumání, takže často odbočíme od nejlepší cesty a zkoumáme nové možnosti, což cestu prodlužuje nad optimální délku.
+- **Průměrná délka cesty roste**. Vidíme zde, že ze začátku průměrná délka cesty roste. Pravděpodobně je to způsobeno tím, že když o prostředí nic nevíme, je pravděpodobné, že uvízneme ve špatných stavech, vodě nebo vlkovi. Jak se učíme a začneme tyto znalosti používat, můžeme prostředí prozkoumávat déle, ale stále ještě nevíme, kde jsou jablka.
 
-- **Délka se náhle zvýší**. Na grafu také pozorujeme, že v určitém bodě se délka náhle zvýší. To ukazuje na stochastickou povahu procesu a na to, že můžeme v určitém okamžiku "zkazit" koeficienty Q-Tabulky jejich přepsáním novými hodnotami. Ideálně by se tomu mělo zabránit snížením rychlosti učení (například ke konci tréninku upravujeme hodnoty Q-Tabulky pouze o malou hodnotu).
+- **Délka cesty klesá, jak se učíme více**. Jakmile se naučíme dost, agentovi se snáz podaří dosáhnout cíle a délka cesty začne klesat. Přesto máme stále otevřený průzkum, takže se často odchylujeme od nejlepší cesty a snažíme se prozkoumat nové možnosti, což dělá cestu delší než optimální.
 
-Celkově je důležité si uvědomit, že úspěch a kvalita procesu učení významně závisí na parametrech, jako je rychlost učení, pokles rychlosti učení a diskontní faktor. Tyto parametry se často nazývají **hyperparametry**, aby se odlišily od **parametrů**, které optimalizujeme během tréninku (například koeficienty Q-Tabulky). Proces hledání nejlepších hodnot hyperparametrů se nazývá **optimalizace hyperparametrů** a zaslouží si samostatné téma.
+- **Délka náhle stoupne**. Na tomto grafu také pozorujeme, že v určitém bodě délka náhle vzrostla. To ukazuje na stochastickou povahu procesu a že můžeme v nějakém okamžiku „pokazit“ koeficienty Q-tabule přepsáním novými hodnotami. Toto by mělo být ideálně minimalizováno snížením rychlosti učení (například ke konci tréninku upravujeme hodnoty Q-tabule jen o malou hodnotu).
+
+Celkově je důležité si uvědomit, že úspěch a kvalita procesu učení výrazně závisí na parametrech, jako je rychlost učení, pokles rychlosti učení a diskontní faktor. Tyto hodnoty se často nazývají **hyperparametry**, aby se odlišily od **parametrů**, které optimalizujeme během tréninku (například koeficienty Q-tabule). Proces hledání nejlepších hodnot hyperparametrů nazýváme **optimalizace hyperparametrů** a zaslouží si samostatné téma.
 
 ## [Kvíz po přednášce](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -243,5 +322,7 @@ Celkově je důležité si uvědomit, že úspěch a kvalita procesu učení vý
 
 ---
 
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). Ačkoli se snažíme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Neodpovídáme za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

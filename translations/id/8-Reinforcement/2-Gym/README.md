@@ -1,14 +1,34 @@
+# CartPole Skating
+
+Masalah yang telah kita selesaikan dalam pelajaran sebelumnya mungkin tampak seperti masalah mainan, tidak benar-benar berlaku untuk skenario kehidupan nyata. Ini bukanlah kasusnya, karena banyak masalah dunia nyata juga berbagi skenario ini - termasuk bermain Catur atau Go. Mereka serupa, karena kita juga memiliki papan dengan aturan tertentu dan **state diskrit**.
+
+## [Kuis Pra-lecture](https://ff-quizzes.netlify.app/en/ml/)
+
+## Pendahuluan
+
+Dalam pelajaran ini kita akan menerapkan prinsip yang sama dari Q-Learning untuk sebuah masalah dengan **state kontinu**, yaitu state yang diberikan oleh satu atau lebih angka riil. Kita akan menangani masalah berikut:
+
+> **Masalah**: Jika Peter ingin melarikan diri dari serigala, ia harus bisa bergerak lebih cepat. Kita akan melihat bagaimana Peter dapat belajar bermain skating, khususnya, menjaga keseimbangan, menggunakan Q-Learning.
+
+![The great escape!](../../../../translated_images/id/escape.18862db9930337e3.webp)
+
+> Peter dan teman-temannya menjadi kreatif untuk melarikan diri dari serigala! Gambar oleh [Jen Looper](https://twitter.com/jenlooper)
+
+Kita akan menggunakan versi sederhana dari keseimbangan yang dikenal sebagai masalah **CartPole**. Dalam dunia cartpole, kita memiliki sebuah slider horizontal yang dapat bergerak ke kiri atau kanan, dan tujuannya adalah menyeimbangkan tiang vertikal di atas slider.
+
+<img alt="a cartpole" src="../../../../translated_images/id/cartpole.b5609cc0494a14f7.webp" width="200"/>
+
 ## Prasyarat
 
-Dalam pelajaran ini, kita akan menggunakan pustaka bernama **OpenAI Gym** untuk mensimulasikan berbagai **lingkungan**. Anda dapat menjalankan kode pelajaran ini secara lokal (misalnya dari Visual Studio Code), di mana simulasi akan terbuka di jendela baru. Saat menjalankan kode secara online, Anda mungkin perlu melakukan beberapa penyesuaian pada kode, seperti yang dijelaskan [di sini](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+Dalam pelajaran ini, kita akan menggunakan sebuah pustaka bernama **OpenAI Gym** untuk mensimulasikan berbagai **lingkungan**. Kamu dapat menjalankan kode pelajaran ini secara lokal (misalnya dari Visual Studio Code), dalam hal ini simulasi akan terbuka di jendela baru. Saat menjalankan kode secara online, kamu mungkin perlu melakukan beberapa penyesuaian pada kode, seperti yang dijelaskan [di sini](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
-Dalam pelajaran sebelumnya, aturan permainan dan keadaan diberikan oleh kelas `Board` yang kita definisikan sendiri. Di sini kita akan menggunakan **lingkungan simulasi** khusus, yang akan mensimulasikan fisika di balik tiang yang seimbang. Salah satu lingkungan simulasi paling populer untuk melatih algoritma pembelajaran penguatan disebut [Gym](https://gym.openai.com/), yang dikelola oleh [OpenAI](https://openai.com/). Dengan menggunakan gym ini, kita dapat membuat berbagai **lingkungan** mulai dari simulasi cartpole hingga permainan Atari.
+Dalam pelajaran sebelumnya, aturan permainan dan state diberikan oleh kelas `Board` yang kita definisikan sendiri. Di sini kita akan menggunakan **lingkungan simulasi** khusus, yang akan mensimulasikan fisika di balik tiang yang seimbang. Salah satu lingkungan simulasi paling populer untuk melatih algoritma reinforcement learning disebut [Gym](https://gym.openai.com/), yang dikelola oleh [OpenAI](https://openai.com/). Dengan menggunakan gym ini kita dapat membuat berbagai **lingkungan** mulai dari simulasi cartpole hingga permainan Atari.
 
-> **Catatan**: Anda dapat melihat lingkungan lain yang tersedia dari OpenAI Gym [di sini](https://gym.openai.com/envs/#classic_control).
+> **Catatan**: Kamu dapat melihat lingkungan lain yang tersedia dari OpenAI Gym [di sini](https://gym.openai.com/envs/#classic_control). 
 
-Pertama, mari kita instal gym dan impor pustaka yang diperlukan (kode blok 1):
+Pertama, mari kita instal gym dan impor pustaka yang dibutuhkan (blok kode 1):
 
 ```python
 import sys
@@ -24,9 +44,9 @@ import random
 
 Untuk bekerja dengan masalah keseimbangan cartpole, kita perlu menginisialisasi lingkungan yang sesuai. Setiap lingkungan terkait dengan:
 
-- **Observation space** yang mendefinisikan struktur informasi yang kita terima dari lingkungan. Untuk masalah cartpole, kita menerima posisi tiang, kecepatan, dan beberapa nilai lainnya.
+- **Ruang observasi** yang mendefinisikan struktur informasi yang kita terima dari lingkungan. Untuk masalah cartpole, kita menerima posisi tiang, kecepatan dan beberapa nilai lainnya.
 
-- **Action space** yang mendefinisikan tindakan yang mungkin dilakukan. Dalam kasus kita, action space bersifat diskrit, dan terdiri dari dua tindakan - **kiri** dan **kanan**. (kode blok 2)
+- **Ruang aksi** yang mendefinisikan kemungkinan tindakan. Dalam kasus kita ruang aksi bersifat diskrit, dan terdiri dari dua tindakan - **kiri** dan **kanan**. (blok kode 2)
 
 1. Untuk menginisialisasi, ketik kode berikut:
 
@@ -37,11 +57,11 @@ Untuk bekerja dengan masalah keseimbangan cartpole, kita perlu menginisialisasi 
     print(env.action_space.sample())
     ```
 
-Untuk melihat bagaimana lingkungan bekerja, mari kita jalankan simulasi singkat selama 100 langkah. Pada setiap langkah, kita memberikan salah satu tindakan yang akan dilakukan - dalam simulasi ini kita hanya memilih tindakan secara acak dari `action_space`.
+Untuk melihat bagaimana lingkungan bekerja, mari jalankan simulasi singkat selama 100 langkah. Pada setiap langkah, kita memberikan salah satu tindakan yang akan diambil - dalam simulasi ini kita hanya memilih tindakan secara acak dari `action_space`. 
 
-1. Jalankan kode di bawah ini dan lihat hasilnya.
+1. Jalankan kode di bawah dan lihat hasilnya.
 
-    ✅ Ingatlah bahwa lebih disarankan untuk menjalankan kode ini pada instalasi Python lokal! (kode blok 3)
+    ✅ Ingat, sebaiknya jalankan kode ini pada instalasi Python lokal! (blok kode 3)
 
     ```python
     env.reset()
@@ -52,11 +72,11 @@ Untuk melihat bagaimana lingkungan bekerja, mari kita jalankan simulasi singkat 
     env.close()
     ```
 
-    Anda seharusnya melihat sesuatu yang mirip dengan gambar ini:
+    Kamu akan melihat sesuatu yang mirip dengan gambar ini:
 
-    ![cartpole tanpa keseimbangan](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
+    ![non-balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. Selama simulasi, kita perlu mendapatkan observasi untuk memutuskan tindakan apa yang harus dilakukan. Faktanya, fungsi langkah mengembalikan observasi saat ini, fungsi reward, dan flag selesai yang menunjukkan apakah simulasi masih perlu dilanjutkan atau tidak: (kode blok 4)
+1. Selama simulasi, kita perlu mendapatkan observasi untuk memutuskan bagaimana bertindak. Faktanya, fungsi step mengembalikan observasi saat ini, fungsi reward, dan flag done yang menunjukkan apakah simulasi harus diteruskan atau tidak: (blok kode 4)
 
     ```python
     env.reset()
@@ -69,7 +89,7 @@ Untuk melihat bagaimana lingkungan bekerja, mari kita jalankan simulasi singkat 
     env.close()
     ```
 
-    Anda akan melihat sesuatu seperti ini di output notebook:
+    Kamu akan melihat sesuatu seperti ini di output notebook:
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -83,42 +103,42 @@ Untuk melihat bagaimana lingkungan bekerja, mari kita jalankan simulasi singkat 
     ```
 
     Vektor observasi yang dikembalikan pada setiap langkah simulasi berisi nilai-nilai berikut:
-    - Posisi kereta
-    - Kecepatan kereta
+    - Posisi cart
+    - Kecepatan cart
     - Sudut tiang
     - Laju rotasi tiang
 
-1. Dapatkan nilai minimum dan maksimum dari angka-angka tersebut: (kode blok 5)
+1. Dapatkan nilai minimum dan maksimum dari angka-angka tersebut: (blok kode 5)
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    Anda mungkin juga memperhatikan bahwa nilai reward pada setiap langkah simulasi selalu 1. Hal ini karena tujuan kita adalah bertahan selama mungkin, yaitu menjaga tiang tetap dalam posisi vertikal selama mungkin.
+    Kamu mungkin juga menyadari bahwa nilai reward pada setiap langkah simulasi selalu 1. Ini karena tujuan kita adalah bertahan selama mungkin, yaitu menjaga tiang dalam posisi yang relatif vertikal selama periode waktu terpanjang.
 
-    ✅ Faktanya, simulasi CartPole dianggap berhasil jika kita berhasil mendapatkan rata-rata reward sebesar 195 selama 100 percobaan berturut-turut.
+    ✅ Faktanya, simulasi CartPole dianggap berhasil jika kita berhasil mendapatkan rata-rata reward 195 selama 100 percobaan berturut-turut.
 
 ## Diskretisasi State
 
-Dalam Q-Learning, kita perlu membangun Q-Table yang mendefinisikan tindakan apa yang harus dilakukan pada setiap state. Untuk dapat melakukan ini, kita memerlukan state yang **diskrit**, lebih tepatnya, state tersebut harus berisi sejumlah nilai diskrit yang terbatas. Oleh karena itu, kita perlu **mendiskretkan** observasi kita, memetakannya ke dalam kumpulan state yang terbatas.
+Dalam Q-Learning, kita perlu membangun Q-Table yang mendefinisikan apa yang harus dilakukan pada setiap state. Agar bisa melakukan ini, kita perlu agar state menjadi **diskrit**, lebih tepatnya, harus berisi jumlah nilai diskrit yang terbatas. Maka dari itu, kita perlu **mendiskretisasi** observasi kita, memetakan mereka ke sebuah himpunan nilai diskrit yang terbatas.
 
 Ada beberapa cara untuk melakukan ini:
 
-- **Membagi menjadi beberapa bin**. Jika kita mengetahui interval dari suatu nilai tertentu, kita dapat membagi interval ini menjadi sejumlah **bin**, dan kemudian mengganti nilai dengan nomor bin tempat nilai tersebut berada. Hal ini dapat dilakukan menggunakan metode numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html). Dalam kasus ini, kita akan mengetahui ukuran state secara tepat, karena ukuran tersebut akan bergantung pada jumlah bin yang kita pilih untuk digitalisasi.
+- **Membagi ke dalam bins**. Jika kita mengetahui interval dari nilai tertentu, kita dapat membagi interval ini menjadi sejumlah **bins**, dan kemudian mengganti nilai dengan nomor bin yang sesuai. Ini dapat dilakukan menggunakan metode numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html). Dalam hal ini, kita akan tahu dengan tepat ukuran state karena tergantung pada jumlah bins yang kita pilih untuk digitalisasi.
+  
+✅ Kita dapat menggunakan interpolasi linier untuk membawa nilai ke interval terbatas (misalnya, dari -20 sampai 20), kemudian mengubah angka menjadi bilangan bulat dengan pembulatan. Ini memberi kita kendali yang sedikit kurang pada ukuran state, terutama jika kita tidak mengetahui rentang pasti nilai input. Misalnya, dalam kasus kita 2 dari 4 nilai tidak memiliki batas atas/bawah yang pasti, yang dapat menghasilkan jumlah state yang tak hingga.
 
-✅ Kita dapat menggunakan interpolasi linier untuk membawa nilai ke beberapa interval terbatas (misalnya, dari -20 hingga 20), dan kemudian mengonversi angka menjadi bilangan bulat dengan membulatkannya. Ini memberikan kita sedikit kontrol pada ukuran state, terutama jika kita tidak mengetahui rentang nilai input secara pasti. Misalnya, dalam kasus kita, 2 dari 4 nilai tidak memiliki batas atas/bawah pada nilainya, yang dapat menghasilkan jumlah state yang tak terbatas.
+Dalam contoh kita, kita akan menggunakan pendekatan kedua. Seperti yang akan kamu lihat nanti, meskipun batas atas/bawah tidak terdefinisi, nilai-nilai tersebut jarang mengambil nilai di luar interval tertentu yang terbatas, sehingga state dengan nilai ekstrim akan sangat jarang.
 
-Dalam contoh kita, kita akan menggunakan pendekatan kedua. Seperti yang mungkin Anda perhatikan nanti, meskipun batas atas/bawah tidak terdefinisi, nilai-nilai tersebut jarang mengambil nilai di luar interval tertentu, sehingga state dengan nilai ekstrem akan sangat jarang.
-
-1. Berikut adalah fungsi yang akan mengambil observasi dari model kita dan menghasilkan tuple dari 4 nilai bilangan bulat: (kode blok 6)
+1. Berikut fungsi yang akan mengambil observasi dari model kita dan menghasilkan tuple dari 4 nilai bilangan bulat: (blok kode 6)
 
     ```python
     def discretize(x):
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. Mari kita juga eksplorasi metode diskretisasi lain menggunakan bin: (kode blok 7)
+1. Mari kita juga jelajahi metode diskretisasi lain menggunakan bins: (blok kode 7)
 
     ```python
     def create_bins(i,num):
@@ -126,17 +146,17 @@ Dalam contoh kita, kita akan menggunakan pendekatan kedua. Seperti yang mungkin 
     
     print("Sample bins for interval (-5,5) with 10 bins\n",create_bins((-5,5),10))
     
-    ints = [(-5,5),(-2,2),(-0.5,0.5),(-2,2)] # intervals of values for each parameter
-    nbins = [20,20,10,10] # number of bins for each parameter
+    ints = [(-5,5),(-2,2),(-0.5,0.5),(-2,2)] # interval nilai untuk setiap parameter
+    nbins = [20,20,10,10] # jumlah bin untuk setiap parameter
     bins = [create_bins(ints[i],nbins[i]) for i in range(4)]
     
     def discretize_bins(x):
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Sekarang mari kita jalankan simulasi singkat dan amati nilai-nilai lingkungan diskrit tersebut. Silakan coba `discretize` dan `discretize_bins` dan lihat apakah ada perbedaan.
+1. Sekarang mari jalankan simulasi singkat dan perhatikan nilai lingkungan diskrit tersebut. Silakan coba kedua `discretize` dan `discretize_bins` dan lihat apakah ada perbedaan.
 
-    ✅ discretize_bins mengembalikan nomor bin, yang berbasis 0. Jadi untuk nilai variabel input di sekitar 0, ia mengembalikan nomor dari tengah interval (10). Dalam discretize, kita tidak peduli dengan rentang nilai output, memungkinkan mereka menjadi negatif, sehingga nilai state tidak bergeser, dan 0 sesuai dengan 0. (kode blok 8)
+    ✅ discretize_bins mengembalikan nomor bin yang berbasis 0. Jadi untuk nilai variabel input sekitar 0, ini mengembalikan nomor dari tengah interval (10). Dalam discretize, kita tidak memperhatikan rentang nilai output, mengizinkan nilai negatif, sehingga nilai state tidak bergeser, dan 0 sesuai dengan 0. (blok kode 8)
 
     ```python
     env.reset()
@@ -150,15 +170,15 @@ Dalam contoh kita, kita akan menggunakan pendekatan kedua. Seperti yang mungkin 
     env.close()
     ```
 
-    ✅ Hapus komentar pada baris yang dimulai dengan env.render jika Anda ingin melihat bagaimana lingkungan dieksekusi. Jika tidak, Anda dapat menjalankannya di latar belakang, yang lebih cepat. Kami akan menggunakan eksekusi "tak terlihat" ini selama proses Q-Learning kami.
+    ✅ Batalkan komentar baris yang diawali dengan env.render jika kamu ingin melihat bagaimana lingkungan mengeksekusi. Jika tidak, kamu dapat mengeksekusinya di latar belakang, yang lebih cepat. Kita akan menggunakan eksekusi "tidak terlihat" ini selama proses Q-Learning.
 
 ## Struktur Q-Table
 
-Dalam pelajaran sebelumnya, state adalah pasangan angka sederhana dari 0 hingga 8, sehingga nyaman untuk merepresentasikan Q-Table dengan tensor numpy dengan bentuk 8x8x2. Jika kita menggunakan diskretisasi bin, ukuran vektor state kita juga diketahui, sehingga kita dapat menggunakan pendekatan yang sama dan merepresentasikan state dengan array berbentuk 20x20x10x10x2 (di sini 2 adalah dimensi action space, dan dimensi pertama sesuai dengan jumlah bin yang kita pilih untuk setiap parameter dalam observation space).
+Dalam pelajaran sebelumnya, state adalah pasangan angka sederhana dari 0 sampai 8, sehingga mudah merepresentasikan Q-Table dengan tensor numpy berbentuk 8x8x2. Jika kita menggunakan diskretisasi bins, ukuran vektor state juga diketahui, sehingga kita dapat menggunakan pendekatan yang sama dan merepresentasikan state dengan array berbentuk 20x20x10x10x2 (di sini 2 adalah dimensi ruang aksi, dan dimensi pertama sesuai dengan jumlah bins yang kita pilih untuk masing-masing parameter dalam ruang observasi).
 
-Namun, terkadang dimensi observation space tidak diketahui secara pasti. Dalam kasus fungsi `discretize`, kita mungkin tidak pernah yakin bahwa state kita tetap berada dalam batas tertentu, karena beberapa nilai asli tidak memiliki batas. Oleh karena itu, kita akan menggunakan pendekatan yang sedikit berbeda dan merepresentasikan Q-Table dengan sebuah dictionary.
+Namun, terkadang dimensi tepat dari ruang observasi tidak diketahui. Dalam kasus fungsi `discretize`, kita mungkin tidak pernah yakin state kita tetap dalam batas tertentu, karena beberapa nilai asli tidak dibatasi. Oleh karena itu, kita akan menggunakan pendekatan yang sedikit berbeda dan merepresentasikan Q-Table dengan dictionary.
 
-1. Gunakan pasangan *(state,action)* sebagai kunci dictionary, dan nilainya akan sesuai dengan nilai entri Q-Table. (kode blok 9)
+1. Gunakan pasangan *(state, action)* sebagai kunci dictionary, dan nilainya akan sesuai dengan entri nilai Q-Table. (blok kode 9)
 
     ```python
     Q = {}
@@ -168,38 +188,38 @@ Namun, terkadang dimensi observation space tidak diketahui secara pasti. Dalam k
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Di sini kita juga mendefinisikan fungsi `qvalues()`, yang mengembalikan daftar nilai Q-Table untuk state tertentu yang sesuai dengan semua tindakan yang mungkin. Jika entri tidak ada dalam Q-Table, kita akan mengembalikan 0 sebagai default.
+    Di sini kita juga mendefinisikan fungsi `qvalues()`, yang mengembalikan daftar nilai Q-Table untuk state tertentu yang sesuai dengan semua aksi yang mungkin. Jika entri tidak ada di Q-Table, kita akan mengembalikan 0 sebagai default.
 
-## Mari Mulai Q-Learning
+## Mari mulai Q-Learning
 
-Sekarang kita siap mengajari Peter untuk menjaga keseimbangan!
+Sekarang kita siap mengajarkan Peter untuk menjaga keseimbangan!
 
-1. Pertama, mari kita tetapkan beberapa hyperparameter: (kode blok 10)
+1. Pertama, mari kita tetapkan beberapa hyperparameter: (blok kode 10)
 
     ```python
-    # hyperparameters
+    # hiperparameter
     alpha = 0.3
     gamma = 0.9
     epsilon = 0.90
     ```
 
-    Di sini, `alpha` adalah **learning rate** yang menentukan sejauh mana kita harus menyesuaikan nilai Q-Table saat ini pada setiap langkah. Dalam pelajaran sebelumnya, kita memulai dengan 1, dan kemudian menurunkan `alpha` ke nilai yang lebih rendah selama pelatihan. Dalam contoh ini, kita akan mempertahankannya tetap konstan demi kesederhanaan, dan Anda dapat bereksperimen dengan menyesuaikan nilai `alpha` nanti.
+    Di sini, `alpha` adalah **laju pembelajaran** yang menentukan sejauh mana kita harus menyesuaikan nilai Q-Table saat ini di setiap langkah. Dalam pelajaran sebelumnya kita mulai dengan 1, kemudian menurunkan `alpha` ke nilai lebih rendah selama pelatihan. Dalam contoh ini kita akan mempertahankannya konstan untuk kesederhanaan, dan kamu bisa bereksperimen dengan mengubah nilai `alpha` nanti.
 
-    `gamma` adalah **discount factor** yang menunjukkan sejauh mana kita harus memprioritaskan reward di masa depan dibandingkan reward saat ini.
+    `gamma` adalah **faktor diskonto** yang menunjukkan sejauh mana kita harus memprioritaskan reward masa depan dibandingkan reward saat ini.
 
-    `epsilon` adalah **exploration/exploitation factor** yang menentukan apakah kita harus lebih memilih eksplorasi daripada eksploitasi atau sebaliknya. Dalam algoritma kita, kita akan memilih tindakan berikutnya sesuai dengan nilai Q-Table dalam persentase `epsilon` dari kasus, dan dalam jumlah kasus yang tersisa kita akan melakukan tindakan acak. Ini memungkinkan kita untuk menjelajahi area ruang pencarian yang belum pernah kita lihat sebelumnya.
+    `epsilon` adalah **faktor eksplorasi/eksploitasi** yang menentukan apakah kita harus lebih memilih eksplorasi daripada eksploitasi atau sebaliknya. Dalam algoritma kita, `epsilon` persen dari kasus akan memilih aksi berikutnya sesuai nilai Q-Table, dan sisanya akan menjalankan aksi acak. Ini memungkinkan kita menjelajahi area ruang pencarian yang belum pernah kita lihat sebelumnya.
 
-    ✅ Dalam hal keseimbangan - memilih tindakan acak (eksplorasi) akan bertindak sebagai dorongan acak ke arah yang salah, dan tiang harus belajar bagaimana memulihkan keseimbangan dari "kesalahan" tersebut.
+    ✅ Dalam hal menjaga keseimbangan - memilih tindakan acak (eksplorasi) akan bertindak seperti pukulan acak ke arah yang salah, dan tiang harus belajar cara mengembalikan keseimbangan dari "kesalahan" tersebut.
 
-### Tingkatkan Algoritma
+### Memperbaiki Algoritma
 
-Kita juga dapat membuat dua peningkatan pada algoritma kita dari pelajaran sebelumnya:
+Kita juga dapat membuat dua perbaikan pada algoritma dari pelajaran sebelumnya:
 
-- **Hitung rata-rata reward kumulatif**, selama sejumlah simulasi. Kita akan mencetak kemajuan setiap 5000 iterasi, dan kita akan merata-ratakan reward kumulatif kita selama periode waktu tersebut. Artinya, jika kita mendapatkan lebih dari 195 poin - kita dapat menganggap masalah telah terpecahkan, bahkan dengan kualitas yang lebih tinggi dari yang diperlukan.
+- **Menghitung rata-rata reward kumulatif**, selama sejumlah simulasi. Kita akan mencetak kemajuan setiap 5000 iterasi, dan kita akan mengambil rata-rata reward kumulatif selama periode waktu tersebut. Ini berarti jika kita mendapatkan lebih dari 195 poin - kita dapat menganggap masalah berhasil diselesaikan, dengan kualitas lebih tinggi dari yang diperlukan.
+  
+- **Menghitung maksimum rata-rata hasil kumulatif**, `Qmax`, dan kita akan menyimpan Q-Table yang sesuai dengan hasil tersebut. Saat kamu menjalankan pelatihan, kamu akan melihat terkadang hasil rata-ratanya mulai turun, dan kita ingin menyimpan nilai Q-Table yang sesuai dengan model terbaik yang diamati selama pelatihan.
 
-- **Hitung hasil kumulatif rata-rata maksimum**, `Qmax`, dan kita akan menyimpan Q-Table yang sesuai dengan hasil tersebut. Saat Anda menjalankan pelatihan, Anda akan melihat bahwa terkadang hasil kumulatif rata-rata mulai menurun, dan kita ingin menyimpan nilai Q-Table yang sesuai dengan model terbaik yang diamati selama pelatihan.
-
-1. Kumpulkan semua reward kumulatif pada setiap simulasi di vektor `rewards` untuk plotting lebih lanjut. (kode blok 11)
+1. Kumpulkan semua reward kumulatif pada setiap simulasi dalam vektor `rewards` untuk plotting lebih lanjut. (blok kode  11)
 
     ```python
     def probs(v,eps=1e-4):
@@ -214,15 +234,15 @@ Kita juga dapat membuat dua peningkatan pada algoritma kita dari pelajaran sebel
         obs = env.reset()
         done = False
         cum_reward=0
-        # == do the simulation ==
+        # == lakukan simulasi ==
         while not done:
             s = discretize(obs)
             if random.random()<epsilon:
-                # exploitation - chose the action according to Q-Table probabilities
+                # eksploitasi - memilih aksi sesuai dengan probabilitas Q-Table
                 v = probs(np.array(qvalues(s)))
                 a = random.choices(actions,weights=v)[0]
             else:
-                # exploration - randomly chose the action
+                # eksplorasi - memilih aksi secara acak
                 a = np.random.randint(env.action_space.n)
     
             obs, rew, done, info = env.step(a)
@@ -231,7 +251,7 @@ Kita juga dapat membuat dua peningkatan pada algoritma kita dari pelajaran sebel
             Q[(s,a)] = (1 - alpha) * Q.get((s,a),0) + alpha * (rew + gamma * max(qvalues(ns)))
         cum_rewards.append(cum_reward)
         rewards.append(cum_reward)
-        # == Periodically print results and calculate average reward ==
+        # == Secara berkala cetak hasil dan hitung rata-rata hadiah ==
         if epoch%5000==0:
             print(f"{epoch}: {np.average(cum_rewards)}, alpha={alpha}, epsilon={epsilon}")
             if np.average(cum_rewards) > Qmax:
@@ -240,25 +260,25 @@ Kita juga dapat membuat dua peningkatan pada algoritma kita dari pelajaran sebel
             cum_rewards=[]
     ```
 
-Apa yang mungkin Anda perhatikan dari hasil tersebut:
+Apa yang mungkin kamu perhatikan dari hasil tersebut:
 
-- **Dekat dengan tujuan kita**. Kita sangat dekat dengan mencapai tujuan mendapatkan reward kumulatif sebesar 195 selama 100+ percobaan simulasi berturut-turut, atau kita mungkin telah benar-benar mencapainya! Bahkan jika kita mendapatkan angka yang lebih kecil, kita masih tidak tahu, karena kita merata-ratakan selama 5000 kali, dan hanya 100 kali yang diperlukan dalam kriteria formal.
+- **Dekat dengan tujuan kita**. Kita sangat dekat dengan mencapai tujuan mendapatkan 195 reward kumulatif selama 100+ percobaan berturut-turut, atau mungkin kita sudah mencapainya! Bahkan jika nilainya lebih kecil, kita belum tahu pasti, karena kita mengambil rata-rata selama 5000 percobaan, dan hanya 100 percobaan yang diperlukan dalam kriteria formal.
+  
+- **Reward mulai turun**. Terkadang reward mulai turun, yang berarti kita dapat "menghancurkan" nilai yang telah dipelajari dalam Q-Table dengan nilai yang membuat situasi menjadi lebih buruk.
 
-- **Reward mulai menurun**. Terkadang reward mulai menurun, yang berarti kita dapat "merusak" nilai yang sudah dipelajari dalam Q-Table dengan nilai yang membuat situasi menjadi lebih buruk.
-
-Pengamatan ini lebih jelas terlihat jika kita memplot kemajuan pelatihan.
+Pengamatan ini lebih jelas jika kita plot kemajuan pelatihan.
 
 ## Memplot Kemajuan Pelatihan
 
-Selama pelatihan, kita telah mengumpulkan nilai reward kumulatif pada setiap iterasi ke dalam vektor `rewards`. Berikut adalah tampilannya saat kita plot terhadap nomor iterasi:
+Selama pelatihan, kita mengumpulkan nilai reward kumulatif pada setiap iterasi di vektor `rewards`. Berikut adalah bagaimana tampilannya saat kita plot terhadap nomor iterasi:
 
 ```python
 plt.plot(rewards)
 ```
 
-![kemajuan mentah](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
+![raw  progress](../../../../translated_images/id/train_progress_raw.2adfdf2daea09c59.webp)
 
-Dari grafik ini, tidak mungkin untuk menyimpulkan apa pun, karena sifat proses pelatihan stokastik membuat panjang sesi pelatihan sangat bervariasi. Untuk membuat grafik ini lebih masuk akal, kita dapat menghitung **rata-rata berjalan** selama serangkaian eksperimen, misalnya 100. Hal ini dapat dilakukan dengan mudah menggunakan `np.convolve`: (kode blok 12)
+Dari grafik ini, tidak mungkin menyimpulkan apa pun, karena sifat proses pelatihan stokastik, durasi sesi pelatihan sangat bervariasi. Untuk lebih memahami grafik ini, kita dapat menghitung **rata-rata berjalan** selama serangkaian eksperimen, misalnya 100. Ini dapat dilakukan dengan mudah menggunakan `np.convolve`: (blok kode 12)
 
 ```python
 def running_average(x,window):
@@ -267,21 +287,24 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![kemajuan pelatihan](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
+![training progress](../../../../translated_images/id/train_progress_runav.c71694a8fa9ab359.webp)
 
-## Memvariasikan Hyperparameter
+## Mengubah Hyperparameter
 
-Untuk membuat pembelajaran lebih stabil, masuk akal untuk menyesuaikan beberapa hyperparameter kita selama pelatihan. Secara khusus:
+Untuk membuat pembelajaran lebih stabil, masuk akal mengubah beberapa hyperparameter selama pelatihan. Secara khusus:
 
-- **Untuk learning rate**, `alpha`, kita dapat memulai dengan nilai yang mendekati 1, dan kemudian terus menurunkan parameter tersebut. Seiring waktu, kita akan mendapatkan nilai probabilitas yang baik dalam Q-Table, sehingga kita harus menyesuaikannya sedikit, dan tidak menimpa sepenuhnya dengan nilai baru.
+- **Untuk laju pembelajaran**, `alpha`, kita dapat mulai dengan nilai mendekati 1, lalu terus menurunkan parameter. Seiring waktu, kita akan mendapatkan nilai probabilitas bagus dalam Q-Table, sehingga harus menyesuaikannya sedikit, dan tidak menimpa sepenuhnya dengan nilai baru.
 
-- **Tingkatkan epsilon**. Kita mungkin ingin meningkatkan `epsilon` secara perlahan, agar lebih sedikit eksplorasi dan lebih banyak eksploitasi. Mungkin masuk akal untuk memulai dengan nilai `epsilon` yang lebih rendah, dan meningkatkannya hingga hampir 1.
-> **Tugas 1**: Coba ubah nilai hyperparameter dan lihat apakah Anda bisa mencapai total reward yang lebih tinggi. Apakah Anda mendapatkan di atas 195?
-> **Tugas 2**: Untuk secara formal menyelesaikan masalah ini, Anda perlu mencapai rata-rata reward sebesar 195 dalam 100 kali percobaan berturut-turut. Ukur itu selama pelatihan dan pastikan bahwa Anda telah secara formal menyelesaikan masalah ini!
+- **Meningkatkan epsilon**. Kita mungkin ingin meningkatkan `epsilon` secara perlahan, untuk mengurangi eksplorasi dan meningkatkan eksploitasi. Mungkin masuk akal mulai dengan nilai epsilon rendah, lalu naikkan mendekati 1.
 
-## Melihat hasilnya secara langsung
+> **Tugas 1**: Bermain dengan nilai hyperparameter dan lihat apakah kamu bisa mencapai reward kumulatif lebih tinggi. Apakah kamu mendapat lebih dari 195?
 
-Akan menarik untuk melihat bagaimana model yang telah dilatih berperilaku. Mari kita jalankan simulasi dan gunakan strategi pemilihan aksi yang sama seperti saat pelatihan, yaitu sampling berdasarkan distribusi probabilitas di Q-Table: (blok kode 13)
+
+> **Tugas 2**: Untuk menyelesaikan masalah secara formal, Anda perlu mendapatkan rata-rata hadiah 195 selama 100 kali percobaan berturut-turut. Ukur itu selama pelatihan dan pastikan bahwa Anda benar-benar telah menyelesaikan masalah!
+
+## Melihat hasil dalam aksi
+
+Akan menarik untuk benar-benar melihat bagaimana perilaku model yang sudah dilatih. Mari kita jalankan simulasi dan ikuti strategi pemilihan aksi yang sama seperti saat pelatihan, dengan sampling sesuai distribusi probabilitas di Q-Table: (blok kode 13)
 
 ```python
 obs = env.reset()
@@ -295,7 +318,7 @@ while not done:
 env.close()
 ```
 
-Anda seharusnya melihat sesuatu seperti ini:
+Anda harus melihat sesuatu seperti ini:
 
 ![a balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
@@ -303,22 +326,24 @@ Anda seharusnya melihat sesuatu seperti ini:
 
 ## 🚀Tantangan
 
-> **Tugas 3**: Di sini, kita menggunakan salinan akhir dari Q-Table, yang mungkin bukan yang terbaik. Ingat bahwa kita telah menyimpan Q-Table dengan performa terbaik ke dalam variabel `Qbest`! Coba contoh yang sama dengan Q-Table terbaik dengan menyalin `Qbest` ke `Q` dan lihat apakah Anda melihat perbedaannya.
+> **Tugas 3**: Di sini, kami menggunakan salinan terakhir dari Q-Table, yang mungkin bukan yang terbaik. Ingat bahwa kami telah menyimpan Q-Table dengan performa terbaik ke dalam variabel `Qbest`! Cobalah contoh yang sama dengan Q-Table berperforma terbaik dengan menyalin `Qbest` ke `Q` dan lihat apakah Anda memperhatikan perbedaannya.
 
-> **Tugas 4**: Di sini kita tidak memilih aksi terbaik di setiap langkah, melainkan sampling berdasarkan distribusi probabilitas yang sesuai. Apakah lebih masuk akal untuk selalu memilih aksi terbaik, dengan nilai Q-Table tertinggi? Ini dapat dilakukan dengan menggunakan fungsi `np.argmax` untuk menemukan nomor aksi yang sesuai dengan nilai Q-Table tertinggi. Implementasikan strategi ini dan lihat apakah itu meningkatkan keseimbangan.
+> **Tugas 4**: Di sini kami tidak memilih aksi terbaik pada setiap langkah, tapi sampling sesuai distribusi probabilitas yang sesuai. Apakah lebih masuk akal untuk selalu memilih aksi terbaik, dengan nilai Q-Table tertinggi? Ini bisa dilakukan dengan menggunakan fungsi `np.argmax` untuk mencari nomor aksi yang sesuai dengan nilai Q-Table tertinggi. Implementasikan strategi ini dan lihat apakah itu meningkatkan keseimbangan.
 
-## [Kuis setelah kuliah](https://ff-quizzes.netlify.app/en/ml/)
+## [Kuis pasca kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Tugas
-[Latih Mountain Car](assignment.md)
+[Latih sebuah Mountain Car](assignment.md)
 
 ## Kesimpulan
 
-Kita sekarang telah belajar bagaimana melatih agen untuk mencapai hasil yang baik hanya dengan memberikan mereka fungsi reward yang mendefinisikan keadaan yang diinginkan dalam permainan, dan dengan memberikan mereka kesempatan untuk secara cerdas menjelajahi ruang pencarian. Kita telah berhasil menerapkan algoritma Q-Learning dalam kasus lingkungan diskret dan kontinu, tetapi dengan aksi diskret.
+Sekarang kita telah belajar bagaimana melatih agen untuk mencapai hasil yang baik hanya dengan memberikan fungsi hadiah yang mendefinisikan keadaan permainan yang diinginkan, dan dengan memberi mereka kesempatan untuk menjelajahi ruang pencarian secara cerdas. Kita telah berhasil menerapkan algoritma Q-Learning dalam kasus lingkungan diskrit dan kontinu, tetapi dengan aksi diskrit.
 
-Penting juga untuk mempelajari situasi di mana keadaan aksi juga kontinu, dan ketika ruang observasi jauh lebih kompleks, seperti gambar dari layar permainan Atari. Dalam masalah-masalah tersebut, kita sering kali perlu menggunakan teknik pembelajaran mesin yang lebih kuat, seperti jaringan saraf, untuk mencapai hasil yang baik. Topik-topik yang lebih maju ini akan menjadi subjek dari kursus AI lanjutan kami yang akan datang.
+Penting juga mempelajari situasi dimana ruang aksi juga kontinu, dan ketika ruang observasi jauh lebih kompleks, seperti gambar dari layar permainan Atari. Dalam masalah tersebut kita sering perlu menggunakan teknik pembelajaran mesin yang lebih kuat, seperti jaringan saraf, untuk mencapai hasil yang baik. Topik yang lebih lanjut tersebut adalah subjek dari kursus AI lanjutan kami yang akan datang.
 
 ---
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan penerjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berusaha untuk memberikan hasil yang akurat, harap diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang otoritatif. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa penerjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

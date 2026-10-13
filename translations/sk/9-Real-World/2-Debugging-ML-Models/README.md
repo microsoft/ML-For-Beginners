@@ -1,155 +1,179 @@
-# Postscript: Ladenie modelov v strojovom učení pomocou komponentov zodpovedného AI dashboardu
+# Postscript: Ladenie modelov v strojovom učení pomocou komponentov panela Responsible AI
+ 
 
-## [Kvíz pred prednáškou](https://ff-quizzes.netlify.app/en/ml/)
-
+## [Prednáškový kvíz](https://ff-quizzes.netlify.app/en/ml/)
+ 
 ## Úvod
 
-Strojové učenie ovplyvňuje naše každodenné životy. AI si nachádza cestu do niektorých z najdôležitejších systémov, ktoré ovplyvňujú nás ako jednotlivcov aj našu spoločnosť, od zdravotníctva, financií, vzdelávania až po zamestnanie. Napríklad systémy a modely sa podieľajú na každodenných rozhodovacích úlohách, ako sú diagnostiky v zdravotníctve alebo odhaľovanie podvodov. V dôsledku toho sú pokroky v AI spolu s zrýchleným prijímaním sprevádzané vyvíjajúcimi sa spoločenskými očakávaniami a rastúcou reguláciou. Neustále vidíme oblasti, kde systémy AI nesplňujú očakávania; odhaľujú nové výzvy; a vlády začínajú regulovať AI riešenia. Preto je dôležité, aby boli tieto modely analyzované s cieľom poskytovať spravodlivé, spoľahlivé, inkluzívne, transparentné a zodpovedné výsledky pre všetkých.
+Strojové učenie ovplyvňuje náš každodenný život. AI sa dostáva do niektorých z najdôležitejších systémov, ktoré ovplyvňujú nás ako jednotlivcov, ako aj našu spoločnosť, od zdravotnej starostlivosti, financií, vzdelávania až po zamestnanosť. Napríklad systémy a modely sa podieľajú na každodenných rozhodovacích úlohách, ako sú zdravotné diagnózy alebo detekcia podvodov. Vývoj v oblasti AI spolu s rýchlym zavádzaním sú sprevádzané rastúcimi spoločenskými očakávaniami a reguláciou v reakcii na to. Neustále vidíme oblasti, kde systémy AI nespĺňajú očakávania; prinášajú nové výzvy; a vlády začínajú regulovať AI riešenia. Preto je dôležité tieto modely analyzovať s cieľom zabezpečiť spravodlivé, spoľahlivé, inkluzívne, transparentné a zodpovedné výsledky pre všetkých.
 
-V tomto kurze sa pozrieme na praktické nástroje, ktoré môžu byť použité na posúdenie, či má model problémy so zodpovedným AI. Tradičné techniky ladenia strojového učenia majú tendenciu byť založené na kvantitatívnych výpočtoch, ako je agregovaná presnosť alebo priemerná strata chýb. Predstavte si, čo sa môže stať, keď údaje, ktoré používate na vytvorenie týchto modelov, postrádajú určité demografické skupiny, ako sú rasa, pohlavie, politické názory, náboženstvo, alebo neprimerane zastupujú takéto demografické skupiny. Čo ak je výstup modelu interpretovaný tak, že uprednostňuje určitú demografickú skupinu? To môže viesť k nadmernej alebo nedostatočnej reprezentácii týchto citlivých skupín, čo spôsobuje problémy so spravodlivosťou, inkluzívnosťou alebo spoľahlivosťou modelu. Ďalším faktorom je, že modely strojového učenia sú považované za čierne skrinky, čo sťažuje pochopenie a vysvetlenie toho, čo ovplyvňuje predikciu modelu. Toto sú výzvy, ktorým čelia dátoví vedci a vývojári AI, keď nemajú dostatočné nástroje na ladenie a posúdenie spravodlivosti alebo dôveryhodnosti modelu.
+V tomto kurze sa pozrieme na praktické nástroje, ktoré možno použiť na posúdenie, či model má problémy zodpovedného AI. Tradičné techniky ladenia strojového učenia sú zvyčajne založené na kvantitatívnych výpočtoch, ako je súhrnná presnosť alebo priemerná chyba. Predstavte si, čo sa stane, keď dáta, ktoré používate na vytvorenie týchto modelov, obsahujú menej určitých demografických skupín, ako napríklad rasa, pohlavie, politické názory, náboženstvo, alebo ak takéto skupiny neprimerane zastupujú. Čo ak výstup modelu interpretujete tak, že uprednostňuje niektorú demografickú skupinu? To môže viesť k nadmernému alebo nedostatočnému zastúpeniu týchto citlivých skupín, čo spôsobí problémy so spravodlivosťou, inkluzivitou alebo spoľahlivosťou modelu. Ďalším faktorom je, že modely strojového učenia sa považujú za čierne skrinky, čo sťažuje pochopenie a vysvetlenie, čo ovplyvňuje predikciu modelu. Toto sú výzvy, ktorým čelia dátoví vedci a vývojári AI, keď nemajú dostatočné nástroje na ladenie a posúdenie spravodlivosti alebo spoľahlivosti modelu.
 
-V tejto lekcii sa naučíte, ako ladiť svoje modely pomocou:
+V tejto lekcii sa naučíte ladiť svoje modely pomocou:
 
-- **Analýzy chýb**: identifikácia oblastí v distribúcii údajov, kde má model vysoké miery chýb.
-- **Prehľadu modelu**: vykonanie porovnávacej analýzy medzi rôznymi kohortami údajov na odhalenie rozdielov vo výkonnostných metrikách modelu.
-- **Analýzy údajov**: skúmanie, kde môže byť nadmerná alebo nedostatočná reprezentácia údajov, ktorá môže skresliť model tak, aby uprednostňoval jednu demografickú skupinu pred druhou.
-- **Dôležitosti vlastností**: pochopenie, ktoré vlastnosti ovplyvňujú predikcie modelu na globálnej alebo lokálnej úrovni.
+-	**Analýza chýb**: identifikujte, kde v distribúcii dát má model vysoké miery chýb.
+-	**Prehľad modelu**: vykonajte porovnávaciu analýzu medzi rôznymi dátovými kohortami, aby ste odhalili rozdiely vo výkonových metrikách modelu.
+-	**Analýza dát**: preskúmajte, kde môže dôjsť k nadmernému alebo nedostatočnému zastúpeniu vašich dát, čo môže model skresliť v prospech jednej demografickej skupiny oproti druhej.
+-	**Dôležitosť atribútov**: pochopte, ktoré atribúty ovplyvňujú predikcie modelu na globálnej alebo lokálnej úrovni.
 
 ## Predpoklady
 
-Ako predpoklad si prosím preštudujte [Nástroje zodpovedného AI pre vývojárov](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
+Ako predpoklad si prosím prejdite prehľad [Responsible AI tools for developers](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard)
 
-> ![Gif o nástrojoch zodpovedného AI](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
+> ![Gif o nástrojoch Responsible AI](../../../../9-Real-World/2-Debugging-ML-Models/images/rai-overview.gif)
 
 ## Analýza chýb
 
-Tradičné metriky výkonnosti modelu používané na meranie presnosti sú väčšinou výpočty založené na správnych vs nesprávnych predikciách. Napríklad určenie, že model je presný na 89 % s chybovou stratou 0,001, môže byť považované za dobrý výkon. Chyby však nie sú rovnomerne rozložené v podkladovom súbore údajov. Môžete dosiahnuť skóre presnosti modelu 89 %, ale zistiť, že existujú rôzne oblasti vašich údajov, v ktorých model zlyháva na 42 %. Dôsledky týchto vzorcov zlyhania s určitými skupinami údajov môžu viesť k problémom so spravodlivosťou alebo spoľahlivosťou. Je nevyhnutné pochopiť oblasti, kde model funguje dobre alebo nie. Oblasti údajov, kde má váš model vysoký počet nepresností, sa môžu ukázať ako dôležitá demografická skupina údajov.
+Tradičné metriky výkonu modelu používané na meranie presnosti sú väčšinou založené na výpočtoch správnych a nesprávnych predikcií. Napríklad určiť, že model je presný 89 % času s chybou 0,001, možno považovať za dobrý výkon. Chyby však často nie sú rovnomerne rozložené v základnej dátovej sade. Môžete mať skóre presnosti modelu 89 %, ale zistiť, že existujú určité časti dát, kde model zlyháva 42 % času. Následky týchto vzorcov zlyhaní v určitých dátových skupinách môžu viesť k problémom so spravodlivosťou alebo spoľahlivosťou. Je nevyhnutné pochopiť oblasti, kde model dobre funguje alebo nie. Dátové oblasti s vysokým počtom nepresností v modeli môžu byť dôležitou dátovou demografickou skupinou.
 
-![Analyzujte a ladte chyby modelu](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-distribution.png)
+![Analyzujte a ladi chybné predikcie modelu](../../../../translated_images/sk/ea-error-distribution.117452e1177c1dd8.webp)
 
-Komponent Analýza chýb na RAI dashboarde ilustruje, ako sú zlyhania modelu rozložené medzi rôznymi kohortami pomocou vizualizácie stromu. To je užitočné pri identifikácii vlastností alebo oblastí, kde je vysoká miera chýb vo vašom súbore údajov. Tým, že vidíte, odkiaľ pochádza väčšina nepresností modelu, môžete začať skúmať príčinu. Môžete tiež vytvárať kohorty údajov na vykonanie analýzy. Tieto kohorty údajov pomáhajú v procese ladenia určiť, prečo je výkon modelu dobrý v jednej kohorte, ale chybný v inej.
+Komponent Analýza chýb na paneli RAI zobrazuje, ako je zlyhanie modelu rozložené naprieč rôznymi kohortami pomocou stromovej vizualizácie. To je užitočné pri identifikovaní atribútov alebo oblastí s vysokou chybovosťou vo vašich dátach. Keď vidíte, odkiaľ prichádza väčšina nepresností modelu, môžete začať vyšetrovací proces. Tiež môžete vytvárať dátové kohorty na vykonanie analýzy. Tieto dátové kohorty pomáhajú pri ladení, aby ste zistili, prečo model funguje dobre v jednej kohorte, ale zle v druhej.
 
-![Analýza chýb](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-error-cohort.png)
+![Analýza chýb](../../../../translated_images/sk/ea-error-cohort.6886209ea5d438c4.webp)
 
-Vizualizačné indikátory na mape stromu pomáhajú rýchlejšie lokalizovať problémové oblasti. Napríklad tmavší odtieň červenej farby na uzle stromu znamená vyššiu mieru chýb.
+Vizualizačné indikátory na stromovej mape pomáhajú rýchlejšie lokalizovať problémové oblasti. Napríklad, tmavší odtieň červenej farby uzla stromu znamená vyššiu mieru chýb.
 
-Heatmapa je ďalšou vizualizačnou funkciou, ktorú môžu používatelia použiť na skúmanie miery chýb pomocou jednej alebo dvoch vlastností na nájdenie prispievateľa k chybám modelu v celom súbore údajov alebo kohortách.
+Heatmapa je ďalšia vizualizačná funkcia, ktorú používatelia môžu použiť na vyšetrovanie miery chýb pomocou jedného alebo dvoch atribútov s cieľom nájsť príčinu chýb modelu naprieč celou dátovou sadou alebo kohortami.
 
-![Heatmapa analýzy chýb](../../../../9-Real-World/2-Debugging-ML-Models/images/ea-heatmap.png)
+![Heatmapa analýzy chýb](../../../../translated_images/sk/ea-heatmap.8d27185e28cee383.webp)
 
-Použite analýzu chýb, keď potrebujete:
+Používajte analýzu chýb, keď potrebujete:
 
-* Získať hlboké pochopenie toho, ako sú zlyhania modelu rozložené v súbore údajov a medzi viacerými vstupnými a vlastnostnými dimenziami.
-* Rozložiť agregované metriky výkonnosti na automatické objavenie chybných kohort na informovanie o vašich cielených krokoch na zmiernenie problémov.
+* Získať hlboké pochopenie, ako sú zlyhania modelu rozložené naprieč dátovou sadou a rôznymi vstupnými a atribútovými rozmermi.
+* Rozčleniť súhrnné metriky výkonu na automatické odhalenie chybových kohort na informovanie o cieľových krokoch zmierňovania.
 
 ## Prehľad modelu
 
-Hodnotenie výkonnosti modelu strojového učenia si vyžaduje získanie holistického pochopenia jeho správania. To možno dosiahnuť preskúmaním viacerých metrík, ako sú miera chýb, presnosť, recall, precision alebo MAE (Mean Absolute Error), na odhalenie rozdielov medzi výkonnostnými metrikami. Jedna metrika výkonnosti môže vyzerať skvele, ale nepresnosti môžu byť odhalené v inej metrike. Okrem toho porovnávanie metrík na odhalenie rozdielov v celom súbore údajov alebo kohortách pomáha objasniť, kde model funguje dobre alebo nie. To je obzvlášť dôležité pri sledovaní výkonu modelu medzi citlivými vs necitlivými vlastnosťami (napr. rasa pacienta, pohlavie alebo vek), aby sa odhalila potenciálna nespravodlivosť modelu. Napríklad zistenie, že model je viac chybný v kohorte, ktorá má citlivé vlastnosti, môže odhaliť potenciálnu nespravodlivosť modelu.
+Hodnotenie výkonu modelu strojového učenia vyžaduje celostné pochopenie jeho správania. To možno dosiahnuť prezeraním viacerých metrík, ako sú miera chýb, presnosť, recall, presnosť alebo MAE (Mean Absolute Error), aby sa odhalili rozdiely medzi výkonovými metrikami. Jedna metrika môže vyzerať skvele, ale nepresnosti môže odhaliť iná metrika. Porovnávanie metrík naprieč celou dátovou sadou alebo kohortami pomáha objasniť, kde model funguje dobre alebo nie. Toto je obzvlášť dôležité pri sledovaní výkonu modelu medzi citlivými a necitlivými atribútmi (napríklad rasa pacienta, pohlavie alebo vek) na odhalenie potenciálnej nespravodlivosti modelu. Napríklad zistenie, že model je chybnejší v kohorte s citlivými atribútmi, môže odhaliť potenciálnu nespravodlivosť modelu.
 
-Komponent Prehľad modelu na RAI dashboarde pomáha nielen pri analýze výkonnostných metrík reprezentácie údajov v kohorte, ale dáva používateľom možnosť porovnávať správanie modelu medzi rôznymi kohortami.
+Komponent Prehľad modelu na paneli RAI pomáha nielen pri analýze výkonových metrík dátovej reprezentácie v kohorte, ale poskytuje používateľom možnosť porovnávať správanie modelu naprieč rôznymi kohortami.
 
-![Datasetové kohorty - prehľad modelu na RAI dashboarde](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-dataset-cohorts.png)
+![Dátové kohorty - prehľad modelu na RAI paneli](../../../../translated_images/sk/model-overview-dataset-cohorts.dfa463fb527a35a0.webp)
 
-Funkcia analýzy založená na vlastnostiach komponentu umožňuje používateľom zúžiť podskupiny údajov v rámci konkrétnej vlastnosti na identifikáciu anomálií na granulárnej úrovni. Napríklad dashboard má zabudovanú inteligenciu na automatické generovanie kohort pre používateľom vybranú vlastnosť (napr. *"time_in_hospital < 3"* alebo *"time_in_hospital >= 7"*). To umožňuje používateľovi izolovať konkrétnu vlastnosť z väčšej skupiny údajov, aby zistil, či je kľúčovým ovplyvňovateľom chybných výsledkov modelu.
+Funkcia analýzy založenej na atribútoch komponentu umožňuje používateľom zúžiť dátové podskupiny v rámci konkrétneho atribútu na identifikáciu anomálií na detailnej úrovni. Napríklad panel má vstavanú inteligenciu na automatické generovanie kohort pre používateľom zvolený atribút (napr. *„time_in_hospital < 3“* alebo *„time_in_hospital >= 7“*). Toto umožňuje používateľovi izolovať konkrétny atribút zo širšej dátovej skupiny, aby zistil, či je kľúčovým faktorom ovplyvňujúcim chybné výstupy modelu.
 
-![Kohorty vlastností - prehľad modelu na RAI dashboarde](../../../../9-Real-World/2-Debugging-ML-Models/images/model-overview-feature-cohorts.png)
+![Kohorty atribútov - prehľad modelu na RAI paneli](../../../../translated_images/sk/model-overview-feature-cohorts.c5104d575ffd0c80.webp)
 
-Komponent Prehľad modelu podporuje dve triedy metrík rozdielov:
+Komponent Prehľad modelu podporuje dve triedy metrík disparity:
 
-**Rozdiely vo výkonnosti modelu**: Tieto sady metrík vypočítavajú rozdiely (disparity) v hodnotách vybranej metriky výkonnosti medzi podskupinami údajov. Tu je niekoľko príkladov:
+**Disparita vo výkone modelu**: Tieto metriky vypočítavajú rozdiel (disparitu) v hodnotách vybranej výkonovej metriky naprieč podsúbormi dát. Tu je niekoľko príkladov:
 
-* Rozdiely v miere presnosti
-* Rozdiely v miere chýb
-* Rozdiely v precision
-* Rozdiely v recall
-* Rozdiely v Mean Absolute Error (MAE)
+* Disparita v miere presnosti
+* Disparita v miere chýb
+* Disparita v presnosti (precision)
+* Disparita v recall
+* Disparita v priemernej absolútnej chybe (MAE)
 
-**Rozdiely v miere výberu**: Táto metrika obsahuje rozdiely v miere výberu (priaznivá predikcia) medzi podskupinami. Príkladom je rozdiel v miere schvaľovania úverov. Miera výberu znamená podiel dátových bodov v každej triede klasifikovaných ako 1 (v binárnej klasifikácii) alebo distribúciu predikčných hodnôt (v regresii).
+**Disparita v miere výberu**: Táto metrika obsahuje rozdiel v miere výberu (priaznivej predikcie) medzi podsúbormi. Príkladom je disparita v schvaľovaní úverov. Miera výberu znamená zlomok dátových bodov v každej triede klasifikovaných ako 1 (v binárnej klasifikácii) alebo rozloženie predikčných hodnôt (v regresii).
 
-## Analýza údajov
+## Analýza dát
 
-> "Ak budete údaje mučiť dostatočne dlho, priznajú sa k čomukoľvek" - Ronald Coase
+> „Ak budete dostatočne dlho mučiť dáta, priznajú všetko“ - Ronald Coase
 
-Toto tvrdenie znie extrémne, ale je pravda, že údaje môžu byť manipulované na podporu akéhokoľvek záveru. Takáto manipulácia sa niekedy môže stať neúmyselne. Ako ľudia máme všetci predsudky a často je ťažké vedome vedieť, kedy zavádzame predsudky do údajov. Zaručenie spravodlivosti v AI a strojovom učení zostáva komplexnou výzvou.
+Toto tvrdenie znie extrémne, ale je pravda, že dáta možno manipulovať tak, aby podporili akýkoľvek záver. Takáto manipulácia sa niekedy deje neúmyselne. Ako ľudia máme všetci predsudky a často je ťažké vedome si uvedomiť, kedy ich do dát vnášame. Zaručiť spravodlivosť v AI a strojovom učení zostáva zložitou výzvou.
 
-Údaje sú veľkým slepým miestom pre tradičné metriky výkonnosti modelu. Môžete mať vysoké skóre presnosti, ale to nemusí vždy odrážať podkladové predsudky v údajoch, ktoré by mohli byť vo vašom súbore údajov. Napríklad, ak má súbor údajov zamestnancov 27 % žien na výkonných pozíciách v spoločnosti a 73 % mužov na rovnakej úrovni, model AI na inzerciu pracovných miest trénovaný na týchto údajoch môže cieliť prevažne na mužské publikum pre seniorné pracovné pozície. Táto nerovnováha v údajoch skreslila predikciu modelu tak, aby uprednostňovala jedno pohlavie. To odhaľuje problém spravodlivosti, kde je v AI modeli predsudok voči pohlaviu.
+Dáta sú veľkým slepým miestom pre tradičné metriky výkonu modelu. Môžete mať vysoké skóre presnosti, ale to neodráža základnú dátovú zaujatost, ktorá môže byť vo vašej dataset. Napríklad, ak má dataset zamestnancov 27 % žien na vedúcich pozíciách a 73 % mužov na rovnakej úrovni, AI model na inzerovanie pracovných miest vycvičený na týchto dátach môže cieliť prevažne na mužskú časť publika pre vedúce pozície. Táto nevyváženosť v dátach skreslila predikciu modelu v prospech jedného pohlavia. Odhaľuje to problém spravodlivosti, kde v AI modeli existuje genderová zaujatost.
 
-Komponent Analýza údajov na RAI dashboarde pomáha identifikovať oblasti, kde je nadmerná alebo nedostatočná reprezentácia v súbore údajov. Pomáha používateľom diagnostikovať príčinu chýb a problémov so spravodlivosťou, ktoré sú spôsobené nerovnováhou údajov alebo nedostatkom reprezentácie určitej skupiny údajov. To dáva používateľom možnosť vizualizovať súbory údajov na základe predikovaných a skutočných výsledkov, skupín chýb a konkrétnych vlastností. Niekedy objavenie nedostatočne zastúpenej skupiny údajov môže tiež odhaliť, že model sa neučí dobre, a preto má vysoké nepresnosti. Model s predsudkami v údajoch nie je len problémom spravodlivosti, ale ukazuje, že model nie je inkluzívny ani spoľahlivý.
+Komponent Analýza dát na paneli RAI pomáha identifikovať oblasti, kde dochádza k nadmernému alebo nedostatočnému zastúpeniu v datasetoch. Pomáha používateľom diagnostikovať príčinu chýb a problémov so spravodlivosťou spôsobených nerovnováhou dát alebo nedostatočným zastúpením konkrétnej dátovej skupiny. Umožňuje používateľom vizualizovať dataset na základe predikovaných a skutočných výsledkov, skupín chýb a špecifických atribútov. Niekedy objavenie podzastúpenej dátovej skupiny môže tiež odhaliť, že model sa neučí dobre, a preto dochádza k veľkému počtu nepresností. Model, ktorý má dátovú zaujatost, nie je len otázkou spravodlivosti, ale tiež ukazuje, že model nie je inkluzívny ani spoľahlivý.
 
-![Komponent Analýza údajov na RAI dashboarde](../../../../9-Real-World/2-Debugging-ML-Models/images/dataanalysis-cover.png)
+![Komponent Analýza dát na RAI paneli](../../../../translated_images/sk/dataanalysis-cover.8d6d0683a70a5c1e.webp)
 
-Použite analýzu údajov, keď potrebujete:
 
-* Preskúmať štatistiky vášho súboru údajov výberom rôznych filtrov na rozdelenie údajov do rôznych dimenzií (známych ako kohorty).
-* Pochopiť distribúciu vášho súboru údajov medzi rôznymi kohortami a skupinami vlastností.
-* Určiť, či vaše zistenia týkajúce sa spravodlivosti, analýzy chýb a kauzality (odvodené z iných komponentov dashboardu) sú výsledkom distribúcie vášho súboru údajov.
-* Rozhodnúť, v ktorých oblastiach zbierať viac údajov na zmiernenie chýb spôsobených problémami s reprezentáciou, šumom v označení, šumom vo vlastnostiach, predsudkami v označení a podobnými faktormi.
+Používajte analýzu dát, keď potrebujete:
 
-## Interpretácia modelu
+* Preskúmať štatistiky datasetu výberom rôznych filtrov na rozdelenie dát do rôznych dimenzií (známych tiež ako kohorty).
+* Pochopiť rozloženie datasetu medzi rôznymi kohortami a atribútovými skupinami.
+* Určiť, či sú zistenia týkajúce sa spravodlivosti, analýzy chýb a kauzality (získané z iných komponentov panela) dôsledkom distribúcie datasetu.
+* Rozhodnúť, v ktorých oblastiach je potrebné zozbierať viac dát na zmiernenie chýb vyplývajúcich z problémov so zastúpením, šumu v označeniach, šumu v atribútoch, zaujatosti v označeniach a podobných faktorov.
 
-Modely strojového učenia majú tendenciu byť čiernymi skrinkami. Pochopenie, ktoré kľúčové vlastnosti údajov ovplyvňujú predikciu modelu, môže byť náročné. Je dôležité poskytnúť transparentnosť, prečo model robí určitú predikciu. Napríklad, ak AI systém predikuje, že diabetický pacient je ohrozený opätovným prijatím do nemocnice do 30 dní, mal by byť schopný poskytnúť podporné údaje, ktoré viedli k jeho predikcii. Mať podporné indikátory údajov prináša transparentnosť, ktorá pomáha klinikám alebo nemocniciam robiť dobre informované rozhodnutia. Okrem toho schopnosť vysvetliť, prečo model urobil predikciu pre konkrétneho pacienta, umožňuje zodpovednosť voči zdravotným reguláciám. Keď používate modely strojového učenia spôsobmi, ktoré ovplyvňujú životy ľudí, je nevyhnutné pochopiť a vysvetliť, čo ovplyvňuje správanie modelu. Vysvetliteľnosť a interpretácia modelu pomáha odpovedať na otázky v scenároch, ako sú:
+## Interpretovateľnosť modelu
 
-* Ladenie modelu: Prečo môj model urobil túto chybu? Ako môžem zlepšiť svoj model?
-* Spolupráca človek-AI: Ako môžem pochopiť a dôverovať rozhodnutiam modelu?
-* Regulácia: Spĺňa môj model právne požiadavky?
+Modely strojového učenia majú tendenciu byť čiernymi skrinkami. Pochopenie, ktoré kľúčové atribúty dát ovplyvňujú predikciu modelu, môže byť náročné. Je dôležité zabezpečiť transparentnosť, prečo model vykonal určitú predikciu. Napríklad, ak AI systém predpovedá, že diabetický pacient je ohrozený opätovným prijatím do nemocnice do 30 dní, mal by byť schopný poskytnúť podporné dáta, ktoré viedli k tejto predikcii. Mať takéto dátové indikátory prináša transparentnosť, ktorá pomáha lekárom alebo nemocniciam robiť dobre informované rozhodnutia. Okrem toho, schopnosť vysvetliť, prečo model vykonal predikciu pre konkrétneho pacienta, umožňuje zodpovednosť v súlade so zdravotnými predpismi. Keď používate modely strojového učenia spôsobmi, ktoré ovplyvňujú životy ľudí, je kľúčové pochopiť a vysvetliť, čo ovplyvňuje správanie modelu. Vysvetliteľnosť a interpretovateľnosť modelu pomáha odpovedať na otázky v scenároch ako:
 
-Komponent Dôležitosť vlastností na RAI dashboarde vám pomáha ladiť a získať komplexné pochopenie toho, ako model robí predikcie. Je to tiež užitočný nástroj pre profesionálov v oblasti strojového učenia a rozhodovacích činiteľov na vysvetlenie a ukázanie dôkazov vlastností ovplyvňujúcich správanie modelu pre reguláciu. Používatelia môžu ďalej skúmať globálne aj lokálne vysvetlenia na validáciu, ktoré vlastnosti ovplyvňujú predikciu modelu. Globálne vysvetlenia uvádzajú najdôležitejšie vlastnosti, ktoré ovplyvnili celkovú predikciu modelu. Lokálne vysvetlenia zobrazujú, ktoré vlastnosti viedli k predikcii modelu pre konkrétny prípad. Schopnosť hodnotiť lokálne vysvetlenia je tiež užitočná pri ladení alebo audite konkrétneho prípadu na lepšie pochopenie a interpretáciu, prečo model urobil presnú alebo nepresnú predikciu.
+* Ladenie modelu: Prečo môj model urobil túto chybu? Ako môžem model zlepšiť?
+* Spolupráca človek-AI: Ako môžem porozumieť a dôverovať rozhodnutiam modelu?
+* Súlad s reguláciou: Spĺňa môj model zákonné požiadavky?
 
-![Komponent Dôležitosť vlastností na RAI dashboarde](../../../../9-Real-World/2-Debugging-ML-Models/images/9-feature-importance.png)
+Komponent Dôležitosť atribútov na paneli RAI vám pomáha ladiť a získať komplexné pochopenie, ako model robí predikcie. Je to tiež užitočný nástroj pre profesionálov v oblasti strojového učenia a rozhodovacích činiteľov na vysvetlenie a preukázanie vplyvu atribútov na správanie modelu v súlade s reguláciami. Ďalej môžu používatelia preskúmať globálne aj lokálne vysvetlenia, aby overili, ktoré atribúty ovplyvňujú predikciu modelu. Globálne vysvetlenia uvádzajú najdôležitejšie atribúty, ktoré ovplyvnili celkové predikcie modelu. Lokálne vysvetlenia zobrazujú, ktoré atribúty viedli k predikcii modelu v konkrétnom prípade. Schopnosť vyhodnocovať lokálne vysvetlenia je užitočná aj pri ladení alebo audite konkrétneho prípadu na lepšie pochopenie a interpretáciu, prečo model vykonal presnú alebo nepresnú predikciu.
 
-* Globálne vysvetlenia: Napríklad, ktoré vlastnosti ovplyvňujú celkové správanie modelu na opätovné prijatie diabetických pacientov do nemocnice?
-* Lokálne vysvetlenia: Napríklad, prečo bol diabetický pacient nad 60 rokov s predchádzajúcimi hospitalizáciami predikovaný na opätovné prijatie alebo neprijatie do nemocnice do 30 dní?
+![Komponent Dôležitosť atribútov na RAI paneli](../../../../translated_images/sk/9-feature-importance.cd3193b4bba3fd4b.webp)
 
-V procese ladenia výkonu modelu medzi rôznymi kohortami Dôležitosť vlastností ukazuje, aký vplyv má vlastnosť na kohorty. Pomáha odhaliť anomálie pri porovnávaní úrovne vplyvu vlastnosti na chybnú predikciu modelu. Komponent Dôležitosť vlastností môže ukázať, ktoré
-- **Nadmerné alebo nedostatočné zastúpenie**. Ide o to, že určitá skupina nie je viditeľná v určitej profesii, a akákoľvek služba alebo funkcia, ktorá to naďalej podporuje, prispieva k škodám.
+* Globálne vysvetlenia: Napríklad, ktoré atribúty ovplyvňujú celkové správanie modelu na predikciu opätovného prijatia diabetických pacientov do nemocnice?
+* Lokálne vysvetlenia: Napríklad, prečo bol diabetický pacient nad 60 rokov s predchádzajúcimi hospitalizáciami predpovedaný byť prijatý alebo neprijatý späť do nemocnice do 30 dní?
+
+Pri ladení modelu a skúmaní jeho výkonu naprieč rôznymi kohortami, Dôležitosť atribútov ukazuje, aký vplyv má atribút v rámci kohôrt. Pomáha odhaliť anomálie pri porovnávaní úrovne vplyvu atribútu na chybné predikcie modelu. Komponent Dôležitosť atribútov môže zobraziť, ktoré hodnoty v atribúte pozitívne alebo negatívne ovplyvnili výsledok modelu. Napríklad, ak model urobil nepresnú predikciu, komponent vám umožňuje presne určiť, ktoré atribúty alebo hodnoty atribútov viedli k tejto predikcii. Táto úroveň detailov pomáha nielen pri ladení, ale prináša aj transparentnosť a zodpovednosť pri audite. Nakoniec komponent môže pomôcť identifikovať problémy so spravodlivosťou. Ilustračným príkladom je, ak citlivý atribút ako etnická príslušnosť alebo pohlavie má vysoký vplyv na predikciu modelu, môže to byť znakom rasovej alebo genderovej zaujatosti v modeli.
+
+![Dôležitosť atribútov](../../../../translated_images/sk/9-features-influence.3ead3d3f68a84029.webp)
+
+Používajte interpretovateľnosť, keď potrebujete:
+
+* Určiť, do akej miery sú predikcie vášho AI systému dôveryhodné tým, že pochopíte, ktoré atribúty sú pre predikcie najdôležitejšie.
+* Pristúpiť k ladeniu modelu tak, že najprv pochopíte model a zistíte, či používa zdravé atribúty alebo iba falošné korelácie.
+* Odhaľovať potenciálne zdroje nespravodlivosti tým, že pochopíte, či model zakladá predikcie na citlivých atribútoch alebo na atribútoch, ktoré s nimi silne korelujú.
+* Budovať dôveru používateľov v rozhodnutia modelu generovaním lokálnych vysvetlení na ilustráciu ich výsledkov.
+* Dokončiť regulačný audit AI systému na validáciu modelov a monitorovanie vplyvu rozhodnutí modelu na ľudí.
+
+## Záver
+
+Všetky komponenty panela RAI sú praktické nástroje, ktoré vám pomáhajú vytvárať modely strojového učenia, ktoré sú menej škodlivé a spoľahlivejšie pre spoločnosť. Zlepšujú prevenciu hrozieb ľudským právam; diskrimináciu alebo vylučovanie určitých skupín z životných príležitostí; a riziko fyzického alebo psychického poškodenia. Tiež pomáhajú budovať dôveru v rozhodnutia vášho modelu generovaním lokálnych vysvetlení, ktoré ilustrujú ich výsledky. Niektoré z potenciálnych škôd možno klasifikovať ako:
+
+- **Alokácia**, ak je napríklad preferované pohlavie alebo etnický pôvod pred iným.
+- **Kvalita služby**. Ak trénujete dáta iba na jeden konkrétny scenár, ale realita je oveľa zložitejšia, vedie to k zlému výkonu služby.
+- **Stereotypizácia**. Spájanie danej skupiny s predpokladanými atribútmi.
+
+- **Znehodnocovanie**. Nespravodlivo kritizovať a označovať niečo alebo niekoho.
+- **Nadmerné alebo nedostatočné zastúpenie**. Myšlienka je, že určitá skupina nie je viditeľná v určitom povolaní, a akákoľvek služba alebo funkcia, ktorá to naďalej propaguje, prispieva k škode.
 
 ### Azure RAI dashboard
+ 
+[Azure RAI dashboard](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) je postavený na open-source nástrojoch vyvinutých vedúcimi akademickými inštitúciami a organizáciami vrátane Microsoftu, ktoré sú kľúčové pre dátových vedcov a vývojárov AI lepšie pochopiť správanie modelu, objaviť a zmierniť neželané problémy z AI modelov.
 
-[Azure RAI dashboard](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu) je postavený na open-source nástrojoch vyvinutých poprednými akademickými inštitúciami a organizáciami vrátane Microsoftu, ktoré sú nevyhnutné pre dátových vedcov a vývojárov AI na lepšie pochopenie správania modelov, objavovanie a zmierňovanie nežiaducich problémov z AI modelov.
+- Naučte sa používať rôzne komponenty s pomocou dokumentácie pre RAI dashboard [docs.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
 
-- Naučte sa, ako používať rôzne komponenty, prečítaním dokumentácie k RAI dashboardu [docs.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu)
-
-- Pozrite si niektoré [ukážkové notebooky RAI dashboardu](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) na ladenie zodpovednejších AI scenárov v Azure Machine Learning.
-
+- Pozrite si niektoré vzorové RAI dashboard [sample notebooks](https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks) na ladenie zodpovednejších AI scenárov v Azure Machine Learning.
+  
 ---
 ## 🚀 Výzva
+ 
+Aby sme predišli zavádzaniu štatistických alebo dátových predsudkov už na začiatku, mali by sme:
 
-Aby sme zabránili zavádzaniu štatistických alebo dátových predsudkov už na začiatku, mali by sme:
-
-- zabezpečiť rozmanitosť pozadí a perspektív medzi ľuďmi pracujúcimi na systémoch
+- mať rôznorodé zázemie a perspektívy medzi ľuďmi pracujúcimi na systémoch
 - investovať do datasetov, ktoré odrážajú rozmanitosť našej spoločnosti
-- vyvíjať lepšie metódy na detekciu a opravu predsudkov, keď sa objavia
+- vyvíjať lepšie metódy na odhaľovanie a opravovanie predsudkov, keď vzniknú
 
-Premýšľajte o reálnych situáciách, kde je nespravodlivosť evidentná pri budovaní a používaní modelov. Čo ďalšie by sme mali zvážiť?
+Zamyslite sa nad reálnymi situáciami, kde je nespravodlivosť zjavná pri tvorbe a používaní modelov. Čo ďalšie by sme mali zvážiť?
 
 ## [Kvíz po prednáške](https://ff-quizzes.netlify.app/en/ml/)
 ## Prehľad a samostatné štúdium
+ 
+V tejto lekcii ste sa naučili niektoré praktické nástroje na začlenenie zodpovednej AI v strojovom učení.
 
-V tejto lekcii ste sa naučili niektoré praktické nástroje na začlenenie zodpovednej AI do strojového učenia.
+Pozrite si tento workshop a ponorte sa hlbšie do tém:
 
-Pozrite si tento workshop, aby ste sa hlbšie ponorili do tém:
+- Responsible AI Dashboard: Všetko na jednom mieste pre uvedenie RAI do praxe od Besmira Nushi a Mehrnoosh Sameki
 
-- Responsible AI Dashboard: Jednotné miesto na operacionalizáciu RAI v praxi od Besmiry Nushi a Mehrnoosh Sameki
+[![Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice")
 
-[![Responsible AI Dashboard: Jednotné miesto na operacionalizáciu RAI v praxi](https://img.youtube.com/vi/f1oaDNl3djg/0.jpg)](https://www.youtube.com/watch?v=f1oaDNl3djg "Responsible AI Dashboard: Jednotné miesto na operacionalizáciu RAI v praxi")
+> 🎥 Kliknite na obrázok vyššie pre video: Responsible AI Dashboard: Všetko na jednom mieste pre uvedenie RAI do praxe od Besmira Nushi a Mehrnoosh Sameki
+ 
+Prečítajte si nasledujúce materiály a naučte sa viac o zodpovednej AI a ako budovať dôveryhodnejšie modely:
 
-> 🎥 Kliknite na obrázok vyššie pre video: Responsible AI Dashboard: Jednotné miesto na operacionalizáciu RAI v praxi od Besmiry Nushi a Mehrnoosh Sameki
+- Nástroje Microsoft RAI dashboard na ladenie ML modelov: [Responsible AI tools resources](https://aka.ms/rai-dashboard)
 
-Odkážte na nasledujúce materiály, aby ste sa dozvedeli viac o zodpovednej AI a o tom, ako budovať dôveryhodnejšie modely:
+- Preskúmajte sadu nástrojov Responsible AI: [Github](https://github.com/microsoft/responsible-ai-toolbox)
 
-- Microsoftove nástroje RAI dashboardu na ladenie ML modelov: [Responsible AI tools resources](https://aka.ms/rai-dashboard)
+- Microsoft RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
 
-- Preskúmajte Responsible AI toolkit: [Github](https://github.com/microsoft/responsible-ai-toolbox)
-
-- Microsoftove centrum zdrojov RAI: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
-
-- Microsoftova výskumná skupina FATE: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+- Výskumná skupina Microsoft FATE: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 
 ## Zadanie
 
-[Preskúmajte RAI dashboard](assignment.md)
+[Preskúmať RAI dashboard](assignment.md)
 
 ---
 
-**Upozornenie**:  
-Tento dokument bol preložený pomocou služby na automatický preklad [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, upozorňujeme, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre dôležité informácie sa odporúča profesionálny ľudský preklad. Nezodpovedáme za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vyhlásenie o zodpovednosti**:
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, vezmite prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho natívnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za žiadne nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
