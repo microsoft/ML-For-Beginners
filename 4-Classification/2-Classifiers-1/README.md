@@ -177,7 +177,6 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
 
     model = OneVsRestClassifier(LogisticRegression(solver="liblinear"))
     model.fit(X_train, y_train)
-    # the ravel function flatten data
     accuracy = model.score(X_test, y_test)
     print(f"accuracy is {accuracy}")
     ```
@@ -203,11 +202,11 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
 1. Digging deeper, you can check for the accuracy of this prediction:
 
     ```python
-    test= X_test.iloc[50].values.reshape(-1, 1).T
+    test= X_test.iloc[50].to_frame().T
     proba = model.predict_proba(test)
     classes = model.classes_
     resultdf = pd.DataFrame(data=proba, columns=classes)
-    
+
     topPrediction = resultdf.T.sort_values(by=[0], ascending = [False])
     topPrediction.head()
     ```
