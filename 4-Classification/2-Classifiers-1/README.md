@@ -5,6 +5,7 @@ In this lesson, you will use the dataset you saved from the last lesson full of 
 You will use this dataset with a variety of classifiers to _predict a given national cuisine based on a group of ingredients_. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
 
 ## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
+
 # Preparation
 
 Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a _cleaned_cuisines.csv_ file exists in the root `/data` folder for these four lessons.
@@ -29,7 +30,6 @@ Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a
 | 3   | 3          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
 | 4   | 4          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
   
-
 1. Now, import several more libraries:
 
     ```python
@@ -79,7 +79,7 @@ Now you are ready to train your model!
 
 ## Choosing your classifier
 
-Now that your data is clean and ready for training, you have to decide which algorithm to use for the job. 
+Now that your data is clean and ready for training, you have to decide which algorithm to use for the job.
 
 Scikit-learn groups classification under Supervised Learning, and in that category you will find many ways to classify. [The variety](https://scikit-learn.org/stable/supervised_learning.html) is quite bewildering at first sight. The following methods all include classification techniques:
 
@@ -96,7 +96,7 @@ Scikit-learn groups classification under Supervised Learning, and in that catego
 
 ### What classifier to go with?
 
-So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized: 
+So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized:
 
 ![comparison of classifiers](images/comparison.png)
 > Plots generated on Scikit-learn's documentation
@@ -117,11 +117,11 @@ A better way than wildly guessing, however, is to follow the ideas on this downl
 Let's see if we can reason our way through different approaches given the constraints we have:
 
 - **Neural networks are too heavy**. Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task.
-- **No two-class classifier**. We do not use a two-class classifier, so that rules out one-vs-all. 
-- **Decision tree or logistic regression could work**. A decision tree might work, or logistic regression for multiclass data. 
+- **No two-class classifier**. We do not use a two-class classifier, so that rules out one-vs-all.
+- **Decision tree or logistic regression could work**. A decision tree might work, or logistic regression for multiclass data.
 - **Multiclass Boosted Decision Trees solve a different problem**. The multiclass boosted decision tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us.
 
-### Using Scikit-learn 
+### Using Scikit-learn
 
 We will be using Scikit-learn to analyze our data. However, there are many ways to use logistic regression in Scikit-learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
@@ -166,6 +166,21 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
     ✅ Try a different solver like `lbfgs`, which is often set as default
 
     > Note, use Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) function to flatten your data when needed.
+
+    > [!NOTE]
+    > As the `multi_class` parameter has been deprecated since sklearn 1.5  
+    > There may some trouble when you run code with new version  
+    > You can fix TypeError with such code  
+
+    ```python
+    from sklearn.multiclass import OneVsRestClassifier
+
+    model = OneVsRestClassifier(LogisticRegression(solver="liblinear"))
+    model.fit(X_train, y_train)
+    # the ravel function flatten data
+    accuracy = model.score(X_test, y_test)
+    print(f"accuracy is {accuracy}")
+    ```
 
     The accuracy is good at over **80%**!
 
@@ -236,6 +251,7 @@ In this lesson, you used your cleaned data to build a machine learning model tha
 ## Review & Self Study
 
 Dig a little more into the math behind logistic regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
-## Assignment 
+
+## Assignment
 
 [Study the solvers](assignment.md)
