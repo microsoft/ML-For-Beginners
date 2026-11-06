@@ -231,13 +231,13 @@ Walk-forward validation is the gold standard of time series model evaluation and
     test_shifted.head(5)
     ```
 
-    |            |          | load | load+1 | load+2 |
-    | ---------- | -------- | ---- | ------ | ------ |
-    | 2014-12-30 | 00:00:00 | 0.33 | 0.29   | 0.27   |
-    | 2014-12-30 | 01:00:00 | 0.29 | 0.27   | 0.27   |
-    | 2014-12-30 | 02:00:00 | 0.27 | 0.27   | 0.30   |
-    | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
-    | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
+    |            |          | load | load+1 | load+2 | load+3 |
+    | ---------- | -------- | ---- | ------ | ------ | ------ |
+    | 2014-12-30 | 00:00:00 | 0.33 | 0.29   | 0.27   | 0.27   |
+    | 2014-12-30 | 01:00:00 | 0.29 | 0.27   | 0.27   | 0.30   |
+    | 2014-12-30 | 02:00:00 | 0.27 | 0.27   | 0.30   | 0.41   |
+    | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   | 0.57   |
+    | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   | 0.68   |
 
     The data is shifted horizontally according to its horizon point.
 
@@ -359,8 +359,9 @@ Check the accuracy of your model by testing its mean absolute percentage error (
             plot_df['t+'+str(t)] = eval_df[(eval_df.h=='t+'+str(t))]['prediction'].values
 
         fig = plt.figure(figsize=(15, 8))
-        ax = plt.plot(plot_df['timestamp'], plot_df['actual'], color='red', linewidth=4.0)
         ax = fig.add_subplot(111)
+        ax.plot(plot_df['timestamp'], plot_df['actual'],
+             color='red', linewidth=4.0)
         for t in range(1, HORIZON+1):
             x = plot_df['timestamp'][(t-1):]
             y = plot_df['t+'+str(t)][0:len(x)]
