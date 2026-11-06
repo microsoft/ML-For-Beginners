@@ -1,177 +1,182 @@
-[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![GitHub 授權](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
+[![GitHub 貢獻者](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
+[![GitHub 問題追蹤](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
+[![GitHub 拉取請求](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
+[![歡迎拉取請求](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
-[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
-[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
+[![GitHub 觀察者](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
+[![GitHub 分支](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
+[![GitHub 星標](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
 ### 🌐 多語言支援
 
-#### 透過 GitHub Action 支援（自動且永遠保持最新）
+#### 透過 GitHub Action 支援（自動且持續更新）
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[阿拉伯文](../ar/README.md) | [孟加拉文](../bn/README.md) | [保加利亞文](../bg/README.md) | [緬甸語](../my/README.md) | [中文（簡體）](../zh-CN/README.md) | [中文（繁體，香港）](./README.md) | [中文（繁體，澳門）](../zh-MO/README.md) | [中文（繁體，台灣）](../zh-TW/README.md) | [克羅地亞文](../hr/README.md) | [捷克文](../cs/README.md) | [丹麥文](../da/README.md) | [荷蘭文](../nl/README.md) | [愛沙尼亞文](../et/README.md) | [芬蘭文](../fi/README.md) | [法文](../fr/README.md) | [德文](../de/README.md) | [希臘文](../el/README.md) | [希伯來文](../he/README.md) | [印地文](../hi/README.md) | [匈牙利文](../hu/README.md) | [印尼文](../id/README.md) | [義大利文](../it/README.md) | [日文](../ja/README.md) | [卡納達文](../kn/README.md) | [高棉文](../km/README.md) | [韓文](../ko/README.md) | [立陶宛文](../lt/README.md) | [馬來文](../ms/README.md) | [馬拉雅拉姆文](../ml/README.md) | [馬拉地文](../mr/README.md) | [尼泊爾文](../ne/README.md) | [奈及利亞俚語](../pcm/README.md) | [挪威文](../no/README.md) | [波斯文（法爾西語）](../fa/README.md) | [波蘭文](../pl/README.md) | [葡萄牙文（巴西）](../pt-BR/README.md) | [葡萄牙文（葡萄牙）](../pt-PT/README.md) | [旁遮普文（古魯穆奇體）](../pa/README.md) | [羅馬尼亞文](../ro/README.md) | [俄文](../ru/README.md) | [塞爾維亞文（西里爾字母）](../sr/README.md) | [斯洛伐克文](../sk/README.md) | [斯洛文尼亞文](../sl/README.md) | [西班牙文](../es/README.md) | [斯瓦希里文](../sw/README.md) | [瑞典文](../sv/README.md) | [他加祿文（菲律賓語）](../tl/README.md) | [泰米爾文](../ta/README.md) | [泰盧固文](../te/README.md) | [泰文](../th/README.md) | [土耳其文](../tr/README.md) | [烏克蘭文](../uk/README.md) | [烏爾都文](../ur/README.md) | [越南文](../vi/README.md)
+[阿拉伯語](../ar/README.md) | [孟加拉語](../bn/README.md) | [保加利亞語](../bg/README.md) | [緬甸語 (Myanmar)](../my/README.md) | [中文（簡體）](../zh-CN/README.md) | [中文（繁體，香港）](./README.md) | [中文（繁體，澳門）](../zh-MO/README.md) | [中文（繁體，台灣）](../zh-TW/README.md) | [克羅地亞語](../hr/README.md) | [捷克語](../cs/README.md) | [丹麥語](../da/README.md) | [荷蘭語](../nl/README.md) | [愛沙尼亞語](../et/README.md) | [芬蘭語](../fi/README.md) | [法語](../fr/README.md) | [德語](../de/README.md) | [希臘語](../el/README.md) | [希伯來語](../he/README.md) | [印地語](../hi/README.md) | [匈牙利語](../hu/README.md) | [印尼語](../id/README.md) | [意大利語](../it/README.md) | [日語](../ja/README.md) | [卡納達語](../kn/README.md) | [高棉語](../km/README.md) | [韓語](../ko/README.md) | [立陶宛語](../lt/README.md) | [馬來語](../ms/README.md) | [馬拉雅拉姆語](../ml/README.md) | [馬拉地語](../mr/README.md) | [尼泊爾語](../ne/README.md) | [奈及利亞皮欽語](../pcm/README.md) | [挪威語](../no/README.md) | [波斯語（法爾西）](../fa/README.md) | [波蘭語](../pl/README.md) | [葡萄牙語（巴西）](../pt-BR/README.md) | [葡萄牙語（葡萄牙）](../pt-PT/README.md) | [旁遮普語 (Gurmukhi)](../pa/README.md) | [羅馬尼亞語](../ro/README.md) | [俄語](../ru/README.md) | [塞爾維亞語（西里爾字母）](../sr/README.md) | [斯洛伐克語](../sk/README.md) | [斯洛文尼亞語](../sl/README.md) | [西班牙語](../es/README.md) | [斯瓦希里語](../sw/README.md) | [瑞典語](../sv/README.md) | [他加祿語（菲律賓語）](../tl/README.md) | [泰米爾語](../ta/README.md) | [泰盧固語](../te/README.md) | [泰語](../th/README.md) | [土耳其語](../tr/README.md) | [烏克蘭語](../uk/README.md) | [烏爾都語](../ur/README.md) | [越南語](../vi/README.md)
 
-> **想本地克隆？**
+> **想要在本機克隆？**
 >
-> 此儲存庫包含超過 50 種語言翻譯，會大幅增加下載大小。若想不含翻譯克隆，請使用 sparse checkout：
+> 此儲存庫包含超過 50 種語言的翻譯，會顯著增加下載大小。如需不包含翻譯的克隆，請使用稀疏簽出：
 >
-> **Bash / macOS / Linux:**
+> **Bash / macOS / Linux：**
 > ```bash
 > git clone --filter=blob:none --sparse https://github.com/microsoft/ML-For-Beginners.git
 > cd ML-For-Beginners
 > git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
 > ```
 >
-> **CMD (Windows):**
+> **CMD（Windows）：**
 > ```cmd
 > git clone --filter=blob:none --sparse https://github.com/microsoft/ML-For-Beginners.git
 > cd ML-For-Beginners
 > git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
 > ```
 >
-> 這樣你能以更快速度完成下載，並擁有完成課程所需的所有內容。
+> 這樣可以用更快的下載速度取得完成課程所需的所有內容。
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 #### 加入我們的社群
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-我們推出了 Discord 上的「與 AI 一起學習」系列，了解詳情並於 2025 年 9 月 18 至 30 日加入我們，網址：[Learn with AI Series](https://aka.ms/learnwithai/discord)。你將學習如何用 GitHub Copilot 於資料科學中獲得小技巧和秘訣。
+我們正在進行 Discord 的「與 AI 一同學習」系列，詳情與加入請見 [Learn with AI Series](https://aka.ms/learnwithai/discord)（2025 年 9 月 18 日至 30 日）。你將學習到使用 GitHub Copilot 於數據科學的技巧和秘訣。
 
-![Learn with AI series](../../translated_images/zh-HK/3.9b58fd8d6c373c20.webp)
+![與 AI 一同學習系列](../../translated_images/zh-HK/3.9b58fd8d6c373c20.webp)
 
 # 初學者機器學習課程大綱
 
-> 🌍 環遊世界，透過世界文化探索機器學習 🌍
+> 🌍 透過世界各地文化的視角，環遊世界探索機器學習 🌍
 
-微軟的 Cloud Advocates 很高興提供一套 12 週，共 26 節課的機器學習課程。在本課程中，你會學習所謂的 <strong>經典機器學習</strong>，主要使用 Scikit-learn 函式庫，避開深度學習，後者可在我們的 [AI初學者課程](https://aka.ms/ai4beginners)中學習。這些課程也可搭配我們的 ['初學者資料科學'課程](https://aka.ms/ds4beginners)使用！
+微軟的雲端倡導者很高興提供一個為期 12 週、共 26 課的課程，專注於<strong>機器學習</strong>。本課程教你有時稱為<strong>經典機器學習</strong>的內容，主要使用 Scikit-learn 函式庫，避免深度學習，本課題已於我們的[初學者 AI 課程](https://aka.ms/ai4beginners)涵蓋。建議同時參考我們的[初學者數據科學課程](https://aka.ms/ds4beginners)。
 
-跟著我們環遊世界，將這些經典技術應用於各地的數據。每節課都包含課前及課後小測驗、書面指引、解答、作業等。我們的專案導向教學法讓你在動手實做中學習，是幫助新技能內化的有效方式。
+與我們一同環遊世界，應用這些經典技術分析來自世界各地的數據。每節課包含課前與課後小測驗、書面指引、解決方案、作業等。我們以專案為基礎的教學法讓你一邊建構一邊學習，是學習新技能的良好方法。
 
-**✍️ 衷心感謝作者團隊：** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu 和 Amy Boyd
+**✍️ 衷心感謝我們的作者** Jen Looper、Stephen Howell、Francesca Lazzeri、Tomomi Imura、Cassie Breviu、Dmitry Soshnikov、Chris Noring、Anirban Mukherjee、Ornella Altunyan、Ruth Yakubu 與 Amy Boyd
 
-**🎨 亦感謝插畫師：** Tomomi Imura, Dasani Madipalli, 和 Jen Looper
+**🎨 也感謝我們的插畫師** Tomomi Imura、Dasani Madipalli 與 Jen Looper
 
-**🙏 特別感謝微軟學生大使作者、審核與內容貢獻者，尤其是 Rishit Dagli、Muhammad Sakib Khan Inan、Rohan Raj、Alexandru Petrescu、Abhishek Jaiswal、Nawrin Tabassum、Ioan Samuila 和 Snigdha Agarwal**
+**🙏 特別感謝我們的 Microsoft 學生大使作者、審稿人與內容貢獻者**，包括 Rishit Dagli、Muhammad Sakib Khan Inan、Rohan Raj、Alexandru Petrescu、Abhishek Jaiswal、Nawrin Tabassum、Ioan Samuila 與 Snigdha Agarwal
 
-**🤩 額外感謝微軟學生大使 Eric Wanjau、Jasleen Sondhi 和 Vidushi Gupta 協助 R 課程！**
+**🤩 額外感謝 Microsoft 學生大使 Eric Wanjau、Jasleen Sondhi 與 Vidushi Gupta 提供我們的 R 課程！**
 
-# 開始使用
+# 入門指南
 
-請依照以下步驟：
-1. **Fork 儲存庫**：點擊頁面右上角的「Fork」按鈕。
-2. **Clone 儲存庫**： `git clone https://github.com/microsoft/ML-For-Beginners.git`
+請遵循以下步驟：
+1. <strong>分叉本儲存庫</strong>：點擊本頁右上角的「Fork」按鈕。
+2. <strong>克隆儲存庫</strong>： `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [在我們的 Microsoft Learn 集合中尋找本課程所有附加資源](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> 💡 **快速入門提示：** 想不用在本機安裝 Python 在瀏覽器中快速開始？使用 [GitHub Codespaces](https://github.com/features/codespaces) 為你的分叉建立雲端開發環境。點擊綠色 **Code** 選單，選擇 **Codespaces**，然後建立 codespace；依需要在其中安裝每節課所需的依賴。
 
-> 🔧 **需要幫助？** 請查看我們的 [故障排除指南](TROUBLESHOOTING.md)，協助解決安裝、設定和執行課程常見問題。
+> [在我們的 Microsoft Learn 集合中找到本課程所有額外資源](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-**[學生](https://aka.ms/student-page)**，使用本課程時，請 fork 整個儲存庫到你的 GitHub 帳號，自行或與組員一起完成練習：
+> 🔧 **需要幫助？** 請參考我們的 [故障排除指南](TROUBLESHOOTING.md)，協助解決安裝、設定和執行課程的常見問題。
 
-- 先從課前小測開始。
-- 閱讀課程內容並完成任務，每個知識檢測時刻停思考。
-- 嘗試理解課程內容後自己動手創作專案，解答程式碼位於每個專案課程中的 `/solution` 資料夾。
-- 完成課後小測。
+
+**[學員](https://aka.ms/student-page)** 如要使用本課程，請將整個儲存庫分叉到你的 GitHub 帳號，並自行或組隊完成練習：
+
+- 從課前小測驗開始。
+- 閱讀課程內容並完成活動，於每次知識檢測時暫停並反思。
+- 嘗試理解課程內容自行創建專案，而非直接使用解決方案代碼；不過解決方案代碼可在每個專案課程的 `/solution` 資料夾中找到。
+- 完成課後小測驗。
 - 完成挑戰題。
 - 完成作業。
-- 完成一組課程後，前往 [討論區](https://github.com/microsoft/ML-For-Beginners/discussions)，透過填寫合適的 PAT 評分表「大聲學習」。'PAT' 是進度評估工具，透過表格幫助你學習。你也可以回應他人 PAT，一起進步。
+- 完成一組課程後，請參加 [討論區](https://github.com/microsoft/ML-For-Beginners/discussions)，並透過填寫適用的 PAT 評量表「大聲學習」。PAT 為進度評估工具，是你填寫以推進學習的評量表，也可對其他人的 PAT 給予回饋，一同學習。
 
-> 進一步學習，我們推薦參考以下 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) 模組及學習路徑。
+> 如需進一步學習，建議參考這些 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) 模組與學習路徑。
 
-<strong>教師們</strong>，我們有在 [使用建議](for-teachers.md) 提供一些參考。
-
----
-
-## 影片教學
-
-部分課程提供短影片說明。你可於課程中直接觀看，或至 [Microsoft Developer YouTube 頻道的 ML for Beginners 播放列表](https://aka.ms/ml-beginners-videos)點擊下方圖片觀看。
-
-[![ML for beginners banner](../../translated_images/zh-HK/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
+<strong>教師們</strong>，我們提供了[使用本課程的建議](for-teachers.md)。
 
 ---
 
-## 認識團隊
+## 影片導覽
 
-[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
+部分課程有提供短片形式的說明。你可以在課程內嵌中觀看這些影片，也可於 [Microsoft Developer YouTube 頻道的 ML for Beginners 播放清單](https://aka.ms/ml-beginners-videos)中點擊下方圖片觀看。
 
-**GIF 製作由** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+[![ML for beginners 橫幅](../../translated_images/zh-HK/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
-> 🎥 點擊上方圖片觀看本專案及團隊影片介紹！
+---
+
+## 團隊介紹
+
+[![宣傳影片](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
+
+<strong>動圖由</strong> [Mohit Jaisal](https://linkedin.com/in/mohitjaisal) 製作
+
+> 🎥 點擊上方圖片觀看關於本專案及創作者的影片！
 
 ---
 
 ## 教學法
 
-本課程設計遵循兩大教學原則：確保內容是實作 <strong>專案導向</strong>，並包含 <strong>頻繁的小測驗</strong>。此外，本課程有統一的 <strong>主題</strong> ，增強一致性。
+我們在設計本課程時選擇了兩大教學準則：確保內容是動手做的<strong>專案導向</strong>，且包含<strong>頻繁的測驗</strong>。此外，本課程具有一致的<strong>主題</strong>以增強連貫性。
 
-透過專案對應課程內容，讓學習更投入並提升觀念記憶。課前低壓力小測目的是啟發學習意圖，課後測驗則有助鞏固記憶。本課程設計靈活有趣，可全程參與或挑選部分學習。專案由淺入深，12 週結束時達較高難度。本課程另附機器學習真實應用的補充章節，可用做額外加分或討論話題。
+透過確保內容與專案對齊，提升學生的學習投入並加強概念記憶。課前低壓力測驗設置學習意向，課後測驗確保知識留存。本課程設計靈活且有趣，可整體或分段學習。專案由淺入深，於 12 週周期結尾達到高度複雜度。本課程亦包含對機器學習實際應用的補充說明，可作為額外學分或討論基礎。
 
-> 查看我們的 [行為守則](CODE_OF_CONDUCT.md)、[貢獻指南](CONTRIBUTING.md)、[翻譯](..) 及 [故障排除](TROUBLESHOOTING.md) 文件，我們歡迎你的建設性反饋！
+> 查看我們的[行為準則](CODE_OF_CONDUCT.md)、[貢獻指南](CONTRIBUTING.md)、[翻譯指南](..)與[故障排除](TROUBLESHOOTING.md)政策。我們歡迎您的建設性回饋！
 
-## 每節課程包含
+## 每節課包含
 
-- 可選的手繪筆記
-- 可選的附加影片
-- 影片講解（部分課程）
-- [課前暖身小測驗](https://ff-quizzes.netlify.app/en/ml/)
+- 選擇性草圖筆記
+- 選擇性補充影片
+- 影片導覽（部分課程）
+- [課前暖身測驗](https://ff-quizzes.netlify.app/en/ml/)
 - 書面課程內容
-- 專案課程時，逐步專案建立指南
+- 專案導向課程附逐步操作指南
 - 知識檢測
 - 挑戰題
-- 補充閱讀
+- 補充閱讀資料
 - 作業
-- [課後小測驗](https://ff-quizzes.netlify.app/en/ml/)
-> <strong>關於語言的說明</strong>：這些課程主要以 Python 編寫，但許多也有提供 R 語言版本。要完成 R 課程，請前往 `/solution` 資料夾尋找 R 課程。它們包含一個 .rmd 副檔名，代表 **R Markdown** 檔案，這可簡單定義為在一個 `Markdown 文件` 中嵌入 `程式碼區塊`（R 或其他語言）和一個 `YAML 標頭`（指導如何格式化輸出，如 PDF）。因此，它是數據科學的典範創作框架，因為它允許你將程式碼、輸出結果和思考結合起來，並允許你用 Markdown 書寫。此外，R Markdown 文件可以渲染成 PDF、HTML 或 Word 等輸出格式。
+- [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-> <strong>關於測驗的說明</strong>：所有測驗都包含在 [Quiz App folder](../../quiz-app) 中，共 52 組，每組有三個問題。它們在課程中有連結，但測驗應用程式可以本地執行；請遵循 `quiz-app` 資料夾中的指示進行本地架設或部署到 Azure。
+> <strong>關於語言說明</strong>：這些課程主要使用 Python 撰寫，但許多也提供 R 語言版本。要完成 R 課程，請前往 `/solution` 資料夾尋找帶有 .rmd 副檔名的 R 課程檔案。R Markdown 檔案是一種將 R（或其他語言）`程式碼區塊` 和 `YAML 標頭`（用於指引格式輸出如 PDF）嵌入於 `Markdown 文件` 的範例撰寫框架，可同時編寫程式碼、輸出與說明文字，是資料科學的理想工具。R Markdown 還可輸出為 PDF、HTML 或 Word 等格式。
 
-| 課程編號 |                             主題                              |                   課程分組                   | 學習目標                                                                                                                     |                                                              合作課程                                                               |                        作者                        |
-| :------: | :------------------------------------------------------------: | :------------------------------------------: | ---------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------: |
-|    01    |                      機器學習簡介                      |      [Introduction](1-Introduction/README.md)       | 學習機器學習的基本概念                                                                                                        |                                             [課程](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
-|    02    |                       機器學習的歷史                       |      [Introduction](1-Introduction/README.md)       | 學習此領域的歷史背景                                                                                                          |                                            [課程](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
-|    03    |                       公平性與機器學習                       |      [Introduction](1-Introduction/README.md)       | 建構及應用機器學習模型時，學生應考慮哪些重要的公平性哲學議題？                                                                |                                              [課程](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
-|    04    |                       機器學習技術                       |      [Introduction](1-Introduction/README.md)       | 機器學習研究者用哪些技術來建構機器學習模型？                                                                                  |                                          [課程](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
-|    05    |                    回歸模型介紹                    |        [Regression](2-Regression/README.md)         | 使用 Python 和 Scikit-learn 入門回歸模型                                                                                      |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
-|    06    |                北美南瓜價格 🎃                |        [Regression](2-Regression/README.md)         | 進行視覺化以及資料清理以準備機器學習                                                                                          |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
-|    07    |                北美南瓜價格 🎃                |        [Regression](2-Regression/README.md)         | 建構線性與多項式回歸模型                                                                                                      |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
-|    08    |                北美南瓜價格 🎃                |        [Regression](2-Regression/README.md)         | 建構邏輯斯迴歸模型                                                                                                            |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
-|    09    |                          網頁應用程式 🔌                          |           [Web App](3-Web-App/README.md)            | 建構網頁應用程式以使用你的訓練模型                                                                                            |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
-|    10    |                 分類介紹                 |    [Classification](4-Classification/README.md)     | 清理、準備並視覺化你的資料；分類概論                                                                                          | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
-|    11    |             美味的亞洲和印度料理 🍜             |    [Classification](4-Classification/README.md)     | 分類器介紹                                                                                                                    | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
-|    12    |             美味的亞洲和印度料理 🍜             |    [Classification](4-Classification/README.md)     | 更多分類器                                                                                                                   | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
-|    13    |             美味的亞洲和印度料理 🍜             |    [Classification](4-Classification/README.md)     | 使用你的模型建構推薦網頁應用程式                                                                                            |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
-|    14    |                   分群介紹                   |        [Clustering](5-Clustering/README.md)         | 清理、準備並視覺化你的資料；分群介紹                                                                                          |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
-|    15    |              探索尼日利亞音樂喜好 🎧              |        [Clustering](5-Clustering/README.md)         | 探索 K 均值分群法                                                                                                            |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
-|    16    |        自然語言處理介紹 ☕️         |   [Natural language processing](6-NLP/README.md)    | 透過建立簡單機器人學習 NLP 基礎知識                                                                                          |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|    17    |                      常見 NLP 任務 ☕️                      |   [Natural language processing](6-NLP/README.md)    | 增進 NLP 知識，了解處理語言結構時所需的常見任務                                                                               |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
-|    18    |             翻譯與情感分析 ♥️              |   [Natural language processing](6-NLP/README.md)    | 使用簡·奧斯汀進行翻譯與情感分析                                                                                              |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
-|    19    |                  歐洲浪漫旅館 ♥️                  |   [Natural language processing](6-NLP/README.md)    | 透過旅館評論進行情感分析 1                                                                                                  |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
-|    20    |                  歐洲浪漫旅館 ♥️                  |   [Natural language processing](6-NLP/README.md)    | 透過旅館評論進行情感分析 2                                                                                                  |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
-|    21    |            時間序列預測介紹             |        [Time series](7-TimeSeries/README.md)        | 時間序列預測介紹                                                                                                            |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
-|    22    | ⚡️ 世界用電量 ⚡️ - 使用 ARIMA 的時間序列預測 |        [Time series](7-TimeSeries/README.md)        | 使用 ARIMA 進行時間序列預測                                                                                                |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
-|    23    |  ⚡️ 世界用電量 ⚡️ - 使用 SVR 的時間序列預測  |        [Time series](7-TimeSeries/README.md)        | 使用支援向量回歸器進行時間序列預測                                                                                          |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
-|    24    |             強化學習介紹             | [Reinforcement learning](8-Reinforcement/README.md) | 使用 Q-Learning 介紹強化學習                                                                                                |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
-|    25    |                 幫助彼得避開狼！🐺                  | [Reinforcement learning](8-Reinforcement/README.md) | 強化學習 Gym                                                                                                               |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
-|  附錄   |            現實世界中的機器學習場景與應用            |      [ML in the Wild](9-Real-World/README.md)       | 有趣且啟發性的經典機器學習真實應用                                                                                          |                                             [課程](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
-|  附錄   |            使用 RAI 控制台進行機器學習模型除錯          |      [ML in the Wild](9-Real-World/README.md)       | 使用 Responsible AI 控制台元件進行機器學習模型除錯                                                                                 |                                             [課程](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
+> <strong>關於測驗提醒</strong>：所有測驗皆位於 [Quiz App 資料夾](../../quiz-app)，共 52 個測驗，每個測驗有三個問題。測驗從課程中連結，但也可在本機執行；請按照 `quiz-app` 資料夾中的指示，在本機或 Azure 部署。
 
-> [在我們的 Microsoft Learn 系列中找到本課程的所有額外資源](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+| 課程編號 |                             主題                              |                   課程群組                   | 學習目標                                                                                                                     |                                                              關聯課程                                                               |                        作者                        |
+| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
+|      01       |                機器學習導論                |      [Introduction](1-Introduction/README.md)       | 學習機器學習背後的基本概念                                                                                |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                機器學習的歷史                 |      [Introduction](1-Introduction/README.md)       | 瞭解這個領域背後的歷史                                                                                         |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
+|      03       |                 公平性與機器學習                  |      [Introduction](1-Introduction/README.md)       | 建立和應用機器學習模型時，學生應該考慮的公平性相關重要哲學議題是什麼？ |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|      04       |                機器學習的技術                 |      [Introduction](1-Introduction/README.md)       | 機器學習研究人員用什麼技術來建立機器學習模型？                                                                       |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
+|      05       |                   回歸模型導論                   |        [Regression](2-Regression/README.md)         | 開始使用 Python 和 Scikit-learn 來建立回歸模型                                                                  |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|      06       |                北美南瓜價格 🎃                |        [Regression](2-Regression/README.md)         | 視覺化及清理資料以準備機器學習                                                                                  |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|      07       |                北美南瓜價格 🎃                |        [Regression](2-Regression/README.md)         | 建立線性及多項式回歸模型                                                                                   |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
+|      08       |                北美南瓜價格 🎃                |        [Regression](2-Regression/README.md)         | 建立邏輯回歸模型                                                                                               |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|      09       |                          一個網頁應用 🔌                          |           [Web App](3-Web-App/README.md)            | 建立網頁應用來使用你訓練的模型                                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|      10       |                 分類導論                 |    [Classification](4-Classification/README.md)     | 清理、預處理與視覺化資料；分類導論                                                            | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
+|      11       |             美味的亞洲與印度料理 🍜             |    [Classification](4-Classification/README.md)     | 分類器導論                                                                                                     | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
+|      12       |             美味的亞洲與印度料理 🍜             |    [Classification](4-Classification/README.md)     | 更多分類器                                                                                                                | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
+|      13       |             美味的亞洲與印度料理 🍜             |    [Classification](4-Classification/README.md)     | 使用你的模型建立推薦網頁應用                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|      14       |                   叢集導論                   |        [Clustering](5-Clustering/README.md)         | 清理、預處理與視覺化資料；叢集導論                                                                |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|      15       |              探索奈及利亞音樂喜好 🎧              |        [Clustering](5-Clustering/README.md)         | 探索 K-均值叢集方法                                                                                           |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
+|      16       |        自然語言處理導論 ☕️         |   [Natural language processing](6-NLP/README.md)    | 透過建立簡單的 Bot 學習 NLP 基礎                                                                             |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|      17       |                      常見的 NLP 任務 ☕️                      |   [Natural language processing](6-NLP/README.md)    | 深入理解處理語言結構時所需的常見任務                          |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      18       |             翻譯與情感分析 ♥️              |   [Natural language processing](6-NLP/README.md)    | 使用 Jane Austen 進行翻譯及情感分析                                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|      19       |                  歐洲浪漫飯店 ♥️                  |   [Natural language processing](6-NLP/README.md)    | 使用飯店評論進行情感分析 1                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|      20       |                  歐洲浪漫飯店 ♥️                  |   [Natural language processing](6-NLP/README.md)    | 使用飯店評論進行情感分析 2                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|      21       |            時間序列預測導論             |        [Time series](7-TimeSeries/README.md)        | 時間序列預測導論                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|      22       | ⚡️ 世界電力使用量 ⚡️ - 使用 ARIMA 的時間序列預測 |        [Time series](7-TimeSeries/README.md)        | 使用 ARIMA 進行時間序列預測                                                                                              |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|      23       |  ⚡️ 世界電力使用量 ⚡️ - 使用 SVR 的時間序列預測  |        [Time series](7-TimeSeries/README.md)        | 使用支持向量回歸進行時間序列預測                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|      24       |             強化學習導論             | [Reinforcement learning](8-Reinforcement/README.md) | 透過 Q-Learning 瞭解強化學習                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|      25       |                 幫助 Peter 避免狼咬! 🐺                  | [Reinforcement learning](8-Reinforcement/README.md) | 強化學習 Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|  附錄   |            現實世界的機器學習場景與應用            |      [ML in the Wild](9-Real-World/README.md)       | 傳統機器學習的有趣且具啟發性的現實世界應用                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
+|  附錄   |            使用 RAI 儀表板進行機器學習模型除錯            |      [ML in the Wild](9-Real-World/README.md)       | 使用負責任 AI 儀表板組件進行機器學習模型除錯                                                              |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                     Ruth Yakubu                      |
+
+> [在我們的 Microsoft Learn 集合中找到此課程的所有附加資源](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 ## 離線存取
 
-你可以使用 [Docsify](https://docsify.js.org/#/) 離線瀏覽此文件。Fork 此倉庫，在本機安裝 [Docsify](https://docsify.js.org/#/quickstart)，然後在此倉庫根目錄下執行 `docsify serve`。網站會在本地主機（localhost） 3000 埠上提供：`localhost:3000`。
+你可以使用 [Docsify](https://docsify.js.org/#/) 離線執行本文件。複製此倉庫，於本機安裝 [Docsify](https://docsify.js.org/#/quickstart)，然後在此倉庫根目錄輸入 `docsify serve`。網站將於本地主機的 3000 埠口提供服務：`localhost:3000`。
 
-## PDF 檔案
+## PDF
 
-在此處找到帶有連結的課程大綱 pdf [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf)。
+在[此處](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf)找到課程大綱的 PDF，附帶連結。
+
 
 ## 🎒 其他課程
 
-我們團隊製作了其他課程！請參考：
+我們團隊製作了其他課程！請查看：
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
@@ -215,33 +220,33 @@
 
 ## 尋求協助
 
-如果您在學習機器學習或構建 AI 應用時遇到困難或有問題，別擔心 — 有幫助可以取得。
+如果你在學習機器學習或構建 AI 應用時遇到困難或有疑問，別擔心 — 我們有支援。
 
-您可以與其他學習者和開發者一起參與討論、提問，以及分享您的想法。
+你可以加入與其他學習者及開發者的討論，提問並分享你的想法。
 
-- 加入社群，向他人提問並一起學習
-- 討論機器學習概念和專案想法
-- 獲取有經驗開發者的指導
+- 加入社群提問並與他人一同學習
+- 討論機器學習概念與專案想法
+- 從經驗豐富的開發者獲得指導
 
-有支援性的社群是成長技能和更快解決問題的好方法。
+支援性的社群是成長技能與快速解決問題的好方法。
 
 [Microsoft Foundry Discord 社群](https://discord.gg/nTYy5BXMWG)
 
-如果您遇到錯誤、異常或有改進建議，也可以在此庫中開啟 **Issue** 來回報問題。
+如果你發現錯誤、問題或有改進建議，也可以在此倉庫開設<strong>問題</strong>來回報。
 
-如需產品反饋或搜尋現有社群帖子，請訪問開發者論壇：
+欲提供產品回饋或搜尋現有社群貼文，請造訪開發者論壇：
 
 [![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-## 其他學習建議
+## 額外學習建議
 
 - 每課後複習筆記本以加深理解。
-- 練習自己實作演算法。
-- 運用所學概念探索真實世界資料集。
+- 自行練習實作演算法。
+- 利用所學概念探索現實數據集。
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：  
-本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。
+**免責聲明**：
+本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們致力於確保準確性，但請注意，機器自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議進行專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

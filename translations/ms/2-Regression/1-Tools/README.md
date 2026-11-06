@@ -1,55 +1,55 @@
-# Mulakan dengan Python dan Scikit-learn untuk model regresi
+# Mula dengan Python dan Scikit-learn untuk model regresi
 
-![Ringkasan regresi dalam nota lakaran](../../../../translated_images/ms/ml-regression.4e4f70e3b3ed446e.webp)
+![Ringkasan regresi dalam sketchnote](../../../../translated_images/ms/ml-regression.4e4f70e3b3ed446e.webp)
 
-> Nota lakaran oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Sketchnote oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Kuiz pra-ceramah](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Pelajaran ini tersedia dalam R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Pelajaran ini juga tersedia dalam R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Pengenalan
 
-Dalam empat pelajaran ini, anda akan menemui cara membina model regresi. Kami akan membincangkan kegunaannya sebentar lagi. Tetapi sebelum anda melakukan apa-apa, pastikan anda mempunyai alat yang betul untuk memulakan proses ini!
+Dalam empat pelajaran ini, anda akan mempelajari cara membina model regresi. Kami akan bincangkan apakah kegunaan model ini sebentar lagi. Tetapi sebelum anda mula, pastikan anda mempunyai alat yang betul untuk memulakan proses!
 
-Dalam pelajaran ini, anda akan belajar bagaimana:
+Dalam pelajaran ini, anda akan belajar bagaimana untuk:
 
-- Mengkonfigurasi komputer anda untuk tugasan pembelajaran mesin tempatan.
+- Menyediakan komputer anda untuk tugasan pembelajaran mesin setempat.
 - Bekerja dengan Jupyter Notebooks.
 - Menggunakan Scikit-learn, termasuk pemasangan.
 - Meneroka regresi linear dengan latihan praktikal.
 
 ## Pemasangan dan konfigurasi
 
-[![ML untuk pemula - Sediakan alat anda untuk membina model Pembelajaran Mesin](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML untuk pemula - Sediakan alat anda untuk membina model Pembelajaran Mesin")
+[![ML untuk pemula - Sediakan alat anda untuk membina model Pembelajaran Mesin](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML untuk pemula -Sediakan alat anda untuk membina model Pembelajaran Mesin")
 
-> 🎥 Klik imej di atas untuk video pendek mengenai cara mengkonfigurasi komputer anda untuk ML.
+> 🎥 Klik gambar di atas untuk video pendek yang menunjukkan cara menyediakan komputer anda untuk ML.
 
-1. **Pasang Python**. Pastikan [Python](https://www.python.org/downloads/) dipasang pada komputer anda. Anda akan menggunakan Python untuk banyak tugasan sains data dan pembelajaran mesin. Kebanyakan sistem komputer sudah termasuk pemasangan Python. Terdapat juga [Pakej Kod Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) yang berguna untuk memudahkan penyediaan bagi sesetengah pengguna.
+1. **Pasang Python**. Pastikan [Python](https://www.python.org/downloads/) telah dipasang pada komputer anda. Anda akan menggunakan Python untuk banyak tugasan sains data dan pembelajaran mesin. Kebanyakan sistem komputer sudah mempunyai pemasangan Python. Terdapat juga [Pakej Pengkodan Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) yang berguna, untuk memudahkan persediaan bagi beberapa pengguna.
 
-   Walau bagaimanapun, beberapa kegunaan Python memerlukan versi perisian yang berbeza. Oleh itu, adalah berguna untuk bekerja dalam [persekitaran maya](https://docs.python.org/3/library/venv.html).
+   Walau bagaimanapun, beberapa penggunaan Python memerlukan versi perisian yang berbeza, oleh itu berguna untuk bekerja dalam [persekitaran maya](https://docs.python.org/3/library/venv.html).
 
-2. **Pasang Visual Studio Code**. Pastikan Visual Studio Code dipasang pada komputer anda. Ikuti arahan ini untuk [memasang Visual Studio Code](https://code.visualstudio.com/) bagi pemasangan asas. Anda akan menggunakan Python dalam Visual Studio Code dalam kursus ini, jadi anda mungkin mahu mengasah kemahiran bagaimana untuk [mengkonfigurasi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) untuk pembangunan Python.
+2. **Pasang Visual Studio Code**. Pastikan anda memasang Visual Studio Code pada komputer anda. Ikuti arahan ini untuk [memasang Visual Studio Code](https://code.visualstudio.com/) untuk pemasangan asas. Anda akan menggunakan Python dalam Visual Studio Code dalam kursus ini, jadi anda mungkin ingin mengulang cara [menyediakan Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) untuk pembangunan Python.
 
-   > Biasakan diri dengan Python dengan melalui koleksi [modul Pembelajaran](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Biasakan diri dengan Python dengan mengikuti koleksi [modul Pembelajaran](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
-   > [![Pasang Python dengan Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Pasang Python dengan Visual Studio Code")
+   > [![Sediakan Python dengan Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Sediakan Python dengan Visual Studio Code")
    >
-   > 🎥 Klik imej di atas untuk video: menggunakan Python dalam VS Code.
+   > 🎥 Klik gambar di atas untuk video: menggunakan Python dalam VS Code.
 
-3. **Pasang Scikit-learn**, dengan mengikuti [arahan ini](https://scikit-learn.org/stable/install.html). Oleh kerana anda perlu memastikan menggunakan Python 3, adalah disyorkan menggunakan persekitaran maya. Nota, jika anda memasang perpustakaan ini pada Mac M1, terdapat arahan khas di halaman pautan di atas.
+3. **Pasang Scikit-learn**, dengan mengikuti [arahan ini](https://scikit-learn.org/stable/install.html). Oleh kerana anda perlu memastikan menggunakan Python 3, disarankan menggunakan persekitaran maya. Nota, jika anda memasang perpustakaan ini di Mac M1, terdapat arahan khas di halaman yang dilampirkan di atas.
 
 1. **Pasang Jupyter Notebook**. Anda perlu [memasang pakej Jupyter](https://pypi.org/project/jupyter/).
 
-## Persekitaran penulisan ML anda
+## Persekitaran pengarang ML anda
 
-Anda akan menggunakan **notebook** untuk membangunkan kod Python dan mencipta model pembelajaran mesin. Jenis fail ini adalah alat biasa untuk saintis data, dan ia boleh dikenali melalui akhiran atau sambungan `.ipynb`.
+Anda akan menggunakan **notebook** untuk membangunkan kod Python dan membuat model pembelajaran mesin. Jenis fail ini adalah alat biasa bagi saintis data, dan ia dikenal pasti dengan akhiran atau lanjutan `.ipynb`.
 
-Notebook ialah persekitaran interaktif yang membolehkan pembangun menulis kod dan menambah nota serta dokumentasi di sekitar kod yang sangat membantu untuk projek eksperimen atau berorientasikan penyelidikan.
+Notebook adalah persekitaran interaktif yang membolehkan pembangun menulis kod serta catatan dan dokumentasi di sekeliling kod yang sangat membantu untuk projek percubaan atau penyelidikan.
 
 [![ML untuk pemula - Sediakan Jupyter Notebooks untuk mula membina model regresi](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML untuk pemula - Sediakan Jupyter Notebooks untuk mula membina model regresi")
 
-> 🎥 Klik imej di atas untuk video pendek yang menunjukkan latihan ini.
+> 🎥 Klik gambar di atas untuk video pendek yang menunjukkan latihan ini.
 
 ### Latihan - bekerja dengan notebook
 
@@ -57,16 +57,16 @@ Dalam folder ini, anda akan menemui fail _notebook.ipynb_.
 
 1. Buka _notebook.ipynb_ dalam Visual Studio Code.
 
-   Pelayan Jupyter akan bermula dengan Python 3+ dimulakan. Anda akan menjumpai bahagian notebook yang boleh `run`, potongan kod. Anda boleh menjalankan blok kod dengan memilih ikon yang kelihatan seperti butang main.
+   Pelayan Jupyter akan dimulakan dengan Python 3+. Anda akan menemui bahagian dalam notebook yang boleh `run`, bahagian kod. Anda boleh menjalankan blok kod dengan memilih ikon seperti butang main.
 
-1. Pilih ikon `md` dan tambahkan sedikit markdown, serta teks berikut **# Selamat datang ke notebook anda**.
+1. Pilih ikon `md` dan tambahkan sedikit markdown, dan teks berikut **# Selamat datang ke notebook anda**.
 
-   Seterusnya, tambah sedikit kod Python.
+   Seterusnya, tambahkan beberapa kod Python.
 
 1. Taip **print('hello notebook')** dalam blok kod.
 1. Pilih anak panah untuk menjalankan kod.
 
-   Anda harus melihat pernyataan cetak:
+   Anda akan melihat pernyataan yang dicetak:
 
     ```output
     hello notebook
@@ -74,48 +74,48 @@ Dalam folder ini, anda akan menemui fail _notebook.ipynb_.
 
 ![VS Code dengan notebook dibuka](../../../../translated_images/ms/notebook.4a3ee31f396b8832.webp)
 
-Anda boleh menyelingi kod anda dengan komen untuk mendokumentasikan notebook secara sendiri.
+Anda boleh menyelangi kod anda dengan komen untuk mendokumentasikan notebook sendiri.
 
-✅ Fikirkan sekejap bagaimana persekitaran kerja pembangun web berbeza dengan persekitaran saintis data.
+✅ Fikirkan sejenak bagaimana perbezaan persekitaran kerja pembangun web berbanding saintis data.
 
-## Bersedia dengan Scikit-learn
+## Mulakan dengan Scikit-learn
 
-Sekarang Python telah disediakan dalam persekitaran tempatan anda, dan anda sudah selesa dengan Jupyter Notebooks, mari kita juga biasa dengan Scikit-learn (sebut `sci` seperti dalam `science`). Scikit-learn menyediakan [API yang luas](https://scikit-learn.org/stable/modules/classes.html#api-ref) untuk membantu anda melaksanakan tugasan ML.
+Sekarang Python telah disediakan dalam persekitaran setempat anda, dan anda sudah biasa dengan Jupyter Notebooks, mari kita jadi sama selesa dengan Scikit-learn (sebut `sci` seperti dalam `science`). Scikit-learn menyediakan [API yang meluas](https://scikit-learn.org/stable/modules/classes.html#api-ref) untuk membantu anda menjalankan tugasan ML.
 
-Menurut [laman web mereka](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn adalah perpustakaan pembelajaran mesin sumber terbuka yang menyokong pembelajaran terpantau dan tidak terpantau. Ia juga menyediakan pelbagai alat untuk pemasangan model, prapengendalian data, pemilihan dan penilaian model, dan banyak utiliti lain."
+Menurut [laman web mereka](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn adalah perpustakaan pembelajaran mesin sumber terbuka yang menyokong pembelajaran berarah dan tidak berarah. Ia juga menyediakan pelbagai alat untuk pemadanan model, pemprosesan awal data, pemilihan model dan penilaian, serta banyak kegunaan lain."
 
-Dalam kursus ini, anda akan menggunakan Scikit-learn dan alat lain untuk membina model pembelajaran mesin bagi melaksanakan apa yang kami panggil tugasan 'pembelajaran mesin tradisional'. Kami sengaja mengelakkan rangkaian neural dan pembelajaran mendalam kerana ia lebih sesuai dibincangkan dalam kurikulum 'AI untuk Pemula' yang akan datang.
+Dalam kursus ini, anda akan menggunakan Scikit-learn dan alat lain untuk membina model pembelajaran mesin untuk melaksanakan apa yang kita panggil tugasan 'pembelajaran mesin tradisional'. Kami sengaja mengelakkan rangkaian neural dan pembelajaran mendalam, kerana ia lebih baik dibahas dalam kurikulum 'AI untuk Pemula' yang akan datang.
 
-Scikit-learn memudahkan pembangunan model dan penilaiannya untuk kegunaan. Ia terutamanya fokus pada penggunaan data berangka dan mengandungi beberapa set data siap guna sebagai alat pembelajaran. Ia juga termasuk model terbina khas untuk pelajar cuba. Mari kita teroka proses memuatkan data pra-pakej dan menggunakan penilai terbina dalam model ML pertama dengan Scikit-learn menggunakan data asas.
+Scikit-learn memudahkan pembinaan model dan penilaiannya untuk kegunaan. Ia tertumpu terutamanya pada penggunaan data berangka dan mengandungi beberapa set data siap guna untuk digunakan sebagai alat pembelajaran. Ia juga termasuk model siap pakai untuk pelajar cuba. Mari kita terokai proses memuat data terbina dan menggunakan penaksir terbina untuk mencipta model ML pertama anda dengan Scikit-learn menggunakan data asas.
 
 ## Latihan - notebook Scikit-learn pertama anda
 
-> Tutorial ini diilhamkan oleh [contoh regresi linear](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) di laman web Scikit-learn.
+> Tutorial ini diinspirasikan oleh [contoh regresi linear](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) di laman web Scikit-learn.
 
 
-[![ML untuk pemula - Projek Regresi Linear Pertama anda dalam Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML untuk pemula - Projek Regresi Linear Pertama anda dalam Python")
+[![ML untuk pemula - Projek Regresi Linear Pertama Anda dalam Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML untuk pemula - Projek Regresi Linear Pertama Anda dalam Python")
 
-> 🎥 Klik imej di atas untuk video pendek yang menunjukkan latihan ini.
+> 🎥 Klik gambar di atas untuk video pendek yang menunjukkan latihan ini.
 
-Dalam fail _notebook.ipynb_ yang berkaitan dengan pelajaran ini, bersihkan semua sel dengan menekan ikon 'tong sampah'.
+Dalam fail _notebook.ipynb_ yang berkaitan dengan pelajaran ini, kosongkan semua sel dengan menekan ikon 'tong sampah'.
 
-Dalam seksyen ini, anda akan bekerja dengan set data kecil tentang diabetes yang dibina dalam Scikit-learn untuk tujuan pembelajaran. Bayangkan anda ingin menguji rawatan untuk pesakit diabetes. Model Pembelajaran Mesin mungkin membantu anda menentukan pesakit mana yang akan memberi tindak balas lebih baik kepada rawatan berdasarkan gabungan pembolehubah. Walaupun model regresi yang sangat asas, apabila divisualisasikan, mungkin menunjukkan maklumat tentang pembolehubah yang membantu anda mengatur ujian klinikal teori anda.
+Dalam bahagian ini, anda akan bekerja dengan set data kecil tentang diabetes yang dibina ke dalam Scikit-learn untuk tujuan pembelajaran. Bayangkan anda ingin menguji rawatan untuk pesakit diabetes. Model Pembelajaran Mesin mungkin membantu menentukan pesakit yang memberi tindak balas lebih baik terhadap rawatan, berdasarkan gabungan pembolehubah. Model regresi yang sangat asas, apabila divisualisasikan, mungkin menunjukkan maklumat tentang pembolehubah yang membantu anda mengatur kajian klinikal teori anda.
 
-✅ Terdapat banyak jenis kaedah regresi, dan pilihan anda bergantung pada jawapan yang anda cari. Jika anda ingin meramalkan tinggi badan yang mungkin bagi seseorang pada umur tertentu, anda akan menggunakan regresi linear kerana anda mencari **nilai berangka**. Jika anda berminat untuk mengetahui sama ada jenis masakan dianggap vegan atau tidak, anda mencari **penentuan kategori**, jadi anda akan menggunakan regresi logistik. Anda akan belajar lebih lanjut tentang regresi logistik nanti. Fikirkan sedikit tentang beberapa soalan yang anda boleh ajukan kepada data, dan kaedah mana yang lebih sesuai.
+✅ Terdapat banyak jenis kaedah regresi, dan yang anda pilih bergantung pada jawapan yang anda cari. Jika anda mahu meramalkan tinggi badan untuk seseorang pada umur tertentu, anda akan menggunakan regresi linear, kerana anda mencari **nilai berangka**. Jika anda berminat mengetahui sama ada jenis masakan adalah vegan atau tidak, anda mencari **penugasan kategori** jadi anda akan menggunakan regresi logistik. Anda akan belajar lebih lanjut tentang regresi logistik kemudian. Fikirkan sedikit tentang soalan yang boleh anda ajukan pada data, dan kaedah mana yang lebih sesuai.
 
-Mari kita mula tugasan ini.
+Mari kita mulakan tugasan ini.
 
 ### Import perpustakaan
 
 Untuk tugasan ini kita akan import beberapa perpustakaan:
 
-- **matplotlib**. Ia ialah [alat graf](https://matplotlib.org/) yang berguna dan kami akan menggunakannya untuk membuat plot garis.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) adalah perpustakaan berguna untuk mengendalikan data berangka dalam Python.
+- **matplotlib**. Ia adalah [alat graf yang berguna](https://matplotlib.org/) dan kita akan menggunakannya untuk membuat plot garis.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) adalah perpustakaan berguna untuk mengurus data berangka dalam Python.
 - **sklearn**. Ini adalah perpustakaan [Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
 
-Import beberapa perpustakaan untuk membantu anda dalam tugasan.
+Import beberapa perpustakaan untuk membantu tugasan anda.
 
-1. Tambahkan import dengan menaip kod berikut:
+1. Tambah import dengan menaip kod berikut:
 
    ```python
    import matplotlib.pyplot as plt
@@ -123,26 +123,26 @@ Import beberapa perpustakaan untuk membantu anda dalam tugasan.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Di atas anda mengimport `matplotlib`, `numpy` dan anda mengimport `datasets`, `linear_model` dan `model_selection` dari `sklearn`. `model_selection` digunakan untuk membahagikan data kepada set latihan dan ujian.
+   Di atas anda mengimport `matplotlib`, `numpy` dan mengimport `datasets`, `linear_model` dan `model_selection` dari `sklearn`. `model_selection` digunakan untuk membahagikan data kepada set latihan dan ujian.
 
 ### Set data diabetes
 
-Set data bawaan [diabetes](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) mengandungi 442 sampel data diabetes, dengan 10 pembolehubah ciri, beberapa daripadanya termasuk:
+Set data [diabetes terbina](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) termasuk 442 sampel data tentang diabetes, dengan 10 pembolehubah ciri, beberapa antaranya termasuk:
 
 - umur: umur dalam tahun
 - bmi: indeks jisim badan
-- bp: tekanan darah purata
-- s1 tc: Sel T (sejenis sel darah putih)
+- bp: purata tekanan darah
+- s1 tc: Sel T (jenis sel darah putih)
 
-✅ Set data ini termasuk konsep 'jantina' sebagai pembolehubah ciri penting dalam penyelidikan diabetes. Banyak set data perubatan mengandungi klasifikasi binari seperti ini. Fikirkan sedikit bagaimana pengelasan seperti ini mungkin mengecualikan sebahagian populasi daripada rawatan.
+✅ Set data ini termasuk konsep 'jantina' sebagai pembolehubah ciri penting dalam penyelidikan diabetes. Banyak set data perubatan termasuk klasifikasi binari sebegini. Fikirkan sedikit bagaimana pengkategorian sebegini boleh mengecualikan sebahagian penduduk dari rawatan.
 
-Sekarang, muat naik data X dan y.
+Sekarang, muatkan data X dan y.
 
-> 🎓 Ingat, ini adalah pembelajaran terpantau, dan kita perlu ada sasaran 'y' yang dinamakan.
+> 🎓 Ingat, ini adalah pembelajaran berarah, dan kita perlukan sasaran bernama 'y'.
 
-Dalam sel kod baru, muat set data diabetes dengan memanggil `load_diabetes()`. Input `return_X_y=True` memberitahu bahawa `X` akan menjadi matriks data, dan `y` akan menjadi sasaran regresi.
+Dalam sel kod baru, muat set data diabetes dengan memanggil `load_diabetes()`. Input `return_X_y=True` menandakan bahawa `X` adalah matriks data, dan `y` adalah sasaran regresi.
 
-1. Tambah beberapa perintah print untuk menunjukkan bentuk matriks data dan unsur pertamanya:
+1. Tambah beberapa arahan cetak untuk menunjukkan bentuk matriks data dan elemen pertamanya:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ Dalam sel kod baru, muat set data diabetes dengan memanggil `load_diabetes()`. I
     print(X[0])
     ```
 
-    Apa yang anda dapat balik sebagai respons, ialah tuple. Anda sedang memberikan dua nilai pertama tuple kepada `X` dan `y` secara berasingan. Ketahui lebih lanjut [ mengenai tuple](https://wikipedia.org/wiki/Tuple).
+    Apa yang anda terima sebagai maklum balas adalah satu tuple. Apa yang anda lakukan adalah menugaskan dua nilai pertama tuple tersebut ke `X` dan `y` masing-masing. Ketahui lebih lanjut [tentang tuple](https://wikipedia.org/wiki/Tuple).
 
-    Anda boleh lihat data ini ada 442 item yang dibentuk dalam array 10 elemen:
+    Anda boleh lihat data ini mempunyai 442 item yang dibentuk dalam array 10 elemen:
 
     ```text
     (442, 10)
@@ -160,39 +160,39 @@ Dalam sel kod baru, muat set data diabetes dengan memanggil `load_diabetes()`. I
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Fikirkan sedikit tentang hubungan antara data dan sasaran regresi. Regresi linear meramalkan hubungan antara ciri X dan pembolehubah sasaran y. Bolehkah anda temukan [sasaran](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) untuk set data diabetes dalam dokumentasi? Apakah yang dataset ini demonstrasikan, memandangkan sasaran itu?
+    ✅ Fikirkan sedikit tentang hubungan antara data dan sasaran regresi. Regresi linear meramalkan hubungan antara ciri X dan pembolehubah sasaran y. Bolehkah anda temui [sasaran](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) untuk set data diabetes dalam dokumentasi? Apakah yang dataset ini demonstrasikan, berdasarkan sasaran tersebut?
 
-2. Seterusnya, pilih sebahagian set data ini untuk dilukis dengan memilih lajur ke-3 dataset. Anda boleh lakukan ini dengan menggunakan operator `:` untuk memilih semua baris, dan kemudian memilih lajur ke-3 menggunakan indeks (2). Anda juga boleh bentuk semula data menjadi array 2D - seperti yang diperlukan untuk plot - dengan menggunakan `reshape(n_rows, n_columns)`. Jika salah satu parameter adalah -1, dimensi yang bersesuaian dikira secara automatik.
+2. Seterusnya, pilih sebahagian set data ini untuk dilakar dengan memilih lajur ke-3 set data. Anda boleh lakukan ini dengan menggunakan operator `:` untuk memilih semua baris, dan kemudian pilih lajur ke-3 menggunakan indeks (2). Anda juga boleh membentuk data menjadi array 2D - seperti yang diperlukan untuk pembuatan plot - dengan menggunakan `reshape(n_baris, n_lajur)`. Jika salah satu parameter adalah -1, dimensi yang sepadan dikira secara automatik.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Pada bila-bila masa, cetak data untuk memeriksa bentuknya.
+   ✅ Pada bila-bila masa, cetak data untuk periksa bentuknya.
 
-3. Sekarang data sudah sedia untuk dilukis, anda boleh lihat sama ada mesin boleh membantu menentukan pembahagian logik antara nombor dalam set data ini. Untuk ini, anda perlu membahagikan kedua-dua data (X) dan sasaran (y) kepada set ujian dan latihan. Scikit-learn ada cara mudah untuk melakukan ini; anda boleh membahagikan data ujian anda pada titik yang diberikan.
+3. Sekarang data sudah sedia untuk dilakar, anda boleh lihat jika mesin dapat membantu menentukan pecahan logik antara nombor dalam dataset ini. Untuk melakukan ini, anda perlu membahagi kedua-dua data (X) dan sasaran (y) kepada set ujian dan latihan. Scikit-learn mempunyai cara mudah untuk melakukan ini; anda boleh membahagi data ujian pada titik tertentu.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Sekarang anda bersedia untuk melatih model! Muat model regresi linear dan latih dengan set latihan X dan y menggunakan `model.fit()`:
+4. Kini anda sudah sedia melatih model! Muat model regresi linear dan latih dengan set latihan X dan y menggunakan `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` adalah fungsi yang anda akan jumpa dalam banyak perpustakaan ML seperti TensorFlow
+    ✅ `model.fit()` adalah fungsi yang biasa anda lihat dalam banyak perpustakaan ML seperti TensorFlow
 
-5. Kemudian, cipta ramalan menggunakan data ujian, dengan fungsi `predict()`. Ini akan digunakan untuk melukis garis antara kumpulan data
+5. Kemudian, buat ramalan menggunakan data ujian, dengan fungsi `predict()`. Ini akan digunakan untuk melukis garis antara kumpulan data
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Kini tiba masa untuk memaparkan data dalam plot. Matplotlib adalah alat yang sangat berguna untuk tugasan ini. Buat scatterplot semua data X dan y ujian, dan gunakan ramalan untuk melukis garis di tempat yang paling sesuai, antara kelompok data model.
+6. Kini tiba masa untuk tunjuk data dalam plot. Matplotlib adalah alat yang sangat berguna untuk tugasan ini. Buat scatterplot semua data ujian X dan y, dan gunakan ramalan tersebut untuk melukis garis di tempat yang paling sesuai, antara kumpulan data model.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -205,26 +205,25 @@ Dalam sel kod baru, muat set data diabetes dengan memanggil `load_diabetes()`. I
 
    ![scatterplot menunjukkan titik data berkaitan diabetes](../../../../translated_images/ms/scatterplot.ad8b356bcbb33be6.webp)
 
+   ✅ Fikirkan sedikit apa yang sedang berlaku di sini. Garis lurus berjalan melalui banyak titik kecil data, tetapi apa sebenarnya yang ia lakukan? Bolehkah anda lihat bagaimana anda sepatutnya menggunakan garis ini untuk meramalkan di mana titik data baru yang belum pernah dilihat harus sesuai berkaitan paksi y plot? Cuba nyatakan dalam kata-kata kegunaan praktikal model ini.
 
-   ✅ Fikirkan sedikit tentang apa yang sedang berlaku di sini. Garisan lurus sedang melintasi banyak titik data kecil, tetapi apa sebenarnya yang dilakukannya? Bolehkah anda lihat bagaimana anda sepatutnya dapat menggunakan garisan ini untuk meramalkan di mana titik data baru yang belum dilihat sepatutnya diletakkan berhubung dengan paksi y plot tersebut? Cuba nyatakan secara praktikal kegunaan model ini.
-
-Tahniah, anda telah membina model regresi linear pertama anda, membuat ramalan dengannya, dan memaparkannya dalam plot!
+Tahniah, anda sudah membina model regresi linear pertama anda, buat ramalan dengannya, dan paparkannya dalam plot!
 
 ---
 ## 🚀Cabaran
 
-Plotkan pemboleh ubah yang berbeza dari dataset ini. Petunjuk: sunting baris ini: `X = X[:,2]`. Memandangkan sasaran dataset ini, apa yang anda dapat temui tentang perkembangan diabetes sebagai penyakit?
-## [Kuiz pasca kuliah](https://ff-quizzes.netlify.app/en/ml/)
+Lakarkan pembolehubah berbeza dari dataset ini. Petunjuk: sunting baris ini: `X = X[:,2]`. Berdasarkan sasaran dataset ini, apa yang anda dapat temui tentang perkembangan diabetes sebagai penyakit?
+## [Kuiz pasca-ceramah](https://ff-quizzes.netlify.app/en/ml/)
 
-## Ulasan & Belajar Kendiri
+## Ulasan & Belajar Sendiri
 
-Dalam tutorial ini, anda bekerja dengan regresi linear mudah, bukan regresi linear univariat atau berganda. Baca sedikit tentang perbezaan antara kaedah-kaedah ini, atau lihat [video ini](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+Dalam tutorial ini, anda bekerja dengan regresi linear mudah, bukan regresi linear univariat atau multivariat. Baca sedikit tentang perbezaan antara kaedah ini, atau lihat [video ini](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Baca lebih lanjut tentang konsep regresi dan fikirkan tentang jenis soalan apa yang boleh dijawab oleh teknik ini. Ikuti [tutorial ini](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) untuk mendalami pemahaman anda.
+Baca lebih lanjut mengenai konsep regresi dan fikirkan jenis soalan apa yang boleh dijawab dengan teknik ini. Ikut [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) ini untuk memperdalam pemahaman anda.
 
 ## Tugasan
 
-[Dataset yang berbeza](assignment.md)
+[Set data yang berbeza](assignment.md)
 
 ---
 

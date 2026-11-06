@@ -1,147 +1,147 @@
-# Makine Öğreniminin Tarihi
+# Makine öğrenmesinin tarihi
 
-![Makine öğreniminin tarihinin bir sketchnote özeti](../../../../sketchnotes/ml-history.png)
-> Sketchnote: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Makine öğrenmesinin tarihinin sketchnotes olarak özeti](../../../../translated_images/tr/ml-history.a1bdfd4ce1f464d9.webp)
+> Sketchnote, [Tomomi Imura](https://www.twitter.com/girlie_mac) tarafından hazırlanmıştır
 
-## [Ders Öncesi Test](https://ff-quizzes.netlify.app/en/ml/)
-
----
-
-[![Yeni Başlayanlar için ML - Makine Öğreniminin Tarihi](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "Yeni Başlayanlar için ML - Makine Öğreniminin Tarihi")
-
-> 🎥 Bu derste işlenecek kısa bir video için yukarıdaki görsele tıklayın.
-
-Bu derste, makine öğrenimi ve yapay zekanın tarihindeki önemli dönüm noktalarını inceleyeceğiz.
-
-Yapay zeka (YZ) alanının tarihi, makine öğreniminin tarihiyle iç içedir, çünkü ML'yi destekleyen algoritmalar ve hesaplama ilerlemeleri YZ'nin gelişimine katkıda bulunmuştur. Bu alanların ayrı birer araştırma konusu olarak 1950'lerde şekillenmeye başladığını hatırlamak faydalıdır. Ancak, önemli [algoritmik, istatistiksel, matematiksel, hesaplama ve teknik keşifler](https://wikipedia.org/wiki/Timeline_of_machine_learning) bu dönemin öncesine dayanır ve bu dönemle örtüşür. Aslında, insanlar bu sorular üzerine [yüzyıllardır](https://wikipedia.org/wiki/History_of_artificial_intelligence) düşünüyor: Bu makale, 'düşünen bir makine' fikrinin tarihsel entelektüel temellerini tartışmaktadır.
-
----
-## Önemli Keşifler
-
-- 1763, 1812 [Bayes Teoremi](https://wikipedia.org/wiki/Bayes%27_theorem) ve öncülleri. Bu teorem ve uygulamaları, bir olayın önceden bilinen bilgilere dayanarak gerçekleşme olasılığını tanımlayan çıkarımın temelini oluşturur.
-- 1805 [En Küçük Kareler Teorisi](https://wikipedia.org/wiki/Least_squares), Fransız matematikçi Adrien-Marie Legendre tarafından geliştirilmiştir. Bu teori, Regresyon birimimizde öğreneceğiniz gibi, veri uyumunda yardımcı olur.
-- 1913 [Markov Zincirleri](https://wikipedia.org/wiki/Markov_chain), Rus matematikçi Andrey Markov'un adını taşır ve bir önceki duruma dayalı olası olaylar dizisini tanımlamak için kullanılır.
-- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron), Amerikalı psikolog Frank Rosenblatt tarafından icat edilen ve derin öğrenmedeki ilerlemelerin temelini oluşturan bir tür doğrusal sınıflandırıcıdır.
+## [Ders öncesi quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
-- 1967 [En Yakın Komşu](https://wikipedia.org/wiki/Nearest_neighbor), başlangıçta rotaları haritalamak için tasarlanmış bir algoritmadır. ML bağlamında ise desenleri tespit etmek için kullanılır.
-- 1970 [Geri Yayılım](https://wikipedia.org/wiki/Backpropagation), [ileri beslemeli sinir ağlarını](https://wikipedia.org/wiki/Feedforward_neural_network) eğitmek için kullanılır.
-- 1982 [Tekrarlayan Sinir Ağları](https://wikipedia.org/wiki/Recurrent_neural_network), ileri beslemeli sinir ağlarından türetilen ve zamansal grafikler oluşturan yapay sinir ağlarıdır.
+[![Yeni başlayanlar için ML - Makine Öğrenmesinin Tarihi](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "Yeni başlayanlar için ML - Makine Öğrenmesinin Tarihi")
 
-✅ Biraz araştırma yapın. ML ve YZ tarihindeki başka hangi tarihler önemli dönüm noktaları olarak öne çıkıyor?
+> 🎥 Bu dersin kısa videosunu izlemek için yukarıdaki resme tıklayın.
+
+Bu derste, makine öğrenmesi ve yapay zekanın tarihindeki önemli dönüm noktalarını inceleyeceğiz.
+
+Yapay zeka (YZ) alanının tarihi, makine öğrenmesinin tarihinden ayrılmaz biçimde iç içedir; çünkü ML'nin temelini oluşturan algoritmalar ve hesaplama gelişmeleri YZ'nin gelişimini beslemiştir. Bu alanların ayrı araştırma dalları olarak 1950’lerde belirginleşmeye başladığını hatırlamak faydalıdır, ancak önemli [algoritmik, istatistiksel, matematiksel, hesaplama ve teknik keşifler](https://wikipedia.org/wiki/Timeline_of_machine_learning) bu döneme önceki dönemlerde var olmuş ve üst üste binmiştir. Aslında, insanlar bu sorular üzerinde [yüzlerce yıldır](https://wikipedia.org/wiki/History_of_artificial_intelligence) düşünüyor: bu makale 'düşünen makina' fikrinin tarihsel entelektüel temellerini ele alır.
 
 ---
-## 1950: Düşünebilen Makineler
+## Önemli keşifler
 
-2019 yılında halk tarafından [20. yüzyılın en büyük bilim insanı](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) seçilen gerçekten olağanüstü bir kişi olan Alan Turing, 'düşünebilen bir makine' kavramının temellerini atmaya yardımcı olmakla tanınır. Bu kavramı eleştirmenlerle ve kendi ampirik kanıt ihtiyacıyla başa çıkmak için [Turing Testi](https://www.bbc.com/news/technology-18475646) oluşturmuştur. Bu testi NLP derslerimizde inceleyeceksiniz.
+- 1763, 1812 [Bayes Teoremi](https://wikipedia.org/wiki/Bayes%27_theorem) ve öncülleri. Bu teorem ve uygulamaları, ön bilgiye dayanarak bir olayın gerçekleşme olasılığını tanımlayan çıkarımların temelini oluşturur.
+- 1805 Fransız matematikçi Adrien-Marie Legendre tarafından geliştirilen [En Küçük Kareler Teorisi](https://wikipedia.org/wiki/Least_squares). Bu teori, Regresyon birimimizde öğreneceğiniz gibi, veri uyumunda yardımcı olur.
+- 1913 Rus matematikçi Andrey Markov'un adını taşıyan [Markov Zincirleri](https://wikipedia.org/wiki/Markov_chain), önceki duruma bağlı olarak olası olayların sırasını tanımlamak için kullanılır.
+- 1957 Amerikalı psikolog Frank Rosenblatt tarafından icat edilen ve derin öğrenmedeki gelişmelerin temelini oluşturan [Perceptron](https://wikipedia.org/wiki/Perceptron) tipi bir doğrusal sınıflandırıcıdır.
+
+---
+
+- 1967 [En Yakın Komşu](https://wikipedia.org/wiki/Nearest_neighbor) algoritması, başlangıçta rota haritalamak için tasarlanmıştır. Makine öğrenimi bağlamında desenleri tespit etmek için kullanılır.
+- 1970 [Geri Yayılım](https://wikipedia.org/wiki/Backpropagation) algoritması, [ileri beslemeli sinir ağlarını](https://wikipedia.org/wiki/Feedforward_neural_network) eğitmek için kullanılır.
+- 1982 [Tekrarlayan Sinir Ağları](https://wikipedia.org/wiki/Recurrent_neural_network), zamanı temel alan grafikler yaratan yapay sinir ağlarıdır ve ileri beslemeli ağlardan türemiştir.
+
+✅ Küçük bir araştırma yapın. Makine öğrenimi ve yapay zeka tarihindeki başka hangi tarihler dönüm noktası olarak öne çıkar?
+
+---
+## 1950: Düşünen makineler
+
+Gerçekten sıra dışı bir kişilik olan Alan Turing, [2019’da halk tarafından](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 20. yüzyılın en büyük bilim insanı seçildi ve ‘düşünebilen bir makine’ kavramının temelini atmakta yardımcı olduğuna inanılır. Bu kavrama itiraz edenlerle ve bu kavrama dair kendi ampirik kanıt ihtiyacıyla mücadele ederken, NLP derslerinde inceleyeceğiniz [Turing Testi](https://www.bbc.com/news/technology-18475646)ni geliştirdi.
 
 ---
 ## 1956: Dartmouth Yaz Araştırma Projesi
 
-"Dartmouth Yaz Araştırma Projesi, yapay zeka alanı için önemli bir olaydı" ve burada 'yapay zeka' terimi türetilmiştir ([kaynak](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+"Yapay zekâ alanında Dartmouth Yaz Araştırma Projesi, alan için dönüm noktası oldu" ve burada ‘yapay zeka’ terimi ilk kez ortaya atıldı ([kaynak](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
 
-> Öğrenmenin veya zekanın herhangi bir özelliğinin, bir makinenin bunu simüle edebileceği kadar kesin bir şekilde tanımlanabileceği varsayımıyla ilerlemek mümkündür.
-
----
-
-Baş araştırmacı, matematik profesörü John McCarthy, "öğrenmenin veya zekanın herhangi bir özelliğinin, bir makinenin bunu simüle edebileceği kadar kesin bir şekilde tanımlanabileceği varsayımıyla ilerlemeyi" umuyordu. Katılımcılar arasında alanın bir başka önemli ismi olan Marvin Minsky de vardı.
-
-Atölye çalışması, "sembolik yöntemlerin yükselişi, sınırlı alanlara odaklanan sistemler (erken uzman sistemler) ve tümdengelim sistemleri ile tümevarım sistemleri arasındaki tartışmalar" gibi birçok tartışmayı başlatması ve teşvik etmesiyle tanınır ([kaynak](https://wikipedia.org/wiki/Dartmouth_workshop)).
-
----
-## 1956 - 1974: "Altın Yıllar"
-
-1950'lerden 1970'lerin ortalarına kadar, YZ'nin birçok sorunu çözebileceği umudu yüksek bir iyimserlik yarattı. 1967'de Marvin Minsky, "Bir nesil içinde ... 'yapay zeka' yaratma sorunu büyük ölçüde çözülecek" diye iddialı bir şekilde ifade etti. (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
-
-Doğal dil işleme araştırmaları gelişti, arama daha güçlü ve rafine hale geldi ve 'mikro-dünyalar' kavramı oluşturuldu; burada basit görevler, sade dil talimatları kullanılarak tamamlanabiliyordu.
+> Öğrenmenin veya zekanın herhangi bir yönü prensipte o kadar kesin tanımlanabilir ki, bunu simüle eden bir makina yapılabilir.
 
 ---
 
-Araştırmalar hükümet kurumları tarafından iyi finanse edildi, hesaplama ve algoritmalarda ilerlemeler kaydedildi ve zeki makinelerin prototipleri oluşturuldu. Bu makinelerden bazıları şunlardır:
+Baş araştırmacı, matematik profesörü John McCarthy, "öğrenmenin veya zekanın herhangi bir yönünün prensipte o kadar kesin tanımlanabileceği ve bir makinanın bunu simüle edebileceği varsayımı ile ilerlemeyi" umuyordu. Katılımcılar arasında alanın diğer önemli isimlerinden Marvin Minsky yer aldı.
 
-* [Shakey robotu](https://wikipedia.org/wiki/Shakey_the_robot), 'zekice' görevleri nasıl gerçekleştireceğine karar verebilen ve manevra yapabilen bir robottu.
+Atölye çalışması, "sembolik yöntemlerin yükselişi, sınırlı alanlara odaklanan sistemler (erken uzman sistemler) ve tümdengelimsel sistemler ile tümevarımsal sistemler arasındaki tartışmaların başlaması ve teşvik edilmesi" ile anılır ([kaynak](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
-    ![Shakey, zeki bir robot](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
-    > Shakey, 1972
+---
+## 1956 - 1974: "Altın yıllar"
+
+1950’den 1970’lerin ortasına kadar, YZ’nin birçok problemi çözebileceği konusunda yüksek bir iyimserlik hakimdi. 1967’de Marvin Minsky, "Bir nesil içinde… 'yapay zeka' yaratma sorunu büyük ölçüde çözülecek." diye emin bir şekilde belirtmiştir. (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+
+Doğal dil işleme araştırmaları gelişti, arama daha da geliştirildi ve güçlendirildi, ve 'mikro-dünyalar' kavramı oluşturuldu; burada basit görevler basit dil komutlarıyla yapılıyordu.
 
 ---
 
-* Eliza, erken bir 'sohbet botu', insanlarla konuşabiliyor ve ilkel bir 'terapist' gibi davranabiliyordu. Eliza hakkında daha fazla bilgiyi NLP derslerimizde öğreneceksiniz.
+Araştırmalar devlet kurumları tarafından iyi finanse edildi, hesaplamada ve algoritmalarda ilerlemeler kaydedildi, ve akıllı makinelerin prototipleri üretildi. Bunlardan bazıları şunlardır:
 
-    ![Eliza, bir bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
-    > Eliza'nın bir versiyonu, bir sohbet botu
+* Görevleri ‘akıllıca’ yapabilecek şekilde yönelip karar verebilen [Shakey robot](https://wikipedia.org/wiki/Shakey_the_robot).
+
+    ![Shakey, zeki bir robot](../../../../translated_images/tr/shakey.4dc17819c447c05b.webp)
+    > 1972 yılında Shakey
 
 ---
 
-* "Bloklar dünyası", blokların istiflenip sıralanabildiği ve makineleri karar vermeyi öğretme deneylerinin yapılabildiği bir mikro-dünya örneğiydi. [SHRDLU](https://wikipedia.org/wiki/SHRDLU) gibi kütüphanelerle yapılan ilerlemeler, dil işleme alanını ileriye taşıdı.
+* Erken bir 'sohbet botu' olan Eliza, insanlarla sohbet edebilir ve ilkel bir 'terapist' gibi davranabilirdi. NLP derslerinde Eliza hakkında daha fazla bilgi edineceksiniz.
+
+    ![Bir bot olan Eliza](../../../../translated_images/tr/eliza.84397454cda9559b.webp)
+    > Bir sohbet botu olan Eliza'nın bir versiyonu
+
+---
+
+* "Bloklar dünyası", blokların üst üste konup sıralanabileceği ve makinelerin karar vermeyi öğrenmelerinin denenebileceği bir mikro-dünya örneğiydi. [SHRDLU](https://wikipedia.org/wiki/SHRDLU) gibi kütüphanelerle yapılan gelişmeler, dil işlemeyi ileri taşıdı.
 
     [![SHRDLU ile bloklar dünyası](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "SHRDLU ile bloklar dünyası")
 
-    > 🎥 Yukarıdaki görsele tıklayarak bir video izleyin: SHRDLU ile bloklar dünyası
+    > 🎥 Yukarıdaki resme video için tıklayın: SHRDLU ile bloklar dünyası
 
 ---
 ## 1974 - 1980: "YZ Kışı"
 
-1970'lerin ortalarına gelindiğinde, 'zeki makineler' yapmanın karmaşıklığının hafife alındığı ve mevcut hesaplama gücüyle vaatlerinin abartıldığı ortaya çıktı. Fonlar kurudu ve alana olan güven azaldı. Güveni etkileyen bazı sorunlar şunlardı:
+1970’lerin ortalarına gelindiğinde 'zeka makinesi' yaratmanın zorluğu ve vaatlerinin mevcut hesaplama gücüyle karşılanamayacağı anlaşılmıştı. Finansman kurudu ve alana güven azaldı. Güveni etkileyen bazı sorunlar şunlardı:
 ---
 - **Sınırlamalar**. Hesaplama gücü çok sınırlıydı.
-- **Kombinatoryal patlama**. Bilgisayarlardan daha fazlası istendikçe eğitilmesi gereken parametrelerin sayısı üstel olarak arttı, ancak hesaplama gücü ve yetenekleri paralel bir şekilde gelişmedi.
-- **Veri eksikliği**. Algoritmaların test edilmesi, geliştirilmesi ve rafine edilmesi sürecini engelleyen bir veri eksikliği vardı.
-- **Doğru soruları mı soruyoruz?**. Sorulan soruların kendisi sorgulanmaya başlandı. Araştırmacılar, yaklaşımlarına yönelik eleştirilerle karşılaştı:
-  - Turing testleri, diğer fikirlerin yanı sıra, 'Çin odası teorisi' ile sorgulandı. Bu teori, "bir dijital bilgisayarı programlamanın, dil anladığını göstermesini sağlayabileceğini, ancak gerçek bir anlayış üretemeyeceğini" öne sürdü ([kaynak](https://plato.stanford.edu/entries/chinese-room/)).
-  - "Terapist" ELIZA gibi yapay zekaların topluma tanıtılmasının etiği sorgulandı.
+- **Kombinatoryal patlama**. Bilgisayarlardan daha çok şey istendikçe eğitilmesi gereken parametre sayısı üssel olarak arttı, ancak hesaplama gücü ve kabiliyeti bu artışa paralel gelişmedi.
+- **Veri kıtlığı**. Algoritmaları test etme, geliştirme ve iyileştirme sürecini engelleyen veri eksikliği vardı.
+- **Doğru soruları mı soruyoruz?**. Sorulan sorular sorgulanmaya başlandı. Araştırmacılar yaklaşımlarına yönelik eleştiriler aldı:
+  - Turing testleri, "Çin odası teorisi" gibi fikirlerle sorgulandı; bu teori, "dijital bir bilgisayara programlama yaparak dil anlıyormuş gibi görünmesi sağlanabilir ancak gerçek anlayışı üretemez" der ([kaynak](https://plato.stanford.edu/entries/chinese-room/)).
+  - "Terapist" ELIZA gibi yapay zekaların topluma tanıtılmasının etikliği tartışıldı.
 
 ---
 
-Aynı zamanda, çeşitli YZ düşünce okulları oluşmaya başladı. ["Dağınık" ve "düzenli YZ"](https://wikipedia.org/wiki/Neats_and_scruffies) uygulamaları arasında bir ayrım yapıldı. _Dağınık_ laboratuvarlar, istenen sonuçları elde edene kadar programları saatlerce ayarladı. _Düzenli_ laboratuvarlar ise "mantık ve resmi problem çözmeye" odaklandı. ELIZA ve SHRDLU, iyi bilinen _dağınık_ sistemlerdi. 1980'lerde, ML sistemlerini tekrarlanabilir hale getirme talebi ortaya çıktıkça, _düzenli_ yaklaşım, sonuçlarının daha açıklanabilir olması nedeniyle ön plana çıktı.
+Aynı zamanda, çeşitli YZ düşünce okulları oluşmaya başladı. ["dağınık" ve "düzenli YZ"](https://wikipedia.org/wiki/Neats_and_scruffies) uygulamaları arasında bir ikilik kuruldu. _Dağınık_ laboratuvarlar istedikleri sonuçları alıncaya kadar programları saatlerce değiştirdiler. _Düzenli_ laboratuvarlar "mantık ve formal problem çözmeye odaklandılar." ELIZA ve SHRDLU iyi bilinen _dağınık_ sistemlerdi. 1980'lerde ML sistemlerinin çoğaltılabilir olması talebi ortaya çıktıkça, _düzenli_ yaklaşım giderek ön plana çıktı; çünkü sonuçları daha açıklanabilirdi.
 
 ---
-## 1980'ler Uzman Sistemler
+## 1980’ler Uzman Sistemler
 
-Alan büyüdükçe, iş dünyasına olan faydası daha net hale geldi ve 1980'lerde 'uzman sistemlerin' yaygınlaşması da öyle. "Uzman sistemler, yapay zekanın (YZ) ilk gerçekten başarılı yazılım türlerinden biri oldu" ([kaynak](https://wikipedia.org/wiki/Expert_system)).
+Alan büyüdükçe, iş dünyasına faydaları daha belirgin oldu ve 1980'lerde 'uzman sistemler' yaygınlaştı. "Uzman sistemler, yapay zekâ (YZ) yazılımlarının ilk gerçekten başarılı biçimlerinden biridir." ([kaynak](https://wikipedia.org/wiki/Expert_system)).
 
-Bu tür bir sistem aslında _hibrit_ bir yapıya sahiptir; iş gereksinimlerini tanımlayan bir kurallar motoru ve bu kurallar sistemini kullanarak yeni gerçekler çıkaran bir çıkarım motorundan oluşur.
+Bu tür sistemler aslında _karma_ uygulamalardır ve kısmen iş gereksinimlerini belirleyen kurallar motorundan, kısmen de bu kurallar sistemini kullanarak yeni gerçekler çıkaran çıkarım motorundan oluşur.
 
-Bu dönemde sinir ağlarına da artan bir ilgi gösterildi.
+Bu dönemde sinir ağlarına artan ilgi oldu.
 
 ---
-## 1987 - 1993: YZ 'Soğuma Dönemi'
+## 1987 - 1993: YZ 'Durağanlığı'
 
-Uzman sistemlerin özelleşmiş donanımlarının yaygınlaşması, ne yazık ki, aşırı özelleşmiş hale gelmelerine neden oldu. Kişisel bilgisayarların yükselişi, bu büyük, özelleşmiş, merkezi sistemlerle rekabet etti. Bilgi işlemde demokratikleşme başlamıştı ve bu, sonunda büyük veri çağının modern patlamasına zemin hazırladı.
+Uzman sistemlerin donanımının fazla özelleşmesi olumsuz etki yaptı. Kişisel bilgisayarların yükselişi bu büyük, özel, merkezi sistemlerle rekabet etti. Bilgi işlem demokratikleşmeye başladı ve bu, sonunda büyük veri patlamasının yolunu açtı.
 
 ---
 ## 1993 - 2011
 
-Bu dönem, ML ve YZ'nin daha önce veri ve hesaplama gücü eksikliği nedeniyle yaşanan sorunları çözebileceği yeni bir çağın başlangıcını gördü. Veri miktarı hızla artmaya ve daha geniş bir şekilde erişilebilir hale gelmeye başladı, hem iyi hem de kötü anlamda, özellikle 2007 civarında akıllı telefonların ortaya çıkışıyla. Hesaplama gücü üstel olarak genişledi ve algoritmalar buna paralel olarak evrildi. Alan, geçmişin serbest günlerinden olgunlaşmaya ve gerçek bir disiplin haline gelmeye başladı.
+Bu çağ, veri ve hesaplama gücü eksikliğinin önceden neden olduğu sorunları çözmek için ML ve YZ için yeni bir dönem açtı. Veri miktarı hızla arttı ve daha geniş biçimde erişilebilir hale geldi; özellikle 2007 civarındaki akıllı telefonun ortaya çıkışıyla. Hesaplama gücü üssel olarak büyüdü ve algoritmalar da gelişti. Alan olgunlaşmaya başladı; geçmişin özgür, serbest günleri gerçek bir disipline dönüştü.
 
 ---
 ## Günümüz
 
-Bugün makine öğrenimi ve YZ, hayatımızın neredeyse her alanına dokunuyor. Bu dönem, bu algoritmaların insan yaşamı üzerindeki risklerini ve potansiyel etkilerini dikkatlice anlamayı gerektiriyor. Microsoft'tan Brad Smith'in belirttiği gibi, "Bilgi teknolojisi, mahremiyet ve ifade özgürlüğü gibi temel insan hakları korumalarının kalbine inen sorunları gündeme getiriyor. Bu sorunlar, bu ürünleri yaratan teknoloji şirketleri için sorumluluğu artırıyor. Bizim görüşümüze göre, aynı zamanda düşünceli hükümet düzenlemelerini ve kabul edilebilir kullanımlar etrafında normların geliştirilmesini gerektiriyor" ([kaynak](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Günümüzde makine öğrenimi ve YZ hayatımızın neredeyse her alanına dokunuyor. Bu çağ, algoritmaların insan hayatı üzerindeki risklerini ve potansiyel etkilerini dikkatle anlamayı gerektiriyor. Microsoft'tan Brad Smith’in de belirttiği gibi, "Bilgi teknolojisi gizlilik ve ifade özgürlüğü gibi temel insan hakları korumalarının özüne dokunan sorunları gündeme getiriyor. Bu sorunlar, bu ürünleri geliştiren teknoloji şirketleri için artan sorumluluklar doğurur. Bizim görüşümüze göre, aynı zamanda düşünceli hükümet düzenlemeleri ve kabul edilebilir kullanımlara dair normların geliştirilmesini gerektirir." ([kaynak](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 ---
 
-Geleceğin ne getireceği henüz belli değil, ancak bu bilgisayar sistemlerini ve çalıştırdıkları yazılım ve algoritmaları anlamak önemlidir. Bu müfredatın, kendi kararlarınızı verebilmeniz için daha iyi bir anlayış kazanmanıza yardımcı olacağını umuyoruz.
+Geleceğin ne getireceği henüz görülmedi, ancak bu bilgisayar sistemlerini ve onların çalıştırdığı yazılım ile algoritmaları anlamak önemlidir. Umarız bu müfredat, kendiniz için karar verebilecek derecede iyi bir anlayış kazanmanıza yardımcı olur.
 
 [![Derin öğrenmenin tarihi](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Derin öğrenmenin tarihi")
-> 🎥 Yukarıdaki görsele tıklayarak bir video izleyin: Yann LeCun, bu derste derin öğrenmenin tarihini tartışıyor
+> 🎥 Yukarıdaki resme dersin videosu için tıklayın: Yann LeCun derste derin öğrenmenin tarihini anlatıyor
 
 ---
-## 🚀Meydan Okuma
+## 🚀Meydan okuma
 
-Bu tarihi anlardan birine dalın ve arkasındaki insanlar hakkında daha fazla bilgi edinin. Büyüleyici karakterler var ve hiçbir bilimsel keşif kültürel bir boşlukta yaratılmamıştır. Ne keşfediyorsunuz?
+Bu tarihi anlardan birine dalın ve arkasındaki insanları daha fazla keşfedin. Büyüleyici karakterler var ve hiçbir bilimsel keşif kültürel bir vakumda yaratılmadı. Siz neler keşfediyorsunuz?
 
-## [Ders Sonrası Test](https://ff-quizzes.netlify.app/en/ml/)
+## [Ders sonrası quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
-## Gözden Geçirme ve Kendi Kendine Çalışma
+## Gözden Geçirme & Kendi Kendine Çalışma
 
-İzleyeceğiniz ve dinleyeceğiniz öğeler:
+İzlemeniz ve dinlemeniz gerekenler:
 
-[Amy Boyd'un YZ'nin evrimini tartıştığı bu podcast](http://runasradio.com/Shows/Show/739)
+[Amy Boyd’un YZ'nin evrimini tartıştığı bu podcast](http://runasradio.com/Shows/Show/739)
 
-[![Amy Boyd'dan YZ'nin tarihi](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Amy Boyd'dan YZ'nin tarihi")
+[![Amy Boyd tarafından YZ'nin tarihi](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Amy Boyd tarafından YZ'nin tarihi")
 
 ---
 
@@ -151,5 +151,7 @@ Bu tarihi anlardan birine dalın ve arkasındaki insanlar hakkında daha fazla b
 
 ---
 
-**Feragatname**:  
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

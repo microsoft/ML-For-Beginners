@@ -1,129 +1,128 @@
 # A gépi tanulás története
 
-![A gépi tanulás történetének összefoglalása sketchnote-ban](../../../../sketchnotes/ml-history.png)
-> Sketchnote készítette: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![A gépi tanulás történetének összefoglalója egy sketchnote-ban](../../../../translated_images/hu/ml-history.a1bdfd4ce1f464d9.webp)
+> Sketchnote készítője: [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Előadás előtti kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
-[![Gépi tanulás kezdőknek - A gépi tanulás története](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "Gépi tanulás kezdőknek - A gépi tanulás története")
+[![ML kezdőknek - A gépi tanulás története](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML kezdőknek - A gépi tanulás története")
 
-> 🎥 Kattints a fenti képre egy rövid videóért, amely bemutatja ezt a leckét.
+> 🎥 Kattints a fenti képre egy rövid videó megtekintéséhez, amely végigvezet ezen az leckén.
 
-Ebben a leckében végigjárjuk a gépi tanulás és mesterséges intelligencia történetének főbb mérföldköveit.
+Ebben a leckében végigjárjuk a gépi tanulás és a mesterséges intelligencia történetének fő mérföldköveit.
 
-A mesterséges intelligencia (MI) mint terület története szorosan összefonódik a gépi tanulás történetével, mivel a gépi tanulás alapját képező algoritmusok és számítástechnikai fejlődések hozzájárultak az MI fejlődéséhez. Érdemes megjegyezni, hogy bár ezek a területek mint különálló kutatási irányok az 1950-es években kezdtek körvonalazódni, fontos [algoritmikus, statisztikai, matematikai, számítástechnikai és technikai felfedezések](https://wikipedia.org/wiki/Timeline_of_machine_learning) már korábban is történtek, és átfedték ezt az időszakot. Valójában az emberek már [évszázadok óta](https://wikipedia.org/wiki/History_of_artificial_intelligence) foglalkoznak ezekkel a kérdésekkel: ez a cikk a "gondolkodó gép" ötletének történelmi szellemi alapjait tárgyalja.
-
----
-## Figyelemre méltó felfedezések
-
-- 1763, 1812 [Bayes-tétel](https://wikipedia.org/wiki/Bayes%27_theorem) és elődei. Ez a tétel és alkalmazásai az események bekövetkezésének valószínűségét írják le korábbi ismeretek alapján.
-- 1805 [Legkisebb négyzetek módszere](https://wikipedia.org/wiki/Least_squares) Adrien-Marie Legendre francia matematikustól. Ez az elmélet, amelyet a regresszióról szóló egységünkben tanulni fogsz, segít az adatok illesztésében.
-- 1913 [Markov-láncok](https://wikipedia.org/wiki/Markov_chain), amelyeket Andrey Markov orosz matematikusról neveztek el, egy eseménysorozatot írnak le, amely az előző állapoton alapul.
-- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron), egy lineáris osztályozó típusa, amelyet Frank Rosenblatt amerikai pszichológus talált fel, és amely a mélytanulás fejlődésének alapját képezi.
+A mesterséges intelligencia (AI) mint tudományterület története összefonódik a gépi tanulás történetével, mivel az ML alapját képező algoritmusok és számítási fejlődések hozzájárultak az AI kifejlődéséhez. Hasznos felidézni, hogy bár ezek a területek különálló kutatási területekként az 1950-es években kezdtek kristályosodni, fontos [algoritmikus, statisztikai, matematikai, számítási és technikai felfedezések](https://wikipedia.org/wiki/Timeline_of_machine_learning) már megelőzték és átfedték ezt az időszakot. Valójában az emberek már [századok óta](https://wikipedia.org/wiki/History_of_artificial_intelligence) foglalkoznak ezekkel a kérdésekkel: ez a cikk a „gondolkodó gép” ötletének történelmi intellektuális alapjait tárgyalja.
 
 ---
+## Jelentős felfedezések
 
-- 1967 [Legközelebbi szomszéd](https://wikipedia.org/wiki/Nearest_neighbor) algoritmus, amelyet eredetileg útvonalak feltérképezésére terveztek. Gépi tanulásban mintázatok felismerésére használják.
-- 1970 [Visszaterjesztés](https://wikipedia.org/wiki/Backpropagation), amelyet [előrecsatolt neurális hálók](https://wikipedia.org/wiki/Feedforward_neural_network) tanítására használnak.
-- 1982 [Rekurzív neurális hálók](https://wikipedia.org/wiki/Recurrent_neural_network), amelyek az előrecsatolt neurális hálókból származnak, és időbeli gráfokat hoznak létre.
+- 1763, 1812 [Bayes-tétel](https://wikipedia.org/wiki/Bayes%27_theorem) és elődjei. Ez a tétel és alkalmazásai az indukció alapját képezik, leírva egy esemény valószínűségét előzetes ismeretek alapján.
+- 1805 [Legkisebb négyzetek elmélete](https://wikipedia.org/wiki/Least_squares) a francia matematikus Adrien-Marie Legendre-től. Erről az elméletről a Regresszió egységünk során tanulsz, segíti az adatok illesztését.
+- 1913 [Markov-láncok](https://wikipedia.org/wiki/Markov_chain), amelyeket az orosz matematikus Andrey Markovról neveztek el; egy korábbi állapot alapján leíró lehetséges események sorozatát ábrázolják.
+- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron), az amerikai pszichológus Frank Rosenblatt által feltalált lineáris osztályozó, amely a mélytanulás fejlődésének alapját képezi.
 
-✅ Végezz egy kis kutatást. Mely más dátumok emelkednek ki a gépi tanulás és MI történetében?
+---
+
+- 1967 [Legközelebbi szomszéd](https://wikipedia.org/wiki/Nearest_neighbor), eredetileg útvonaltervezésre tervezett algoritmus. ML kontextusban mintázatok felismerésére használják.
+- 1970 [Visszaterjesztés](https://wikipedia.org/wiki/Backpropagation), amelyet [előrecsatolt mesterséges neurális hálózatok](https://wikipedia.org/wiki/Feedforward_neural_network) tanítására használnak.
+- 1982 [Rekurzív neurális hálózatok](https://wikipedia.org/wiki/Recurrent_neural_network), amelyek előrecsatolt hálózatokból származnak és időbeli gráfokat hoznak létre.
+
+✅ Végezzen egy kis kutatást. Milyen egyéb dátumokat tartanak fontos mérföldkőnek az ML és AI történetében?
 
 ---
 ## 1950: Gondolkodó gépek
 
-Alan Turing, egy igazán figyelemre méltó személy, akit [2019-ben a közönség](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) a 20. század legnagyobb tudósának választott, segített lefektetni a "gondolkodó gép" koncepciójának alapjait. Turing a kétkedőkkel és saját empirikus bizonyítékok iránti igényével küzdött, részben azáltal, hogy megalkotta a [Turing-tesztet](https://www.bbc.com/news/technology-18475646), amelyet a NLP leckéinkben fogsz megvizsgálni.
+Alan Turing, egy igazán rendkívüli személy, akit [a közvélemény 2019-ben](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) a 20. század legnagyobb tudósának választott, hozzájárult a „gondolkodni képes gép” koncepciójának alapjaihoz. Megküzdött a kételkedőkkel, valamint a fogalom empirikus bizonyításának szükségességével részben a [Turing-teszt](https://www.bbc.com/news/technology-18475646) megalkotásával, amelyet az NLP leckéink során fogsz megvizsgálni.
 
 ---
 ## 1956: Dartmouth nyári kutatási projekt
 
-"A Dartmouth nyári kutatási projekt a mesterséges intelligenciáról egy alapvető esemény volt a mesterséges intelligencia mint terület számára," és itt alkották meg a 'mesterséges intelligencia' kifejezést ([forrás](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+"A Dartmouth Nyári Kutatási Projekt a mesterséges intelligencia területén mérföldkő volt az AI tudományaként," és itt nevezték el a 'mesterséges intelligencia' kifejezést ([forrás](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
 
-> A tanulás vagy az intelligencia bármely más jellemzője elvileg olyan pontosan leírható, hogy egy gép képes legyen szimulálni azt.
-
----
-
-A vezető kutató, John McCarthy matematikaprofesszor remélte, hogy "a tanulás vagy az intelligencia bármely más jellemzője elvileg olyan pontosan leírható, hogy egy gép képes legyen szimulálni azt." A résztvevők között volt egy másik kiemelkedő személyiség, Marvin Minsky.
-
-A workshopot annak tulajdonítják, hogy számos vitát kezdeményezett és ösztönzött, beleértve "a szimbolikus módszerek felemelkedését, a korlátozott területekre összpontosító rendszereket (korai szakértői rendszerek), valamint a deduktív rendszerek és az induktív rendszerek közötti különbségeket." ([forrás](https://wikipedia.org/wiki/Dartmouth_workshop)).
-
----
-## 1956 - 1974: "Az aranyévek"
-
-Az 1950-es évektől a '70-es évek közepéig nagy optimizmus uralkodott abban a reményben, hogy az MI számos problémát megoldhat. 1967-ben Marvin Minsky magabiztosan kijelentette, hogy "Egy generáción belül ... az 'mesterséges intelligencia' létrehozásának problémája lényegében megoldódik." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
-
-A természetes nyelvfeldolgozás kutatása virágzott, a keresés finomodott és hatékonyabbá vált, és létrejött a 'mikrovilágok' koncepciója, ahol egyszerű feladatokat lehetett elvégezni egyszerű nyelvi utasításokkal.
+> Az intelligencia tanulási vagy bármely más aspektusa elvileg oly mértékben leírható, hogy egy gép képes legyen azt szimulálni.
 
 ---
 
-A kutatást jól finanszírozták kormányzati ügynökségek, előrelépések történtek a számítástechnikában és algoritmusokban, és intelligens gépek prototípusait építették. Néhány ilyen gép:
+Az esemény vezető kutatója, John McCarthy matematikaprofesszor azt remélte, „hogy az a feltételezés alapján haladhatunk, miszerint az intelligencia tanulási vagy bármilyen aspektusa elvileg oly pontosan leírható, hogy egy gép képes lehet azt szimulálni.” A résztvevők között szerepelt egy másik neves szakember, Marvin Minsky.
 
-* [Shakey robot](https://wikipedia.org/wiki/Shakey_the_robot), amely képes volt manőverezni és 'intelligensen' dönteni a feladatok elvégzéséről.
+A műhely megkezdett és ösztönzött több vitát is, köztük „a szimbolikus módszerek térnyerését, korlátozott területekre fókuszált rendszereket (korai szakértői rendszerek), valamint a deduktív rendszerek és induktív rendszerek közötti eltéréseket.” ([forrás](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
-    ![Shakey, egy intelligens robot](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
+---
+## 1956 - 1974: „Az aranykor”
+
+Az 1950-es évektől egészen a '70-es évek közepéig nagy volt az optimizmus abban a reményben, hogy az AI sok problémát megoldhat. 1967-ben Marvin Minsky magabiztosan kijelentette, hogy „Egy generáción belül … az 'mesterséges intelligencia' létrehozásának problémája lényegében megoldásra kerül.” (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+
+A természetes nyelvfeldolgozás kutatása virágzott, a keresést finomították és hatékonyabbá tették, és létrejött a 'mikrovilágok' fogalma, ahol egyszerű feladatokat lehetett elvégezni közönséges nyelvi utasításokkal.
+
+---
+
+A kutatást kormányzati szervek jól finanszírozták, előrelépések történtek a számításelméletben és az algoritmusok terén, valamint intelligens gépek prototípusait építették. Ezek közül néhány gép:
+
+* [Shakey, a robot](https://wikipedia.org/wiki/Shakey_the_robot), aki képes volt mozogni és intelligensen dönteni a feladatok végrehajtásáról.
+
+    ![Shakey, egy intelligens robot](../../../../translated_images/hu/shakey.4dc17819c447c05b.webp)
     > Shakey 1972-ben
 
 ---
 
-* Eliza, egy korai 'beszélgetőbot', képes volt emberekkel beszélgetni és primitív 'terapeutaként' működni. Az NLP leckékben többet fogsz tanulni Elizáról.
+* Eliza, egy korai „csevegőbot”, aki képes volt emberekkel beszélgetni és primitív „terapeutaként” működni. Többet fogsz megtudni Elizáról az NLP leckékben.
 
-    ![Eliza, egy bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
-    > Eliza egy verziója, egy chatbot
-
----
-
-* "Blocks world" egy mikrovilág példája volt, ahol blokkokat lehetett egymásra rakni és rendezni, és kísérleteket lehetett végezni a gépek döntéshozatalának tanításával. Az olyan könyvtárakkal, mint [SHRDLU](https://wikipedia.org/wiki/SHRDLU), végzett fejlesztések elősegítették a nyelvfeldolgozás fejlődését.
-
-    [![blocks world SHRDLU-val](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world SHRDLU-val")
-
-    > 🎥 Kattints a fenti képre egy videóért: Blocks world SHRDLU-val
-
----
-## 1974 - 1980: "AI tél"
-
-Az 1970-es évek közepére nyilvánvalóvá vált, hogy az 'intelligens gépek' létrehozásának bonyolultságát alábecsülték, és az ígéreteket, tekintettel a rendelkezésre álló számítástechnikai kapacitásra, túlértékelték. A finanszírozás megszűnt, és a terület iránti bizalom csökkent. Néhány probléma, amely befolyásolta a bizalmat:
-
----
-- **Korlátok**. A számítástechnikai kapacitás túl korlátozott volt.
-- **Kombinatorikus robbanás**. Az edzéshez szükséges paraméterek száma exponenciálisan nőtt, ahogy egyre többet vártak el a számítógépektől, anélkül, hogy a számítástechnikai kapacitás és képesség párhuzamosan fejlődött volna.
-- **Adathiány**. Az adatok hiánya akadályozta az algoritmusok tesztelését, fejlesztését és finomítását.
-- **A megfelelő kérdéseket tesszük fel?**. Az éppen feltett kérdéseket is elkezdték megkérdőjelezni. A kutatók kritikákat kaptak a megközelítéseikkel kapcsolatban:
-  - A Turing-teszteket megkérdőjelezték többek között a 'kínai szoba elmélet' révén, amely azt állította, hogy "egy digitális számítógép programozása látszólag megértést mutathat, de nem képes valódi megértést produkálni." ([forrás](https://plato.stanford.edu/entries/chinese-room/))
-  - Az olyan mesterséges intelligenciák, mint a "terapeuta" ELIZA társadalomba való bevezetésének etikáját megkérdőjelezték.
+    ![Eliza, egy bot](../../../../translated_images/hu/eliza.84397454cda9559b.webp)
+    > Egy verziója Elizának, a chatbotnak
 
 ---
 
-Ezzel egy időben különböző MI iskolák kezdtek kialakulni. Egy dichotómia jött létre ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies) gyakorlatok között. _Scruffy_ laborok órákig finomították a programokat, amíg el nem érték a kívánt eredményeket. _Neat_ laborok "a logikára és a formális problémamegoldásra" összpontosítottak. ELIZA és SHRDLU jól ismert _scruffy_ rendszerek voltak. Az 1980-as években, amikor igény mutatkozott a gépi tanulási rendszerek reprodukálhatóságára, a _neat_ megközelítés fokozatosan előtérbe került, mivel eredményei jobban magyarázhatók.
+* A "blokkok világa" egy mikrovilág példa volt, ahol blokkokat lehetett egymásra rakni és rendezni, és kísérleteket végeztek a gépek döntéshozatali képességeinek tanítására. Az olyan könyvtárak, mint a [SHRDLU](https://wikipedia.org/wiki/SHRDLU), elősegítették a nyelvfeldolgozás fejlődését.
+
+    [![blokkok világa a SHRDLU-val](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blokkok világa a SHRDLU-val")
+
+    > 🎥 Kattints a fenti képre egy videó megtekintéséhez: Blokkok világa a SHRDLU-val
 
 ---
-## 1980-as évek: Szakértői rendszerek
+## 1974 - 1980: „AI tél”
 
-Ahogy a terület fejlődött, egyre világosabbá vált az üzleti haszna, és az 1980-as években elterjedtek a 'szakértői rendszerek'. "A szakértői rendszerek az első igazán sikeres mesterséges intelligencia (MI) szoftverformák közé tartoztak." ([forrás](https://wikipedia.org/wiki/Expert_system)).
-
-Ez a rendszer valójában _hibrid_, részben egy szabálymotorból áll, amely meghatározza az üzleti követelményeket, és egy következtetési motorból, amely a szabályrendszert használja új tények levonására.
-
-Ebben az időszakban a neurális hálók iránti figyelem is növekedett.
+A '70-es évek közepére nyilvánvalóvá vált, hogy az „intelligens gépek” létrehozásának komplexitását alábecsülték, és hogy annak ígérete a rendelkezésre álló számítási kapacitás mellett túlzottan optimista volt. A finanszírozás elfogyott, és a terület iránti bizalom alábbhagyott. Néhány probléma, amely csökkentette a bizalmat:
+---
+- **Korlátozások**. A számítási kapacitás túl korlátozott volt.
+- **Kombinatorikus robbanás**. Az edzéshez szükséges paraméterek száma exponenciálisan nőtt, miközben a számítási kapacitás és képességek nem fejlődtek párhuzamosan.
+- **Adathiány**. Hiányoztak az adatok, ami gátolta az algoritmusok tesztelését, fejlesztését és finomítását.
+- **Jó kérdéseket teszünk fel?**. Maga a kérdés is megkérdőjeleződött. A kutatók kritikát kaptak megközelítéseik miatt:
+  - A Turing-tesztet megkérdőjelezték többek között a 'kínai szobás elmélet' által, amely szerint „egy digitális számítógép programozása úgy tűnhet, mintha értené a nyelvet, de nem képes valódi megértésre.” ([forrás](https://plato.stanford.edu/entries/chinese-room/))
+  - A mesterséges intelligenciák, mint például az „Eliza” terapeuta bevezetésének etikája társadalmi vitákat váltott ki.
 
 ---
-## 1987 - 1993: AI 'lehűlés'
 
-A specializált szakértői rendszerek hardverének elterjedése sajnos túlságosan specializálttá vált. A személyi számítógépek térnyerése versenyre kelt ezekkel a nagy, specializált, központosított rendszerekkel. Elkezdődött a számítástechnika demokratizálása, amely végül utat nyitott a modern big data robbanásának.
+Ugyanakkor különböző AI filozófiai iskolák kezdtek kialakulni. Kialakult egy kettősség a ["rendetlen" vs. "rendezett AI"](https://wikipedia.org/wiki/Neats_and_scruffies) gyakorlatok között. A _rendetlen_ laborok hosszú órákon át finomították a programokat, amíg a kívánt eredményt el nem érték. A _rendezett_ laborok „a logikára és a formális problémamegoldásra összpontosítottak”. Az Eliza és a SHRDLU jól ismert _rendetlen_ rendszerek voltak. Az 1980-as években, amikor igény mutatkozott az ML rendszerek reprodukálhatóságára, a _rendezett_ megközelítés fokozatosan előtérbe került, mivel eredményei jobban magyarázhatóak.
+
+---
+## 1980-as évek Szakértői rendszerek
+
+Ahogy a terület növekedett, üzleti hasznossága egyre világosabbá vált, és az 1980-as években elterjedtek a „szakértői rendszerek”. „A szakértői rendszerek voltak az első valóban sikeres mesterséges intelligencia (AI) szoftverformák között.” ([forrás](https://wikipedia.org/wiki/Expert_system)).
+
+Ez a típus valójában _hibrid_, részben egy szabálymotorból áll, amely az üzleti követelményeket határozza meg, és egy következtető motorból, amely a szabályrendszert használva új tényeket állapít meg.
+
+Ebben az időszakban nőtt a neurális hálózatok iránti figyelem.
+
+---
+## 1987 - 1993: AI „korszakalkony”
+
+A speciális szakértői rendszerek hardverének elterjedése sajnálatos módon túlspecializálódáshoz vezetett. A személyi számítógépek térnyerése versenyre kelt ezekkel a nagy, speciális, központosított rendszerekkel. A számítástechnika demokratizálódása megkezdődött, és végül megalapozta a nagy adatok modern robbanását.
 
 ---
 ## 1993 - 2011
 
-Ez az időszak új korszakot hozott a gépi tanulás és MI számára, hogy megoldja azokat a problémákat, amelyeket korábban az adatok és számítástechnikai kapacitás hiánya okozott. Az adatok mennyisége gyorsan növekedni kezdett és szélesebb körben elérhetővé vált, jó és rossz értelemben egyaránt, különösen a 2007 körüli okostelefon megjelenésével. A számítástechnikai kapacitás exponenciálisan bővült, és az algoritmusok is fejlődtek. A terület kezdett éretté válni, ahogy a múlt szabad szellemű napjai egy valódi tudományággá kristályosodtak.
+Ebben az időszakban új korszak kezdődött az ML és AI számára, hogy képesek legyenek megoldani azokat a problémákat, amelyeket korábban az adat- és számítási kapacitás hiánya okozott. Az adatok mennyisége gyorsan nőtt és egyre szélesebb körben volt elérhető, akár jó, akár rossz értelemben, különösen a 2007 körüli okostelefonok megjelenésével. A számítási kapacitás exponenciálisan nőtt, és az algoritmusok is fejlődtek párhuzamosan. A terület éretté vált, mivel a korábbi szabadabban szerveződő napok valódi diszciplínává kristályosodtak.
 
 ---
 ## Most
 
-Ma a gépi tanulás és MI szinte minden részét érinti az életünknek. Ez a korszak gondos megértést igényel az algoritmusok emberi életre gyakorolt kockázatairól és potenciális hatásairól. Ahogy Brad Smith, a Microsoft egyik vezetője kijelentette: "Az információs technológia olyan kérdéseket vet fel, amelyek alapvető emberi jogi védelmek, például a magánélet és a véleménynyilvánítás szabadsága szívéhez vezetnek. Ezek a kérdések fokozzák a felelősséget a technológiai cégek számára, amelyek ezeket a termékeket létrehozzák. Véleményünk szerint ezek átgondolt kormányzati szabályozást és normák kidolgozását is igénylik az elfogadható felhasználások körül" ([forrás](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Ma a gépi tanulás és az AI szinte minden életünk részét megérinti. Ez az időszak megköveteli ezeknek az algoritmusoknak az emberi életre gyakorolt kockázatainak és potenciális hatásainak körültekintő megértését. Ahogy Brad Smith a Microsofttól fogalmazott: „Az információtechnológia olyan kérdéseket vet fel, amelyek az alapvető emberi jogok, mint a magánélet és a szólásszabadság védelmének szívéhez nyúlnak. Ezek a kérdések növelik a felelősséget azokat a termékeket létrehozó technológiai cégek számára. Véleményünk szerint ezek átgondolt kormányzati szabályozást és az elfogadható felhasználás normáinak kialakítását is igénylik” ([forrás](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 ---
 
-Még nem tudjuk, mit tartogat a jövő, de fontos megérteni ezeket a számítógépes rendszereket, valamint a szoftvereket és algoritmusokat, amelyeket futtatnak. Reméljük, hogy ez a tananyag segít jobban megérteni, hogy saját magad dönthess.
+Még nem ismert, mit hoz a jövő, de fontos megérteni ezeket a számítógépes rendszereket, valamint a rajtuk futó szoftvereket és algoritmusokat. Reméljük, hogy ez a tananyag segít jobban megérteni ezeket, hogy te magad dönthess.
 
 [![A mélytanulás története](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "A mélytanulás története")
 > 🎥 Kattints a fenti képre egy videóért: Yann LeCun a mélytanulás történetéről beszél ebben az előadásban
@@ -131,26 +130,28 @@ Még nem tudjuk, mit tartogat a jövő, de fontos megérteni ezeket a számító
 ---
 ## 🚀Kihívás
 
-Merülj el az egyik történelmi pillanatban, és tudj meg többet az emberekről, akik mögötte állnak. Érdekes személyiségek vannak, és egyetlen tudományos felfedezés sem született kulturális vákuumban. Mit fedezel fel?
+Merülj el valamelyik történelmi pillanatban és ismerd meg jobban az őket meghatározó embereket. Lenfűgöző személyiségek, és egyetlen tudományos felfedezés sem született kulturális vákuumban. Mit fedezel fel?
 
 ## [Előadás utáni kvíz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
-## Áttekintés és önálló tanulás
+## Áttekintés & Önálló tanulás
 
-Íme néhány néznivaló és hallgatnivaló:
+Íme néhány megtekintendő és meghallgatandó anyag:
 
-[Ez a podcast, amelyben Amy Boyd az MI fejlődéséről beszél](http://runasradio.com/Shows/Show/739)
+[Ez a podcast, ahol Amy Boyd az AI fejlődéséről beszél](http://runasradio.com/Shows/Show/739)
 
-[![Az MI története Amy Boyd által](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Az MI története Amy Boyd által")
+[![Az AI története Amy Boyd tolmácsolásában](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Az AI története Amy Boyd tolmácsolásában")
 
 ---
 
 ## Feladat
 
-[Hozz létre egy idővonalat](assignment.md)
+[Idővonal készítése](assignment.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,46 +1,46 @@
-# Atsakingos dirbtinio intelekto mašininio mokymosi sprendimų kūrimas
+# Atsakingai kuriant mašininio mokymosi sprendimus naudojant dirbtinį intelektą
  
-![Atsakingo dirbtinio intelekto mašininiame mokyme santrauka sketchnote formatu](../../../../translated_images/lt/ml-fairness.ef296ebec6afc98a.webp)
-> Sketchnote pateikė [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Atsakingo DI mašininio mokymosi santrauka sketchnote formatu](../../../../translated_images/lt/ml-fairness.ef296ebec6afc98a.webp)
+> Sketchnote autorius [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Išankstinis viktorinos testas](https://ff-quizzes.netlify.app/en/ml/)
+## [Pradinis viktorinos testas](https://ff-quizzes.netlify.app/en/ml/)
  
 ## Įvadas
 
-Šiame kurse pradėsite atrasti, kaip mašininis mokymasis gali paveikti ir jau veikia mūsų kasdienį gyvenimą. Jau dabar sistemos ir modeliai dalyvauja kasdieniniame sprendimų priėmime, pavyzdžiui, sveikatos diagnozėse, paskolų patvirtinime ar sukčiavimo aptikime. Todėl svarbu, kad šie modeliai veiktų gerai ir suteiktų patikimus rezultatus. Kaip ir bet kuri programinė įranga, DI sistemos gali neišpildyti lūkesčių arba sukelti nepageidaujamą rezultatą. Todėl būtina sugebėti suprasti ir paaiškinti DI modelio elgseną.
+Šiame mokymo plane pradėsite atrasti, kaip mašininis mokymasis gali ir veikia mūsų kasdienį gyvenimą. Jau dabar sistemos ir modeliai dalyvauja kasdienėse sprendimų priėmimo užduotyse, tokiose kaip sveikatos priežiūros diagnozės, paskolų suteikimas ar sukčiavimo aptikimas. Todėl svarbu, kad šie modeliai veiktų gerai ir teiktų patikimus rezultatus. Kaip ir bet kuri programinė įranga, DI sistemos gali neatitikti lūkesčių arba duoti nepageidaujamą rezultatą. Todėl būtina suprasti ir paaiškinti DI modelio elgesį. 
 
-Įsivaizduokite, kas gali nutikti, kai duomenys, kuriais kūrėjate šiuos modelius, trūksta tam tikrų demografinių grupių, pavyzdžiui, pagal rasę, lytį, politinę nuostatą, religiją arba disproporcingai atstovauja tokias grupes. O kaip kai modelio rezultatai interpretuojami taip, tarsi jie palankiai vertintų tam tikrą demografinę grupę? Kokia to pasekmė programai? Be to, kas nutinka, kai modelis sukelia neigiamą poveikį ir yra kenksmingas žmonėms? Kas atsakingas už DI sistemos elgesį? Į šiuos klausimus atsakysime šiame kurse.
+Įsivaizduokite, kas gali nutikti, jei naudojami duomenys, kuriais kuriami šie modeliai, trūksta tam tikrų demografinių grupių, pavyzdžiui, rasės, lyties, politinių pažiūrų, religijos, arba kurios disproporcingai atstovauja tam tikras demografines grupes. Kas nutiks, kai modelio išvestis interpretuojama palankiai kuriam nors demografiniam ratui? Kokia yra pasekmė taikymui? Be to, kas nutinka, kai modelis duoda neigiamą rezultatą ir kenkia žmonėms? Kas yra atsakingas už DI sistemos elgesį? Šiuos klausimus aptartos šiame mokymo plane. 
 
 Šioje pamokoje jūs:
 
-- Ugdysite suvokimą apie teisingumo svarbą mašininiame mokymesi ir su tuo susijusias žalas.
-- Susipažinsite su praktika tirti išskirtinius atvejus ir neįprastas situacijas, siekiant užtikrinti patikimumą ir saugumą.
-- Suprasite, kodėl svarbu įgalinti visus, kuriant įtraukiąsias sistemas.
-- Išnagrinėsite, kaip svarbu apsaugoti privatumo ir duomenų saugumą.
-- Sužinosite apie stiklinės dėžutės veikimo principą, paaiškinant DI modelių elgseną.
-- Suprasite, kaip atsakomybė yra būtina kuriant pasitikėjimą DI sistemomis.
+- Suprasite teisingumo svarbą mašininiame mokyme ir su teisingumu susijusias žalas.
+- Susipažinsite su praktika, kaip tirti netipinius atvejus ir neįprastas situacijas, kad užtikrintumėte patikimumą ir saugumą.
+- Suprasite poreikį įgalinti visus kurti įtraukią sistemas.
+- Išnagrinėsite, kaip svarbu saugoti duomenų ir žmonių privatumą bei saugumą.
+- Matysite svarbą taikyti skaidraus (glass box) modelio požiūrį AI modelių elgesiui paaiškinti.
+- Būsime atidūs, kaip atsakomybė yra būtina kuriant pasitikėjimą DI sistemomis.
 
-## Reikalavimai iš anksto
+## Prieš sąlygų įvertinimas
 
-Prieš pradedant rekomenduojame pereiti per "Atsakingo DI principus" mokymosi kelią ir peržiūrėti žemiau pateiktą vaizdo įrašą tema:
+Prieš pradedant, prašome išklausyti "Atsakingo DI principus" mokymosi kelią ir peržiūrėti žemiau pateiktą vaizdo įrašą šia tema:
 
-Sužinokite daugiau apie atsakingą DI naudodamiesi šiuo [Mokymosi keliu](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
+Sužinokite daugiau apie atsakingą DI sekdami šį [Mokymosi kelią](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
-[![Microsoft požiūris į atsakingą DI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft požiūris į atsakingą DI")
+[![„Microsoft“ požiūris į atsakingą DI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "„Microsoft“ požiūris į atsakingą DI")
 
-> 🎥 Spustelėkite aukščiau esančią nuotrauką, jei norite žiūrėti vaizdo įrašą: Microsoft požiūris į atsakingą DI
+> 🎥 Paspauskite paveikslėlį aukščiau, kad žiūrėtumėte vaizdo įrašą: „Microsoft“ požiūris į atsakingą DI
 
 ## Teisingumas
 
-DI sistemos turėtų visus vertinti teisingai ir vengti paveikti panašias žmonių grupes skirtingai. Pavyzdžiui, kai DI sistemos pateikia rekomendacijas gydymo, paskolų ar įdarbinimo klausimais, jos turėtų daryti tokias pačias rekomendacijas visiems su panašiais simptomais, finansine padėtimi ar profesiniais kvalifikacijomis. Kiekvienas iš mūsų, kaip žmonių, turime paveldėtų šališkumų, kurie veikia mūsų sprendimus ir veiksmus. Šie šališkumai gali būti matomi duomenyse, kuriais mokosi DI sistemos. Tokia manipuliacija kartais įvyksta netyčia. Dažnai sunku sąmoningai suprasti, kada duomenyse įvedamas šališkumas.
+DI sistemos turi visus elgtis teisingai ir vengti skirtingai paveikti panašias žmonių grupes. Pavyzdžiui, kai DI sistemos teikia patarimus dėl medicininio gydymo, paskolų prašymų ar darbo, jos turi daryti tas pačias rekomendacijas visiems su panašiais simptomais, finansine padėtimi ar profesine kvalifikacija. Kiekvienas iš mūsų kaip žmonės turi paveldėtus šališkumus, kurie veikia mūsų sprendimus ir veiksmus. Šie šališkumai gali būti matomi duomenyse, kuriais treniruojamos DI sistemos. Kartais tai nutinka neintencionaliai. Dažnai sunku sąmoningai žinoti, kada duomenyse pristatote šališkumą. 
 
-**„Neteisingumas“** apima neigiamą poveikį arba „žalą“ žmonių grupėms, apibrėžtoms pagal rasę, lytį, amžių ar neįgalumo statusą. Pagrindinės žalos, susijusios su teisingumu, gali būti skirstomos į:
+**„Neteisingumas“** apima neigiamas pasekmes arba „žalas“ grupėms žmonių, pavyzdžiui, apibrėžtoms pagal rasę, lytį, amžių ar neįgalumo statusą. Pagrindines su teisingumu susijusias žalas galima priskirti: 
 
-- **Paskirstymas**, pvz., kai pirmenybė teikiama lyčiai ar etninei grupei.
-- **Paslaugos kokybė**. Jei duomenys yra mokomi tik vienam scenarijui, tačiau realybė yra daug sudėtingesnė, tai lemia prastai veikiančią paslaugą. Pavyzdžiui, muilo dozatorius, kuris neatskiria žmonių su tamsesne oda. [Šaltinis](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-- **Gėdinimas**. Neteisingai kritikuoti ir etiketėmis apklijuoti kažką ar kažką. Pavyzdžiui, vaizdų žymėjimo technologija tapo žinoma dėl tamsios odos žmonių nuotraukų klaidingo žymėjimo kaip gorilų.
-- **Perdėta ar nepilna atstovybė**. Mintis, kad tam tikra grupė nėra matoma tam tikroje profesijoje, ir bet koks paslaugų ar funkcijų, kurios tai skatina, palaikymas prisideda prie žalos.
-- **Stereotipai**. Priskirti iš anksto apibrėžtoms grupėms tam tikras savybes. Pavyzdžiui, anglų ir turkų kalbų vertimo sistema gali netiksliai versti žodžius, turinčius lyčių stereotipų atspalvį.
+- **Skirstymas**, kai, pavyzdžiui, lyčiai arba tautybei teikiama pirmenybė prieš kitą.
+- **Paslaugos kokybė**. Jei duomenys yra treniruojami vienai specifinei situacijai, bet realybė yra daug sudėtingesnė, tai lemia prastą veikimą. Pavyzdžiui, skysto muilo dozatorius, kuris negalėjo aptikti žmonių su tamsesne oda. [Nuoroda](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+- **Šmeižimas**. Nesąžiningas kritika ir pažymėjimas kažką ar kažką. Pavyzdžiui, vaizdų paženklinimo technologija garsiai neteisingai pažymėjo tamsiaodžių žmonių nuotraukas kaip gorilas.
+- **Per didelė arba per maža atstovybė**. Idėja yra ta, kad tam tikra grupė tam tikroje profesijoje nėra matoma, o bet kokia paslauga ar funkcija, kuri tą skatintų, prisideda prie žalos.
+- **Stereotipavimas**. Priskiriant grupei iš anksto nustatytas savybes. Pavyzdžiui, tarp anglų ir turkų kalbų vertimo sistemos gali būti netikslumų dėl žodžių, turinčių stereotipinių asociacijų su lytimi.
 
 ![vertimas į turkų kalbą](../../../../translated_images/lt/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > vertimas į turkų kalbą
@@ -48,116 +48,115 @@ DI sistemos turėtų visus vertinti teisingai ir vengti paveikti panašias žmon
 ![vertimas atgal į anglų kalbą](../../../../translated_images/lt/gender-bias-translate-tr-en.4eee7e3cecb8c70e.webp)
 > vertimas atgal į anglų kalbą
 
-Kuriant ir testuojant DI sistemas, turime užtikrinti, kad DI būtų teisingas ir nesukurtų šališkų ar diskriminuojančių sprendimų, kurių taip pat neleidžiama priimti žmonėms. Užtikrinti teisingumą DI ir mašininiame mokymesi yra sudėtinga sociotechninė užduotis.
+Kuriant ir testuojant DI sistemas, turime užtikrinti, kad DI būtų teisingas ir nebūtų programuojamas priimti šališkus ar diskriminacinius sprendimus, kuriuos taip pat draudžiama priimti žmonėms. Užtikrinti teisingumą DI ir mašininio mokymosi srityje išlieka sudėtinga sociotechninė užduotis. 
 
 ### Patikimumas ir saugumas
 
-Norint užmegzti pasitikėjimą, DI sistemos turi būti patikimos, saugios ir nuoseklios tiek įprastomis, tiek netikėtomis sąlygomis. Svarbu žinoti, kaip DI sistemos elgsis įvairiose situacijose, ypač kai tai išimtys. Kuriant DI sprendimus reikia skirti daug dėmesio įvairių galimų situacijų, su kuriomis DI sprendimai gali susidurti, valdymui. Pavyzdžiui, autonominis automobilis turi pirmiausia rūpintis žmonių saugumu. Todėl automobilį valdančiam DI reikia apsvarstyti visas galimas situacijas, su kuriomis automobilis gali susidurti, tokių kaip naktis, perkūnija ar pūgos, vaikai bėgantys per gatvę, gyvūnai, kelio darbai ir pan. Kaip gerai DI sistema gali patikimai ir saugiai susidoroti su skirtingomis sąlygomis, rodo duomenų mokslininko ar DI kūrėjo numatymo lygį projektuojant ar testuojant sistemą.
+Kad būtų pasitikima, DI sistemos turi būti patikimos, saugios ir nuoseklios tiek įprastomis, tiek netikėtomis sąlygomis. Svarbu žinoti, kaip DI sistemos elgsis įvairiose situacijose, ypač kai jos pateks į išskirtinius atvejus. Kuriant DI sprendimus, reikia daug dėmesio skirti, kaip spręsti platų dėmesio reikalaujančių aplinkybių spektrą, su kuriomis DI sprendimai susidurs. Pavyzdžiui, savavaldė mašina turi aukščiausiu prioritetu laikyti žmonių saugumą. Todėl mašinos veikimą valdantis DI turi atsižvelgti į visas galimas situacijas, kurias gali patirti automobilis, tokias kaip naktis, perkūnijos ar pūgos, vaikų bėgimas per gatvę, naminių gyvūnų buvimas, kelio darbai ir t.t. Koks geras DI sistema gali patikimai ir saugiai tvarkyti įvairiausias sąlygas, rodo, kiek duomenų mokslininkas ar DI kūrėjas numatė projektuodamas ar testuodamas sistemą.  
 
-> [🎥 Spustelėkite čia, jei norite žiūrėti vaizdo įrašą: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Spauskite čia žiūrėti vaizdo įrašą: Patikimumas ir saugumas DI srityje](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
-### Įtraukumas
+### Įtrauktis
 
-DI sistemas reikėtų kurti taip, kad jos įtrauktų ir įgalintų visus. Kuriant ir diegiant DI sistemas, duomenų mokslininkai ir DI kūrėjai identifikuoja ir šalina galimas kliūtis, kurios gali netyčia pašalinti žmones. Pavyzdžiui, pasaulyje yra 1 milijardas neįgaliųjų. Besivystantis DI jiems leidžia lengviau pasiekti daug informacijų ir galimybių kasdieniniame gyvenime. Pašalinus kliūtis, atsiveria galimybės inovuoti ir kurti geresnes DI produktų patirtis, naudingas visiems.
+DI sistemos turi būti kuriamos taip, kad bet kuris žmogus galėtų dalyvauti ir jaustųsi įgalintas. Kuriant ir įgyvendinant DI sistemas, duomenų mokslininkai ir DI kūrėjai identifikuoja ir sprendžia galimas kliūtis, kurios netyčia gali atleisti žmones. Pavyzdžiui, pasaulyje yra 1 milijardas neįgaliųjų. Su DI pažanga jie gali lengviau prieiti prie įvairios informacijos ir galimybių kasdieniame gyvenime. Sprendžiant kliūtis, sukuriamos galimybės kurti inovacijas ir kurti DI produktus su geresne patirtimi, kurie yra naudingi visiems. 
 
-> [🎥 Spustelėkite čia, jei norite žiūrėti vaizdo įrašą: įtraukumas DI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Spauskite čia žiūrėti vaizdo įrašą: Įtrauktis DI srityje](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
 ### Saugumas ir privatumas
 
-DI sistemos turėtų būti saugios ir gerbti žmonių privatumą. Žmonės mažiau pasitiki sistemomis, kurios kelia grėsmę jų privatumui, informacijai ar gyvybėms. Mokant mašininio mokymosi modelius, mes pasikliaujame duomenimis, kad gautume geriausius rezultatus. Svarbu atsižvelgti į duomenų kilmę ir vientisumą. Pavyzdžiui, ar duomenys buvo pateikti vartotojo, ar yra viešai prieinami? Toliau dirbant su duomenimis svarbu kurti DI sistemas, galinčias apsaugoti konfidencialią informaciją ir atsilaikyti prieš atakas. Su DI plėtra vis svarbiau ir sudėtingiau apsaugoti privatumą bei svarbią asmeninę ir verslo informaciją. Privatumo ir duomenų saugumo klausimai yra itin svarbūs DI, nes prieiga prie duomenų yra būtina DI sistemoms tiksliai ir pagrįstai prognozuoti bei priimti sprendimus apie žmones.
+DI sistemos turi būti saugios ir gerbti žmonių privatumą. Žmonės mažiau pasitiki sistemomis, kurios kelia grėsmę jų privatumui, informacijos saugumui ar gyvybei. Treniruodami mašininio mokymosi modelius, mes remiamės duomenimis, kad gautume geriausius rezultatus. Tai darant, būtina atsižvelgti į duomenų kilmę ir vientisumą. Pavyzdžiui, ar duomenys buvo pateikti naudotojo ar viešai prieinami? Darbe su duomenimis svarbu kurti DI sistemas, galinčias apsaugoti konfidencialią informaciją ir atlaikyti atakas. DI plintant, privatumo apsauga ir svarbios asmeninės bei verslo informacijos saugumas tampa itin svarbūs ir sudėtingi. Privatumo ir duomenų saugumo klausimai reikalauja ypatingo dėmesio DI srityje, nes prieiga prie duomenų yra būtina, kad DI sistemos galėtų tiksliai ir informuotai prognozuoti ir priimti sprendimus apie žmones. 
 
-> [🎥 Spustelėkite čia, jei norite žiūrėti vaizdo įrašą: saugumas DI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Spauskite čia žiūrėti vaizdo įrašą: Saugumas DI srityje](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Kaip industrija, padarėme didelę pažangą privatumo ir saugumo srityje, ypač reguliuojant tokias sritis kaip GDPR (Bendrasis duomenų apsaugos reglamentas).
-- Tačiau DI sistemose turime pripažinti įtampą tarp poreikio turėti daugiau asmens duomenų, kad sistemos būtų personalizuotos ir efektyvios, ir tarp privatumo reikalavimų.
-- Kaip ir interneto sukūrimo laikais, matome stiprų saugumo problemų augimą, susijusį su DI.
-- Tuo pačiu metu DI naudojamas saugumui gerinti. Pavyzdžiui, dauguma šiuolaikinių antivirusinių programų šiandien naudoja DI heuristikas.
-- Turime užtikrinti, kad mūsų duomenų mokslas harmoningai dera su pačiomis naujausiomis privatumo ir saugumo praktikomis.
+- Pramonės sektoriuje padarėme didelių pažangų privatumo ir saugumo srityje, kurias ženkliai paskatino tokie reglamentai kaip GDPR (Bendrasis duomenų apsaugos reglamentas).
+- Vis dėlto DI sistemose privalome pripažinti įtampą tarp poreikio turėti daugiau asmeninės informacijos, kad sistemos taptų asmeniškesnės ir veiksmingesnės, ir privatumo.
+- Kaip ir prisijungusių kompiuterių su internetu gimimo metu, dabar taip pat matome didelį saugumo problemų skaičiaus augimą, susijusį su DI.
+- Tuo pačiu metu mes matome, kaip DI naudojamas saugumui gerinti. Pavyzdžiui, dauguma modernių antivirusų šiandien veikdami naudoja DI euristikas.
+- Turime užtikrinti, kad mūsų duomenų mokslo procesai harmoningai derėtųsi su naujausiomis privatumo ir saugumo praktikomis.
 
 
 ### Skaidrumas
-DI sistemos turėtų būti suprantamos. Svarbi skaidrumo dalis yra paaiškinti DI sistemų ir jų komponentų elgseną. Geresnis DI sistemų supratimas reikalauja, kad suinteresuotosios šalys suprastų, kaip ir kodėl jos veikia, kad galėtų atpažinti galimas našumo problemas, saugumo ir privatumo rizikas, šališkumus, pašalinimo praktikas ar nepageidaujamus rezultatus. Taip pat manome, kad tie, kurie naudoja DI sistemas, turėtų būti sąžiningi ir atviri apie tai, kada, kodėl ir kaip juos diegia. Taip pat apie sistemų, kurias jie naudoja, apribojimus. Pavyzdžiui, jei bankas naudoja DI sistemą, remiantį jo paskolų vartotojams sprendimus, svarbu peržiūrėti rezultatus ir suprasti, kurie duomenys daro įtaką sistemos rekomendacijoms. Vyriausybės jau pradeda reguliuoti DI įvairiose pramonės šakose, todėl duomenų mokslininkai ir organizacijos privalo paaiškinti, ar DI sistema atitinka reguliavimo reikalavimus, ypač jei rezultatai nepageidaujami.
+DI sistemos turi būti suprantamos. Svarbi skaidrumo dalis yra paaiškinti DI sistemų ir jų sudedamųjų dalių elgesį. Glaudesnis DI sistemų supratimas reikalauja, kad suinteresuotos šalys suprastų, kaip ir kodėl jos veikia, kad galėtų nustatyti galimas našumo problemas, saugumo ir privatumo rūpesčius, šališkumus, atmetimo praktikas ar nepageidaujamus rezultatus. Mes taip pat manome, kad DI sistemų naudotojai turėtų būti sąžiningi ir atviri, kada, kodėl ir kaip jie nusprendžia jas diegti. Taip pat apie naudotų sistemų ribotumus. Pavyzdžiui, jei bankas naudoja DI sistemą remti vartotojų paskolų sprendimus, svarbu patikrinti rezultatus ir suprasti, kokie duomenys veikia sistemos rekomendacijas. Vyriausybės pradėjo reguliuoti DI įvairiose pramonės šakose, todėl duomenų mokslininkai ir organizacijos turi paaiškinti, ar DI sistema atitinka reguliavimo reikalavimus, ypač jei atsiranda nepageidaujamas rezultatas.
 
-> [🎥 Spustelėkite čia, jei norite žiūrėti vaizdo įrašą: skaidrumas DI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Spauskite čia žiūrėti vaizdo įrašą: Skaidrumas DI srityje](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
-- Kadangi DI sistemos yra labai sudėtingos, sunku suprasti, kaip jos veikia, ir interpretuoti rezultatus.
-- Šis supratimo trūkumas veikia tai, kaip šios sistemos valdomos, įdiegiamos ir dokumentuojamos.
-- Dar svarbiau, šis supratimo trūkumas įtakoja sprendimus, priimamus remiantis šiomis sistemomis gautais rezultatais.
+- Kadangi DI sistemos yra tokios sudėtingos, sunku suprasti, kaip jos veikia, ir interpretuoti rezultatus.
+- Šis suvokimo trūkumas veikia tai, kaip šios sistemos yra valdomos, įgyvendinamos ir dokumentuojamos.
+- Dar svarbiau, šis supratimo trūkumas veikia sprendimus, priimamų remiantis gautais rezultatais.
 
 ### Atsakomybė
  
-Žmonės, kurie kuria ir diegia DI sistemas, turi būti atsakingi už tai, kaip jų sistemos veikia. Atsakomybės poreikis ypač svarbus jautrių technologijų, tokių kaip veido atpažinimas, naudojimo atvejais. Pastaruoju metu veido atpažinimo technologijos paklausa auga, ypač teisėsaugos institucijų, kurios mato jos potencialą, pavyzdžiui, ieškant dingusių vaikų. Tačiau šios technologijos galėtų būti panaudotos vyriausybės, keliant pavojų piliečių pagrindinėms laisvėms, pavyzdžiui, nuolat stebint konkrečius asmenis. Todėl duomenų mokslininkai ir organizacijos turi prisiimti atsakomybę už tai, kaip jų DI sistema veikia individų arba visuomenės atžvilgiu.
+Žmonės, kurie kuria ir diegia DI sistemas, turi būti atsakingi už savo sistemų veikimą. Atsakomybės būtinybė ypač svarbi su jautriomis technologijomis, tokiomis kaip veidų atpažinimas. Pastaruoju metu didėja paklausa veidų atpažinimo technologijai, ypač iš teisėsaugos institucijų, kurios mato šios technologijos potencialą, pavyzdžiui, ieškant dingusių vaikų. Tačiau šios technologijos potencialiai gali būti naudojamos vyriausybės siekiant kelti pavojų piliečių pagrindinėms laisvėms, pavyzdžiui, įgalinant nuolatinį konkrečių asmenų stebėjimą. Todėl duomenų mokslininkai ir organizacijos turi būti atsakingi už tai, kaip jų DI sistema veikia žmones ar visuomenę.
 
-[![Pagrindinis DI tyrėjas perspėja apie masinį stebėjimą per veidų atpažinimą](../../../../translated_images/lt/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft požiūris į atsakingą DI")
+[![Pirmaujantis DI tyrėjas įspėja apie masinį stebėjimą naudojant veidų atpažinimą](../../../../translated_images/lt/accountability.41d8c0f4b85b6231.webp)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "„Microsoft“ požiūris į atsakingą DI")
 
-> 🎥 Spustelėkite aukščiau esančią nuotrauką, jei norite žiūrėti vaizdo įrašą: Perspėjimai dėl masinio stebėjimo per veidų atpažinimą
+> 🎥 Paspauskite paveikslėlį aukščiau, kad žiūrėtumėte vaizdo įrašą: Įspėjimai apie masinį stebėjimą veidų atpažinimo dėka
 
-Galutinis vienas didžiausių klausimų mūsų kartai, kaip pirmai kartai, kuri diegia DI visuomenei, yra kaip užtikrinti, kad kompiuteriai liktų atsakingi žmonėms ir kaip užtikrinti, kad kompiuterius kuriantys žmonės liktų atsakingi visuomenei.
+Galų gale viena didžiausių mūsų kartos klausimų, kaip pirmosios kartos, diegiančios DI visuomenėje, yra tai, kaip užtikrinti, kad kompiuteriai liktų atsakingi žmonėms ir kaip užtikrinti, kad kompiuterius kuriančios žmonės liktų atsakingi visiems kitiems.
 
 ## Poveikio vertinimas
 
-Prieš mokant mašininio mokymosi modelį svarbu atlikti poveikio vertinimą, norint suprasti DI sistemos paskirtį; kokia yra numatyta paskirtis; kur ji bus diegiama; ir kas naudosis sistema. Tai padeda peržiūrėtojams ar testuotojams žinoti, kokius veiksnius reikia atsižvelgti, identifikuojant galimas rizikas ir numatomąsias pasekmes.
+Prieš treniruojant mašininio mokymosi modelį, svarbu atlikti poveikio vertinimą, kad būtų suprasta DI sistemos paskirtis; koks yra numatytas naudojimas; kur ji bus diegiama; ir kas sąveikaus su sistema. Tai padeda peržiūrėtojams ar testuotojams įvertinti sistemą ir žinoti, kokius veiksnius reikia atsižvelgti nustatant galimas rizikas ir numatomas pasekmes.
 
-Atlikdami poveikio vertinimą atkreipkite dėmesį į šias sritis:
+Poveikio vertinimo metu reikėtų sutelkti dėmesį į šias sritis:
 
-* **Neigiamas poveikis individams.** Svarbu žinoti apie bet kokius apribojimus ar reikalavimus, neleistiną naudojimą ar žinomas ribotumus, kurie gali paveikti sistemos veikimą, kad sistema nebūtų naudojama kenksmingai žmonėms.
-* **Duomenų reikalavimai.** Suprasti, kaip ir kur sistema naudos duomenis, leidžia peržiūrėtojams įvertinti visus duomenų reikalavimus, kurių reikia laikytis (pvz., GDPR ar HIPAA duomenų taisykles). Taip pat svarbu patikrinti, ar duomenų šaltinis ir kiekis yra pakankami mokymui.
-* **Poveikio santrauka.** Surinkite galimų žalos atvejų sąrašą, kurie gali kilti naudojant sistemą. Per visą ML gyvavimo ciklą patikrinkite, ar šios problemos buvo sumažintos ar pašalintos.
-* **Taikytini tikslai** kiekvienam iš šešių pagrindinių principų. Įvertinkite, ar kiekvieno principo tikslai buvo pasiekti ir ar yra kokių nors spragų.
-
-
-## Atsakingas DI derinimas
-
-Kaip ir derinant programinę įrangą, DI sistemos derinimas yra būtinas procesas, skirtas nustatyti ir išspręsti sistemas veikimo problemas. Daugelis veiksnių gali lemti, kad modelis neveikia taip, kaip tikėtasi ar neatsakingai. Tradiciniai modelio veikimo rodikliai yra kiekybiniai agregatai, nepakankami analizuoti, kaip modelis pažeidžia atsakingo DI principus. Be to, mašininio mokymosi modelis yra juodoji dėžė, kurios sunku suprasti, kas lemia rezultatą ar paaiškinti klaidą. Vėliau šiame kurse išmoksime naudoti Atsakingo DI skydelį, padedantį derinti DI sistemas. Šis skydelis suteikia holistinį įrankį duomenų mokslininkams ir DI kūrėjams atlikti:
-
-* **Klaidų analizę.** Nustatyti modelio klaidų pasiskirstymą, galintį paveikti sistemos teisingumą ar patikimumą.
-* **Modelio apžvalgą.** Atrasti, kur modelio veikime yra skirtumų duomenų grupėse.
-* **Duomenų analizę.** Suprasti duomenų pasiskirstymą ir nustatyti galimą šališkumą duomenyse, galintį sukelti problemas su teisingumu, įtraukumu ir patikimumu.
-* **Modelio interpretuojamumą.** Suprasti, kas veikia ar įtakoja modelio prognozes. Tai padeda paaiškinti modelio elgseną, kas svarbu skaidrumui ir atsakomybei.
+* **Neigiamas poveikis asmenims**. Būtina žinoti apie bet kokius apribojimus ar reikalavimus, palaikomą ar nepalaikomą naudojimą arba žinomus sistemos atlikimo apribojimus, kad sistema nebūtų naudojama būdu, galinčiu pakenkti asmenims.
+* **Duomenų reikalavimai**. Supratimas, kaip ir kur sistema naudos duomenis, leidžia peržiūrėtojams įvertinti bet kokius duomenų reikalavimus, kurių reikia laikytis (pvz., GDPR ar HIPAA duomenų reglamentus). Taip pat reikėtų įvertinti, ar duomenų šaltinis ir kiekis yra pakankamas treniruotei.
+* **Santrauka apie poveikį**. Surinkite galimų žalos atvejų, kurie gali kilti naudojant sistemą, sąrašą. Per visą ML gyvavimo ciklą peržiūrėkite, ar identifikuotos problemos yra sumažinamos arba sprendžiamos.
+* **Taikytini tikslai** kiekvienam iš šešių pagrindinių principų. Įvertinkite, ar principų tikslai yra pasiekti ir ar yra spragų.
 
 
-## 🚀 Iššūkis
+## Debug'inimas su atsakingu DI  
+
+Panašiai kaip ir programų klaidų taisymas (debug'inimas), DI sistemos debug'inimas yra būtinas procesas, skirtas identifikuoti ir išspręsti problemas sistemoje. Daugelis veiksnių gali paveikti modelio neveikimą pagal lūkesčius ar atsakingumo principus. Dauguma tradicinių modelių našumo metrikų yra kiekybiniai agregatai, kurie nepakanka analizuoti, kaip modelis pažeidžia atsakingo DI principus. Be to, mašininio mokymosi modelis yra juodoji dėžė, todėl sunku suprasti, kas lemia jo rezultatą ar paaiškinti klaidas. Vėliau šiame kurse sužinosime, kaip naudotis Atsakingo DI informacijos suvestine, kuri padeda debug'inti DI sistemas. Ši suvestinė suteikia visapusišką įrankį duomenų mokslininkams ir DI kūrėjams atlikti:
+
+* **Klaidų analizę**. Norint nustatyti modelio klaidų pasiskirstymą, galintį įtakoti sistemos teisingumą ar patikimumą.
+* **Modelio apžvalgą**. Norint aptikti, kur duomenų grupėse yra skirtumų modelio veikime.
+* **Duomenų analizę**. Norint suprasti duomenų pasiskirstymą ir identifikuoti galimus šališkumus, galinčius sukelti teisingumo, įtraukties ir patikimumo problemas.
+* **Modelio interpretuojamumą**. Norint suprasti, kas veikia ar įtakoja modelio prognozes. Tai padeda paaiškinti modelio elgesį, kas yra svarbu skaidrumui ir atsakomybei.
+
+
+## 🚀 Iššūkis 
  
-Siekiant išvengti žalos, turėtume:
+Siekdami išvengti žalos atsiradimo iš karto turėtume:
 
-- turėti įvairių fonų ir požiūrių tarp sistemų kūrėjų
-- investuoti į duomenų rinkinius, atspindinčius mūsų visuomenės įvairovę
-- kurti geresnius metodus visame mašininio mokymosi gyvavimo cikle, skirtus atsakingo DI aptikimui ir taisymui
+- turėti įvairių kilmių ir perspektyvų žmones, dirbančius su sistemomis.
+- investuoti į duomenų rinkinius, atspindinčius mūsų visuomenės įvairovę.
+- tobulinti metodus per visą mašininio mokymosi gyvavimo ciklą, skirtus nepilnavertiško DI aptikimui ir taisymui, kai to reikia.
 
-Pagalvokite apie realias situacijas, kai modelio nepatikimumas akivaizdus modelio kūrime ir naudojime. Ką dar turėtume apsvarstyti?
+Pagalvokite apie realaus gyvenimo situacijas, kuriose modelio nepatikimumas aiškiai matomas kuriant ir naudojant modelį. Ką dar reikėtų apsvarstyti?
 
-## [Viktorinos testas po paskaitos](https://ff-quizzes.netlify.app/en/ml/)
+## [Baigiamoji viktorina](https://ff-quizzes.netlify.app/en/ml/)
 
-## Apžvalga ir savarankiškas mokymasis
+## Peržiūra ir savarankiškas mokymasis  
  
-
-Šioje pamokoje jūs sužinojote pagrindus apie teisingumo ir neteisingumo sąvokas mašininiame mokyme.  
+Šioje pamokoje jūs sužinojote pagrindinius teisingumo ir neteisingumo mašininiame mokyme principus.  
  
-Peržiūrėkite šį seminarą, kad giliau suprastumėte temas: 
+Peržiūrėkite šią dirbtuvę, kad giliau įsigilintumėte į temas: 
 
-- Atsakingo DI siekis: Principų taikymas praktikoje, pristato Besmira Nushi, Mehrnoosh Sameki ir Amit Sharma
+- Siekdami atsakingo DI: Principų įgyvendinimas, autorių Besmira Nushi, Mehrnoosh Sameki ir Amit Sharma
 
-[![Atsakingo DI įrankių rinkinys: Atvirojo kodo sistema atsakingam DI kūrimui](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
+[![Atsakingo DI rinkinys: Atviro kodo sistema atsakingam DI kūrimui](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "Atsakingo DI rinkinys: Atviro kodo sistema atsakingam DI kūrimui")
 
-> 🎥 Spauskite aukščiau esantį paveikslėlį vaizdo įrašui: RAI Toolbox: Atvirojo kodo įrankių rinkinys atsakingam DI kūrimui, pristato Besmira Nushi, Mehrnoosh Sameki ir Amit Sharma
+> 🎥 Spustelėkite viršutinį paveikslėlį, jei norite peržiūrėti vaizdo įrašą: RAI Toolbox: Atviro kodo sistema atsakingam DI kūrimui, autoriai Besmira Nushi, Mehrnoosh Sameki ir Amit Sharma
 
-Taip pat skaitykite: 
+Taip pat skaitykite:
 
-- „Microsoft“ RAI išteklių centras: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- „Microsoft“ atsakingo DI išteklių centras: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
 
-- „Microsoft“ FATE tyrimų grupė: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+- „Microsoft“ FATE tyrimų grupė: [FATE: Teisingumas, Atsakomybė, Skaidrumas ir Etika DI srityje – Microsoft Research](https://www.microsoft.com/research/theme/fate/)
 
-RAI įrankių rinkinys: 
+Atsakingo DI rinkinys:
 
-- [Responsible AI Toolbox GitHub saugykla](https://github.com/microsoft/responsible-ai-toolbox)
+- [Atsakingo DI rinkinio „GitHub“ saugykla](https://github.com/microsoft/responsible-ai-toolbox)
 
-Skaitykite apie Azure Machine Learning įrankius siekiant užtikrinti teisingumą:
+Skaitykite apie „Azure Machine Learning“ įrankius, skirtus užtikrinti teisingumą:
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
 
 ## Užduotis
 
-[Tyrinėkite RAI įrankių rinkinį](assignment.md)
+[Išbandykite Atsakingo DI rinkinį](assignment.md)
 
 ---
 

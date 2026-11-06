@@ -8,16 +8,16 @@
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
-### 🌐 ការគាំទ្រភាសាច្រើន
+### 🌐 ការគាំទ្រលេខា ភាសាច្រើន
 
-#### គាំទ្រដោយរយៈ <i>GitHub Action</i> (ដោយស្វ័យប្រវត្តិ និងតែងតែទាន់សម័យ)
+#### គាំទ្រដោយ GitHub Action (ដោយស្វ័យប្រវត្តិ និងទាន់សម័យជាសម័យ)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Khmer](./README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[អារ៉ាប់](../ar/README.md) | [បង្គោល](../bn/README.md) | [ប៊ូលការី](../bg/README.md) | [ភាសា မြန်မာ](../my/README.md) | [ចិន (សាមញ្ញ)](../zh-CN/README.md) | [ចិន (ប្រពៃណី, ហុងកុង)](../zh-HK/README.md) | [ចិន (ប្រពៃណី, ម៉ាកាវ)](../zh-MO/README.md) | [ចិន (ប្រពៃណី, តៃវ៉ាន់)](../zh-TW/README.md) | [គ្រូអាតិក](../hr/README.md) | [ឆេក](../cs/README.md) | [ដាណ្មាង](../da/README.md) | [ហុល្លង់](../nl/README.md) | [អេស្តូនី](../et/README.md) | [ហ្វាំងឡង់](../fi/README.md) | [បារាំង](../fr/README.md) | [អាល្លឺម៉ង់](../de/README.md) | [ក្រិក](../el/README.md) | [ហេប្រ៊ូ](../he/README.md) | [ហិណ្ឌី](../hi/README.md) | [ហុងគ្រី](../hu/README.md) | [ឥណ្ឌូណេស៊ី](../id/README.md) | [អ៊ីតាលី](../it/README.md) | [ជប៉ុន](../ja/README.md) | [ក្រណាដា](../kn/README.md) | [ខ្មែរ](./README.md) | [កូរ៉េ](../ko/README.md) | [លីទុយអានី](../lt/README.md) | [ម៉ាឡេស៊ី](../ms/README.md) | [ម៉ាឡាឡាំ](../ml/README.md) | [ម៉ារ៉ាធី](../mr/README.md) | [ណេប៉ាល់](../ne/README.md) | [អ្នកនិយាយភីជិន នីហ្សេរី](../pcm/README.md) | [ន័រវេ](../no/README.md) | [ប៉ិរឡុស (ផ្សេងពីហ្វារស៊ី)](../fa/README.md) | [ប៉ូឡូញ](../pl/README.md) | [ប៉ូរទុយហ្គាល់ (ប្រេស៊ីល)](../pt-BR/README.md) | [ប៉ូរទុយហ្គាល់ (ប្រទេសប៉ូរទុយហ្គាល់)](../pt-PT/README.md) | [ភាសា បេតជាប៉ូ (កប៊ូម៊ុយ)](../pa/README.md) | [រូម៉ានី](../ro/README.md) | [រុស្ស៊ី](../ru/README.md) | [សែប៊ិក (ស៊ីរីលិក)](../sr/README.md) | [ស្លូវ៉ាក](../sk/README.md) | [ស្លូវេនី](../sl/README.md) | [អេស្ប៉ាញ](../es/README.md) | [ស្វាហ៊ីលី](../sw/README.md) | [ស្វែដ](../sv/README.md) | [តាហ្គាឡុក (ហ្វីលីពីន)](../tl/README.md) | [ទំនខ្មែរ](../ta/README.md) | [ទេឡូហ្គូ](../te/README.md) | [ថៃ](../th/README.md) | [ទួរគី](../tr/README.md) | [អ៊ុយក្រែន](../uk/README.md) | [អ៊ូរឌូ](../ur/README.md) | [វៀតណាម](../vi/README.md)
 
-> **ចូលចិត្ត Clone តាមកុំព្យូទ័រដោយផ្ទាល់?**
+> **ចង់ចម្លងក្នុងម៉ាស៊ីនផ្ទាល់ខ្លួន?**
 >
-> ឃ្លាំងនេះរួមបញ្ចូលការប្រែសម្រួលជាមុខងារភាសាច្រើនជាង ៥០ ដែលបង្កើនទំហំទាញយកយ៉ាងច្រើន។ ដើម្បី clone ដោយគ្មានការប្រែសម្រួល, សូមប្រើ sparse checkout:
+> ការប្រមូលផ្តុំនេះរួមបញ្ចូលការប្រែសម្រួលជ понад 50 ភាសា ដែលបណ្តាលអោយទំហំទាញយកធំឡើងយ៉ាងខ្លាំង។ ដើម្បីចម្លងដោយគ្មានការប្រែសម្រួល អ្នកអាចប្រើម៉ឺនុយ sparse checkout:
 >
 > **Bash / macOS / Linux:**
 > ```bash
@@ -33,62 +33,65 @@
 > git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
 > ```
 >
-> នេះនឹងផ្តល់អ្នកទាំងអស់ដែលអ្នកត្រូវការដើម្បីបញ្ចប់វគ្គនេះដោយមានការទាញយករហ័សជាងមុន។
+> វានាំអោយអ្នកទទួលបានគ្រប់យ៉ាងដែលត្រូវការដើម្បីបញ្ចប់មុខវិជ្ជានេះដោយមានការទាញយកកាន់តែរហ័ស។
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 #### ចូលរួមសហគមន៍របស់យើង
 
-[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+[![មីក្រូសូហ្វដីសក្លោង Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-យើងមានស៊េរី Discord រៀនជាមួយ AI កំពុងបន្តនៅឡើយ, សូមរៀនបន្ថែម និងចូលរួមជាមួយយើង នៅ [Learn with AI Series](https://aka.ms/learnwithai/discord) ចាប់ពី 18 ដល់ 30 ខែកញ្ញា, 2025។ អ្នកនឹងទទួលបានក្បួននិងល្បិចក្នុងការប្រើប្រាស់ GitHub Copilot សម្រាប់វិទ្យាសាស្ត្រទិន្នន័យ។
+យើងមានស៊េរី Discord សម្រាប់ការសិក្សាជាមួយ AI កំពុងដំណើរការ សូមសិក្សាបន្ថែម និងចូលរួមជាមួយយើងនៅ [ស៊េរី Learn with AI](https://aka.ms/learnwithai/discord) ចាប់ពីថ្ងៃទី 18 ដល់ ថ្ងៃទី 30 កញ្ញា 2025។ អ្នកនឹងទទួលបានគន្លឹះ និងជំនាញនៃការប្រើ GitHub Copilot សម្រាប់វិទ្យាសាស្ត្រទិន្នន័យ។
 
-![Learn with AI series](../../translated_images/km/3.9b58fd8d6c373c20.webp)
+![ស៊េរី Learn with AI](../../translated_images/km/3.9b58fd8d6c373c20.webp)
 
-# ម៉ាស៊ីនរៀនសម្រាប់អ្នកចាប់ផ្តើម - មេរៀនមួយសិក្ខាសាលា
+# ការរៀនម៉ាស៊ីនសម្រាប់អ្នកចាប់ផ្តើម - មេរៀនមួយ
 
-> 🌍 ប្រាស្រ័យទំនាក់ទំនងជុំវិញពិភពលោក ខណៈពេលយើងស្វែងយល់អំពីម៉ាស៊ីនរៀនតាមរយៈវប្បធម៌ពិភពលោក 🌍
+> 🌍 ដំណើរធ្វើដំណើរជុំវិញពិភពលោក ខណៈពេលដែលយើងសិក្សារអំពីម៉ាស៊ីនរៀនតាមរយៈវប្បធម៌នានាពិភពលោក 🌍
 
-ក្រុម Cloud Advocates នៅ Microsoft មានសេចក្ដីរំភើបផ្តល់ជូនមេរៀន ១២ សប្តាហ៍ ២៦ ចំណងជើងទាំងអស់ស្ដីពី **ម៉ាស៊ីនរៀន**។ ក្នុងមេរៀននេះ អ្នកនឹងរៀនអំពីអ្វីដែលគេស្គាល់ថា **ម៉ាស៊ីនរៀនចាស់** បន្ទាប់ពីប្រើប្រាស់សៀករីតឡើនជាលក្ខណៈបណ្ណាល័យ និងជៀសវាងការរៀនជ្រៅ ដែលបានគ្របដណ្តប់នៅក្នុង [AI for Beginners’ curriculum](https://aka.ms/ai4beginners)។ និងភ្ជាប់មេរៀនទាំងនេះជាមួយ ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners) ផងដែរ។
+អ្នកផ្សព្វផ្សាយ Cloud នៅ Microsoft មានសេចក្តីរីករាយផ្តល់ជូនមេរៀន 12 សប្ដាហ៍ 26 មេរៀនអំពី **ម៉ាស៊ីនរៀន**។ នៅក្នុងមេរៀននេះ អ្នកនឹងរៀនអំពីអ្វីដែលហៅថា **ម៉ាស៊ីនរៀនបែបចាស់** ប្រើប្រាស់វីធី Scikit-learn ជាចម្បង និងជៀសវាងការសិក្សាដែលជ្រៅ ដែលគ្របដណ្តប់នៅក្នុង [មេរៀន AI សម្រាប់អ្នកចាប់ផ្តើម](https://aka.ms/ai4beginners)។ ពូកែមេរៀនទាំងនេះជាមួយនឹង ['វិទ្យាសាស្ត្រទិន្នន័យសម្រាប់អ្នកចាប់ផ្តើម'](https://aka.ms/ds4beginners)!
 
-ធ្វើដំណើរជាមួយយើងជុំវិញពិភពលោក ខណៈយើងអនុវត្តបច្ចេកទេសចាស់ទាំងនេះលើទិន្នន័យពីតំបន់ជាច្រើននៅពិភពលោក។ មេរៀននិមួយៗរួមបញ្ចូលការប្រលងមុននិងក្រោយម៉ោងរៀន, ការណែនាំជាឡាយខេីបសម្រាប់បញ្ចប់មេរៀន, ដំណោះស្រាយមួយ, ការងារទៅមុខ និងផ្សេងៗទៀត។ វិធីសាស្រ្តបង្រៀនផ្អែកលើគម្រោងយើងអនុញ្ញាតឲ្យអ្នករៀនពេលកំពុងសាងសង់ ដែលជាវិធីបានបញ្ជាក់ថាជួយឲ្យជំនាញថ្មីៗ "នៅច្របល់" ។
+ដំណើររួមជាមួយយើងជុំវិញពិភពលោក ដើម្បីអនុវត្តវិធីសាស្រ្តបុរាណទាំងនេះលើទិន្នន័យពីតំបន់ផ្សេងៗ។ មេរៀននិមួយៗមានការប្រលងមុន និងបន្ទាប់មេរៀន, សេចក្តីណែនាំសរសេរដើម្បីបញ្ចប់មេរៀន, ដំណោះស្រាយ, កិច្ចការណ៍ និងច្រើនទៀត។ វិធីសាស្រ្តបង្រៀនផ្អែកលើគម្រោងអនុញ្ញាតឱ្យអ្នករៀនពេលកំពុងបង្កើត ដែលជាវិធីដែលបានพิสูจน์ហើយថាជួយឲ្យជំនាញថ្មីៗ «ដាក់ចិត្ត» បានប្រសើរឡើង។
 
-**✍️ អរគុណយ៉ាងខ្លាំងចំពោះអ្នកនិពន្ធរបស់យើង** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu និង Amy Boyd
+**✍️ សូមថ្លែងអំណរគុណរហូតដល់អ្នកនិពន្ធរបស់យើង** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu និង Amy Boyd
 
-**🎨 អរគុណផងដល់អ្នកគូររូបភាព** Tomomi Imura, Dasani Madipalli, និង Jen Looper
+**🎨 អរគុណដល់អ្នកគូររូបរបស់យើង** Tomomi Imura, Dasani Madipalli និង Jen Looper
 
-**🙏 អរគុណពិសេស 🙏 ចំពោះ Microsoft Student Ambassador អ្នកនិពន្ធ ពិនិត្យជាតិ និងអ្នកផ្តល់មាតិកា**, មានរួមទាំង Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, និង Snigdha Agarwal
+**🙏 អរគុណពិសេស 🙏 ទៅកាន់អ្នកនិពន្ធ អ្នកពិនិត្យ និងអ្នកចូលរួមខ្លួន Microsoft Student Ambassador របស់យើង**, ជាពិសេស Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila និង Snigdha Agarwal
 
-**🤩 អរគុណបន្ថែមចំពោះ Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, និង Vidushi Gupta សម្រាប់មេរៀន R របស់យើង!**
+**🤩 អំណរគុណបន្ថែមដល់ Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi និង Vidushi Gupta សម្រាប់មេរៀន R របស់យើង!**
 
-# ការចាប់ផ្តើម
+# ចាប់ផ្តើម
 
-អនុវត្តតាមជំហានទាំងនេះ៖
-1. **Fork ឃ្លាំង**: ចុចប៊ូតុង "Fork" នៅជ្រុងខាងត្បូងស្តាំនៃទំព័រនេះ។
-2. **Clone ឃ្លាំង**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+អនុវត្តន៍ជំហានទាំងនេះ៖
+1. **Fork មុខវិជ្ជា**៖ ចុចប៊ូតុង "Fork" នៅមុំខាងលើស្តាំងនៃទំព័រនេះ។
+2. **ចម្លងមុខវិជ្ជា**៖   `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [ស្វែងរកធនធានបន្ថែមទាំងអស់សម្រាប់វគ្គនេះនៅក្នុងអង្គភាព Microsoft Learn](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> 💡 **គន្លឹះចាប់ផ្តើមឆាប់រហ័ស:** ចង់ចាប់ផ្តើមក្នុងកម្មវិធីរុក្ខជាតិដោយគ្មានការដំឡើង Python នៅក្នុងម៉ាស៊ីនផ្ទាល់? ប្រើ [GitHub Codespaces](https://github.com/features/codespaces) ដើម្បីបង្កើតបរិយាកាសអភិវឌ្ឍន៍នៅលើពពក សម្រាប់ fork របស់អ្នក។ បើកម៉ឺនុយបៃតង **Code** ជ្រើសរើស **Codespaces** ហើយបង្កើត codespace; ដំឡើងរាល់ការពឹងផ្អែកតាមមេរៀនដែលតម្រូវ។
 
-> 🔧 **ត្រូវការជំនួយ?** ពិនិត្យមើល [មគ្គុទេសក៍ដោះស្រាយបញ្ហា](TROUBLESHOOTING.md) របស់យើងសម្រាប់ដំណោះស្រាយបញ្ហាទូទៅស្តីពីការតំឡើង ការតំរូវ និងការប្រតិបត្តិមេរៀន។
+> [ស្វែងរកធនធានបន្ថែមទាំងអស់សម្រាប់មុខវិជ្ជានេះនៅក្នុងស្វ័យប្រវត្តិ Microsoft Learn របស់យើង](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-**[សិស្ស](https://aka.ms/student-page)**, ដើម្បីប្រើប្រាស់មេរៀននេះ សូម fork រួមទាំងឃ្លាំងទៅគណនេយ្យ GitHub របស់អ្នក ហើយបញ្ចប់លំហាត់ដោយផ្ទាល់ខ្លួនឬជាក្រុម៖
+> 🔧 **ត្រូវការជំនួយ?** ពិនិត្យមើល [មេរៀនដោះស្រាយបញ្ហា](TROUBLESHOOTING.md) របស់យើងសម្រាប់ដំណោះស្រាយទៅអំពីបញ្ហាទូទៅនៃការដំឡើង ការតំណើរការ និងមេរៀន។
 
-- ចាប់ផ្តើមជាមួយការប្រលងមុនម៉ោងរៀន។
-- អានម៉ោងរៀន និងបញ្ចប់សកម្មភាពខ្លះៗ ដោយឈប់ និងពិចារណា​នៅពេលត្រួតពិនិត្យចំណេះដឹងនិមួយៗ។
-- ព្យាយាមបង្កើតគម្រោងដោយឱ្យយល់ពីមេរៀន ជាជាងរត់កូដដំណោះស្រាយ។ ទោះយ៉ាងไรก็ตาม កូដនោះមាននៅក្នុងថត `/solution` នៃមេរៀនដែលផ្អែកលើគម្រោងនិមួយៗ។
-- ធ្វើតេស្តក្រោយម៉ោងរៀន។
-- បញ្ចប់ការប្រកួត។
-- បញ្ចប់កិច្ចការងារ។
-- បន្ទាប់ពីបញ្ចប់ក្រុមមេរៀនមួយ សូមចូលទៅកាន់ [ចំវេនចំរាស](https://github.com/microsoft/ML-For-Beginners/discussions) ហើយ "រៀនដោយឡើងសំឡេង" ដោយបំពេញរូបមន្ត PAT ដែលសមស្រប។ 'PAT' គឺជាឧបករណ៍វាយតម្លៃអំពីវឌ្ឍនភាព ដែលជារូបមន្តអ្នកបំពេញដើម្បីបន្តការរៀន។ អ្នកអាចផ្ទេរតបនឹង PATs របស់អ្នកដទៃ ដើម្បីឲ្យយើងរៀនរួមគ្នា។
 
-> សម្រាប់ការសិក្សាបន្ថែម យើងផ្តល់អនុសាសន៍ឲ្យតាមដាន [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) ម៉ូឌុលនិងផ្លូវរៀន។
+**[សិស្ស](https://aka.ms/student-page)** ដើម្បីប្រើប្រាស់មុខវិជ្ជានេះ សូម fork មុខវិជ្ជាពេញមួយទៅប្រើប្រាស់ក្នុងគណនី GitHub របស់អ្នក ហើយបញ្ចប់លំហាត់ដោយខ្លួនឯង ឬជាក្រុម៖
 
-**គ្រូបង្រៀន**, យើងមាន [បានបញ្ចូលការណែនាំខ្លះៗ](for-teachers.md) អំពីវិធីប្រើប្រាស់មេរៀននេះ។
+- ចាប់ផ្តើមជាមួយការប្រលងមុនមេរៀន។
+- អានមេរៀន និងបញ្ចប់សកម្មភាព បញ្ឈប់ និងពិចារណារនៅពេលវេលាក្នុងការត្រួតពិនិត្យចំណេះដឹង។
+- ព្យាយាមបង្កើតគម្រោងដោយយល់ដឹងមេរៀន ជាងការរត់កូដដំណោះស្រាយ; ទោះបីជាកូដនេះមានរួចនៅក្នុងថត `/solution` នៃមេរៀនផ្អែកលើគម្រោង។
+- ធ្វើការប្រលងបន្ទាប់មេរៀន។
+- បញ្ចប់ការប្រកួតប្រជែង។
+- បញ្ចប់ភារកិច្ច។
+- បន្ទាប់ពីបញ្ចប់ក្រុមមេរៀនមួយ សូមទស្សនាក្រុមហ៊ុន [បន្ទះពិភាក្សា](https://github.com/microsoft/ML-For-Beginners/discussions) ហើយ "រៀនយំឮ" ដោយបំពេញក្របខ័ណ្ឌ PAT ដែលសមស្រប។ PAT គឺជាឧបករណ៍វាយតម្លៃដំណើរការដែលអ្នកបំពេញជួយសម្រួលការរៀនរបស់អ្នក។ អ្នកក៏អាចឆ្លើយតបទៅ PAT របស់អ្នកដទៃ ដើម្បីយើងអាចរៀនរួមគ្នា។
+
+> សម្រាប់ការសិក្សាបន្ថែម យើងផ្តល់អនុសាសន៍ឱ្យតាមដានវគ្គ [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) និងផ្លូវការរៀន។
+
+**គ្រូបង្រៀន** យើងបាន [បញ្ចូលមតិយោបល់ខ្លះៗ](for-teachers.md) របៀបប្រើប្រាស់មេរៀននេះ។
 
 ---
 
-## វីដេអូដំណើរ
+## វីដេអូបង្ហាញ
 
-មេរៀនខ្លះមានភាពខ្លីជាវីដេអូ។ អ្នកអាចរកវាបាននៅក្នុងមេរៀនឬនៅលើ [ផ្ទាំងវីដេអូ ML for Beginners នៅលើចោណាល Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) ដោយចុចលើរូបភាពខាងក្រោម។
+មេរៀនខ្លះមានជាវីដេអូខ្លីៗ។ អ្នកអាចរកឃើញវាទាំងអស់នៅក្នុងមេរៀន ឬលើ [បញ្ជីចម្រៀង ML for Beginners នៅឆានែល Microsoft Developer YouTube](https://aka.ms/ml-beginners-videos) ដោយចុចរូបភាពខាងក្រោម។
 
 [![ML for beginners banner](../../translated_images/km/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
@@ -98,149 +101,152 @@
 
 [![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
 
-**រូបភាព Gif ដោយ** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+**Gif ដោយ** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
-> 🎥 ចុចលើរូបភាពខាងលើសម្រាប់វីដេអូអំពីគម្រោង និងមនុស្សដែលបានបង្កើតវា!
+> 🎥 ចុចរូបភាពខាងលើសម្រាប់វីដេអូអំពីគម្រោង និងមនុស្សដែលបង្កើតវា!
 
 ---
 
-## វិធីបង្រៀន
+## វិធីសាស្រ្តបង្រៀន
 
-យើងបានជ្រើសរើសទស្សនៈបង្រៀនពីរយ៉ាងនៅពេលបង្កើតមេរៀននេះ៖ ធានាថាវាជា **គម្រោងអនុវត្ត** ហើយមាន **តេស្តញឹកញាប់**។ ជាមួយគ្នា មេរៀននេះមាន **ប្រធានបទ** រួម ដើម្បីបង្កើតភាពចង៖
+យើងជ្រើសរើសមូលដ្ឋានបង្រៀនពីរដែលសំខាន់ក្នុងការបង្កើតមេរៀននេះ៖ ការធានាថាវាគឺជាវិធីសាស្រ្តអនុវត្ត **ផ្អែកលើគម្រោង** និងរួមបញ្ចូល **ការប្រលងជំនាញជាប្រចាំ**។ បន្ថែមពីនេះ មេរៀនមាន **ប្រធានបទ**ជារួមដើម្បីផ្តល់ភាពរួមគ្នា។
 
-ដោយធានាថាមាតិការភ្ជាប់ជាមួយគម្រោង ដំណើរនេះនឹងធ្វើឲ្យសិស្សមានការចូលរួមខ្លាំងនិងជំនួយឲ្យចងចាំគំនិតបានល្អ។ លើសពីនេះទៀត តេស្តស្រោចស្រង់មុនថ្នាក់សិក្សាគឺដើម្បីបណ្តុះបណ្តាលចិត្តក្តីចង់រៀន និងតេស្តទីពីរបន្ទាប់ពីថ្នាក់ជួយការចងចាំបន្ថែមទៀត។ មេរៀននេះត្រូវបានរចនាឡើងឲ្យមានភាពបត់បែន និងរីករាយ ហើយអាចយកសព្វគ្រប់វឬខ្លះៗយ៉ាងម៉ត់ចត់។ គម្រោងនឹងចាប់ផ្តើមតូច និងកើនឡើងស្មុគស្មាញញឹកញាប់នៅចុងក្តីវគ្គ ១២ សប្តាហ៍។ មេរៀននេះមានផងដែរ អត្ថបទបន្ថែមពីការអនុវត្តនៅពិភពពិតនៃ ML ដែលអាចប្រើជាគ្រោងការសម្របសម្រួលឬជាគំហើញសម្រាប់ការពិភាក្សា។
+ដោយធានាថាបទពិសោធន៍សម្របសម្រួលជាមួយគម្រោង ការបង្រៀនក្លាយជារឿងគួរឱ្យចាប់អារម្មណ៍សម្រាប់សិស្ស និងកែលម្អការចងចាំមូលដ្ឋាន។ បន្ថែមពីនេះ ការប្រលងមួយមុនថ្នាក់ឲ្យបំណងក្នុងការរៀនមុខវិជ្ជា ខណៈពេលការប្រលងទីពីរបញ្ចាក់ការចងចាំបន្ថែមបន្ទាប់ពីថ្នាក់។ មេរៀននេះត្រូវបានរចនាឡើងឲ្យមានភាពបត់បែន និងរីករាយ អាចបញ្ចប់បានទាំងមូល ឬខ្លះៗ។ គម្រោងចាប់ផ្តើមតូច ហើយកើនឡើងមន្ទុះស្មុគស្មាញនៅចុងសប្ដាហ៍ទី 12។ មេរៀននេះមានកំណត់ត្រាសម្រាប់ការអនុវត្តចំការផ្សេងទៀតនៃម៉ាស៊ីនរៀន ដែលអាចប្រើជាពិន្ទុបន្ថែម ឬជាមូលដ្ឋានសម្រាប់ការពិភាក្សា។
 
-> សូមរកមើល [កូដអាកប្បកិរិយា](CODE_OF_CONDUCT.md), [ការចូលរួម](CONTRIBUTING.md), [ការប្រែសម្រួល](..), និង [ការដោះស្រាយបញ្ហា](TROUBLESHOOTING.md) ទិដ្ឋភាព។ យើងសូមស្វាគមន៍មតិយោបល់ដែលសាងសង់របស់អ្នក!
+> សូមរកមើល [Code of Conduct](CODE_OF_CONDUCT.md), [ការចូលរួម](CONTRIBUTING.md), [ការប្រែសម្រួល](..), និង [ដោះស្រាយបញ្ហា](TROUBLESHOOTING.md) របស់យើង។ យើងសង្ឃឹមថានឹងទទួលបានមតិយោបល់សំណូមពររបស់អ្នក!
 
-## មេរៀននិមួយៗ រួមមាន
+## មេរៀននិមួយៗរួមមាន
 
-- សេចក្តីបញ្ជាក់ជារូបភាពស្រេច
-- វីដេអូជាការផ្គុំបន្ថែម
-- វីដេអូបរិច្ឆេទ (មេរៀនខ្លះៗ)
-- [តេស្តអប់រំនិមួយៗមុនម៉ោងរៀន](https://ff-quizzes.netlify.app/en/ml/)
+- សេចក្តីសង្ខេបជាគំនូរសេចក្តី
+- វីដេអូចម្រាញ់បន្ថែម (ជាជម្រើស)
+- វីដេអូបង្ហាញ (មេរៀនខ្លះៗតែប៉ុណ្ណោះ)
+- [ការប្រលងកម្រិតមុនថ្នាក់](https://ff-quizzes.netlify.app/en/ml/)
 - មេរៀនសរសេរ
-- សម្រាប់មេរៀនផ្អែកលើគម្រោង, មគ្គុទេសក៍ជំហានដោយជំហានក្នុងការសាងសង់គម្រោង
+- សម្រាប់មេរៀនផ្អែកលើគម្រោង ការណែនាំជាកំហិតដើម្បីបង្កើតគម្រោង
 - ការត្រួតពិនិត្យចំណេះដឹង
-- ការប្រកួត
-- កំណត់អានបន្ថែម
-- កិច្ចការងារ
-- [តេស្តក្រោយម៉ោងរៀន](https://ff-quizzes.netlify.app/en/ml/)
-> **កំណត់សម្គាល់អំពីភាសា** ៖ មេរៀនទាំងនេះភាគច្រើនត្រូវបានសរសេរជាភាសា Python ប៉ុន្តែភាគច្រើនក៏មានជាភាសា R ផងដែរ។ ដើម្បីបញ្ចប់មេរៀន R មួយ សូមទៅកាន់ថត `/solution` ហើយស្វែងរកមេរៀន R។ ពួកវារួមបញ្ចូលនូវបច្ចេកទេស .rmd ដែលតំណាងឱ្យឯកសារ **R Markdown** ដែលអាចត្រូវបានកំណត់ដូចជាការបញ្ចូល `code chunks` (នៃ R ឬភាសាផ្សេងទៀត) និង `YAML header` (ដែលណែនាំពីរបៀបរៀបចំលទ្ធផលដូចជា PDF) ក្នុង `Markdown document` មួយ។ ដូច្នេះ វាជាគ្រោងការសរសេរដ៏ល្អឥតខ្ចោះសម្រាប់វិទ្យាសាស្ត្រទិន្នន័យ ព្រោះវាអនុញ្ញាតឱ្យអ្នកបញ្ចូលកូដរបស់អ្នក លទ្ធផលរបស់វា និងគំនិតរបស់អ្នកដោយដែលអ្នកអាចសរសេរពួកវាទៅក្នុង Markdown។ លើសពីនេះទៅទៀត ឯកសារ R Markdown អាចត្រូវបានបម្លែងទៅជារូបមន្តលទ្ធផលដូចជា PDF, HTML ឬ Word បាន។
+- ការប្រកួតប្រជែង
+- ការអានបន្ថែម
+- ភារកិច្ច
+- [ការប្រឡងបន្ទាប់មេរៀន](https://ff-quizzes.netlify.app/en/ml/)
 
-> **កំណត់សម្គាល់អំពីសំណួរតេស្ត** ៖ សំណួរតេស្តទាំងអស់មាននៅក្នុង [ថត Quiz App](../../quiz-app) សរុប 52 សំណួរតេស្ត ដែលមានសំនួរបី សម្រាប់បីសំណួរនីមួយៗ។ ពួកវាត្រូវបានភ្ជាប់ពីក្នុងមេរៀន ប៉ុន្តែកម្មវិធីសំណួរតេស្តអាចដំណើរការជាលokalបានៈ អ្នកត្រូវតែអនុវត្តតាមសេចក្ដីណែនាំនៅក្នុងថត `quiz-app` ដើម្បីផ្ទុកជាលokalឬបញ្ចេញទៅ Azure។
+> **កំណត់សម្គាល់អំពីភាសា**៖ មេរៀនទាំងនេះភាគច្រើនសរសេរជាមួយ Python ប៉ុន្តែអាចរកបានជាច្រើនក្នុងភាសា R ផងដែរ។ ដើម្បីបញ្ចប់មេរៀន R សូមចូលទៅថត `/solution` ហើយស្វែងរកមេរៀន R។ វារួមបញ្ចូលផ្នែក .rmd ដែលជាអ្នកតំណាងឱ្យឯកសារ **R Markdown** ដែលអាចនិយាយជាផ្នែកឧទាហរណ៍មួយសម្រាប់ការសរសេររួមគ្នា `code chunks` (នៃ R ឬភាសាផ្សេង) និង `YAML header` (ដែលណែនាំរបៀបបែបផែនលទ្ធផលដូចជា PDF) ក្នុងឯកសារ `Markdown`។ ដូច្នេះវាជាជំនាញមួយសម្រាប់វិទ្យាសាស្ត្រទិន្នន័យព្រោះវាអនុញ្ញាតឱ្យអ្នកចងកូដ ទិន្នផល និងគំនិតរបស់អ្នកជាមួយគ្នាតាមរយៈMarkdown។ បន្ថែមពីនេះឯកសារ R Markdown ក៏អាចបំលែងទៅទ្រង់ទ្រាយដូចជា PDF, HTML ឬ Word បាន។
 
-| លេខមេរៀន | ក្បួនសិក្សា | ក្រុមមេរៀន | គោលបំណងការសិក្សា | មេរៀនភ្ជាប់ | អ្នកនិពន្ធ |
-| :--------: | :----------: | :----------: | :------------------: | :-----------: | :--------: |
-| 01 | របៀបស្គាល់បណ្តាញឧបករណ៍ | [Introduction](1-Introduction/README.md) | រៀនគំនិតមូលដ្ឋាននៃការរៀនម៉ាស៊ីន | [Lesson](1-Introduction/1-intro-to-ML/README.md) | Muhammad |
-| 02 | ប្រវត្តិសាស្ត្រនៃការរៀនម៉ាស៊ីន | [Introduction](1-Introduction/README.md) | រៀនអំពីប្រវត្តិដែលនៅក្រោមវិស័យនេះ | [Lesson](1-Introduction/2-history-of-ML/README.md) | Jen និង Amy |
-| 03 | តុល្យភាព និងការរៀនម៉ាស៊ីន | [Introduction](1-Introduction/README.md) | តើបញ្ហាទ្រឹស្តីសាស្ត្រសំខាន់ៗអំពីតុល្យភាពដែលនិស្សិតគួរពិចារណាពេលបង្កើតនិងអនុវត្តន៍ម៉ូឌែល ML មានអ្វីខ្លះ? | [Lesson](1-Introduction/3-fairness/README.md) | Tomomi |
-| 04 | បច្ចេកទេសសម្រាប់ការរៀនម៉ាស៊ីន | [Introduction](1-Introduction/README.md) | តើបច្ចេកទេសណាដែលអ្នកស្រាវជ្រាវ ML ប្រើសម្រាប់បង្កើតម៉ូឌែល ML? | [Lesson](1-Introduction/4-techniques-of-ML/README.md) | Chris និង Jen |
-| 05 | របៀបស្គាល់ថ្នាក់បង្រៀន regression | [Regression](2-Regression/README.md) | ចាប់ផ្តើមជាមួយ Python និង Scikit-learn សម្រាប់ម៉ូឌែល regression | [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html) | Jen • Eric Wanjau |
-| 06 | តម្លៃផ្កាក្រហមនៅអាមេរិកជើងជើង 🎃 | [Regression](2-Regression/README.md) | បង្ហាញ និង បោកសំអាតទិន្នន័យក្នុងការរៀបចំសម្រាប់ ML | [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html) | Jen • Eric Wanjau |
-| 07 | តម្លៃផ្កាក្រហមនៅអាមេរិកជើងជើង 🎃 | [Regression](2-Regression/README.md) | បង្កើតម៉ូឌែល regression រូបធរណីរ និងម៉ោង polynomial | [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html) | Jen និង Dmitry • Eric Wanjau |
-| 08 | តម្លៃផ្កាក្រហមនៅអាមេរិកជើងជើង 🎃 | [Regression](2-Regression/README.md) | បង្កើតម៉ូឌែលRegression logistic | [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html) | Jen • Eric Wanjau |
-| 09 | កម្មវិធីវេប 🔌 | [Web App](3-Web-App/README.md) | បង្កើតកម្មវិធីវេបឲ្យប្រើម៉ូឌែលដែលបានបណ្ដុះ | [Python](3-Web-App/1-Web-App/README.md) | Jen |
-| 10 | រៀបចំមុខងារ classification | [Classification](4-Classification/README.md) | បោកសំអាត, រៀបចំ, និងបង្ហាញទិន្នន័យ; រៀបចំបង់ classification | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html) | Jen និង Cassie • Eric Wanjau |
-| 11 | ម្ហូបអាស៊ី និងឥណ្ឌា ស័ក្ដិសម 🍜 | [Classification](4-Classification/README.md) | រៀបចំអ្នកចែកថ្នាក់ | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen និង Cassie • Eric Wanjau |
-| 12 | ម្ហូបអាស៊ី និងឥណ្ឌា ស័ក្ដិសម 🍜 | [Classification](4-Classification/README.md) | មានអ្នកចែកថ្នាក់ច្រើនទៀត | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen និង Cassie • Eric Wanjau |
-| 13 | ម្ហូបអាស៊ី និងឥណ្ឌា ស័ក្ដិសម 🍜 | [Classification](4-Classification/README.md) | បង្កើតកម្មវិធីវេបណែនាំដោយប្រើម៉ូឌែលរបស់អ្នក | [Python](4-Classification/4-Applied/README.md) | Jen |
-| 14 | ការណែនាំ clustering | [Clustering](5-Clustering/README.md) | បោកសំអាត, រៀបចំ, និងបង្ហាញទិន្នន័យ; ការណែនាំប្រព័ន្ធ clustering | [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html) | Jen • Eric Wanjau |
-| 15 | ការរុករករសជាតិតន្ត្រីនៃប្រទេសនីហ្សេរី 🎧 | [Clustering](5-Clustering/README.md) | រុករកវិធី K-Means clustering | [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html) | Jen • Eric Wanjau |
-| 16 | ការណែនាំអំពីការប្រើប្រាស់ភាសាបរិស្ថានធម្មជាតិ ☕️ | [Natural language processing](6-NLP/README.md) | រៀនមូលដ្ឋានអំពី NLP ដោយបង្កើត bot ងាយៗ | [Python](6-NLP/1-Introduction-to-NLP/README.md) | Stephen |
-| 17 | ការងារសម្រាប់ NLP ទូទៅ ☕️ | [Natural language processing](6-NLP/README.md) | ជ្រាបចំរូងនៅលើភាសាតាមរយៈការយល់ដឹងពីភារកិច្ចទូទៅដែលសំខាន់ | [Python](6-NLP/2-Tasks/README.md) | Stephen |
-| 18 | ការបកប្រែ និងវិភាគអារម្មណ៍ ♥️ | [Natural language processing](6-NLP/README.md) | ការបកប្រែ និងវិភាគអារម្មណ៍ជាមួយ Jane Austen | [Python](6-NLP/3-Translation-Sentiment/README.md) | Stephen |
-| 19 | សណ្ឋាគារស្នេហ៍នៅអឺរ៉ុប ♥️ | [Natural language processing](6-NLP/README.md) | វិភាគអារម្មណ៍ជាមួយការពិនិត្យសណ្ឋាគារ ១ | [Python](6-NLP/4-Hotel-Reviews-1/README.md) | Stephen |
-| 20 | សណ្ឋាគារស្នេហ៍នៅអឺរ៉ុប ♥️ | [Natural language processing](6-NLP/README.md) | វិភាគអារម្មណ៍ជាមួយការពិនិត្យសណ្ឋាគារ ២ | [Python](6-NLP/5-Hotel-Reviews-2/README.md) | Stephen |
-| 21 | ការណែនាំប៉ុន្តែពេលវេលាស៊េរី | [Time series](7-TimeSeries/README.md) | ការណែនាំការព្យាករណ៍ពេលវេលាស៊េរី | [Python](7-TimeSeries/1-Introduction/README.md) | Francesca |
-| 22 | ⚡️ ការប្រើប្រាស់ថាមពលពិភពលោក ⚡️ - ការព្យាករណ៍ពេលវេលាស៊េរីជាមួយ ARIMA | [Time series](7-TimeSeries/README.md) | ការព្យាករណ៍ពេលវេលាស៊េរីជាមួយ ARIMA | [Python](7-TimeSeries/2-ARIMA/README.md) | Francesca |
-| 23 | ⚡️ ការប្រើប្រាស់ថាមពលពិភពលោក ⚡️ - ការព្យាករណ៍ពេលវេលាស៊េរីជាមួយ SVR | [Time series](7-TimeSeries/README.md) | ការព្យាករណ៍ពេលវេលាស៊េរីជាមួយ Support Vector Regressor | [Python](7-TimeSeries/3-SVR/README.md) | Anirban |
-| 24 | ការណែនាំដល់ការរៀនបង្រៀនបន្ថែម | [Reinforcement learning](8-Reinforcement/README.md) | ការណែនាំការរៀនបង្រៀនបន្ថែមជាមួយ Q-Learning | [Python](8-Reinforcement/1-QLearning/README.md) | Dmitry |
-| 25 | ជួយ Peter ជៀសវាងខ្លាឆ្នោត! 🐺 | [Reinforcement learning](8-Reinforcement/README.md) | ការរៀនបង្រៀនបន្ថែម Gym | [Python](8-Reinforcement/2-Gym/README.md) | Dmitry |
-| Postscript | ស្ថានភាពពិតនៃ ML និងការអនុវត្ត | [ML in the Wild](9-Real-World/README.md) | ករណីនិងការអនុវត្តពិតនៃ ML រចនាបថបុរាណ | [Lesson](9-Real-World/1-Applications/README.md) | ក្រុម |
-| Postscript | ការប្តូរគំរូក្នុង ML ប្រើបញ្ជីគ្រប់គ្រង RAI | [ML in the Wild](9-Real-World/README.md) | ការប្តូរគំរូក្នុងម៉ាស៊ីនរៀនប្រើបញ្ជីគ្រប់គ្រង Responsible AI | [Lesson](9-Real-World/2-Debugging-ML-Models/README.md) | Ruth Yakubu |
+> **កំណត់សម្គាល់អំពីការប្រលង**៖ ការប្រលងទាំងអស់មាននៅក្នុងថត [Quiz App](../../quiz-app) មានចំនួន 52 ការប្រលង មួយៗមានចំនួនសំណួរ 3។ វាត្រូវបានភ្ជាប់នៅក្នុងមេរៀន ប៉ុន្តែកម្មវិធីប្រលងអាចដំណើរការបាននៅក្នុងម៉ាស៊ីនផ្ទាល់; សូមអនុវត្តការណែនាំនៅក្នុងថត `quiz-app` ដើម្បីដាក់បង្ហោះក្រៅឬដាក់នៅ Azure។
 
-> [ស្វែងរកធនធានបន្ថែមទាំងអស់សម្រាប់វគ្គនេះនៅក្នុងបណ្ណសាររបស់ Microsoft Learn](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+| លេខមេរៀន |                             ចំណងជើង                              |                   ក្រុមមេរៀន                   | គោលបំណងការរៀន                                                                                                             |                                                              មេរៀនភ្ជាប់                                                               |                        អ្នកនិពន្ធ                        |
+| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
+|      01       |                ការណែនាំអំពីការសិក្សាម៉ាស៊ីន                  |      [Introduction](1-Introduction/README.md)       | រៀនពីមូលដ្ឋានគំនិតនៅពីក្រោយការសិក្សាម៉ាស៊ីន                                                                                                |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                ប្រវត្តិវិទ្យានៃការសិក្សាម៉ាស៊ីន                |      [Introduction](1-Introduction/README.md)       | រៀនពីប្រវត្តិវិទ្យាដែលគាំទ្រដល់វិស័យនេះ                                                                                              |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
+|      03       |                   ភាពយុតិសម និងការសិក្សាម៉ាស៊ីន               |      [Introduction](1-Introduction/README.md)       | តើបញ្ហាទោលសំខាន់ៗអ្វីខ្លះដែលទាក់ទងនឹងភាពយុតិសមដែលអ្នកសិក្សាគួរតែគិតពិចារណារបស់ពេលកសាងនិងអនុវត្តម៉ូដែល ML?                                    |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|      04       |                បច្ចេកទេសសម្រាប់ការសិក្សាម៉ាស៊ីន                 |      [Introduction](1-Introduction/README.md)       | តើបច្ចេកទេសណាខ្លះដែលអ្នកស្រាវជ្រាវ ML ប្រើសម្រាប់កសាងម៉ូដែល ML?                                                                       |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
+|      05       |                   ការណែនាំអំពីការវិភាគត្រឡប់                |        [Regression](2-Regression/README.md)         | ចាប់ផ្តើមជាមួយ Python និង Scikit-learn សម្រាប់ម៉ូដែលវិភាគត្រឡប់                                                                  |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|      06       |                តម្លៃស្ពឺកាផឹកនៅអាមេរិកខាងជើង 🎃              |        [Regression](2-Regression/README.md)         | បង្ហាញទិន្នន័យ និងសំអាតទិន្នន័យសម្រាប់រៀបចំទៅ ML                                                                                 |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|      07       |                តម្លៃស្ពឺកាផឹកនៅអាមេរិកខាងជើង 🎃              |        [Regression](2-Regression/README.md)         | សាងម៉ូដែល regression ស្របតាមបន្ទាត់ និង polynomial                                                                              |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen and Dmitry • Eric Wanjau       |
+|      08       |                តម្លៃស្ពឺកាផឹកនៅអាមេរិកខាងជើង 🎃              |        [Regression](2-Regression/README.md)         | សាងម៉ូដែល regression logistic                                                                                               |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|      09       |                          កម្មវិធីបណ្តាញ 🔌                       |           [Web App](3-Web-App/README.md)            | សាងកម្មវិធីបណ្តាញដើម្បីប្រើម៉ូដែលដែលបានបណ្តុះ                                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|      10       |                 ការណែនាំអំពីការបែងចែកវថាគុណ                 |    [Classification](4-Classification/README.md)     | សំអាត រៀបចំ និងបង្ហាញទិន្នន័យរបស់អ្នក; ការណែនាំអំពីការបែងចែកវថាគុណ                                                            | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen and Cassie • Eric Wanjau |
+|      11       |             រសជាតិម្ហូបអាស៊ី និងឥណ្ឌា រសជាតិសប្បាយ 🍜         |    [Classification](4-Classification/README.md)     | ការណែនាំអំពីអ្នកចាត់ថ្នាក់                                                                                                     | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen and Cassie • Eric Wanjau |
+|      12       |             រសជាតិម្ហូបអាស៊ី និងឥណ្ឌា រសជាតិសប្បាយ 🍜         |    [Classification](4-Classification/README.md)     | អ្នកចាត់ថ្នាក់បន្ថែម                                                                                                                | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen and Cassie • Eric Wanjau |
+|      13       |             រសជាតិម្ហូបអាស៊ី និងឥណ្ឌា រសជាតិសប្បាយ 🍜         |    [Classification](4-Classification/README.md)     | សាងកម្មវិធីបណ្តាញផ្តល់អនុសាសន៍ដោយប្រើម៉ូដែលរបស់អ្នក                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|      14       |                   ការណែនាំអំពីការបំបែកក្រុម                   |        [Clustering](5-Clustering/README.md)         | សំអាត រៀបចំ និងបង្ហាញទិន្នន័យរបស់អ្នក; ការណែនាំអំពីការបំបែកក្រុម                                                                |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|      15       |              ការស្វែងយល់ពីរសជាតិតន្ត្រីនីជេរី 🎧                |        [Clustering](5-Clustering/README.md)         | ស្វែងយល់ពីវិធីសាស្រ្តបំបែកក្រុម K-Means                                                                                           |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
+|      16       |        ការណែនាំអំពីការបកស្រាយភាសាធម្មជាតិ ☕️                  |   [Natural language processing](6-NLP/README.md)    | រៀនមូលដ្ឋានអំពី NLP ដោយកសាងបុតងាយ                                                                                     |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|      17       |                      បើកចិត្តទៅលើភារកិច្ច NLP ផ្សេងៗ ☕️        |   [Natural language processing](6-NLP/README.md)    | ជំរុញចំណេះដឹង NLP របស់អ្នកដោយយល់ពីភារកិច្ចទូទៅដែលត្រូវចាំបាច់ពេលដោះស្រាយរចនាសម្ព័ន្ធភាសា                          |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      18       |             ការបកប្រែ និងវិភាគអារម្មណ៍ ♥️                      |   [Natural language processing](6-NLP/README.md)    | ការបកប្រែ និងវិភាគអារម្មណ៍ជាមួយ Jane Austen                                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|      19       |                  សណ្ឋាគាររសជាតិស្នេហា​នៅអឺរ៉ុប ♥️               |   [Natural language processing](6-NLP/README.md)    | ការវិភាគអារម្មណ៍ជាមួយការវាយតម្លៃសណ្ឋាគារ ១                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|      20       |                  សណ្ឋាគាររសជាតិស្នេហា​នៅអឺរ៉ុប ♥️               |   [Natural language processing](6-NLP/README.md)    | ការវិភាគអារម្មណ៍ជាមួយការវាយតម្លៃសណ្ឋាគារ ២                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|      21       |            ការណែនាំអំពីការទស្សន៍ទាយលំដាប់ពេលវេលា            |        [Time series](7-TimeSeries/README.md)        | ការណែនាំអំពីការទស្សន៍ទាយលំដាប់ពេលវេលា                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|      22       | ⚡️ ការប្រើថាមពលពិភពលោក ⚡️ - ការទស្សន៍ទាយលំដាប់ពេលវេលាដោយ ARIMA |        [Time series](7-TimeSeries/README.md)        | ការទស្សន៍ទាយលំដាប់ពេលវេលាដោយ ARIMA                                                                                              |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|      23       |  ⚡️ ការប្រើថាមពលពិភពលោក ⚡️ - ការទស្សន៍ទាយលំដាប់ពេលវេលាដោយ SVR  |        [Time series](7-TimeSeries/README.md)        | ការទស្សន៍ទាយលំដាប់ពេលវេលាដោយ Support Vector Regressor                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|      24       |             ការណែនាំអំពីការសិក្សាភាពតបស្នង             | [Reinforcement learning](8-Reinforcement/README.md) | ការណែនាំអំពីការសិក្សាភាពតបស្នងជាមួយ Q-Learning                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|      25       |                 ជួយ Peter ចៀសវាងខ្លំណាររបស់គេច! 🐺                  | [Reinforcement learning](8-Reinforcement/README.md) | ការសិក្សាភាពតបស្នង Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|  Postscript   |            ស្ថានការណ៍ និងការអនុវត្ត ML នៅក្នុងពិភពពិត            |      [ML in the Wild](9-Real-World/README.md)       | ការអនុវត្តន៍ចំរូងជាក់ស្តែងនៃ ML របៀបបុរាណ                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
+|  Postscript   |            ការតម្រៀបម៉ូដែលនៅក្នុង ML ដោយប្រើផ្ទៃ RAI dashboard            |      [ML in the Wild](9-Real-World/README.md)       | ការតម្រៀបម៉ូដែលនៅក្នុងការសិក្សាម៉ាស៊ីនដោយប្រើផ្ទៃម៉ាស៊ីនផ្សព្វផ្សាយ AI                                             |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                     Ruth Yakubu                      |
 
-## ការចូលដំណើរការផ្ទាល់ខ្លួន
+> [ស្វែងរកធនធានបន្ថែមទាំងអស់សម្រាប់វគ្គនេះនៅក្នុងការប្រមូលផ្តុំ Microsoft Learn តំណនេះ](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-អ្នកអាចដំណើរការ​ឯកសារ​សម្រម់នេះក្រៅអ៊ីនធឺណិតដោយប្រើ [Docsify](https://docsify.js.org/#/). ចម្លង repo នេះ, [ដំឡើង Docsify](https://docsify.js.org/#/quickstart) លើម៉ាស៊ីន​ផ្ទាល់ខ្លួនរបស់អ្នក, បន្ទាប់មកនៅក្នុងថតមូលដ្ឋានរបស់ repo នេះ ចុច `docsify serve`។ វេបសាយនឹងត្រូវបម្រើនៅច្រក 3000 នៅលើ localhost របស់អ្នក៖ `localhost:3000`។
+## ការចូលប្រើដោយគ្មានអ៊ីនធឺណិត
 
-## PDF
+អ្នកអាចរត់ឯកសារនេះក្រៅបណ្តាញដោយប្រើ [Docsify](https://docsify.js.org/#/)។ បំបែក repo នេះ, [ដំឡើង Docsify](https://docsify.js.org/#/quickstart) លើកុំព្យូទ័រផ្ទាល់ខ្លួនរបស់អ្នក ហើយបន្ទាប់មកនៅក្នុងថតម៉ៅរបស់ repo នេះ, វាយ `docsify serve`។ គេហទំព័រនឹងត្រូវបានបម្រើនៅព័ត ៣០០០ នៅលើ localhost របស់អ្នក: `localhost:3000`។
 
-ស្វែងរក pdf នៃមេរៀននៅ [ទីនេះ](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf)។
+## ឯកសារ PDF
 
-## 🎒 វគ្គផ្សេងទៀត
+រកឃើញឯកសារ pdf នៃវគ្គសិក្សាជាមួយតំណភ្ជាប់ [នៅទីនេះ](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf)។
 
-ក្រុមរបស់យើងផលិតវគ្គផ្សេងទៀតផង! សូមមើល៖
 
+## 🎒 វគ្គផ្សេងទៀត 
+
+ក្រុមការងាររបស់យើងបង្កើតវគ្គផ្សេងទៀត! សូមពិនិត្យមើល:
+
+<!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
-[![LangChain4j សម្រាប់ដាក់ក្នុងដំបូង](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
-[![LangChain.js សម្រាប់ដាក់ក្នុងដំបូង](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
-[![LangChain សម្រាប់ដាក់ក្នុងដំបូង](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain4j សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)
 ---
 
 ### Azure / Edge / MCP / Agents
-[![AZD សម្រាប់ដាក់ក្នុងដំបូង](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![Edge AI សម្រាប់ដាក់ក្នុងដំបូង](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![MCP សម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![ភ្នាក់ងារពី AI សម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AZD សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Agents សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### ស៊េរី AI បង្កើត
-[![AI បង្កើតសម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI បង្កើត (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
-[![AI បង្កើត (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
-[![AI បង្កើត (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
+### ស៊េរី Generative AI
+[![Generative AI សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 
 ---
  
-### ការសិក្សាមូលដ្ឋាន
-[![ML សម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
-[![វិទ្យាសាស្រ្តទិន្នន័យសម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-[![AI សម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-[![សន្តិសុខវេបសាយសម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
-[![ការអភិវឌ្ឍវេបសម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-[![IoT សម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-[![ការអភិវឌ្ឍ XR សម្រាប់អ្នកចាប់ផ្តើម](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+### Core Learning
+[![ML សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![វិទ្យាសាស្ត្រទិន្នន័យសម្រាប់អ្នកដំបូង](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![សុខភាពសុវត្ថិភាពអ៊ីនធឺណិតសម្រាប់អ្នកដំបូង](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![ការអភិវឌ្ឍន៍វិបសាយសម្រាប់អ្នកដំបូង](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![IoT សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![ការអភិវឌ្ឍ XR សម្រាប់អ្នកដំបូង](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
 
 ---
  
 ### ស៊េរី Copilot
-[![Copilot សម្រាប់ការសរសេរកម្មវិធីរួមជាមួយ AI](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot សម្រាប់ AI Paired Programming](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
 [![Copilot សម្រាប់ C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-[![Copilot ដំណើរកម្សាន្ត](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+[![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 <!-- CO-OP TRANSLATOR OTHER COURSES END -->
 
-## ការទទួលបានជំនួយ
+## សុំជំនួយ
 
-បើអ្នកជាប់ឬមានសំណួរពេលរៀនម៉ាស៊ីនរៀន ឬកំពុងបង្កើតកម្មវិធី AI កុំបារម្ភ — មានជំនួយសម្រាប់អ្នក។
+ប្រសិនបើអ្នកមានការលំបាកឬមានសំណួរពេលកំពុងរៀន Machine Learning ឬកំពុងបង្កើតកម្មវិធី AI កុំបារម្ភ — មានជំនួយសម្រាប់អ្នក។
 
-អ្នកអាចចូលរួមពិភាក្សាជាមួយអ្នករៀន និងអ្នកអភិវឌ្ឍន៍ផ្សេងទៀត សួរសំណួរ និងចែករំបែកគំនិតរបស់អ្នកជាមួយសហគមន៍។
+អ្នកអាចចូលរួមពិភាក្សាជាមួយអ្នករៀន និងអ្នកអភិវឌ្ឍន៍ផ្សេងទៀត សួរសំណួរ និងចែករំលែកគំនិតរបស់អ្នកជាមួយសហគមន៍។
 
-- ចូលរួមសហគមន៍ដើម្បីសួរសំណួរ និងរៀនជាមួយគ្នា
-- ពិភាក្សាអំពីគំនិតម៉ាស៊ីនរៀន និងគម្រោង
-- ទទួលបានការណែនាំពីអ្នកអភិវឌ្ឍន៍មានបទពិសោធន៍
+- ចូលរួមសហគមន៍សម្រាប់សួរសំណួរ និងរៀនជាមួយអ្នកផ្សេងទៀត
+- ពិភាក្សាអំពីគំនិតនិងគម្រោង Machine Learning
+- ទទួលការណែនាំពីអ្នកអភិវឌ្ឍមានបទពិសោធន៍
 
-សហគមន៍គាំទ្រជួយធ្វើឲ្យអ្នកអាចពង្រីកជំនាញ និងដោះស្រាយបញ្ហាបានលឿន។
+សហគមន៍គាំទ្រជាដំណោះស្រាយល្អសម្រាប់ការវិវឌ្ឍជំនាញរបស់អ្នក និងដោះស្រាយបញ្ហាបានលឿនជាងមុន។
 
 [Microsoft Foundry Discord Community](https://discord.gg/nTYy5BXMWG)
 
-បើអ្នកជួបប្រទះបញ្ហាកំហុស កំហុសប្រតិបត្តិការ ឬមានសំណើសុំធ្វើឲ្យប្រសើរឡើង អ្នកអាចបើក **Issue** ក្នុងឃ្លាំងនេះដើម្បីរាយការណ៍បញ្ហា។
+ប្រសិនបើអ្នកជួបបញ្ហា error, bug ឬមានយោបល់សម្រាប់ការកែលម្អ អ្នកក៏អាចបើក **Issue** នៅក្នុង repository នេះដើម្បីរាយការណ៍បញ្ហា។
 
-សម្រាប់ប្រតិកម្មផលិតផល ឬស្វែងរកបញ្ហានៅក្នុងសំណុំបែបបទសហគមន៍ សូមចូលទៅកាន់វេទិកាអ្នកអភិវឌ្ឍន៍៖
+សម្រាប់មតិយោបល់លើផលិតផល ឬស្វែងរកការបង្ហោះសហគមន៍ដែលមានរួច សូមចូលទៅកាន់ Developer Forum៖
 
-[![វេទិកាអ្នកអភិវឌ្ឍន៍ Microsoft Foundry](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
-## ដំបូន្មានបន្ថែមសម្រាប់ការរៀន
+## ការណែនាំបន្ថែមសម្រាប់ការសិក្សា
 
-- ទស្សនាសៀវភៅកំណត់ត្រាបន្ទាប់ពីមេរៀនរៀងរាល់ម្តងដើម្បីយល់ដឹងល្អប្រសើរ។
-- ធ្វើការអនុវត្តអាល់ហ្គរីធម៍ដោយខ្លួនឯង។
-- ស្វែងរកឯកសារពិតប្រាកដដោយប្រើគំនិតដែលបានរៀន។
+- ត្រួតពិនិត្យកំណត់ត្រារបស់ឯកសារបន្ទាប់ពីមេរៀននីមួយៗ ដើម្បីយល់ដឹងបានល្អជាងមុន។
+- អនុវត្តកូដ algorithm ដោយខ្លួនឯង។
+- ស្វែងយល់ពីឯកសារពិតប្រាកដដោយប្រើគំនិតដែលបានរៀន។
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ការបដិសេធកាតព្វកិច្ច**៖  
-ឯកសារនេះត្រូវបានបកប្រែប្រើសេវាបកប្រែ AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ខណៈពេលដែលយើងខំប្រឹងប្រែងដើម្បីច្បាស់លាស់ សូមយល់ឱ្យបានថានៃការបកប្រែដោយស្វ័យប្រវត្តិអាចមានកំហុសឬភាពមិនត្រឹមត្រូវ។ ឯកសារដើមជាភាសាដើមគួរត្រូវបានគេចាត់ទុកជាធនធានដែលមានសុពលភាពខ្ពស់។ សម្រាប់ព័ត៌មានសំខាន់ សូមផ្តល់អនុសាសន៍អោយប្រើការបកប្រែដោយមនុស្សវិជ្ជាជីវៈ។ យើងមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកប្រែច្រឡំណាមួយដែលកើតឡើងពីការប្រើប្រាស់ការបកប្រែនេះឡើយ។
+**ការបដិសេធ**:
+ឯកសារនេះត្រូវបានបម្លែងភាសា ដោយប្រើសេវាបម្លែងភាសា AI [Co-op Translator](https://github.com/Azure/co-op-translator)។ ទោះយើងខ្ញុំមានក្តីប្រាថ្នាឱ្យបានច្បាស់លាស់ តែសូមយល់ដឹងថាការបម្លែងដោយស្វ័យប្រវត្តិក៏អាចមានកំហុសឬភាពមិនត្រឹមត្រូវ។ ឯកសារដើមជាភាសាទីតាំងគួរត្រូវបានគេប្រើជាប្រភពច្បាស់លាស់។ សម្រាប់ព័ត៌មានសំខាន់ៗ សូមណែនាំឱ្យប្រើប្រាស់ការប្រែដោយមនុស្សជំនាញ។ យើងខ្ញុំមិនទទួលខុសត្រូវចំពោះការយល់ច្រឡំ ឬការបកស្រាយខុសបន្ទាប់ពីការប្រើប្រាស់ការបម្លែងនេះនោះទេ។
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

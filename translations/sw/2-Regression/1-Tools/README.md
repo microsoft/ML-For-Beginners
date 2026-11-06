@@ -1,121 +1,121 @@
-# Anza na Python na Scikit-learn kwa mifano ya urekebishaji
+# Anza na Python na Scikit-learn kwa mifano ya regression
 
-![Muhtasari wa urekebishaji katika sketchnote](../../../../translated_images/sw/ml-regression.4e4f70e3b3ed446e.webp)
+![Muhtasari wa regressions katika sketchnote](../../../../translated_images/sw/ml-regression.4e4f70e3b3ed446e.webp)
 
 > Sketchnote na [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Mtihani wa kabla ya somo](https://ff-quizzes.netlify.app/en/ml/)
+## [Mtihani kabla ya mihadhara](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Somo hili linapatikana kwa R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Somu hii inapatikana kwa R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Utangulizi
 
-Katika masomo manne haya, utagundua jinsi ya kujenga mifano ya urekebishaji. Tutajadili kwa nini hizi ni muhimu hivi karibuni. Lakini kabla hujafanya kitu chochote, hakikisha una vifaa sahihi tayari kuanza mchakato!
+Katika mihadhara hii minne, utagundua jinsi ya kujenga mifano ya regression. Tutajadili kwa ajili ya nini hivi karibuni. Lakini kabla hujafanya chochote, hakikisha una zana sahihi tayari kuanza mchakato!
 
-Katika somo hili, utajifunza jinsi ya:
+Katika somu hii, utajifunza jinsi ya:
 
 - Kusanidi kompyuta yako kwa kazi za kujifunza kwa mashine za ndani.
 - Kufanya kazi na Jupyter Notebooks.
-- Kutumia Scikit-learn, ikijumuisha usakinishaji.
-- Kuchunguza urekebishaji wa mstari kwa zoezi la vitendo.
+- Kutumia Scikit-learn, ikiwa ni pamoja na usakinishaji.
+- Kuchunguza regression ya mstari kwa mazoezi ya vitendo.
 
 ## Usakinishaji na usanidi
 
-[![ML kwa wanaoanzisha - Weka vifaa vyako tayari kujenga modeli za Kujifunza kwa Mashine](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML kwa wanaoanzisha -Weka vifaa vyako tayari kujenga modeli za Kujifunza kwa Mashine")
+[![ML kwa waanzilishi - Andaa zana zako tayari kujenga Mifano ya Kujifunza kwa Mashine](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML kwa waanzilishi - Andaa zana zako tayari kujenga Mifano ya Kujifunza kwa Mashine")
 
-> 🎥 Bonyeza picha hapo juu kwa video fupi inayofundisha jinsi ya kusanidi kompyuta yako kwa ML.
+> 🎥 Bonyeza picha hapo juu kwa video fupi inayoelezea jinsi ya kusanidi kompyuta yako kwa ML.
 
-1. **Sakinisha Python**. Hakikisha kwamba [Python](https://www.python.org/downloads/) imewekwa kwenye kompyuta yako. Utaweza kutumia Python kwa kazi nyingi za sayansi ya data na kujifunza kwa mashine. Mifumo mingi ya kompyuta tayari ina usakinishaji wa Python. Pia kuna [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) muhimu zinazopatikana kusaidia baadhi ya watumiaji kwa urahisi wa usanidi.
+1. **Sakinisha Python**. Hakikisha kuwa [Python](https://www.python.org/downloads/) imesakinishwa kwenye kompyuta yako. Utatumia Python kwa kazi nyingi za sayansi ya data na kujifunza kwa mashine. Mifumo mingi ya kompyuta tayari ina usakinishaji wa Python. Kuna [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) muhimu pia, kusaidia kwa urahisi wa usanidi kwa baadhi ya watumiaji.
 
-   Matumizi kadhaa ya Python, hata hivyo, yanahitaji toleo moja la programu, wakati mengine yanahitaji toleo tofauti. Kwa sababu hii, ni muhimu kufanya kazi ndani ya [mazingira ya virtual](https://docs.python.org/3/library/venv.html).
+   Baadhi ya matumizi ya Python, hata hivyo, yanahitaji toleo moja la programu, wakati mengine yanahitaji toleo tofauti. Kwa sababu hiyo, ni muhimu kufanya kazi ndani ya [mazingira pepe](https://docs.python.org/3/library/venv.html).
 
-2. **Sakinisha Visual Studio Code**. Hakikisha una Visual Studio Code imewekwa kwenye kompyuta yako. Fuata maelekezo haya ya [kusakinisha Visual Studio Code](https://code.visualstudio.com/) kwa usakinishaji wa msingi. Utatumia Python katika Visual Studio Code katika kozi hii, hivyo huenda utataka kujifunza jinsi ya [kusanidi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) kwa maendeleo ya Python.
+2. **Sakinisha Visual Studio Code**. Hakikisha unayo Visual Studio Code imesakinishwa kwenye kompyuta yako. Fuata maelekezo haya ya [kusakinisha Visual Studio Code](https://code.visualstudio.com/) kwa usakinishaji wa msingi. Utatumia Python ndani ya Visual Studio Code katika kozi hii, kwa hivyo unaweza kutaka kujifunza jinsi ya [kusanidi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) kwa maendeleo ya Python.
 
-   > Jifunze vizuri Python kwa kufanya kazi kupitia mkusanyiko wa [moduli za Kujifunza](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
+   > Jifunze stadi za Python kwa kufanya kupitia mkusanyiko huu wa [Moduli za Kujifunza](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
-   > [![Weka Python na Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Weka Python na Visual Studio Code")
+   > [![Sanidi Python na Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Sanidi Python na Visual Studio Code")
    >
    > 🎥 Bonyeza picha hapo juu kwa video: kutumia Python ndani ya VS Code.
 
-3. **Sakinisha Scikit-learn**, kwa kufuata [maelekezo haya](https://scikit-learn.org/stable/install.html). Kwa sababu unahitaji kuhakikisha unatumia Python 3, inashauriwa kutumia mazingira ya virtual. Kumbuka, kama unasakinisha maktaba hii kwenye M1 Mac, kuna maelekezo maalum kwenye ukurasa uliounganishwa hapo juu.
+3. **Sakinisha Scikit-learn**, kwa kufuata [maelekezo haya](https://scikit-learn.org/stable/install.html). Kwa kuwa unataka kuhakikisha unatumia Python 3, inashauriwa kutumia mazingira pepe. Kumbuka, ikiwa unasakinisha maktaba hii kwenye Mac ya M1, kuna maelekezo maalum kwenye ukurasa ulioainishwa hapo juu.
 
 1. **Sakinisha Jupyter Notebook**. Utahitaji [kusakinisha kifurushi cha Jupyter](https://pypi.org/project/jupyter/).
 
-## Mazingira yako ya kuandika ML
+## Mazingira yako ya uandishi wa ML
 
-Utatumia **notebooks** kuendeleza msimbo wako wa Python na kuunda mifano ya kujifunza kwa mashine. Aina hii ya faili ni chombo cha kawaida kwa wanasayansi wa data, na zinaweza kutambuliwa kwa kiambishi kibadilisha `.ipynb`.
+Utatumia **notebooks** kuendeleza msimbo wako wa Python na kuunda mifano ya kujifunza kwa mashine. Aina hii ya faili ni zana ya kawaida kwa wanasayansi wa data, na inaweza kutambuliwa kwa kiambishi au kiplugini chake `.ipynb`.
 
-Notebooks ni mazingira ya mwingiliano yanayomruhusu mendelezaji kufanya msimbo na kuongeza maelezo na kuandika nyaraka kuhusu msimbo ambayo ni msaada mkubwa kwa miradi ya majaribio au utafiti.
+Notebooks ni mazingira ya maingiliano yanayomruhusu mtengenezaji wa programu kuandika msimbo pamoja na kuongeza maelezo na kuandika nyaraka kuhusiana na msimbo, jambo ambalo ni msaada kwa miradi ya majaribio au ya utafiti.
 
-[![ML kwa wanaoanzisha - Weka Jupyter Notebooks kuanza kujenga mifano ya urekebishaji](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML kwa wanaoanzisha - Weka Jupyter Notebooks kuanza kujenga mifano ya urekebishaji")
+[![ML kwa waanzilishi - Sanidi Jupyter Notebooks kuanza kujenga mifano ya regression](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML kwa waanzilishi - Sanidi Jupyter Notebooks kuanza kujenga mifano ya regression")
 
-> 🎥 Bonyeza picha hapo juu kwa video fupi inayofundisha zoezi hili.
+> 🎥 Bonyeza picha hapo juu kwa video fupi inayoelezea mazoezi haya.
 
-### Zoezi - fanya kazi na daftari
+### Mazoezi - fanya kazi na notebook
 
 Katika folda hii, utapata faili _notebook.ipynb_.
 
 1. Fungua _notebook.ipynb_ katika Visual Studio Code.
 
-   Seva ya Jupyter itaanza na Python 3+ imeanzishwa. Utapata maeneo ya daftari inayoweza `kuwaendeshwa`, sehemu za msimbo. Unaweza kuendesha kipande cha msimbo, kwa kuchagua ikoni inayofanana na kitufe cha kucheza.
+   Seva ya Jupyter itaanza na Python 3+ imechaguliwa. Utaona maeneo katika notebook ambayo yanaweza `kukimbia`, vipande vya msimbo. Unaweza kuendesha blokki ya msimbo, kwa kuchagua ikoni inayofanana na kitufe cha kuendesha.
 
-1. Chagua ikoni `md` na ongeza kidogo markdown, na maandishi yafuatayo **# Karibu kwenye daftari lako**.
+1. Chagua ikoni ya `md` na ongeza kidogo cha markup, na maandishi yafuatayo **# Karibu kwenye notebook yako**.
 
-   Kisha, ongeza msimbo wa Python.
+   Baadaye, ongeza msimbo wa Python.
 
-1. Andika **print('hello notebook')** katika kipande cha msimbo.
+1. Andika **print('hello notebook')** katika blokki ya msimbo.
 1. Chagua mshale kuendesha msimbo.
 
-   Utapaswa kuona tamko lililo chapishwa:
+   Unapaswa kuona taarifa iliyochapishwa:
 
     ```output
     hello notebook
     ```
 
-![VS Code na daftari wazi](../../../../translated_images/sw/notebook.4a3ee31f396b8832.webp)
+![VS Code na notebook wazi](../../../../translated_images/sw/notebook.4a3ee31f396b8832.webp)
 
-Unaweza kuingiza maelezo katika msimbo wako ili kujirekebisha wega kwenye daftari.
+Unaweza kuingiza msimbo wako kwa maoni ili kujitayarisha nyaraka za notebook.
 
-✅ Fikiria kwa muda mfupi jinsi mazingira ya kazi ya mtengenezaji wavuti yanavyotofautiana na ya mtaalamu wa sayansi ya data.
+✅ Fikiria kwa dakika mmoja jinsi mazingira ya kazi ya mtaalamu wa wavuti yanavyotofautiana na yale ya mtaalamu wa sayansi ya data.
 
-## Kuanzisha na kutumia Scikit-learn
+## Anza kutumia Scikit-learn
 
-Sasa Python imewekwa kwenye mazingira yako ya mkoa, na umezoea Jupyter Notebooks, hebu pia tujifunze vizuri Scikit-learn (taja kama `sci` kama katika `science`). Scikit-learn hutoa [API pana](https://scikit-learn.org/stable/modules/classes.html#api-ref) kusaidia kufanya kazi za ML.
+Sasa Python imewekwa kwenye mazingira yako ya ndani, na umezoea Jupyter Notebooks, hebu tufurahie kwa usawa Scikit-learn (itisemwe `sci` kama katika `science`). Scikit-learn hutoa [API pana](https://scikit-learn.org/stable/modules/classes.html#api-ref) kusaidia kufanya kazi za ML.
 
-Kulingana na [tovuti yao](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn ni maktaba ya chanzo huria ya kujifunza kwa mashine inayounga mkono kujifunza kwa usimamizi na usiokuwa na usimamizi. Pia hutumia zana mbalimbali za kufitisha modeli, usindikaji wa data, uchaguzi wa modeli na tathmini, na huduma nyingine nyingi."
+Kulingana na [tovuti yao](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn ni maktaba ya kujifunza kwa mashine iliyo wazi inayounga mkono kujifunza kwa usimamizi na bila usimamizi. Pia hutoa zana mbalimbali za kufitisha modeli, maandalizi ya data, kuchagua na kutathmini modeli, na huduma nyingine nyingi."
 
-Katika kozi hii, utatumia Scikit-learn na zana nyingine kujenga mifano ya kujifunza kwa mashine kufanya kile tunachokiita 'kazi za jadi za kujifunza kwa mashine.' Tumewaepuka makusudi mitandao ya neva na ujifunzaji wa kina, kwani yanashughulikiwa vizuri zaidi katika mtaala wetu unaokuja wa 'AI kwa Wanaoanzisha.'
+Katika kozi hii, utatumia Scikit-learn na zana nyingine kujenga mifano ya kujifunza kwa mashine kufanya kazi ambazo huitwa 'kazi za jadi za kujifunza kwa mashine'. Tumepuuza kwa makusudi mitandao ya neva na kujifunza kwa kina, kwani inashughulikiwa vizuri katika mtaala wetu unaokuja wa 'AI kwa Waanzilishi'.
 
-Scikit-learn hufanya iwe rahisi kujenga mifano na kuipima kwa matumizi. Inazingatia hasa kutumia data ya nambari na ina seti kadhaa za data zilizotayarishwa tayari kwa zana za kujifunza. Pia inajumuisha mifano iliyojengwa tayari kwa wanafunzi kujaribu. Hebu tuchunguze mchakato wa kupakia data zilizoandaliwa na kutumia kipima kilichojengwa kwa mfano wa kwanza wa ML na Scikit-learn na data rahisi.
+Scikit-learn hufanya iwe rahisi kujenga mifano na kuitathmini kwa matumizi. Inazingatia data ya nambari hasa na ina seti kadhaa za data tayari kwa matumizi kama zana za kujifunza. Pia ina mifano iliyojengwa tayari kwa wanafunzi kujaribu. Hebu tuchunguze mchakato wa kupakia data iliyopakiwa na kutumia makadirio yaliyojengwa kuunda mfano wako wa kwanza wa ML na Scikit-learn kwa data rahisi.
 
-## Zoezi - daftari lako la kwanza la Scikit-learn
+## Mazoezi - notebook yako ya kwanza ya Scikit-learn
 
-> Mafunzo haya yamechukuliwa kutoka kwa [mfano wa urekebishaji wa mstari](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) kwenye tovuti ya Scikit-learn.
+> Mafunzo haya yamechochewa na [mfano wa regression ya mstari](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) kwenye tovuti ya Scikit-learn.
 
 
-[![ML kwa wanaoanzisha - Mradi wako wa Kwanza wa Urekebishaji wa Mstari katika Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML kwa wanaoanzisha - Mradi wako wa Kwanza wa Urekebishaji wa Mstari katika Python")
+[![ML kwa waanzilishi - Mradi wako wa Kwanza wa Linear Regression kwa Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML kwa waanzilishi - Mradi wako wa Kwanza wa Linear Regression kwa Python")
 
-> 🎥 Bonyeza picha hapo juu kwa video fupi inayofundisha zoezi hili.
+> 🎥 Bonyeza picha hapo juu kwa video fupi inayoelezea mazoezi haya.
 
-Katika faili la _notebook.ipynb_ linalohusiana na somo hili, safisha seli zote kwa kubonyeza ikoni ya 'mkaa taka'.
+Katika faili la _notebook.ipynb_ lililohusiana na somu hii, futa seli zote kwa kubonyeza ikoni ya 'makopo ya takataka'.
 
-Katika sehemu hii, utafanya kazi na seti ndogo ya data kuhusu kisukari ambayo imejengwa ndani ya Scikit-learn kwa madhumuni ya kujifunza. Fikiria kama ungetaka kujaribu tiba kwa wagonjwa wa kisukari. Mifano ya Kujifunza kwa Mashine inaweza kusaidia kuamua ni wagonjwa gani wangejibu vyema tiba hiyo, kwa msingi wa mchanganyiko wa vigezo. Hata mfano rahisi wa urekebishaji, ukionyeshwa picha, unaweza kuonyesha taarifa kuhusu vigezo ambavyo vitakusaidia kupanga majaribio ya nadharia ya kliniki.
+Katika sehemu hii, utafanya kazi na dataset ndogo kuhusu ugonjwa wa kisukari uliyojengwa ndani ya Scikit-learn kwa madhumuni ya kujifunza. Fikiria ungependa kujaribu tiba kwa wagonjwa wa kisukari. Mifano ya Kujifunza kwa Mashine inaweza kusaidia kubainisha wagonjwa ambao wangeweza kuathirika vyema na tiba, kulingana na mchanganyiko wa vigezo. Hata mfano wa regression rahisi, ukiwa umeonyeshwa kwa kuona, unaweza kuonyesha habari kuhusu vigezo vitakavyosaidia kupanga majaribio yako ya kliniki.
 
-✅ Kuna aina nyingi za mbinu za urekebishaji, na ipi utakayochagua inategemea jibu unalotafuta. Ikiwa unataka kutabiri urefu unaowezekana kwa mtu wa umri fulani, utatumia urekebishaji wa mstari, kwa sababu unatafuta **thamani ya nambari**. Ikiwa unavutiwa kugundua kama aina fulani ya chakula inapaswa kuzingatiwa kuwa vegan au la, unatafuta **ugawaji wa aina** kwa hivyo utatumia urekebishaji wa logistic. Utajifunza zaidi kuhusu urekebishaji wa logistic baadaye. Fikiria kidogo kuhusu maswali unayoweza kuuliza data, na ni mbinu gani kati ya hizi zingekuwa sahihi zaidi.
+✅ Kuna aina nyingi za mbinu za regression, na ipi unachagua inategemea jibu unalotafuta. Ikiwa ungependa kutabiri urefu wa mtu fulani kwa umri fulani, utatumia regression ya mstari, kwa kuwa unatafuta **thamani ya nambari**. Ikiwa unavutiwa kugundua kama aina ya chakula inapaswa kuchukuliwa kama vegan au la, unatafuta **ugawaji wa kategoria** kwa hiyo utatumia logistic regression. Utajifunza zaidi kuhusu logistic regression baadaye. Fikiria kidogo kuhusu maswali unayoweza kuuliza data, na ni njia gani kati ya hizi ingekuwa bora zaidi.
 
-Hebu tuanze kwenye kazi hii.
+Hebu tuanze kazi hii.
 
 ### Ingiza maktaba
 
-Kwa kazi hii tutatangaza baadhi ya maktaba:
+Kwa kazi hii tutaunda maktaba kadhaa:
 
-- **matplotlib**. Ni [chombo cha kuchora michoro](https://matplotlib.org/) kinachotumika kuunda mchoro wa mistari.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) ni maktaba muhimu kwa kushughulikia data ya nambari katika Python.
+- **matplotlib**. Ni [zana ya kuchora grafu](https://matplotlib.org/) muhimu na tutaitumia kuunda mchoro wa mstari.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) ni maktaba muhimu ya kushughulikia data za nambari katika Python.
 - **sklearn**. Hii ni maktaba ya [Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
 
-Ingiza maktaba kusaidia kazi zako.
+Ingiza maktaba ili kusaidia kazi zako.
 
-1. Ongeza maingizo kwa kuandika msimbo ufuatao:
+1. Ongeza ingizo kwa kuandika msimbo ufuatao:
 
    ```python
    import matplotlib.pyplot as plt
@@ -123,26 +123,26 @@ Ingiza maktaba kusaidia kazi zako.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Juu hapa unainua `matplotlib`, `numpy` na unainua `datasets`, `linear_model` na `model_selection` kutoka `sklearn`. `model_selection` hutumika kugawanya data katika makundi ya mafunzo na majaribio.
+   Juu unaunda ingizo la `matplotlib`, `numpy` na unaunda ingizo la `datasets`, `linear_model` na `model_selection` kutoka `sklearn`. `model_selection` hutumika kugawa data katika seti za mafunzo na za mtihani.
 
-### Seti ya data ya kisukari
+### Dataset ya ugonjwa wa kisukari
 
-Seti ya data [ya kisukari](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) iliyojengwa ina sampuli 442 za data kuhusu kisukari, na vigezo 10, baadhi yao ni:
+Dataset ya [ugonjwa wa kisukari iliyojengwa](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) ina sampuli 442 za data kuhusu kisukari, na vigezo 10 vya sifa, baadhi ni:
 
-- umri: umri katika miaka
+- umri: umri kwa miaka
 - bmi: index ya uzito wa mwili
-- bp: wastani wa shinikizo la damu
-- s1 tc: T-Cells (aina ya seli nyeupe za damu)
+- bp: shinikizo la damu wastani
+- s1 tc: Seli T (aina ya seli nyeupe za damu)
 
-✅ Seti hii ya data ina dhana ya 'jinsia' kama kigezo muhimu katika utafiti wa kisukari. Seti nyingi za data za matibabu zina aina hii ya mgawanyo wa binary. Fikiria kidogo jinsi malezo kama haya yanavyoweza kuondoa sehemu fulani za watu kutoka kwa matibabu.
+✅ Dataset hii ina dhana ya ‘jinsia’ kama kigezo muhimu kwa utafiti kuhusu kisukari. Dataset nyingi za matibabu zina usahihishaji huu wa binary. Fikiria kidogo jinsi ugawaji kama huu unaweza kuondoa baadhi ya sehemu za watu kwenye matibabu.
 
-Sasa, pakia data X na y.
+Sasa, pakia data za X na y.
 
-> 🎓 Kumbuka, hii ni kujifunza kwa usimamizi, na tunahitaji 'y' linaloitwa lengo.
+> 🎓 Kumbuka, hii ni kujifunza kwa usimamizi, na tunahitaji lengo liitwalo 'y'.
 
-Katika seli mpya ya msimbo, pakia seti ya data ya kisukari kwa kuitwa `load_diabetes()`. Kuingiza `return_X_y=True` kunaashiria kuwa `X` itakuwa matriki ya data, na `y` itakuwa lengo la urekebishaji.
+Katika seli mpya ya msimbo, pakia dataset ya ugonjwa wa kisukari kwa kuita `load_diabetes()`. Ingizo la `return_X_y=True` linaonyesha kuwa `X` itakuwa matriisi ya data, na `y` itakuwa lengo la regression.
 
-1. Ongeza baadhi ya amri za print ili kuonyesha umbo la matriki ya data na kipengele chake cha kwanza:
+1. Ongeza amri za print kuonyesha umbo la matriisi ya data na kipengele chake cha kwanza:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ Katika seli mpya ya msimbo, pakia seti ya data ya kisukari kwa kuitwa `load_diab
     print(X[0])
     ```
 
-    Kile unachopata kama jibu ni tuple. Unachofanya ni kugawa vitu viwili vya kwanza vya tuple kwa `X` na `y` mtawalia. Jifunze zaidi [kuhusu tuple](https://wikipedia.org/wiki/Tuple).
+    Kile unachokipokea kama jibu, ni tuple. Unachofanya ni kugawia maadili mawili ya kwanza ya tuple kwa `X` na `y` kwa mtiririko. Jifunze zaidi [kuhusu tuples](https://wikipedia.org/wiki/Tuple).
 
-    Unaweza kuona kuwa data hii ina vitu 442 vilivyoumbwa katika safu za vitu 10:
+    Unaona data hii ina vitu 442 vilivyowekwa katika safu za vipengele 10:
 
     ```text
     (442, 10)
@@ -160,39 +160,39 @@ Katika seli mpya ya msimbo, pakia seti ya data ya kisukari kwa kuitwa `load_diab
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Fikiria kidogo kuhusu uhusiano kati ya data na lengo la urekebishaji. Urekebishaji wa mstari unasema mahusiano kati ya kipengele X na kigezo cha lengo y. Je, unaweza kupata [lengo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) la seti ya data ya kisukari katika nyaraka? Seti hii ya data inaonyesha nini ukizingatia lengo hilo?
+    ✅ Fikiria kidogo kuhusu uhusiano kati ya data na lengo la regression. Linear regression hutabiri uhusiano kati ya kigezo X na kigezo lengo y. Je, unaweza kupata [lengo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) la dataset ya ugonjwa wa kisukari katika nyaraka? Dataset hii inaonyesha nini, ikizingatia lengo hilo?
 
-2. Ifuatayo, chagua sehemu ya seti hii ya data kwa kuchagua safu ya tatu ya dataset. Unaweza kufanya hivi kwa kutumia kiharusi cha `:` kuchagua mistari yote, kisha kuchagua safu ya 3 kutumia kiashiria (2). Pia unaweza kurekebisha data kuwa array ya 2D - kama inavyotakiwa kwa kuchora - kwa kutumia `reshape(n_rows, n_columns)`. Ikiwa parameta moja ni -1, kipimo kinacholingana kinakokotolewa kiotomatiki.
+2. Kisha, chagua sehemu ya dataset hii kuchora kwa kuchagua safu ya 3 ya dataset. Unaweza kufanya hivi kwa kutumia mopereta `:` kuchagua safu zote, kisha kuchagua safu ya 3 kwa kutumia kiindiketa (2). Pia unaweza kuunda tena data kuwa array ya 2D - kama inavyohitajika kwa kuchora - kwa kutumia `reshape(n_rows, n_columns)`. Ikiwa moja ya vigezo ni -1, kipimo kinacholingana huhesabiwa kiotomatiki.
 
    ```python
    X = X[:, 2]
    X = X.reshape((-1,1))
    ```
 
-   ✅ Wakati wowote, chapisha data ili kuangalia umbo lake.
+   ✅ Wakati wowote, chapisha data kuona umbo lake.
 
-3. Sasa una data tayari kuchorwa, unaweza kuona kama mashine inaweza kusaidia kuamua mgawanyiko wa maana kati ya nambari katika seti hii ya data. Kufanya hivyo, unahitaji kugawanya data zote (X) na lengo (y) katika seti za majaribio na mafunzo. Scikit-learn ina njia rahisi ya kufanya hili; unaweza kugawanya data zako za majaribio mahali fulani.
+3. Sasa unayo data tayari kuchorwa, unaweza kuona kama mashine inaweza kusaidia kubainisha mgawanyiko wa mantiki kati ya nambari katika dataset hii. Kufanya hivi, unahitaji kugawanya data (X) na lengo (y) katika seti za mafunzo na mtihani. Scikit-learn ina njia rahisi ya kufanya hivi; unaweza kugawanya data zako za mtihani mahali fulani.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Sasa uko tayari kufundisha mfano wako! Pakia mfano wa urekebishaji wa mstari na uufundishe kwa seti zako za mafunzo za X na y kwa kutumia `model.fit()`:
+4. Sasa uko tayari kufundisha mfano wako! Pakia mfano wa regression ya mstari na ufundishe kwa seti zako za mafunzo za X na y kwa kutumia `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` ni kazi utakayoiwona katika maktaba nyingi za ML kama TensorFlow
+    ✅ `model.fit()` ni kazi utakayokuta katika maktaba nyingi za ML kama TensorFlow
 
-5. Kisha, tengeneza utabiri kwa kutumia data ya majaribio, kwa kutumia kazi `predict()`. Hii itatumika kuchora mstari kati ya makundi ya data
+5. Kisha, tengeneza utabiri kwa kutumia data za mtihani, kwa kutumia kazi ya `predict()`. Hii itatumika kuchora mstari kati ya makundi ya data
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Sasa ni wakati wa kuonyesha data kwenye mchoro. Matplotlib ni chombo muhimu sana kwa kazi hii. Tengeneza mchoro wa pointi zote za data za majaribio X na y, na tumia utabiri kuchora mstari mahali pazuri zaidi, kati ya makundi ya data ya mfano.
+6. Sasa ni wakati wa kuonyesha data katika mchoro. Matplotlib ni zana muhimu sana kwa kazi hii. Unda mchoro wa alama za majaribio ya X na y zote, na tumia utabiri kuchora mstari mahali panapofaa zaidi, kati ya makundi ya data ya mfano.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -203,28 +203,27 @@ Katika seli mpya ya msimbo, pakia seti ya data ya kisukari kwa kuitwa `load_diab
     plt.show()
     ```
 
-   ![mchoro wa pointi unaoonyesha data kuhusu kisukari](../../../../translated_images/sw/scatterplot.ad8b356bcbb33be6.webp)
+   ![mchoro wa alama unaoonyesha pointi za data kuhusu ugonjwa wa kisukari](../../../../translated_images/sw/scatterplot.ad8b356bcbb33be6.webp)
 
+   ✅ Fikiria kidogo kinachotokea hapa. Mstari wa moja kwa moja unaendeshwa kati ya alama ndogo za data nyingi, lakini unafanya nini hasa? Unaona jinsi unavyoweza kutumia mstari huu kutabiri mahali pointi mpya ya data isiyoonekana itafaa kuhusiana na mhimili wa y wa mchoro? Jaribu kuweka maneno matumizi halisi ya mfano huu.
 
-   ✅ Fikiria kidogo kuhusu kinachoendelea hapa. Mstari wa moja kwa moja unapitisha kwenye nukta nyingi ndogo za data, lakini unafanya nini hasa? Unaona jinsi unavyopaswa kutumia mstari huu kutabiri wapi nukta mpya ya data ambayo haijaonekana inapaswa kuwekwa kulingana na mhimili wa y wa mchoro? Jaribu kuweka kwa maneno matumizi halisi ya modeli hii.
-
-Hongera, umejenga modeli yako ya kwanza ya usawa wa mstari, umeunda utabiri nayo, na kuionesha kwenye mchoro!
+Hongera, umeunda mfano wako wa kwanza wa regression ya mstari, kutengeneza utabiri nao, na kuonyesha kwenye mchoro!
 
 ---
 ## 🚀Changamoto
 
-Choroga kigezo kingine kutoka kwenye dataset hii. Wazo: rekebisha mstari huu: `X = X[:,2]`. Kulingana na lengo la dataset hii, unaweza kugundua nini kuhusu maendeleo ya ugonjwa wa kisukari?
-## [Mtihani baada ya somo](https://ff-quizzes.netlify.app/en/ml/)
+Chora kigezo tofauti kutoka kwenye dataset hii. Vidokezo: hariri mstari huu: `X = X[:,2]`. Kutokana na lengo la dataset hii, ni nini unaweza kugundua kuhusu maendeleo ya ugonjwa wa kisukari?
+## [Mtihani baada ya mihadhara](https://ff-quizzes.netlify.app/en/ml/)
 
-## Mapitio & Kujifunza Binafsi
+## Mapitio & Kujifunza binafsi
 
-Katika mafunzo haya, ulifanya kazi na usawa wa mstari rahisi, badala ya usawa wa mstari wa kipengele kimoja au mwingi. Soma kidogo kuhusu tofauti kati ya mbinu hizi, au tazama [video hii](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+Katika mafunzo haya, ulifanya kazi na regression rahisi ya mstari, badala ya regression ya mstari moja au mingi. Soma kidogo kuhusu tofauti kati ya mbinu hizi, au tazama [video hii](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Soma zaidi kuhusu dhana ya usawa wa mstari na fikiria ni aina gani za maswali yanaweza kujibiwa kwa mbinu hii. Fanya mafunzo haya [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) kuongeza uelewa wako.
+Soma zaidi kuhusu dhana ya regression na fikiria aina gani za maswali yanayoweza kujibiwa na mbinu hii. Chukua [mafunzo haya](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) ili kuongeza uelewa wako.
 
-## Wajibu
+## Kazi
 
-[Dataset tofauti](assignment.md)
+[Seti tofauti ya data](assignment.md)
 
 ---
 
