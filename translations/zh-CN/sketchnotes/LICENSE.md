@@ -1,190 +1,434 @@
-归属-相同方式共享 4.0 国际许可协议
+署名-相同方式共享 4.0 国际
 
 =======================================================================
 
-创作共用组织（Creative Commons）不是律师事务所，也不提供法律服务或法律建议。分发创作共用公共许可协议并不会建立律师与客户或其他关系。创作共用以“现状”形式提供其许可协议及相关信息。创作共用对其许可协议、根据其条款和条件许可的任何材料或相关信息不作任何保证。创作共用在法律允许的最大范围内对因使用其许可协议而导致的损害不承担任何责任。
+创用CC公司（“创用CC”）不是律师事务所，
+不提供法律服务或法律建议。分发
+创用CC公共许可协议不构成律师-客户或
+其他关系。创用CC按“原样”方式提供其许可协议及相关
+信息。创用CC不对其许可协议、根据其
+条款许可的任何材料或任何相关信息提供任何
+担保。创用CC
+在法律许可的最大范围内，对因其使用而造成的所有损害
+免责。
 
-使用创作共用公共许可协议
+使用创用CC公共许可协议
 
-创作共用公共许可协议提供了一套标准条款和条件，创作者和其他权利持有人可以使用这些条款和条件来分享原创作品及其他受版权和以下公共许可中规定的某些其他权利约束的材料。以下注意事项仅供参考，并不详尽，也不构成我们许可协议的一部分。
+创用CC公共许可协议提供了一套标准条款和
+条件，创作者及其他权利持有人可以使用其来分享
+原创作品及符合以下公共许可协议中规定的版权
+和某些其他权利的材料。以下事项仅供参考，
+不
+详尽的，且不构成我们许可的一部分。
 
-     对许可人的注意事项：我们的公共许可协议旨在供那些有权向公众授权使用材料的人使用，这些材料的使用方式通常受到版权和某些其他权利的限制。我们的许可协议是不可撤销的。许可人在应用许可协议之前应阅读并理解所选许可协议的条款和条件。许可人还应在应用我们的许可协议之前确保获得所有必要的权利，以便公众能够按照预期重新使用材料。许可人应明确标记任何不受许可协议约束的材料，包括其他创作共用许可的材料，或根据版权的例外或限制使用的材料。更多关于许可人的注意事项：
+     Considerations for licensors: Our public licenses are
+     intended for use by those authorized to give the public
+     permission to use material in ways otherwise restricted by
+     copyright and certain other rights. Our licenses are
+     irrevocable. Licensors should read and understand the terms
+     and conditions of the license they choose before applying it.
+     Licensors should also secure all rights necessary before
+     applying our licenses so that the public can reuse the
+     material as expected. Licensors should clearly mark any
+     material not subject to the license. This includes other CC-
+     licensed material, or material used under an exception or
+     limitation to copyright. More considerations for licensors:
 	wiki.creativecommons.org/Considerations_for_licensors
 
-     对公众的注意事项：通过使用我们的公共许可协议，许可人授予公众在指定条款和条件下使用许可材料的权限。如果由于任何原因不需要许可人的授权，例如适用的版权例外或限制，则该使用不受许可协议的约束。我们的许可协议仅授予许可人在版权和某些其他权利范围内有权授予的权限。对许可材料的使用可能仍因其他原因受到限制，包括其他人对材料拥有版权或其他权利。许可人可能会提出特殊要求，例如要求标记或描述所有更改。虽然我们的许可协议不要求这样做，但我们鼓励您在合理的情况下尊重这些要求。更多关于公众的注意事项：
+     Considerations for the public: By using one of our public
+     licenses, a licensor grants the public permission to use the
+     licensed material under specified terms and conditions. If
+     the licensor's permission is not necessary for any reason--for
+     example, because of any applicable exception or limitation to
+     copyright--then that use is not regulated by the license. Our
+     licenses grant only permissions under copyright and certain
+     other rights that a licensor has authority to grant. Use of
+     the licensed material may still be restricted for other
+     reasons, including because others have copyright or other
+     rights in the material. A licensor may make special requests,
+     such as asking that all changes be marked or described.
+     Although not required by our licenses, you are encouraged to
+     respect those requests where reasonable. More_considerations
+     for the public:
 	wiki.creativecommons.org/Considerations_for_licensees
 
 =======================================================================
 
-创作共用归属-相同方式共享 4.0 国际公共许可协议
+创意共享署名-相同方式共享 4.0 国际公共许可协议
 
-通过行使以下定义的许可权利，您接受并同意受创作共用归属-相同方式共享 4.0 国际公共许可协议（“公共许可协议”）条款和条件的约束。如果此公共许可协议可被解释为合同，则您因接受这些条款和条件而获得许可权利，许可人因根据这些条款和条件提供许可材料而获得利益。
 
-第1节——定义。
 
-  a. 改编材料指受版权及类似权利约束的材料，这些材料基于许可材料进行衍生或改编，并且许可材料被翻译、修改、编排、转化或以其他方式更改，需获得许可人持有的版权及类似权利的许可。对于本公共许可协议而言，如果许可材料是音乐作品、表演或录音，则改编材料总是在许可材料与动态影像同步时产生。
 
-  b. 改编者许可指您根据本公共许可协议的条款和条件应用于您对改编材料的贡献的版权及类似权利的许可。
 
-  c. BY-SA 兼容许可指创作共用批准的、与本公共许可协议基本等同的许可，列于 creativecommons.org/compatiblelicenses。
+第一节 —— 定义。
 
-  d. 版权及类似权利指与版权密切相关的权利，包括但不限于表演权、广播权、录音权以及独特数据库权利，无论这些权利如何被标记或分类。对于本公共许可协议而言，第2节(b)(1)-(2)中规定的权利不属于版权及类似权利。
+   a. 改编材料是指依照许可方所拥有的版权和类似权利，需要许可的权限，将许可材料翻译、修改、整理、转换或以其他方式变更而产生的受版权及类似权利保护的材料。就本公共许可而言，如许可材料为音乐作品、表演或声音录制，凡许可材料与动态图像同步制作的，均为改编材料。
 
-  e. 有效技术措施指在没有适当授权的情况下，根据1996年12月20日通过的《世界知识产权组织版权条约》第11条及/或类似国际协议的法律规定，不得规避的措施。
+   b. 改编者许可是指您依据本公共许可的条款和条件，对您对改编材料的版权和类似权利贡献所适用的许可。
 
-  f. 例外和限制指适用于您使用许可材料的版权及类似权利的任何例外或限制，例如合理使用、合理交易等。
 
-  g. 许可元素指创作共用公共许可协议名称中列出的许可属性。本公共许可协议的许可元素为归属和相同方式共享。
 
-  h. 许可材料指许可人应用本公共许可协议的艺术或文学作品、数据库或其他材料。
+   d. 版权和类似权利是指与版权密切相关的版权和/或类似权利，包括但不限于表演权、广播权、声音录制权和特有数据库权利，无论权利如何标注或分类。就本公共许可而言，第2节第(b)(1)-(2)款所述权利不属于版权和类似权利。
 
-  i. 许可权利指根据本公共许可协议的条款和条件授予您的权利，这些权利仅限于适用于您使用许可材料的所有版权及类似权利，并且许可人有权许可这些权利。
+   e. 有效技术措施是指依照1996年12月20日通过的《WIPO版权条约》第11条及/或类似国际协议，未经适当权限不得规避的措施。
 
-  j. 许可人指根据本公共许可协议授予权利的个人或实体。
+   f. 例外和限制是指适用于您使用许可材料的合理使用、公平交易和/或任何其他版权和类似权利的例外或限制。
 
-  k. 分享指通过任何需要许可权利的方式或过程向公众提供材料，例如复制、公开展示、公开表演、分发、传播、通信或进口，以及以公众可以在其选择的时间和地点访问材料的方式向公众提供材料。
+   g. 许可元素是指创意共享公共许可名称中列示的许可特征。本公共许可的许可元素是署名和相同方式共享。
 
-  l. 独特数据库权利指除版权外，根据1996年3月11日欧洲议会和理事会通过的《数据库法律保护指令》（Directive 96/9/EC）及其修订或后续版本，以及全球范围内其他基本等同的权利所产生的权利。
+   h. 许可材料是指艺术或文学作品、数据库，
+     改编材料是指与动态影像同步的授权材料。
+     动态影像进行定时匹配的授权材料所产生的材料。
 
-  m. 您指根据本公共许可协议行使许可权利的个人或实体。“您的”具有相应含义。
+  b. 适配者许可证是指您依据本公共许可证条款和条件，对您对改编材料的贡献中的版权所有权和类似权利所适用的许可。
+     您对改编材料的贡献中的版权所有权和类似权利所适用的许可。
+     您对改编材料的贡献中的版权所有权和类似权利所适用的许可。
 
-第2节——范围。
+  c. BY-SA 兼容许可证是指列在 creativecommons.org/compatiblelicenses 上的、被创意共享组织认可实质上相当于本公共许可证的许可。
+     creativecommons.org/compatiblelicenses 上列出的、被创意共享组织认可的实质等同于本公共许可证的许可证。
+     由创意共享组织批准，实质等同于本公共许可证的许可证。
+
+  d. 版权所有权和类似权利，是指与版权密切相关的版权和/或类似权利，包括但不限于表演权、广播权、录音权和特有数据库权利，无论这些权利被如何标注或分类。
+     包括但不限于表演权、广播权、录音权和特有数据库权利。
+     包括但不限于表演权、广播权、录音权和特有数据库权利，不论这些权利被如何标记或分类。
+     无论这些权利被如何标注或分类。
+     无论权利如何被标注或分类。
+     针对本公共许可证的目的，第2(b)(1)-(2)条款中规定的权利不属于版权所有权和类似权利。
+     第2(b)(1)-(2)条款中规定的权利不属于版权所有权和类似权利。
+
+  e. 有效技术措施是指根据1996年12月20日通过的WIPO版权条约第11条及/或类似国际协议的法律，在缺乏适当授权的情况下不得规避的措施。
+     根据1996年12月20日通过的WIPO版权条约第11条及/或类似国际协议的法律，在未经授权的情况下不得规避的措施。
+     根据符合1996年12月20日通过的WIPO版权条约第11条义务的法律及/或类似国际协议，未经授权不得规避的措施。
+     符合1996年12月20日通过的WIPO版权条约第11条义务的法律及/或类似国际协议。
+     符合1996年12月20日通过的WIPO版权条约第11条及/或类似国际协议的义务的法律。
+
+  f. 例外和限制是指合理使用、公平使用和/或适用于您对授权材料使用的任何其他版权和类似权利的例外或限制。
+     合理使用、公平交易和/或适用于您使用授权材料的任何其他版权和类似权利的例外或限制。
+     适用于您使用授权材料的版权和类似权利的任何其他例外或限制。
+
+  g. 许可证元素是指创意共享公共许可证名称中列出的许可属性。本公共许可证的许可证元素为署名和相同方式共享。
+     创意共享公共许可证名称中列出的许可属性。本许可证元素包括署名和相同方式共享。
+     本公共许可证的许可证元素是署名和相同方式共享。
+
+  h. 授权材料是指艺术或文学作品、数据库、
+     或许可方对其应用了本公共许可证的其他材料。
+     。
+
+  i. 许可权利是指根据本公共许可证条款和条件授予您的权利，这些权利限于
+     适用于您对许可材料使用的所有版权及类似权利，且许可方有权许可的该等权利。
+
+
+
+
+
+
+     如复制、公开展示、公开表演、分发、传播、传播、通讯或进口，
+     并且以成员可从其选择的地点和时间单独访问材料的方式向公众提供材料。
+
+
+  l. 专属数据库权利是指根据欧洲议会和理事会于1996年3月11日通过的第96/9/EC号指令
+     关于数据库的法律保护（经修订和/或继承）产生的版权以外的权利，
+     以及世界任何地方的其他本质上等效的权利。
+
+
+  m. 您是指根据本公共许可证行使许可权利的个人或实体。“您的”具有相应含义。
+
+
+
+
 
   a. 许可授予。
 
-       1. 根据本公共许可协议的条款和条件，许可人特此授予您全球范围内的、免版税的、不可转授权的、非独占的、不可撤销的许可权，以行使许可材料中的许可权利：
 
-            a. 复制和分享许可材料，无论是全部还是部分；以及
+第二节 —— 适用范围。
 
-            b. 生产、复制和分享改编材料。
+  a. 许可授予。
 
-       2. 例外和限制。为避免疑义，如果例外和限制适用于您的使用，则本公共许可协议不适用，您无需遵守其条款和条件。
+       1. Subject to the terms and conditions of this Public License,
+          the Licensor hereby grants You a worldwide, royalty-free,
+          non-sublicensable, non-exclusive, irrevocable license to
+          exercise the Licensed Rights in the Licensed Material to:
 
-       3. 期限。本公共许可协议的期限在第6节(a)中规定。
+            a. reproduce and Share the Licensed Material, in whole or
+               in part; and
 
-       4. 媒体和格式；允许技术修改。许可人授权您在现有或未来创建的所有媒体和格式中行使许可权利，并进行必要的技术修改以实现这一点。许可人放弃并/或同意不主张任何权利或权限，以禁止您进行必要的技术修改以行使许可权利，包括必要的技术修改以规避有效技术措施。对于本公共许可协议，仅进行本第2节(a)(4)授权的修改从未产生改编材料。
+            b. produce, reproduce, and Share Adapted Material.
 
-       5. 下游接收者。
+       2. Exceptions and Limitations. For the avoidance of doubt, where
+          Exceptions and Limitations apply to Your use, this Public
+          License does not apply, and You do not need to comply with
+          its terms and conditions.
 
-            a. 许可人的要约——许可材料。每个许可材料的接收者自动收到许可人的要约，以根据本公共许可协议的条款和条件行使许可权利。
+       3. Term. The term of this Public License is specified in Section
+          6(a).
 
-            b. 许可人的额外要约——改编材料。每个从您处接收改编材料的接收者自动收到许可人的要约，以根据您应用的改编者许可的条件行使改编材料中的许可权利。
+       4. Media and formats; technical modifications allowed. The
+          Licensor authorizes You to exercise the Licensed Rights in
+          all media and formats whether now known or hereafter created,
+          and to make technical modifications necessary to do so. The
+          Licensor waives and/or agrees not to assert any right or
+          authority to forbid You from making technical modifications
+          necessary to exercise the Licensed Rights, including
+          technical modifications necessary to circumvent Effective
+          Technological Measures. For purposes of this Public License,
+          simply making modifications authorized by this Section 2(a)
+          (4) never produces Adapted Material.
 
-            c. 无下游限制。您不得对许可材料施加任何额外或不同的条款和条件，也不得应用任何有效技术措施，如果这样做会限制任何接收者行使许可权利。
+       5. Downstream recipients.
 
-       6. 无认可。本公共许可协议中的任何内容均不构成或可被解释为许可您主张或暗示您与许可人或其他指定接收归属的人有联系，或您的使用获得许可人或其他人的认可、支持或官方地位。
+            a. Offer from the Licensor -- Licensed Material. Every
+               recipient of the Licensed Material automatically
+               receives an offer from the Licensor to exercise the
+               Licensed Rights under the terms and conditions of this
+               Public License.
+
+            b. Additional offer from the Licensor -- Adapted Material.
+               Every recipient of Adapted Material from You
+               automatically receives an offer from the Licensor to
+               exercise the Licensed Rights in the Adapted Material
+               under the conditions of the Adapter's License You apply.
+
+            c. No downstream restrictions. You may not offer or impose
+               any additional or different terms or conditions on, or
+               apply any Effective Technological Measures to, the
+               Licensed Material if doing so restricts exercise of the
+               Licensed Rights by any recipient of the Licensed
+               Material.
+
+       6. No endorsement. Nothing in this Public License constitutes or
+          may be construed as permission to assert or imply that You
+          are, or that Your use of the Licensed Material is, connected
+          with, or sponsored, endorsed, or granted official status by,
+          the Licensor or others designated to receive attribution as
+          provided in Section 3(a)(1)(A)(i).
 
   b. 其他权利。
 
-       1. 道德权利，例如完整性权利，不在本公共许可协议的许可范围内，也不包括宣传权、隐私权和/或其他类似的个性权利；然而，在可能的范围内，许可人放弃并/或同意不主张许可人持有的任何此类权利，以允许您在有限范围内行使许可权利，但不包括其他情况。
+       1. Moral rights, such as the right of integrity, are not
+          licensed under this Public License, nor are publicity,
+          privacy, and/or other similar personality rights; however, to
+          the extent possible, the Licensor waives and/or agrees not to
+          assert any such rights held by the Licensor to the limited
+          extent necessary to allow You to exercise the Licensed
+          Rights, but not otherwise.
 
-       2. 专利权和商标权不在本公共许可协议的许可范围内。
+       2. Patent and trademark rights are not licensed under this
+          Public License.
 
-       3. 在可能的范围内，许可人放弃任何直接或通过收集机构根据任何自愿或可放弃的法定或强制许可计划向您收取版税的权利。在所有其他情况下，许可人明确保留收取此类版税的权利。
+       3. To the extent possible, the Licensor waives any right to
+          collect royalties from You for the exercise of the Licensed
+          Rights, whether directly or through a collecting society
+          under any voluntary or waivable statutory or compulsory
+          licensing scheme. In all other cases the Licensor expressly
+          reserves any right to collect such royalties.
+
 
 第3节——许可条件。
 
-您行使许可权利明确以以下条件为前提。
+您对许可权利的行使明确须遵守以下条件。
 
-  a. 归属。
 
-       1. 如果您分享许可材料（包括以修改形式），您必须：
 
-            a. 保留以下内容（如果许可人随许可材料提供）：
 
-                 i. 许可材料创作者及任何其他指定接收归属者的身份信息，以许可人要求的任何合理方式（包括使用化名，如果指定）；
+       1. If You Share the Licensed Material (including in modified
+          form), You must:
 
-                ii. 版权声明；
+            a. retain the following if it is supplied by the Licensor
+               with the Licensed Material:
 
-               iii. 提及本公共许可协议的声明；
+                 i. identification of the creator(s) of the Licensed
+                    Material and any others designated to receive
+                    attribution, in any reasonable manner requested by
+                    the Licensor (including by pseudonym if
+                    designated);
 
-                iv. 提及免责声明的声明；
+                ii. a copyright notice;
 
-                 v. 在合理可行的范围内，许可材料的URI或超链接；
+               iii. a notice that refers to this Public License;
 
-            b. 表明您是否修改了许可材料，并保留任何先前修改的指示；以及
+                iv. a notice that refers to the disclaimer of
+                    warranties;
 
-            c. 表明许可材料是根据本公共许可协议授权的，并包括本公共许可协议的文本或URI或超链接。
+                 v. a URI or hyperlink to the Licensed Material to the
+                    extent reasonably practicable;
 
-       2. 您可以根据您分享许可材料的媒介、方式和上下文，以任何合理方式满足第3节(a)(1)中的条件。例如，可以通过提供URI或超链接到包含所需信息的资源来满足条件。
+            b. indicate if You modified the Licensed Material and
+               retain an indication of any previous modifications; and
 
-       3. 如果许可人要求，您必须在合理可行的范围内移除第3节(a)(1)(A)中要求的任何信息。
+            c. indicate the Licensed Material is licensed under this
+               Public License, and include the text of, or the URI or
+               hyperlink to, this Public License.
+
+       2. You may satisfy the conditions in Section 3(a)(1) in any
+          reasonable manner based on the medium, means, and context in
+          which You Share the Licensed Material. For example, it may be
+          reasonable to satisfy the conditions by providing a URI or
+          hyperlink to a resource that includes the required
+          information.
+
+       3. If requested by the Licensor, You must remove any of the
+          information required by Section 3(a)(1)(A) to the extent
+          reasonably practicable.
 
   b. 相同方式共享。
 
-     除第3节(a)中的条件外，如果您分享您制作的改编材料，还需满足以下条件。
+     In addition to the conditions in Section 3(a), if You Share
+     Adapted Material You produce, the following conditions also apply.
 
-       1. 您应用的改编者许可必须是具有相同许可元素的创作共用许可协议（本版本或更高版本），或BY-SA兼容许可。
+       1. The Adapter's License You apply must be a Creative Commons
+          license with the same License Elements, this version or
+          later, or a BY-SA Compatible License.
 
-       2. 您必须包括您应用的改编者许可的文本或URI或超链接。您可以根据您分享改编材料的媒介、方式和上下文，以任何合理方式满足此条件。
+       2. You must include the text of, or the URI or hyperlink to, the
+          Adapter's License You apply. You may satisfy this condition
+          in any reasonable manner based on the medium, means, and
+          context in which You Share Adapted Material.
 
-       3. 您不得对改编材料施加任何额外或不同的条款和条件，也不得应用任何有效技术措施，这些行为会限制根据您应用的改编者许可授予的权利的行使。
-
-第4节——独特数据库权利。
-
-如果许可权利包括适用于您使用许可材料的独特数据库权利：
-
-  a. 为避免疑义，第2节(a)(1)授予您提取、重用、复制和分享数据库内容全部或实质部分的权利；
-
-  b. 如果您将数据库内容全部或实质部分包含在您拥有独特数据库权利的数据库中：
-权利，然后您拥有“独创性数据库权利”的数据库（但不包括其单独内容）属于改编材料，
-
-包括用于第3(b)节的目的；以及  
-c. 如果您共享数据库的全部或大部分内容，则必须遵守第3(a)节中的条件。
-
-为避免疑义，本第4节是对您的义务的补充，而不是替代您在本公共许可下的义务，当许可权利包括其他版权和类似权利时。
+       3. You may not offer or impose any additional or different terms
+          or conditions on, or apply any Effective Technological
+          Measures to, Adapted Material that restrict exercise of the
+          rights granted under the Adapter's License You apply.
 
 
-第5节——免责声明和责任限制。
+第4节 —— 特殊数据库权利。
 
-a. 除非许可方另行单独承诺，在可能的范围内，许可方按“现状”和“可用”提供许可材料，并且不对许可材料作出任何形式的陈述或保证，无论是明示、暗示、法定或其他。这包括但不限于所有权保证、适销性、特定用途适用性、非侵权、无潜在或其他缺陷、准确性或是否存在错误（无论是否已知或可发现）。如果法律不允许完全或部分免责声明，则此免责声明可能不适用于您。
+如果许可权限包括适用于您使用被许可材料的特殊数据库权利：
 
-b. 在可能的范围内，无论基于何种法律理论（包括但不限于过失）或其他原因，许可方在任何情况下均不对您因本公共许可或使用许可材料而产生的任何直接、特殊、间接、附带、后果性、惩罚性、示范性或其他损失、成本、费用或损害承担责任，即使许可方已被告知可能发生此类损失、成本、费用或损害。如果法律不允许完全或部分责任限制，则此限制可能不适用于您。
 
-c. 上述免责声明和责任限制应以尽可能接近绝对免责声明和放弃所有责任的方式进行解释。
+
+  b. 如果您在一个您拥有特殊数据库权利的数据库中包含了数据库的全部或实质部分内容，则您拥有特殊数据库权利的数据库（但不包括其单独内容）即为改编材料，
+
+
+
+
+
+
+
+     including for purposes of Section 3(b); and
+  c. 如果您共享数据库的全部或大部分内容，您必须遵守第3(a)节中的条件。
+     数据库的全部或大部分内容。
+
+为避免疑义，本第4节补充但不替代您的义务，
+     在本公共许可证下，当许可权利包含其他版权和类似权利时。
+
+
+
+
+
+     不作任何形式的陈述或保证，不论是明示、暗示、法定或其他形式。
+     这包括但不限于所有权、适销性、特定用途适用性、
+     非侵权、无潜在缺陷或其他缺陷、准确性，或错误的存在与否的保证，
+     无论这些错误是否已知或可被发现。若不允许全部或部分免责声明，
+     该免责声明可能不适用于您。
+
+  b. 在可能的范围内，在任何法律理论（包括但不限于疏忽）下，
+     许可方均不对因本公共许可证或使用许可材料产生的任何直接、特殊、间接、
+     附带、后果性、惩罚性、示范性或其他损失、成本、费用或损害负责，
+     即使许可方已被告知此类损失、成本、费用或损害的可能性。
+
+
+  c. 上述免责声明和责任限制应被尽可能解释为最接近于绝对免责声明和全部责任豁免的方式。
 
 
 第6节——期限和终止。
 
-a. 本公共许可适用于此处许可的版权和类似权利的期限。然而，如果您未能遵守本公共许可，则您在本公共许可下的权利将自动终止。
-
-b. 如果您的使用许可材料的权利根据第6(a)节终止，则该权利可恢复：
-
-1. 如果在您发现违规行为后的30天内纠正违规行为，则自违规行为纠正之日起自动恢复；或  
-2. 经许可方明确恢复。
-
-为避免疑义，本第6(b)节不影响许可方因您违反本公共许可而寻求补救的任何权利。
-
-c. 为避免疑义，许可方也可以随时根据单独的条款或条件提供许可材料或停止分发许可材料；然而，这不会终止本公共许可。
-
-d. 第1、5、6、7和8节在本公共许可终止后仍然有效。
+  a. 本公共许可证的适用期限为此处许可的版权和类似权利的期限。但如果您未能遵守
+     本公共许可证，则您在本公共许可证下的权利将自动终止。
 
 
-第7节——其他条款和条件。
 
-a. 除非许可方明确同意，否则许可方不受您传达的任何额外或不同条款或条件的约束。
+     上述内容应以尽可能最接近绝对免责声明和
+     放弃所有责任的方式进行解释。
+     。
 
-b. 关于许可材料的任何安排、理解或协议未在此处说明的，均与本公共许可的条款和条件分离且独立。
+
+第6条——期限和终止。
+
+  a. 本公共许可证适用于本授权下的版权和
+     类似权利的期限。然而，如果您未能遵守
+     本公共许可证，则您在本公共许可证下的权利
+     将自动终止。
+
+  b. 如果您对许可材料的使用权根据
+     第6(a)条终止，则该权利可恢复：
+
+       1. automatically as of the date the violation is cured, provided
+          it is cured within 30 days of Your discovery of the
+          violation; or
+
+       2. upon express reinstatement by the Licensor.
+
+     For the avoidance of doubt, this Section 6(b) does not affect any
+     right the Licensor may have to seek remedies for Your violations
+     of this Public License.
+
+  c. 为免生疑义，许可方也可以根据单独的条款或条件提供许可材料，或者随时停止分发许可材料；然而，如此做并不会终止本公共许可协议。
+     许可材料的。
+     分发许可材料；然而，如此做
+     不会终止本公共许可协议。
+
+  d. 本公共许可协议的第1、5、6、7及8条在许可终止后仍然有效。
 
 
-第8节——解释。
 
-a. 为避免疑义，本公共许可不会，也不应被解释为减少、限制、约束或对任何在未获得本公共许可许可的情况下合法使用许可材料的行为施加条件。
 
-b. 在可能的范围内，如果本公共许可的任何条款被认为不可执行，则应自动调整至使其可执行的最低程度。如果该条款无法调整，则应从本公共许可中删除，而不影响其余条款和条件的可执行性。
 
-c. 除非许可方明确同意，否则本公共许可的任何条款或条件均不得被放弃，也不得因未遵守而被视为同意。
 
-d. 本公共许可中的任何内容均不构成或可被解释为对适用于许可方或您的任何特权和豁免的限制或放弃，包括任何司法辖区或权威的法律程序。
+  b. 关于许可材料的任何未在本协议中声明的安排、谅解或协议，均独立于本公共许可协议的条款和条件。
+
+
+第8条 —— 解释。
+
+
+
+  b. 在可能的范围内，如果本公共许可协议的任何规定被视为不可执行，该规定应自动被修改至最低限度以使其可执行。如无法修改，该规定应从本公共许可协议中剔除，而不影响剩余条款和条件的可执行性。
+
+  c. 本公共许可协议的任何条款和条件未经过许可方明确同意，不得被视为放弃或默认不执行。
+
+  d. 本公共许可协议中的任何内容均不构成或可被解释为对许可方或您的任何特权和豁免的限制或放弃，包括适用任何司法管辖区或权限的法律程序。
 
 
 =======================================================================
 
-Creative Commons不是其公共许可的当事方。然而，Creative Commons可以选择将其公共许可应用于其发布的材料，在这些情况下将被视为“许可方”。Creative Commons公共许可的文本已通过CC0公共领域奉献声明献给公共领域。除用于表明材料是根据Creative Commons公共许可共享或根据Creative Commons政策（发布于creativecommons.org/policies）允许的有限目的外，Creative Commons不授权使用“Creative Commons”商标或任何其他Creative Commons商标或标志，未经其事先书面同意，包括但不限于与任何未经授权修改其公共许可或任何其他关于许可材料使用的安排、理解或协议相关的情况。为避免疑义，本段不构成公共许可的一部分。
+Creative Commons 不是其公共许可协议的当事方。尽管如此，Creative Commons 可以选择对其发布的材料适用其中一份公共许可协议，并在此类情况下被视为“许可方”。Creative Commons 公共许可协议的文本已根据 CC0 公共领域授权书献给了公共领域。除为表明材料是根据 Creative Commons 公共许可协议共享或按照 Creative Commons 在 creativecommons.org/policies 发布的政策允许的有限目的外，未经 Creative Commons 事先书面同意，Creative Commons 不授权使用“Creative Commons”商标或任何其他商标或标志，包括但不限于与其任何公共许可协议的未经授权修改或任何其他关于许可材料使用的安排、谅解或协议相关的使用。为免生疑义，本段不属于公共许可协议的一部分。
 
-您可以通过creativecommons.org联系Creative Commons。
+Creative Commons 可通过 creativecommons.org 联系。
+     条件。
+
+  c. 除非经许可方明示同意，否则本公共许可证的任何条款或条件均不得被放弃，也不得视为同意不遵守。
+     许可方。
+
+
+     包括来自任何司法管辖区或权威机构的法律程序。
+
+
+=======================================================================
+
+
+在这些情况下创用CC将被视为“许可方”。创用CC公共许可证的文本根据CC0公共领域授权
+
+creativecommons.org/policies 发布的政策另有许可外，创用CC不授权使用“Creative Commons”商标
+或创用CC的任何其他商标或标识，除非事先获得其书面同意，包括但不限于任何未经授权
+的对其公共许可证的修改，或任何有关使用许可材料的其他安排、谅解或协议。为避免疑义，
+本段不构成公共许可证的一部分。
+
+可通过 creativecommons.org 联系创用CC。
+材料在知识共享公共许可协议下共享，或根据
+creativecommons.org/policies 发布的知识共享政策另行允许，
+知识共享不授权未经事先书面同意使用
+“Creative Commons”商标或任何其他商标或标志，
+包括但不限于，未经授权修改其任何公共许可协议
+或任何其他安排、
+理解或协议涉及许可材料的使用。为避免疑义，
+本段不构成公共许可协议的一部分。
+
+
+
+可以通过 creativecommons.org 联系知识共享。
 
 ---
 
-**免责声明**：  
-本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保翻译的准确性，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们不对因使用此翻译而产生的任何误解或误读承担责任。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免责声明**：
+本文件由 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻译完成。尽管我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言版文件应视为权威来源。对于重要信息，建议使用专业人工翻译。我们对因使用本翻译而产生的任何误解或误释不承担责任。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
