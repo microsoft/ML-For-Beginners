@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Druga vrsta linearne regresije je polinomska regresija. Iako ponekad postoji linearna veza između varijabli - što je bundeva veća po volumenu, to je cijena viša - ponekad se te veze ne mogu prikazati kao ravnina ili prava linija.
 
-✅ Evo [nekoliko dodatnih primjera](https://online.stat.psu.edu/stat501/lesson/9/9.8) podataka za koje bi se mogla koristiti polinomska regresija.
+✅ Evo [nekoliko dodatnih primjera](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) podataka za koje bi se mogla koristiti polinomska regresija.
 
 Pogledajte ponovno odnos između datuma i cijene. Čini li vam se da ovaj scatterplot nužno treba analizirati pravom linijom? Zar cijene ne mogu varirati? U tom slučaju možete pokušati polinomsku regresiju.
 

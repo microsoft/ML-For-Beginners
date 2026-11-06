@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Satu lagi jenis Regresi Linear ialah Regresi Polinomial. Walaupun kadangkala terdapat hubungan linear antara pembolehubah - semakin besar labu dari segi isi padu, semakin tinggi harga - kadangkala hubungan ini tidak dapat diplot sebagai satah atau garis lurus.
 
-✅ Berikut adalah [beberapa contoh lagi](https://online.stat.psu.edu/stat501/lesson/9/9.8) data yang boleh menggunakan Regresi Polinomial
+✅ Berikut adalah [beberapa contoh lagi](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) data yang boleh menggunakan Regresi Polinomial
 
 Lihat sekali lagi hubungan antara Tarikh dan Harga. Adakah scatterplot ini nampak seperti perlu dianalisis dengan garis lurus? Tidakkah harga boleh berubah-ubah? Dalam kes ini, anda boleh cuba regresi polinomial.
 

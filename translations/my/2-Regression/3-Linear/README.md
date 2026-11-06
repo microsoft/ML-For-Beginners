@@ -240,7 +240,7 @@ plt.plot(X_test,pred)
 
 Linear Regression ၏ နှစ် 번째 မျိုးကတော့ Polynomial Regression ဖြစ်သည်။ ခဏခဏ variable များအကြား ဆက်စပ်မှုတည်ရှိသောကြောင်း - ဥပမာ ဂဏန်းအရ အပူအကြီးဆုံးပါဝင်သည့် pumpkin ၏ ပမာဏ နှင့် စျေးနှုန်းတို့ အချိန်တည်းရှိခြင်းရှိသော်လည်း - တစ်ခါတစ်ရံတွင် ဒီဆက်စပ်မှုများသည် တန်းတူစတိုင်နယ်လိုင်း သို့ မဟုတ် မှန်းဆနိုင်သော ကွဲပြားမှု မဖြစ်နိုင်ပါ။
 
-✅ [Polynomial Regression အသုံးပြုနိုင်သော ဒေတာများ](https://online.stat.psu.edu/stat501/lesson/9/9.8) ဥပမာအချို့
+✅ [Polynomial Regression အသုံးပြုနိုင်သော ဒေတာများ](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) ဥပမာအချို့
 
 Date နှင့် Price အကြား ဆက်နွယ်မှုကို ထပ်မံကြည့်ပါ။ ဒီ scatterplot ကို သို့တိုင်သော တန်းနယ်လိုင်းဖြင့်သာ ခွဲခြားရန် သင်ယူသင့်ပါသလား? စျေးနှုန်းများ တက် ကြွေ့ ရန်လား? ဒီအခြေအနေနှင့် polynomial regression ကို စမ်းကြည့်နိုင်သည်။
 

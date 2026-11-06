@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Toinen lineaarisen regression muoto on polynominen regressio. Vaikka joskus muuttujien välillä on lineaarinen suhde – mitä suurempi kurpitsa tilavuudeltaan, sitä korkeampi hinta – joskus nämä suhteet eivät ole suoraan tasossa tai suoralla viivalla esitettävissä.
 
-✅ Tässä on [jotakin lisää esimerkkejä](https://online.stat.psu.edu/stat501/lesson/9/9.8) datasta, jossa polynomista regressiota voisi käyttää.
+✅ Tässä on [jotakin lisää esimerkkejä](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) datasta, jossa polynomista regressiota voisi käyttää.
 
 Katso vielä uudestaan suhdetta Päivämäärä ja Hinta. Näyttääkö tämä hajontakaavio siltä, että se pitäisi välttämättä analysoida suoralla viivalla? Eikö hinta voi vaihdella? Tässä tapauksessa voit kokeilla polynomista regressiota.
 

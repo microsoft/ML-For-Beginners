@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 線性回歸的另一種類型是多項式回歸。有時候變數之間呈線性關係——體積越大的南瓜價格越高——但有時這種關係無法用平面或直線描述。
 
-✅ 這裡有[更多示例](https://online.stat.psu.edu/stat501/lesson/9/9.8)可以使用多項式回歸的資料
+✅ 這裡有[更多示例](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples)可以使用多項式回歸的資料
 
 再看一次日期與價格的關係。這個散點圖看起來一定要用直線分析嗎？價格難道不會波動？這時可以嘗試多項式回歸。
 

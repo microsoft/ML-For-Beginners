@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Một loại hồi quy tuyến tính khác là Hồi Quy Đa Thức. Trong khi đôi khi có một mối quan hệ tuyến tính giữa các biến - quả bí ngô càng to về thể tích thì giá càng cao - đôi khi những mối quan hệ này không thể biểu diễn trên một mặt phẳng hay đường thẳng.
 
-✅ Dưới đây là [một số ví dụ khác](https://online.stat.psu.edu/stat501/lesson/9/9.8) về dữ liệu có thể sử dụng Hồi Quy Đa Thức
+✅ Dưới đây là [một số ví dụ khác](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) về dữ liệu có thể sử dụng Hồi Quy Đa Thức
 
 Hãy xem lại mối quan hệ giữa Ngày và Giá. Biểu đồ điểm này có nhất thiết phải được phân tích bằng một đường thẳng không? Giá có thể dao động mà? Trong trường hợp này, bạn có thể thử hồi quy đa thức.
 

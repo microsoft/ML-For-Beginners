@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Eine andere Art der linearen Regression ist die Polynomiale Regression. Während es manchmal eine lineare Beziehung zwischen Variablen gibt – je größer der Kürbis im Volumen, desto höher der Preis – können diese Beziehungen manchmal nicht als Ebene oder Gerade dargestellt werden.
 
-✅ Hier sind [weitere Beispiele](https://online.stat.psu.edu/stat501/lesson/9/9.8) für Daten, die eine polynomiale Regression benötigen könnten.
+✅ Hier sind [weitere Beispiele](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) für Daten, die eine polynomiale Regression benötigen könnten.
 
 Schauen Sie sich die Beziehung zwischen Datum und Preis noch einmal an. Sollte dieses Streudiagramm zwangsläufig durch eine Gerade analysiert werden? Können die Preise nicht schwanken? In solchen Fällen kann man polynomiale Regression versuchen.
 
