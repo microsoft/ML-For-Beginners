@@ -12,8 +12,8 @@
     "language_code": "km"
   },
   "1-Introduction/2-history-of-ML/README.md": {
-    "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2026-04-06T18:15:10+00:00",
+    "original_hash": "e6b5247d6b4dc821434070bdb58e8285",
+    "translation_date": "2026-11-06T22:30:16+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "km"
   },
@@ -54,8 +54,8 @@
     "language_code": "km"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
-    "translation_date": "2026-07-14T01:01:56+00:00",
+    "original_hash": "1f4f6c95404d528041bcc36784771084",
+    "translation_date": "2026-11-06T22:25:42+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "km"
   },
@@ -822,8 +822,8 @@
     "language_code": "km"
   },
   "README.md": {
-    "original_hash": "8bba8faed876aa7bbc92b759a350b1d8",
-    "translation_date": "2026-09-15T03:16:56+00:00",
+    "original_hash": "d7acca3aa7f0279c75a498e4fd086f15",
+    "translation_date": "2026-11-06T22:17:31+00:00",
     "source_file": "README.md",
     "language_code": "km"
   },
@@ -845,19 +845,6 @@
     "source_file": "TROUBLESHOOTING.md",
     "language_code": "km"
   },
-  "__translation_failures__": {
-    "sketchnotes/LICENSE.md": {
-      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-      "source_file": "sketchnotes/LICENSE.md",
-      "language_code": "km",
-      "failure_date": "2026-09-15T03:24:19+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
-      "failure_policy_version": 1
-    }
-  },
   "docs/_sidebar.md": {
     "original_hash": "68dd06c685f6ce840e0acfa313352e7c",
     "translation_date": "2026-04-06T18:07:09+00:00",
@@ -878,7 +865,7 @@
   },
   "sketchnotes/LICENSE.md": {
     "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-    "translation_date": "2026-04-06T18:12:33+00:00",
+    "translation_date": "2026-11-06T22:22:47+00:00",
     "source_file": "sketchnotes/LICENSE.md",
     "language_code": "km"
   },
