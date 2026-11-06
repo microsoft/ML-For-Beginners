@@ -1,268 +1,434 @@
-Priznanje-Dijeljenje pod istim uvjetima 4.0 Međunarodna
+Attribution-ShareAlike 4.0 International
 
 =======================================================================
 
-Creative Commons Corporation ("Creative Commons") nije odvjetnička tvrtka i ne pruža pravne usluge ili pravne savjete. Distribucija javnih licenci Creative Commons ne stvara odnos odvjetnika i klijenta ili bilo koji drugi odnos. Creative Commons čini svoje licence i povezane informacije dostupnima "takvima kakve jesu". Creative Commons ne daje nikakva jamstva u vezi sa svojim licencama, bilo kojim materijalom licenciranim prema njihovim uvjetima i odredbama, ili bilo kojim povezanim informacijama. Creative Commons odriče svaku odgovornost za štetu koja proizlazi iz njihove upotrebe u najvećoj mogućoj mjeri.
+Creative Commons Corporation ("Creative Commons") nije odvjetničko društvo i
+ne pruža pravne usluge niti pravne savjete. Distribucija
+javnih licenci Creative Commons ne stvara odnos odvjetnik-klijent ili
+drugi odnos. Creative Commons čini svoje licence i povezane
+informacije dostupnima "takve kakve jesu". Creative Commons ne daje nikakva
+jamstva u vezi svojih licenci, bilo kojeg materijala licenciranog prema njihovim
+uvjetima ili bilo kojih povezanih informacija. Creative Commons
+izriče svaku odgovornost za štete koje proizlaze iz njihove uporabe u
+najvećoj mogućoj mjeri.
 
 Korištenje javnih licenci Creative Commons
 
-Javne licence Creative Commons pružaju standardni skup uvjeta koje autori i drugi nositelji prava mogu koristiti za dijeljenje originalnih autorskih djela i drugog materijala podložnog autorskom pravu i određenim drugim pravima navedenim u javnoj licenci u nastavku. Sljedeće napomene služe samo u informativne svrhe, nisu iscrpne i ne čine dio naših licenci.
+Javne licence Creative Commons pružaju standardni skup uvjeta i
+odredbi koje kreatori i drugi nositelji prava mogu koristiti za dijeljenje
+originalnih djela autorstva i drugog materijala zaštićenog autorskim pravima
+i nekih drugih prava specificiranih u javnoj licenci u nastavku. Sljedeće
+napomene su informativne prirode, nisu iscrpne i ne čine dio naših licenci.
 
-     Napomene za davatelje licenci: Naše javne licence namijenjene su 
-     za korištenje od strane onih koji su ovlašteni dati javnosti 
-     dopuštenje za korištenje materijala na načine koji su inače 
-     ograničeni autorskim pravom i određenim drugim pravima. Naše 
-     licence su neopozive. Davatelji licenci trebaju pročitati i 
-     razumjeti uvjete licence koju odaberu prije nego što je primijene. 
-     Davatelji licenci također trebaju osigurati sva potrebna prava 
-     prije primjene naših licenci kako bi javnost mogla ponovno 
-     koristiti materijal kako se očekuje. Davatelji licenci trebaju 
-     jasno označiti bilo koji materijal koji nije podložan licenci. To 
-     uključuje drugi materijal licenciran pod CC-licencama ili 
-     materijal korišten pod iznimkom ili ograničenjem autorskog prava. 
-     Više napomena za davatelje licenci: 
-     wiki.creativecommons.org/Considerations_for_licensors
 
-     Napomene za javnost: Korištenjem jedne od naših javnih licenci, 
-     davatelj licence daje javnosti dopuštenje za korištenje 
-     licenciranog materijala pod određenim uvjetima. Ako dopuštenje 
-     davatelja licence nije potrebno iz bilo kojeg razloga – na 
-     primjer, zbog primjenjive iznimke ili ograničenja autorskog prava 
-     – tada takva upotreba nije regulirana licencom. Naše licence 
-     dodjeljuju samo dopuštenja pod autorskim pravom i određenim 
-     drugim pravima koje davatelj licence ima ovlast dodijeliti. 
-     Korištenje licenciranog materijala može i dalje biti ograničeno 
-     iz drugih razloga, uključujući zbog toga što drugi imaju autorska 
-     prava ili druga prava na materijal. Davatelj licence može 
-     postaviti posebne zahtjeve, poput traženja da se sve promjene 
-     označe ili opišu. Iako to nije zahtjev naših licenci, potiče se 
-     poštivanje takvih zahtjeva gdje je to razumno. Više napomena za 
-     javnost: 
-     wiki.creativecommons.org/Considerations_for_licensees
+     Considerations for licensors: Our public licenses are
+     intended for use by those authorized to give the public
+     permission to use material in ways otherwise restricted by
+     copyright and certain other rights. Our licenses are
+     irrevocable. Licensors should read and understand the terms
+     and conditions of the license they choose before applying it.
+     Licensors should also secure all rights necessary before
+     applying our licenses so that the public can reuse the
+     material as expected. Licensors should clearly mark any
+     material not subject to the license. This includes other CC-
+     licensed material, or material used under an exception or
+     limitation to copyright. More considerations for licensors:
+	wiki.creativecommons.org/Considerations_for_licensors
+
+     Considerations for the public: By using one of our public
+     licenses, a licensor grants the public permission to use the
+     licensed material under specified terms and conditions. If
+     the licensor's permission is not necessary for any reason--for
+     example, because of any applicable exception or limitation to
+     copyright--then that use is not regulated by the license. Our
+     licenses grant only permissions under copyright and certain
+     other rights that a licensor has authority to grant. Use of
+     the licensed material may still be restricted for other
+     reasons, including because others have copyright or other
+     rights in the material. A licensor may make special requests,
+     such as asking that all changes be marked or described.
+     Although not required by our licenses, you are encouraged to
+     respect those requests where reasonable. More_considerations
+     for the public:
+	wiki.creativecommons.org/Considerations_for_licensees
 
 =======================================================================
 
-Creative Commons Priznanje-Dijeljenje pod istim uvjetima 4.0 Međunarodna javna licenca
+Creative Commons Attribution-ShareAlike 4.0 International Javna
+Licenca
 
-Korištenjem Licenciranih prava (definiranih u nastavku), prihvaćate i slažete se da ćete biti vezani uvjetima i odredbama ove Creative Commons Priznanje-Dijeljenje pod istim uvjetima 4.0 Međunarodne javne licence ("Javna licenca"). U mjeri u kojoj se ova Javna licenca može tumačiti kao ugovor, dodijeljena su vam Licencirana prava u zamjenu za vaše prihvaćanje ovih uvjeta i odredbi, a Davatelj licence vam dodjeljuje takva prava u zamjenu za koristi koje Davatelj licence dobiva stavljanjem Licenciranog materijala na raspolaganje pod ovim uvjetima i odredbama.
+Korištenjem licenciranih prava (definiranih u nastavku), prihvaćate i slažete se
+biti vezani uvjetima ove Creative Commons Attribution-ShareAlike 4.0 International
+Javne Licence ("Javna Licenca"). U onoj mjeri u kojoj se ova Javna Licenca može tumačiti kao
+ugovor, dodjeljuju Vam se licencirana prava kao naknada za Vaše
+prihvaćanje ovih uvjeta, a Licencodavac Vam dodjeljuje
+takva prava kao naknadu za korist koju Licencodavac prima pružanjem
+licenciranog materijala pod ovim uvjetima i odredbama.
 
-Odjeljak 1 -- Definicije.
 
-  a. Prilagođeni materijal znači materijal podložan autorskom pravu i 
-     sličnim pravima koji je izveden iz ili temeljen na Licenciranom 
-     materijalu i u kojem je Licencirani materijal preveden, 
-     izmijenjen, aranžiran, transformiran ili na drugi način 
-     modificiran na način koji zahtijeva dopuštenje prema autorskom 
-     pravu i sličnim pravima koja drži Davatelj licence. Za potrebe 
-     ove Javne licence, gdje je Licencirani materijal glazbeno djelo, 
-     izvedba ili zvučni zapis, Prilagođeni materijal uvijek se 
-     proizvodi kada je Licencirani materijal sinkroniziran u vremenskom 
-     odnosu s pokretnom slikom.
 
-  b. Licenca prilagoditelja znači licenca koju primjenjujete na svoja 
-     autorska prava i slična prava u svojim doprinosima Prilagođenom 
-     materijalu u skladu s uvjetima i odredbama ove Javne licence.
 
-  c. Licenca kompatibilna s BY-SA znači licenca navedena na 
-     creativecommons.org/compatiblelicenses, odobrena od strane 
-     Creative Commonsa kao suštinski ekvivalent ove Javne licence.
+Poglavlje 1 -- Definicije.
 
-  d. Autorska prava i slična prava znače autorska prava i/ili slična 
-     prava usko povezana s autorskim pravom, uključujući, bez 
-     ograničenja, prava na izvedbu, emitiranje, zvučni zapis i prava 
-     sui generis na baze podataka, bez obzira na to kako su prava 
-     označena ili kategorizirana. Za potrebe ove Javne licence, prava 
-     navedena u Odjeljku 2(b)(1)-(2) nisu autorska prava i slična 
-     prava.
+  a. Prilagođeni materijal znači materijal koji podliježe autorskom pravu i sličnim
+     pravima koji je izveden iz ili temeljen na licenciranom materijalu
+     te u kojem je licencirani materijal preveden, izmijenjen,
+     uređen, transformiran ili na drugi način promijenjen na način koji zahtijeva
+     dopuštenje pod autorskim pravima i sličnim pravima koja su u posjedu
+     licencodavca. U svrhu ove Javne Licence, gdje je licencirani
+     materijal glazbeno djelo, izvedba ili zvučni zapis,
+     prilagođeni materijal se uvijek smatra proizvedenim kada je licencirani
+     materijal sinkroniziran u vremenskoj vezi s pokretnom slikom.
 
-  e. Učinkovite tehnološke mjere znače one mjere koje, u odsutnosti 
-     odgovarajuće ovlasti, ne mogu biti zaobiđene prema zakonima koji 
-     ispunjavaju obveze prema članku 11. WIPO Ugovora o autorskom 
-     pravu usvojenog 20. prosinca 1996. i/ili sličnim međunarodnim 
-     sporazumima.
+  b. Licenca prilagoditelja znači licencu koju primjenjujete na svoja autorska
+     prava i slična prava u Vašim doprinosima prilagođenom materijalu u
+     skladu s uvjetima ove Javne Licence.
 
-  f. Iznimke i ograničenja znače poštenu upotrebu, pošteno postupanje 
-     i/ili bilo koju drugu iznimku ili ograničenje autorskog prava i 
-     sličnih prava koja se primjenjuju na vašu upotrebu Licenciranog 
-     materijala.
+  c. BY-SA kompatibilna licenca znači licencu navedenu na
+     creativecommons.org/compatiblelicenses, odobrenu od strane Creative
+     Commons kao suštinski ekvivalent ove Javne Licence.
 
-  g. Elementi licence znače atribute licence navedene u nazivu Javne 
-     licence Creative Commons. Elementi licence ove Javne licence su 
-     Priznanje i Dijeljenje pod istim uvjetima.
+  d. Autorska prava i slična prava znači autorska prava i/ili slična prava
+     blisko povezana s autorskim pravom uključujući, bez ograničenja,
+     prava na izvedbu, emitiranje, zvučni zapis i Sui Generis prava baze podataka,
+     bez obzira kako su ta prava označena ili
+     kategorizirana. U svrhu ove Javne Licence, prava
+     navedena u odjeljku 2(b)(1)-(2) nisu autorska prava i slična prava.
 
-  h. Licencirani materijal znači umjetničko ili književno djelo, 
-     baza podataka ili drugi materijal na koji je Davatelj licence 
-     primijenio ovu Javnu licencu.
 
-  i. Licencirana prava znače prava dodijeljena vama pod uvjetima i 
-     odredbama ove Javne licence, koja su ograničena na sva autorska 
-     prava i slična prava koja se primjenjuju na vašu upotrebu 
-     Licenciranog materijala i koja Davatelj licence ima ovlast 
-     licencirati.
+     nedostatku odgovarajućeg ovlaštenja, ne smiju zaobići prema zakonima
+     koji ispunjavaju obveze iz članka 11. WIPO Ugovora o autorskim pravima
+     donesenog 20. prosinca 1996. i/ili sličnih međunarodnih
+     sporazuma.
 
-  j. Davatelj licence znači pojedinac(i) ili entitet(i) koji dodjeljuju 
-     prava prema ovoj Javnoj licenci.
 
-  k. Dijeljenje znači pružanje materijala javnosti bilo kojim sredstvom 
-     ili procesom koji zahtijeva dopuštenje prema Licenciranim pravima, 
-     poput reprodukcije, javnog prikazivanja, javne izvedbe, 
-     distribucije, širenja, komunikacije ili uvoza, te stavljanje 
-     materijala na raspolaganje javnosti, uključujući na načine koji 
-     omogućuju članovima javnosti pristup materijalu s mjesta i u 
-     vrijeme koje sami odaberu.
+     bilo koji drugi izuzetak ili ograničenje autorskih prava i sličnih prava
+     koji se primjenjuju na Vašu uporabu licenciranog materijala.
 
-  l. Prava sui generis na baze podataka znače prava koja nisu autorska 
-     prava, a proizlaze iz Direktive 96/9/EC Europskog parlamenta i 
-     Vijeća od 11. ožujka 1996. o pravnoj zaštiti baza podataka, kako 
-     je izmijenjena i/ili naslijeđena, kao i druga suštinski ekvivalentna 
-     prava bilo gdje u svijetu.
 
-  m. Vi znači pojedinac ili entitet koji koristi Licencirana prava 
-     prema ovoj Javnoj licenci. Vaš ima odgovarajuće značenje.
+     Javne Licence Creative Commons. Elementi ove
+     Javne Licence su Preuzimanje Autorskog Djela uz Navedenu Podjelu (Attribution) i Dijeljenje Pod Istim Uvjetima (ShareAlike).
 
-Odjeljak 2 -- Opseg.
 
-  a. Dodjela licence.
+     ili drugi materijal na koji je licencodavac primijenio ovu
+     Javnu Licencu.
 
-       1. Pod uvjetima i odredbama ove Javne licence, Davatelj licence 
-          vam ovime dodjeljuje globalnu, besplatnu, ne-sublicencibilnu, 
-          ne-ekskluzivnu, neopozivu licencu za korištenje Licenciranih 
-          prava u Licenciranom materijalu kako biste:
 
-            a. reproducirali i dijelili Licencirani materijal, u cijelosti 
-               ili djelomično; i
+     uvjetima ove Javne Licence, koja su ograničena na
+     sva autorska prava i slična prava koja se odnose na Vašu uporabu
+     licenciranog materijala i koja licencodavac ima ovlasti licencirati.
 
-            b. proizvodili, reproducirali i dijelili Prilagođeni materijal.
 
-       2. Iznimke i ograničenja. Radi izbjegavanja sumnje, gdje se 
-          primjenjuju iznimke i ograničenja na vašu upotrebu, ova Javna 
-          licenca se ne primjenjuje, i ne morate se pridržavati njezinih 
-          uvjeta i odredbi.
+     pod ovom Javnom Licencom.
 
-       3. Trajanje. Trajanje ove Javne licence navedeno je u Odjeljku 
+
+     koji zahtijeva dopuštenje po Licenciranim pravima, kao što su
+     reprodukcija, javni prikaz, javna izvedba, distribucija,
+     širenje, komunikacija ili uvoz, i učiniti materijal
+     dostupnim javnosti uključujući na način da članovi
+     javnosti mogu pristupiti materijalu s mjesta i u vrijeme
+     koje sami izaberu.
+
+
+     proizašla iz Direktive 96/9/EZ Europskog parlamenta i Vijeća od
+     11. ožujka 1996. o pravnoj zaštiti baza podataka,
+     kako je izmijenjena i/ili zamijenjena, kao i druga
+     ustvari ekvivalentna prava bilo gdje u svijetu.
+
+
+     prema ovoj Javnoj Licenci. Vaš ima odgovarajuće značenje.
+
+
+
+
+
+
+
+       1. Subject to the terms and conditions of this Public License,
+          the Licensor hereby grants You a worldwide, royalty-free,
+          non-sublicensable, non-exclusive, irrevocable license to
+          exercise the Licensed Rights in the Licensed Material to:
+
+            a. reproduce and Share the Licensed Material, in whole or
+               in part; and
+
+            b. produce, reproduce, and Share Adapted Material.
+
+       2. Exceptions and Limitations. For the avoidance of doubt, where
+          Exceptions and Limitations apply to Your use, this Public
+          License does not apply, and You do not need to comply with
+          its terms and conditions.
+
+       3. Term. The term of this Public License is specified in Section
           6(a).
 
-       4. Mediji i formati; dopuštene tehničke izmjene. Davatelj licence 
-          ovlašćuje vas da koristite Licencirana prava u svim medijima i 
-          formatima, bilo poznatim ili budućim, te da napravite tehničke 
-          izmjene potrebne za to. Davatelj licence odriče se i/ili 
-          pristaje ne isticati bilo koje pravo ili ovlast da vam zabrani 
-          tehničke izmjene potrebne za korištenje Licenciranih prava, 
-          uključujući tehničke izmjene potrebne za zaobilaženje 
-          Učinkovitih tehnoloških mjera. Za potrebe ove Javne licence, 
-          samo izrada izmjena ovlaštenih ovim Odjeljkom 2(a)(4) nikada 
-          ne proizvodi Prilagođeni materijal.
+       4. Media and formats; technical modifications allowed. The
+          Licensor authorizes You to exercise the Licensed Rights in
+          all media and formats whether now known or hereafter created,
+          and to make technical modifications necessary to do so. The
+          Licensor waives and/or agrees not to assert any right or
+          authority to forbid You from making technical modifications
+          necessary to exercise the Licensed Rights, including
+          technical modifications necessary to circumvent Effective
+          Technological Measures. For purposes of this Public License,
+          simply making modifications authorized by this Section 2(a)
+          (4) never produces Adapted Material.
 
-       5. Primatelji nizvodno.
+       5. Downstream recipients.
 
-            a. Ponuda Davatelja licence -- Licencirani materijal. Svaki 
-               primatelj Licenciranog materijala automatski prima ponudu 
-               Davatelja licence za korištenje Licenciranih prava pod 
-               uvjetima i odredbama ove Javne licence.
+            a. Offer from the Licensor -- Licensed Material. Every
+               recipient of the Licensed Material automatically
+               receives an offer from the Licensor to exercise the
+               Licensed Rights under the terms and conditions of this
+               Public License.
 
-            b. Dodatna ponuda Davatelja licence -- Prilagođeni materijal. 
-               Svaki primatelj Prilagođenog materijala od vas automatski 
-               prima ponudu Davatelja licence za korištenje Licenciranih 
-               prava u Prilagođenom materijalu pod uvjetima Licence 
-               prilagoditelja koju primjenjujete.
+            b. Additional offer from the Licensor -- Adapted Material.
+               Every recipient of Adapted Material from You
+               automatically receives an offer from the Licensor to
+               exercise the Licensed Rights in the Adapted Material
+               under the conditions of the Adapter's License You apply.
 
-            c. Bez ograničenja nizvodno. Ne smijete ponuditi ili nametnuti 
-               nikakve dodatne ili različite uvjete ili odredbe, niti 
-               primijeniti bilo koje Učinkovite tehnološke mjere na 
-               Licencirani materijal ako to ograničava korištenje 
-               Licenciranih prava od strane bilo kojeg primatelja 
-               Licenciranog materijala.
+            c. No downstream restrictions. You may not offer or impose
+               any additional or different terms or conditions on, or
+               apply any Effective Technological Measures to, the
+               Licensed Material if doing so restricts exercise of the
+               Licensed Rights by any recipient of the Licensed
+               Material.
 
-       6. Bez odobrenja. Ništa u ovoj Javnoj licenci ne predstavlja niti 
-          se može tumačiti kao dopuštenje za tvrdnju ili impliciranje da 
-          ste vi, ili da je vaša upotreba Licenciranog materijala, 
-          povezana s, sponzorirana, odobrena ili dodijeljena službeni 
-          status od strane Davatelja licence ili drugih označenih za 
-          primanje priznanja kako je navedeno u Odjeljku 3(a)(1)(A)(i).
+       6. No endorsement. Nothing in this Public License constitutes or
+          may be construed as permission to assert or imply that You
+          are, or that Your use of the Licensed Material is, connected
+          with, or sponsored, endorsed, or granted official status by,
+          the Licensor or others designated to receive attribution as
+          provided in Section 3(a)(1)(A)(i).
 
   b. Ostala prava.
 
-       1. Moralna prava, poput prava na integritet, nisu licencirana 
-          prema ovoj Javnoj licenci, niti su prava na javnost, privatnost 
-          i/ili druga slična prava osobnosti; međutim, u mjeri u kojoj je 
-          to moguće, Davatelj licence odriče se i/ili pristaje ne isticati 
-          takva prava koja drži Davatelj licence u ograničenoj mjeri 
-          potrebnoj za omogućavanje korištenja Licenciranih prava, ali ne 
-          inače.
+       1. Moral rights, such as the right of integrity, are not
+          licensed under this Public License, nor are publicity,
+          privacy, and/or other similar personality rights; however, to
+          the extent possible, the Licensor waives and/or agrees not to
+          assert any such rights held by the Licensor to the limited
+          extent necessary to allow You to exercise the Licensed
+          Rights, but not otherwise.
 
-       2. Prava na patente i žigove nisu licencirana prema ovoj Javnoj 
-          licenci.
+       2. Patent and trademark rights are not licensed under this
+          Public License.
 
-       3. U mjeri u kojoj je to moguće, Davatelj licence odriče se 
-          bilo kojeg prava na prikupljanje naknada od vas za korištenje 
-          Licenciranih prava, bilo izravno ili putem društva za 
-          prikupljanje naknada prema bilo kojem dobrovoljnom ili 
-          odricajućem zakonskom ili obveznom licencnom režimu. U svim 
-          ostalim slučajevima Davatelj licence izričito zadržava pravo 
-          na prikupljanje takvih naknada.
-Prava, zatim baza podataka u kojoj imate prava sui generis na bazu podataka (ali ne i njezin pojedinačni sadržaj) je prilagođeni materijal,
+       3. To the extent possible, the Licensor waives any right to
+          collect royalties from You for the exercise of the Licensed
+          Rights, whether directly or through a collecting society
+          under any voluntary or waivable statutory or compulsory
+          licensing scheme. In all other cases the Licensor expressly
+          reserves any right to collect such royalties.
 
-uključujući za svrhe iz Odjeljka 3(b); i  
-c. Morate se pridržavati uvjeta iz Odjeljka 3(a) ako dijelite cijeli ili značajan dio sadržaja baze podataka.
 
-Radi izbjegavanja sumnje, ovaj Odjeljak 4 dopunjuje i ne zamjenjuje vaše obveze prema ovoj javnoj licenci gdje licencirana prava uključuju druga autorska prava i slična prava.
+Odjeljak 3 -- Uvjeti licence.
+
+Vaše korištenje Licenciranih prava izričito ovisi o
+sljedećim uvjetima.
+
+  a. Navođenje autora.
+
+       1. If You Share the Licensed Material (including in modified
+          form), You must:
+
+            a. retain the following if it is supplied by the Licensor
+               with the Licensed Material:
+
+                 i. identification of the creator(s) of the Licensed
+                    Material and any others designated to receive
+                    attribution, in any reasonable manner requested by
+                    the Licensor (including by pseudonym if
+                    designated);
+
+                ii. a copyright notice;
+
+               iii. a notice that refers to this Public License;
+
+                iv. a notice that refers to the disclaimer of
+                    warranties;
+
+                 v. a URI or hyperlink to the Licensed Material to the
+                    extent reasonably practicable;
+
+            b. indicate if You modified the Licensed Material and
+               retain an indication of any previous modifications; and
+
+            c. indicate the Licensed Material is licensed under this
+               Public License, and include the text of, or the URI or
+               hyperlink to, this Public License.
+
+       2. You may satisfy the conditions in Section 3(a)(1) in any
+          reasonable manner based on the medium, means, and context in
+          which You Share the Licensed Material. For example, it may be
+          reasonable to satisfy the conditions by providing a URI or
+          hyperlink to a resource that includes the required
+          information.
+
+       3. If requested by the Licensor, You must remove any of the
+          information required by Section 3(a)(1)(A) to the extent
+          reasonably practicable.
+
+  b. DijeliPodSličnimUvjetima.
+
+     In addition to the conditions in Section 3(a), if You Share
+     Adapted Material You produce, the following conditions also apply.
+
+       1. The Adapter's License You apply must be a Creative Commons
+          license with the same License Elements, this version or
+          later, or a BY-SA Compatible License.
+
+       2. You must include the text of, or the URI or hyperlink to, the
+          Adapter's License You apply. You may satisfy this condition
+          in any reasonable manner based on the medium, means, and
+          context in which You Share Adapted Material.
+
+       3. You may not offer or impose any additional or different terms
+          or conditions on, or apply any Effective Technological
+          Measures to, Adapted Material that restrict exercise of the
+          rights granted under the Adapter's License You apply.
+
+
+Odjeljak 4 -- Prava na bazu podataka Sui Generis.
+
+Kad Licencirana prava uključuju Prava na bazu podataka Sui Generis koja
+se primjenjuju na Vašu upotrebu Licenciranog materijala:
+
+  a. radi izbjegavanja nedoumice, Odjeljak 2(a)(1) Vam daje pravo
+     izvlačiti, ponovno koristiti, reproducirati i Dijeliti cijeli ili
+     značajan dio sadržaja baze podataka;
+
+  b. ako uključite cijeli ili značajan dio sadržaja baze podataka
+     u bazu podataka u kojoj imate Prava na bazu podataka Sui Generis,
+     tada je baza podataka u kojoj imate Prava na bazu podataka Sui
+     Generis (ali ne i njen pojedinačni sadržaj) Prerađeni materijal,
+
+     including for purposes of Section 3(b); and
+  c. Morate se pridržavati uvjeta u odjeljku 3(a) ako Dijelite
+     cijeli ili značajan dio sadržaja baze podataka.
+
+Radi izbjegavanja nedoumice, ovaj Odjeljak 4 nadopunjuje i ne
+zamjenjuje Vaše obveze prema ovoj Javnoj licenci kada Licencirana
+prava uključuju druga autorska i slična prava.
+
+
+Odjeljak 5 -- Ograničenje jamstava i ograničenje odgovornosti.
+
+  a. OSIM AKO DRUGAČIJE NE OBUVEZUJE LICENCODAVAC, U NAJVEĆOJ
+     MOGUĆOJ MJERI LICENCODAVAC NUDI LICENCIRANI MATERIJAL TAKAV KAKAV
+     JEST I KAKAV JE DOSTUPAN, I NE DAJE NIKAKVE IZJAVE ILI JAMSTVA
+     BILO KOJE VRSTE VEZANO UZ LICENCIRANI MATERIJAL, BILO IZRIČITE,
+     IMPLICIRANE, ZAKONSKE ILI DRUGE. TO UKLJUČUJE, BEZ OGRANIČENJA,
+     JAMSTVA VLASNIŠTVA, PRODAJNOSTI, PRIMJENJIVOSTI ZA ODREĐENU
+     NAMJENU, NEKRŠENJA, ODSUTNOSTI SAKRIVENIH ILI DRUGIH OŠTEĆENJA,
+     TOČNOSTI ILI PRISUTNOSTI ILI NEDOSTATKA POGREŠAKA, BILO DA SU
+     POZNATE ILI OTKRIVENE. GDJE OGRANIČENJA JAMSTAVA NISU
+     DOZVOLJENA U CIJELOSTI ILI DJELOMIČNO, OVO OGRANIČENJE MOŽE NE
+
+
+  b. U NAJVEĆOJ MOGUĆOJ MJERI, LICENCODAVAC NEĆE BITI ODGOVORAN
+     VAMA NA BILO KOJOJ PRAVNOJ OSNOVI (UKLJUČUJUĆI, ALI NE OGRANIČAVAJUĆI
+     SE NA NEPAŽNJU) ILI NA DRUGI NAČIN ZA BILO KAKVE IZRAVNE,
+     POSEBNE, NEIZRAVNE, SLUČAJNE, POSLJEDIČNE, KAŽNJIVE, UZORENE ILI
+     DRUGE GUBITKE, TROŠKOVE, IZDATKE ILI ŠTETE PROIZAŠLE IZ OVE JAVNE
+     LICENCE ILI UPORABE LICENCIRANOG MATERIJALA, ČAK I AKO JE
+     LICENCODAVAC BIO UPOZOREN NA MOGUĆNOST TAKVIH GUBITAKA, TROŠKOVA,
+     IZDATAKA ILI ŠTETA. GDJE OGRANIČENJE ODGOVORNOSTI NIJE DOZVOLJENO
+
+     VAS.
+
+  c. Gornje ograničenje jamstava i ograničenje odgovornosti treba tumačiti
+     na način koji, u najvećoj mogućoj mjeri, najviše odgovara apsolutnom
+
+
+
+
+
+  a. Ova javna licenca vrijedi tijekom trajanja autorskih i sličnih prava
+     licenciranih ovdje. Međutim, ako ne ispunjavate uvjete ove javne licence,
+     vaša prava prema ovoj javnoj licenci automatski prestaju.
+
+  b. Kad pravo na korištenje Licenciranog materijala prestane prema
+     odjeljku 6(a), ono se obnavlja:
+
+       1. automatically as of the date the violation is cured, provided
+          it is cured within 30 days of Your discovery of the
+          violation; or
+
+       2. upon express reinstatement by the Licensor.
+
+     For the avoidance of doubt, this Section 6(b) does not affect any
+     right the Licensor may have to seek remedies for Your violations
+     of this Public License.
+
+  c. Radi izbjegavanja sumnje, Licencodavac također može ponuditi
+     Licencirani Materijal pod posebnim uvjetima ili uvjetima ili prestati
+     distribuirati Licencirani Materijal u bilo kojem trenutku; međutim, činjenje toga
+     neće prekinuti ovu Javnu Licencu.
+
+  d. Članci 1, 5, 6, 7 i 8 ostaju na snazi nakon prestanka ove Javne
+     Licence.
+
+
+Članak 7 -- Ostali Uvjeti i Odredbe.
+
+  a. Licencodavac neće biti vezan dodatnim ili drugačijim
+     uvjetima ili odredbama koje Vi prenesete osim ako izričito nije dogovoreno.
+
+  b. Bilo kakvi dogovori, razumijevanja ili sporazumi u vezi s
+     Licenciranim Materijalom koji nisu navedeni ovdje su odvojeni od i
+     neovisni o uvjetima i odredbama ove Javne Licence.
+
+
+Članak 8 -- Tumačenje.
+
+  a. Radi izbjegavanja sumnje, ova Javna Licenca ne smije i neće se
+     tumačiti kao smanjenje, ograničenje, zabrana ili nametanje
+     uvjeta na bilo koju uporabu Licenciranog Materijala koja bi se zakonito
+     mogla izvršiti bez dopuštenja prema ovoj Javnoj Licenci.
+
+  b. U mjeri u kojoj je to moguće, ako se bilo koja odredba ove Javne Licence
+     smatra neprovedivom, automatski će se prilagoditi u
+     minimalnoj potrebnoj mjeri da postane provediva. Ako odredba
+     ne može biti prilagođena, bit će odvojena od ove Javne Licence
+     bez utjecaja na provedivost preostalih uvjeta i odredbi.
+
+
+     neuspjeh u poštivanju neće biti odobren osim ako izričito nije dogovoreno s
+     Licencodavcem.
+
+
+     kao ograničenje ili odricanje od bilo kojih povlastica i imuniteta
+     koje se odnose na Licencodavca ili Vas, uključujući i od pravnih
+     postupaka bilo koje jurisdikcije ili tijela.
+
+
+
+
+
+licenci. Ipak, Creative Commons može odlučiti primijeniti jednu od
+svojih javnih licenci na materijal koji objavljuje i u tim slučajevima
+će biti smatran “Licencodavcem.” Tekst Creative Commons
+javnih licenci posvećen je javnoj domeni pod CC0 Javnim
+Posvećenjem Javnoj Domeni. Osim za ograničenu svrhu označavanja da je
+materijal dijeljen pod Creative Commons javnom licencom ili
+kako je inače dopušteno pravilima Creative Commons objavljenim na
+creativecommons.org/policies, Creative Commons ne dopušta
+uporabu trgovačkog znaka "Creative Commons" ili bilo kojeg drugog trgovačkog znaka ili logotipa
+Creative Commons bez njegovog prethodnog pisanog pristanka uključujući,
+bez ograničenja, u vezi s bilo kakvim neovlaštenim izmjenama
+bilo koje od njegovih javnih licenci ili bilo kojih drugih dogovora,
+razumijevanja ili sporazuma u vezi s uporabom licenciranog materijala. Za
+izbjegavanje sumnje, ovaj odlomak nije dio
+javnih licenci.
+
+
+Creative Commons se može kontaktirati na creativecommons.org.
 
 ---
 
-Odjeljak 5 -- Odricanje od jamstava i ograničenje odgovornosti.
-
-a. OSIM AKO LICENCODAVAC NIJE IZRIČITO DRUGAČIJE ODREDIO, U NAJVEĆOJ MOGUĆOJ MJERI LICENCODAVAC NUDI LICENCIRANI MATERIJAL "TAKAV KAKAV JE" I "DOSTUPAN", TE NE DAJE NIKAKVE IZJAVE ILI JAMSTVA BILO KOJE VRSTE U VEZI S LICENCIRANIM MATERIJALOM, BILO IZRIČITA, IMPLICIRANA, ZAKONSKA ILI DRUGA. TO UKLJUČUJE, BEZ OGRANIČENJA, JAMSTVA O VLASNIŠTVU, PRODAJNOSTI, PRIKLADNOSTI ZA ODREĐENU SVRHU, NEKRŠENJE, ODSUTNOST SKRIVENIH ILI DRUGIH NEDOSTATAKA, TOČNOST, ILI PRISUTNOST ILI ODSUTNOST POGREŠAKA, BILO DA SU POZNATE ILI OTKRIVENE. GDJE ODRICANJE OD JAMSTAVA NIJE DOZVOLJENO U CIJELOSTI ILI DJELOMIČNO, OVO ODRICANJE MOŽDA SE NE PRIMJENJUJE NA VAS.
-
-b. U NAJVEĆOJ MOGUĆOJ MJERI, LICENCODAVAC NI U KOJEM SLUČAJU NEĆE BITI ODGOVORAN VAMA NA TEMELJU BILO KOJE PRAVNE TEORIJE (UKLJUČUJUĆI, BEZ OGRANIČENJA, NEMAR) ILI DRUGAČIJE ZA BILO KAKVE IZRAVNE, POSEBNE, NEIZRAVNE, SLUČAJNE, POSLJEDIČNE, KAZNENE, PRIMJERNE ILI DRUGE GUBITKE, TROŠKOVE, IZDATKE ILI ŠTETE KOJE PROIZLAZE IZ OVE JAVNE LICENCE ILI KORIŠTENJA LICENCIRANOG MATERIJALA, ČAK I AKO JE LICENCODAVAC BIO OBAVIJEŠTEN O MOGUĆNOSTI TAKVIH GUBITAKA, TROŠKOVA, IZDATAKA ILI ŠTETA. GDJE OGRANIČENJE ODGOVORNOSTI NIJE DOZVOLJENO U CIJELOSTI ILI DJELOMIČNO, OVO OGRANIČENJE MOŽDA SE NE PRIMJENJUJE NA VAS.
-
-c. Odricanje od jamstava i ograničenje odgovornosti navedeno gore treba se tumačiti na način koji, u najvećoj mogućoj mjeri, najbliže odgovara apsolutnom odricanju i odustajanju od sve odgovornosti.
-
----
-
-Odjeljak 6 -- Trajanje i prestanak.
-
-a. Ova javna licenca primjenjuje se za trajanje autorskih prava i sličnih prava licenciranih ovdje. Međutim, ako se ne pridržavate ove javne licence, vaša prava prema ovoj javnoj licenci automatski prestaju.
-
-b. Kada vaše pravo na korištenje licenciranog materijala prestane prema Odjeljku 6(a), ono se ponovno uspostavlja:
-
-1. automatski na datum kada se kršenje ispravi, pod uvjetom da se ispravi unutar 30 dana od vašeg otkrića kršenja; ili  
-2. uz izričitu ponovnu uspostavu od strane licencodavca.
-
-Radi izbjegavanja sumnje, ovaj Odjeljak 6(b) ne utječe na bilo koje pravo koje licencodavac može imati da traži pravne lijekove za vaša kršenja ove javne licence.
-
-c. Radi izbjegavanja sumnje, licencodavac također može ponuditi licencirani materijal pod zasebnim uvjetima ili prestati distribuirati licencirani materijal u bilo kojem trenutku; međutim, to neće prekinuti ovu javnu licencu.
-
-d. Odjeljci 1, 5, 6, 7 i 8 ostaju na snazi nakon prestanka ove javne licence.
-
----
-
-Odjeljak 7 -- Ostali uvjeti i odredbe.
-
-a. Licencodavac nije obvezan dodatnim ili različitim uvjetima i odredbama koje vi komunicirate, osim ako ih izričito ne prihvati.
-
-b. Bilo koji dogovori, razumijevanja ili sporazumi u vezi s licenciranim materijalom koji nisu navedeni ovdje su odvojeni i neovisni od uvjeta i odredbi ove javne licence.
-
----
-
-Odjeljak 8 -- Tumačenje.
-
-a. Radi izbjegavanja sumnje, ova javna licenca ne smanjuje, ograničava, ograničava ili nameće uvjete za bilo kakvo korištenje licenciranog materijala koje bi se moglo zakonito provesti bez dopuštenja prema ovoj javnoj licenci.
-
-b. U najvećoj mogućoj mjeri, ako se bilo koja odredba ove javne licence smatra neprovedivom, automatski će se reformirati u najmanjoj mjeri potrebnoj da postane provediva. Ako se odredba ne može reformirati, bit će odvojena od ove javne licence bez utjecaja na provedivost preostalih uvjeta i odredbi.
-
-c. Nijedan uvjet ili odredba ove javne licence neće biti odustani niti će se pristati na nepoštivanje, osim ako to izričito ne prihvati licencodavac.
-
-d. Ništa u ovoj javnoj licenci ne predstavlja niti se može tumačiti kao ograničenje ili odricanje od bilo kakvih privilegija i imuniteta koji se primjenjuju na licencodavca ili vas, uključujući od pravnih postupaka bilo koje jurisdikcije ili vlasti.
-
----
-
-=======================================================================
-
-Creative Commons nije stranka svojih javnih licenci. Bez obzira na to, Creative Commons može odlučiti primijeniti jednu od svojih javnih licenci na materijal koji objavljuje i u tim slučajevima će se smatrati "licencodavcem". Tekst javnih licenci Creative Commonsa posvećen je javnoj domeni prema CC0 posveti javnoj domeni. Osim za ograničenu svrhu označavanja da je materijal podijeljen pod javnom licencom Creative Commonsa ili kako je drugačije dopušteno prema politikama Creative Commonsa objavljenim na creativecommons.org/policies, Creative Commons ne dopušta korištenje zaštitnog znaka "Creative Commons" ili bilo kojeg drugog zaštitnog znaka ili logotipa Creative Commonsa bez prethodnog pisanog pristanka, uključujući, bez ograničenja, u vezi s bilo kakvim neovlaštenim izmjenama bilo koje od njegovih javnih licenci ili bilo kojim drugim dogovorima, razumijevanjima ili sporazumima u vezi s korištenjem licenciranog materijala. Radi izbjegavanja sumnje, ovaj odlomak nije dio javnih licenci.
-
-Creative Commons možete kontaktirati na creativecommons.org.
-
----
-
-**Odricanje od odgovornosti**:  
-Ovaj dokument je preveden pomoću AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati mjerodavnim izvorom. Za ključne informacije preporučuje se profesionalni prijevod od strane stručnjaka. Ne preuzimamo odgovornost za nesporazume ili pogrešna tumačenja koja mogu proizaći iz korištenja ovog prijevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
