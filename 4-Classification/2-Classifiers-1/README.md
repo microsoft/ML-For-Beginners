@@ -34,6 +34,7 @@ Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a
 
     ```python
     from sklearn.linear_model import LogisticRegression
+    from sklearn.multiclass import OneVsRestClassifier
     from sklearn.model_selection import train_test_split, cross_val_score
     from sklearn.metrics import accuracy_score,precision_score,confusion_matrix,classification_report, precision_recall_curve
     from sklearn.svm import SVC
@@ -117,7 +118,7 @@ A better way than wildly guessing, however, is to follow the ideas on this downl
 Let's see if we can reason our way through different approaches given the constraints we have:
 
 - **Neural networks are too heavy**. Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task.
-- **No two-class classifier**. We do not use a two-class classifier, so that rules out one-vs-all. 
+- **A two-class classifier needs a multiclass strategy**. We can use one-vs-rest to train a binary classifier for each cuisine against all the others.
 - **Decision tree or logistic regression could work**. A decision tree might work, or logistic regression for multiclass data. 
 - **Multiclass Boosted Decision Trees solve a different problem**. The multiclass boosted decision tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us.
 
@@ -125,12 +126,12 @@ Let's see if we can reason our way through different approaches given the constr
 
 We will be using Scikit-learn to analyze our data. However, there are many ways to use logistic regression in Scikit-learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
-Essentially there are two important parameters - `multi_class` and `solver` - that we need to specify, when we ask Scikit-learn to perform a logistic regression. The `multi_class` value applies a certain behavior. The value of the solver is what algorithm to use. Not all solvers can be paired with all `multi_class` values.
+We need to choose a multiclass strategy and a `solver` when we ask Scikit-learn to perform logistic regression. The solver determines which algorithm is used to fit the model. The `multi_class` parameter was deprecated in Scikit-learn 1.5 and has since been removed, so we use `OneVsRestClassifier` to explicitly select the one-vs-rest strategy.
 
 According to the docs, in the multiclass case, the training algorithm:
 
-- **Uses the one-vs-rest (OvR) scheme**, if the `multi_class` option is set to `ovr`
-- **Uses the cross-entropy loss**, if the `multi_class` option is set to `multinomial`. (Currently the `multinomial` option is supported only by the ‘lbfgs’, ‘sag’, ‘saga’ and ‘newton-cg’ solvers.)"
+- **Uses the one-vs-rest (OvR) scheme** when `LogisticRegression` is wrapped in [`OneVsRestClassifier`](https://scikit-learn.org/stable/modules/generated/sklearn.multiclass.OneVsRestClassifier.html). This trains one binary classifier per class and allows us to use the `liblinear` solver, which only supports binary classification.
+- **Uses the multinomial cross-entropy loss** when `LogisticRegression` is used directly with a solver that supports multiclass classification, such as `lbfgs`, `sag`, `saga`, or `newton-cg`.
 
 > 🎓 The 'scheme' here can either be 'ovr' (one-vs-rest) or 'multinomial'. Since logistic regression is really designed to support binary classification, these schemes allow it to better handle multiclass classification tasks. [source](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
@@ -151,12 +152,12 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 ## Exercise - apply logistic regression
 
-Since you are using the multiclass case, you need to choose what _scheme_ to use and what _solver_ to set. Use LogisticRegression with a multiclass setting and the **liblinear** solver to train.
+Since you are using the multiclass case, you need to choose what _scheme_ to use and what _solver_ to set. Wrap LogisticRegression in OneVsRestClassifier and use the **liblinear** solver to train.
 
-1. Create a logistic regression with multi_class set to `ovr` and the solver set to `liblinear`:
+1. Create a one-vs-rest logistic regression with the solver set to `liblinear`:
 
     ```python
-    lr = LogisticRegression(multi_class='ovr',solver='liblinear')
+    lr = OneVsRestClassifier(LogisticRegression(solver='liblinear'))
     model = lr.fit(X_train, np.ravel(y_train))
     
     accuracy = model.score(X_test, y_test)
