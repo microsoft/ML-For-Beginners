@@ -72,11 +72,17 @@ We will use the 'SVC' library which has good accuracy.
     from sklearn.metrics import accuracy_score,precision_score,confusion_matrix,classification_report
     ```
 
-1. Separate training and test sets:
+1. Separate training and test sets, preserving class proportions, then balance only the training set:
 
     ```python
-    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
+    from imblearn.over_sampling import SMOTE
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.3, stratify=y, random_state=42)
+    X_train, y_train = SMOTE(random_state=42).fit_resample(X_train, y_train)
     ```
+
+    Applying SMOTE before splitting can leak information and inflate evaluation scores. Leave the test set unchanged: it should contain only original recipes with their natural class distribution.
 
 1. Build an SVC Classification model as you did in the previous lesson:
 
@@ -97,20 +103,20 @@ We will use the 'SVC' library which has good accuracy.
     print(classification_report(y_test,y_pred))
     ```
 
-    As we saw before, the accuracy is good:
+    Here is an example report on the original test recipes (results can vary with library versions):
 
     ```output
                     precision    recall  f1-score   support
     
-         chinese       0.72      0.69      0.70       257
-          indian       0.91      0.87      0.89       243
-        japanese       0.79      0.77      0.78       239
-          korean       0.83      0.79      0.81       236
-            thai       0.72      0.84      0.78       224
+         chinese       0.61      0.66      0.64       133
+          indian       0.92      0.92      0.92       179
+        japanese       0.55      0.61      0.58        96
+          korean       0.81      0.72      0.76       240
+            thai       0.65      0.68      0.66        87
     
-        accuracy                           0.79      1199
-       macro avg       0.79      0.79      0.79      1199
-    weighted avg       0.79      0.79      0.79      1199
+        accuracy                           0.74       735
+       macro avg       0.71      0.72      0.71       735
+    weighted avg       0.75      0.74      0.74       735
     ```
 
 ### Convert your model to Onnx

@@ -51,7 +51,7 @@ Scikit-learn offers several different algorithms to use to classify data, depend
 
 ## Exercise - clean and balance your data
 
-The first task at hand, before starting this project, is to clean and **balance** your data to get better results. Start with the blank _notebook.ipynb_ file in the root of this folder.
+The first task at hand, before starting this project, is to clean your data and explore how to **balance** it. Start with the blank _notebook.ipynb_ file in the root of this folder.
 
 The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-learn package that will allow you to better balance the data (you will learn more about this task in a minute).
 
@@ -231,6 +231,8 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
 
 Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Synthetic Minority Over-sampling Technique" - to balance it.
 
+This is a demonstration only: we will save the cleaned, original data, not these synthetic samples. In the next lessons, split the data first and apply SMOTE only to the training set. Resampling before splitting leaks information between training and test samples and can inflate evaluation scores. The test set should contain only original samples with their natural class distribution. For cross-validation, use an `imblearn` pipeline so SMOTE runs only inside each training fold.
+
 1. Call `fit_resample()`, this strategy generates new samples by interpolation.
 
     ```python
@@ -266,18 +268,18 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 
     The data is nice and clean, balanced, and very delicious! 
 
-1. The last step is to save your balanced data, including labels and features, into a new dataframe that can be exported into a file:
+1. The last step is to combine the original labels and cleaned features, preserving the unbalanced data for future lessons:
 
     ```python
-    transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
+    cleaned_df = pd.concat([labels_df,feature_df],axis=1, join='outer')
     ```
 
-1. You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
+1. You can take one more look at the data using `cleaned_df.head()` and `cleaned_df.info()`. Save a copy of this data for use in future lessons:
 
     ```python
-    transformed_df.head()
-    transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisines.csv")
+    cleaned_df.head()
+    cleaned_df.info()
+    cleaned_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
     This fresh CSV can now be found in the root data folder.
