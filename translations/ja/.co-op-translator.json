@@ -588,26 +588,26 @@
     "language_code": "ja"
   },
   "__translation_failures__": {
-    "sketchnotes/LICENSE.md": {
-      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-      "source_file": "sketchnotes/LICENSE.md",
-      "language_code": "ja",
-      "failure_date": "2026-09-15T00:52:38+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
-      "failure_policy_version": 1
-    },
     "7-TimeSeries/README.md": {
       "original_hash": "722526664e764a2290e1def74afa5139",
       "source_file": "7-TimeSeries/README.md",
       "language_code": "ja",
-      "failure_date": "2026-09-15T00:53:00+00:00",
+      "failure_date": "2026-11-06T16:47:59+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
+      "error_message": "Markdown translation remained incomplete for chunk 1.2 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.23.2",
+      "failure_policy_version": 1
+    },
+    "README.md": {
+      "original_hash": "d7acca3aa7f0279c75a498e4fd086f15",
+      "source_file": "README.md",
+      "language_code": "ja",
+      "failure_date": "2026-11-06T16:46:42+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.2.1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.23.2",
       "failure_policy_version": 1
     }
   },
@@ -631,7 +631,7 @@
   },
   "sketchnotes/LICENSE.md": {
     "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-    "translation_date": "2025-09-04T00:07:30+00:00",
+    "translation_date": "2026-11-06T16:53:57+00:00",
     "source_file": "sketchnotes/LICENSE.md",
     "language_code": "ja"
   },
