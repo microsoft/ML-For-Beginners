@@ -1,6 +1,6 @@
 # Cuisine classifiers 1
 
-In this lesson, you will use the dataset you saved from the last lesson full of balanced, clean data all about cuisines.
+In this lesson, you will use the dataset you saved from the last lesson full of clean, unbalanced data all about cuisines.
 
 You will use this dataset with a variety of classifiers to _predict a given national cuisine based on a group of ingredients_. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
 
@@ -143,11 +143,18 @@ Scikit-learn offers this table to explain how solvers handle different challenge
 ## Exercise - split the data
 
 We can focus on logistic regression for our first training trial since you recently learned about the latter in a previous lesson.
-Split your data into training and testing groups by calling `train_test_split()`:
+Split your data into training and testing groups by calling `train_test_split()`, preserving the class proportions with `stratify`. Then apply SMOTE only to the training data:
 
 ```python
-X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
+from imblearn.over_sampling import SMOTE
+
+X_train, X_test, y_train, y_test = train_test_split(
+    cuisines_feature_df, cuisines_label_df, test_size=0.3,
+    stratify=cuisines_label_df, random_state=42)
+X_train, y_train = SMOTE(random_state=42).fit_resample(X_train, y_train)
 ```
+
+Never resample the test set: it should contain only original recipes with their natural class distribution. Applying SMOTE before splitting leaks information between the training and test sets and can inflate evaluation scores.
 
 ## Exercise - apply logistic regression
 
@@ -167,7 +174,7 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
 
     > Note, use Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) function to flatten your data when needed.
 
-    The accuracy is good at over **80%**!
+    The test accuracy is about **79%**. Results can vary with library versions.
 
 1. You can see this model in action by testing one row of data (#50):
 
@@ -179,8 +186,11 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
     The result is printed:
 
    ```output
-   ingredients: Index(['cilantro', 'onion', 'pea', 'potato', 'tomato', 'vegetable_oil'], dtype='object')
-   cuisine: indian
+   ingredients: Index(['beef', 'beef_broth', 'cayenne', 'chinese_cabbage', 'egg', 'fish',
+          'onion', 'roasted_sesame_seed', 'scallion', 'seaweed', 'shrimp',
+          'soy_sauce', 'vegetable'],
+         dtype='object')
+   cuisine: korean
    ```
 
    ✅ Try a different row number and check the results
@@ -197,17 +207,17 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
     topPrediction.head()
     ```
 
-    The result is printed - Indian cuisine is its best guess, with good probability:
+    The result is printed - Korean cuisine is its best guess, with good probability:
 
     |          |        0 |
     | -------: | -------: |
-    |   indian | 0.715851 |
-    |  chinese | 0.229475 |
-    | japanese | 0.029763 |
-    |   korean | 0.017277 |
-    |     thai | 0.007634 |
+    |   korean | 0.978346 |
+    | japanese | 0.021337 |
+    |  chinese | 0.000217 |
+    |     thai | 0.000071 |
+    |   indian | 0.000029 |
 
-    ✅ Can you explain why the model is pretty sure this is an Indian cuisine?
+    ✅ Can you explain why the model is pretty sure this is a Korean cuisine?
 
 1. Get more detail by printing a classification report, as you did in the regression lessons:
 
@@ -218,14 +228,14 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
 
     |              | precision | recall | f1-score | support |
     | ------------ | --------- | ------ | -------- | ------- |
-    | chinese      | 0.73      | 0.71   | 0.72     | 229     |
-    | indian       | 0.91      | 0.93   | 0.92     | 254     |
-    | japanese     | 0.70      | 0.75   | 0.72     | 220     |
-    | korean       | 0.86      | 0.76   | 0.81     | 242     |
-    | thai         | 0.79      | 0.85   | 0.82     | 254     |
-    | accuracy     |           |        | 0.80     | 1199    |
-    | macro avg    | 0.80      | 0.80   | 0.80     | 1199    |
-    | weighted avg | 0.80      | 0.80   | 0.80     | 1199    |
+    | chinese      | 0.72      | 0.71   | 0.72     | 133     |
+    | indian       | 0.92      | 0.95   | 0.94     | 179     |
+    | japanese     | 0.62      | 0.68   | 0.65     | 96      |
+    | korean       | 0.85      | 0.77   | 0.81     | 240     |
+    | thai         | 0.70      | 0.77   | 0.73     | 87      |
+    | accuracy     |           |        | 0.79     | 735     |
+    | macro avg    | 0.76      | 0.78   | 0.77     | 735     |
+    | weighted avg | 0.80      | 0.79   | 0.79     | 735     |
 
 ## 🚀Challenge
 
