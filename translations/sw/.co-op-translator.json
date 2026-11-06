@@ -564,8 +564,8 @@
     "language_code": "sw"
   },
   "README.md": {
-    "original_hash": "8bba8faed876aa7bbc92b759a350b1d8",
-    "translation_date": "2026-09-15T03:54:32+00:00",
+    "original_hash": "d7acca3aa7f0279c75a498e4fd086f15",
+    "translation_date": "2026-11-06T17:18:12+00:00",
     "source_file": "README.md",
     "language_code": "sw"
   },
@@ -587,19 +587,6 @@
     "source_file": "TROUBLESHOOTING.md",
     "language_code": "sw"
   },
-  "__translation_failures__": {
-    "sketchnotes/LICENSE.md": {
-      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-      "source_file": "sketchnotes/LICENSE.md",
-      "language_code": "sw",
-      "failure_date": "2026-09-15T03:59:02+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
-      "failure_policy_version": 1
-    }
-  },
   "docs/_sidebar.md": {
     "original_hash": "68dd06c685f6ce840e0acfa313352e7c",
     "translation_date": "2025-09-05T15:48:10+00:00",
@@ -620,7 +607,7 @@
   },
   "sketchnotes/LICENSE.md": {
     "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-    "translation_date": "2025-09-05T16:29:37+00:00",
+    "translation_date": "2026-11-06T17:22:01+00:00",
     "source_file": "sketchnotes/LICENSE.md",
     "language_code": "sw"
   },
