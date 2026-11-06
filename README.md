@@ -76,12 +76,18 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 ## 🚀 Choose Your Learning Setup
 
-### Option 1: Cloud Setup with GitHub Codespaces (Recommended — Zero Installation)
+### Option 1: Cloud Setup with GitHub Codespaces (Browser-Based)
 
-Start learning immediately in your browser with Python, Jupyter, Scikit-learn, and all dependencies pre-configured:
+Use GitHub Codespaces to work in your browser without installing Python locally:
 1. If you want to save or push your work, fork this repository first and create the Codespace from your fork's **Code** menu; the **[Open in GitHub Codespaces](https://codespaces.new/microsoft/ML-For-Beginners)** badge targets the upstream repository.
 2. The environment automatically builds using the repository's `.devcontainer` configuration.
-3. Open any lesson notebook (e.g., `2-Regression/1-Tools/notebook.ipynb`) and start executing code right away!
+3. In the Codespace terminal, install the core dependencies:
+   ```bash
+   pip install jupyter scikit-learn pandas numpy matplotlib seaborn
+   ```
+4. Open a lesson README (e.g., [2-Regression/1-Tools/README.md](2-Regression/1-Tools/README.md)) to follow exercises with the starter notebook, or review the completed reference code in [2-Regression/1-Tools/solution/notebook.ipynb](2-Regression/1-Tools/solution/notebook.ipynb).
+
+> 💡 **Note**: Certain tracks (such as NLP, Time Series, or Reinforcement Learning) require extra packages (`nltk`, `statsmodels`, `gym`). These are noted in their respective lesson guides.
 
 ---
 
@@ -111,8 +117,12 @@ Start learning immediately in your browser with Python, Jupyter, Scikit-learn, a
    python -m venv .venv
 
    # Activate environment
-   # On Windows:
-   .venv\Scripts\activate
+   # On Windows Command Prompt:
+   .venv\Scripts\activate.bat
+
+   # On Windows PowerShell:
+   .\.venv\Scripts\Activate.ps1
+
    # On macOS/Linux:
    source .venv/bin/activate
    ```
@@ -121,6 +131,8 @@ Start learning immediately in your browser with Python, Jupyter, Scikit-learn, a
    ```bash
    pip install jupyter scikit-learn pandas numpy matplotlib seaborn
    ```
+
+   > 💡 **Note**: Specific lessons in later tracks use additional libraries (`nltk`, `statsmodels`, `gym`) as documented in each lesson guide.
 
 5. **Start Jupyter Notebook**:
    ```bash
@@ -197,7 +209,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 | Track | Focus Area | Lessons | Key Concepts & Projects |
 | :--- | :--- | :---: | :--- |
 | **1. Introduction** | ML Foundations & Ethics | Lessons 01–04 | History, core concepts, algorithmic fairness & bias |
-| **2. Regression** | Continuous Predictions | Lessons 05–08 | Scikit-learn tools, linear & polynomial regression, pumpkin prices |
+| **2. Regression** | Regression & Binary Classification | Lessons 05–08 | Scikit-learn tools, linear, polynomial & logistic regression, pumpkin prices |
 | **3. Web App** | Model Deployment | Lesson 09 | Building and deploying a Flask web application with a trained model |
 | **4. Classification** | Categorical Predictions | Lessons 10–13 | Classification algorithms, Asian & Indian cuisine recommender |
 | **5. Clustering** | Unsupervised Grouping | Lessons 14–15 | Data clustering, K-Means, exploring Nigerian musical tastes |
