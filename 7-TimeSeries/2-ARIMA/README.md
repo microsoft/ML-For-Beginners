@@ -224,7 +224,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     ```python
     test_shifted = test.copy()
 
-    for t in range(1, HORIZON+1):
+    for t in range(1, HORIZON):
         test_shifted['load+'+str(t)] = test_shifted['load'].shift(-t, freq='H')
 
     test_shifted = test_shifted.dropna(how='any')
@@ -239,7 +239,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    The data is shifted horizontally according to its horizon point.
+    The data is shifted horizontally according to its horizon point. Since `load` is already the first forecast target, shift only the remaining `HORIZON - 1` steps. For `HORIZON = 3`, the targets are `load`, `load+1`, and `load+2`.
 
 1. Make predictions on your test data using this sliding window approach in a loop the size of the test data length:
 
@@ -348,7 +348,7 @@ Check the accuracy of your model by testing its mean absolute percentage error (
 1. But as always, it's easier to see this kind of accuracy measurement visually, so let's plot it:
 
     ```python
-     if(HORIZON == 1):
+    if(HORIZON == 1):
         ## Plotting single step forecast
         eval_df.plot(x='timestamp', y=['actual', 'prediction'], style=['r', 'b'], figsize=(15, 8))
 
@@ -359,8 +359,8 @@ Check the accuracy of your model by testing its mean absolute percentage error (
             plot_df['t+'+str(t)] = eval_df[(eval_df.h=='t+'+str(t))]['prediction'].values
 
         fig = plt.figure(figsize=(15, 8))
-        ax = plt.plot(plot_df['timestamp'], plot_df['actual'], color='red', linewidth=4.0)
         ax = fig.add_subplot(111)
+        ax.plot(plot_df['timestamp'], plot_df['actual'], color='red', linewidth=4.0)
         for t in range(1, HORIZON+1):
             x = plot_df['timestamp'][(t-1):]
             y = plot_df['t+'+str(t)][0:len(x)]
