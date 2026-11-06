@@ -1,28 +1,30 @@
 ## For Educators
 
-Would you like to use this curriculum in your classroom? Feel free to do so!
+Would you like to use this curriculum in your classroom? Please feel free!
 
-In fact, you can use it directly within GitHub by leveraging GitHub Classroom.
+In fact, you can use it within GitHub itself by using GitHub Classroom.
 
-To get started, fork this repository. You'll need to create a separate repository for each lesson, so you'll need to extract each folder into its own repository. This way, [GitHub Classroom](https://classroom.github.com/classrooms) can handle each lesson individually.
+To do that, fork this repo. You are going to need to create a repo for each lesson, so you're going to need to extract each folder into a separate repo. That way, [GitHub Classroom](https://classroom.github.com/classrooms) can pick up each lesson separately. 
 
-These [detailed instructions](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) will guide you on how to set up your classroom.
+These [full instructions](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) will give you an idea how to set up your classroom.
 
-## Using the repository as is
+## Using the repo as is
 
-If you'd prefer to use this repository as it currently exists, without utilizing GitHub Classroom, that's also an option. You'll need to coordinate with your students on which lesson to work through together.
+If you would like to use this repo as it currently stands, without using GitHub Classroom, that can be done as well. You would need to communicate with your students which lesson to work through together.
 
-In an online setting (Zoom, Teams, or similar platforms), you could create breakout rooms for quizzes and mentor students to prepare them for learning. Then, invite students to complete the quizzes and submit their answers as 'issues' at a designated time. You could follow the same approach for assignments if you want students to collaborate openly.
+In an online format (Zoom, Teams, or other) you might form breakout rooms for the quizzes, and mentor students to help them get ready to learn. Then invite students to take the quizzes and submit their answers as 'issues' at a certain time. You might do the same with assignments, if you want students to work collaboratively out in the open.
 
-If you'd rather use a more private format, ask your students to fork the curriculum, lesson by lesson, into their own private GitHub repositories and grant you access. This way, they can complete quizzes and assignments privately and submit them to you via issues on your classroom repository.
+If you prefer a more private format, ask your students to fork the curriculum, lesson by lesson, to their own GitHub repos as private repos, and give you access. Then they can complete quizzes and assignments privately and submit them to you via issues on your classroom repo.
 
-There are many ways to adapt this for an online classroom environment. Let us know what works best for you!
+There are many ways to make this work in an online classroom format. Please let us know what works best for you!
 
 ## Please give us your thoughts!
 
-We want this curriculum to be effective for you and your students. Please share your [feedback](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
+We want to make this curriculum work for you and your students. Please give us [feedback](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

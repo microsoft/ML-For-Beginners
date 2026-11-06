@@ -1,14 +1,14 @@
 # Introduction to time series forecasting
 
-What is time series forecasting? It's the process of predicting future events by analyzing past trends.
+What is time series forecasting? It's about predicting future events by analyzing trends of the past.
 
 ## Regional topic: worldwide electricity usage ✨
 
-In these two lessons, you will explore time series forecasting, a relatively lesser-known area of machine learning that is highly valuable for applications in industry, business, and other fields. While neural networks can enhance the effectiveness of these models, we will focus on classical machine learning approaches to predict future outcomes based on historical data.
+In these two lessons, you will be introduced to time series forecasting, a somewhat lesser known area of machine learning that is nevertheless extremely valuable for industry and business applications, among other fields. While neural networks can be used to enhance the utility of these models, we will study them in the context of classical machine learning as models help predict future performance based on the past.
 
-Our regional focus is on global electricity usage, an intriguing dataset that helps us learn how to forecast future power consumption by analyzing past load patterns. This type of forecasting can be incredibly useful in a business context.
+Our regional focus is electrical usage in the world, an interesting dataset to learn about forecasting future power usage based on patterns of past load. You can see how this kind of forecasting can be extremely helpful in a business environment.
 
-![electric grid](../../../7-TimeSeries/images/electric-grid.jpg)
+![electric grid](../../../translated_images/en/electric-grid.0c21d5214db09ffa.webp)
 
 Photo by [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) of electrical towers on a road in Rajasthan on [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
@@ -20,9 +20,11 @@ Photo by [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unspla
 
 ## Credits
 
-"Introduction to time series forecasting" was created with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks were originally published in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) authored by Francesca Lazzeri. The SVR lesson was written by [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
+"Introduction to time series forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks first appeared online in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) originally written by Francesca Lazzeri. The SVR lesson was written by [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
