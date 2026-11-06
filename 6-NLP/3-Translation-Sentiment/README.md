@@ -55,27 +55,35 @@ If an ML model has enough human translations to build a model on, it can improve
 
 ### Exercise - translation
 
-You can use `TextBlob` to translate sentences. Try the famous first line of **Pride and Prejudice**:
+`TextBlob.translate()` was removed in TextBlob 0.18.0. Use `GoogleTranslator` from the `deep-translator` library to translate sentences instead. Keep `TextBlob` for the sentiment analysis exercise below.
+
+Install the libraries in your active Python environment:
+
+```bash
+python -m pip install deep-translator textblob
+```
+
+Try the famous first line of **Pride and Prejudice**:
 
 ```python
-from textblob import TextBlob
+from deep_translator import GoogleTranslator
 
-blob = TextBlob(
+text = (
     "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife!"
 )
-print(blob.translate(to="fr"))
+print(GoogleTranslator(source="en", target="fr").translate(text))
 
 ```
 
-`TextBlob` does a pretty good job at the translation: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!". 
+Google Translate can produce a translation like: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!". The exact output may change as the service is updated.
 
-It can be argued that TextBlob's translation is far more exact, in fact, than the 1932 French translation of the book by V. Leconte and Ch. Pressoir:
+It can be argued that this machine translation is far more exact, in fact, than the 1932 French translation of the book by V. Leconte and Ch. Pressoir:
 
 "C'est une vérité universelle qu'un célibataire pourvu d'une belle fortune doit avoir envie de se marier, et, si peu que l'on sache de son sentiment à cet egard, lorsqu'il arrive dans une nouvelle résidence, cette idée est si bien fixée dans l'esprit de ses voisins qu'ils le considèrent sur-le-champ comme la propriété légitime de l'une ou l'autre de leurs filles."
 
 In this case, the translation informed by ML does a better job than the human translator who is unnecessarily putting words in the original author's mouth for 'clarity'.
 
-> What's going on here? and why is TextBlob so good at translation? Well, behind the scenes, it's using Google translate, a sophisticated AI able to parse millions of phrases to predict the best strings for the task at hand. There's nothing manual going on here and you need an internet connection to use `blob.translate`.
+> What's going on here? Behind the scenes, `GoogleTranslator` uses Google Translate, a sophisticated AI able to parse millions of phrases to predict the best strings for the task at hand. This example requires an internet connection but no API key. It sends the text to an external service, so don't use sensitive or private text. Service availability and rate limits can affect the exercise.
 
 ✅ Try some more sentences. Which is better, ML or human translation? In which cases?
 
