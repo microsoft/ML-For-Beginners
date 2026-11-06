@@ -136,7 +136,7 @@ pumpkins %>%
 
 ```
 
-In the spirit of sheer adventure, let's explore the [`janitor package`](github.com/sfirke/janitor) that provides simple functions for examining and cleaning dirty data. For instance, let's take a look at the column names for our data:
+In the spirit of sheer adventure, let's explore the [`janitor package`](https://github.com/sfirke/janitor) that provides simple functions for examining and cleaning dirty data. For instance, let's take a look at the column names for our data:
 
 ```{r col_names}
 # Return column names
