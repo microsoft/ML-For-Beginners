@@ -55,7 +55,9 @@ If an ML model has enough human translations to build a model on, it can improve
 
 ### Exercise - translation
 
-You can use `TextBlob` to translate sentences. Try the famous first line of **Pride and Prejudice**:
+> Note: `TextBlob.translate()` was removed in recent TextBlob versions, so `blob.translate(to="fr")` now raises `AttributeError: 'TextBlob' object has no attribute 'translate'`. The example below is kept for reading; to run translation yourself, use an optional library such as `deep_translator`.
+
+You can use machine translation to translate sentences. Try the famous first line of **Pride and Prejudice**:
 
 ```python
 from textblob import TextBlob
@@ -63,11 +65,16 @@ from textblob import TextBlob
 blob = TextBlob(
     "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife!"
 )
-print(blob.translate(to="fr"))
+# TextBlob.translate() was removed, so this no longer runs:
+# print(blob.translate(to="fr"))
+
+# Optional alternative (requires `pip install deep-translator`):
+# from deep_translator import GoogleTranslator
+# print(GoogleTranslator(source="en", target="fr").translate(str(blob)))
 
 ```
 
-`TextBlob` does a pretty good job at the translation: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!". 
+Expected translation: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!".
 
 It can be argued that TextBlob's translation is far more exact, in fact, than the 1932 French translation of the book by V. Leconte and Ch. Pressoir:
 
@@ -75,7 +82,7 @@ It can be argued that TextBlob's translation is far more exact, in fact, than th
 
 In this case, the translation informed by ML does a better job than the human translator who is unnecessarily putting words in the original author's mouth for 'clarity'.
 
-> What's going on here? and why is TextBlob so good at translation? Well, behind the scenes, it's using Google translate, a sophisticated AI able to parse millions of phrases to predict the best strings for the task at hand. There's nothing manual going on here and you need an internet connection to use `blob.translate`.
+> What's going on here? Historically `TextBlob.translate` called Google Translate behind the scenes (requiring an internet connection). Since it was removed, use the printed example above or an optional translator library for hands-on practice.
 
 ✅ Try some more sentences. Which is better, ML or human translation? In which cases?
 
