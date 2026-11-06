@@ -10,14 +10,14 @@
 
 ### 🌐 Multi-Language Support
 
-#### Supported via GitHub Action (Automated & Always Up-to-Date)
+#### Translations maintained with [Co-op Translator](https://github.com/Azure/co-op-translator)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Khmer](../km/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](./README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Khmer](../km/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Manipuri (Meitei Mayek)](../mni/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](./README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 
 > **Prefer to Clone Locally?**
 >
-> Dis repository get over 50 languages wey dem don translate and e go make di download size big well well. If you want clone am without di translations, use sparse checkout:
+> This repository includes 50+ language translations which significantly increases the download size. To clone without translations, use sparse checkout:
 >
 > **Bash / macOS / Linux:**
 > ```bash
@@ -33,57 +33,57 @@
 > git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
 > ```
 >
-> Dis one go give you everything wey you need to finish di course quick quick.
+> This gives you everything you need to complete the course with a much faster download.
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 #### Join Our Community
 
 [![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-We get ongoing Discord series wey dey teach AI, make you learn more and join us for [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You go get tips and tricks on how to use GitHub Copilot for Data Science.
+We get Discord learn with AI series wey dey go on, learn more and join us for [Learn with AI Series](https://aka.ms/learnwithai/discord) from 18 - 30 September, 2025. You go see tips and tricks for how to use GitHub Copilot for Data Science.
 
 ![Learn with AI series](../../translated_images/pcm/3.9b58fd8d6c373c20.webp)
 
 # Machine Learning for Beginners - A Curriculum
 
-> 🌍 Travel around di world as we explore Machine Learning through different world cultures 🌍
+> 🌍 Travel around di world as we explore Machine Learning by means of world cultures 🌍
 
-Cloud Advocates for Microsoft happy to offer 12 weeks, 26 lesson curriculum all about **Machine Learning**. For dis curriculum, you go learn about wetin dem dey call **classic machine learning**, using mainly Scikit-learn as library and avoid deep learning, wey we cover for our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). You fit also join am with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners).
+Cloud Advocates for Microsoft dem happy to offer 12-week, 26-lesson curriculum wey dey all about **Machine Learning**. For dis curriculum, you go learn about wetin dem sometimes dey call **classic machine learning**, wey use mainly Scikit-learn as library plus we no go put deep learning, wey e dey for our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Make you use dis lessons plus our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), too!
 
-Travel with us round di world as we apply dis classic techniques to data from many parts of di world. Each lesson get quiz before and after, instructions to complete am, solution, assignment, and more. Our project-based method go help you learn as you build, wey be beta way for new skills to stick.
+Travel with us around di world as we apply dis classic techniques to data from plenty parts of di world. Each lesson get pre- and post-lesson quizzes, written instructions to finish di lesson, solution, assignment, and more. Our project-based method dey allow you learn while you dey build, na better way for new skills to stay for mind.
 
 **✍️ Big thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu and Amy Boyd
 
-**🎨 Thanks also to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper
+**🎨 Thanks too to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper
 
 **🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers, and content contributors**, especially Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
 
-**🤩 Extra shoutout to Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, and Vidushi Gupta for our R lessons!**
+**🤩 Extra big thanks to Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, and Vidushi Gupta for our R lessons!**
 
 # Getting Started
 
-Follow dis steps:
-1. **Fork di Repository**: Click di "Fork" button for di top-right corner of dis page.
-2. **Clone di Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+Follow these steps:
+1. **Fork the Repository**: Click di "Fork" button for top-right corner of dis page.
+2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> 💡 **Quick Start Tip:** You want start for browser without setting Python for your machine? Use [GitHub Codespaces](https://github.com/features/codespaces) to create cloud development environment for your fork. Open di green **Code** menu, select **Codespaces**, and create codespace; then install each lesson dependencies as e dey needed.
+> 💡 **Quick Start Tip:** You wan start inside browser without setup Python local? Use [GitHub Codespaces](https://github.com/features/codespaces) to create cloud development environment for your fork. Open green **Code** menu, select **Codespaces**, and create codespace; install each lesson’s needed dependencies inside am as e dey needed.
 
-> [find all additional resources for dis course inside our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [find all other resources for dis course for our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-> 🔧 **Need help?** Check our [Troubleshooting Guide](TROUBLESHOOTING.md) for solutions to common wahala for installation, setup, and running lessons.
+> 🔧 **Need help?** Check our [Troubleshooting Guide](TROUBLESHOOTING.md) for solutions to common wahalas with installation, setup, and running lessons.
 
 
-**[Students](https://aka.ms/student-page)**, to use dis curriculum, fork di full repo to your own GitHub account and complete di exercises alone or for group:
+**[Students](https://aka.ms/student-page)**, to use dis curriculum, fork di whole repo to your own GitHub account and finish di exercises by yourself or with group:
 
 - Start with pre-lecture quiz.
-- Read di lecture and do di activities, stop and think for each knowledge check.
-- Try create di projects by understanding di lessons, no too dey rely on di solution code; but di code dey for `/solution` folders for each project lesson.
-- Do di post-lecture quiz.
-- Complete di challenge.
-- Complete di assignment.
-- After finishing one lesson group, visit di [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) and "learn out loud" by filling di correct PAT rubric. PAT na Progress Assessment Tool wey you fill to boost your learning. You fit also react to other PATs so we fit learn together.
+- Read di lecture and finish di activities, pause and think for each knowledge check.
+- Try build di projects by understanding di lessons instead of just running di solution code; but di code dey inside the `/solution` folders for each project lesson.
+- Take post-lecture quiz.
+- Finish di challenge.
+- Finish di assignment.
+- After you finish lesson group, go [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) and "learn out loud" by filling di correct PAT rubric. 'PAT' na Progress Assessment Tool wey you fill to move your learning forward. You fit also react to other PATs so we go fit learn together.
 
-> For more study, we recommend you follow dis [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules and learning paths.
+> For more study, we recommend follow these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules and learning paths.
 
 **Teachers**, we don [include some suggestions](for-teachers.md) on how to use dis curriculum.
 
@@ -91,7 +91,7 @@ Follow dis steps:
 
 ## Video walkthroughs
 
-Some of di lessons dey available as short video. You fit find all dem inside di lessons, or for di [ML for Beginners playlist for Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking di picture below.
+Some lessons dey available as short form video. You fit find all dis inside di lessons, or for [ML for Beginners playlist for Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking di image below.
 
 [![ML for beginners banner](../../translated_images/pcm/ml-for-beginners-video-banner.63f694a100034bc6.webp)](https://aka.ms/ml-beginners-videos)
 
@@ -103,35 +103,35 @@ Some of di lessons dey available as short video. You fit find all dem inside di 
 
 **Gif by** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
-> 🎥 Click di picture above make you watch video about di project and di people wey create am!
+> 🎥 Click di image above for video about di project and di people wey create am!
 
 ---
 
 ## Pedagogy
 
-We choose two teaching principles wen we build dis curriculum: make e be hands-on **project-based** and make e get **frequent quizzes**. E good make dis curriculum get one common **theme** so e go get better organisation.
+We choose two teaching principles as we build dis curriculum: make sure say e be hands-on **project-based** and say e get **plenty quizzes**. Besides dat, dis curriculum get common **theme** to give am better connection.
 
-If di content dey connect with projects, e go make learning sweet for students and e go make concepts stick well. Also, one small quiz before class go set student mind for learning, and the quiz after class go help dem remember well. Dis curriculum na flexible and fun for use, e fit be complete or part of am. Projects start small and get hard as di 12 weeks finish. Also, dis curriculum get small postscript for real-life ML applications, wey fit be extra credit or discussion material.
+By making sure say di content dey linked to projects, di process go sweet for students and dem go remember tins well. Also, small quiz before class dey set student mind for how to learn di subject, while second quiz after class go make dem remember more. Dis curriculum dey flexible and fun, you fit take all or to part. Projects start small and dey get harder as di 12-week cycle near end. Dis curriculum still get postscript on how ML dey work for real world, wey fit be extra credit or talk point.
 
-> Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), [Translations](..), and [Troubleshooting](TROUBLESHOOTING.md) guidelines. We welcome your constructive feedback!
+> Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), [Translations](..), and [Troubleshooting](TROUBLESHOOTING.md) rules. We dey welcome your good feedback!
 
-## Each lesson includes
+## Everything each lesson get
 
 - optional sketchnote
-- optional supplemental video
+- optional extra video
 - video walkthrough (some lessons only)
 - [pre-lecture warmup quiz](https://ff-quizzes.netlify.app/en/ml/)
 - written lesson
-- for project-based lessons, step-by-step guides on how to build the project
+- for project-based lessons, step-by-step guides on how to build di project
 - knowledge checks
-- a challenge
-- supplemental reading
+- challenge
+- extra reading
 - assignment
 - [post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-> **A note about languages**: These lessons mainly write for Python, but many get also for R. To finish R lesson, go `/solution` folder find R lessons. Dem get .rmd extension wey mean **R Markdown** file wey be mix of `code chunks` (of R or other languages) and `YAML header` (wey show how make outputs like PDF). E good for data science because e blend code, output, and your writing for Markdown. Plus, R Markdown files fit turn to PDF, HTML, or Word.
+> **Note about languages**: These lessons primarily di write for Python, but plenty dey also in R. To finish R lesson, go `/solution` folder and find R lessons. Dem get .rmd extension wey mean **R Markdown** file wey fit be define as embedding of `code chunks` (for R or other languages) and `YAML header` (wey show how to format outputs like PDF) for one `Markdown document`. So, e dey serve as good authoring framework for data science cos e allow you join your code, output, plus your thoughts by writing dem for Markdown. Plus, R Markdown documents fit render to output formats like PDF, HTML, or Word.
 
-> **A note about quizzes**: All quizzes dey inside [Quiz App folder](../../quiz-app), with 52 quizzes each with three questions. Dem link am from lessons but quiz app fit run locally; follow instruction inside `quiz-app` folder to host or deploy to Azure.
+> **Note about quizzes**: All quizzes dey for [Quiz App folder](../../quiz-app), total 52 quizzes wey get three questions each. Dem dey link from lessons but quiz app fit run local; follow di instruction for `quiz-app` folder to host local or put am for Azure.
 
 | Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
@@ -167,16 +167,16 @@ If di content dey connect with projects, e go make learning sweet for students a
 
 ## Offline access
 
-You fit run dis documentation offline by using [Docsify](https://docsify.js.org/#/). Fork dis repo, [install Docsify](https://docsify.js.org/#/quickstart) for your local machine, den for the root folder of dis repo, type `docsify serve`. The website go dey available for port 3000 for your localhost: `localhost:3000`.
+You fit run dis documentation offline by using [Docsify](https://docsify.js.org/#/). Fork dis repo, [install Docsify](https://docsify.js.org/#/quickstart) for your local machine, then for inside di root folder of dis repo, type `docsify serve`. Di website go dey serve for port 3000 for your localhost: `localhost:3000`.
 
 ## PDFs
 
-Find one pdf of the curriculum with links [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
+Find pdf of di curriculum wit links [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 
 ## 🎒 Other Courses 
 
-Our team dey make other courses! Check am out:
+Our team dey produce other courses! Check am out:
 
 <!-- CO-OP TRANSLATOR OTHER COURSES START -->
 ### LangChain
@@ -220,28 +220,28 @@ Our team dey make other courses! Check am out:
 
 ## Getting Help
 
-If you jam problem or get questions while you dey learn Machine Learning or dey build AI applications, no worry — help dey.
+If you jam problem or get question while you dey learn Machine Learning or you dey build AI apps, no wahala — help dey.
 
-You fit join discussions with other learners and developers, ask questions, and share your ideas with the community.
+You fit join discussions with other learners and developers, ask question, and share your ideas wit di community.
 
-- Join the community to ask questions and learn with others
+- Join di community to ask question and learn wit others
 - Discuss Machine Learning concepts and project ideas
 - Get guidance from experienced developers
 
-One supportive community na beta way to grow your skills and solve problems quick.
+Supportive community na beta way to grow your skills and solve problems quick.
 
 [Microsoft Foundry Discord Community](https://discord.gg/nTYy5BXMWG)
 
-If you find bugs, errors, or get suggestions for better improvement, you fit open one **Issue** for dis repository to report the problem.
+If you see bugs, errors, or get suggestions for betterment, you fit also open **Issue** for dis repository to report di problem.
 
-For product feedback or to search existing community posts, go visit the Developer Forum:
+For product feedback or if you want check existing community posts, visit di Developer Forum:
 
 [![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ## Additional Learning Tips
 
-- Review notebooks after each lesson for better understanding.
-- Practice implementing algorithms on your own.
+- Review notebooks after each lesson to understand well well.
+- Practice how to implement algorithms by yourself.
 - Explore real-world datasets using learned concepts.
 
 ---
