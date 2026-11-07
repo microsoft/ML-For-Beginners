@@ -7,7 +7,7 @@
  
 ## Introduction
 
-In this curriculum, you will start to discover how machine learning can and is impacting our everyday lives. Even now, systems and models are involved in daily decision-making tasks, such as health care diagnoses, loan approvals or detecting fraud. So, it is important that these models work well to provide outcomes that are trustworthy. Just as any software application, AI systems are going to miss expectations or have an undesirable outcome. That is why it is essential to be about to understand and explain the behavior of an AI model. 
+In this curriculum, you will start to discover how machine learning can and is impacting our everyday lives. Even now, systems and models are involved in daily decision-making tasks, such as health care diagnoses, loan approvals or detecting fraud. So, it is important that these models work well to provide outcomes that are trustworthy. Just as any software application, AI systems are going to miss expectations or have an undesirable outcome. That is why it is essential to be able to understand and explain the behavior of an AI model. 
 
 Imagine what can happen when the data you are using to build these models lacks certain demographics, such as race, gender, political view, religion, or disproportionally represents such demographics. What about when the model’s output is interpreted to favor some demographic? What is the consequence for the application? In addition, what happens when the model has an adverse outcome and is harmful to people? Who is accountable for the AI systems behavior? These are some questions we will explore in this curriculum. 
 
@@ -40,7 +40,7 @@ AI systems should treat everyone fairly and avoid affecting similar groups of pe
 - **Quality of service**. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.  For instance, a hand soap dispenser that could not seem to be able to sense people with dark skin. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
 - **Denigration**. To unfairly criticize and label something or someone. For example, an image labeling technology infamously mislabeled images of dark-skinned people as gorillas.
 - **Over- or under- representation**. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
-- **Stereotyping**. Associating a given group with pre-assigned attributes.  For example, a language translation system betweem English and Turkish may have inaccuraces due to words with stereotypical associations to gender.
+- **Stereotyping**. Associating a given group with pre-assigned attributes.  For example, a language translation system between English and Turkish may have inaccuracies due to words with stereotypical associations to gender.
 
 ![translation to Turkish](../../../../translated_images/en/gender-bias-translate-en-tr.f185fd8822c2d437.webp)
 > translation to Turkish
@@ -54,19 +54,19 @@ When designing and testing AI systems, we need to ensure that AI is fair and not
 
 To build trust, AI systems need to be reliable, safe, and consistent under normal and unexpected conditions. It is important to know how AI systems will behavior in a variety of situations, especially when they are outliers. When building AI solutions, there needs to be a substantial amount of focus on how to handle a wide variety of circumstances that the AI solutions would encounter. For example, a self-driving car needs to put people's safety as a top priority. As a result, the AI powering the car need to consider all the possible scenarios that the car could come across such as night, thunderstorms or blizzards, kids running across the street, pets, road constructions etc. How well an AI system can handle a wild range of conditions reliably and safely reflects the level of anticipation the data scientist or AI developer considered during the design or testing of the system.  
 
-> [🎥 Click the here for a video: ](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
+> [🎥 Click here for a video: Reliability and safety in AI](https://www.microsoft.com/videoplayer/embed/RE4vvIl)
 
 ### Inclusiveness
 
 AI systems should be designed to engage and empower everyone. When designing and implementing AI systems data scientists and AI developers identify and address potential barriers in the system that could unintentionally exclude people. For example, there are 1 billion people with disabilities around the world. With the advancement of AI, they can access a wide range of information and opportunities more easily in their daily lives. By addressing the barriers, it creates opportunities to innovate and develop AI products with better experiences that benefit everyone. 
 
-> [🎥 Click the here for a video: inclusiveness in AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
+> [🎥 Click here for a video: Inclusiveness in AI](https://www.microsoft.com/videoplayer/embed/RE4vl9v)
 
 ### Security and privacy 
 
 AI systems should be safe and respect people’s privacy. People have less trust in systems that put their privacy, information, or lives at risk. When training machine learning models, we rely on data to produce the best results. In doing so, the origin of the data and integrity must be considered. For example, was the data user submitted or publicly available? Next, while working with the data, it is crucial to develop AI systems that can protect confidential information and resist attacks. As AI becomes more prevalent, protecting privacy and securing important personal and business information is becoming more critical and complex. Privacy and data security issues require especially close attention for AI because access to data is essential for AI systems to make accurate and informed predictions and decisions about people. 
 
-> [🎥 Click the here for a video: security in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Click here for a video: Security in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
 - As an industry we have made significant advancements in Privacy & security, fueled significantly by regulations like the GDPR (General Data Protection Regulation). 
 - Yet with AI systems we must acknowledge the tension between the need for more personal data to make systems more personal and effective – and privacy. 
@@ -78,7 +78,7 @@ AI systems should be safe and respect people’s privacy. People have less trust
 ### Transparency
 AI systems should be understandable. A crucial part of transparency is explaining the behavior of AI systems and their components. Improving the understanding of AI systems requires that stakeholders comprehend how and why they function so that they can identify potential performance issues, safety and privacy concerns, biases, exclusionary practices, or unintended outcomes. We also believe that those who use AI systems should be honest and forthcoming about when, why, and how they choose to deploy them. As well as the limitations of the systems they use. For example, if a bank uses an AI system to support its consumer lending decisions, it is important to examine the outcomes and understand which data influences the system’s recommendations. Governments are starting to regulate AI across industries, so data scientists and organizations must explain if an AI system meets regulatory requirements, especially when there is an undesirable outcome. 
 
-> [🎥 Click the here for a video: transparency in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
+> [🎥 Click here for a video: Transparency in AI](https://www.microsoft.com/videoplayer/embed/RE4voJF)
 
 - Because AI systems are so complex, it is hard to understand how they work and interpret the results. 
 - This lack of understanding affects the way these systems are managed, operationalized, and documented. 
@@ -96,7 +96,7 @@ Ultimately one of the biggest questions for our generation, as the first generat
 
 ## Impact assessment 
 
-Before training a machine learning model, it is important to conduct an impact assessmet to understand the purpose of the AI system; what the intended use is; where it will be deployed; and who will be interacting with the system.  These are helpful for reviewer(s) or testers evaluating the system to know what factors to take into consideration when identifying potential risks and expected consequences.
+Before training a machine learning model, it is important to conduct an impact assessment to understand the purpose of the AI system; what the intended use is; where it will be deployed; and who will be interacting with the system.  These are helpful for reviewer(s) or testers evaluating the system to know what factors to take into consideration when identifying potential risks and expected consequences.
 
 The following are areas of focus when conducting an impact assessment:
 
@@ -122,7 +122,7 @@ To prevent harms from being introduced in the first place, we should:
 
 - have a diversity of backgrounds and perspectives among the people working on systems 
 - invest in datasets that reflect the diversity of our society 
-- develop better methods throughout the machine learning lifecycle for detecting and correcting responible AI when it occurs 
+- develop better methods throughout the machine learning lifecycle for detecting and correcting irresponsible AI when it occurs 
 
 Think about real-life scenarios where a model's untrustworthiness is evident in model-building and usage. What else should we consider? 
 
@@ -130,7 +130,6 @@ Think about real-life scenarios where a model's untrustworthiness is evident in 
 
 ## Review & Self Study 
  
-
 In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  
  
 Watch this workshop to dive deeper into the topics: 

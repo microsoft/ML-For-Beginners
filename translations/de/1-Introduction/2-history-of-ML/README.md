@@ -1,146 +1,145 @@
 # Geschichte des maschinellen Lernens
 
-![Zusammenfassung der Geschichte des maschinellen Lernens in einer Sketchnote](../../../../sketchnotes/ml-history.png)
+![Zusammenfassung der Geschichte des maschinellen Lernens in einem Sketchnote](../../../../translated_images/de/ml-history.a1bdfd4ce1f464d9.webp)
 > Sketchnote von [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz vor der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
+## [Vorlesungs-Quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
-[![ML für Anfänger - Geschichte des maschinellen Lernens](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML für Anfänger - Geschichte des maschinellen Lernens")
+[![ML für Einsteiger - Geschichte des maschinellen Lernens](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML für Einsteiger - Geschichte des maschinellen Lernens")
 
-> 🎥 Klicken Sie auf das Bild oben, um ein kurzes Video zu dieser Lektion anzusehen.
+> 🎥 Klicke auf das Bild oben für ein kurzes Video, das diese Lektion durchgeht.
 
-In dieser Lektion gehen wir die wichtigsten Meilensteine in der Geschichte des maschinellen Lernens und der künstlichen Intelligenz durch.
+In dieser Lektion durchlaufen wir die wichtigsten Meilensteine in der Geschichte des maschinellen Lernens und der künstlichen Intelligenz.
 
-Die Geschichte der künstlichen Intelligenz (KI) als Forschungsfeld ist eng mit der Geschichte des maschinellen Lernens verbunden, da die Algorithmen und rechnerischen Fortschritte, die ML zugrunde liegen, zur Entwicklung der KI beigetragen haben. Es ist hilfreich, sich daran zu erinnern, dass, obwohl sich diese Bereiche als eigenständige Forschungsgebiete in den 1950er Jahren herauskristallisierten, wichtige [algorithmische, statistische, mathematische, rechnerische und technische Entdeckungen](https://wikipedia.org/wiki/Timeline_of_machine_learning) diese Ära vorwegnahmen und überlappten. Tatsächlich beschäftigen sich Menschen schon seit [Hunderten von Jahren](https://wikipedia.org/wiki/History_of_artificial_intelligence) mit diesen Fragen: Dieser Artikel beleuchtet die historischen intellektuellen Grundlagen der Idee einer „denkenden Maschine“.
+Die Geschichte der künstlichen Intelligenz (KI) als Fachgebiet ist eng verbunden mit der Geschichte des maschinellen Lernens, da die Algorithmen und Rechenfortschritte, die das ML untermauern, in die Entwicklung der KI eingeflossen sind. Es ist hilfreich, sich daran zu erinnern, dass, obwohl diese Felder als eigenständige Forschungsbereiche in den 1950er Jahren begannen sich zu kristallisieren, wichtige [algorithmische, statistische, mathematische, rechnerische und technische Entdeckungen](https://wikipedia.org/wiki/Timeline_of_machine_learning) dieser Ära vorausgingen und sich überschneiden. Tatsächlich denken Menschen schon seit [hunderten von Jahren](https://wikipedia.org/wiki/History_of_artificial_intelligence) über diese Fragen nach: Dieser Artikel behandelt die historischen intellektuellen Grundlagen der Idee einer „denkenden Maschine“.
 
 ---
 ## Bedeutende Entdeckungen
 
-- 1763, 1812 [Bayes-Theorem](https://wikipedia.org/wiki/Bayes%27_theorem) und seine Vorläufer. Dieses Theorem und seine Anwendungen bilden die Grundlage für Inferenz, indem sie die Wahrscheinlichkeit eines Ereignisses basierend auf Vorwissen beschreiben.
-- 1805 [Methode der kleinsten Quadrate](https://wikipedia.org/wiki/Least_squares) des französischen Mathematikers Adrien-Marie Legendre. Diese Theorie, die Sie in unserer Regressionseinheit kennenlernen werden, hilft bei der Datenanpassung.
-- 1913 [Markow-Ketten](https://wikipedia.org/wiki/Markov_chain), benannt nach dem russischen Mathematiker Andrey Markov, beschreiben eine Abfolge möglicher Ereignisse basierend auf einem vorherigen Zustand.
-- 1957 [Perzeptron](https://wikipedia.org/wiki/Perceptron), ein von dem amerikanischen Psychologen Frank Rosenblatt erfundener linearer Klassifikator, der die Grundlage für Fortschritte im Deep Learning bildet.
+- 1763, 1812 [Satz von Bayes](https://wikipedia.org/wiki/Bayes%27_theorem) und seine Vorgänger. Dieser Satz und seine Anwendungen bilden die Grundlage der Inferenz und beschreiben die Wahrscheinlichkeit eines Ereignisses basierend auf Vorwissen.
+- 1805 [Methode der kleinsten Quadrate](https://wikipedia.org/wiki/Least_squares) des französischen Mathematikers Adrien-Marie Legendre. Diese Methode, die du in unserer Regressionseinheit kennenlernen wirst, hilft bei der Datenanpassung.
+- 1913 [Markow-Ketten](https://wikipedia.org/wiki/Markov_chain), benannt nach dem russischen Mathematiker Andrey Markov, wird verwendet, um eine Folge möglicher Ereignisse basierend auf einem vorherigen Zustand zu beschreiben.
+- 1957 [Perzeptron](https://wikipedia.org/wiki/Perceptron) ist eine Art linearer Klassifikator, erfunden vom amerikanischen Psychologen Frank Rosenblatt, der die Fortschritte im Deep Learning untermauerte.
 
 ---
 
-- 1967 [Nächster-Nachbar-Algorithmus](https://wikipedia.org/wiki/Nearest_neighbor), ursprünglich entwickelt, um Routen zu kartieren. Im ML-Kontext wird er zur Mustererkennung verwendet.
+- 1967 [Nächster Nachbar](https://wikipedia.org/wiki/Nearest_neighbor) ist ein Algorithmus, der ursprünglich zur Routenplanung entwickelt wurde. Im Kontext des ML wird er verwendet, um Muster zu erkennen.
 - 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) wird verwendet, um [Feedforward-Neuronale Netze](https://wikipedia.org/wiki/Feedforward_neural_network) zu trainieren.
-- 1982 [Rekurrente Neuronale Netze](https://wikipedia.org/wiki/Recurrent_neural_network) sind künstliche neuronale Netze, die aus Feedforward-Netzen abgeleitet sind und zeitliche Graphen erstellen.
+- 1982 [Rekurrente neuronale Netze](https://wikipedia.org/wiki/Recurrent_neural_network) sind künstliche neuronale Netze, die von Feedforward-Neuronalen Netzen abgeleitet sind und zeitliche Graphen erzeugen.
 
-✅ Recherchieren Sie ein wenig. Welche anderen Daten sind Ihrer Meinung nach entscheidend in der Geschichte des maschinellen Lernens und der KI?
-
----
-## 1950: Maschinen, die denken
-
-Alan Turing, eine wahrhaft bemerkenswerte Persönlichkeit, die [2019 von der Öffentlichkeit](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) zum größten Wissenschaftler des 20. Jahrhunderts gewählt wurde, wird zugeschrieben, das Fundament für das Konzept einer „denkenden Maschine“ gelegt zu haben. Er setzte sich mit Skeptikern auseinander und suchte nach empirischen Beweisen für dieses Konzept, unter anderem durch die Entwicklung des [Turing-Tests](https://www.bbc.com/news/technology-18475646), den Sie in unseren NLP-Lektionen näher kennenlernen werden.
+✅ Recherchiere ein wenig. Welche anderen Daten fallen dir als entscheidend in der Geschichte von ML und KI auf?
 
 ---
-## 1956: Dartmouth Summer Research Project
+## 1950: Denkende Maschinen
 
-„Das Dartmouth Summer Research Project zur künstlichen Intelligenz war ein wegweisendes Ereignis für das Feld der künstlichen Intelligenz“, und hier wurde der Begriff „künstliche Intelligenz“ geprägt ([Quelle](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+Alan Turing, eine wirklich bemerkenswerte Person, die [2019 von der Öffentlichkeit](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) zum größten Wissenschaftler des 20. Jahrhunderts gewählt wurde, wird zugeschrieben, die Grundlage für das Konzept einer „denkenden Maschine“ gelegt zu haben. Er setzte sich mit Skeptikern und seinem eigenen Bedarf an empirischen Beweisen für dieses Konzept auseinander, zum Teil durch die Schaffung des [Turing-Tests](https://www.bbc.com/news/technology-18475646), den du in unseren NLP-Lektionen erkunden wirst.
 
-> Jeder Aspekt des Lernens oder eines anderen Merkmals von Intelligenz kann im Prinzip so präzise beschrieben werden, dass eine Maschine es simulieren kann.
+---
+## 1956: Dartmouth Sommerforschungsprojekt
+
+"Das Dartmouth Sommerforschungsprojekt zur künstlichen Intelligenz war ein wegweisendes Ereignis für künstliche Intelligenz als Fachgebiet", und hier wurde der Begriff „künstliche Intelligenz“ geprägt ([Quelle](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+
+> Jeder Aspekt des Lernens oder einer anderen Eigenschaft der Intelligenz kann prinzipiell so präzise beschrieben werden, dass eine Maschine simuliert werden kann.
 
 ---
 
-Der leitende Forscher, Mathematikprofessor John McCarthy, hoffte, „auf der Grundlage der Vermutung vorzugehen, dass jeder Aspekt des Lernens oder eines anderen Merkmals von Intelligenz im Prinzip so präzise beschrieben werden kann, dass eine Maschine es simulieren kann.“ Zu den Teilnehmern gehörte auch eine weitere Koryphäe des Feldes, Marvin Minsky.
+Der leitende Forscher, Mathematikprofessor John McCarthy, hoffte „auf Grundlage der Vermutung vorzugehen, dass jeder Aspekt des Lernens oder einer anderen Eigenschaft der Intelligenz prinzipiell so präzise beschrieben werden kann, dass eine Maschine simuliert werden kann.“ Zu den Teilnehmern gehörte eine weitere Koryphäe auf dem Gebiet, Marvin Minsky.
 
-Der Workshop wird dafür verantwortlich gemacht, mehrere Diskussionen angestoßen und gefördert zu haben, darunter „den Aufstieg symbolischer Methoden, Systeme, die sich auf begrenzte Domänen konzentrieren (frühe Expertensysteme), und deduktive Systeme versus induktive Systeme.“ ([Quelle](https://wikipedia.org/wiki/Dartmouth_workshop)).
+Dem Workshop wird zugeschrieben, mehrere Diskussionen initiiert und gefördert zu haben, darunter „den Aufstieg symbolischer Methoden, Systeme, die sich auf begrenzte Bereiche konzentrieren (frühe Expertensysteme), und deduktive versus induktive Systeme.“ ([Quelle](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
 ---
 ## 1956 - 1974: „Die goldenen Jahre“
 
-Von den 1950er Jahren bis Mitte der 1970er Jahre herrschte großer Optimismus, dass KI viele Probleme lösen könnte. 1967 erklärte Marvin Minsky zuversichtlich: „Innerhalb einer Generation ... wird das Problem, ‚künstliche Intelligenz‘ zu schaffen, im Wesentlichen gelöst sein.“ (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+Von den 1950ern bis Mitte der 1970er Jahre herrschte großer Optimismus, dass KI viele Probleme lösen könnte. 1967 erklärte Marvin Minsky zuversichtlich, dass „innerhalb einer Generation ... das Problem, ‚künstliche Intelligenz‘ zu schaffen, im Wesentlichen gelöst sein wird.“ (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
 
-Die Forschung zur Verarbeitung natürlicher Sprache blühte auf, Suchalgorithmen wurden verfeinert und leistungsfähiger, und das Konzept der „Mikrowelten“ wurde entwickelt, in denen einfache Aufgaben mit einfachen Sprachbefehlen ausgeführt werden konnten.
-
----
-
-Die Forschung wurde gut von Regierungsbehörden finanziert, Fortschritte in der Rechenleistung und bei Algorithmen wurden erzielt, und Prototypen intelligenter Maschinen wurden gebaut. Einige dieser Maschinen umfassen:
-
-* [Shakey der Roboter](https://wikipedia.org/wiki/Shakey_the_robot), der sich bewegen und „intelligent“ entscheiden konnte, wie Aufgaben ausgeführt werden sollten.
-
-    ![Shakey, ein intelligenter Roboter](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
-    > Shakey im Jahr 1972
+Die Forschung zur Verarbeitung natürlicher Sprache florierte, die Suche wurde verfeinert und leistungsfähiger gemacht, und das Konzept der „Mikrowelten“ entstand, in denen einfache Aufgaben mit klaren Sprachbefehlen erledigt wurden.
 
 ---
 
-* Eliza, ein früher „Chatterbot“, konnte mit Menschen kommunizieren und als primitiver „Therapeut“ fungieren. Sie werden mehr über Eliza in den NLP-Lektionen erfahren.
+Die Forschung wurde von staatlichen Behörden gut finanziert, es gab Fortschritte in der Berechnung und bei Algorithmen, und Prototypen intelligenter Maschinen wurden gebaut. Einige dieser Maschinen umfassen:
 
-    ![Eliza, ein Bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
+* [Shakey der Roboter](https://wikipedia.org/wiki/Shakey_the_robot), der sich bewegen und entscheiden konnte, wie Aufgaben „intelligent“ ausgeführt werden.
+
+    ![Shakey, ein intelligenter Roboter](../../../../translated_images/de/shakey.4dc17819c447c05b.webp)
+    > Shakey 1972
+
+---
+
+* Eliza, ein früher „Chatterbot“, konnte mit Menschen sprechen und als primitiver „Therapeut“ fungieren. Du wirst mehr über Eliza in den NLP-Lektionen erfahren.
+
+    ![Eliza, ein Bot](../../../../translated_images/de/eliza.84397454cda9559b.webp)
     > Eine Version von Eliza, einem Chatbot
 
 ---
 
-* „Blocks World“ war ein Beispiel für eine Mikrowelt, in der Blöcke gestapelt und sortiert werden konnten, und Experimente zur Entscheidungsfindung von Maschinen durchgeführt wurden. Fortschritte mit Bibliotheken wie [SHRDLU](https://wikipedia.org/wiki/SHRDLU) trieben die Sprachverarbeitung voran.
+* „Blocks World“ war ein Beispiel für eine Mikrowelt, in der Blöcke gestapelt und sortiert werden konnten, und Experimente zum Lehren von Maschinen, Entscheidungen zu treffen, konnten getestet werden. Fortschritte, die mit Bibliotheken wie [SHRDLU](https://wikipedia.org/wiki/SHRDLU) gemacht wurden, halfen, die Sprachverarbeitung voranzutreiben.
 
     [![Blocks World mit SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "Blocks World mit SHRDLU")
 
-    > 🎥 Klicken Sie auf das Bild oben für ein Video: Blocks World mit SHRDLU
+    > 🎥 Klicke auf das Bild oben für ein Video: Blocks World mit SHRDLU
 
 ---
 ## 1974 - 1980: „KI-Winter“
 
-Mitte der 1970er Jahre wurde klar, dass die Komplexität der Entwicklung „intelligenter Maschinen“ unterschätzt und ihr Potenzial angesichts der verfügbaren Rechenleistung überschätzt worden war. Die Finanzierung versiegte, und das Vertrauen in das Feld nahm ab. Einige Probleme, die das Vertrauen beeinträchtigten, waren:
+Mitte der 1970er Jahre wurde deutlich, dass der Aufwand, „intelligente Maschinen“ zu bauen, unterschätzt worden war und das Versprechen angesichts der verfügbaren Rechenleistung überbewertet wurde. Die Finanzierung versiegte und das Vertrauen in das Fachgebiet ging zurück. Einige Probleme, die das Vertrauen beeinträchtigten, waren:
+---
+- **Begrenzungen**. Die Rechenleistung war zu gering.
+- **Kombinatorische Explosion**. Die Anzahl der zu trainierenden Parameter wuchs exponentiell, je mehr von Computern verlangt wurde, ohne dass die Rechenleistung und Fähigkeit parallel dazu zunahmen.
+- **Datenknappheit**. Es mangelte an Daten, was den Prozess des Testens, Entwickelns und Verfeinerns von Algorithmen erschwerte.
+- **Stellen wir die richtigen Fragen?**. Die eigentlichen Fragestellungen wurden zunehmend in Frage gestellt. Forscher sahen sich mit Kritik an ihren Ansätzen konfrontiert:
+  - Der Turing-Test wurde u. a. durch die „Chinesisches-Zimmer-Theorie“ in Frage gestellt, die besagt, dass „die Programmierung eines digitalen Rechners ihn zwar so erscheinen lassen kann, als verstehe er Sprache, aber kein echtes Verständnis erzeugen kann.“ ([Quelle](https://plato.stanford.edu/entries/chinese-room/))
+  - Die Ethik bei der Einführung künstlicher Intelligenzen wie dem „Therapeuten“ ELIZA in die Gesellschaft wurde angezweifelt.
 
 ---
-- **Einschränkungen**. Die Rechenleistung war zu begrenzt.
-- **Kombinatorische Explosion**. Die Anzahl der zu trainierenden Parameter wuchs exponentiell, je mehr von Computern verlangt wurde, ohne dass die Rechenleistung und -fähigkeit parallel dazu wuchsen.
-- **Mangel an Daten**. Es gab einen Mangel an Daten, der den Prozess des Testens, Entwickelns und Verfeinerns von Algorithmen behinderte.
-- **Stellen wir die richtigen Fragen?**. Die gestellten Fragen selbst wurden infrage gestellt. Forscher sahen sich Kritik an ihren Ansätzen ausgesetzt:
-  - Turing-Tests wurden unter anderem durch die „Chinese Room“-Theorie infrage gestellt, die besagt, dass „das Programmieren eines digitalen Computers zwar den Anschein erwecken kann, Sprache zu verstehen, aber kein echtes Verständnis erzeugen kann.“ ([Quelle](https://plato.stanford.edu/entries/chinese-room/))
-  - Die Ethik der Einführung künstlicher Intelligenzen wie des „Therapeuten“ ELIZA in die Gesellschaft wurde hinterfragt.
+
+Gleichzeitig begannen sich verschiedene Denkschulen der KI zu bilden. Es entstand eine Dichotomie zwischen ["schlampigen" und "ordentlichen KI"](https://wikipedia.org/wiki/Neats_and_scruffies)-Praktiken. _Schlampige_ Labore optimierten Programme stundenlang, bis die gewünschten Ergebnisse vorlagen. _Ordentliche_ Labore „konzentrierten sich auf Logik und formale Problemlösung“. ELIZA und SHRDLU waren bekannte _schlampige_ Systeme. In den 1980er Jahren, als die Nachfrage aufkam, ML-Systeme reproduzierbar zu machen, gewann der _ordentliche_ Ansatz zunehmend die Oberhand, da seine Ergebnisse besser erklärbar sind.
 
 ---
+## 1980er Expertensysteme
 
-Gleichzeitig begannen sich verschiedene Schulen der KI-Forschung zu bilden. Es entstand eine Dichotomie zwischen ["Scruffy" vs. "Neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies)-Praktiken. _Scruffy_-Labore optimierten Programme stundenlang, bis sie die gewünschten Ergebnisse erzielten. _Neat_-Labore „konzentrierten sich auf Logik und formale Problemlösung“. ELIZA und SHRDLU waren bekannte _Scruffy_-Systeme. In den 1980er Jahren, als die Nachfrage nach reproduzierbaren ML-Systemen wuchs, setzte sich der _Neat_-Ansatz allmählich durch, da seine Ergebnisse besser erklärbar sind.
+Als das Feld wuchs, wurde sein Nutzen für Unternehmen klarer, und in den 1980er Jahren nahm auch die Verbreitung von „Expertensystemen“ zu. „Expertensysteme gehörten zu den ersten wirklich erfolgreichen Formen von Software für künstliche Intelligenz (KI).“ ([Quelle](https://wikipedia.org/wiki/Expert_system)).
 
----
-## 1980er Jahre: Expertensysteme
+Diese Art von System ist tatsächlich _hybrid_, bestehend teilweise aus einer Regel-Engine, die Geschäftsanforderungen definiert, und einer Inferenz-Engine, die das Regelsystem nutzt, um neue Fakten abzuleiten.
 
-Mit dem Wachstum des Feldes wurde sein Nutzen für Unternehmen deutlicher, und in den 1980er Jahren verbreiteten sich „Expertensysteme“. „Expertensysteme waren eine der ersten wirklich erfolgreichen Formen von KI-Software.“ ([Quelle](https://wikipedia.org/wiki/Expert_system))
-
-Dieser Systemtyp ist tatsächlich _hybrid_ und besteht teilweise aus einer Regel-Engine, die Geschäftsanforderungen definiert, und einer Inferenz-Engine, die das Regelwerk nutzt, um neue Fakten abzuleiten.
-
-In dieser Ära wurde auch den neuronalen Netzen zunehmend Aufmerksamkeit geschenkt.
+In dieser Ära wurde auch dem neuronalen Netz mehr Aufmerksamkeit geschenkt.
 
 ---
-## 1987 - 1993: „KI-Abkühlung“
+## 1987 - 1993: KI-„Abkühlung“
 
-Die Verbreitung spezialisierter Hardware für Expertensysteme hatte den unglücklichen Effekt, zu spezialisiert zu werden. Der Aufstieg von Personal Computern konkurrierte mit diesen großen, spezialisierten, zentralisierten Systemen. Die Demokratisierung des Rechnens hatte begonnen und ebnete schließlich den Weg für die moderne Explosion von Big Data.
+Die Verbreitung spezialisierter Hardware für Expertensysteme führte leider dazu, dass diese zu spezialisiert wurden. Der Aufstieg der Personal Computer konkurrierte zudem mit diesen großen, spezialisierten, zentralisierten Systemen. Die Demokratisierung des Rechnens hatte begonnen und ebnete schließlich den Weg für die moderne Explosion von Big Data.
 
 ---
 ## 1993 - 2011
 
-Diese Epoche markierte eine neue Ära für ML und KI, um einige der Probleme zu lösen, die zuvor durch den Mangel an Daten und Rechenleistung verursacht worden waren. Die Menge an Daten begann rapide zu wachsen und wurde zunehmend verfügbar, sowohl zum Guten als auch zum Schlechten, insbesondere mit dem Aufkommen des Smartphones um 2007. Die Rechenleistung wuchs exponentiell, und Algorithmen entwickelten sich parallel dazu weiter. Das Feld begann, sich zu einer echten Disziplin zu entwickeln, während die unstrukturierten Ansätze der Vergangenheit allmählich einer gereiften Struktur wichen.
+Diese Epoche brachte eine neue Ära für ML und KI, in der einige der früheren Probleme durch Datenmangel und Rechenleistung gelöst werden konnten. Die Menge an Daten begann schnell zu wachsen und wurde breiter verfügbar, zum Guten und zum Schlechten, insbesondere mit dem Aufkommen des Smartphones um 2007. Die Rechenleistung wuchs exponentiell und die Algorithmen entwickelten sich parallel dazu. Das Gebiet gewann an Reife, während die freizügigen Tage der Vergangenheit sich zu einer echten Disziplin kristallisierten.
 
 ---
-## Heute
+## Jetzt
 
-Heute berühren maschinelles Lernen und KI fast jeden Bereich unseres Lebens. Diese Ära erfordert ein sorgfältiges Verständnis der Risiken und potenziellen Auswirkungen dieser Algorithmen auf das menschliche Leben. Wie Brad Smith von Microsoft erklärt hat: „Informationstechnologie wirft Fragen auf, die das Herzstück grundlegender Menschenrechtsfragen wie Datenschutz und Meinungsfreiheit betreffen. Diese Fragen erhöhen die Verantwortung von Technologieunternehmen, die diese Produkte entwickeln. Unserer Ansicht nach erfordern sie auch eine durchdachte staatliche Regulierung und die Entwicklung von Normen für akzeptable Nutzungen.“ ([Quelle](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/))
+Heute berühren maschinelles Lernen und KI fast jeden Lebensbereich. Diese Ära erfordert ein sorgfältiges Verständnis der Risiken und potentiellen Auswirkungen dieser Algorithmen auf das menschliche Leben. Wie Brad Smith von Microsoft sagte: „Informationstechnologie wirft Fragen auf, die zum Kern fundamentaler Menschenrechtsschutzaspekte wie Datenschutz und Meinungsfreiheit gehören. Diese Fragen erhöhen die Verantwortung von Technologieunternehmen, die diese Produkte schaffen. Unserer Ansicht nach verlangen sie auch durchdachte staatliche Regulierung und die Entwicklung von Normen für akzeptable Nutzungen“ ([Quelle](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 ---
 
-Es bleibt abzuwarten, was die Zukunft bringt, aber es ist wichtig, diese Computersysteme sowie die Software und Algorithmen, die sie ausführen, zu verstehen. Wir hoffen, dass dieses Curriculum Ihnen hilft, ein besseres Verständnis zu erlangen, damit Sie selbst entscheiden können.
+Es bleibt abzuwarten, was die Zukunft bringt, aber es ist wichtig, diese Computersysteme sowie die Software und Algorithmen, die sie ausführen, zu verstehen. Wir hoffen, dass dieses Curriculum dir hilft, ein besseres Verständnis zu gewinnen, sodass du selbst entscheiden kannst.
 
 [![Die Geschichte des Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Die Geschichte des Deep Learning")
-> 🎥 Klicken Sie auf das Bild oben für ein Video: Yann LeCun spricht in diesem Vortrag über die Geschichte des Deep Learning
+> 🎥 Klicke auf das Bild oben für ein Video: Yann LeCun diskutiert in dieser Vorlesung die Geschichte des Deep Learning
 
 ---
-## 🚀 Herausforderung
+## 🚀Herausforderung
 
-Tauchen Sie in einen dieser historischen Momente ein und erfahren Sie mehr über die Menschen dahinter. Es gibt faszinierende Persönlichkeiten, und keine wissenschaftliche Entdeckung wurde jemals in einem kulturellen Vakuum gemacht. Was entdecken Sie?
+Tauche in einen dieser historischen Momente ein und erfahre mehr über die Menschen dahinter. Es gibt faszinierende Persönlichkeiten, und keine wissenschaftliche Entdeckung wurde jemals in einem kulturellen Vakuum geschaffen. Was entdeckst du?
 
-## [Quiz nach der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
+## [Nachvorlesungs-Quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
-## Rückblick & Selbststudium
+## Wiederholung & Selbststudium
 
-Hier sind einige Inhalte zum Anschauen und Anhören:
+Hier sind Dinge, die du ansehen und anhören kannst:
 
-[Dieser Podcast, in dem Amy Boyd über die Entwicklung der KI spricht](http://runasradio.com/Shows/Show/739)
+[Dieser Podcast, in dem Amy Boyd die Entwicklung der KI bespricht](http://runasradio.com/Shows/Show/739)
 
 [![Die Geschichte der KI von Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Die Geschichte der KI von Amy Boyd")
 
@@ -148,9 +147,11 @@ Hier sind einige Inhalte zum Anschauen und Anhören:
 
 ## Aufgabe
 
-[Erstellen Sie eine Zeitleiste](assignment.md)
+[Erstelle eine Zeitleiste](assignment.md)
 
 ---
 
-**Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,7 +1,7 @@
 # Istoria învățării automate
 
-![Rezumat al istoriei învățării automate într-o schiță](../../../../sketchnotes/ml-history.png)
-> Schiță realizată de [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Rezumat al Istoriei învățării automate într-un sketchnote](../../../../translated_images/ro/ml-history.a1bdfd4ce1f464d9.webp)
+> Sketchnote de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Chestionar înainte de lecție](https://ff-quizzes.netlify.app/en/ml/)
 
@@ -9,133 +9,133 @@
 
 [![ML pentru începători - Istoria învățării automate](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML pentru începători - Istoria învățării automate")
 
-> 🎥 Click pe imaginea de mai sus pentru un scurt videoclip despre această lecție.
+> 🎥 Click pe imaginea de mai sus pentru un videoclip scurt care parcurge această lecție.
 
-În această lecție, vom parcurge principalele momente din istoria învățării automate și a inteligenței artificiale.
+În această lecție, vom parcurge principalele repere din istoria învățării automate și a inteligenței artificiale.
 
-Istoria inteligenței artificiale (IA) ca domeniu este strâns legată de istoria învățării automate, deoarece algoritmii și progresele computaționale care stau la baza ML au contribuit la dezvoltarea IA. Este util să ne amintim că, deși aceste domenii ca arii distincte de cercetare au început să se cristalizeze în anii 1950, descoperiri importante [algoritmice, statistice, matematice, computaționale și tehnice](https://wikipedia.org/wiki/Timeline_of_machine_learning) au precedat și s-au suprapus cu această perioadă. De fapt, oamenii au reflectat asupra acestor întrebări de [sute de ani](https://wikipedia.org/wiki/History_of_artificial_intelligence): acest articol discută fundamentele intelectuale istorice ale ideii de 'mașină care gândește'.
+Istoria inteligenței artificiale (IA) ca domeniu este împletită cu istoria învățării automate, deoarece algoritmii și progresele computaționale care stau la baza ML au contribuit la dezvoltarea IA. Este util să ne amintim că, deși aceste domenii ca arii distincte de cercetare au început să se cristalizeze în anii 1950, descoperiri importante [algoritmice, statistice, matematice, computaționale și tehnice](https://wikipedia.org/wiki/Timeline_of_machine_learning) au precedat și s-au suprapus cu această eră. De fapt, oamenii au reflectat asupra acestor întrebări de [sute de ani](https://wikipedia.org/wiki/History_of_artificial_intelligence): acest articol discută fundamentele intelectuale istorice ale ideii unei „mașini gânditoare”.
 
 ---
 ## Descoperiri notabile
 
-- 1763, 1812 [Teorema lui Bayes](https://wikipedia.org/wiki/Bayes%27_theorem) și predecesorii săi. Această teoremă și aplicațiile sale stau la baza inferenței, descriind probabilitatea unui eveniment pe baza cunoștințelor anterioare.
-- 1805 [Teoria celor mai mici pătrate](https://wikipedia.org/wiki/Least_squares) de matematicianul francez Adrien-Marie Legendre. Această teorie, pe care o veți învăța în unitatea noastră despre regresie, ajută la ajustarea datelor.
-- 1913 [Lanțurile Markov](https://wikipedia.org/wiki/Markov_chain), numite după matematicianul rus Andrey Markov, sunt utilizate pentru a descrie o secvență de evenimente posibile bazate pe o stare anterioară.
+- 1763, 1812 [Teorema lui Bayes](https://wikipedia.org/wiki/Bayes%27_theorem) și predecesorii săi. Această teoremă și aplicațiile ei stau la baza inferenței, descriind probabilitatea apariției unui eveniment pe baza cunoștințelor anterioare.
+- 1805 [Teoria celor mai mici pătrate](https://wikipedia.org/wiki/Least_squares) de matematicianul francez Adrien-Marie Legendre. Această teorie, pe care o vei învăța în unitatea noastră de Regressie, ajută la potrivirea datelor.
+- 1913 [Lanțurile Markov](https://wikipedia.org/wiki/Markov_chain), numite după matematicianul rus Andrey Markov, sunt folosite pentru a descrie o succesiune de evenimente posibile pe baza unui stat anterior.
 - 1957 [Perceptronul](https://wikipedia.org/wiki/Perceptron) este un tip de clasificator liniar inventat de psihologul american Frank Rosenblatt, care stă la baza progreselor în învățarea profundă.
 
 ---
 
-- 1967 [Cel mai apropiat vecin](https://wikipedia.org/wiki/Nearest_neighbor) este un algoritm inițial conceput pentru a cartografia rute. În contextul ML, este utilizat pentru a detecta modele.
-- 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) este utilizat pentru a antrena [rețele neuronale feedforward](https://wikipedia.org/wiki/Feedforward_neural_network).
+- 1967 [Cel mai apropiat vecin](https://wikipedia.org/wiki/Nearest_neighbor) este un algoritm inițial conceput pentru cartografierea traseelor. În context ML este folosit pentru detectarea modelelor.
+- 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) este folosit pentru antrenarea rețelelor neuronale [feedforward](https://wikipedia.org/wiki/Feedforward_neural_network).
 - 1982 [Rețele neuronale recurente](https://wikipedia.org/wiki/Recurrent_neural_network) sunt rețele neuronale artificiale derivate din rețelele neuronale feedforward care creează grafice temporale.
 
-✅ Faceți puțină cercetare. Ce alte date se remarcă ca fiind esențiale în istoria ML și IA?
+✅ Efectuează o mică cercetare. Ce alte date ți se par esențiale în istoria ML și IA?
 
 ---
 ## 1950: Mașini care gândesc
 
-Alan Turing, o persoană cu adevărat remarcabilă, votat [de public în 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) drept cel mai mare om de știință al secolului XX, este creditat cu punerea bazelor conceptului de 'mașină care poate gândi'. El s-a confruntat cu sceptici și cu propria nevoie de dovezi empirice ale acestui concept, în parte prin crearea [Testului Turing](https://www.bbc.com/news/technology-18475646), pe care îl veți explora în lecțiile noastre despre NLP.
+Alan Turing, o persoană cu adevărat remarcabilă, care a fost votat [de public în 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) ca cel mai mare om de știință al secolului XX, este creditat pentru că a ajutat la punerea bazelor conceptului de „mașină care poate gândi.” El s-a confruntat cu sceptici și cu nevoia sa proprie de dovezi empirice ale acestui concept parțial prin crearea [Testului Turing](https://www.bbc.com/news/technology-18475646), pe care îl vei explora în lecțiile noastre de NLP.
 
 ---
-## 1956: Proiectul de cercetare de vară de la Dartmouth
+## 1956: Proiectul de cercetare de vară Dartmouth
 
-"Proiectul de cercetare de vară de la Dartmouth despre inteligența artificială a fost un eveniment seminal pentru inteligența artificială ca domeniu," și aici a fost inventat termenul 'inteligență artificială' ([sursa](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+„Proiectul de cercetare de vară Dartmouth asupra inteligenței artificiale a fost un eveniment seminal pentru inteligența artificială ca domeniu,” și aici a fost creat termenul de „inteligență artificială” ([sursă](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
 
-> Fiecare aspect al învățării sau orice altă caracteristică a inteligenței poate fi, în principiu, descris atât de precis încât o mașină poate fi construită pentru a o simula.
-
----
-
-Cercetătorul principal, profesorul de matematică John McCarthy, spera "să procedeze pe baza conjecturii că fiecare aspect al învățării sau orice altă caracteristică a inteligenței poate fi, în principiu, descris atât de precis încât o mașină poate fi construită pentru a o simula." Participanții au inclus o altă personalitate marcantă din domeniu, Marvin Minsky.
-
-Atelierul este creditat cu inițierea și încurajarea mai multor discuții, inclusiv "ascensiunea metodelor simbolice, sistemele axate pe domenii limitate (sisteme expert timpurii) și sistemele deductive versus sistemele inductive." ([sursa](https://wikipedia.org/wiki/Dartmouth_workshop)).
-
----
-## 1956 - 1974: "Anii de aur"
-
-Din anii 1950 până la mijlocul anilor '70, optimismul era ridicat în speranța că IA ar putea rezolva multe probleme. În 1967, Marvin Minsky afirma cu încredere că "Într-o generație ... problema creării 'inteligenței artificiale' va fi substanțial rezolvată." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
-
-Cercetarea în procesarea limbajului natural a înflorit, căutarea a fost rafinată și făcută mai puternică, iar conceptul de 'micro-lumi' a fost creat, unde sarcini simple erau realizate folosind instrucțiuni în limbaj simplu.
+> Fiecare aspect al învățării sau orice altă caracteristică a inteligenței poate fi în principiu descrisă atât de precis încât o mașină să poată fi făcută să o simuleze.
 
 ---
 
-Cercetarea era bine finanțată de agențiile guvernamentale, s-au făcut progrese în calcul și algoritmi, iar prototipuri de mașini inteligente au fost construite. Unele dintre aceste mașini includ:
+Cercetătorul principal, profesorul de matematică John McCarthy, spera „să procedeze pe baza ipotezei că fiecare aspect al învățării sau orice altă caracteristică a inteligenței poate fi în principiu descrisă atât de precis încât o mașină să poată fi făcută să o simuleze.” Participanții au inclus un alt ilustru în domeniu, Marvin Minsky.
 
-* [Shakey robotul](https://wikipedia.org/wiki/Shakey_the_robot), care putea să se deplaseze și să decidă cum să îndeplinească sarcini 'inteligent'.
+Atelierul este creditat că a inițiat și a încurajat mai multe discuții, inclusiv „apariția metodelor simbolice, sistemelor focalizate pe domenii limitate (primele sisteme expert) și sistemelor deductive versus inductive.” ([sursă](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
-    ![Shakey, un robot inteligent](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
+---
+## 1956 - 1974: „Anii de aur”
+
+Din anii 1950 până la mijlocul anilor '70, optimismul era ridicat privind speranța că IA ar putea rezolva multe probleme. În 1967, Marvin Minsky a afirmat cu încredere că „Într-o generație ... problema creării 'inteligenței artificiale' va fi soluționată substanțial.” (Minsky, Marvin (1967), Computație: Mașini finite și infinite, Englewood Cliffs, N.J.: Prentice-Hall)
+
+Cercetarea procesării limbajului natural a înflorit, căutarea a fost rafinată și făcută mai puternică, iar conceptul de „micro-lumi” a fost creat, unde sarcini simple erau duse la îndeplinire folosind instrucțiuni în limbaj simplu.
+
+---
+
+Cercetarea a fost bine finanțată de agenții guvernamentale, s-au făcut progrese în calcul și algoritmi, iar prototipuri de mașini inteligente au fost construite. Unele dintre aceste mașini includ:
+
+* [Shakey robotul](https://wikipedia.org/wiki/Shakey_the_robot), care putea manevra și decide cum să îndeplinească sarcini „inteligent”.
+
+    ![Shakey, un robot inteligent](../../../../translated_images/ro/shakey.4dc17819c447c05b.webp)
     > Shakey în 1972
 
 ---
 
-* Eliza, un 'chatterbot' timpuriu, putea conversa cu oamenii și acționa ca un 'terapeut' primitiv. Veți învăța mai multe despre Eliza în lecțiile despre NLP.
+* Eliza, un „chatbot” timpuriu, putea conversa cu oamenii și acționa ca un „terapeut” primitiv. Vei învăța mai multe despre Eliza în lecțiile de NLP.
 
-    ![Eliza, un bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
+    ![Eliza, un bot](../../../../translated_images/ro/eliza.84397454cda9559b.webp)
     > O versiune a Eliza, un chatbot
 
 ---
 
-* "Blocks world" era un exemplu de micro-lume unde blocurile puteau fi stivuite și sortate, iar experimentele în învățarea mașinilor să ia decizii puteau fi testate. Progresele realizate cu biblioteci precum [SHRDLU](https://wikipedia.org/wiki/SHRDLU) au ajutat la propulsarea procesării limbajului.
+* „Lumea blocurilor” a fost un exemplu de micro-lume unde blocurile puteau fi stivuite și sortate, iar experimentele în instruirea mașinilor pentru luarea deciziilor puteau fi testate. Progresul realizat cu biblioteci precum [SHRDLU](https://wikipedia.org/wiki/SHRDLU) a ajutat la impulsionarea procesării limbajului.
 
-    [![blocks world cu SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world cu SHRDLU")
+    [![lumea blocurilor cu SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "lumea blocurilor cu SHRDLU")
 
-    > 🎥 Click pe imaginea de mai sus pentru un videoclip: Blocks world cu SHRDLU
+    > 🎥 Click pe imaginea de mai sus pentru un video: Lumea blocurilor cu SHRDLU
 
 ---
-## 1974 - 1980: "Iarna IA"
+## 1974 - 1980: „Iarna IA”
 
-Până la mijlocul anilor 1970, devenise evident că complexitatea creării 'mașinilor inteligente' fusese subestimată și că promisiunea sa, având în vedere puterea de calcul disponibilă, fusese exagerată. Finanțarea s-a redus și încrederea în domeniu a încetinit. Unele probleme care au afectat încrederea includ:
+Până în mijlocul anilor 1970, devenea clar că complexitatea de a face „mașini inteligente” fusese subestimată și că promisiunea sa, dată puterea de calcul disponibilă, fusese supraestimată. Finanțarea s-a uscat iar încrederea în domeniu a încetinit. Unele probleme care au afectat încrederea includ:
 ---
 - **Limitări**. Puterea de calcul era prea limitată.
-- **Explozia combinatorică**. Numărul de parametri necesari pentru antrenare creștea exponențial pe măsură ce se cerea mai mult de la computere, fără o evoluție paralelă a puterii și capacității de calcul.
-- **Lipsa de date**. Lipsa datelor a împiedicat procesul de testare, dezvoltare și rafinare a algoritmilor.
-- **Punem întrebările corecte?**. Însăși întrebările care erau puse au început să fie puse sub semnul întrebării. Cercetătorii au început să primească critici cu privire la abordările lor:
-  - Testele Turing au fost puse sub semnul întrebării prin mijloace, printre alte idei, ale 'teoriei camerei chineze', care susținea că "programarea unui computer digital poate face să pară că înțelege limbajul, dar nu poate produce o înțelegere reală." ([sursa](https://plato.stanford.edu/entries/chinese-room/))
-  - Etica introducerii inteligențelor artificiale, cum ar fi "terapeutul" ELIZA, în societate a fost contestată.
+- **Explozie combinatorie**. Numărul de parametri de antrenat creștea exponențial pe măsură ce cereai mai multe de la calculatoare, fără o evoluție paralelă a puterii și capacității de calcul.
+- **Lipsa datelor**. Lipsa de date a împiedicat procesul de testare, dezvoltare și rafinare a algoritmilor.
+- **Punem întrebările potrivite?**. Însuși subiectul întrebărilor a început să fie pus sub semnul întrebării. Cercetătorii au fost criticați pentru abordările lor:
+  - Testele Turing au fost contestate prin diverse idei, printre care „teoria camerei chinezești” care susținea că „programarea unui calculator digital poate face să pară că înțelege limbajul, dar nu poate produce o înțelegere reală.” ([sursă](https://plato.stanford.edu/entries/chinese-room/))
+  - Etica introducerii inteligențelor artificiale precum „terapeutul” ELIZA în societate a fost pusă sub semnul întrebării.
 
 ---
 
-În același timp, diverse școli de gândire IA au început să se formeze. S-a stabilit o dihotomie între practicile ["scruffy" vs. "neat IA"](https://wikipedia.org/wiki/Neats_and_scruffies). Laboratoarele _scruffy_ ajustau programele ore întregi până obțineau rezultatele dorite. Laboratoarele _neat_ "se concentrau pe logică și rezolvarea formală a problemelor". ELIZA și SHRDLU erau sisteme _scruffy_ bine cunoscute. În anii 1980, pe măsură ce a apărut cererea de a face sistemele ML reproducibile, abordarea _neat_ a preluat treptat prim-planul, deoarece rezultatele sale sunt mai explicabile.
+În același timp, au început să se formeze diferite școli de gândire în IA. S-a stabilit o dicotomie între practici de IA ["scruffy" vs. "neat"](https://wikipedia.org/wiki/Neats_and_scruffies). Laboratoarele _scruffy_ ajustau programele ore întregi până obțineau rezultatele dorite. Laboratoarele _neat_ „se concentrau pe logică și rezolvarea formală a problemelor”. ELIZA și SHRDLU erau sisteme _scruffy_ cunoscute. În anii 1980, pe măsură ce a apărut cerința de reproducere a sistemelor ML, abordarea _neat_ a devenit treptat dominantă, deoarece rezultatele ei sunt mai explicabile.
 
 ---
-## Sistemele expert din anii 1980
+## Anii 1980: Sisteme expert
 
-Pe măsură ce domeniul a crescut, beneficiul său pentru afaceri a devenit mai clar, iar în anii 1980 la fel și proliferarea 'sistemelor expert'. "Sistemele expert au fost printre primele forme cu adevărat de succes ale software-ului de inteligență artificială (IA)." ([sursa](https://wikipedia.org/wiki/Expert_system)).
+Pe măsură ce domeniul a crescut, beneficiile sale pentru afaceri au devenit mai clare, iar în anii 1980 s-a văzut proliferarea „sistemelor expert”. „Sistemele expert au fost printre primele forme cu adevărat reușite de software de inteligență artificială (IA).” ([sursă](https://wikipedia.org/wiki/Expert_system)).
 
-Acest tip de sistem este de fapt _hibrid_, constând parțial dintr-un motor de reguli care definește cerințele de afaceri și un motor de inferență care folosește sistemul de reguli pentru a deduce noi fapte.
+Acest tip de sistem este, de fapt, _hibrid_, constând parțial dintr-un motor de reguli care definește cerințele de afaceri și un motor de inferență care folosește sistemul de reguli pentru a deduce noi fapte.
 
-Această eră a văzut, de asemenea, o atenție sporită acordată rețelelor neuronale.
+Această epocă a adus și o atenție sporită acordată rețelelor neuronale.
 
 ---
-## 1987 - 1993: Răcirea IA
+## 1987 - 1993: „Răcirea” IA
 
-Proliferarea hardware-ului specializat pentru sistemele expert a avut efectul nefericit de a deveni prea specializat. Ascensiunea computerelor personale a concurat cu aceste sisteme mari, specializate și centralizate. Democratizarea calculului începuse și, în cele din urmă, a deschis calea pentru explozia modernă a datelor mari.
+Proliferarea hardware-ului specializat pentru sisteme expert a avut efectul nefericit de a deveni prea specializată. Apariția computerelor personale a concurat cu aceste sisteme mari, specializate și centralizate. Democratizarea calculatoarelor a început și a pregătit terenul pentru explozia modernă a big data.
 
 ---
 ## 1993 - 2011
 
-Această epocă a marcat o nouă eră pentru ML și IA, care au reușit să rezolve unele dintre problemele cauzate anterior de lipsa datelor și a puterii de calcul. Cantitatea de date a început să crească rapid și să devină mai accesibilă, în bine și în rău, mai ales odată cu apariția smartphone-ului în jurul anului 2007. Puterea de calcul a crescut exponențial, iar algoritmii au evoluat în paralel. Domeniul a început să câștige maturitate pe măsură ce zilele libere ale trecutului au început să se cristalizeze într-o adevărată disciplină.
+Această epocă a marcat o nouă eră pentru ML și IA, capabile să rezolve unele probleme apărute mai înainte din lipsa de date și putere de calcul. Cantitatea de date a început să crească rapid și să devină mai larg accesibilă, pentru bine și pentru rău, mai ales odată cu apariția smartphone-ului în jurul anului 2007. Puterea de calcul a crescut exponențial, iar algoritmii au evoluat în paralel. Domeniul a început să capete maturitate pe măsură ce zilele libere ale trecutului s-au cristalizat într-o disciplină reală.
 
 ---
 ## Acum
 
-Astăzi, învățarea automată și IA ating aproape fiecare parte a vieților noastre. Această eră necesită o înțelegere atentă a riscurilor și efectelor potențiale ale acestor algoritmi asupra vieților umane. După cum a afirmat Brad Smith de la Microsoft, "Tehnologia informației ridică probleme care ating esența protecțiilor fundamentale ale drepturilor omului, cum ar fi confidențialitatea și libertatea de exprimare. Aceste probleme sporesc responsabilitatea companiilor de tehnologie care creează aceste produse. În opinia noastră, ele cer, de asemenea, reglementări guvernamentale bine gândite și dezvoltarea unor norme privind utilizările acceptabile" ([sursa](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Astăzi, învățarea automată și IA ating aproape fiecare parte a vieților noastre. Această eră cere o înțelegere atentă a riscurilor și posibilelor efecte ale acestor algoritmi asupra vieților umane. Așa cum a declarat Brad Smith de la Microsoft, „Tehnologia informației ridică probleme care ating fundamental protecțiile drepturilor omului precum intimitatea și libertatea de exprimare. Aceste probleme sporesc responsabilitatea companiilor tech care creează aceste produse. Din punctul nostru de vedere, ele cer și o reglementare atentă din partea guvernului și dezvoltarea de norme privind utilizările acceptabile” ([sursă](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 ---
 
-Rămâne de văzut ce ne rezervă viitorul, dar este important să înțelegem aceste sisteme computerizate și software-ul și algoritmii pe care le rulează. Sperăm că acest curriculum vă va ajuta să obțineți o înțelegere mai bună, astfel încât să puteți decide singuri.
+Rămâne de văzut ce va aduce viitorul, dar este important să înțelegem aceste sisteme informatice și software-ul și algoritmii care le rulează. Sperăm că această curriculă te va ajuta să dobândești o înțelegere mai bună pentru a putea decide singur.
 
 [![Istoria învățării profunde](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Istoria învățării profunde")
-> 🎥 Click pe imaginea de mai sus pentru un videoclip: Yann LeCun discută despre istoria învățării profunde în această prelegere
+> 🎥 Click pe imaginea de mai sus pentru un video: Yann LeCun discută istoria învățării profunde în această prelegere
 
 ---
 ## 🚀Provocare
 
-Explorați unul dintre aceste momente istorice și aflați mai multe despre oamenii din spatele lor. Există personaje fascinante, iar nicio descoperire științifică nu a fost creată într-un vid cultural. Ce descoperiți?
+Cercetează un moment istoric dintre acestea și află mai multe despre oamenii din spatele lor. Există personaje fascinante, iar nicio descoperire științifică nu a fost creată într-un vid cultural. Ce descoperi?
 
 ## [Chestionar după lecție](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
-## Recapitulare și studiu individual
+## Recapitulare & Studiu individual
 
 Iată câteva materiale de urmărit și ascultat:
 
@@ -147,9 +147,11 @@ Iată câteva materiale de urmărit și ascultat:
 
 ## Temă
 
-[Crearea unei cronologii](assignment.md)
+[Creează o cronologie](assignment.md)
 
 ---
 
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim să asigurăm acuratețea, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa natală ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Declinare a responsabilității**:
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). În timp ce ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un om. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care decurg din utilizarea acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -2,104 +2,433 @@ Attribution-ShareAlike 4.0 Nemzetközi
 
 =======================================================================
 
-A Creative Commons Corporation ("Creative Commons") nem ügyvédi iroda, és nem nyújt jogi szolgáltatásokat vagy jogi tanácsadást. A Creative Commons nyilvános licencének terjesztése nem hoz létre ügyvéd-ügyfél vagy más kapcsolatot. A Creative Commons licencét és kapcsolódó információit "ahogy van" alapon teszi elérhetővé. A Creative Commons nem vállal garanciát licencére, a licenc feltételei szerint engedélyezett anyagokra vagy bármely kapcsolódó információra vonatkozóan. A Creative Commons a lehető legteljesebb mértékben elhárít minden felelősséget az ezek használatából eredő károkért.
+A Creative Commons Corporation ("Creative Commons") nem ügyvédi iroda, és
+nem nyújt jogi szolgáltatásokat vagy jogi tanácsadást. A
+Creative Commons nyilvános licencek terjesztése nem hoz létre ügyvéd-ügyfél vagy
+más jogviszonyt. A Creative Commons licencjeit és kapcsolódó
+információit "ahogy vannak" alapon teszi elérhetővé. A Creative Commons
+nem vállal semmilyen garanciát a licenceire, a licencfeltételek alapján
+engedélyezett anyagokra vagy bármely kapcsolódó információra vonatkozóan.
+A Creative Commons a lehető legteljesebb mértékben kizár minden
+felelősséget az ezen anyagok használatából eredő károkért.
 
-Creative Commons nyilvános licencek használata
+A Creative Commons nyilvános licencek használata
 
-A Creative Commons nyilvános licencek egy szabványos feltételrendszert biztosítanak, amelyet az alkotók és más jogtulajdonosok használhatnak szerzői jogvédelem alatt álló eredeti művek és más anyagok megosztására, valamint bizonyos jogokra, amelyeket az alábbi nyilvános licenc határoz meg. Az alábbi megfontolások csak tájékoztató jellegűek, nem kimerítőek, és nem képezik részét a licencünknek.
+A Creative Commons nyilvános licencek egy szabványos feltételrendszert biztosítanak,
+amelyet alkotók és más jogtulajdonosok használhatnak eredeti szerzői művek és
+más, szerzői jog és bizonyos egyéb jogok által védett anyag megosztására,
+az alábbi nyilvános licencben meghatározott feltételek szerint. A
+következő megfontolások csak tájékoztató jellegűek, nem teljes körűek,
+és nem részei licencfeltételeinknek.
 
-     Megfontolások licencadók számára: Nyilvános licencünk azok számára készült, akik jogosultak engedélyt adni a nyilvánosságnak az anyagok olyan módon történő használatára, amelyet egyébként a szerzői jog és bizonyos más jogok korlátoznának. Licencünk visszavonhatatlan. A licencadóknak el kell olvasniuk és meg kell érteniük a választott licenc feltételeit, mielőtt alkalmaznák azt. A licencadóknak biztosítaniuk kell minden szükséges jogot, mielőtt alkalmaznák licencünket, hogy a nyilvánosság az elvárásoknak megfelelően újra felhasználhassa az anyagot. A licencadóknak egyértelműen meg kell jelölniük minden olyan anyagot, amely nem tartozik a licenc hatálya alá. Ez magában foglalja más CC-licencelt anyagokat, vagy olyan anyagokat, amelyek kivétel vagy korlátozás alá esnek a szerzői jogban. További megfontolások licencadók számára:  
+     Considerations for licensors: Our public licenses are
+     intended for use by those authorized to give the public
+     permission to use material in ways otherwise restricted by
+     copyright and certain other rights. Our licenses are
+     irrevocable. Licensors should read and understand the terms
+     and conditions of the license they choose before applying it.
+     Licensors should also secure all rights necessary before
+     applying our licenses so that the public can reuse the
+     material as expected. Licensors should clearly mark any
+     material not subject to the license. This includes other CC-
+     licensed material, or material used under an exception or
+     limitation to copyright. More considerations for licensors:
 	wiki.creativecommons.org/Considerations_for_licensors
 
-     Megfontolások a nyilvánosság számára: A nyilvános licencünk használatával a licencadó engedélyt ad a nyilvánosságnak az engedélyezett anyag meghatározott feltételek és körülmények szerinti használatára. Ha a licencadó engedélye valamilyen okból nem szükséges – például egy alkalmazandó kivétel vagy korlátozás miatt a szerzői jogban –, akkor az ilyen használatot nem szabályozza a licenc. Licencünk csak a szerzői jog és bizonyos más jogok alapján ad engedélyeket, amelyeket a licencadó jogosult megadni. Az engedélyezett anyag használata más okokból továbbra is korlátozott lehet, például azért, mert másoknak szerzői joguk vagy más jogaik vannak az anyagban. A licencadó különleges kéréseket tehet, például kérheti, hogy minden módosítást jelöljenek meg vagy írjanak le. Bár licencünk nem követeli meg ezeket, ajánlott tiszteletben tartani az ilyen kéréseket, ha ésszerűek. További megfontolások a nyilvánosság számára:  
+     Considerations for the public: By using one of our public
+     licenses, a licensor grants the public permission to use the
+     licensed material under specified terms and conditions. If
+     the licensor's permission is not necessary for any reason--for
+     example, because of any applicable exception or limitation to
+     copyright--then that use is not regulated by the license. Our
+     licenses grant only permissions under copyright and certain
+     other rights that a licensor has authority to grant. Use of
+     the licensed material may still be restricted for other
+     reasons, including because others have copyright or other
+     rights in the material. A licensor may make special requests,
+     such as asking that all changes be marked or described.
+     Although not required by our licenses, you are encouraged to
+     respect those requests where reasonable. More_considerations
+     for the public:
 	wiki.creativecommons.org/Considerations_for_licensees
 
 =======================================================================
 
-Creative Commons Attribution-ShareAlike 4.0 Nemzetközi Nyilvános Licenc
+Creative Commons Attribution-ShareAlike 4.0 Nemzetközi Nyilvános
+Licenc
 
-Az Engedélyezett Jogok (lent meghatározva) gyakorlásával Ön elfogadja és beleegyezik a Creative Commons Attribution-ShareAlike 4.0 Nemzetközi Nyilvános Licenc ("Nyilvános Licenc") feltételeibe. Amennyiben ez a Nyilvános Licenc szerződésként értelmezhető, az Engedélyezett Jogokat az Ön ezen feltételek elfogadásáért kapja, és a Licencadó az anyag elérhetővé tételével kapott előnyökért biztosítja Önnek ezeket a jogokat.
+A Licencjogok (alább definiált) gyakorlásával Ön elfogadja és egyetért azzal,
+hogy kötve van a Creative Commons Attribution-ShareAlike 4.0 Nemzetközi
+Nyilvános Licenc ("Nyilvános Licenc") feltételeihez. Amennyiben ez a Nyilvános
+Licenc szerződésként értelmezhető, Ön a Licencelt Jogokat ezen feltételek és
+kikötések elfogadására tekintettel kapja, és a Licencadó ezen feltételek és
+kikötések alapján Önnek ruházza át ezen jogokat, abból a célból, hogy a Licencadó
+a Licencelt Anyagot ezen feltételek mellett elérhetővé tegye, és ebből a megállapodásból
+hasznot húzzon.
 
-1. szakasz – Fogalommeghatározások.
 
-  a. Adaptált Anyag olyan szerzői jog és hasonló jogok által védett anyag, amely az Engedélyezett Anyagból származik vagy arra épül, és amelyben az Engedélyezett Anyagot lefordítják, átalakítják, elrendezik, átalakítják vagy más módon módosítják oly módon, hogy az a Licencadó szerzői jog és hasonló jogok szerinti engedélyét igényli. E Nyilvános Licenc céljából, ha az Engedélyezett Anyag zenei mű, előadás vagy hangfelvétel, az Adaptált Anyag mindig létrejön, ha az Engedélyezett Anyagot időben szinkronizálják egy mozgóképpel.
 
-  b. Adapter Licenc az a licenc, amelyet Ön alkalmaz a szerzői jog és hasonló jogok alapján az Ön hozzájárulásaira az Adaptált Anyagban, e Nyilvános Licenc feltételeinek megfelelően.
 
-  c. BY-SA Kompatibilis Licenc olyan licenc, amelyet a creativecommons.org/compatiblelicenses oldalon sorolnak fel, és amelyet a Creative Commons lényegében e Nyilvános Licenc egyenértékűjének tekint.
 
-  d. Szerzői jog és hasonló jogok a szerzői jog és/vagy a szerzői joghoz szorosan kapcsolódó hasonló jogok, beleértve, de nem kizárólagosan, az előadói jogokat, sugárzási jogokat, hangfelvételi jogokat és az egyedi adatbázis-jogokat, függetlenül attól, hogy a jogokat hogyan címkézik vagy kategorizálják. E Nyilvános Licenc céljából azokat a jogokat, amelyeket a 2. szakasz (b)(1)-(2) határoz meg, nem tekintjük szerzői jog és hasonló jogoknak.
+     amely a Licencelt Anyagból származik vagy azon alapul, és amelyben a Licencelt
+     Anyag le van fordítva, megváltoztatva, átrendezve, átalakítva, vagy egyébként
+     módon módosítva van olyan módon, amely engedélyhez kötött a Licencadó által
+     birtokolt szerzői jog és hasonló jogok szerint. A jelen Nyilvános Licenc értelmezésében,
+     ha a Licencelt Anyag zenei mű, előadás vagy hangfelvétel, az Adaptált Anyag
+     mindig létrejön, ha a Licencelt Anyag szinkronizálva van egy mozgóképpel.
 
-  e. Hatékony Technológiai Intézkedések azok az intézkedések, amelyeket megfelelő hatóság hiányában nem lehet megkerülni a WIPO Szerzői Jogi Egyezmény 1996. december 20-án elfogadott 11. cikkének és/vagy hasonló nemzetközi megállapodásoknak megfelelő törvények alapján.
+  b. Az Adapteri Licenc azt az engedélyt jelenti, amelyet Ön alkalmaz az Ön
+     szerzői jogaira és hasonló jogaira az Adaptált Anyagban tett hozzájárulásai
 
-  f. Kivételek és korlátozások olyan jogi fogalmak, mint a méltányos használat, méltányos kezelés és/vagy bármely más kivétel vagy korlátozás a szerzői jog és hasonló jogok alkalmazásában, amelyek az Ön Engedélyezett Anyag használatára vonatkoznak.
 
-  g. Licenc Elemei a Creative Commons Nyilvános Licenc nevében felsorolt licenc attribútumok. E Nyilvános Licenc Licenc Elemei az Attribution és a ShareAlike.
+  c. A BY-SA kompatibilis Licenc olyan licenc, amely szerepel a
+     creativecommons.org/compatiblelicenses oldalon, és amelyet a Creative Commons
 
-  h. Engedélyezett Anyag az a művészeti vagy irodalmi alkotás, adatbázis vagy más anyag, amelyre a Licencadó alkalmazta e Nyilvános Licencet.
 
-  i. Engedélyezett Jogok azok a jogok, amelyeket Ön e Nyilvános Licenc feltételei szerint kap, és amelyek korlátozódnak az Ön Engedélyezett Anyag használatára vonatkozó szerzői jog és hasonló jogokra, amelyeket a Licencadó jogosult engedélyezni.
+  d. A Szerzői Jog és Hasonló Jogi kategória a szerzői jogot és/vagy ahhoz szorosan
+     kapcsolódó jogokat jelenti, beleértve, de nem kizárólagosan a
 
-  j. Licencadó az a személy(ek) vagy szervezet(ek), akik e Nyilvános Licenc alapján jogokat biztosítanak.
+     adatbázisjogokat, függetlenül attól, hogy a jogokat hogyan nevezik,
+     vagy kategorizálják. A jelen Nyilvános Licencben a 2. szakasz (b)(1)-(2)
+     pontjai alatt meghatározott jogok nem minősülnek Szerzői Jog és Hasonló Jogoknak.
 
-  k. Megosztás az anyag nyilvánosság számára történő elérhetővé tétele bármilyen módon vagy folyamatban, amely engedélyt igényel az Engedélyezett Jogok alapján, például reprodukció, nyilvános megjelenítés, nyilvános előadás, terjesztés, közvetítés, kommunikáció vagy importálás, valamint az anyag nyilvánosság számára történő elérhetővé tétele oly módon, hogy a nyilvánosság tagjai egyénileg választott helyről és időben hozzáférhessenek az anyaghoz.
+  e. Hatékony Technológiai Intézkedések azok az intézkedések, amelyeket a megfelelő
+     hatósági engedély hiányában nem szabad megkerülni a 1996. december 20-án
+     elfogadott WIPO Szerzői Jogi Egyezmény 11. cikkében és/vagy hasonló nemzetközi
 
-  l. Egyedi Adatbázis-Jogok olyan jogok, amelyek nem szerzői jogból származnak, és amelyek az Európai Parlament és a Tanács 1996. március 11-i 96/9/EK irányelvéből erednek az adatbázisok jogi védelméről, módosítva és/vagy utódjogszabályokkal, valamint más lényegében egyenértékű jogok bárhol a világon.
 
-  m. Ön az a személy vagy szervezet, amely e Nyilvános Licenc alapján gyakorolja az Engedélyezett Jogokat. Az Önnek megfelelő jelentése van.
-Jogok, majd az adatbázis, amelyben Önnek Sui Generis Adatbázis Jogai vannak (de nem az egyes tartalmai), Adaptált Anyagnak minősül,
+  f. Kivételek és Korlátozások azt jelentik, hogy méltányos felhasználás, méltányos
+     elbánás és/vagy bármely egyéb kivétel vagy korlátozás a szerzői jogok és
+     hasonló jogok terén, amelyek az Ön használatára a Licencelt Anyag vonatkozásában
+     alkalmazandók.
 
-beleértve a 3(b) szakasz céljait; és  
-c. Be kell tartania a 3(a) szakasz feltételeit, ha megosztja az adatbázis teljes vagy jelentős részét.
+  g. Licenc Elemei azt a licencjellemzők halmazát jelentik, amelyek egy Creative
+     Commons Nyilvános Licenc nevében szerepelnek. Ezen Nyilvános Licenc Licenc
+     Elemei az Attribution (Megjelölés) és a ShareAlike (Megosztás Ugyanolyan
 
-A félreértések elkerülése végett, ez a 4. szakasz kiegészíti és nem helyettesíti az Ön kötelezettségeit ezen Nyilvános Licenc alapján, ha a Licencelt Jogok más Szerzői Jogokat és Hasonló Jogokat is tartalmaznak.
 
-### 5. szakasz – Jótállás kizárása és felelősség korlátozása
+  h. A Licencelt Anyag az a művészeti vagy irodalmi alkotás, adatbázis, vagy egyéb
+     anyag, amelyre a Licencadó ezt a Nyilvános Licencet alkalmazta.
 
-a. HACSAK A LICENCADÓ KÜLÖN NEM VÁLLALJA, AMENNYIBEN LEHETSÉGES, A LICENCADÓ AZ ENGEDÉLYEZETT ANYAGOT "AHOGY VAN" ÉS "AHOGY ELÉRHETŐ" FORMÁBAN BIZTOSÍTJA, ÉS SEMMILYEN KÉPVISELETET VAGY GARANCIÁT NEM VÁLLAL AZ ENGEDÉLYEZETT ANYAGGAL KAPCSOLATBAN, LEGYEN AZ KIFEJEZETT, HALLGATÓLAGOS, TÖRVÉNYI VAGY MÁS. EZ MAGÁBAN FOGLALJA, DE NEM KORLÁTOZÓDIK A TULAJDONJOGRA, ÉRTÉKESÍTHETŐSÉGRE, MEGHATÁROZOTT CÉLRA VALÓ ALKALMASSÁGRA, JOGSÉRTÉS HIÁNYÁRA, REJTETT VAGY MÁS HIBÁK HIÁNYÁRA, PONTOSSÁGRA, VAGY HIBÁK JELENLÉTÉRE VAGY HIÁNYÁRA, LEGYENEK AZOK ISMERTEK VAGY FELFEDEZHETŐEK. AHOL A GARANCIÁK KIZÁRÁSA NEM ENGEDÉLYEZETT TELJESEN VAGY RÉSZBEN, EZ A KIZÁRÁS ÖNRE NEM VONATKOZHAT.
+  i. A Licencelt Jogok azok a jogok, amelyeket Ön számára ezen Nyilvános Licenc
+     feltételei és kikötései szerint megadnak, amelyek korlátozódnak minden
+     szerzői jogra és hasonló jogokra, amelyek az Ön Licencelt Anyag használatára
 
-b. AMENNYIBEN LEHETSÉGES, A LICENCADÓ SEMMILYEN JOGI ELV ALAPJÁN (BELEÉRTVE, DE NEM KORLÁTOZVA A GONDATLANSÁGOT) VAGY MÁS MÓDON NEM FELEL ÖNNEK SEMMILYEN KÖZVETLEN, KÜLÖNLEGES, KÖZVETETT, VÉLETLENSZERŰ, KÖVETKEZMÉNYES, BÜNTETŐ, PÉLDAÉRTÉKŰ VAGY MÁS VESZTESÉGÉRT, KÖLTSÉGÉRT, KIADÁSÉRT VAGY KÁRÉRT, AMELY EZEN NYILVÁNOS LICENC VAGY AZ ENGEDÉLYEZETT ANYAG HASZNÁLATÁBÓL ERED, MÉG AKKOR IS, HA A LICENCADÓT TÁJÉKOZTATTÁK AZ ILYEN VESZTESÉGEK, KÖLTSÉGEK, KIADÁSOK VAGY KÁROK LEHETŐSÉGÉRŐL. AHOL A FELELŐSSÉG KORLÁTOZÁSA NEM ENGEDÉLYEZETT TELJESEN VAGY RÉSZBEN, EZ A KORLÁTOZÁS ÖNRE NEM VONATKOZHAT.
 
-c. A fent említett jótállás kizárása és felelősség korlátozása oly módon értelmezendő, hogy amennyiben lehetséges, a lehető legjobban megközelítse az abszolút kizárást és minden felelősség lemondását.
+  j. A Licencadó az a személy(ek) vagy szervezet(ek), akik ezen Nyilvános Licenc
+     keretében jogokat ruháznak Önre.
 
-### 6. szakasz – Időtartam és megszűnés
 
-a. Ez a Nyilvános Licenc a licencelt Szerzői Jogok és Hasonló Jogok időtartamára vonatkozik. Azonban, ha Ön nem tartja be ezt a Nyilvános Licencet, akkor az Ön jogai ezen Nyilvános Licenc alapján automatikusan megszűnnek.
+     eljárással történő anyag közszemlére bocsátását jelenti,
+     e Public License alatt.
 
-b. Ha az Ön joga az Engedélyezett Anyag használatára a 6(a) szakasz alapján megszűnt, az újra érvénybe lép:
+  k. Megosztás azt jelenti, hogy anyagot a nyilvánosság számára bármilyen módon vagy
+     folyamattal biztosítanak, amely engedélyt igényel a Licencelt Jogok alapján, például
+     mint a sokszorosítás, nyilvános bemutatás, nyilvános előadás, terjesztés,
+     közreadás, közlés vagy behozatal, valamint az anyag
+     közönség számára történő hozzáférhetővé tétele olyan módokon,
+     amelyek révén a közönség tagjai az anyagot egy önállóan
+     általuk kiválasztott helyről és időpontban érhetik el.
 
-1. automatikusan attól a naptól kezdve, amikor a jogsértés orvoslásra kerül, feltéve, hogy az orvoslás az Ön által a jogsértés felfedezésétől számított 30 napon belül megtörténik; vagy  
-2. a Licencadó kifejezett visszaállítása révén.
+  l. Sui Generis adatbázisjogok alatt azokat a jogokat értjük, amelyek nem szerzői jogok,
+     és az Európai Parlament és a Tanács 1996. március 11-i 96/9/EK irányelve alapján,
+     az adatbázisok jogi védelméről szóló, módosított és/vagy felváltott irányelv szerint jönnek létre,
+     valamint a világ bármely pontján egyéb lényegében egyenértékű jogokat.
 
-A félreértések elkerülése végett, ez a 6(b) szakasz nem érinti a Licencadó jogát arra, hogy jogorvoslatot keressen az Ön ezen Nyilvános Licenc megsértése miatt.
 
-c. A félreértések elkerülése végett, a Licencadó az Engedélyezett Anyagot külön feltételek vagy kikötések alapján is kínálhatja, vagy bármikor leállíthatja az Engedélyezett Anyag terjesztését; azonban ez nem szünteti meg ezt a Nyilvános Licencet.
+  m. Ön azt a természetes vagy jogi személyt jelenti, aki a jelen nyilvános licenc
+     alapján gyakorolja a Licencelt Jogokat. Az Ön-höz tartozó jelentéssel bír.
 
-d. Az 1., 5., 6., 7. és 8. szakaszok túlélnek ezen Nyilvános Licenc megszűnését.
 
-### 7. szakasz – Egyéb feltételek és kikötések
+2. szakasz -- Hatály.
 
-a. A Licencadó nem köteles betartani semmilyen további vagy eltérő feltételt vagy kikötést, amelyet Ön közöl, hacsak kifejezetten nem egyezett bele.
+  a. Licenc megadása.
 
-b. Az Engedélyezett Anyaggal kapcsolatos bármilyen megállapodás, megértés vagy egyezség, amelyet itt nem rögzítettek, különálló és független ezen Nyilvános Licenc feltételeitől és kikötéseitől.
+       1. Subject to the terms and conditions of this Public License,
+          the Licensor hereby grants You a worldwide, royalty-free,
+          non-sublicensable, non-exclusive, irrevocable license to
+          exercise the Licensed Rights in the Licensed Material to:
 
-### 8. szakasz – Értelmezés
+            a. reproduce and Share the Licensed Material, in whole or
+               in part; and
 
-a. A félreértések elkerülése végett, ez a Nyilvános Licenc nem csökkenti, korlátozza, szűkíti vagy szab feltételeket az Engedélyezett Anyag bármilyen olyan használatára, amely jogszerűen engedély nélkül is megvalósítható ezen Nyilvános Licenc alapján.
+            b. produce, reproduce, and Share Adapted Material.
 
-b. Amennyiben lehetséges, ha ezen Nyilvános Licenc bármely rendelkezése végrehajthatatlannak minősül, automatikusan átalakításra kerül a minimális mértékben, hogy végrehajtható legyen. Ha a rendelkezés nem alakítható át, az elválik ezen Nyilvános Licenctől anélkül, hogy a fennmaradó feltételek és kikötések végrehajthatóságát befolyásolná.
+       2. Exceptions and Limitations. For the avoidance of doubt, where
+          Exceptions and Limitations apply to Your use, this Public
+          License does not apply, and You do not need to comply with
+          its terms and conditions.
 
-c. Ezen Nyilvános Licenc egyetlen feltétele vagy kikötése sem mondható le, és egyetlen nem teljesítés sem tekinthető elfogadottnak, hacsak a Licencadó kifejezetten bele nem egyezett.
+       3. Term. The term of this Public License is specified in Section
+          6(a).
 
-d. Semmi ezen Nyilvános Licencben nem korlátozza vagy értelmezhető úgy, hogy korlátozza vagy lemondjon bármilyen kiváltságról és mentességről, amely a Licencadóra vagy Önre vonatkozik, beleértve bármely joghatóság vagy hatóság jogi eljárásait.
+       4. Media and formats; technical modifications allowed. The
+          Licensor authorizes You to exercise the Licensed Rights in
+          all media and formats whether now known or hereafter created,
+          and to make technical modifications necessary to do so. The
+          Licensor waives and/or agrees not to assert any right or
+          authority to forbid You from making technical modifications
+          necessary to exercise the Licensed Rights, including
+          technical modifications necessary to circumvent Effective
+          Technological Measures. For purposes of this Public License,
+          simply making modifications authorized by this Section 2(a)
+          (4) never produces Adapted Material.
 
----
+       5. Downstream recipients.
 
-A Creative Commons nem részese a nyilvános licenceinek. Ennek ellenére a Creative Commons dönthet úgy, hogy alkalmazza valamelyik nyilvános licencét az általa közzétett anyagra, és ezekben az esetekben "Licencadóként" tekintendő. A Creative Commons nyilvános licenceinek szövege a CC0 Nyilvános Domain Dedikáció keretében a nyilvános domainnek van szentelve. Kivéve azt a korlátozott célt, hogy jelezze, hogy az anyag megosztásra került egy Creative Commons nyilvános licenc alatt, vagy ahogy azt a Creative Commons irányelvei a creativecommons.org/policies oldalon engedélyezik, a Creative Commons nem engedélyezi a "Creative Commons" védjegy vagy bármely más védjegy vagy logó használatát előzetes írásos beleegyezése nélkül, beleértve, de nem kizárólagosan, a nyilvános licencek bármilyen jogosulatlan módosításával vagy bármely más megállapodással, megértéssel vagy egyezséggel kapcsolatban az engedélyezett anyag használatáról. A félreértések elkerülése végett, ez a bekezdés nem képezi részét a nyilvános licenceknek.
+            a. Offer from the Licensor -- Licensed Material. Every
+               recipient of the Licensed Material automatically
+               receives an offer from the Licensor to exercise the
+               Licensed Rights under the terms and conditions of this
+               Public License.
+
+            b. Additional offer from the Licensor -- Adapted Material.
+               Every recipient of Adapted Material from You
+               automatically receives an offer from the Licensor to
+               exercise the Licensed Rights in the Adapted Material
+               under the conditions of the Adapter's License You apply.
+
+            c. No downstream restrictions. You may not offer or impose
+               any additional or different terms or conditions on, or
+               apply any Effective Technological Measures to, the
+               Licensed Material if doing so restricts exercise of the
+               Licensed Rights by any recipient of the Licensed
+               Material.
+
+       6. No endorsement. Nothing in this Public License constitutes or
+          may be construed as permission to assert or imply that You
+          are, or that Your use of the Licensed Material is, connected
+          with, or sponsored, endorsed, or granted official status by,
+          the Licensor or others designated to receive attribution as
+          provided in Section 3(a)(1)(A)(i).
+
+  b. Egyéb jogok.
+
+       1. Moral rights, such as the right of integrity, are not
+          licensed under this Public License, nor are publicity,
+          privacy, and/or other similar personality rights; however, to
+          the extent possible, the Licensor waives and/or agrees not to
+          assert any such rights held by the Licensor to the limited
+          extent necessary to allow You to exercise the Licensed
+          Rights, but not otherwise.
+
+       2. Patent and trademark rights are not licensed under this
+          Public License.
+
+       3. To the extent possible, the Licensor waives any right to
+          collect royalties from You for the exercise of the Licensed
+          Rights, whether directly or through a collecting society
+          under any voluntary or waivable statutory or compulsory
+          licensing scheme. In all other cases the Licensor expressly
+          reserves any right to collect such royalties.
+
+
+3. szakasz -- Licencfeltételek.
+
+A Licencelt Jogok gyakorlása kifejezetten az alábbi feltételekhez kötött.
+
+
+
+
+       1. If You Share the Licensed Material (including in modified
+          form), You must:
+
+            a. retain the following if it is supplied by the Licensor
+               with the Licensed Material:
+
+                 i. identification of the creator(s) of the Licensed
+                    Material and any others designated to receive
+                    attribution, in any reasonable manner requested by
+                    the Licensor (including by pseudonym if
+                    designated);
+
+                ii. a copyright notice;
+
+               iii. a notice that refers to this Public License;
+
+                iv. a notice that refers to the disclaimer of
+                    warranties;
+
+                 v. a URI or hyperlink to the Licensed Material to the
+                    extent reasonably practicable;
+
+            b. indicate if You modified the Licensed Material and
+               retain an indication of any previous modifications; and
+
+            c. indicate the Licensed Material is licensed under this
+               Public License, and include the text of, or the URI or
+               hyperlink to, this Public License.
+
+       2. You may satisfy the conditions in Section 3(a)(1) in any
+          reasonable manner based on the medium, means, and context in
+          which You Share the Licensed Material. For example, it may be
+          reasonable to satisfy the conditions by providing a URI or
+          hyperlink to a resource that includes the required
+          information.
+
+       3. If requested by the Licensor, You must remove any of the
+          information required by Section 3(a)(1)(A) to the extent
+          reasonably practicable.
+
+  b. Azonos Módon Történő Megosztás.
+
+     In addition to the conditions in Section 3(a), if You Share
+     Adapted Material You produce, the following conditions also apply.
+
+       1. The Adapter's License You apply must be a Creative Commons
+          license with the same License Elements, this version or
+          later, or a BY-SA Compatible License.
+
+       2. You must include the text of, or the URI or hyperlink to, the
+          Adapter's License You apply. You may satisfy this condition
+          in any reasonable manner based on the medium, means, and
+          context in which You Share Adapted Material.
+
+       3. You may not offer or impose any additional or different terms
+          or conditions on, or apply any Effective Technological
+          Measures to, Adapted Material that restrict exercise of the
+          rights granted under the Adapter's License You apply.
+
+
+4. szakasz -- Sui Generis Adatbázisjogok.
+
+Amennyiben a Licencelt Jogok közé tartoznak a Sui Generis Adatbázisjogok, amelyek
+a Licencelt Anyag használatára vonatkoznak:
+
+  a. a félreértések elkerülése végett, a 2(a)(1) szakasz jogot ad Önnek arra,
+     hogy kinyerje, újrahasznosítsa, sokszorosítsa és megossza az adatbázis
+     tartalmának egészét vagy jelentős részét;
+
+  b. ha az adatbázis tartalmának egészét vagy jelentős részét egy olyan adatbázisba
+     foglalja, amelyben Önnek Sui Generis Adatbázisjoga van,
+     Jogok, majd az az adatbázis, amelyben Önnek Sui Generis adatbázis
+     jogai vannak (de nem annak egyedi tartalma), adaptált anyagnak minősül,
+
+     including for purposes of Section 3(b); and
+  c. Be kell tartania a 3(a) szakasz feltételeit, ha megosztja
+     az adatbázis tartalmának egészét vagy jelentős részét.
+
+A félreértések elkerülése végett ez a 4. szakasz kiegészíti, és nem
+helyettesíti az Ön kötelezettségeit ezen Nyilvános Licenc alá tartozó
+jogok esetén, ha a licencelt jogok magukban foglalják egyéb szerzői jogokat és
+
+
+5. szakasz -- Jótállások kizárása és felelősségkorlátozás.
+
+  a. HA A LICENCADÓ KÜLÖN NEM VÁLLAL EGYÉB KÖTELEZETTSÉGET, A LEHETŐSÉG
+     SZERINT A LICENCELT ANYAGOT „AHOGY VAN” ALAPELVEN BÍZOM BE, ÉS
+     NEM TESZ SEMMILYEN KIFEJEZETT VAGY VÉLELT GARANCIÁT A LICENCELT
+     ANYAGRA VONATKOZÓAN, AKÁR KIFEJEZETT, ÁLTALÁNOS, TÖRVÉNYI VAGY
+     EGYÉB FORMÁBAN. EZ TARTALMAZZA, DE NEM KORLÁTOZVA,
+     TISZTÁN TULAJDONSÁGI, FORGALOMBA HOZHATÓSÁGI, ADOTT CÉLRA VALÓ
+     ALKALMASSÁGI, JOGSÉRÜLÉS MENTES, REJTETT VAGY EGYÉB HIBÁK
+     HIÁNYÁT, PONTOSSÁGÁT, ILLETVE HIBÁK JELENLÉTÉT VAGY HIÁNYÁT, AKÁR
+     ISMERT VAGY FELDERÍTHETŐ. A JÓTÁLLÁSKIZÁRÁSOK TELJES VAGY
+     RÉSZLEGES TILALMA ESETÉN EZ A KIZÁRÁS ÖNRE NEM VONATKOZHAT.
+
+  b. AMENNYIBEN LEHET, A LICENCADÓ SEMMILYEN JOGI ALAPON (IDEÉRTVE, DE
+     NEM KORLÁTOZVA A GONDATLANSÁGOT) SEM LESZ FELELŐS ÖNNEK KÖZVETLEN,
+     KÜLÖNÖS, KÖZVETETT, MELLÉKES, KÖVETKEZMÉNYES, BÜNTETŐJELLEGŰ,
+     PÉLDASZERŰ VAGY EGYÉB VESZTESÉGEKÉRT, KÖLTSÉGEKÉRT, KIADÁSOKÉRT,
+     VAGY KÁROKÉRT, AMELYEK EZEN NYILVÁNOS LICENC VAGY A LICENCELT ANYAG
+     HASZNÁLATA KÖVETKEZTÉBEN MERÜLNEK FEL, AKÁR A LICENCADÓT EZEK
+     LEHETŐSÉGÉRŐL TÁJÉKOZTATTÁK, AKÁR NEM. HA A FELELŐSSÉG KORLÁTOZÁSA
+     TELJES VAGY RÉSZLEGES TILALMA ÁLL FENN, EZ A KORLÁTOZÁS ÖNRE NEM
+     VONATKOZHAT.
+
+  c. A fentiek szerinti jótálláskizárás és felelősségkorlátozás azt a célt
+     szolgálja, hogy a lehető legtágabb értelemben legyen értelmezve, ami a
+     gyakorlatban a lehető legteljesebb lemondást és felelősségfelmentést
+     jelenti.
+
+
+6. szakasz -- Időtartam és megszüntetés.
+
+  a. Ez a Nyilvános Licenc a licencelt szerzői jogok és hasonló jogok
+     fennálló időtartamára vonatkozik. Amennyiben azonban nem tartja be e
+     Nyilvános Licenc feltételeit, úgy az Ön jogai ezen Licenc alapján
+     automatikusan megszűnnek.
+
+  b. Amennyiben az Ön engedélye a licencelt anyag használatára a 6(a)
+     szakasz szerint megszűnt, akkor az újbóli engedélyezés:
+
+       1. automatically as of the date the violation is cured, provided
+          it is cured within 30 days of Your discovery of the
+          violation; or
+
+       2. upon express reinstatement by the Licensor.
+
+     For the avoidance of doubt, this Section 6(b) does not affect any
+     right the Licensor may have to seek remedies for Your violations
+     of this Public License.
+
+  c. A félreértések elkerülése érdekében a licencadó külön feltételek
+     mellett is kínálhatja a licencelt anyagot, vagy bármikor abbahagyhatja a
+     licencelt anyag terjesztését; ez azonban nem szünteti meg ezt a
+     Nyilvános Licencet.
+
+  d. Az 1., 5., 6., 7. és 8. szakaszok hatályban maradnak a Nyilvános
+     Licenc megszűnése után is.
+
+
+7. szakasz -- Egyéb feltételek.
+
+  a. A licencadó nem köteles elfogadni további vagy eltérő olyan
+     feltételeket vagy feltételeket, amelyeket Ön közöl, hacsak azt kifejezetten
+
+
+  b. Az itt nem szereplő megállapodások, megértések vagy megállapodások a
+     licencelt anyaggal kapcsolatban különállóak és függetlenek e Nyilvános
+
+
+8. szakasz -- Értelmezés.
+
+  a. A félreértések elkerülése végett ez a Nyilvános Licenc nem csökkenti,
+     nem korlátozza, nem szab feltételeket és nem ír elő ilyeneket a licencelt
+     anyag olyan használatára, amely jogszerűen megvalósítható az engedélye
+     nélkül ezen Nyilvános Licenc alapján.
+
+  b. Amennyiben az e Nyilvános Licenc bármely rendelkezése végrehajthatatlannak
+     minősül, azt automatikusan a minimálisan szükséges mértékben módosítani
+     kell, hogy végrehajtható legyen. Ha a rendelkezés nem módosítható, azt el kell
+     választani ettől a Nyilvános Licenctől anélkül, hogy az befolyásolná a
+     fennmaradó feltételek végrehajthatóságát.
+
+
+     feltétel be nem tartását sem hagyjuk jóvá, kivéve, ha azt a licencadó
+     kifejezetten elfogadja.
+
+
+     lemondana a licencadóra vagy Önre vonatkozó bármely kiváltságot és mentességet,
+     beleértve bármely joghatóság vagy hatóság jogi eljárásaival szembeni mentességeket.
+
+
+
+
+A Creative Commons nem fél az általa kiadott nyilvános
+
+általa közzétett anyagra alkalmaz egy nyilvános licencet, és ilyen esetekben őt
+tekintik „licencadónak.” A Creative Commons nyilvános licencek szövege a CC0 Nyilvános
+Domain Dedikáció alatt a közszemlére kerül. Kivéve azt a korlátozott célt, hogy
+jelezzék, hogy az anyagot Creative Commons nyilvános licenc alatt osztják meg, vagy amint azt a Creative Commons
+creativecommons.org/policies alatt közzétett szabályzatai megengedik, a Creative Commons nem engedélyezi
+a „Creative Commons” védjegy vagy bármely más védjegy vagy logó használatát a Creative Commons részéről előzetes írásbeli engedély nélkül,
+beleértve, de nem korlátozva, az általa kiadott bármely nyilvános licenc jogosulatlan módosításaival,
+vagy egyéb megállapodásokra vagy megállapodásokra a licencelt anyag használatával kapcsolatban. A félreértések elkerülésére, ez a bekezdés nem része a
+nyilvános licenceknek.
 
 A Creative Commons elérhető a creativecommons.org címen.
+korlátozás nélkül, bármilyen jogosulatlan módosítással kapcsolatban
+a nyilvános licenszei vagy bármely más megállapodás,
+megértés, vagy a licencelt anyag használatára vonatkozó szerződés esetén. A
+félreértések elkerülése végett, ez a bekezdés nem része a
+nyilvános licenceknek.
+
+A Creative Commons elérhető a creativecommons.org oldalon.
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az AI fordítási szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

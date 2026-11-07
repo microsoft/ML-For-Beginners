@@ -12,8 +12,8 @@
     "language_code": "en"
   },
   "1-Introduction/2-history-of-ML/README.md": {
-    "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2025-09-06T10:54:33+00:00",
+    "original_hash": "e6b5247d6b4dc821434070bdb58e8285",
+    "translation_date": "2026-11-06T16:19:33+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "en"
   },
@@ -24,8 +24,8 @@
     "language_code": "en"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
-    "translation_date": "2026-07-13T23:20:31+00:00",
+    "original_hash": "0c620ca2c6d2828e9a838ecec5f01265",
+    "translation_date": "2026-11-06T16:18:53+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "en"
   },
@@ -54,8 +54,8 @@
     "language_code": "en"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
-    "translation_date": "2026-07-13T23:17:54+00:00",
+    "original_hash": "1f4f6c95404d528041bcc36784771084",
+    "translation_date": "2026-11-06T16:18:00+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "en"
   },
@@ -282,8 +282,8 @@
     "language_code": "en"
   },
   "5-Clustering/README.md": {
-    "original_hash": "b28a3a4911584062772c537b653ebbc7",
-    "translation_date": "2025-09-06T10:49:54+00:00",
+    "original_hash": "c78940a1b03da1de13bd97527f9e6606",
+    "translation_date": "2026-11-06T16:17:05+00:00",
     "source_file": "5-Clustering/README.md",
     "language_code": "en"
   },
@@ -456,8 +456,8 @@
     "language_code": "en"
   },
   "7-TimeSeries/README.md": {
-    "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
-    "translation_date": "2025-09-06T10:48:01+00:00",
+    "original_hash": "722526664e764a2290e1def74afa5139",
+    "translation_date": "2026-11-06T16:16:51+00:00",
     "source_file": "7-TimeSeries/README.md",
     "language_code": "en"
   },
@@ -564,8 +564,8 @@
     "language_code": "en"
   },
   "README.md": {
-    "original_hash": "3e3a6c7e68e0afe7e2276ac046e4d7a0",
-    "translation_date": "2026-04-20T15:36:08+00:00",
+    "original_hash": "d7acca3aa7f0279c75a498e4fd086f15",
+    "translation_date": "2026-11-06T16:16:41+00:00",
     "source_file": "README.md",
     "language_code": "en"
   },
@@ -594,8 +594,8 @@
     "language_code": "en"
   },
   "for-teachers.md": {
-    "original_hash": "b37de02054fa6c0438ede6fabe1fdfb8",
-    "translation_date": "2025-09-06T10:44:11+00:00",
+    "original_hash": "4b5b4e11bf182a803261b55a19d3ee70",
+    "translation_date": "2026-11-06T16:15:02+00:00",
     "source_file": "for-teachers.md",
     "language_code": "en"
   },

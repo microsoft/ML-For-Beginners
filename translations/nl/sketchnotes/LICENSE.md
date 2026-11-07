@@ -2,374 +2,433 @@ Attribution-ShareAlike 4.0 Internationaal
 
 =======================================================================
 
-Creative Commons Corporation ("Creative Commons") is geen advocatenkantoor en biedt geen juridische diensten of juridisch advies. Het verspreiden van Creative Commons publieke licenties creëert geen advocaat-cliëntrelatie of andere relatie. Creative Commons stelt zijn licenties en gerelateerde informatie beschikbaar op een "as-is"-basis. Creative Commons geeft geen garanties met betrekking tot zijn licenties, enig materiaal dat onder de voorwaarden ervan is gelicentieerd, of enige gerelateerde informatie. Creative Commons wijst alle aansprakelijkheid voor schade als gevolg van het gebruik ervan af, voor zover mogelijk.
+Creative Commons Corporation ("Creative Commons") is geen advocatenkantoor en
+verleent geen juridische diensten of juridisch advies. Distributie van
+Creative Commons openbare licenties creëert geen advocaat-cliënt of
+andere relatie. Creative Commons stelt haar licenties en gerelateerde
+informatie beschikbaar op een "as-is" basis. Creative Commons geeft geen
+garanties met betrekking tot haar licenties, enig materiaal dat onder
+hun voorwaarden wordt gelicentieerd, of enige gerelateerde informatie.
+Creative Commons wijst alle aansprakelijkheid voor schade voortvloeiend uit
+het gebruik daarvan af voor zover mogelijk.
 
-Gebruik van Creative Commons Publieke Licenties
+Gebruik van Creative Commons Openbare Licenties
 
-Creative Commons publieke licenties bieden een standaard set van voorwaarden die makers en andere rechthebbenden kunnen gebruiken om originele werken en ander materiaal dat onderworpen is aan auteursrecht en bepaalde andere rechten, zoals hieronder gespecificeerd, te delen. De volgende overwegingen zijn uitsluitend bedoeld ter informatie, zijn niet uitputtend en maken geen deel uit van onze licenties.
+Creative Commons openbare licenties bieden een standaard set van voorwaarden die
+makers en andere rechthebbenden kunnen gebruiken om originele
+auteurswerken en ander materiaal dat onder copyright valt en bepaalde
+andere rechten zoals gespecificeerd in de onderstaande openbare licentie,
+te delen. De volgende overwegingen zijn enkel informatief, niet
+uitputtend, en maken geen deel uit van onze licenties.
 
-     Overwegingen voor licentiegevers: Onze publieke licenties zijn
-     bedoeld voor gebruik door degenen die bevoegd zijn om het publiek
-     toestemming te geven om materiaal te gebruiken op manieren die
-     anders beperkt zouden zijn door auteursrecht en bepaalde andere
-     rechten. Onze licenties zijn onherroepelijk. Licentiegevers
-     dienen de voorwaarden van de licentie die ze kiezen te lezen en
-     te begrijpen voordat ze deze toepassen. Licentiegevers dienen
-     ook alle benodigde rechten te verkrijgen voordat ze onze
-     licenties toepassen, zodat het publiek het materiaal kan hergebruiken
-     zoals verwacht. Licentiegevers dienen duidelijk aan te geven welk
-     materiaal niet onder de licentie valt. Dit omvat ander CC-
-     gelicenseerd materiaal, of materiaal dat wordt gebruikt onder een
-     uitzondering of beperking van het auteursrecht. Meer overwegingen
-     voor licentiegevers:
+     Considerations for licensors: Our public licenses are
+     intended for use by those authorized to give the public
+     permission to use material in ways otherwise restricted by
+     copyright and certain other rights. Our licenses are
+     irrevocable. Licensors should read and understand the terms
+     and conditions of the license they choose before applying it.
+     Licensors should also secure all rights necessary before
+     applying our licenses so that the public can reuse the
+     material as expected. Licensors should clearly mark any
+     material not subject to the license. This includes other CC-
+     licensed material, or material used under an exception or
+     limitation to copyright. More considerations for licensors:
 	wiki.creativecommons.org/Considerations_for_licensors
 
-     Overwegingen voor het publiek: Door gebruik te maken van een van
-     onze publieke licenties, verleent een licentiegever het publiek
-     toestemming om het gelicentieerde materiaal te gebruiken onder
-     gespecificeerde voorwaarden. Als de toestemming van de
-     licentiegever om welke reden dan ook niet nodig is—bijvoorbeeld
-     vanwege een toepasselijke uitzondering of beperking van het
-     auteursrecht—dan valt dat gebruik niet onder de licentie. Onze
-     licenties verlenen alleen toestemming onder auteursrecht en
-     bepaalde andere rechten die een licentiegever bevoegd is te
-     verlenen. Het gebruik van het gelicentieerde materiaal kan nog
-     steeds beperkt zijn om andere redenen, bijvoorbeeld omdat anderen
-     auteursrecht of andere rechten hebben op het materiaal. Een
-     licentiegever kan speciale verzoeken doen, zoals vragen dat alle
-     wijzigingen worden gemarkeerd of beschreven. Hoewel dit niet
-     vereist is door onze licenties, wordt u aangemoedigd om dergelijke
-     verzoeken te respecteren waar redelijk. Meer overwegingen voor
-     het publiek:
+     Considerations for the public: By using one of our public
+     licenses, a licensor grants the public permission to use the
+     licensed material under specified terms and conditions. If
+     the licensor's permission is not necessary for any reason--for
+     example, because of any applicable exception or limitation to
+     copyright--then that use is not regulated by the license. Our
+     licenses grant only permissions under copyright and certain
+     other rights that a licensor has authority to grant. Use of
+     the licensed material may still be restricted for other
+     reasons, including because others have copyright or other
+     rights in the material. A licensor may make special requests,
+     such as asking that all changes be marked or described.
+     Although not required by our licenses, you are encouraged to
+     respect those requests where reasonable. More_considerations
+     for the public:
 	wiki.creativecommons.org/Considerations_for_licensees
 
 =======================================================================
 
-Creative Commons Attribution-ShareAlike 4.0 Internationaal Publieke
+Creative Commons Attribution-ShareAlike 4.0 Internationale Openbare
 Licentie
 
-Door gebruik te maken van de Gelicentieerde Rechten (hieronder
-gedefinieerd), accepteert en stemt u in met de voorwaarden van deze
-Creative Commons Attribution-ShareAlike 4.0 Internationaal Publieke
-Licentie ("Publieke Licentie"). Voor zover deze Publieke Licentie kan
-worden geïnterpreteerd als een contract, worden de Gelicentieerde
-Rechten aan u verleend in overweging van uw acceptatie van deze
-voorwaarden, en verleent de Licentiegever u dergelijke rechten in
-overweging van de voordelen die de Licentiegever ontvangt door het
-beschikbaar stellen van het Gelicentieerde Materiaal onder deze
+Door de Gelicentieerde Rechten uit te oefenen (hieronder gedefinieerd), accepteert en stemt u
+in met de voorwaarden van deze Creative Commons
+Attribution-ShareAlike 4.0 Internationale Openbare Licentie ("Openbare
+Licentie"). Voor zover deze Openbare Licentie als een contract kan worden
+geïnterpreteerd, krijgt u de Gelicentieerde Rechten in ruil voor uw
+acceptatie van deze voorwaarden, en verleent de Licentiegever u
+dergelijke rechten in ruil voor de voordelen die de Licentiegever ontvangt
+door het beschikbaar stellen van het Gelicentieerde Materiaal onder deze
 voorwaarden.
 
 
 Sectie 1 -- Definities.
 
-  a. Aangepast Materiaal betekent materiaal dat onderworpen is aan
-     Auteursrecht en Vergelijkbare Rechten en dat is afgeleid van of
-     gebaseerd op het Gelicentieerde Materiaal en waarin het
-     Gelicentieerde Materiaal is vertaald, gewijzigd, gerangschikt,
-     getransformeerd of anderszins aangepast op een manier die
-     toestemming vereist onder het Auteursrecht en Vergelijkbare
-     Rechten die worden gehouden door de Licentiegever. Voor de
-     doeleinden van deze Publieke Licentie, waar het Gelicentieerde
-     Materiaal een muzikaal werk, uitvoering of geluidsopname is, wordt
-     Aangepast Materiaal altijd geproduceerd wanneer het Gelicentieerde
-     Materiaal wordt gesynchroniseerd in een getimede relatie met een
-     bewegend beeld.
+  a. Aangepast Materiaal betekent materiaal onderhevig aan Copyright en
+     Soortgelijke Rechten dat is afgeleid van of gebaseerd op het Gelicentieerde
+     Materiaal en waarin het Gelicentieerde Materiaal is vertaald, gewijzigd,
+     herschikt, getransformeerd of anderszins aangepast op een wijze die
+     toestemming vereist onder het Copyright en de Soortgelijke Rechten die de
+     Licentiegever bezit. Voor de doeleinden van deze Openbare Licentie,
+     wanneer het Gelicentieerde Materiaal een muzikaal werk, uitvoering, of
+     geluidsopname is, wordt Aangepast Materiaal altijd geproduceerd wanneer
+     het Gelicentieerde Materiaal gesynchroniseerd wordt in getimede relatie met een bewegend beeld.
 
-  b. Licentie van de Adapter betekent de licentie die u toepast op uw
-     Auteursrecht en Vergelijkbare Rechten in uw bijdragen aan
-     Aangepast Materiaal in overeenstemming met de voorwaarden van deze
-     Publieke Licentie.
+  b. Licentie van Aanpasser betekent de licentie die u toepast op uw Copyright
+     en Soortgelijke Rechten in uw bijdragen aan Aangepast Materiaal in
+     overeenstemming met de voorwaarden van deze Openbare Licentie.
 
-  c. BY-SA Compatibele Licentie betekent een licentie die wordt vermeld
-     op creativecommons.org/compatiblelicenses, goedgekeurd door
-     Creative Commons als wezenlijk gelijkwaardig aan deze Publieke
-     Licentie.
+  c. BY-SA Compatibele Licentie betekent een licentie vermeld op
+     creativecommons.org/compatiblelicenses, goedgekeurd door Creative
+     Commons als in wezen gelijkwaardig aan deze Openbare Licentie.
 
-  d. Auteursrecht en Vergelijkbare Rechten betekent auteursrecht en/of
-     vergelijkbare rechten die nauw verwant zijn aan auteursrecht,
-     inclusief, maar niet beperkt tot, uitvoering, uitzending,
-     geluidsopname en Sui Generis Databankrechten, ongeacht hoe de
-     rechten worden aangeduid of gecategoriseerd. Voor de doeleinden
-     van deze Publieke Licentie zijn de rechten gespecificeerd in
-     Sectie 2(b)(1)-(2) geen Auteursrecht en Vergelijkbare Rechten.
+  d. Copyright en Soortgelijke Rechten betekent copyright en/of soortgelijke rechten
+     nauw verwant aan copyright inclusief, zonder beperking,
+     uitvoering, uitzending, geluidsopname, en Soortgelijke Database
+     Rechten, ongeacht hoe de rechten worden benoemd of
+     gecategoriseerd. Voor de doeleinden van deze Openbare Licentie vallen de rechten
+     gespecificeerd in Sectie 2(b)(1)-(2) niet onder Copyright en Soortgelijke
+     Rechten.
 
-  e. Effectieve Technologische Maatregelen betekent die maatregelen
-     die, bij afwezigheid van de juiste autoriteit, niet mogen worden
-     omzeild onder wetten die verplichtingen vervullen onder Artikel 11
-     van het WIPO Copyright Verdrag aangenomen op 20 december 1996,
-     en/of soortgelijke internationale overeenkomsten.
+  e. Effectieve Technologische Maatregelen zijn die maatregelen die, in afwezigheid
+     van de juiste autoriteit, niet omzeild mogen worden onder wetten die
+     verplichtingen vervullen onder Artikel 11 van het WIPO Copyright
+     Verdrag aangenomen op 20 december 1996, en/of soortgelijke internationale
+     overeenkomsten.
 
-  f. Uitzonderingen en Beperkingen betekent fair use, fair dealing,
-     en/of enige andere uitzondering of beperking op Auteursrecht en
-     Vergelijkbare Rechten die van toepassing is op uw gebruik van het
-     Gelicentieerde Materiaal.
+  f. Uitzonderingen en Beperkingen betekent fair use, fair dealing, en/of
+     enige andere uitzondering of beperking op Copyright en Soortgelijke Rechten
+     die van toepassing is op uw gebruik van het Gelicentieerde Materiaal.
 
-  g. Licentie-elementen betekent de licentie-attributen die worden
-     vermeld in de naam van een Creative Commons Publieke Licentie. De
-     Licentie-elementen van deze Publieke Licentie zijn Naamsvermelding
-     en GelijkDelen.
+  g. Licentie-elementen betekent de licentie-attributen vermeld in de naam
+     van een Creative Commons Openbare Licentie. De Licentie-elementen van deze
+     Openbare Licentie zijn Attribution en ShareAlike.
 
-  h. Gelicentieerd Materiaal betekent het artistieke of literaire werk,
-     de databank of ander materiaal waarop de Licentiegever deze
-     Publieke Licentie heeft toegepast.
+  h. Gelicentieerd Materiaal betekent het artistieke of literaire werk, database,
+     of ander materiaal waarop de Licentiegever deze Openbare
+     Licentie heeft toegepast.
 
-  i. Gelicentieerde Rechten betekent de rechten die aan u worden
-     verleend onder de voorwaarden van deze Publieke Licentie, die
-     beperkt zijn tot alle Auteursrecht en Vergelijkbare Rechten die
-     van toepassing zijn op uw gebruik van het Gelicentieerde Materiaal
-     en die de Licentiegever bevoegd is te licentiëren.
+  i. Gelicentieerde Rechten betekent de rechten die u worden verleend onder
+     de voorwaarden van deze Openbare Licentie, welke beperkt zijn tot
+     alle Copyright en Soortgelijke Rechten die van toepassing zijn op uw gebruik van het
+     Gelicentieerd Materiaal en die de Licentiegever het recht heeft te licentiëren.
 
-  j. Licentiegever betekent de persoon of entiteit die rechten verleent
-     onder deze Publieke Licentie.
+  j. Licentiegever betekent de individuen of entiteiten die rechten verlenen
+     onder deze Openbare Licentie.
 
-  k. Delen betekent materiaal beschikbaar stellen aan het publiek door
-     middel van enige methode of proces dat toestemming vereist onder
-     de Gelicentieerde Rechten, zoals reproductie, openbare vertoning,
-     openbare uitvoering, distributie, verspreiding, communicatie of
-     import, en materiaal beschikbaar stellen aan het publiek,
-     inclusief op manieren waarop leden van het publiek toegang kunnen
-     krijgen tot het materiaal vanaf een plaats en op een tijdstip dat
-     individueel door hen is gekozen.
+  k. Delen betekent materiaal beschikbaar stellen aan het publiek via elke methode of
+     procedure die toestemming vereist onder de Gelicentieerde Rechten, zoals
+     reproductie, publieke vertoning, publieke uitvoering, distributie,
+     verspreiding, communicatie of invoer, en om het materiaal beschikbaar te maken
+     voor het publiek op manieren waarop leden van het
+     publiek toegang kunnen krijgen tot het materiaal vanaf een locatie en op een tijd
+     die zij individueel kiezen.
 
-  l. Sui Generis Databankrechten betekent rechten anders dan
-     auteursrecht die voortvloeien uit Richtlijn 96/9/EG van het
-     Europees Parlement en de Raad van 11 maart 1996 betreffende de
-     juridische bescherming van databanken, zoals gewijzigd en/of
-     opgevolgd, evenals andere wezenlijk gelijkwaardige rechten
-     wereldwijd.
+  l. Soortgelijke Database-rechten betekent rechten anders dan copyright
+     voortvloeiend uit Richtlijn 96/9/EG van het Europees Parlement en de
+     Raad van 11 maart 1996 betreffende de rechtsbescherming van databases,
+     zoals gewijzigd en/of opgevolgd, evenals andere wezenlijk equivalente rechten
+     overal ter wereld.
 
-  m. U betekent de persoon of entiteit die de Gelicentieerde Rechten
-     uitoefent onder deze Publieke Licentie. Uw heeft een
-     overeenkomstige betekenis.
+  m. U betekent de individuele of entiteit die de Gelicentieerde Rechten
+     onder deze Openbare Licentie uitoefent. Uw heeft een overeenkomstige betekenis.
 
 
 Sectie 2 -- Reikwijdte.
 
   a. Licentieverlening.
 
-       1. Onder voorbehoud van de voorwaarden van deze Publieke
-          Licentie, verleent de Licentiegever u hierbij een wereldwijde,
-          royaltyvrije, niet-sublicentieerbare, niet-exclusieve,
-          onherroepelijke licentie om de Gelicentieerde Rechten in het
-          Gelicentieerde Materiaal uit te oefenen om:
+       1. Subject to the terms and conditions of this Public License,
+          the Licensor hereby grants You a worldwide, royalty-free,
+          non-sublicensable, non-exclusive, irrevocable license to
+          exercise the Licensed Rights in the Licensed Material to:
 
-            a. het Gelicentieerde Materiaal, geheel of gedeeltelijk, te
-               reproduceren en te Delen; en
+            a. reproduce and Share the Licensed Material, in whole or
+               in part; and
 
-            b. Aangepast Materiaal te produceren, reproduceren en te
-               Delen.
+            b. produce, reproduce, and Share Adapted Material.
 
-       2. Uitzonderingen en Beperkingen. Voor alle duidelijkheid, waar
-          Uitzonderingen en Beperkingen van toepassing zijn op uw
-          gebruik, is deze Publieke Licentie niet van toepassing, en
-          hoeft u niet te voldoen aan de voorwaarden ervan.
+       2. Exceptions and Limitations. For the avoidance of doubt, where
+          Exceptions and Limitations apply to Your use, this Public
+          License does not apply, and You do not need to comply with
+          its terms and conditions.
 
-       3. Termijn. De termijn van deze Publieke Licentie is gespecificeerd
-          in Sectie 6(a).
+       3. Term. The term of this Public License is specified in Section
+          6(a).
 
-       4. Media en formaten; technische wijzigingen toegestaan. De
-          Licentiegever machtigt u om de Gelicentieerde Rechten uit te
-          oefenen in alle media en formaten, of deze nu bekend zijn of
-          hierna worden gecreëerd, en om technische wijzigingen te
-          maken die nodig zijn om dit te doen. De Licentiegever doet
-          afstand van en/of stemt ermee in geen rechten of bevoegdheden
-          te claimen om u te verbieden technische wijzigingen te maken
-          die nodig zijn om de Gelicentieerde Rechten uit te oefenen,
-          inclusief technische wijzigingen die nodig zijn om Effectieve
-          Technologische Maatregelen te omzeilen. Voor de doeleinden
-          van deze Publieke Licentie produceert het simpelweg maken van
-          wijzigingen die zijn toegestaan door deze Sectie 2(a)(4)
-          nooit Aangepast Materiaal.
+       4. Media and formats; technical modifications allowed. The
+          Licensor authorizes You to exercise the Licensed Rights in
+          all media and formats whether now known or hereafter created,
+          and to make technical modifications necessary to do so. The
+          Licensor waives and/or agrees not to assert any right or
+          authority to forbid You from making technical modifications
+          necessary to exercise the Licensed Rights, including
+          technical modifications necessary to circumvent Effective
+          Technological Measures. For purposes of this Public License,
+          simply making modifications authorized by this Section 2(a)
+          (4) never produces Adapted Material.
 
-       5. Ontvangers stroomafwaarts.
+       5. Downstream recipients.
 
-            a. Aanbod van de Licentiegever -- Gelicentieerd Materiaal.
-               Elke ontvanger van het Gelicentieerde Materiaal ontvangt
-               automatisch een aanbod van de Licentiegever om de
-               Gelicentieerde Rechten uit te oefenen onder de
-               voorwaarden van deze Publieke Licentie.
+            a. Offer from the Licensor -- Licensed Material. Every
+               recipient of the Licensed Material automatically
+               receives an offer from the Licensor to exercise the
+               Licensed Rights under the terms and conditions of this
+               Public License.
 
-            b. Extra aanbod van de Licentiegever -- Aangepast Materiaal.
-               Elke ontvanger van Aangepast Materiaal van u ontvangt
-               automatisch een aanbod van de Licentiegever om de
-               Gelicentieerde Rechten in het Aangepaste Materiaal uit
-               te oefenen onder de voorwaarden van de Licentie van de
-               Adapter die u toepast.
+            b. Additional offer from the Licensor -- Adapted Material.
+               Every recipient of Adapted Material from You
+               automatically receives an offer from the Licensor to
+               exercise the Licensed Rights in the Adapted Material
+               under the conditions of the Adapter's License You apply.
 
-            c. Geen beperkingen stroomafwaarts. U mag geen aanvullende
-               of afwijkende voorwaarden aanbieden of opleggen aan, of
-               Effectieve Technologische Maatregelen toepassen op, het
-               Gelicentieerde Materiaal als dit de uitoefening van de
-               Gelicentieerde Rechten door een ontvanger van het
-               Gelicentieerde Materiaal beperkt.
+            c. No downstream restrictions. You may not offer or impose
+               any additional or different terms or conditions on, or
+               apply any Effective Technological Measures to, the
+               Licensed Material if doing so restricts exercise of the
+               Licensed Rights by any recipient of the Licensed
+               Material.
 
-       6. Geen goedkeuring. Niets in deze Publieke Licentie vormt of
-          mag worden geïnterpreteerd als toestemming om te beweren of
-          te impliceren dat u, of dat uw gebruik van het Gelicentieerde
-          Materiaal, verbonden is met, gesponsord, goedgekeurd of
-          officieel erkend is door de Licentiegever of anderen die
-          zijn aangewezen om naamsvermelding te ontvangen zoals
-          voorzien in Sectie 3(a)(1)(A)(i).
+       6. No endorsement. Nothing in this Public License constitutes or
+          may be construed as permission to assert or imply that You
+          are, or that Your use of the Licensed Material is, connected
+          with, or sponsored, endorsed, or granted official status by,
+          the Licensor or others designated to receive attribution as
+          provided in Section 3(a)(1)(A)(i).
 
   b. Andere rechten.
 
-       1. Morele rechten, zoals het recht op integriteit, worden niet
-          gelicentieerd onder deze Publieke Licentie, noch zijn
-          publiciteits-, privacy- en/of andere vergelijkbare
-          persoonlijkheidsrechten; echter, voor zover mogelijk, doet
-          de Licentiegever afstand van en/of stemt ermee in geen
-          dergelijke rechten te claimen die worden gehouden door de
-          Licentiegever voor zover nodig om u in staat te stellen de
-          Gelicentieerde Rechten uit te oefenen, maar niet anderszins.
+       1. Moral rights, such as the right of integrity, are not
+          licensed under this Public License, nor are publicity,
+          privacy, and/or other similar personality rights; however, to
+          the extent possible, the Licensor waives and/or agrees not to
+          assert any such rights held by the Licensor to the limited
+          extent necessary to allow You to exercise the Licensed
+          Rights, but not otherwise.
 
-       2. Octrooi- en handelsmerkrechten worden niet gelicentieerd
-          onder deze Publieke Licentie.
+       2. Patent and trademark rights are not licensed under this
+          Public License.
 
-       3. Voor zover mogelijk doet de Licentiegever afstand van enig
-          recht om royalty's van u te innen voor de uitoefening van de
-          Gelicentieerde Rechten, hetzij rechtstreeks of via een
-          incassobureau onder een vrijwillig of afwijsbaar wettelijk of
-          verplicht licentiesysteem. In alle andere gevallen behoudt de
-          Licentiegever uitdrukkelijk het recht om dergelijke royalty's
-          te innen.
+       3. To the extent possible, the Licensor waives any right to
+          collect royalties from You for the exercise of the Licensed
+          Rights, whether directly or through a collecting society
+          under any voluntary or waivable statutory or compulsory
+          licensing scheme. In all other cases the Licensor expressly
+          reserves any right to collect such royalties.
 
 
 Sectie 3 -- Licentievoorwaarden.
 
-Uw uitoefening van de Gelicentieerde Rechten is uitdrukkelijk onderworpen
-aan de volgende voorwaarden.
+Uw uitoefening van de Gelicentieerde Rechten is uitdrukkelijk onderworpen aan de
+volgende voorwaarden.
 
   a. Naamsvermelding.
 
-       1. Als u het Gelicentieerde Materiaal deelt (inclusief in
-          gewijzigde vorm), moet u:
+       1. If You Share the Licensed Material (including in modified
+          form), You must:
 
-            a. het volgende behouden als het door de Licentiegever
-               wordt geleverd met het Gelicentieerde Materiaal:
+            a. retain the following if it is supplied by the Licensor
+               with the Licensed Material:
 
-                 i. identificatie van de maker(s) van het Gelicentieerde
-                    Materiaal en alle anderen die zijn aangewezen om
-                    naamsvermelding te ontvangen, op een redelijke
-                    manier zoals gevraagd door de Licentiegever
-                    (inclusief onder pseudoniem indien aangewezen);
+                 i. identification of the creator(s) of the Licensed
+                    Material and any others designated to receive
+                    attribution, in any reasonable manner requested by
+                    the Licensor (including by pseudonym if
+                    designated);
 
-                ii. een auteursrechtverklaring;
+                ii. a copyright notice;
 
-               iii. een verklaring die verwijst naar deze Publieke
-                    Licentie;
+               iii. a notice that refers to this Public License;
 
-                iv. een verklaring die verwijst naar de disclaimer van
-                    garanties;
+                iv. a notice that refers to the disclaimer of
+                    warranties;
 
-                 v. een URI of hyperlink naar het Gelicentieerde
-                    Materiaal voor zover redelijk uitvoerbaar;
+                 v. a URI or hyperlink to the Licensed Material to the
+                    extent reasonably practicable;
 
-            b. aangeven of u het Gelicentieerde Materiaal hebt
-               gewijzigd en een aanduiding behouden van eerdere
-               wijzigingen; en
+            b. indicate if You modified the Licensed Material and
+               retain an indication of any previous modifications; and
 
-            c. aangeven dat het Gelicentieerde Materiaal is gelicentieerd
-               onder deze Publieke Licentie, en de tekst van, of de URI
-               of hyperlink naar, deze Publieke Licentie opnemen.
+            c. indicate the Licensed Material is licensed under this
+               Public License, and include the text of, or the URI or
+               hyperlink to, this Public License.
 
-       2. U kunt voldoen aan de voorwaarden in Sectie 3(a)(1) op
-          redelijke wijze gebaseerd op het medium, de middelen en de
-          context waarin u het Gelicentieerde Materiaal deelt. Bijvoorbeeld,
-          het kan redelijk zijn om aan de voorwaarden te voldoen door
-          een URI of hyperlink te verstrekken naar een bron die de
-          vereiste informatie bevat.
+       2. You may satisfy the conditions in Section 3(a)(1) in any
+          reasonable manner based on the medium, means, and context in
+          which You Share the Licensed Material. For example, it may be
+          reasonable to satisfy the conditions by providing a URI or
+          hyperlink to a resource that includes the required
+          information.
 
-       3. Als de Licentiegever daarom vraagt, moet u alle informatie
-          die vereist is door Sectie 3(a)(1)(A) verwijderen voor zover
-          redelijk uitvoerbaar.
+       3. If requested by the Licensor, You must remove any of the
+          information required by Section 3(a)(1)(A) to the extent
+          reasonably practicable.
 
-  b. GelijkDelen.
+  b. ShareAlike.
 
-     Naast de voorwaarden in Sectie 3(a), als u Aangepast Materiaal
-     deelt dat u produceert, zijn de volgende voorwaarden ook van
-     toepassing.
+     In addition to the conditions in Section 3(a), if You Share
+     Adapted Material You produce, the following conditions also apply.
 
-       1. De Licentie van de Adapter die u toepast moet een Creative
-          Commons-licentie zijn met dezelfde Licentie-elementen, deze
-          versie of later, of een BY-SA Compatibele Licentie.
+       1. The Adapter's License You apply must be a Creative Commons
+          license with the same License Elements, this version or
+          later, or a BY-SA Compatible License.
 
-       2. U moet de tekst van, of de URI of hyperlink naar, de Licentie
-          van de Adapter die u toepast opnemen. U kunt aan deze
-          voorwaarde voldoen op redelijke wijze gebaseerd op het
-          medium, de middelen en de context waarin u Aangepast Materiaal
-          deelt.
+       2. You must include the text of, or the URI or hyperlink to, the
+          Adapter's License You apply. You may satisfy this condition
+          in any reasonable manner based on the medium, means, and
+          context in which You Share Adapted Material.
 
-       3. U mag geen aanvullende of afwijkende voorwaarden aanbieden of
-          opleggen aan, of Effectieve Technologische Maatregelen
-          toepassen op, Aangepast Materiaal die de uitoefening van de
-          rechten verleend onder de Licentie van de Adapter die u
-          toepast beperken.
+       3. You may not offer or impose any additional or different terms
+          or conditions on, or apply any Effective Technological
+          Measures to, Adapted Material that restrict exercise of the
+          rights granted under the Adapter's License You apply.
 
 
-Sectie 4 -- Sui Generis Databankrechten.
+Sectie 4 -- Sui Generis Databaserechten.
 
-Waar de Gelicentieerde Rechten Sui Generis Databankrechten omvatten die
+Waar de Gelicentieerde Rechten Sui Generis Databaserechten omvatten die
 van toepassing zijn op uw gebruik van het Gelicentieerde Materiaal:
 
-  a. voor alle duidelijkheid, Sectie 2(a)(1) verleent u het recht om
-     alle of een substantieel deel van de inhoud van de databank te
-     extraheren, hergebruiken, reproduceren en te delen;
+  a. ter voorkoming van twijfel, verleent Sectie 2(a)(1) u het recht
+     om alle of een substantieel deel van de inhoud van de database
+     te extraheren, hergebruiken, reproduceren en delen;
 
-  b. als u alle of een substantieel deel van de inhoud van de databank
-     opneemt in een databank waarin u Sui Generis Databank...
-Rechten, vervolgens de database waarin u Sui Generis Database Rights heeft (maar niet de individuele inhoud ervan) is Aangepast Materiaal,
+  b. als u alle of een substantieel deel van de inhoud van de database opneemt
+     in een database waarvan u Sui Generis Databaserechten heeft,
+     dan is de database waarin u Sui Generis Databaserechten heeft (maar niet
+     de individuele inhoud ervan) Aangepast Materiaal,
 
-inclusief voor doeleinden van Sectie 3(b); en  
-c. U moet voldoen aan de voorwaarden in Sectie 3(a) als u alle of een substantieel deel van de inhoud van de database deelt.
+     including for purposes of Section 3(b); and
+  c. U moet voldoen aan de voorwaarden in Sectie 3(a) als u alle of een substantieel deel van de inhoud van de database deelt.
 
-Ter verduidelijking, deze Sectie 4 vult uw verplichtingen onder deze Publieke Licentie aan en vervangt deze niet, waar de Gelicentieerde Rechten andere Auteursrechten en Vergelijkbare Rechten omvatten.
 
-### Sectie 5 -- Uitsluiting van garanties en beperking van aansprakelijkheid.
+Publieke Licentie aan en vervangt deze niet wanneer de Gelicentieerde
+Rechten andere auteursrechten en soortgelijke rechten omvatten.
 
-a. TENZIJ ANDERSZINS APART ONDERNOMEN DOOR DE LICENTIEGEVER, VOOR ZOVER MOGELIJK, BIEDT DE LICENTIEGEVER HET GELICENTIEERDE MATERIAAL AAN ZOALS HET IS EN ZOALS BESCHIKBAAR, EN GEEFT GEEN VERKLARINGEN OF GARANTIES VAN ENIGERLEI AARD MET BETREKKING TOT HET GELICENTIEERDE MATERIAAL, OF DIT NU UITDRUKKELIJK, IMPLICIET, WETTELIJK OF ANDERSZINS IS. DIT OMVAT, ZONDER BEPERKING, GARANTIES VAN EIGENDOM, VERHANDELBAARHEID, GESCHIKTHEID VOOR EEN BEPAALD DOEL, NIET-INBREUKMAKENDHEID, AFWEZIGHEID VAN VERBORGEN OF ANDERE GEBREKEN, NAUWKEURIGHEID, OF DE AANWEZIGHEID OF AFWEZIGHEID VAN FOUTEN, OF ZE NU BEKEND OF ONTDEKBAAR ZIJN. WAAR UITSLUITINGEN VAN GARANTIES NIET VOLLEDIG OF GEDEELTELIJK TOEGESTAAN ZIJN, KAN DEZE UITSLUITING NIET OP U VAN TOEPASSING ZIJN.
 
-b. VOOR ZOVER MOGELIJK, ZAL DE LICENTIEGEVER IN GEEN GEVAL AANSPRAKELIJK ZIJN TEGENOVER U OP ENIGE JURIDISCHE GRONDSLAG (INCLUSIEF, ZONDER BEPERKING, NALATIGHEID) OF ANDERSZINS VOOR ENIGE DIRECTE, SPECIALE, INDIRECTE, INCIDENTELE, GEVOLGSCHADE, STRAFRECHTELIJKE, EXEMPLAIRE OF ANDERE VERLIEZEN, KOSTEN, UITGAVEN OF SCHADE DIE VOORTVLOEIT UIT DEZE PUBLIEKE LICENTIE OF HET GEBRUIK VAN HET GELICENTIEERDE MATERIAAL, ZELFS ALS DE LICENTIEGEVER OP DE HOOGTE IS GEBRACHT VAN DE MOGELIJKHEID VAN DERGELIJKE VERLIEZEN, KOSTEN, UITGAVEN OF SCHADE. WAAR EEN BEPERKING VAN AANSPRAKELIJKHEID NIET VOLLEDIG OF GEDEELTELIJK TOEGESTAAN IS, KAN DEZE BEPERKING NIET OP U VAN TOEPASSING ZIJN.
 
-c. De uitsluiting van garanties en beperking van aansprakelijkheid zoals hierboven vermeld, moet worden geïnterpreteerd op een manier die, voor zover mogelijk, het dichtst in de buurt komt van een absolute uitsluiting en afstand van alle aansprakelijkheid.
 
-### Sectie 6 -- Termijn en beëindiging.
 
-a. Deze Publieke Licentie is van toepassing gedurende de termijn van het Auteursrecht en Vergelijkbare Rechten die hier zijn gelicentieerd. Echter, als u niet voldoet aan deze Publieke Licentie, dan worden uw rechten onder deze Publieke Licentie automatisch beëindigd.
+     VOOR ZOVER MOGELIJK, BIEDT DE LICENTIEVERLENER HET GELICENTIEERDE MATERIAAL
+     AAN ZOALS HET IS EN ZOALS BESCHIKBAAR, EN DOET GEEN ENKELE UITSPRAAK OF
+     GARANTIE MET BETREKKING TOT HET GELICENTIEERDE MATERIAAL, HETZIJ UITDRUKKELIJK,
+     IMPLICIET, WETTELIJK OF ANDERS. DIT INCLUSIEF, ZONDER BEPERKING, GARANTIES
+     VAN EIGENDOMSRECHT, VERHANDELBAARHEID, GESCHIKTHEID VOOR EEN BEPAALD
+     DOEL, NIET-INBREUK, AFWEZIGHEID VAN VERBORGEN OF ANDERE GEBREKEN,
+     JUISTHEID OF DE AANWEZIGHEID OF AFWEZIGHEID VAN FOUTEN, HETZIJ BEKEND OF
+     ONTDEKBAAR. WAAR VRIJWARINGEN VAN GARANTIES NIET VOLLEDIG OF GEDEELTELIJK
+     TOEGESTAAN ZIJN, IS DEZE VRIJWARING MISSCHIEN NIET OP U VAN TOEPASSING.
 
-b. Waar uw recht om het Gelicentieerde Materiaal te gebruiken is beëindigd onder Sectie 6(a), wordt het hersteld:
 
-1. automatisch vanaf de datum waarop de overtreding is hersteld, mits dit binnen 30 dagen na uw ontdekking van de overtreding gebeurt; of  
-2. na uitdrukkelijke herstelling door de Licentiegever.
+     TEGENOVER U OP WELKE JURIDISCHE GROND DAN OOK (INCLUSIEF, ZONDER BEPERKING,
+     WANBEHEER) OF ANDERSZINS, VOOR ENIGE RECHTSTREEKSE, SPECIALE, INDIRECTE,
+     INCIDENTELE, GEVOLGSCHADE, STRAFBEPALING, EXEMPLARISCHE OF ANDERE VERLIEZEN,
+     KOSTEN, UITGAVEN OF SCHADE DIE VOORTVLOEIEN UIT DEZE PUBLIEKE LICENTIE OF
+     HET GEBRUIK VAN HET GELICENTIEERDE MATERIAAL, ZELFS INDIEN DE LICENTIEVERLENER
+     GEWAARSCHUWD IS VAN DE MOGELIJKHEID VAN DERGELIJKE VERLIEZEN, KOSTEN,
+     UITGAVEN OF SCHADE. WAAR EEN BEPERKING VAN AANSPRAKELIJKHEID NIET VOLLEDIG
+     OF GEDEELTELIJK TOEGESTAAN IS, IS DEZE BEPERKING MISSCHIEN NIET OP U VAN
+     TOEPASSING.
 
-Ter verduidelijking, deze Sectie 6(b) heeft geen invloed op enig recht dat de Licentiegever kan hebben om rechtsmiddelen te zoeken voor uw overtredingen van deze Publieke Licentie.
+  c. De vrijwaring van garanties en beperking van aansprakelijkheid zoals hierboven
+     aangegeven, zullen worden geïnterpreteerd op een wijze die, voor zover
+     mogelijk, het dichtst in de buurt komt van een absolute vrijwaring en
+     afstand van alle aansprakelijkheid.
 
-c. Ter verduidelijking, de Licentiegever kan ook het Gelicentieerde Materiaal onder afzonderlijke voorwaarden aanbieden of op elk moment stoppen met het distribueren van het Gelicentieerde Materiaal; echter, dit zal deze Publieke Licentie niet beëindigen.
 
-d. Secties 1, 5, 6, 7 en 8 blijven van kracht na beëindiging van deze Publieke Licentie.
+Sectie 6 -- Duur en Beëindiging.
 
-### Sectie 7 -- Andere voorwaarden.
+  a. Deze Publieke Licentie geldt voor de duur van de hier gelicentieerde
+     Auteursrechten en Soortgelijke Rechten. Als u echter niet voldoet aan deze
+     Publieke Licentie, eindigen uw rechten onder deze Publieke Licentie
+     automatisch.
 
-a. De Licentiegever is niet gebonden aan aanvullende of afwijkende voorwaarden die door u worden gecommuniceerd, tenzij uitdrukkelijk overeengekomen.
+  b. Waar uw recht op het gebruik van het Gelicentieerde Materiaal is beëindigd
+     op grond van Sectie 6(a), wordt dit hersteld:
 
-b. Alle regelingen, overeenkomsten of afspraken met betrekking tot het Gelicentieerde Materiaal die hier niet zijn vermeld, zijn afzonderlijk en onafhankelijk van de voorwaarden van deze Publieke Licentie.
+       1. automatically as of the date the violation is cured, provided
+          it is cured within 30 days of Your discovery of the
+          violation; or
 
-### Sectie 8 -- Interpretatie.
+       2. upon express reinstatement by the Licensor.
 
-a. Ter verduidelijking, deze Publieke Licentie vermindert, beperkt, beperkt of legt geen voorwaarden op aan enig gebruik van het Gelicentieerde Materiaal dat wettelijk kan worden gemaakt zonder toestemming onder deze Publieke Licentie.
+     For the avoidance of doubt, this Section 6(b) does not affect any
+     right the Licensor may have to seek remedies for Your violations
+     of this Public License.
 
-b. Voor zover mogelijk, als een bepaling van deze Publieke Licentie niet afdwingbaar wordt geacht, wordt deze automatisch aangepast tot het minimum dat nodig is om deze afdwingbaar te maken. Als de bepaling niet kan worden aangepast, wordt deze gescheiden van deze Publieke Licentie zonder de afdwingbaarheid van de resterende voorwaarden te beïnvloeden.
+  c. Ter voorkoming van twijfel kan de Licentiegever het Gelicentieerde Materiaal
+     ook onder afzonderlijke voorwaarden aanbieden of op elk moment
+     stoppen met het distribueren van het Gelicentieerde Materiaal; het doen van
+     dit zal deze Publieke Licentie echter niet beëindigen.
 
-c. Geen enkele bepaling van deze Publieke Licentie wordt opgeheven en geen enkele niet-naleving wordt geaccepteerd, tenzij uitdrukkelijk overeengekomen door de Licentiegever.
+  d. Secties 1, 5, 6, 7, en 8 blijven van kracht na beëindiging van deze Publieke
+     Licentie.
 
-d. Niets in deze Publieke Licentie vormt of kan worden geïnterpreteerd als een beperking of afstand van enige privileges en immuniteiten die van toepassing zijn op de Licentiegever of u, inclusief die voortvloeien uit de juridische processen van enige jurisdictie of autoriteit.
+
+Sectie 7 -- Overige Voorwaarden en Bepalingen.
+
+  a. De Licentiegever is niet gebonden aan aanvullende of afwijkende voorwaarden
+     die door u worden gecommuniceerd, tenzij uitdrukkelijk overeengekomen.
+
+  b. Eventuele regelingen, afspraken of overeenkomsten betreffende het Gelicentieerde
+     Materiaal die hier niet zijn vermeld, zijn afzonderlijk en
+     onafhankelijk van de voorwaarden van deze Publieke Licentie.
+
+
+Sectie 8 -- Interpretatie.
+
+  a. Ter voorkoming van twijfel, vermindert, beperkt, beperkt deze Publieke Licentie
+     niet en mag ze niet worden geïnterpreteerd als vermindering,
+     beperking, beperking of oplegging van voorwaarden op enig gebruik van het
+     Gelicentieerde Materiaal dat wettelijk zonder toestemming onder deze Publieke
+
+
+  b. Voor zover mogelijk, wordt indien een bepaling van deze Publieke Licentie niet
+     afdwingbaar wordt geacht, deze automatisch gewijzigd naar de minimale
+     noodzakelijke mate om deze afdwingbaar te maken. Indien de bepaling niet kan
+     worden gewijzigd, zal deze worden verwijderd uit deze Publieke Licentie zonder
+     de afdwingbaarheid van de resterende voorwaarden te beïnvloeden.
+
+  c. Geen enkele bepaling van deze Publieke Licentie wordt opgeheven en geen enkel falen
+     om te voldoen wordt geaccepteerd tenzij uitdrukkelijk overeengekomen door de
+     Licentiegever.
+
+  d. Niets in deze Publieke Licentie vormt of mag worden geïnterpreteerd als een
+     beperking van, of afstand van, enige voorrechten en immuniteiten die gelden voor de
+     Licentiegever of u, inclusief die afkomstig zijn van juridische procedures van
+     enige jurisdictie of autoriteit.
+
+
+=======================================================================
+
+Creative Commons is geen partij bij haar publieke
+licenties. Niettemin kan Creative Commons ervoor kiezen om een van haar publieke
+licenties toe te passen op materiaal dat zij publiceert en in die gevallen
+wordt zij beschouwd als de “Licentiegever.” De tekst van de Creative Commons
+publieke licenties is toegewijd aan het publieke domein onder de CC0 Public
+Domain Dedication. Behalve voor het beperkte doel om aan te geven dat
+materiaal wordt gedeeld onder een Creative Commons publieke licentie of zoals
+anders toegestaan door de Creative Commons beleidslijnen gepubliceerd op
+creativecommons.org/policies, geeft Creative Commons geen toestemming voor het
+gebruik van het handelsmerk "Creative Commons" of enig ander handelsmerk of logo
+van Creative Commons zonder haar voorafgaande schriftelijke toestemming, inclusief,
+maar niet beperkt tot, in verband met ongeautoriseerde wijzigingen
+aan een van haar publieke licenties of enige andere regelingen,
+afspraken of overeenkomsten betreffende het gebruik van gelicenseerd materiaal. Ter
+voorkoming van twijfel vormt deze alinea geen onderdeel van de
+publieke licenties.
+
+Creative Commons is te contacteren via creativecommons.org.
 
 ---
 
-Creative Commons is geen partij bij zijn publieke licenties. Desalniettemin kan Creative Commons ervoor kiezen om een van zijn publieke licenties toe te passen op materiaal dat het publiceert en in die gevallen wordt het beschouwd als de "Licentiegever." De tekst van de Creative Commons publieke licenties is toegewijd aan het publieke domein onder de CC0 Public Domain Dedication. Behalve voor het beperkte doel om aan te geven dat materiaal wordt gedeeld onder een Creative Commons publieke licentie of zoals anderszins toegestaan door de Creative Commons-beleidsregels gepubliceerd op creativecommons.org/policies, staat Creative Commons het gebruik van het handelsmerk "Creative Commons" of enig ander handelsmerk of logo van Creative Commons niet toe zonder voorafgaande schriftelijke toestemming, inclusief, zonder beperking, in verband met ongeautoriseerde wijzigingen aan een van zijn publieke licenties of andere regelingen, overeenkomsten of afspraken met betrekking tot het gebruik van gelicentieerd materiaal. Ter verduidelijking, deze paragraaf maakt geen deel uit van de publieke licenties.
-
-Creative Commons kan worden gecontacteerd via creativecommons.org.
-
----
-
-**Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in zijn oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+Dit document is vertaald met behulp van de AI vertaaldienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

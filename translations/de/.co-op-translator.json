@@ -12,8 +12,8 @@
     "language_code": "de"
   },
   "1-Introduction/2-history-of-ML/README.md": {
-    "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2025-09-04T22:00:31+00:00",
+    "original_hash": "e6b5247d6b4dc821434070bdb58e8285",
+    "translation_date": "2026-11-06T20:14:18+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "de"
   },
@@ -282,8 +282,8 @@
     "language_code": "de"
   },
   "5-Clustering/README.md": {
-    "original_hash": "b28a3a4911584062772c537b653ebbc7",
-    "translation_date": "2025-09-03T21:45:03+00:00",
+    "original_hash": "c78940a1b03da1de13bd97527f9e6606",
+    "translation_date": "2026-11-06T20:13:08+00:00",
     "source_file": "5-Clustering/README.md",
     "language_code": "de"
   },
@@ -564,8 +564,8 @@
     "language_code": "de"
   },
   "README.md": {
-    "original_hash": "8bba8faed876aa7bbc92b759a350b1d8",
-    "translation_date": "2026-09-14T23:50:08+00:00",
+    "original_hash": "d7acca3aa7f0279c75a498e4fd086f15",
+    "translation_date": "2026-11-06T20:07:29+00:00",
     "source_file": "README.md",
     "language_code": "de"
   },
@@ -588,37 +588,15 @@
     "language_code": "de"
   },
   "__translation_failures__": {
-    "sketchnotes/LICENSE.md": {
-      "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-      "source_file": "sketchnotes/LICENSE.md",
-      "language_code": "de",
-      "failure_date": "2026-09-14T23:53:08+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'LICENSE.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
-      "failure_policy_version": 1
-    },
-    "5-Clustering/README.md": {
-      "original_hash": "c78940a1b03da1de13bd97527f9e6606",
-      "source_file": "5-Clustering/README.md",
-      "language_code": "de",
-      "failure_date": "2026-09-14T23:53:27+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
-      "failure_policy_version": 1
-    },
     "7-TimeSeries/README.md": {
       "original_hash": "722526664e764a2290e1def74afa5139",
       "source_file": "7-TimeSeries/README.md",
       "language_code": "de",
-      "failure_date": "2026-09-14T23:53:44+00:00",
+      "failure_date": "2026-11-06T20:07:59+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.1",
+      "error_message": "Markdown translation remained incomplete for chunk 1.2 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.23.2",
       "failure_policy_version": 1
     }
   },
@@ -642,7 +620,7 @@
   },
   "sketchnotes/LICENSE.md": {
     "original_hash": "fba3b94d88bfb9b81369b869a1e9a20f",
-    "translation_date": "2025-09-03T21:57:20+00:00",
+    "translation_date": "2026-11-06T20:12:10+00:00",
     "source_file": "sketchnotes/LICENSE.md",
     "language_code": "de"
   },

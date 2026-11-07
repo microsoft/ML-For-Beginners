@@ -86,7 +86,7 @@ According to their [website](https://scikit-learn.org/stable/getting_started.htm
 
 In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum.
 
-Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-learn with some basic data.
+Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built-in estimator to create your first ML model with Scikit-learn with some basic data.
 
 ## Exercise - your first Scikit-learn notebook
 
@@ -204,7 +204,6 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     ```
 
    ![a scatterplot showing datapoints around diabetes](../../../../translated_images/en/scatterplot.ad8b356bcbb33be6.webp)
-
 
    ✅ Think a bit about what's going on here. A straight line is running through many small dots of data, but what is it doing exactly? Can you see how you should be able to use this line to predict where a new, unseen data point should fit in relationship to the plot's y axis? Try to put into words the practical use of this model.
 
