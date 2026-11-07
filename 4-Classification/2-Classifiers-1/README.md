@@ -168,9 +168,8 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
     > Note, use Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) function to flatten your data when needed.
 
     > [!NOTE]
-    > As the `multi_class` parameter has been deprecated since sklearn 1.5  
-    > There may some trouble when you run code with new version  
-    > You can fix TypeError with such code  
+    > The `multi_class` parameter has been deprecated since scikit-learn 1.5.  
+    > If a newer version raises a `TypeError` for this parameter, use the following code instead.
 
     ```python
     from sklearn.multiclass import OneVsRestClassifier
