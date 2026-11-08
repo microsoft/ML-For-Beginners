@@ -80,9 +80,10 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
     ![non-balancing cartpole](images/cartpole-nobalance.gif)
 
-1. During simulation, we need to get observations in order to decide how to act. In fact, the step function returns current observations, a reward function, and the done flag that indicates whether it makes sense to continue the simulation or not: (code block 4)
+1. During simulation, we need to get observations in order to decide how to act. In fact, the step function returns current observations, a reward function, and the `terminated` and `truncated` flags that indicate whether it makes sense to continue the simulation or not: (code block 4)
 
     ```python
+    env = gym.make("CartPole-v1", render_mode="human")
     observation, info = env.reset()
     terminated = False
     truncated = False
@@ -164,6 +165,7 @@ In our example, we will go with the second approach. As you may notice later, de
     ✅ discretize_bins returns the bin number, which is 0-based. Thus for values of input variable around 0 it returns the number from the middle of the interval (10). In discretize, we did not care about the range of output values, allowing them to be negative, thus the state values are not shifted, and 0 corresponds to 0. (code block 8)
 
     ```python
+    env = gym.make("CartPole-v1")
     observation, info = env.reset()
     terminated = False
     truncated = False
@@ -176,7 +178,7 @@ In our example, we will go with the second approach. As you may notice later, de
     env.close()
     ```
 
-    ✅ Uncomment the line starting with env.render if you want to see how the environment executes. Otherwise you can execute it in the background, which is faster. We will use this "invisible" execution during our Q-Learning process.
+    ✅ This simulation runs without on-screen rendering, which is faster and is suitable for the Q-Learning process.
 
 ## The Q-Table structure
 
@@ -258,10 +260,9 @@ We can also make two improvements to our algorithm from the previous lesson:
                 action = np.random.randint(env.action_space.n)
 
             next_observation, reward, terminated, truncated, info = env.step(action)
-            episode_done = terminated or truncated
             cum_reward += reward
             next_state = discretize(next_observation)
-            future_value = 0 if episode_done else max(qvalues(next_state))
+            future_value = 0 if terminated else max(qvalues(next_state))
             Q[(state, action)] = (1 - alpha) * Q.get((state, action), 0) + alpha * (
                 reward + gamma * future_value
             )
