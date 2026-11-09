@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Een ander type Lineaire Regressie is Polynomiale Regressie. Hoewel er soms een lineair verband is tussen variabelen - hoe groter de pompoen in volume, hoe hoger de prijs - kunnen deze verbanden soms niet worden uitgezet als een vlak of rechte lijn.
 
-✅ Hier zijn [nog wat meer voorbeelden](https://online.stat.psu.edu/stat501/lesson/9/9.8) van data die gebruik zouden kunnen maken van Polynomiale Regressie
+✅ Hier zijn [nog wat meer voorbeelden](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) van data die gebruik zouden kunnen maken van Polynomiale Regressie
 
 Kijk nog eens goed naar het verband tussen Datum en Prijs. Lijkt deze scatterplot echt zo dat het noodzakelijk is deze met een rechte lijn te analyseren? Kunnen prijzen niet fluctueren? In dat geval kun je polynomiale regressie proberen.
 

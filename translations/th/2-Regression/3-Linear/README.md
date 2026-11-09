@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 ประเภทหนึ่งของ Linear Regression คือ Polynomial Regression บางครั้งความสัมพันธ์ระหว่างตัวแปรเป็นเชิงเส้น เช่น ยิ่งฟักทองมีปริมาตรมาก ราคาก็สูงขึ้น แต่บางครั้งความสัมพันธ์เหล่านี้ไม่สามารถแสดงในรูปแบบระนาบหรือเส้นตรงได้
 
-✅ นี่คือ [ตัวอย่างเพิ่มเติม](https://online.stat.psu.edu/stat501/lesson/9/9.8) ของข้อมูลที่สามารถใช้ Polynomial Regression ได้
+✅ นี่คือ [ตัวอย่างเพิ่มเติม](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) ของข้อมูลที่สามารถใช้ Polynomial Regression ได้
 
 ลองดูความสัมพันธ์ระหว่าง Date และ Price อีกครั้ง กราฟกระจัดกระจายนี้ดูเหมือนว่าจะต้องวิเคราะห์โดยเส้นตรงเสมอหรือไม่? ราคาสามารถผันผวนได้หรือไม่? ในกรณีนี้ คุณสามารถลองใช้ polynomial regression ได้
 

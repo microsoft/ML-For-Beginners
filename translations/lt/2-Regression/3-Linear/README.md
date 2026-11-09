@@ -238,7 +238,7 @@ plt.plot(X_test,pred)
 
 Kita linijinės regresijos rūšis yra polinominė regresija. Nors kartais tarp kintamųjų yra tiesinė priklausomybė – kuo didesnė moliūgo apimtis, tuo didesnė kaina – kartais šių priklausomybių negalima pavaizduoti kaip plokštumos ar tiesės.
 
-✅ Čia yra [dar keli pavyzdžiai](https://online.stat.psu.edu/stat501/lesson/9/9.8) duomenų, kuriems galima pritaikyti polinominę regresiją
+✅ Čia yra [dar keli pavyzdžiai](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) duomenų, kuriems galima pritaikyti polinominę regresiją
 
 Dar kartą pažvelkite į priklausomybę tarp Datos ir Kainos. Ar šis sklaidos diagrama atrodo, kad būtinai turėtų būti analizuojama tiesės būdu? Negali kainos svyruoti? Tokiu atveju galite išbandyti polinominę regresiją.
 

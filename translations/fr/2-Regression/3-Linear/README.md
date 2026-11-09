@@ -237,7 +237,7 @@ plt.plot(X_test,pred)
 
 Un autre type de régression linéaire est la régression polynomiale. Parfois, il existe une relation linéaire entre les variables - plus la citrouille est volumineuse, plus son prix est élevé - mais parfois ces relations ne peuvent pas être représentées par un plan ou une droite.
 
-✅ Voici [quelques exemples supplémentaires](https://online.stat.psu.edu/stat501/lesson/9/9.8) de données qui pourraient bénéficier d'une régression polynomiale.
+✅ Voici [quelques exemples supplémentaires](https://online.stat.psu.edu/stat501/Lesson09#polynomial-regression-examples) de données qui pourraient bénéficier d'une régression polynomiale.
 
 Regardez à nouveau la relation entre la Date et le Prix. Est-ce que ce nuage de points semble devoir être nécessairement analysé par une droite ? Les prix ne peuvent-ils pas fluctuer ? Dans ce cas, vous pouvez essayer la régression polynomiale.
 
