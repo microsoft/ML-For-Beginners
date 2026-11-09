@@ -120,13 +120,13 @@ class TimeSeriesTensor(UserDict):
     
         inputs = {}
         y = dataframe['target']
-        y = y.as_matrix()
+        y = y.to_numpy()
         inputs['target'] = y
 
         for name, structure in self.tensor_structure.items():
             rng = structure[0]
             cols = structure[1]
-            tensor = dataframe[name][cols].as_matrix()
+            tensor = dataframe[name][cols].to_numpy()
             if rng is None:
                 tensor = tensor.reshape(tensor.shape[0], len(cols))
             else:
