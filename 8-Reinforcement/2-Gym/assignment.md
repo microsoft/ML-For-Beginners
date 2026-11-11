@@ -25,12 +25,7 @@ Observation space consists of just two values:
 |  0  | Car Position | -1.2| 0.6 |
 |  1  | Car Velocity | -0.07 | 0.07 |
 
-Reward system for the mountain car is rather tricky:
-
- * Reward of 0 is awarded if the agent reached the flag (position = 0.5) on top of the mountain.
- * Reward of -1 is awarded if the position of the agent is less than 0.5.
-
-Episode terminates if the car position is more than 0.5, or episode length is greater than 200.
+The agent receives a reward of -1 at every timestep, including the timestep that reaches the goal. The episode ends when the car position is greater than or equal to 0.5 (`terminated=True`), or when the 200-step time limit is reached (`truncated=True`).
 ## Instructions
 
 Adapt our reinforcement learning algorithm to solve the mountain car problem. Start with existing [notebook.ipynb](notebook.ipynb) code, substitute new environment, change state discretization functions, and try to make existing algorithm to train with minimal code modifications. Optimize the result by adjusting hyperparameters.
