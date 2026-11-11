@@ -20,21 +20,21 @@ We will use a simplified version of balancing known as a **CartPole** problem. I
 
 ## Prerequisites
 
-In this lesson, we will be using a library called **OpenAI Gym** to simulate different **environments**. You can run this lesson's code locally (eg. from Visual Studio Code), in which case the simulation will open in a new window. When running the code online, you may need to make some tweaks to the code, as described [here](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+In this lesson, we will use [Gymnasium](https://gymnasium.farama.org/) to simulate reinforcement-learning **environments**. Gymnasium is the maintained successor to the legacy Gym library. The examples below use its current API. To display the CartPole window locally, install the classic-control extra and create the environment with `render_mode="human"`.
 
-## OpenAI Gym
+## Gymnasium
 
-In the previous lesson, the rules of the game and the state were given by the `Board` class which we defined ourselves. Here we will use a special **simulation environment**, which will simulate the physics behind the balancing pole. One of the most popular simulation environments for training reinforcement learning algorithms is called a [Gym](https://gym.openai.com/), which is maintained by [OpenAI](https://openai.com/). By using this gym we can create difference **environments** from a cartpole simulation to Atari games.
+In the previous lesson, the rules of the game and the state were given by the `Board` class which we defined ourselves. Here we will use a **simulation environment** to model the physics behind the balancing pole. [Gymnasium](https://gymnasium.farama.org/) provides a consistent API for creating and interacting with reinforcement-learning environments.
 
-> **Note**: You can see other environments available from OpenAI Gym [here](https://gym.openai.com/envs/#classic_control). 
+> **Note**: Explore other available environments in the [Gymnasium documentation](https://gymnasium.farama.org/). 
 
-First, let's install the gym and import required libraries (code block 1):
+First, install Gymnasium with the classic-control dependencies and import the required libraries (code block 1):
 
 ```python
 import sys
-!{sys.executable} -m pip install gym 
+!{sys.executable} -m pip install "gymnasium[classic-control]"
 
-import gym
+import gymnasium as gym
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -51,7 +51,7 @@ To work with a cartpole balancing problem, we need to initialize corresponding e
 1. To initialize, type the following code:
 
     ```python
-    env = gym.make("CartPole-v1")
+    env = gym.make("CartPole-v1", render_mode="human")
     print(env.action_space)
     print(env.observation_space)
     print(env.action_space.sample())
@@ -64,11 +64,15 @@ To see how the environment works, let's run a short simulation for 100 steps. At
     ✅ Remember that it is preferred to run this code on local Python installation! (code block 3)
 
     ```python
-    env.reset()
-    
+    observation, info = env.reset()
+
     for i in range(100):
-       env.render()
-       env.step(env.action_space.sample())
+       action = env.action_space.sample()
+       observation, reward, terminated, truncated, info = env.step(action)
+
+       if terminated or truncated:
+           observation, info = env.reset()
+
     env.close()
     ```
 
@@ -76,16 +80,18 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
     ![non-balancing cartpole](images/cartpole-nobalance.gif)
 
-1. During simulation, we need to get observations in order to decide how to act. In fact, the step function returns current observations, a reward function, and the done flag that indicates whether it makes sense to continue the simulation or not: (code block 4)
+1. During simulation, we need to get observations in order to decide how to act. In fact, the step function returns current observations, a reward function, and the `terminated` and `truncated` flags that indicate whether it makes sense to continue the simulation or not: (code block 4)
 
     ```python
-    env.reset()
-    
-    done = False
-    while not done:
-       env.render()
-       obs, rew, done, info = env.step(env.action_space.sample())
-       print(f"{obs} -> {rew}")
+    env = gym.make("CartPole-v1", render_mode="human")
+    observation, info = env.reset()
+    terminated = False
+    truncated = False
+
+    while not (terminated or truncated):
+       observation, reward, terminated, truncated, info = env.step(env.action_space.sample())
+       print(f"{observation} -> {reward}")
+
     env.close()
     ```
 
@@ -117,7 +123,7 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
     You may also notice that reward value on each simulation step is always 1. This is because our goal is to survive as long as possible, i.e. keep the pole to a reasonably vertical position for the longest period of time.
 
-    ✅ In fact, the CartPole simulation is considered solved if we manage to get the average reward of 195 over 100 consecutive trials.
+    ✅ The registered reward threshold for Gymnasium's `CartPole-v1` is 500. This version allows up to 500 steps per episode.
 
 ## State discretization
 
@@ -135,7 +141,7 @@ In our example, we will go with the second approach. As you may notice later, de
 
     ```python
     def discretize(x):
-        return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
+        return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(int))
     ```
 
 1. Let's also explore another discretization method using bins: (code block 7)
@@ -159,18 +165,20 @@ In our example, we will go with the second approach. As you may notice later, de
     ✅ discretize_bins returns the bin number, which is 0-based. Thus for values of input variable around 0 it returns the number from the middle of the interval (10). In discretize, we did not care about the range of output values, allowing them to be negative, thus the state values are not shifted, and 0 corresponds to 0. (code block 8)
 
     ```python
-    env.reset()
-    
-    done = False
-    while not done:
-       #env.render()
-       obs, rew, done, info = env.step(env.action_space.sample())
-       #print(discretize_bins(obs))
-       print(discretize(obs))
+    env = gym.make("CartPole-v1")
+    observation, info = env.reset()
+    terminated = False
+    truncated = False
+
+    while not (terminated or truncated):
+       observation, reward, terminated, truncated, info = env.step(env.action_space.sample())
+       #print(discretize_bins(observation))
+       print(discretize(observation))
+
     env.close()
     ```
 
-    ✅ Uncomment the line starting with env.render if you want to see how the environment executes. Otherwise you can execute it in the background, which is faster. We will use this "invisible" execution during our Q-Learning process.
+    ✅ This simulation runs without on-screen rendering, which is faster and is suitable for the Q-Learning process.
 
 ## The Q-Table structure
 
@@ -215,7 +223,7 @@ Now we are ready to teach Peter to balance!
 
 We can also make two improvements to our algorithm from the previous lesson:
 
-- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
+- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we consistently approach the 500-point reward threshold, the policy is performing strongly on `CartPole-v1`.
   
 - **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
 
@@ -230,39 +238,51 @@ We can also make two improvements to our algorithm from the previous lesson:
     Qmax = 0
     cum_rewards = []
     rewards = []
+    # Disable on-screen rendering during training so the 100,000 episodes run efficiently.
+    env.close()
+    env = gym.make("CartPole-v1")
+
     for epoch in range(100000):
-        obs = env.reset()
-        done = False
-        cum_reward=0
+        observation, info = env.reset()
+        terminated = False
+        truncated = False
+        cum_reward = 0
+
         # == do the simulation ==
-        while not done:
-            s = discretize(obs)
-            if random.random()<epsilon:
-                # exploitation - chose the action according to Q-Table probabilities
-                v = probs(np.array(qvalues(s)))
-                a = random.choices(actions,weights=v)[0]
+        while not (terminated or truncated):
+            state = discretize(observation)
+            if random.random() < epsilon:
+                # exploitation - choose an action according to Q-Table probabilities
+                values = probs(np.array(qvalues(state)))
+                action = random.choices(actions, weights=values)[0]
             else:
-                # exploration - randomly chose the action
-                a = np.random.randint(env.action_space.n)
-    
-            obs, rew, done, info = env.step(a)
-            cum_reward+=rew
-            ns = discretize(obs)
-            Q[(s,a)] = (1 - alpha) * Q.get((s,a),0) + alpha * (rew + gamma * max(qvalues(ns)))
+                # exploration - choose a random action
+                action = np.random.randint(env.action_space.n)
+
+            next_observation, reward, terminated, truncated, info = env.step(action)
+            cum_reward += reward
+            next_state = discretize(next_observation)
+            future_value = 0 if terminated else max(qvalues(next_state))
+            Q[(state, action)] = (1 - alpha) * Q.get((state, action), 0) + alpha * (
+                reward + gamma * future_value
+            )
+            observation = next_observation
+
         cum_rewards.append(cum_reward)
         rewards.append(cum_reward)
+
         # == Periodically print results and calculate average reward ==
-        if epoch%5000==0:
+        if epoch % 5000 == 0:
             print(f"{epoch}: {np.average(cum_rewards)}, alpha={alpha}, epsilon={epsilon}")
             if np.average(cum_rewards) > Qmax:
                 Qmax = np.average(cum_rewards)
-                Qbest = Q
-            cum_rewards=[]
+                Qbest = Q.copy()
+            cum_rewards = []
     ```
 
 What you may notice from those results:
 
-- **Close to our goal**. We are very close to achieving the goal of getting 195 cumulative rewards over 100+ consecutive runs of the simulation, or we may have actually achieved it! Even if we get smaller numbers, we still do not know, because we average over 5000 runs, and only 100 runs is required in the formal criteria.
+- **Compare with the Gymnasium threshold**. The registered reward threshold for `CartPole-v1` is 500. The running average is useful for monitoring training, but averaging 5000 training episodes does not by itself confirm that the evaluation threshold has been reached.
   
 - **Reward starts to drop**. Sometimes the reward start to drop, which means that we can "destroy" already learnt values in the Q-Table with the ones that make the situation worse.
 
@@ -297,24 +317,27 @@ To make learning more stable, it makes sense to adjust some of our hyperparamete
 
 - **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`, and move up to almost 1.
 
-> **Task 1**: Play with hyperparameter values and see if you can achieve higher cumulative reward. Are you getting above 195?
+> **Task 1**: Play with hyperparameter values and see if you can achieve higher cumulative reward. Are you approaching the `CartPole-v1` reward threshold of 500?
 
-> **Task 2**: To formally solve the problem, you need to get 195 average reward across 100 consecutive runs. Measure that during training and make sure that you have formally solved the problem!
+> **Task 2**: Evaluate the trained policy over multiple independent episodes and compare the average return with the `CartPole-v1` reward threshold of 500. Do not infer that the environment is solved from a single episode or the training curve alone.
 
 ## Seeing the result in action
 
 It would be interesting to actually see how the trained model behaves. Let's run the simulation and follow the same action selection strategy as during training, sampling according to the probability distribution in Q-Table: (code block 13)
 
 ```python
-obs = env.reset()
-done = False
-while not done:
-   s = discretize(obs)
-   env.render()
-   v = probs(np.array(qvalues(s)))
-   a = random.choices(actions,weights=v)[0]
-   obs,_,done,_ = env.step(a)
-env.close()
+demo_env = gym.make("CartPole-v1", render_mode="human")
+observation, info = demo_env.reset()
+terminated = False
+truncated = False
+
+while not (terminated or truncated):
+   state = discretize(observation)
+   values = probs(np.array(qvalues(state)))
+   action = random.choices(actions, weights=values)[0]
+   observation, _, terminated, truncated, info = demo_env.step(action)
+
+demo_env.close()
 ```
 
 You should see something like this:
