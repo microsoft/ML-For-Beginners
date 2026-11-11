@@ -123,7 +123,7 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
     You may also notice that reward value on each simulation step is always 1. This is because our goal is to survive as long as possible, i.e. keep the pole to a reasonably vertical position for the longest period of time.
 
-    ✅ In fact, the CartPole simulation is considered solved if we manage to get the average reward of 195 over 100 consecutive trials.
+    ✅ The registered reward threshold for Gymnasium's `CartPole-v1` is 500. This version allows up to 500 steps per episode.
 
 ## State discretization
 
@@ -282,7 +282,7 @@ We can also make two improvements to our algorithm from the previous lesson:
 
 What you may notice from those results:
 
-- **Close to our goal**. We are very close to achieving the goal of getting 195 cumulative rewards over 100+ consecutive runs of the simulation, or we may have actually achieved it! Even if we get smaller numbers, we still do not know, because we average over 5000 runs, and only 100 runs is required in the formal criteria.
+- **Compare with the Gymnasium threshold**. The registered reward threshold for `CartPole-v1` is 500. The running average is useful for monitoring training, but averaging 5000 training episodes does not by itself confirm that the evaluation threshold has been reached.
   
 - **Reward starts to drop**. Sometimes the reward start to drop, which means that we can "destroy" already learnt values in the Q-Table with the ones that make the situation worse.
 
@@ -319,7 +319,7 @@ To make learning more stable, it makes sense to adjust some of our hyperparamete
 
 > **Task 1**: Play with hyperparameter values and see if you can achieve higher cumulative reward. Are you getting above 195?
 
-> **Task 2**: To formally solve the problem, you need to get 195 average reward across 100 consecutive runs. Measure that during training and make sure that you have formally solved the problem!
+> **Task 2**: Evaluate the trained policy over multiple independent episodes and compare the average return with the `CartPole-v1` reward threshold of 500. Do not infer that the environment is solved from a single episode or the training curve alone.
 
 ## Seeing the result in action
 
