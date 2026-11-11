@@ -223,7 +223,7 @@ Now we are ready to teach Peter to balance!
 
 We can also make two improvements to our algorithm from the previous lesson:
 
-- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we get more than 195 point - we can consider the problem solved, with even higher quality than required.
+- **Calculate average cumulative reward**, over a number of simulations. We will print the progress each 5000 iterations, and we will average out our cumulative reward over that period of time. It means that if we consistently approach the 500-point reward threshold, the policy is performing strongly on `CartPole-v1`.
   
 - **Calculate maximum average cumulative result**, `Qmax`, and we will store the Q-Table corresponding to that result. When you run the training you will notice that sometimes the average cumulative result starts to drop, and we want to keep the values of Q-Table that correspond to the best model observed during training.
 
@@ -317,7 +317,7 @@ To make learning more stable, it makes sense to adjust some of our hyperparamete
 
 - **Increase epsilon**. We may want to increase the `epsilon` slowly, in order to explore less and exploit more. It probably makes sense to start with lower value of `epsilon`, and move up to almost 1.
 
-> **Task 1**: Play with hyperparameter values and see if you can achieve higher cumulative reward. Are you getting above 195?
+> **Task 1**: Play with hyperparameter values and see if you can achieve higher cumulative reward. Are you approaching the `CartPole-v1` reward threshold of 500?
 
 > **Task 2**: Evaluate the trained policy over multiple independent episodes and compare the average return with the `CartPole-v1` reward threshold of 500. Do not infer that the environment is solved from a single episode or the training curve alone.
 
