@@ -12,8 +12,8 @@
     "language_code": "el"
   },
   "1-Introduction/2-history-of-ML/README.md": {
-    "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
-    "translation_date": "2026-07-14T05:26:58+00:00",
+    "original_hash": "e6b5247d6b4dc821434070bdb58e8285",
+    "translation_date": "2026-09-15T04:41:02+00:00",
     "source_file": "1-Introduction/2-history-of-ML/README.md",
     "language_code": "el"
   },
@@ -24,8 +24,8 @@
     "language_code": "el"
   },
   "1-Introduction/3-fairness/README.md": {
-    "original_hash": "0f00d72169a0d37eecfd16d71e01700a",
-    "translation_date": "2026-07-14T05:28:24+00:00",
+    "original_hash": "0c620ca2c6d2828e9a838ecec5f01265",
+    "translation_date": "2026-09-15T04:39:40+00:00",
     "source_file": "1-Introduction/3-fairness/README.md",
     "language_code": "el"
   },
@@ -54,8 +54,8 @@
     "language_code": "el"
   },
   "2-Regression/1-Tools/README.md": {
-    "original_hash": "0b8635427b582d03ea4ab7089b93e505",
-    "translation_date": "2026-07-14T05:19:17+00:00",
+    "original_hash": "1f4f6c95404d528041bcc36784771084",
+    "translation_date": "2026-09-15T04:45:02+00:00",
     "source_file": "2-Regression/1-Tools/README.md",
     "language_code": "el"
   },
@@ -72,8 +72,8 @@
     "language_code": "el"
   },
   "2-Regression/2-Data/README.md": {
-    "original_hash": "7c077988328ebfe33b24d07945f16eca",
-    "translation_date": "2025-09-04T23:42:04+00:00",
+    "original_hash": "a58b2c4d16c6b122643391745ac15af6",
+    "translation_date": "2026-09-15T04:43:17+00:00",
     "source_file": "2-Regression/2-Data/README.md",
     "language_code": "el"
   },
@@ -282,8 +282,8 @@
     "language_code": "el"
   },
   "5-Clustering/README.md": {
-    "original_hash": "b28a3a4911584062772c537b653ebbc7",
-    "translation_date": "2025-09-04T23:58:06+00:00",
+    "original_hash": "c78940a1b03da1de13bd97527f9e6606",
+    "translation_date": "2026-09-15T04:34:38+00:00",
     "source_file": "5-Clustering/README.md",
     "language_code": "el"
   },
@@ -361,7 +361,7 @@
   },
   "6-NLP/5-Hotel-Reviews-2/README.md": {
     "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
-    "translation_date": "2025-09-05T01:45:22+00:00",
+    "translation_date": "2026-09-15T04:37:46+00:00",
     "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
     "language_code": "el"
   },
@@ -456,8 +456,8 @@
     "language_code": "el"
   },
   "7-TimeSeries/README.md": {
-    "original_hash": "61342603bad8acadbc6b2e4e3aab3f66",
-    "translation_date": "2025-09-04T23:44:32+00:00",
+    "original_hash": "722526664e764a2290e1def74afa5139",
+    "translation_date": "2026-09-15T04:35:08+00:00",
     "source_file": "7-TimeSeries/README.md",
     "language_code": "el"
   },
@@ -564,8 +564,8 @@
     "language_code": "el"
   },
   "README.md": {
-    "original_hash": "3e3a6c7e68e0afe7e2276ac046e4d7a0",
-    "translation_date": "2026-04-20T18:07:57+00:00",
+    "original_hash": "8bba8faed876aa7bbc92b759a350b1d8",
+    "translation_date": "2026-09-15T04:34:20+00:00",
     "source_file": "README.md",
     "language_code": "el"
   },
@@ -587,30 +587,6 @@
     "source_file": "TROUBLESHOOTING.md",
     "language_code": "el"
   },
-  "__translation_failures__": {
-    "6-NLP/5-Hotel-Reviews-2/README.md": {
-      "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
-      "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
-      "language_code": "el",
-      "failure_date": "2026-07-14T05:17:56+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 2 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    },
-    "2-Regression/2-Data/README.md": {
-      "original_hash": "a58b2c4d16c6b122643391745ac15af6",
-      "source_file": "2-Regression/2-Data/README.md",
-      "language_code": "el",
-      "failure_date": "2026-07-14T05:22:47+00:00",
-      "status": "failed",
-      "error_type": "TranslationIncompleteError",
-      "error_message": "Markdown translation remained incomplete for chunk 2 of 'README.md', and the chunk could not be split further.",
-      "translator_version": "0.20.0",
-      "failure_policy_version": 1
-    }
-  },
   "docs/_sidebar.md": {
     "original_hash": "68dd06c685f6ce840e0acfa313352e7c",
     "translation_date": "2025-09-05T00:08:27+00:00",
@@ -618,8 +594,8 @@
     "language_code": "el"
   },
   "for-teachers.md": {
-    "original_hash": "b37de02054fa6c0438ede6fabe1fdfb8",
-    "translation_date": "2025-09-04T23:17:31+00:00",
+    "original_hash": "4b5b4e11bf182a803261b55a19d3ee70",
+    "translation_date": "2026-09-15T04:31:39+00:00",
     "source_file": "for-teachers.md",
     "language_code": "el"
   },

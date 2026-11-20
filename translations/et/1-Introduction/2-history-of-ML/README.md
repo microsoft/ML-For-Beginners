@@ -1,155 +1,157 @@
 # Masinõppe ajalugu
 
-![Masinõppe ajaloo kokkuvõte visandmärkmetes](../../../../translated_images/et/ml-history.a1bdfd4ce1f464d9.webp)
-> Visandmärkmed: [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Masinõppe ajaloo kokkuvõte sketchnote’is](../../../../translated_images/et/ml-history.a1bdfd4ce1f464d9.webp)
+> Sketchnote autor [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Eelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
+## [Eelkontrolli viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
-[![Masinõpe algajatele - Masinõppe ajalugu](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "Masinõpe algajatele - Masinõppe ajalugu")
+[![ML algajatele - Masinõppe ajalugu](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML algajatele - Masinõppe ajalugu")
 
-> 🎥 Klõpsake ülaloleval pildil, et vaadata lühivideot, mis käsitleb seda õppetundi.
+> 🎥 Klõpsa ülaloleval pildil, et vaadata lühivideot selle õppetüki läbivaatamiseks.
 
-Selles õppetunnis vaatame läbi masinõppe ja tehisintellekti ajaloo olulisemad verstapostid.
+Selles õppetükis vaatame üle masinõppe ja tehisintellekti ajaloo olulised verstapostid.
 
-Tehisintellekti (AI) kui valdkonna ajalugu on tihedalt seotud masinõppe ajalooga, kuna ML-i aluseks olevad algoritmid ja arvutuslikud edusammud toetasid AI arengut. Tasub meeles pidada, et kuigi need valdkonnad hakkasid eraldiseisvate uurimisvaldkondadena kujunema 1950ndatel, eelnesid sellele ajastule olulised [algoritmilised, statistilised, matemaatilised, arvutuslikud ja tehnilised avastused](https://wikipedia.org/wiki/Timeline_of_machine_learning). Tegelikult on inimesed nende küsimuste üle mõelnud juba [sadu aastaid](https://wikipedia.org/wiki/History_of_artificial_intelligence): see artikkel käsitleb mõtlemisvõimelise masina idee ajaloolisi intellektuaalseid aluseid.
+Tehisintellekti (TI) valdkonna ajalugu on põimunud masinõppe ajalooga, kuna masinõppe aluseks olevad algoritmid ja arvutuslikud edusammud aitasid kaasa TI arengule. Kasulik on meeles pidada, et kuigi need valdkonnad hakati 1950. aastatel eristuma, olid olulised [algoritmilised, statistilised, matemaatilised, arvutuslikud ja tehnilised avastused](https://wikipedia.org/wiki/Timeline_of_machine_learning) juba enne seda ja kattusid selle ajaga. Tegelikult on inimesed nende küsimustega mõelnud juba [sadu aastaid](https://wikipedia.org/wiki/History_of_artificial_intelligence): see artikkel käsitleb ajaloolisi intellektuaalseid aluseid ideele 'mõtlev masin'.
 
 ---
 ## Märkimisväärsed avastused
 
-- 1763, 1812 [Bayesi teoreem](https://wikipedia.org/wiki/Bayes%27_theorem) ja selle eelkäijad. See teoreem ja selle rakendused on aluseks järeldustele, kirjeldades sündmuse tõenäosust varasema teadmise põhjal.
-- 1805 [Väikseimate ruutude meetod](https://wikipedia.org/wiki/Least_squares) prantsuse matemaatiku Adrien-Marie Legendre'i poolt. See teooria, mida õpite meie regressiooni õppetükis, aitab andmete sobitamisel.
-- 1913 [Markovi ahelad](https://wikipedia.org/wiki/Markov_chain), nime saanud vene matemaatiku Andrey Markovi järgi, kirjeldavad järjestikku võimalikke sündmusi varasema seisundi põhjal.
-- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) on lineaarse klassifikaatori tüüp, mille leiutas Ameerika psühholoog Frank Rosenblatt ja mis on aluseks süvaõppe edusammudele.
+- 1763, 1812 [Bayesi teoreem](https://wikipedia.org/wiki/Bayes%27_theorem) ja selle eelkäijad. See teoreem ja selle rakendused on tuletamise alus, kirjeldades sündmuse toimumise tõenäosust eelnevate teadmiste põhjal.
+- 1805 [Vähimate ruutude teooria](https://wikipedia.org/wiki/Least_squares), prantsuse matemaatiku Adrien-Marie Legendre’i poolt. Selle teooria kohta õpid meie regressiooniosas, see aitab andmete sobitamisel.
+- 1913 [Markovi ahelad](https://wikipedia.org/wiki/Markov_chain), nime järgi vene matemaatik Andrey Markovi, kasutatakse võimalike sündmuste jada kirjeldamiseks varasema oleku põhjal.
+- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron), Ameerika psühholoogi Frank Rosenblatti välja mõeldud lineaarne klassifikaator, mis on süvaõppe edusammude alus.
 
 ---
 
-- 1967 [Lähima naabri algoritm](https://wikipedia.org/wiki/Nearest_neighbor) loodi algselt marsruutide kaardistamiseks. ML-i kontekstis kasutatakse seda mustrite tuvastamiseks.
-- 1970 [Tagasiarvutus](https://wikipedia.org/wiki/Backpropagation) kasutatakse [edasisuunatud närvivõrkude](https://wikipedia.org/wiki/Feedforward_neural_network) treenimiseks.
-- 1982 [Korduvad närvivõrgud](https://wikipedia.org/wiki/Recurrent_neural_network) on tehisnärvivõrgud, mis on tuletatud edasisuunatud närvivõrkudest ja loovad ajutisi graafe.
+- 1967 [Nearest Neighbor](https://wikipedia.org/wiki/Nearest_neighbor) algoritm, algselt marsruutide kaardistamiseks loodud. Masinõppe kontekstis kasutatakse mustrite tuvastamiseks.
+- 1970 [Tagasi levitamise meetod](https://wikipedia.org/wiki/Backpropagation) kasutatakse [feedforward närvivõrkude](https://wikipedia.org/wiki/Feedforward_neural_network) treenimiseks.
+- 1982 [Rekursiivsed närvivõrgud](https://wikipedia.org/wiki/Recurrent_neural_network) on kunstlikud närvivõrgud, mis on tuletatud feedforward närvivõrkudest ja loovad ajaliselt sõltuvad graafid.
 
-✅ Tehke veidi uurimistööd. Millised muud kuupäevad paistavad ML-i ja AI ajaloo seisukohalt olulised?
-
----
-## 1950: Mõtlevad masinad
-
-Alan Turing, tõeliselt erakordne isik, kes valiti [avaliku hääletuse teel 2019. aastal](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 20. sajandi suurimaks teadlaseks, aitas rajada mõtlevate masinate kontseptsiooni aluseid. Ta võitles skeptikute ja oma vajadusega selle kontseptsiooni empiirilise tõestuse järele, luues osaliselt [Turingi testi](https://www.bbc.com/news/technology-18475646), mida uurite meie NLP õppetundides.
+✅ Tee natuke uurimistööd. Millised teised kuupäevad paistavad masinõppe ja tehisintellekti ajaloos silma pöördepunktidena?
 
 ---
-## 1956: Dartmouthi suvine uurimisprojekt
+## 1950: Mõtlevaid masinaid
 
-"Dartmouthi suvine uurimisprojekt tehisintellekti alal oli tehisintellekti kui valdkonna jaoks oluline sündmus," ja just siin võeti kasutusele termin 'tehisintellekt' ([allikas](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
-
-> Iga õppimise aspekt või mis tahes muu intelligentsuse omadus on põhimõtteliselt nii täpselt kirjeldatav, et masin suudab seda simuleerida.
+Alan Turing, tõeliselt tähelepanuväärne isik, keda [avalikkus 2019. aastal](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) valis 20. sajandi suurimaks teadlaseks, aitas kaasa kontseptsiooni 'mõtlev masin' aluste loomisele. Ta püüdis tõestada seda ideed nii kahtlejate kui ka oma vajaduse kaudu empiiriliste tõendite järele, luues osaliselt selleks [Turingi testi](https://www.bbc.com/news/technology-18475646), mida sa uurid meie NLP õppetundides.
 
 ---
+## 1956: Dartmouth'i suve-uuringuprojekt
 
-Peamine uurija, matemaatikaprofessor John McCarthy, lootis "edasi liikuda eeldusel, et iga õppimise aspekt või mis tahes muu intelligentsuse omadus on põhimõtteliselt nii täpselt kirjeldatav, et masin suudab seda simuleerida." Osalejate hulka kuulus ka teine valdkonna suurkuju Marvin Minsky.
+"Dartmouth'i suve-uuringuprojekt tehisintellektil oli oluline tähendus tehisintellekti valdkonna kujunemisel," ja just seal võeti kasutusele termin 'tehisintellekt' ([allikas](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
 
-Töötuba on tunnustatud mitmete arutelude algatamise ja edendamise eest, sealhulgas "sümboolsete meetodite tõus, piiratud valdkondadele keskendunud süsteemid (varased ekspertsüsteemid) ja deduktiivsed süsteemid versus induktiivsed süsteemid." ([allikas](https://wikipedia.org/wiki/Dartmouth_workshop)).
-
----
-## 1956 - 1974: "Kuldne ajastu"
-
-1950ndatest kuni 1970ndate keskpaigani valitses optimism, et AI suudab lahendada palju probleeme. 1967. aastal väitis Marvin Minsky enesekindlalt, et "Ühe põlvkonna jooksul ... tehisintellekti loomise probleem lahendatakse oluliselt." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
-
-Looduskeele töötlemise uurimine õitses, otsingut täiustati ja muudeti võimsamaks ning loodi 'mikromaailmade' kontseptsioon, kus lihtsaid ülesandeid täideti lihtsate keeleliste juhiste abil.
+> Iga õppe või muu intelligentsuse tunnus võib põhimõtteliselt olla nii täpselt kirjeldatud, et masin saab selle simuleerida.
 
 ---
 
-Uuringuid rahastasid hästi valitsusasutused, arvutusvõimekus ja algoritmid arenesid ning loodi intelligentsete masinate prototüüpe. Mõned neist masinatest hõlmavad:
+Peauurija, matemaatikaprofessor John McCarthy lootsid "lähtuda oletusest, et iga õppe või muu intelligentsuse aspekt võib põhimõtteliselt olla nii täpselt kirjeldatud, et masin saab selle simuleerida." Osalejate seas oli ka teine valdkonna tunnustatud teadlane, Marvin Minsky.
 
-* [Shakey robot](https://wikipedia.org/wiki/Shakey_the_robot), kes suutis liikuda ja otsustada, kuidas ülesandeid 'intelligentselt' täita.
+Töötuba aitas algatada ja julgustada mitmeid arutelusid, sealhulgas "sümboolsete meetodite tõusu, piiratud domeenidega süsteemide (varased ekspertsüsteemid) ja deduktiivsete süsteemide versus induktiivsete süsteemide küsimusi." ([allikas](https://wikipedia.org/wiki/Dartmouth_workshop)).
+
+---
+## 1956 - 1974: "Kuldajad"
+
+Alates 1950ndatest kuni 70ndate keskpaigani valitses suur optimism, et TI suudab lahendada mitmeid probleeme. 1967. aastal ütles Marvin Minsky enesekindlalt, et "Ühe põlvkonna jooksul ... on 'tehisintellekti' loomise probleem suuresti lahendatud." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+
+Loomuliku keele töötlemine turgutas, otsing muutus täpsemaks ja võimsamaks ning tekkis kontseptsioon "mikromaailmadest", kus lihtsaid ülesandeid täideti tavakeele juhiste abil.
+
+---
+
+Uuringud olid hästi rahastatud valitsusasutuste poolt, toimusid edusammud arvutustes ja algoritmides ning ehitati intelligentsete masinate prototüüpe. Mõned neist masinatest olid:
+
+* [Shakey robot](https://wikipedia.org/wiki/Shakey_the_robot), kes suutis manööverdada ja otsustada, kuidas ülesandeid "intelligentsemalt" täita.
 
     ![Shakey, intelligentne robot](../../../../translated_images/et/shakey.4dc17819c447c05b.webp)
-    > Shakey aastal 1972
+    > Shakey 1972. aastal
 
 ---
 
-* Eliza, varajane 'vestlusrobot', suutis inimestega vestelda ja toimida primitiivse 'terapeudina'. Õpite Eliza kohta rohkem NLP õppetundides.
+* Eliza, varajane 'juturobot', kes suutis vestelda inimestega ja toimida primitiivse "terapeudina". Sa õpid Elizast rohkem NLP õppetundides.
 
-    ![Eliza, robot](../../../../translated_images/et/eliza.84397454cda9559b.webp)
-    > Eliza versioon, vestlusrobot
-
----
-
-* "Plokkide maailm" oli näide mikromaailmast, kus plokke sai virnastada ja sorteerida ning masinatele otsuste tegemise õpetamise katseid sai testida. Keeltöötluse edendamiseks aitasid kaasa sellised raamatukogud nagu [SHRDLU](https://wikipedia.org/wiki/SHRDLU).
-
-    [![plokkide maailm SHRDLU-ga](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "plokkide maailm SHRDLU-ga")
-
-    > 🎥 Klõpsake ülaloleval pildil, et vaadata videot: Plokkide maailm SHRDLU-ga
-
----
-## 1974 - 1980: "AI talv"
-
-1970ndate keskpaigaks sai selgeks, et 'intelligentsete masinate' loomise keerukust oli alahinnatud ja selle lubadusi, arvestades olemasolevat arvutusvõimekust, oli üle hinnatud. Rahastamine kuivas kokku ja usaldus valdkonna vastu vähenes. Mõned probleemid, mis mõjutasid usaldust, hõlmavad:
----
-- **Piirangud**. Arvutusvõimekus oli liiga piiratud.
-- **Kombinatoorne plahvatus**. Parameetrite hulk, mida tuli treenida, kasvas eksponentsiaalselt, kui arvutitelt nõuti rohkem, ilma et arvutusvõimekus ja -võimalused oleksid paralleelselt arenenud.
-- **Andmete nappus**. Andmete nappus takistas algoritmide testimise, arendamise ja täiustamise protsessi.
-- **Kas me küsime õigeid küsimusi?**. Hakkasid tekkima kahtlused esitatud küsimuste osas. Teadlased hakkasid saama kriitikat oma lähenemisviiside kohta:
-  - Turingi testid seati kahtluse alla, muu hulgas 'hiina toa teooria' kaudu, mis väitis, et "digitaalse arvuti programmeerimine võib panna selle näima, et ta mõistab keelt, kuid ei suuda tekitada tõelist mõistmist." ([allikas](https://plato.stanford.edu/entries/chinese-room/))
-  - Küsiti tehisintellektide, nagu "terapeut" ELIZA, eetilisuse kohta ühiskonnas.
+    ![Eliza, bot](../../../../translated_images/et/eliza.84397454cda9559b.webp)
+    > Eliza, juturoboti versioon
 
 ---
 
-Samal ajal hakkasid kujunema erinevad AI koolkonnad. Loodi dihhotoomia ["räpane" vs. "korralik AI"](https://wikipedia.org/wiki/Neats_and_scruffies) praktikate vahel. _Räpased_ laborid kohandasid programme tundide kaupa, kuni saavutati soovitud tulemused. _Korralikud_ laborid "keskendusid loogikale ja formaalsele probleemide lahendamisele". ELIZA ja SHRDLU olid tuntud _räpased_ süsteemid. 1980ndatel, kui tekkis nõudlus ML-süsteemide reprodutseeritavuse järele, võttis _korralik_ lähenemine järk-järgult juhtpositsiooni, kuna selle tulemused on paremini seletatavad.
+* "Blocks world" oli näide mikromaailmast, kus klotse sai laduda ja sorteerida ning masinatele otsuste tegemise katseid teha. Edusammud, mis kasutavad teeke nagu [SHRDLU](https://wikipedia.org/wiki/SHRDLU), aitasid keele töötlemist edasi viia.
+
+    [![blocks world koos SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world koos SHRDLU")
+
+    > 🎥 Klõpsa ülaloleval pildil, et vaadata videot: Blocks world koos SHRDLU-ga
+
+---
+## 1974 - 1980: "TI talv"
+
+1970. aastate keskpaigaks sai selgeks, et intelligentsete masinate tegemise keerukust oli alahinnatud ja lubadusi arvutusvõimsuse kontekstis liialdatud. Rahastamine kuivatas ja valdkonna usaldus aeglustus. Mõned usaldusväärsust mõjutanud probleemid olid:
+---
+- **Piirangud**. Arvutusvõimsus oli liiga piiratud.
+- **Kombinatoriline plahvatus**. Treenimiseks vajalike parameetrite arv kasvas eksponentsiaalselt ning arvutusvõime ei arenenud samas tempos.
+- **Andmete vähesus**. Andmete nappus takistas algoritmide testimist, arendamist ja täpsustamist.
+- **Kas me esitame õigeid küsimusi?**. Esitatud küsimusi hakati kahtluse alla seadma. Uurijaid kritiseeriti nende lähenemisviiside pärast:
+  - Turingi testi kahtluse alla seadmine, muu hulgas 'Hiina toa teooria' abil, mis väidab, et "digitaalset arvutit programmeerides võib tunduda, et mõistetakse keelt, kuid see ei suuda tegelikku arusaamist tekitada." ([allikas](https://plato.stanford.edu/entries/chinese-room/))
+  - Tehisintellektide, nagu "terapeut" ELIZA, ühiskonda toomise eetika sai kahtluse alla.
+
+---
+
+Samal ajal hakkasid tekkinud erinevad TI mõtteviisid. Loomist ilmnes dikotoomia ["räpane" vs. "korralik TI"] (https://wikipedia.org/wiki/Neats_and_scruffies) praktikate vahel. _Räpased_ laborid kohendasid programme tundide kaupa, kuni tuli soovitud tulemus. _Korralikud_ laborid "keskendusid loogikale ja formaalsele probleemide lahendamisele". ELIZA ja SHRDLU olid tuntud _räpased_ süsteemid. 1980ndatel, kui tekkis nõudlus masinõppesüsteemide reprodutseerimise järele, tõusis esiplaanile järk-järgult _korralik_ lähenemine, kuna selle tulemused on paremini seletatavad.
 
 ---
 ## 1980ndate ekspertsüsteemid
 
-Valdkonna kasvades sai selgemaks selle kasu ärile ning 1980ndatel kasvas ka 'ekspertsüsteemide' levik. "Ekspertsüsteemid olid esimeste tõeliselt edukate tehisintellekti (AI) tarkvara vormide hulgas." ([allikas](https://wikipedia.org/wiki/Expert_system)).
+Valdkond kasvas, selgust tuli ärilisest kasust ja 1980ndatel levisid laialdaselt 'ekspertsüsteemid'. "Ekspertsüsteemid olid üks esimesi tõeliselt edukamaid tehisintellektitarkvarasid." ([allikas](https://wikipedia.org/wiki/Expert_system)).
 
-Selline süsteem on tegelikult _hübriid_, koosnedes osaliselt reeglite mootorist, mis määratleb ärinõuded, ja järeldusmootorist, mis kasutas reeglite süsteemi uute faktide tuletamiseks.
+Sellised süsteemid on tegelikult _hübriidid_, koosnedes osaliselt reeglite mootorist, mis määratleb ärinõuded, ja järeldusmootorist, mis kasutab reeglitest tuletatavaid uusi fakte.
 
-Sellel ajastul pöörati üha enam tähelepanu ka närvivõrkudele.
+Selles ajastus pöörati üha rohkem tähelepanu närvivõrkudele.
 
 ---
-## 1987 - 1993: AI 'külm'
+## 1987 - 1993: TI 'vaikus'
 
-Spetsialiseeritud ekspertsüsteemide riistvara levik avaldas kahjuks mõju, muutudes liiga spetsialiseerituks. Personaalarvutite tõus konkureeris nende suurte, spetsialiseeritud, tsentraliseeritud süsteemidega. Arvutite demokratiseerimine oli alanud ja see sillutas lõpuks teed tänapäevasele suurandmete plahvatusele.
+Spetsialiseeritud ekspertsüsteemide riistvara hulk muutus kahjuks liiga spetsiifiliseks. Isikliku arvuti tõus konkurentsis nende suurte, spetsialiseeritud tsentraliseeritud süsteemidega. Arvutite demokratiseerimine oli alanud ja see sillutas teed tänapäeva suurandmete plahvatusele.
 
 ---
 ## 1993 - 2011
 
-See ajastu tõi ML-i ja AI jaoks uue ajastu, kus suudeti lahendada varasemad probleemid, mis olid põhjustatud andmete ja arvutusvõimekuse puudumisest. Andmete hulk hakkas kiiresti kasvama ja muutuma laiemalt kättesaadavaks, nii heas kui halvas, eriti nutitelefoni tulekuga umbes 2007. aastal. Arvutusvõimekus kasvas eksponentsiaalselt ja algoritmid arenesid koos sellega. Valdkond hakkas küpsema, kuna varasemad vabad päevad hakkasid kristalliseeruma tõeliseks distsipliiniks.
+See epohh tähistas uut ajastut masinõppe ja tehisintellekti jaoks, mis suutsid lahendada varasema andmete ja arvutusvõimsuse puudusest tingitud probleeme. Andmete hulk hakkas kiiresti kasvama ja muutus kättesaadavamaks, nii heas kui halvas, eriti nutitelefoni tulekuga umbes 2007. aastal. Arvutusvõimsus kasvas eksponentsiaalselt ja algoritmid arenesid sellega kaasas. Valdkond muutus küpsemaks, kui varem vabal kujul toimunud päevad hakkasid kristalliseeruma tõeliseks distsipliiniks.
 
 ---
-## Tänapäev
+## Tänapäeval
 
-Tänapäeval puudutavad masinõpe ja AI peaaegu kõiki meie eluvaldkondi. See ajastu nõuab algoritmide mõjude ja riskide hoolikat mõistmist inimeludele. Nagu Microsofti Brad Smith on öelnud: "Infotehnoloogia tõstatab küsimusi, mis puudutavad põhilisi inimõiguste kaitse aspekte, nagu privaatsus ja väljendusvabadus. Need küsimused suurendavad vastutust tehnoloogiaettevõtete jaoks, kes neid tooteid loovad. Meie arvates kutsuvad need esile ka valitsuse läbimõeldud regulatsiooni ja normide väljatöötamist aktsepteeritavate kasutusviiside osas." ([allikas](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Tänapäeval mõjutavad masinõpe ja tehisintellekt praktiliselt kõiki eluvaldkondi. See ajastu nõuab hoolikat arusaamist riskidest ja potentsiaalsetest mõjudest inimeste elule. Nagu Microsofti Brad Smith on öelnud: "Infotehnoloogia tõstatab küsimusi, mis puutuvad kokku põhiliste inimõiguste kaitsega nagu privaatsus ja sõnavabadus. Need küsimused suurendavad tehnoloogiaettevõtete vastutust, kes loovad neid tooteid. Meie seisukohast nõuavad nad ka läbimõeldud riiklikku regulatsiooni ja normide väljatöötamist aktsepteeritavate kasutusviiside kohta" ([allikas](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 ---
 
-Jääb näha, mida tulevik toob, kuid oluline on mõista neid arvutisüsteeme ning tarkvara ja algoritme, mida need käitavad. Loodame, et see õppekava aitab teil paremini mõista, et saaksite ise otsustada.
+Tuleviku osas on veel vara öelda, kuid oluline on mõista neid arvutisüsteeme ning tarkvara ja algoritme, millega nad töötavad. Loodame, et see õppekava aitab sul paremini mõista, et saaksid ise otsustada.
 
-[![Süvaõppe ajalugu](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Süvaõppe ajalugu")
-> 🎥 Klõpsake ülaloleval pildil, et vaadata videot: Yann LeCun arutleb süvaõppe ajaloo üle selles loengus
+[![Sügava õppimise ajalugu](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Sügava õppimise ajalugu")
+> 🎥 Klõpsa ülaloleval pildil, et vaadata videot: Yann LeCun räägib selle loengu ajal sügava õppimise ajaloost
 
 ---
 ## 🚀Väljakutse
 
-Süvenege ühte neist ajaloolistest hetkedest ja uurige rohkem selle taga olevate inimeste kohta. Seal on põnevaid tegelasi ja ükski teaduslik avastus pole kunagi loodud kultuurilisest vaakumist. Mida avastate?
+Uuri mõnda neist ajaloolistest hetkedest ja saa rohkem teada inimestest nende taga. Seal on põnevaid tegelasi, ning ükski teaduslik avastus pole kunagi sündinud kultuurilisest vaakumist. Mida sa avastad?
 
-## [Järelloengu viktoriin](https://ff-quizzes.netlify.app/en/ml/)
-
----
-## Ülevaade ja iseseisev õppimine
-
-Siin on vaatamiseks ja kuulamiseks mõeldud materjalid:
-
-[See taskuhääling, kus Amy Boyd arutleb AI evolutsiooni üle](http://runasradio.com/Shows/Show/739)
-
-[![AI ajalugu Amy Boyd poolt](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "AI ajalugu Amy Boyd poolt")
+## [Järgnev viktoriin](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
+## Kordamine ja iseseisev õpe
 
-## Ülesanne
+Siin on vaatamiseks ja kuulamiseks materjale:
 
-[Loo ajajoon](assignment.md)
+[See podcast, kus Amy Boyd räägib tehisintellekti arengust](http://runasradio.com/Shows/Show/739)
+
+[![Tehisintellekti ajalugu Amy Boydiga](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Tehisintellekti ajalugu Amy Boydiga")
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+## Kodune ülesanne
+
+[Loo ajaskaala](assignment.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

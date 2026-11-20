@@ -1,155 +1,157 @@
 # 機器學習的歷史
 
-![機器學習歷史摘要的手繪筆記](../../../../sketchnotes/ml-history.png)
-> 手繪筆記由 [Tomomi Imura](https://www.twitter.com/girlie_mac) 提供
+![機器學習歷史概要的手繪筆記](../../../../translated_images/zh-HK/ml-history.a1bdfd4ce1f464d9.webp)
+> 手繪筆記由 [Tomomi Imura](https://www.twitter.com/girlie_mac) 製作
 
 ## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
-[![機器學習入門 - 機器學習的歷史](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "機器學習入門 - 機器學習的歷史")
+[![初學者機器學習 - 機器學習歷史](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "初學者機器學習 - 機器學習歷史")
 
-> 🎥 點擊上方圖片觀看本課程的短片。
+> 🎥 點擊上面圖片觀看簡短教學影片。
 
-在本課程中，我們將回顧機器學習和人工智能歷史上的重要里程碑。
+在本課程中，我們將回顧機器學習與人工智能歷史上的主要里程碑。
 
-人工智能（AI）作為一個領域的歷史與機器學習的歷史密切相關，因為支撐機器學習的算法和計算進步促進了人工智能的發展。值得注意的是，雖然這些領域作為獨立的研究方向在1950年代開始成形，但重要的[算法、統計、數學、計算和技術發現](https://wikipedia.org/wiki/Timeline_of_machine_learning)早於並重疊了這一時期。事實上，人類已經思考這些問題[數百年](https://wikipedia.org/wiki/History_of_artificial_intelligence)：本文討論了“思考機器”概念的歷史性智力基礎。
+人工智能（AI）作為一個領域的歷史與機器學習的發展密切相關，因為支撐機器學習的算法與計算進步推動了人工智能的發展。值得記住的是，雖然這些領域作為獨立研究方向在1950年代才開始形成，但重要的[算法、統計、數學、計算與技術發現](https://wikipedia.org/wiki/Timeline_of_machine_learning)早於且重疊於此時期。事實上，人們對這些問題的思考已經持續了[數百年](https://wikipedia.org/wiki/History_of_artificial_intelligence)：本文討論了「思考機器」理念的歷史性智識基礎。
 
 ---
 ## 重要發現
 
-- 1763年、1812年 [貝葉斯定理](https://wikipedia.org/wiki/Bayes%27_theorem)及其前身。該定理及其應用是推理的基礎，描述了基於先驗知識事件發生的概率。
-- 1805年 [最小二乘法](https://wikipedia.org/wiki/Least_squares) 由法國數學家Adrien-Marie Legendre提出。該理論在我們的回歸單元中會學到，幫助進行數據擬合。
-- 1913年 [馬爾可夫鏈](https://wikipedia.org/wiki/Markov_chain)，以俄羅斯數學家Andrey Markov命名，用於描述基於前一狀態的一系列可能事件。
-- 1957年 [感知器](https://wikipedia.org/wiki/Perceptron) 是一種由美國心理學家Frank Rosenblatt發明的線性分類器，為深度學習的進步奠定了基礎。
+- 1763 年及 1812 年的 [貝葉斯定理](https://wikipedia.org/wiki/Bayes%27_theorem) 及其前身。該定理及其應用是推理的基礎，用以根據先驗知識描述事件發生的概率。
+- 1805 年法國數學家阿德里安-瑪麗·勒讓德提出的 [最小二乘理論](https://wikipedia.org/wiki/Least_squares)。該理論將在我們的迴歸單元中學習，有助於資料擬合。
+- 1913 年以俄羅斯數學家安得烈·馬爾可夫命名的 [馬爾可夫鏈](https://wikipedia.org/wiki/Markov_chain)，用於根據前一狀態描述可能事件的序列。
+- 1957 年由美國心理學家弗蘭克·羅森布拉特發明的 [感知器](https://wikipedia.org/wiki/Perceptron)，這是一種線性分類器，為深度學習的進展奠定基礎。
 
 ---
 
-- 1967年 [最近鄰算法](https://wikipedia.org/wiki/Nearest_neighbor) 最初設計用於路徑規劃。在機器學習中，它被用於模式檢測。
-- 1970年 [反向傳播](https://wikipedia.org/wiki/Backpropagation) 用於訓練[前饋神經網絡](https://wikipedia.org/wiki/Feedforward_neural_network)。
-- 1982年 [循環神經網絡](https://wikipedia.org/wiki/Recurrent_neural_network) 是從前饋神經網絡衍生出的人工神經網絡，用於創建時間圖。
+- 1967 年的 [最近鄰算法](https://wikipedia.org/wiki/Nearest_neighbor) 最初設計用於繪製路線。在機器學習背景下用於檢測模式。
+- 1970 年的 [反向傳播算法](https://wikipedia.org/wiki/Backpropagation) 用於訓練 [前饋神經網絡](https://wikipedia.org/wiki/Feedforward_neural_network)。
+- 1982 年的 [遞歸神經網路](https://wikipedia.org/wiki/Recurrent_neural_network), 是從前饋神經網絡發展而來，能夠建立時間性圖形。
 
-✅ 做一些研究。還有哪些日期在機器學習和人工智能的歷史中具有重要意義？
+✅ 進行一些研究。還有哪些日期是機器學習和人工智能歷史上的重要轉折點？
 
 ---
 ## 1950年：思考的機器
 
-艾倫·圖靈（Alan Turing），一位真正傑出的人物，被公眾在[2019年](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century)評選為20世紀最偉大的科學家，他被認為幫助奠定了“能夠思考的機器”概念的基礎。他面對反對者並努力尋求這一概念的實證證據，部分通過創建[圖靈測試](https://www.bbc.com/news/technology-18475646)，你將在我們的自然語言處理課程中進一步探索。
+艾倫·圖靈是一位真正了不起的人物，於2019年被[公眾票選](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century)為20世紀最偉大的科學家，他被認為幫助奠定了「能思考的機器」概念的基礎。他部分通過創造[圖靈測試](https://www.bbc.com/news/technology-18475646)來應對質疑者與自己對這一概念的實證需求，你會在我們的自然語言處理課程中探索該測試。
 
 ---
-## 1956年：達特茅斯夏季研究項目
+## 1956年：達特茅斯暑期研究計劃
 
-“達特茅斯夏季人工智能研究項目是人工智能作為一個領域的開創性事件”，並且在這裡首次提出了“人工智能”這一術語（[來源](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)）。
+「達特茅斯暑期人工智能研究計劃是人工智能領域的一次奠基性事件」，正是在此會議中誕生了「人工智能」一詞（[來源](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)）。
 
-> 學習的每一個方面或任何其他智能特徵都可以原則上如此精確地描述，以至於可以製造出模擬它的機器。
-
----
-
-首席研究員、數學教授John McCarthy希望“基於這樣的猜想進行研究，即學習的每一個方面或任何其他智能特徵都可以原則上如此精確地描述，以至於可以製造出模擬它的機器。”參與者包括另一位該領域的傑出人物Marvin Minsky。
-
-該研討會被認為促進並激發了多個討論，包括“符號方法的興起、專注於有限領域的系統（早期專家系統）以及演繹系統與歸納系統之間的對比。”（[來源](https://wikipedia.org/wiki/Dartmouth_workshop)）。
-
----
-## 1956年 - 1974年：“黃金時代”
-
-從1950年代到70年代中期，人們對人工智能能夠解決許多問題充滿樂觀。1967年，Marvin Minsky自信地表示：“在一代人的時間內……創造‘人工智能’的問題將基本得到解決。”（Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall）
-
-自然語言處理研究蓬勃發展，搜索技術得到了改進並變得更強大，“微世界”的概念被創造出來，簡單的任務可以通過簡單的語言指令完成。
+> 學習的每個方面或智能的其他任何特徵，原理上都可以如此精確描述，以至於可以製造出模擬它的機器。
 
 ---
 
-研究得到了政府機構的充分資助，計算和算法方面取得了進展，智能機器的原型被製造出來。其中一些機器包括：
+領導研究的是數學教授約翰·麥卡錫，他希望「基於一個猜想：學習的每個方面或智能的其他任何特徵，原理上都可以如此精確描述，以至於可以製造出能模擬它的機器。」參與者中還有該領域的另一位先驅，馬文·明斯基。
 
-* [Shakey機器人](https://wikipedia.org/wiki/Shakey_the_robot)，它能夠智能地移動並決定如何執行任務。
+這個工作坊催生並推動了多方面討論，包括「象徵方法的興起、聚焦於有限領域的系統（早期專家系統）以及演繹系統與歸納系統的對比。」（[來源](https://wikipedia.org/wiki/Dartmouth_workshop)）。
 
-    ![Shakey，一個智能機器人](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
-    > 1972年的Shakey
+---
+## 1956年至1974年:「黃金年代」
+
+從1950年代至70年代中期，對人工智能解決許多問題的希望非常高漲。1967年，馬文·明斯基自信地表示：「一個世代內……創造『人工智能』的問題將實質上被解決。」（Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall）
+
+自然語言處理研究蓬勃發展，搜尋功能得以精化與加強，並且創造了「微世界」概念，在這裡可用簡單語言指令完成簡單任務。
 
 ---
 
-* Eliza，一個早期的“聊天機器人”，能夠與人交談並充當一個原始的“治療師”。你將在自然語言處理課程中學到更多關於Eliza的內容。
+研究得到政府機構良好資助，計算與算法進展，智能機器的原型也建立。其中一些機器包括：
 
-    ![Eliza，一個機器人](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
-    > Eliza的一個版本，聊天機器人
+* [Shakey 機器人](https://wikipedia.org/wiki/Shakey_the_robot)，能夠自主移動並決定如何『智能』地執行任務。
 
----
-
-* “積木世界”是一個微世界的例子，積木可以堆疊和排序，並且可以進行教導機器做出決策的實驗。使用像[SHRDLU](https://wikipedia.org/wiki/SHRDLU)這樣的庫進行的研究推動了語言處理的進步。
-
-    [![積木世界與SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "積木世界與SHRDLU")
-
-    > 🎥 點擊上方圖片觀看視頻：積木世界與SHRDLU
-
----
-## 1974年 - 1980年：“人工智能寒冬”
-
-到70年代中期，製造“智能機器”的複雜性已被低估，而其承諾在當時的計算能力下被過度吹捧。資金枯竭，對該領域的信心減弱。一些影響信心的問題包括：
----
-- **限制**。計算能力過於有限。
-- **組合爆炸**。隨著對計算機的要求增加，需要訓練的參數數量呈指數增長，而計算能力和性能並未同步發展。
-- **數據匱乏**。數據的匱乏阻礙了測試、開發和改進算法的過程。
-- **我們是否在問正確的問題？**。所提出的問題本身開始受到質疑。研究人員開始面臨對其方法的批評：
-  - 圖靈測試因“中文房間理論”等觀點受到質疑，該理論認為“編程一台數字計算機可能使其看似理解語言，但無法產生真正的理解。”（[來源](https://plato.stanford.edu/entries/chinese-room/)）
-  - 將像“治療師”ELIZA這樣的人工智能引入社會的倫理問題受到挑戰。
+    ![Shakey，一個智能機器人](../../../../translated_images/zh-HK/shakey.4dc17819c447c05b.webp)
+    > Shakey於1972年
 
 ---
 
-同時，各種人工智能思想流派開始形成。“[凌亂派與整潔派](https://wikipedia.org/wiki/Neats_and_scruffies)”的二分法逐漸建立。_凌亂派_實驗室通過不斷調整程序直到達到預期結果。_整潔派_實驗室則“專注於邏輯和正式問題解決”。ELIZA和SHRDLU是著名的_凌亂派_系統。在1980年代，隨著對機器學習系統可重現性的需求出現，_整潔派_方法逐漸占據主導地位，因為其結果更具解釋性。
+* Eliza，早期的「聊天機器人」，能與人對話並充當原始「心理治療師」。你將在自然語言處理課程中進一步了解Eliza。
+
+    ![Eliza，一個機器人](../../../../translated_images/zh-HK/eliza.84397454cda9559b.webp)
+    > Eliza聊天機器人的一個版本
+
+---
+
+* 「積木世界」是微世界的一個例子，在此可以疊積木和排序，同時可測試教導機器決策的實驗。使用像[SHRDLU](https://wikipedia.org/wiki/SHRDLU)這樣的函式庫推動語言處理的發展。
+
+    [![帶有SHRDLU的積木世界](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "帶有SHRDLU的積木世界")
+
+    > 🎥 點擊上方圖片觀看影片：帶有SHRDLU的積木世界
+
+---
+## 1974年至1980年：人工智能「寒冬」
+
+到70年代中期，人們開始意識到製造「智能機器」的複雜性被低估，考慮到當時的計算能力，其所承諾的成果被過度誇大。資金枯竭，對該領域的信心下降。一些影響信心的問題包括：
+---
+- <strong>限制</strong>。計算能力過於有限。
+- <strong>組合爆炸問題</strong>。當對電腦的需求增加時，需要訓練的參數數量呈指數增長，計算能力與功能並未同步演進。
+- <strong>數據不足</strong>。缺乏數據阻礙算法的測試、開發與改進過程。
+- **我們問的問題是否正確？**。對所提問題本身開始質疑。研究者遭受方法上的批評：
+  - 圖靈測試受到「中文房間理論」等思想的質疑，該理論主張「編程可使數位電腦看似理解語言，但無法產生真正理解。」（[來源](https://plato.stanford.edu/entries/chinese-room/)）
+  - 人工智能如「心理治療師」ELIZA在社會中的倫理問題遭到挑戰。
+
+---
+
+與此同時，各種人工智能思想流派開始形成。界定了「粗糙派」與「精緻派」人工智能的二分法（["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies)）。_粗糙派_ 實驗室會調整程序直至達到期望結果。_精緻派_ 實驗室著重於邏輯與形式化問題解決。ELIZA和SHRDLU是著名的_粗糙派_系統。80年代，隨著對可重現機器學習系統的需求增強，_精緻派_漸成主流，因其結果更易解釋。
 
 ---
 ## 1980年代 專家系統
 
-隨著該領域的發展，其對商業的益處變得更加明顯，1980年代“專家系統”的普及也隨之而來。“專家系統是人工智能（AI）軟件中最早真正成功的形式之一。”（[來源](https://wikipedia.org/wiki/Expert_system)）
+隨著該領域成長，其對商業的價值愈加明顯，1980年代專家系統大量湧現。「專家系統是最早真正成功的人工智能（AI）軟件形式之一。」（[來源](https://wikipedia.org/wiki/Expert_system)）
 
-這類系統實際上是_混合型_，部分由定義業務需求的規則引擎組成，部分由利用規則系統推導新事實的推理引擎組成。
+這種類型的系統其實是_混合型_，部分由規則引擎組成，定義業務需求，另一部分是推理引擎，依據規則系統推導出新事實。
 
-這一時期也看到對神經網絡的關注逐漸增加。
-
----
-## 1987年 - 1993年：人工智能“寒潮”
-
-專家系統硬件的專業化程度過高，導致其不幸地變得過於專業化。個人電腦的興起也與這些大型、專業化、集中化系統形成競爭。計算的民主化已經開始，並最終為現代大數據的爆炸鋪平了道路。
+該時期也開始增加對神經網絡的關注。
 
 ---
-## 1993年 - 2011年
+## 1987年至1993年：AI 「冷卻期」
 
-這一時期為機器學習和人工智能解決早期因數據和計算能力不足而產生的問題開啟了新篇章。數據量開始迅速增加並變得更容易獲得，無論是好是壞，尤其是在2007年智能手機出現之後。計算能力呈指數增長，算法也隨之演化。該領域開始成熟，過去自由奔放的日子逐漸凝聚成一門真正的學科。
-
----
-## 現在
-
-如今，機器學習和人工智能幾乎觸及我們生活的每一部分。這一時代呼籲我們仔細理解這些算法對人類生活的風險和潛在影響。正如微軟的Brad Smith所說：“信息技術提出了一些涉及基本人權保護的問題，比如隱私和言論自由。這些問題加重了創造這些產品的科技公司的責任。在我們看來，這些問題也呼籲政府進行深思熟慮的監管以及制定可接受使用的規範。”（[來源](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)）
+專家系統硬件過度專業化帶來了不利影響。個人電腦的興起也與這些龐大專門化集中系統競爭。計算民主化開始，最終為現代大數據爆炸鋪路。
 
 ---
+## 1993年至2011年
 
-未來會如何仍有待觀察，但理解這些計算機系統及其運行的軟件和算法至關重要。我們希望這份課程能幫助你更好地理解，從而自己做出判斷。
-
-[![深度學習的歷史](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "深度學習的歷史")
-> 🎥 點擊上方圖片觀看視頻：Yann LeCun在這次講座中討論深度學習的歷史
+這一時期，機器學習和人工智能迎來新紀元，解決了早期數據和計算能力不足帶來的一些問題。數據量快速成長並更廣泛可用，特別是2007年智能手機問世後，帶來便利也有挑戰。計算能力呈指數成長，算法同步演進。該領域開始成熟，過去自由奔放的日子逐步整理成真正的學科。
 
 ---
-## 🚀挑戰
+## 現今
 
-深入研究這些歷史時刻中的一個，了解背後的人物。這些人物非常有趣，沒有任何科學發現是在文化真空中誕生的。你發現了什麼？
+如今，機器學習與人工智能幾乎觸及我們生活的各個方面。這個時代要求我們仔細理解這些算法對人類生活帶來的風險與潛在影響。正如微軟的布拉德·史密斯所說：「資訊技術引發了關乎基本人權保障，如隱私和表達自由的問題。這些問題增加了創造這些產品的科技公司的責任。在我們看來，這也呼籲政府制定審慎的監管及建立可接受使用的規範。」（[來源](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)）
+
+---
+
+未來會如何發展尚未可知，但瞭解這些計算機系統及其運行的軟件和算法非常重要。我們希望這套課程幫助你獲得更好的理解，讓你能自行判斷。
+
+[![深度學習歷史](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "深度學習歷史")
+> 🎥 點擊上方圖片觀看影片：Yann LeCun在此講座中討論深度學習的歷史
+
+---
+## 🚀 挑戰
+
+探究其中一段歷史時刻，了解背後的人物。這些角色都非常吸引人，沒有任何科學發現是在文化真空中誕生的。你會發現什麼？
 
 ## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
-## 回顧與自學
+## 複習與自學
 
-以下是一些可以觀看和聆聽的內容：
+這裡有一些值得觀看與聆聽的項目：
 
-[這個播客中，Amy Boyd討論了人工智能的演變](http://runasradio.com/Shows/Show/739)
+[Amy Boyd 討論人工智能演變的播客](http://runasradio.com/Shows/Show/739)
 
-[![Amy Boyd講述人工智能的歷史](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Amy Boyd講述人工智能的歷史")
+[![Amy Boyd談人工智能的歷史](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Amy Boyd談人工智能的歷史")
 
 ---
 
 ## 作業
 
-[創建一個時間線](assignment.md)
+[製作時間軸](assignment.md)
 
 ---
 
-**免責聲明**：  
-此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤詮釋概不負責。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責聲明**：
+本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們致力於確保準確性，但請注意，機器自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議進行專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋承擔責任。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

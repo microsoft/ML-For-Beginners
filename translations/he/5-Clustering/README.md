@@ -1,18 +1,18 @@
 # מודלים של אשכולות ללמידת מכונה
 
-אשכולות הם משימה בלמידת מכונה שבה מחפשים למצוא אובייקטים הדומים זה לזה ולחבר אותם לקבוצות הנקראות אשכולות. מה שמבדיל אשכולות מגישות אחרות בלמידת מכונה הוא שהדברים מתרחשים באופן אוטומטי, למעשה, אפשר לומר שזה ההפך מלמידה מונחית.
+אשכולות היא משימת למידת מכונה שבה מנסים למצוא אובייקטים הדומים זה לזה ולקבץ אותם לקבוצות הנקראות אשכולות. מה שמבדיל את האשכולות מגישות אחרות בלמידת מכונה הוא שהדברים קורים אוטומטית, למעשה, אפשר לומר שזה ההפך מלמידה מונחית.
 
-## נושא אזורי: מודלים של אשכולות לטעמי מוזיקה של קהל ניגרי 🎧
+## נושא אזורי: מודלי אשכולות לטעמי מוזיקה של קהל נגרי 🎧
 
-הקהל המגוון בניגריה מתאפיין בטעמי מוזיקה מגוונים. באמצעות נתונים שנאספו מ-Spotify (בהשראת [המאמר הזה](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)), נבחן כמה מהמוזיקה הפופולרית בניגריה. מערך הנתונים הזה כולל מידע על ציוני 'ריקודיות', 'אקוסטיות', עוצמת קול, 'דיבוריות', פופולריות ואנרגיה של שירים שונים. יהיה מעניין לגלות דפוסים בנתונים האלה!
+לקהל המגוון של ניגריה יש טעמי מוזיקה מגוונים. באמצעות נתונים שנאספו מ-Spotify (בהשראת [מאמר זה](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421), נבחן מוזיקה פופולרית בניגריה. מערך נתונים זה כולל מידע על ציון 'danceability', 'acousticness', רמת עוצמת הקול, 'speechiness', פופולריות ואנרגיה של שירים שונים. יהיה מעניין לגלות דפוסים בנתונים אלו!
 
-![פלטת תקליטים](../../../5-Clustering/images/turntable.jpg)
+![מערכת טורנーブル](../../../translated_images/he/turntable.f2b86b13c53302dc.webp)
 
-> צילום מאת <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> ב-<a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> תמונה מאת <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">מרסלה לאסקוסקי</a> ב-<a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-בסדרת השיעורים הזו, תגלו דרכים חדשות לנתח נתונים באמצעות טכניקות אשכולות. אשכולות שימושיים במיוחד כאשר מערך הנתונים שלכם חסר תוויות. אם יש לו תוויות, אז טכניקות סיווג כמו אלו שלמדתם בשיעורים קודמים עשויות להיות מועילות יותר. אבל במקרים שבהם אתם מחפשים לקבץ נתונים ללא תוויות, אשכולות הם דרך מצוינת לגלות דפוסים.
+בסדרת שיעורים זו תגלו דרכים חדשות לנתח נתונים באמצעות טכניקות אשכולות. אשכולות היא שימושית במיוחד כשהמערך שלך חסר תוויות. אם יש לו תוויות, טכניקות סיווג כמו שלמדת בשיעורים קודמים עשויות להיות מועילות יותר. אבל במקרים בהם אתה מחפש לקבץ נתונים ללא תוויות, אשכולות היא דרך מצוינת לגלות דפוסים.
 
-> ישנם כלים שימושיים בעלי קוד נמוך שיכולים לעזור לכם ללמוד לעבוד עם מודלים של אשכולות. נסו [Azure ML למשימה זו](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
+> יש כלים מועילים עם מעט קוד שיכולים לעזור לך ללמוד על עבודה עם מודלי אשכולות. נסה את [Azure ML עבור המשימה הזו](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## שיעורים
 
@@ -21,13 +21,15 @@
 
 ## קרדיטים
 
-השיעורים הללו נכתבו עם 🎶 על ידי [Jen Looper](https://www.twitter.com/jenlooper) עם ביקורות מועילות מאת [Rishit Dagli](https://rishit_dagli) ו-[Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan).
+שיעורים אלה נכתבו עם 🎶 על ידי [ג'ן לופר](https://www.twitter.com/jenlooper) עם סקירות מועילות של [רישיט דגלי](https://rishit_dagli/) ו-[מוחמד סאקיב חאן אינאן](https://twitter.com/Sakibinan).
 
-מערך הנתונים [שירים ניגריים](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) נלקח מ-Kaggle ונאסף מ-Spotify.
+מערך הנתונים של [שירי ניגריה](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) נוצר מ-Kaggle תוך גרידה מ-Spotify.
 
-דוגמאות שימושיות של K-Means שסייעו ביצירת השיעור כוללות את [חקירת האיריס הזו](https://www.kaggle.com/bburns/iris-exploration-pca-k-means-and-gmm-clustering), [מחברת מבוא זו](https://www.kaggle.com/prashant111/k-means-clustering-with-python), ואת [דוגמת ה-NGO ההיפותטית הזו](https://www.kaggle.com/ankandash/pca-k-means-clustering-hierarchical-clustering).
+דוגמאות שימושיות של K-Means שעזרו ביצירת שיעור זה כוללות את [חקירת האירוס](https://www.kaggle.com/bburns/iris-exploration-pca-k-means-and-gmm-clustering), את [מחברת מבוא זו](https://www.kaggle.com/prashant111/k-means-clustering-with-python), ואת [דוגמת NGO היפותטית זו](https://www.kaggle.com/ankandash/pca-k-means-clustering-hierarchical-clustering).
 
 ---
 
-**כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור סמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**כתב ויתור**:
+מסמך זה תורגם באמצעות שירות תרגום אוטומטי [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. יש להחשיב את המסמך המקורי בשפתו הטבעית כמקור הסמכות. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אדם. אנו לא אחראים לכל אי-הבנה או פירוש שגוי הנובע מהשימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

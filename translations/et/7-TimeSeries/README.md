@@ -1,28 +1,30 @@
-# Sissejuhatus aegridade prognoosimisse
+# Sissejuhatus ajaread prognoosimisse
 
-Mis on aegridade prognoosimine? See seisneb tulevaste sündmuste ennustamises, analüüsides mineviku trende.
+Mis on ajaread prognoosimine? See on tulevaste sündmuste ennustamine mineviku trendide analüüsi abil.
 
-## Regionaalne teema: elektritarbimine üle maailma ✨
+## Regionaalne teema: kogu maailmas elektritarbimine ✨
 
-Nendes kahes õppetükis tutvustatakse teile aegridade prognoosimist, mis on küll veidi vähem tuntud masinõppe valdkond, kuid siiski äärmiselt väärtuslik tööstus- ja ärirakendustes ning muudes valdkondades. Kuigi närvivõrke saab kasutada nende mudelite kasulikkuse suurendamiseks, uurime neid klassikalise masinõppe kontekstis, kus mudelid aitavad ennustada tulevast jõudlust mineviku põhjal.
+Nendes kahes õppetükis tutvustatakse teile ajaread prognoosimist, masinõppe veidi vähem tuntud valdkonda, mis on siiski äärmiselt väärtuslik tööstuse ja äri rakendustes ning paljudes teistes valdkondades. Kuigi närvivõrgud võivad aidata nende mudelite kasulikkust suurendada, uurime neid klassikalise masinõppe kontekstis, kuna mudelid aitavad prognoosida tulemust mineviku põhjal.
 
-Meie regionaalne fookus on elektritarbimine maailmas – huvitav andmestik, mille abil õppida prognoosima tulevast energiatarbimist mineviku koormusmustrite põhjal. Näete, kuidas selline prognoosimine võib olla äärmiselt kasulik ärikeskkonnas.
+Meie regionaalne fookus on elektritarbimisel maailmas, huvitaval andmekogumil, mis võimaldab õppida elektritarbimise tuleviku prognoosimist mineviku koormuse mustrite põhjal. Näete, kuidas selline prognoosimine võib olla äärmiselt kasulik ärikeskkonnas.
 
-![elektrivõrk](../../../translated_images/et/electric-grid.0c21d5214db09ffa.webp)
+![electric grid](../../../translated_images/et/electric-grid.0c21d5214db09ffa.webp)
 
-Foto autorilt [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) elektritornidest teel Rajasthanis [Unsplashis](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Foto [Peddi Sai hrithiku](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) tehtud elektri tornidest teel Rajasthanis saidilt [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Õppetükid
 
-1. [Sissejuhatus aegridade prognoosimisse](1-Introduction/README.md)
-2. [ARIMA aegridade mudelite loomine](2-ARIMA/README.md)
-3. [Toetavate vektorite regressori loomine aegridade prognoosimiseks](3-SVR/README.md)
+1. [Sissejuhatus ajaread prognoosimisse](1-Introduction/README.md)
+2. [ARIMA ajareamudelite loomine](2-ARIMA/README.md)
+3. [Toetavate vektorite regressori loomine ajaread prognoosimiseks](3-SVR/README.md)
 
 ## Autorid
 
-"Sissejuhatus aegridade prognoosimisse" on kirjutatud ⚡️ poolt [Francesca Lazzeri](https://twitter.com/frlazzeri) ja [Jen Looper](https://twitter.com/jenlooper). Märkmikud ilmusid esmakordselt veebis [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting), mille algselt kirjutas Francesca Lazzeri. SVR õppetüki kirjutas [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD).
+"Sissejuhatus ajaread prognoosimisse" koostasid ⚡️ [Francesca Lazzeri](https://twitter.com/frlazzeri) ja [Jen Looper](https://twitter.com/jenlooper). Märkmikud avaldati esimest korda veebis [Azure "Deep Learning For Time Series" andmekogus](https://github.com/Azure/DeepLearningForTimeSeriesForecasting), mille algse autori on Francesca Lazzeri. SVR õppetüki kirjutas [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,121 +1,121 @@
-# 使用 Python 和 Scikit-learn 開始迴歸模型
+# 使用 Python 和 Scikit-learn 開始回歸模型
 
-![迴歸總結手繪筆記](../../../../translated_images/zh-MO/ml-regression.4e4f70e3b3ed446e.webp)
+![回歸模型概要手繪筆記](../../../../translated_images/zh-MO/ml-regression.4e4f70e3b3ed446e.webp)
 
 > 手繪筆記由 [Tomomi Imura](https://www.twitter.com/girlie_mac) 製作
 
 ## [課前小測驗](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [此課程亦有 R 版本！](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [本課程亦提供 R 版本！](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## 介紹
 
-在這四課中，你將學習如何建立迴歸模型。我們稍後將討論它們的用途。但在開始操作之前，請先確認你已準備好正確的工具！
+在這四課中，您將學習如何建立回歸模型。我們稍後會討論其用途。但在您開始之前，請確保您已備妥適用的工具來展開此流程！
 
-本課程你將學習如何：
+在本課中，您將學會：
 
-- 設置電腦以進行本地機器學習任務。
+- 為本地機器學習任務配置您的電腦。
 - 使用 Jupyter 筆記本。
 - 使用 Scikit-learn，包括安裝。
-- 透過實作探索線性迴歸。
+- 透過實作活動探索線性回歸。
 
-## 安裝與配置
+## 安裝與設定
 
-[![機器學習初學者 - 安裝您的工具準備建立機器學習模型](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "機器學習初學者 - 安裝您的工具準備建立機器學習模型")
+[![適合初學者的機器學習 - 準備好您的工具以建構機器學習模型](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "適合初學者的機器學習 - 準備好您的工具以建構機器學習模型")
 
-> 🎥 點擊上圖觀看教學影片，示範如何設定電腦以執行機器學習。
+> 🎥 點擊上方圖片觀看設定電腦進行機器學習的短片。
 
-1. **安裝 Python**。確保您的電腦已安裝 [Python](https://www.python.org/downloads/)。Python 是許多資料科學及機器學習工作所需的語言。大多數電腦系統已預裝 Python。也有實用的 [Python 編碼套件](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott)，可幫助部分用戶簡化設定流程。
+1. **安裝 Python**。確保您的電腦已安裝 [Python](https://www.python.org/downloads/)。Python 被廣泛用於資料科學與機器學習工作。大多數作業系統已預裝 Python。部分用戶也可以使用有助安裝的 [Python 程式包](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott)。
 
-   然而，不同的 Python 用途可能需要不同版本，因此使用 [虛擬環境](https://docs.python.org/3/library/venv.html) 是很實用的做法。
+   然而，Python 的某些用法需要特定版本，因此建議在 [虛擬環境](https://docs.python.org/3/library/venv.html) 中工作。
 
-2. **安裝 Visual Studio Code**。確保您的電腦已安裝 Visual Studio Code。請按照這些說明 [安裝 Visual Studio Code](https://code.visualstudio.com/) 以完成基礎安裝。您將在本課程中使用 Visual Studio Code 編寫 Python，建議了解如何 [設定 Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) 作為 Python 開發環境。
+2. **安裝 Visual Studio Code**。請確保您已在電腦上安裝 Visual Studio Code。請遵循[安裝 Visual Studio Code 指引](https://code.visualstudio.com/)完成基本安裝。此課程將在 Visual Studio Code 中使用 Python，您也可參考如何[設定 Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott)以便 Python 開發。
 
-   > 透過這系列 [學習模組](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) 熟悉 Python。
+   > 藉由此[學習模組](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)練習熟悉 Python。
    >
-   > [![視覺工作室碼中設定 Python](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "視覺工作室碼中設定 Python")
+   > [![用 Visual Studio Code 設定 Python](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "用 Visual Studio Code 設定 Python")
    >
-   > 🎥 點擊上圖觀看教學影片：在 VS Code 使用 Python。
+   > 🎥 點擊上方圖片觀看在 VS Code 中使用 Python 的教學影片。
 
-3. **安裝 Scikit-learn**，請遵循 [這些指示](https://scikit-learn.org/stable/install.html)。因需使用 Python 3，建議使用虛擬環境。若您在 M1 Mac 上安裝，本頁面提供了特別指引。
+3. **安裝 Scikit-learn**，請依照[此處的指引](https://scikit-learn.org/stable/install.html)進行。請確認使用 Python 3，建議搭配虛擬環境。若您在 M1 Mac 安裝，鏈結頁面有特別說明。
 
-1. **安裝 Jupyter Notebook**。您需要 [安裝 Jupyter 套件](https://pypi.org/project/jupyter/)。
+1. **安裝 Jupyter Notebook**。您需要[安裝 Jupyter 套件](https://pypi.org/project/jupyter/)。
 
-## 你的機器學習編輯環境
+## 您的機器學習開發環境
 
-你將使用 **notebooks** 來開發 Python 程式碼並建立機器學習模型。這類檔案是資料科學家常用工具，副檔名為 `.ipynb`。
+您將使用 <strong>筆記本</strong> 來開發 Python 程式碼並建立機器學習模型。這類檔案是資料科學常用工具，副檔名為 `.ipynb`。
 
-筆記本是一個互動式環境，允許開發人員同時撰寫程式碼、加入筆記及撰寫程式說明，這對實驗性或研究導向專案非常有用。
+筆記本提供互動式環境，允許開發者同時撰寫程式碼及相關備註和說明，對實驗或研究導向專案非常有幫助。
 
-[![機器學習初學者 - 設定 Jupyter 筆記本開始建立迴歸模型](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "機器學習初學者 - 設定 Jupyter 筆記本開始建立迴歸模型")
+[![適合初學者的機器學習 - 設定 Jupyter 筆記本開始建立回歸模型](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "適合初學者的機器學習 - 設定 Jupyter 筆記本開始建立回歸模型")
 
-> 🎥 點擊上圖觀看示範本練習的短片。
+> 🎥 點擊上方圖片觀看本練習的簡短影片。
 
-### 練習 - 操作一個 notebook
+### 練習 - 操作筆記本
 
-在此資料夾中，你會找到檔案 _notebook.ipynb_。
+您會在此資料夾中找到 _notebook.ipynb_ 檔案。
 
 1. 在 Visual Studio Code 中開啟 _notebook.ipynb_。
 
-   會啟動一個 Python 3+ 的 Jupyter 伺服器。你會看到可執行的程式碼區域。可按一個看似播放鍵的圖示，執行該程式碼區塊。
+   Jupyter 伺服器將啟動並使用 Python 3+。您會發現筆記本中有可 `執行` 的程式碼區塊。您可點擊像播放按鈕的圖示來執行程式碼。
 
-1. 選擇 `md` 圖示，加入一些 markdown 語法和以下文字 **# Welcome to your notebook**。
+1. 選擇 `md` 圖示，新增一些 markdown，並加入文字 **# 歡迎使用您的筆記本**。
 
-   接著，加入一些 Python 程式碼。
+   接著，添加一些 Python 程式碼。
 
-1. 在程式碼區塊鍵入 **print('hello notebook')**。
-1. 按箭頭執行程式碼。
+1. 在程式碼區塊中輸入 **print('hello notebook')**。
+1. 點擊箭頭執行程式碼。
 
-   你應該會看到輸出如下：
+   您應該會看到印出的訊息：
 
     ```output
     hello notebook
     ```
 
-![VS Code 開啟 notebook 的畫面](../../../../translated_images/zh-MO/notebook.4a3ee31f396b8832.webp)
+![在 VS Code 打開的筆記本畫面](../../../../translated_images/zh-MO/notebook.4a3ee31f396b8832.webp)
 
-你可以穿插程式碼與註解，自我記錄 notebook 內容。
+您可穿插程式碼與註解，為筆記本自我撰寫文件。
 
-✅ 想想看，網頁開發者的工作環境與資料科學家的環境有何不同。
+✅ 想想網頁開發者的工作環境與資料科學家有何不同。
 
-## 使用 Scikit-learn 上手
+## 使用 Scikit-learn 起步
 
-現在你的本地環境已設定好 Python，且熟悉 Jupyter 筆記本，接下來讓我們熟悉 Scikit-learn（發音為「sci」，類似「science」）。Scikit-learn 提供了[完整的 API](https://scikit-learn.org/stable/modules/classes.html#api-ref)協助你執行機器學習任務。
+現在 Python 已在本地環境設定完成，並熟悉了 Jupyter 筆記本，我們來熟悉 Scikit-learn（唸作 `sci`，像科學 science 的發音）。Scikit-learn 提供[豐富的 API](https://scikit-learn.org/stable/modules/classes.html#api-ref)輔助機器學習工作。
 
-根據其[官方網站](https://scikit-learn.org/stable/getting_started.html)說明：「Scikit-learn 是一個支持監督式與非監督式學習的開源機器學習函式庫。它還提供各種模型擬合、資料前處理、模型選擇與評估等工具，及其他許多實用功能。」
+根據其 [官方網站](https://scikit-learn.org/stable/getting_started.html)："Scikit-learn 是一個開源機器學習函式庫，支持監督式與非監督式學習，並提供模型擬合、資料預處理、模型選擇與評估等多種工具。"
 
-在本課程，你將使用 Scikit-learn 與其他工具建立機器學習模型，以完成我們所稱的“傳統機器學習”任務。我們故意避免使用神經網絡和深度學習，這部分會在即將推出的「AI 初學者」課程中更完整說明。
+在本課程中，您將使用 Scikit-learn 及其他工具來建立傳統機器學習模型。我們故意避開神經網絡與深度學習，因其將在即將推出的「初學者 AI 課程」中詳述。
 
-Scikit-learn 讓建立模型及評估變得簡單。它主要使用數值資料，並包含多組預先準備好的學習用資料集，也有學生可試用的預建模型。讓我們先探索如何載入預設資料，並用內建的估算器建立首個 Scikit-learn 機器學習模型。
+Scikit-learn 使模型建立與評估簡單直接，主要針對數值資料，並包含數個準備好的資料集供學習使用，也附帶可供學生嘗試的預建模型。我們來探索以內建資料與預設估計器，如何用 Scikit-learn 建立第一個機器學習模型。
 
-## 練習 - 你的第一個 Scikit-learn 筆記本
+## 練習 - 您的第一個 Scikit-learn 筆記本
 
-> 本教學靈感來自 Scikit-learn 網站上的[線性迴歸範例](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py)。
+> 本指南靈感來自 Scikit-learn 網站上的[線性回歸示範](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py)。
 
 
-[![機器學習初學者 - 你的第一個 Python 線性迴歸專案](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "機器學習初學者 - 你的第一個 Python 線性迴歸專案")
+[![適合初學者的機器學習 - 您的第一個 Python 線性回歸專案](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "適合初學者的機器學習 - 您的第一個 Python 線性回歸專案")
 
-> 🎥 點擊上圖觀看示範本練習的短片。
+> 🎥 點擊上方圖片觀看本練習的簡短影片。
 
-在本課程附帶的 _notebook.ipynb_ 檔案中，請按「垃圾桶」圖示清空所有儲存格。
+在此課程相關的 _notebook.ipynb_ 檔中，按下「垃圾桶」圖示清除所有儲存格。
 
-本節中，你將使用 Scikit-learn 內建的一組關於糖尿病的迷你資料集學習。假設你想測試一種糖尿病患者的治療方法。機器學習模型有助判斷哪些病患會較適合此治療方案，基於各變數組合。即使是基本迴歸模型，經視覺化後，也能揭示幫助理論性臨床試驗設計的變數資訊。
+本節將使用 Scikit-learn 內建的小型糖尿病資料集。假設您想測試糖尿病患者的療法，機器學習模型有助判斷哪些患者基於變數組合會較好反應。即使是最基本的回歸模型，經視覺化後，也可呈現關於有助安排臨床試驗的變數資訊。
 
-✅ 有許多迴歸方法，選擇哪種取決於你想得到什麼答案。若想預測特定年齡的人大約身高，則用線性迴歸，因為你想要預測的是<strong>數值數據</strong>。若要判斷某類料理是不是純素，則是<strong>分類任務</strong>，會用邏輯迴歸。後續你會進一步學習邏輯迴歸。思考一下你能向數據提出哪些問題，以及用哪種方法較適合。
+✅ 回歸方法有多種，選用取決於您想要的答案。若您想預測某年齡者的可能身高，會用線性回歸，因為您在尋求一個<strong>數值</strong>。若您想辨別一種料理是否為素食，您正尋求<strong>類別判定</strong>，會使用邏輯回歸；稍後會學到更多。思考您能從資料問些什麼問題，哪種方法較適合。
 
-現在開始動手做吧。
+讓我們開始進行這個任務。
 
 ### 匯入函式庫
 
-本任務我們將匯入一些函式庫：
+本任務將匯入以下函式庫：
 
-- **matplotlib**。這是個實用的[繪圖工具](https://matplotlib.org/)，用來產生折線圖。
-- **numpy**。[numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) 是 Python 中處理數值資料的重要函式庫。
-- **sklearn**。即是 [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) 函式庫。
+- **matplotlib**。這是一個實用的[繪圖工具](https://matplotlib.org/)，我們會用來繪製線圖。
+- **numpy**。[numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) 在 Python 中處理數值資料非常有用。
+- **sklearn**。這是 [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) 函式庫。
 
-匯入函式庫以協助你的任務。
+匯入這些函式庫協助您的任務。
 
-1. 輸入以下程式碼匯入：
+1. 輸入以下程式碼以加入匯入：
 
    ```python
    import matplotlib.pyplot as plt
@@ -123,26 +123,26 @@ Scikit-learn 讓建立模型及評估變得簡單。它主要使用數值資料�
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   你匯入了 `matplotlib`、`numpy`，以及從 `sklearn` 匯入 `datasets`、`linear_model`、`model_selection`。其中 `model_selection` 用來將資料拆分為訓練集和測試集。
+   上述程式碼匯入了 `matplotlib`、`numpy`，以及從 `sklearn` 匯入 `datasets`、`linear_model` 和 `model_selection`。`model_selection` 用於將資料分割為訓練與測試集。
 
 ### 糖尿病資料集
 
-內建的 [糖尿病資料集](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)含有 442 個糖尿病相關樣本資料，特徵共 10 項，其中若干如下：
+內建的[糖尿病資料集](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)包含 442 筆糖尿病相關資料，含 10 個特徵變數，部分如下：
 
 - age：年齡（歲）
 - bmi：身體質量指數
 - bp：平均血壓
 - s1 tc：T 細胞（一種白血球）
 
-✅ 此資料集中包含 'sex' 作為對糖尿病研究重要的特徵變數。許多醫療資料集都包含這類二元分類。思考一下這種分類是否可能導致部分族群被排除在治療之外。
+✅ 此資料集包含名為「性別」的特徵變數，對糖尿病研究至關重要。許多醫學資料集包含此類二元分類。想想此類分類如何可能令部分族群無法接受治療。
 
-接下來，載入 X 與 y 資料。
+現在，載入 X 和 y 資料。
 
-> 🎓 記住，這是監督式學習，因此需要命名為 'y' 的目標變量。
+> 🎓 記住，這是監督式學習，需要標記為 y 的目標。
 
-在新的程式碼儲存格中，呼叫 `load_diabetes()` 載入資料集。輸入參數 `return_X_y=True` 表示 `X` 會是資料矩陣，`y` 則是迴歸目標。
+在新程式碼儲存格中，藉由呼叫 `load_diabetes()` 載入糖尿病資料集。參數 `return_X_y=True` 表示 `X` 是資料矩陣，`y` 是回歸目標。
 
-1. 加入印出指令，顯示資料矩陣形狀與第一筆資料：
+1. 添加列印指令以顯示資料矩陣形狀及第一筆數據：
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -150,9 +150,9 @@ Scikit-learn 讓建立模型及評估變得簡單。它主要使用數值資料�
     print(X[0])
     ```
 
-    你得到的回傳結果是個元組。你將元組的前兩個值分別指定給 `X` 與 `y`。可深入了解[元組](https://wikipedia.org/wiki/Tuple)。
+    您的回傳結果是一個元組。賦值將元組的前兩個值分別給 `X` 和 `y`。更多資訊參見[元組介紹](https://wikipedia.org/wiki/Tuple)。
 
-    可以看到此資料集有 442 筆資料，每筆資料有 10 個元素的陣列：
+    可見此資料集有 442 筆資料，每筆為包含 10 個元素的陣列：
 
     ```text
     (442, 10)
@@ -160,9 +160,9 @@ Scikit-learn 讓建立模型及評估變得簡單。它主要使用數值資料�
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ 想一想資料與迴歸目標的關係。線性迴歸預測特徵 X 與目標變量 y 的連結。你能否在文件中找到該糖尿病資料集的[目標](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)？給定該目標，此資料集試圖說明什麼？
+    ✅ 思考資料與回歸目標的關係。線性回歸預測特徵 X 與目標變數 y 的關聯。在文件中能找到糖尿病資料集的[目標](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)嗎？以此目標，此資料集展示了什麼？
 
-2. 接著，挑選資料集其中一部分來繪圖，選取第 3 欄資料。使用 `:` 選取所有列，再用索引 (2) 選取第 3 欄。可用 `reshape(n_rows, n_columns)` 將資料改為二維陣列，是繪圖的需求。若其中一參數是 -1，則自動計算相應維度大小。
+2. 接著，從資料集中選擇部分資料繪圖，選擇第 3 欄資料。透過 `:` 選擇所有列，使用索引 (2) 選取第 3 欄。使用 `reshape(n_rows, n_columns)` 將資料重塑為 2D 陣列以利繪圖。若參數為 -1，對應維度將自動計算。
 
    ```python
    X = X[:, 2]
@@ -171,28 +171,28 @@ Scikit-learn 讓建立模型及評估變得簡單。它主要使用數值資料�
 
    ✅ 隨時印出資料確認其形狀。
 
-3. 現在你有資料可繪圖，嘗試讓機器判定該資料中數值的合理分界。這需將資料 (X) 與目標 (y) 依比例拆成測試與訓練集。Scikit-learn 有簡單方法可拆分資料。
+3. 現有資料可供繪製，您看看機器能否幫助找出資料的合適劃分。為此，需將資料 (X) 與目標 (y) 分割為測試與訓練集。Scikit-learn 提供簡單方法於指定點分割測試資料。
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. 準備好後開始訓練模型！載入線性迴歸模型，並用 X 與 y 的訓練集以 `model.fit()` 訓練：
+4. 之後，您可訓練模型！載入線性回歸模型，並以 `model.fit()` 透過訓練集 X 和 y 訓練模型：
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` 是許多機器學習函式庫（如 TensorFlow）通用的函式。
+    ✅ `model.fit()` 是許多機器學習函式庫如 TensorFlow 中常見的函式。
 
-5. 接著，用測試資料使用 `predict()` 產生預測。它用來繪製模型數據分組間的線條。
+5. 接著，使用測試資料利用 `predict()` 產生預測。此預測用於繪製資料組間的分界線。
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. 現在該將資料以圖表呈現。Matplotlib 是此任務中很實用的工具。繪製所有 X 與 y 測試資料的散點圖，再用預測值畫出最適合的分界線。
+6. 現在來展示資料的繪圖。Matplotlib 是實用工具。繪製測試集 X 和 y 的散點圖，並根據預測在最合適位置繪出模型資料分群間線條。
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -205,22 +205,21 @@ Scikit-learn 讓建立模型及評估變得簡單。它主要使用數值資料�
 
    ![顯示糖尿病資料點的散點圖](../../../../translated_images/zh-MO/scatterplot.ad8b356bcbb33be6.webp)
 
+   ✅ 想想這在做什麼。一條直線穿過眾多小資料點，但實際作用是？您是否能利用這條線預測新資料點在繪圖 y 軸上的位置？嘗試用語言描述此模型的實用意義。
 
-   ✅ 想一想這裡發生了什麼。一直線穿過許多小點數據，但它到底在做什麼？你能否看出應該如何利用這條線來預測一個未見過的新數據點應該在圖中 y 軸的哪個位置？試著用文字表達這個模型的實際用途。
-
-恭喜，你建立了第一個線性回歸模型，使用它創建了預測，並且將其顯示在圖中！
+恭喜，您建立了第一個線性回歸模型，並以其產生預測，最後顯示於圖表中！
 
 ---
 ## 🚀挑戰
 
-繪製來自此數據集的不同變量的圖表。提示：編輯這一行：`X = X[:,2]`。根據此數據集的目標，你能發現糖尿病作為一種疾病的進展有什麼特點？
+繪製此資料集中的另一個變數。提示：編輯此行：`X = X[:,2]`。考慮此資料集目標，您能發現糖尿病作為疾病的進展情形？
 ## [課後小測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 複習與自學
 
-在本教程中，你使用的是簡單線性回歸，而非單變量或多元線性回歸。了解這些方法之間的差異，或觀看[這個影片](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+在本教學中，您接觸的是簡單線性回歸，而非單變量或多變量線性回歸。稍微閱讀這些方法間的差異，或觀看[此影片](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)。
 
-閱讀更多關於回歸概念的內容，思考這個技術能回答哪些問題。使用這個[教程](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott)加深你的理解。
+詳細了解回歸的概念，並思考這種技術可以解答哪些類型的問題。進行這個 [教程](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) 以深化你的理解。
 
 ## 作業
 

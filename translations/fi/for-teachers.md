@@ -1,28 +1,30 @@
-## Opettajille
+## Kouluttajille
 
-Haluaisitko käyttää tätä opetusohjelmaa luokassasi? Ole hyvä ja käytä vapaasti!
+Haluaisitko käyttää tätä opetussuunnitelmaa luokassasi? Ole hyvä vain!
 
-Itse asiassa voit käyttää sitä suoraan GitHubissa hyödyntämällä GitHub Classroomia.
+Itse asiassa voit käyttää sitä myös GitHubin sisällä käyttämällä GitHub Classroomia.
 
-Tätä varten haarauta tämä repo. Sinun täytyy luoda repo jokaiselle oppitunnille, joten sinun täytyy erottaa jokainen kansio omaksi repokseen. Näin [GitHub Classroom](https://classroom.github.com/classrooms) voi käsitellä jokaisen oppitunnin erikseen.
+Tehdäksesi niin, haarauta tämä repo. Sinun täytyy luoda repo jokaiselle oppitunnille, joten sinun täytyy erotella jokainen kansio omaksi repoksi. Näin [GitHub Classroom](https://classroom.github.com/classrooms) voi noutaa jokaisen oppitunnin erikseen.
 
-Nämä [täydelliset ohjeet](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) antavat sinulle käsityksen siitä, miten luokkahuoneesi voidaan perustaa.
+Nämä [täydelliset ohjeet](https://github.blog/2020-03-18-set-up-your-digital-classroom-with-github-classroom/) antavat sinulle käsityksen siitä, miten luoda oma luokkasi.
 
-## Repon käyttäminen sellaisenaan
+## Käyttämällä repoa sellaisenaan
 
-Jos haluat käyttää tätä repoja sellaisena kuin se on, ilman GitHub Classroomia, sekin onnistuu. Sinun täytyy vain viestiä opiskelijoillesi, minkä oppitunnin parissa työskennellä yhdessä.
+Jos haluat käyttää tätä repoa sellaisenaan ilman GitHub Classroomin käyttöä, sekin onnistuu. Sinun täytyy vain viestiä opiskelijoillesi, mitä oppituntia yhdessä työstätte.
 
-Verkko-opetuksessa (Zoom, Teams tai muu) voit muodostaa pienryhmiä visailuja varten ja ohjata opiskelijoita valmistautumaan oppimiseen. Sitten voit kutsua opiskelijat visailuihin ja pyytää heitä lähettämään vastauksensa 'issueina' tiettyyn aikaan. Sama menetelmä voi toimia tehtävien kanssa, jos haluat opiskelijoiden työskentelevän avoimesti yhteistyössä.
+Verkkoympäristössä (Zoom, Teams tai muu) voit muodostaa pienryhmiä visoille ja ohjata opiskelijoita valmistautumaan oppimistilanteeseen. Kutsu sitten opiskelijat tekemään visat ja lähettämään vastauksensa 'issues'-tai tehtävälistana tiettyyn aikaan. Voit toimia samalla tavalla myös tehtävien kanssa, jos haluat opiskelijoiden tekevän yhteistyötä avoimesti.
 
-Jos haluat mieluummin yksityisemmän lähestymistavan, pyydä opiskelijoita haarauttamaan opetusohjelma oppitunti kerrallaan omiin GitHub-repoihinsa yksityisinä repoina ja antamaan sinulle käyttöoikeuden. Tällöin he voivat suorittaa visailut ja tehtävät yksityisesti ja lähettää ne sinulle issueina luokkahuoneesi repoon.
+Jos haluat yksityisemmän muodon, pyydä opiskelijoita haarauttamaan opetussuunnitelma kappale kappaleelta omiin GitHub-repoihinsa yksityisinä repozitoriona ja antamaan sinulle pääsyn. Sitten he voivat tehdä visat ja tehtävät yksityisesti ja lähettää ne sinulle issuesien kautta luokkarepossa.
 
-On monia tapoja saada tämä toimimaan verkko-opetuksessa. Kerro meille, mikä toimii parhaiten sinulle!
+On monia tapoja saada tämä toimimaan verkkoluokkamuodossa. Kerro meille, mikä toimii parhaiten sinulle!
 
 ## Kerro meille mielipiteesi!
 
-Haluamme tehdä tästä opetusohjelmasta toimivan sinulle ja opiskelijoillesi. Jätä meille [palautetta](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
+Haluamme tehdä tästä opetussuunnitelmasta toimivan sinulle ja opiskelijoillesi. Anna meille [palautetta](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR2humCsRZhxNuI79cm6n0hRUQzRVVU9VVlU5UlFLWTRLWlkyQUxORTg5WS4u).
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
