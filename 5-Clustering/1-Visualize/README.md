@@ -248,8 +248,13 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
 1. By far, the top three genres dominate this dataset. Let's concentrate on `afro dancehall`, `afropop`, and `nigerian pop`, additionally filter the dataset to remove anything with a 0 popularity value (meaning it was not classified with a popularity in the dataset and can be considered noise for our purposes):
 
     ```python
-    df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
-    df = df[(df['popularity'] > 0)]
+    top_genres = df["artist_top_genre"].value_counts().index[:3]
+
+    # focus on the top 3 genres and popularity is greater than 0.
+    df = df[
+        df["artist_top_genre"].isin(top_genres)&
+        (df["popularity"] > 0)
+    ]
     top = df['artist_top_genre'].value_counts()
     plt.figure(figsize=(10,7))
     sns.barplot(x=top.index,y=top.values)
